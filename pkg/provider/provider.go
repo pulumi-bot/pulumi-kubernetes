@@ -24,6 +24,7 @@ import (
 	"reflect"
 	"strings"
 	"sync"
+	"time"
 
 	jsonpatch "github.com/evanphx/json-patch"
 	"github.com/golang/glog"
@@ -263,6 +264,8 @@ func (k *kubeProvider) DiffConfig(ctx context.Context, req *pulumirpc.DiffReques
 
 // Configure configures the resource provider with "globals" that control its behavior.
 func (k *kubeProvider) Configure(_ context.Context, req *pulumirpc.ConfigureRequest) (*pulumirpc.ConfigureResponse, error) {
+	time.Sleep(10 * time.Second)
+
 	vars := req.GetVariables()
 
 	//
