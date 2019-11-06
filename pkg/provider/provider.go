@@ -67,7 +67,7 @@ import (
 // --------------------------------------------------------------------------
 
 const (
-	invokeList           = "kubernetes:kubernetes:list"
+	streamInvokeList     = "kubernetes:kubernetes:list"
 	streamInvokeWatch    = "kubernetes:kubernetes:watch"
 	lastAppliedConfigKey = "kubectl.kubernetes.io/last-applied-configuration"
 	initialApiVersionKey = "__initialApiVersion"
@@ -370,7 +370,7 @@ func (k *kubeProvider) Invoke(ctx context.Context,
 
 	// Process Invoke call.
 	switch tok {
-	case invokeList:
+	case streamInvokeList:
 		namespace := ""
 		if args["namespace"].HasValue() {
 			namespace = args["namespace"].StringValue()
@@ -414,7 +414,9 @@ func (k *kubeProvider) Invoke(ctx context.Context,
 
 // StreamInvoke dynamically executes a built-in function in the provider. The result is streamed
 // back as a series of messages.
-func (k *kubeProvider) StreamInvoke(req *pulumirpc.InvokeRequest, server pulumirpc.ResourceProvider_StreamInvokeServer) error {
+func (k *kubeProvider) StreamInvoke(
+	req *pulumirpc.InvokeRequest, server pulumirpc.ResourceProvider_StreamInvokeServer) error {
+
 	// Unmarshal arguments.
 	tok := req.GetTok()
 	label := fmt.Sprintf("%s.StreamInvoke(%s)", k.label(), tok)
@@ -425,6 +427,106 @@ func (k *kubeProvider) StreamInvoke(req *pulumirpc.InvokeRequest, server pulumir
 	}
 
 	switch tok {
+	case streamInvokeList:
+		//
+		// Request a list of all resources of some type, in some number of namespaces.
+		//
+		// DESIGN NOTES: `list` must be a `StreamInvoke` instead of an `Invoke` to avoid the gRPC
+		// message size limit. Unlike `watch`, which will continue until the user cancels the
+		// request, `list` is guaranteed to terminate after all the resources are listed. The role
+		// of the SDK implementations of `list` is thus to wait for the stream to terminate,
+		// aggregate the resources into a list, and return to the user.
+		//
+		// We send the resources asynchronously. This requires an "event loop" (below), which
+		// continuously attempts to send the resource, checking for cancellation on each send. This
+		// allows for the theoretical possibility that the gRPC client cancels the `list` operation
+		// prior to completion. The SDKs implementing `list` will very probably never expose a
+		// `cancel` handler in the way that `watch` does; `watch` requires it because a watcher is
+		// expected to never terminate, and users of the various SDKs need a way to tell the
+		// provider to stop streaming and reclaim the resources associated with the stream.
+		//
+		// Still, we implement this cancellation also for `list`, primarily for coompleteness. We'd
+		// like to avoid an unpleasant and non-actionable error that would appear on a `Send` on a
+		// client that is no longer accepting requests. This also helps to guard against the
+		// possibility that some dark corner of gRPC signals cancellation by accident, e.g., during
+		// shutdown.
+		//
+
+		namespace := ""
+		if args["namespace"].HasValue() {
+			namespace = args["namespace"].StringValue()
+		}
+		if !args["group"].HasValue() || !args["version"].HasValue() || !args["kind"].HasValue() {
+			return fmt.Errorf(
+				"list requires a group, version, and kind that uniquely specify the resource type")
+		}
+		cl, err := k.clientSet.ResourceClient(schema.GroupVersionKind{
+			Group:   args["group"].StringValue(),
+			Version: args["version"].StringValue(),
+			Kind:    args["kind"].StringValue(),
+		}, namespace)
+		if err != nil {
+			return err
+		}
+
+		list, err := cl.List(metav1.ListOptions{})
+		if err != nil {
+			return err
+		}
+
+		//
+		// List resources. Send them one-by-one, asynchronously, to the client requesting them.
+		//
+
+		objects := make(chan map[string]interface{})
+		go func() {
+			for _, o := range list.Items {
+				objects <- o.Object
+			}
+		}()
+
+		for {
+			select {
+			case <-k.canceler.context.Done():
+				//
+				// `kubeProvider#Cancel` was called. Terminate the `StreamInvoke` RPC, free all
+				// resources, and exit without error.
+				//
+
+				return nil
+			case o := <-objects:
+				//
+				// Publish resource from the list back to user.
+				//
+
+				resp, err := plugin.MarshalProperties(
+					resource.NewPropertyMapFromMap(o),
+					plugin.MarshalOptions{})
+				if err != nil {
+					return err
+				}
+
+				err = server.Send(&pulumirpc.InvokeResponse{Return: resp})
+				if err != nil {
+					return err
+				}
+			case <-server.Context().Done():
+				//
+				// gRPC stream was cancelled from the client that issued the `StreamInvoke` request
+				// to us. In this case, we terminate the `StreamInvoke` RPC, free all resources, and
+				// exit without error.
+				//
+				// This is required for `watch`, but is implemented in `list` for completeness.
+				// Users calling `watch` from one of the SDKs need to be able to cancel a `watch`
+				// and signal to the provider that it's ok to reclaim the resources associated with
+				// a `watch`. In `list` it's to prevent the user from getting weird errors if a
+				// client somehow cancels the streaming request and they subsequently send a message
+				// anyway.
+				//
+
+				return nil
+			}
+		}
 	case streamInvokeWatch:
 		//
 		// Set up resource watcher.
