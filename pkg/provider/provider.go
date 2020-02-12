@@ -20,6 +20,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"net/http"
 	"net/url"
 	"os"
 	"path/filepath"
@@ -1165,15 +1166,22 @@ func (k *kubeProvider) Diff(
 		patch, patchBase, err = k.dryRunPatch(oldInputs, newInputs)
 
 		// Fall back to input patch.
-		se, isStatusError := err.(*errors.StatusError)
-		if isStatusError && se.Status().Code == 400 &&
-			(se.Status().Message == "the dryRun alpha feature is disabled" ||
-				se.Status().Message == "the dryRun beta feature is disabled" ||
-				strings.Contains(se.Status().Message, "does not support dry run")) {
+		if se, isStatusError := err.(*errors.StatusError); isStatusError {
+			if se.Status().Code == http.StatusBadRequest &&
+				(se.Status().Message == "the dryRun alpha feature is disabled" ||
+					se.Status().Message == "the dryRun beta feature is disabled" ||
+					strings.Contains(se.Status().Message, "does not support dry run")) {
 
-			isInputPatch = true
-			patch, err = k.inputPatch(oldInputs, newInputs)
-			patchBase = oldInputs
+				isInputPatch = true
+				patch, err = k.inputPatch(oldInputs, newInputs)
+				patchBase = oldInputs
+			} else if se.Status().Code == http.StatusUnprocessableEntity ||
+				strings.Contains(se.ErrStatus.Message, "field is immutable") {
+				// Immutable field requires replacement.
+				isInputPatch = true
+				patch, err = k.inputPatch(oldInputs, newInputs)
+				patchBase = oldInputs
+			}
 		}
 	} else {
 		isInputPatch = true
