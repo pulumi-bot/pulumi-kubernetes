@@ -3492,7 +3492,7 @@ namespace Pulumi.Kubernetes.Types.Inputs.ApiRegistration
 
         /// <summary>
         /// Service is a reference to the service for this API server.  It must communicate on port
-        /// 443 If the Service is nil, that means the handling for the API groupversion is handled
+        /// 443. If the Service is nil, that means the handling for the API groupversion is handled
         /// locally on this server. The call will simply delegate to the normal handler chain to be
         /// fulfilled.
         /// </summary>
@@ -3725,7 +3725,7 @@ namespace Pulumi.Kubernetes.Types.Inputs.ApiRegistration
 
         /// <summary>
         /// Service is a reference to the service for this API server.  It must communicate on port
-        /// 443 If the Service is nil, that means the handling for the API groupversion is handled
+        /// 443. If the Service is nil, that means the handling for the API groupversion is handled
         /// locally on this server. The call will simply delegate to the normal handler chain to be
         /// fulfilled.
         /// </summary>
@@ -12663,10 +12663,12 @@ namespace Pulumi.Kubernetes.Types.Inputs.Core
     public class ConfigMapVolumeSourceArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Optional: mode bits to use on created files by default. Must be a value between 0 and
-        /// 0777. Defaults to 0644. Directories within the path are not affected by this setting.
-        /// This might be in conflict with other options that affect the file mode, like fsGroup,
-        /// and the result can be other mode bits set.
+        /// Optional: mode bits used to set permissions on created files by default. Must be an
+        /// octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts
+        /// both octal and decimal values, JSON requires decimal values for mode bits. Defaults to
+        /// 0644. Directories within the path are not affected by this setting. This might be in
+        /// conflict with other options that affect the file mode, like fsGroup, and the result can
+        /// be other mode bits set.
         /// </summary>
         [Input("defaultMode")]
         public Input<int>? DefaultMode { get; set; }
@@ -13239,10 +13241,11 @@ namespace Pulumi.Kubernetes.Types.Inputs.Core
         public Input<Core.V1.ObjectFieldSelectorArgs>? FieldRef { get; set; }
 
         /// <summary>
-        /// Optional: mode bits to use on this file, must be a value between 0 and 0777. If not
-        /// specified, the volume defaultMode will be used. This might be in conflict with other
-        /// options that affect the file mode, like fsGroup, and the result can be other mode bits
-        /// set.
+        /// Optional: mode bits used to set permissions on this file, must be an octal value between
+        /// 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal
+        /// values, JSON requires decimal values for mode bits. If not specified, the volume
+        /// defaultMode will be used. This might be in conflict with other options that affect the
+        /// file mode, like fsGroup, and the result can be other mode bits set.
         /// </summary>
         [Input("mode")]
         public Input<int>? Mode { get; set; }
@@ -13263,10 +13266,12 @@ namespace Pulumi.Kubernetes.Types.Inputs.Core
     public class DownwardAPIVolumeSourceArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Optional: mode bits to use on created files by default. Must be a value between 0 and
-        /// 0777. Defaults to 0644. Directories within the path are not affected by this setting.
-        /// This might be in conflict with other options that affect the file mode, like fsGroup,
-        /// and the result can be other mode bits set.
+        /// Optional: mode bits to use on created files by default. Must be a Optional: mode bits
+        /// used to set permissions on created files by default. Must be an octal value between 0000
+        /// and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal
+        /// values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within
+        /// the path are not affected by this setting. This might be in conflict with other options
+        /// that affect the file mode, like fsGroup, and the result can be other mode bits set.
         /// </summary>
         [Input("defaultMode")]
         public Input<int>? DefaultMode { get; set; }
@@ -13361,8 +13366,8 @@ namespace Pulumi.Kubernetes.Types.Inputs.Core
         /// The application protocol for this port. This field follows standard Kubernetes label
         /// syntax. Un-prefixed names are reserved for IANA standard service names (as per RFC-6335
         /// and http://www.iana.org/assignments/service-names). Non-standard protocols should use
-        /// prefixed names such as mycompany.com/my-custom-protocol. Field can be enabled with
-        /// ServiceAppProtocol feature gate.
+        /// prefixed names such as mycompany.com/my-custom-protocol. This is a beta field that is
+        /// guarded by the ServiceAppProtocol feature gate and enabled by default.
         /// </summary>
         [Input("appProtocol")]
         public Input<string>? AppProtocol { get; set; }
@@ -14741,10 +14746,11 @@ namespace Pulumi.Kubernetes.Types.Inputs.Core
         public Input<string> Path { get; set; } = null!;
 
         /// <summary>
-        /// Optional: mode bits to use on this file, must be a value between 0 and 0777. If not
-        /// specified, the volume defaultMode will be used. This might be in conflict with other
-        /// options that affect the file mode, like fsGroup, and the result can be other mode bits
-        /// set.
+        /// Optional: mode bits used to set permissions on this file. Must be an octal value between
+        /// 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal
+        /// values, JSON requires decimal values for mode bits. If not specified, the volume
+        /// defaultMode will be used. This might be in conflict with other options that affect the
+        /// file mode, like fsGroup, and the result can be other mode bits set.
         /// </summary>
         [Input("mode")]
         public Input<int>? Mode { get; set; }
@@ -17769,10 +17775,11 @@ namespace Pulumi.Kubernetes.Types.Inputs.Core
         }
 
         /// <summary>
-        /// Mode bits to use on created files by default. Must be a value between 0 and 0777.
-        /// Directories within the path are not affected by this setting. This might be in conflict
-        /// with other options that affect the file mode, like fsGroup, and the result can be other
-        /// mode bits set.
+        /// Mode bits used to set permissions on created files by default. Must be an octal value
+        /// between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and
+        /// decimal values, JSON requires decimal values for mode bits. Directories within the path
+        /// are not affected by this setting. This might be in conflict with other options that
+        /// affect the file mode, like fsGroup, and the result can be other mode bits set.
         /// </summary>
         [Input("defaultMode")]
         public Input<int>? DefaultMode { get; set; }
@@ -18889,10 +18896,12 @@ namespace Pulumi.Kubernetes.Types.Inputs.Core
     public class SecretVolumeSourceArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Optional: mode bits to use on created files by default. Must be a value between 0 and
-        /// 0777. Defaults to 0644. Directories within the path are not affected by this setting.
-        /// This might be in conflict with other options that affect the file mode, like fsGroup,
-        /// and the result can be other mode bits set.
+        /// Optional: mode bits used to set permissions on created files by default. Must be an
+        /// octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts
+        /// both octal and decimal values, JSON requires decimal values for mode bits. Defaults to
+        /// 0644. Directories within the path are not affected by this setting. This might be in
+        /// conflict with other options that affect the file mode, like fsGroup, and the result can
+        /// be other mode bits set.
         /// </summary>
         [Input("defaultMode")]
         public Input<int>? DefaultMode { get; set; }
@@ -19267,8 +19276,8 @@ namespace Pulumi.Kubernetes.Types.Inputs.Core
         /// The application protocol for this port. This field follows standard Kubernetes label
         /// syntax. Un-prefixed names are reserved for IANA standard service names (as per RFC-6335
         /// and http://www.iana.org/assignments/service-names). Non-standard protocols should use
-        /// prefixed names such as mycompany.com/my-custom-protocol. Field can be enabled with
-        /// ServiceAppProtocol feature gate.
+        /// prefixed names such as mycompany.com/my-custom-protocol. This is a beta field that is
+        /// guarded by the ServiceAppProtocol feature gate and enabled by default.
         /// </summary>
         [Input("appProtocol")]
         public Input<string>? AppProtocol { get; set; }
