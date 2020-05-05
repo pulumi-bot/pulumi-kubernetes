@@ -10107,7 +10107,7 @@ export namespace core {
       /**
        * Immutable, if set to true, ensures that data stored in the ConfigMap cannot be updated
        * (only object metadata can be modified). If not set to true, the field can be modified at
-       * any time. Defaulted to nil. This is an alpha field enabled by ImmutableEphemeralVolumes
+       * any time. Defaulted to nil. This is a beta field enabled by ImmutableEphemeralVolumes
        * feature gate.
        */
       readonly immutable: boolean
@@ -14936,7 +14936,7 @@ export namespace core {
       /**
        * Immutable, if set to true, ensures that data stored in the Secret cannot be updated (only
        * object metadata can be modified). If not set to true, the field can be modified at any
-       * time. Defaulted to nil. This is an alpha field enabled by ImmutableEphemeralVolumes feature
+       * time. Defaulted to nil. This is a beta field enabled by ImmutableEphemeralVolumes feature
        * gate.
        */
       readonly immutable: boolean
@@ -21658,7 +21658,7 @@ export namespace rbac {
     /**
      * ClusterRole is a cluster level, logical grouping of PolicyRules that can be referenced as a
      * unit by a RoleBinding or ClusterRoleBinding. Deprecated in v1.17 in favor of
-     * rbac.authorization.k8s.io/v1 ClusterRole, and will no longer be served in v1.20.
+     * rbac.authorization.k8s.io/v1 ClusterRole, and will no longer be served in v1.22.
      */
     export interface ClusterRole {
       /**
@@ -21700,7 +21700,7 @@ export namespace rbac {
      * ClusterRoleBinding references a ClusterRole, but not contain it.  It can reference a
      * ClusterRole in the global namespace, and adds who information via Subject. Deprecated in
      * v1.17 in favor of rbac.authorization.k8s.io/v1 ClusterRoleBinding, and will no longer be
-     * served in v1.20.
+     * served in v1.22.
      */
     export interface ClusterRoleBinding {
       /**
@@ -21739,7 +21739,7 @@ export namespace rbac {
 
     /**
      * ClusterRoleBindingList is a collection of ClusterRoleBindings. Deprecated in v1.17 in favor
-     * of rbac.authorization.k8s.io/v1 ClusterRoleBindings, and will no longer be served in v1.20.
+     * of rbac.authorization.k8s.io/v1 ClusterRoleBindings, and will no longer be served in v1.22.
      */
     export interface ClusterRoleBindingList {
       /**
@@ -21772,7 +21772,7 @@ export namespace rbac {
 
     /**
      * ClusterRoleList is a collection of ClusterRoles. Deprecated in v1.17 in favor of
-     * rbac.authorization.k8s.io/v1 ClusterRoles, and will no longer be served in v1.20.
+     * rbac.authorization.k8s.io/v1 ClusterRoles, and will no longer be served in v1.22.
      */
     export interface ClusterRoleList {
       /**
@@ -21847,7 +21847,7 @@ export namespace rbac {
     /**
      * Role is a namespaced, logical grouping of PolicyRules that can be referenced as a unit by a
      * RoleBinding. Deprecated in v1.17 in favor of rbac.authorization.k8s.io/v1 Role, and will no
-     * longer be served in v1.20.
+     * longer be served in v1.22.
      */
     export interface Role {
       /**
@@ -21883,7 +21883,7 @@ export namespace rbac {
      * namespace or a ClusterRole in the global namespace. It adds who information via Subjects and
      * namespace information by which namespace it exists in.  RoleBindings in a given namespace
      * only have effect in that namespace. Deprecated in v1.17 in favor of
-     * rbac.authorization.k8s.io/v1 RoleBinding, and will no longer be served in v1.20.
+     * rbac.authorization.k8s.io/v1 RoleBinding, and will no longer be served in v1.22.
      */
     export interface RoleBinding {
       /**
@@ -21922,7 +21922,7 @@ export namespace rbac {
 
     /**
      * RoleBindingList is a collection of RoleBindings Deprecated in v1.17 in favor of
-     * rbac.authorization.k8s.io/v1 RoleBindingList, and will no longer be served in v1.20.
+     * rbac.authorization.k8s.io/v1 RoleBindingList, and will no longer be served in v1.22.
      */
     export interface RoleBindingList {
       /**
@@ -21955,7 +21955,7 @@ export namespace rbac {
 
     /**
      * RoleList is a collection of Roles. Deprecated in v1.17 in favor of
-     * rbac.authorization.k8s.io/v1 RoleList, and will no longer be served in v1.20.
+     * rbac.authorization.k8s.io/v1 RoleList, and will no longer be served in v1.22.
      */
     export interface RoleList {
       /**
@@ -22059,7 +22059,7 @@ export namespace rbac {
     /**
      * ClusterRole is a cluster level, logical grouping of PolicyRules that can be referenced as a
      * unit by a RoleBinding or ClusterRoleBinding. Deprecated in v1.17 in favor of
-     * rbac.authorization.k8s.io/v1 ClusterRole, and will no longer be served in v1.20.
+     * rbac.authorization.k8s.io/v1 ClusterRole, and will no longer be served in v1.22.
      */
     export interface ClusterRole {
       /**
@@ -22101,7 +22101,7 @@ export namespace rbac {
      * ClusterRoleBinding references a ClusterRole, but not contain it.  It can reference a
      * ClusterRole in the global namespace, and adds who information via Subject. Deprecated in
      * v1.17 in favor of rbac.authorization.k8s.io/v1 ClusterRoleBinding, and will no longer be
-     * served in v1.20.
+     * served in v1.22.
      */
     export interface ClusterRoleBinding {
       /**
@@ -22141,7 +22141,7 @@ export namespace rbac {
     /**
      * ClusterRoleBindingList is a collection of ClusterRoleBindings. Deprecated in v1.17 in favor
      * of rbac.authorization.k8s.io/v1 ClusterRoleBindingList, and will no longer be served in
-     * v1.20.
+     * v1.22.
      */
     export interface ClusterRoleBindingList {
       /**
@@ -22174,7 +22174,7 @@ export namespace rbac {
 
     /**
      * ClusterRoleList is a collection of ClusterRoles. Deprecated in v1.17 in favor of
-     * rbac.authorization.k8s.io/v1 ClusterRoles, and will no longer be served in v1.20.
+     * rbac.authorization.k8s.io/v1 ClusterRoles, and will no longer be served in v1.22.
      */
     export interface ClusterRoleList {
       /**
@@ -22250,7 +22250,7 @@ export namespace rbac {
     /**
      * Role is a namespaced, logical grouping of PolicyRules that can be referenced as a unit by a
      * RoleBinding. Deprecated in v1.17 in favor of rbac.authorization.k8s.io/v1 Role, and will no
-     * longer be served in v1.20.
+     * longer be served in v1.22.
      */
     export interface Role {
       /**
@@ -22286,7 +22286,7 @@ export namespace rbac {
      * namespace or a ClusterRole in the global namespace. It adds who information via Subjects and
      * namespace information by which namespace it exists in.  RoleBindings in a given namespace
      * only have effect in that namespace. Deprecated in v1.17 in favor of
-     * rbac.authorization.k8s.io/v1 RoleBinding, and will no longer be served in v1.20.
+     * rbac.authorization.k8s.io/v1 RoleBinding, and will no longer be served in v1.22.
      */
     export interface RoleBinding {
       /**
@@ -22325,7 +22325,7 @@ export namespace rbac {
 
     /**
      * RoleBindingList is a collection of RoleBindings Deprecated in v1.17 in favor of
-     * rbac.authorization.k8s.io/v1 RoleBindingList, and will no longer be served in v1.20.
+     * rbac.authorization.k8s.io/v1 RoleBindingList, and will no longer be served in v1.22.
      */
     export interface RoleBindingList {
       /**
@@ -22358,7 +22358,7 @@ export namespace rbac {
 
     /**
      * RoleList is a collection of Roles Deprecated in v1.17 in favor of
-     * rbac.authorization.k8s.io/v1 RoleList, and will no longer be served in v1.20.
+     * rbac.authorization.k8s.io/v1 RoleList, and will no longer be served in v1.22.
      */
     export interface RoleList {
       /**

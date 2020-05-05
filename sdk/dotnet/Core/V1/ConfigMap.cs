@@ -43,7 +43,7 @@ namespace Pulumi.Kubernetes.Core.V1
         /// <summary>
         /// Immutable, if set to true, ensures that data stored in the ConfigMap cannot be updated
         /// (only object metadata can be modified). If not set to true, the field can be modified at
-        /// any time. Defaulted to nil. This is an alpha field enabled by ImmutableEphemeralVolumes
+        /// any time. Defaulted to nil. This is a beta field enabled by ImmutableEphemeralVolumes
         /// feature gate.
         /// </summary>
         [Output("immutable")]

@@ -12450,7 +12450,7 @@ namespace Pulumi.Kubernetes.Types.Inputs.Core
         /// <summary>
         /// Immutable, if set to true, ensures that data stored in the ConfigMap cannot be updated
         /// (only object metadata can be modified). If not set to true, the field can be modified at
-        /// any time. Defaulted to nil. This is an alpha field enabled by ImmutableEphemeralVolumes
+        /// any time. Defaulted to nil. This is a beta field enabled by ImmutableEphemeralVolumes
         /// feature gate.
         /// </summary>
         [Input("immutable")]
@@ -18687,7 +18687,7 @@ namespace Pulumi.Kubernetes.Types.Inputs.Core
         /// <summary>
         /// Immutable, if set to true, ensures that data stored in the Secret cannot be updated
         /// (only object metadata can be modified). If not set to true, the field can be modified at
-        /// any time. Defaulted to nil. This is an alpha field enabled by ImmutableEphemeralVolumes
+        /// any time. Defaulted to nil. This is a beta field enabled by ImmutableEphemeralVolumes
         /// feature gate.
         /// </summary>
         [Input("immutable")]
@@ -20710,8 +20710,8 @@ namespace Pulumi.Kubernetes.Types.Inputs.Events
         /// Information whether this series is ongoing or finished. Deprecated. Planned removal for
         /// 1.18
         /// </summary>
-        [Input("state", required: true)]
-        public Input<string> State { get; set; } = null!;
+        [Input("state")]
+        public Input<string>? State { get; set; }
 
     }
 
@@ -27275,7 +27275,7 @@ namespace Pulumi.Kubernetes.Types.Inputs.Rbac
     /// <summary>
     /// ClusterRole is a cluster level, logical grouping of PolicyRules that can be referenced as a
     /// unit by a RoleBinding or ClusterRoleBinding. Deprecated in v1.17 in favor of
-    /// rbac.authorization.k8s.io/v1 ClusterRole, and will no longer be served in v1.20.
+    /// rbac.authorization.k8s.io/v1 ClusterRole, and will no longer be served in v1.22.
     /// </summary>
     public class ClusterRoleArgs : Pulumi.ResourceArgs
     {
@@ -27329,7 +27329,7 @@ namespace Pulumi.Kubernetes.Types.Inputs.Rbac
     /// ClusterRoleBinding references a ClusterRole, but not contain it.  It can reference a
     /// ClusterRole in the global namespace, and adds who information via Subject. Deprecated in
     /// v1.17 in favor of rbac.authorization.k8s.io/v1 ClusterRoleBinding, and will no longer be
-    /// served in v1.20.
+    /// served in v1.22.
     /// </summary>
     public class ClusterRoleBindingArgs : Pulumi.ResourceArgs
     {
@@ -27380,7 +27380,7 @@ namespace Pulumi.Kubernetes.Types.Inputs.Rbac
 
     /// <summary>
     /// ClusterRoleBindingList is a collection of ClusterRoleBindings. Deprecated in v1.17 in favor
-    /// of rbac.authorization.k8s.io/v1 ClusterRoleBindings, and will no longer be served in v1.20.
+    /// of rbac.authorization.k8s.io/v1 ClusterRoleBindings, and will no longer be served in v1.22.
     /// </summary>
     public class ClusterRoleBindingListArgs : Pulumi.ResourceArgs
     {
@@ -27424,7 +27424,7 @@ namespace Pulumi.Kubernetes.Types.Inputs.Rbac
 
     /// <summary>
     /// ClusterRoleList is a collection of ClusterRoles. Deprecated in v1.17 in favor of
-    /// rbac.authorization.k8s.io/v1 ClusterRoles, and will no longer be served in v1.20.
+    /// rbac.authorization.k8s.io/v1 ClusterRoles, and will no longer be served in v1.22.
     /// </summary>
     public class ClusterRoleListArgs : Pulumi.ResourceArgs
     {
@@ -27546,7 +27546,7 @@ namespace Pulumi.Kubernetes.Types.Inputs.Rbac
     /// <summary>
     /// Role is a namespaced, logical grouping of PolicyRules that can be referenced as a unit by a
     /// RoleBinding. Deprecated in v1.17 in favor of rbac.authorization.k8s.io/v1 Role, and will no
-    /// longer be served in v1.20.
+    /// longer be served in v1.22.
     /// </summary>
     public class RoleArgs : Pulumi.ResourceArgs
     {
@@ -27593,7 +27593,7 @@ namespace Pulumi.Kubernetes.Types.Inputs.Rbac
     /// namespace or a ClusterRole in the global namespace. It adds who information via Subjects and
     /// namespace information by which namespace it exists in.  RoleBindings in a given namespace
     /// only have effect in that namespace. Deprecated in v1.17 in favor of
-    /// rbac.authorization.k8s.io/v1 RoleBinding, and will no longer be served in v1.20.
+    /// rbac.authorization.k8s.io/v1 RoleBinding, and will no longer be served in v1.22.
     /// </summary>
     public class RoleBindingArgs : Pulumi.ResourceArgs
     {
@@ -27644,7 +27644,7 @@ namespace Pulumi.Kubernetes.Types.Inputs.Rbac
 
     /// <summary>
     /// RoleBindingList is a collection of RoleBindings Deprecated in v1.17 in favor of
-    /// rbac.authorization.k8s.io/v1 RoleBindingList, and will no longer be served in v1.20.
+    /// rbac.authorization.k8s.io/v1 RoleBindingList, and will no longer be served in v1.22.
     /// </summary>
     public class RoleBindingListArgs : Pulumi.ResourceArgs
     {
@@ -27688,7 +27688,7 @@ namespace Pulumi.Kubernetes.Types.Inputs.Rbac
 
     /// <summary>
     /// RoleList is a collection of Roles. Deprecated in v1.17 in favor of
-    /// rbac.authorization.k8s.io/v1 RoleList, and will no longer be served in v1.20.
+    /// rbac.authorization.k8s.io/v1 RoleList, and will no longer be served in v1.22.
     /// </summary>
     public class RoleListArgs : Pulumi.ResourceArgs
     {
@@ -27821,7 +27821,7 @@ namespace Pulumi.Kubernetes.Types.Inputs.Rbac
     /// <summary>
     /// ClusterRole is a cluster level, logical grouping of PolicyRules that can be referenced as a
     /// unit by a RoleBinding or ClusterRoleBinding. Deprecated in v1.17 in favor of
-    /// rbac.authorization.k8s.io/v1 ClusterRole, and will no longer be served in v1.20.
+    /// rbac.authorization.k8s.io/v1 ClusterRole, and will no longer be served in v1.22.
     /// </summary>
     public class ClusterRoleArgs : Pulumi.ResourceArgs
     {
@@ -27875,7 +27875,7 @@ namespace Pulumi.Kubernetes.Types.Inputs.Rbac
     /// ClusterRoleBinding references a ClusterRole, but not contain it.  It can reference a
     /// ClusterRole in the global namespace, and adds who information via Subject. Deprecated in
     /// v1.17 in favor of rbac.authorization.k8s.io/v1 ClusterRoleBinding, and will no longer be
-    /// served in v1.20.
+    /// served in v1.22.
     /// </summary>
     public class ClusterRoleBindingArgs : Pulumi.ResourceArgs
     {
@@ -27927,7 +27927,7 @@ namespace Pulumi.Kubernetes.Types.Inputs.Rbac
     /// <summary>
     /// ClusterRoleBindingList is a collection of ClusterRoleBindings. Deprecated in v1.17 in favor
     /// of rbac.authorization.k8s.io/v1 ClusterRoleBindingList, and will no longer be served in
-    /// v1.20.
+    /// v1.22.
     /// </summary>
     public class ClusterRoleBindingListArgs : Pulumi.ResourceArgs
     {
@@ -27971,7 +27971,7 @@ namespace Pulumi.Kubernetes.Types.Inputs.Rbac
 
     /// <summary>
     /// ClusterRoleList is a collection of ClusterRoles. Deprecated in v1.17 in favor of
-    /// rbac.authorization.k8s.io/v1 ClusterRoles, and will no longer be served in v1.20.
+    /// rbac.authorization.k8s.io/v1 ClusterRoles, and will no longer be served in v1.22.
     /// </summary>
     public class ClusterRoleListArgs : Pulumi.ResourceArgs
     {
@@ -28094,7 +28094,7 @@ namespace Pulumi.Kubernetes.Types.Inputs.Rbac
     /// <summary>
     /// Role is a namespaced, logical grouping of PolicyRules that can be referenced as a unit by a
     /// RoleBinding. Deprecated in v1.17 in favor of rbac.authorization.k8s.io/v1 Role, and will no
-    /// longer be served in v1.20.
+    /// longer be served in v1.22.
     /// </summary>
     public class RoleArgs : Pulumi.ResourceArgs
     {
@@ -28141,7 +28141,7 @@ namespace Pulumi.Kubernetes.Types.Inputs.Rbac
     /// namespace or a ClusterRole in the global namespace. It adds who information via Subjects and
     /// namespace information by which namespace it exists in.  RoleBindings in a given namespace
     /// only have effect in that namespace. Deprecated in v1.17 in favor of
-    /// rbac.authorization.k8s.io/v1 RoleBinding, and will no longer be served in v1.20.
+    /// rbac.authorization.k8s.io/v1 RoleBinding, and will no longer be served in v1.22.
     /// </summary>
     public class RoleBindingArgs : Pulumi.ResourceArgs
     {
@@ -28192,7 +28192,7 @@ namespace Pulumi.Kubernetes.Types.Inputs.Rbac
 
     /// <summary>
     /// RoleBindingList is a collection of RoleBindings Deprecated in v1.17 in favor of
-    /// rbac.authorization.k8s.io/v1 RoleBindingList, and will no longer be served in v1.20.
+    /// rbac.authorization.k8s.io/v1 RoleBindingList, and will no longer be served in v1.22.
     /// </summary>
     public class RoleBindingListArgs : Pulumi.ResourceArgs
     {
@@ -28236,7 +28236,7 @@ namespace Pulumi.Kubernetes.Types.Inputs.Rbac
 
     /// <summary>
     /// RoleList is a collection of Roles Deprecated in v1.17 in favor of
-    /// rbac.authorization.k8s.io/v1 RoleList, and will no longer be served in v1.20.
+    /// rbac.authorization.k8s.io/v1 RoleList, and will no longer be served in v1.22.
     /// </summary>
     public class RoleListArgs : Pulumi.ResourceArgs
     {

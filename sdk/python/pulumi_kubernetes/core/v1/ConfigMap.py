@@ -50,7 +50,7 @@ class ConfigMap(pulumi.CustomResource):
     """
     Immutable, if set to true, ensures that data stored in the ConfigMap cannot be updated (only
     object metadata can be modified). If not set to true, the field can be modified at any time.
-    Defaulted to nil. This is an alpha field enabled by ImmutableEphemeralVolumes feature gate.
+    Defaulted to nil. This is a beta field enabled by ImmutableEphemeralVolumes feature gate.
     """
 
     metadata: pulumi.Output[dict]
@@ -76,7 +76,7 @@ class ConfigMap(pulumi.CustomResource):
                BinaryData field, this is enforced during validation process.
         :param pulumi.Input[bool] immutable: Immutable, if set to true, ensures that data stored in the ConfigMap cannot be
                updated (only object metadata can be modified). If not set to true, the field can be
-               modified at any time. Defaulted to nil. This is an alpha field enabled by
+               modified at any time. Defaulted to nil. This is a beta field enabled by
                ImmutableEphemeralVolumes feature gate.
         :param pulumi.Input[dict] metadata: Standard object's metadata. More info:
                https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata

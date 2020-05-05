@@ -17,7 +17,7 @@ class RoleBinding(pulumi.CustomResource):
     namespace or a ClusterRole in the global namespace. It adds who information via Subjects and
     namespace information by which namespace it exists in.  RoleBindings in a given namespace only
     have effect in that namespace. Deprecated in v1.17 in favor of rbac.authorization.k8s.io/v1
-    RoleBinding, and will no longer be served in v1.20.
+    RoleBinding, and will no longer be served in v1.22.
     """
 
     apiVersion: pulumi.Output[str]
