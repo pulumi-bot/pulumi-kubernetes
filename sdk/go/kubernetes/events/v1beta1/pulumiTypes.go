@@ -345,7 +345,7 @@ type EventSeries struct {
 	// Time when last Event from the series was seen before last heartbeat.
 	LastObservedTime string `pulumi:"lastObservedTime"`
 	// Information whether this series is ongoing or finished. Deprecated. Planned removal for 1.18
-	State string `pulumi:"state"`
+	State *string `pulumi:"state"`
 }
 
 // EventSeriesInput is an input type that accepts EventSeriesArgs and EventSeriesOutput values.
@@ -367,7 +367,7 @@ type EventSeriesArgs struct {
 	// Time when last Event from the series was seen before last heartbeat.
 	LastObservedTime pulumi.StringInput `pulumi:"lastObservedTime"`
 	// Information whether this series is ongoing or finished. Deprecated. Planned removal for 1.18
-	State pulumi.StringInput `pulumi:"state"`
+	State pulumi.StringPtrInput `pulumi:"state"`
 }
 
 func (EventSeriesArgs) ElementType() reflect.Type {
@@ -460,8 +460,8 @@ func (o EventSeriesOutput) LastObservedTime() pulumi.StringOutput {
 }
 
 // Information whether this series is ongoing or finished. Deprecated. Planned removal for 1.18
-func (o EventSeriesOutput) State() pulumi.StringOutput {
-	return o.ApplyT(func(v EventSeries) string { return v.State }).(pulumi.StringOutput)
+func (o EventSeriesOutput) State() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EventSeries) *string { return v.State }).(pulumi.StringPtrOutput)
 }
 
 type EventSeriesPtrOutput struct{ *pulumi.OutputState }
@@ -508,7 +508,7 @@ func (o EventSeriesPtrOutput) State() pulumi.StringPtrOutput {
 		if v == nil {
 			return nil
 		}
-		return &v.State
+		return v.State
 	}).(pulumi.StringPtrOutput)
 }
 
