@@ -13,7 +13,7 @@ require (
 	github.com/pkg/errors v0.9.1
 	github.com/pulumi/pulumi/pkg/v2 v2.3.1-0.20200607162109-9754465b04db
 	github.com/pulumi/pulumi/sdk/v2 v2.3.0
-	github.com/stretchr/testify v1.5.1
+	github.com/stretchr/testify v1.6.1
 	google.golang.org/grpc v1.28.0
 	k8s.io/api v0.18.0
 	k8s.io/apimachinery v0.18.0
@@ -24,3 +24,7 @@ require (
 )
 
 replace github.com/Azure/go-autorest => github.com/Azure/go-autorest v13.3.1+incompatible
+
+replace github.com/pulumi/pulumi/pkg/v2 => ../../pulumi/pkg
+
+replace github.com/pulumi/pulumi/sdk/v2 => ../../pulumi/sdk
