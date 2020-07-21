@@ -5,80 +5,83 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from ... import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from ... import _utilities, _tables
+from ._inputs import *
+from . import outputs
 
 
 class Event(pulumi.CustomResource):
-    action: pulumi.Output[str]
+    action: pulumi.Output[Optional[str]] = pulumi.output_property("action")
     """
     What action was taken/failed regarding to the Regarding object.
     """
-    api_version: pulumi.Output[str]
+    api_version: pulumi.Output[Optional[str]] = pulumi.output_property("apiVersion")
     """
     APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     """
-    count: pulumi.Output[float]
+    count: pulumi.Output[Optional[float]] = pulumi.output_property("count")
     """
     The number of times this event has occurred.
     """
-    event_time: pulumi.Output[str]
+    event_time: pulumi.Output[Optional[str]] = pulumi.output_property("eventTime")
     """
     Time when this Event was first observed.
     """
-    first_timestamp: pulumi.Output[str]
+    first_timestamp: pulumi.Output[Optional[str]] = pulumi.output_property("firstTimestamp")
     """
     The time at which the event was first recorded. (Time of server receipt is in TypeMeta.)
     """
-    involved_object: pulumi.Output[dict]
+    involved_object: pulumi.Output['outputs.ObjectReference'] = pulumi.output_property("involvedObject")
     """
     The object that this event is about.
     """
-    kind: pulumi.Output[str]
+    kind: pulumi.Output[Optional[str]] = pulumi.output_property("kind")
     """
     Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
     """
-    last_timestamp: pulumi.Output[str]
+    last_timestamp: pulumi.Output[Optional[str]] = pulumi.output_property("lastTimestamp")
     """
     The time at which the most recent occurrence of this event was recorded.
     """
-    message: pulumi.Output[str]
+    message: pulumi.Output[Optional[str]] = pulumi.output_property("message")
     """
     A human-readable description of the status of this operation.
     """
-    metadata: pulumi.Output[dict]
+    metadata: pulumi.Output['outputs.ObjectMeta'] = pulumi.output_property("metadata")
     """
     Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
     """
-    reason: pulumi.Output[str]
+    reason: pulumi.Output[Optional[str]] = pulumi.output_property("reason")
     """
     This should be a short, machine understandable string that gives the reason for the transition into the object's current status.
     """
-    related: pulumi.Output[dict]
+    related: pulumi.Output[Optional['outputs.ObjectReference']] = pulumi.output_property("related")
     """
     Optional secondary object for more complex actions.
     """
-    reporting_component: pulumi.Output[str]
+    reporting_component: pulumi.Output[Optional[str]] = pulumi.output_property("reportingComponent")
     """
     Name of the controller that emitted this Event, e.g. `kubernetes.io/kubelet`.
     """
-    reporting_instance: pulumi.Output[str]
+    reporting_instance: pulumi.Output[Optional[str]] = pulumi.output_property("reportingInstance")
     """
     ID of the controller instance, e.g. `kubelet-xyzf`.
     """
-    series: pulumi.Output[dict]
+    series: pulumi.Output[Optional['outputs.EventSeries']] = pulumi.output_property("series")
     """
     Data about the Event series this event represents or nil if it's a singleton Event.
     """
-    source: pulumi.Output[dict]
+    source: pulumi.Output[Optional['outputs.EventSource']] = pulumi.output_property("source")
     """
     The component reporting this event. Should be a short machine understandable string.
     """
-    type: pulumi.Output[str]
+    type: pulumi.Output[Optional[str]] = pulumi.output_property("type")
     """
     Type of this event (Normal, Warning), new types could be added in the future
     """
-    def __init__(__self__, resource_name, opts=None, action=None, api_version=None, count=None, event_time=None, first_timestamp=None, involved_object=None, kind=None, last_timestamp=None, message=None, metadata=None, reason=None, related=None, reporting_component=None, reporting_instance=None, series=None, source=None, type=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, action=None, api_version=None, count=None, event_time=None, first_timestamp=None, involved_object=None, kind=None, last_timestamp=None, message=None, metadata=None, reason=None, related=None, reporting_component=None, reporting_instance=None, series=None, source=None, type=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Event is a report of an event somewhere in the cluster.
 
@@ -89,17 +92,17 @@ class Event(pulumi.CustomResource):
         :param pulumi.Input[float] count: The number of times this event has occurred.
         :param pulumi.Input[str] event_time: Time when this Event was first observed.
         :param pulumi.Input[str] first_timestamp: The time at which the event was first recorded. (Time of server receipt is in TypeMeta.)
-        :param pulumi.Input[dict] involved_object: The object that this event is about.
+        :param pulumi.Input['ObjectReferenceArgs'] involved_object: The object that this event is about.
         :param pulumi.Input[str] kind: Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         :param pulumi.Input[str] last_timestamp: The time at which the most recent occurrence of this event was recorded.
         :param pulumi.Input[str] message: A human-readable description of the status of this operation.
-        :param pulumi.Input[dict] metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+        :param pulumi.Input['ObjectMetaArgs'] metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         :param pulumi.Input[str] reason: This should be a short, machine understandable string that gives the reason for the transition into the object's current status.
-        :param pulumi.Input[dict] related: Optional secondary object for more complex actions.
+        :param pulumi.Input['ObjectReferenceArgs'] related: Optional secondary object for more complex actions.
         :param pulumi.Input[str] reporting_component: Name of the controller that emitted this Event, e.g. `kubernetes.io/kubelet`.
         :param pulumi.Input[str] reporting_instance: ID of the controller instance, e.g. `kubelet-xyzf`.
-        :param pulumi.Input[dict] series: Data about the Event series this event represents or nil if it's a singleton Event.
-        :param pulumi.Input[dict] source: The component reporting this event. Should be a short machine understandable string.
+        :param pulumi.Input['EventSeriesArgs'] series: Data about the Event series this event represents or nil if it's a singleton Event.
+        :param pulumi.Input['EventSourceArgs'] source: The component reporting this event. Should be a short machine understandable string.
         :param pulumi.Input[str] type: Type of this event (Normal, Warning), new types could be added in the future
         """
         if __name__ is not None:
@@ -113,7 +116,7 @@ class Event(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -165,7 +168,8 @@ class Event(pulumi.CustomResource):
         return Event(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

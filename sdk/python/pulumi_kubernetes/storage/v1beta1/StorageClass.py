@@ -5,52 +5,55 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from ... import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from ... import _utilities, _tables
+from ._inputs import *
+from . import outputs
 
 
 class StorageClass(pulumi.CustomResource):
-    allow_volume_expansion: pulumi.Output[bool]
+    allow_volume_expansion: pulumi.Output[Optional[bool]] = pulumi.output_property("allowVolumeExpansion")
     """
     AllowVolumeExpansion shows whether the storage class allow volume expand
     """
-    allowed_topologies: pulumi.Output[list]
+    allowed_topologies: pulumi.Output[Optional[List['outputs.TopologySelectorTerm']]] = pulumi.output_property("allowedTopologies")
     """
     Restrict the node topologies where volumes can be dynamically provisioned. Each volume plugin defines its own supported topology specifications. An empty TopologySelectorTerm list means there is no topology restriction. This field is only honored by servers that enable the VolumeScheduling feature.
     """
-    api_version: pulumi.Output[str]
+    api_version: pulumi.Output[Optional[str]] = pulumi.output_property("apiVersion")
     """
     APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     """
-    kind: pulumi.Output[str]
+    kind: pulumi.Output[Optional[str]] = pulumi.output_property("kind")
     """
     Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
     """
-    metadata: pulumi.Output[dict]
+    metadata: pulumi.Output[Optional['outputs.ObjectMeta']] = pulumi.output_property("metadata")
     """
     Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
     """
-    mount_options: pulumi.Output[list]
+    mount_options: pulumi.Output[Optional[List[str]]] = pulumi.output_property("mountOptions")
     """
     Dynamically provisioned PersistentVolumes of this storage class are created with these mountOptions, e.g. ["ro", "soft"]. Not validated - mount of the PVs will simply fail if one is invalid.
     """
-    parameters: pulumi.Output[dict]
+    parameters: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("parameters")
     """
     Parameters holds the parameters for the provisioner that should create volumes of this storage class.
     """
-    provisioner: pulumi.Output[str]
+    provisioner: pulumi.Output[str] = pulumi.output_property("provisioner")
     """
     Provisioner indicates the type of the provisioner.
     """
-    reclaim_policy: pulumi.Output[str]
+    reclaim_policy: pulumi.Output[Optional[str]] = pulumi.output_property("reclaimPolicy")
     """
     Dynamically provisioned PersistentVolumes of this storage class are created with this reclaimPolicy. Defaults to Delete.
     """
-    volume_binding_mode: pulumi.Output[str]
+    volume_binding_mode: pulumi.Output[Optional[str]] = pulumi.output_property("volumeBindingMode")
     """
     VolumeBindingMode indicates how PersistentVolumeClaims should be provisioned and bound.  When unset, VolumeBindingImmediate is used. This field is only honored by servers that enable the VolumeScheduling feature.
     """
-    def __init__(__self__, resource_name, opts=None, allow_volume_expansion=None, allowed_topologies=None, api_version=None, kind=None, metadata=None, mount_options=None, parameters=None, provisioner=None, reclaim_policy=None, volume_binding_mode=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, allow_volume_expansion=None, allowed_topologies=None, api_version=None, kind=None, metadata=None, mount_options=None, parameters=None, provisioner=None, reclaim_policy=None, volume_binding_mode=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         StorageClass describes the parameters for a class of storage for which PersistentVolumes can be dynamically provisioned.
 
@@ -59,12 +62,12 @@ class StorageClass(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_volume_expansion: AllowVolumeExpansion shows whether the storage class allow volume expand
-        :param pulumi.Input[list] allowed_topologies: Restrict the node topologies where volumes can be dynamically provisioned. Each volume plugin defines its own supported topology specifications. An empty TopologySelectorTerm list means there is no topology restriction. This field is only honored by servers that enable the VolumeScheduling feature.
+        :param pulumi.Input[List[pulumi.Input['TopologySelectorTermArgs']]] allowed_topologies: Restrict the node topologies where volumes can be dynamically provisioned. Each volume plugin defines its own supported topology specifications. An empty TopologySelectorTerm list means there is no topology restriction. This field is only honored by servers that enable the VolumeScheduling feature.
         :param pulumi.Input[str] api_version: APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         :param pulumi.Input[str] kind: Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-        :param pulumi.Input[dict] metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param pulumi.Input[list] mount_options: Dynamically provisioned PersistentVolumes of this storage class are created with these mountOptions, e.g. ["ro", "soft"]. Not validated - mount of the PVs will simply fail if one is invalid.
-        :param pulumi.Input[dict] parameters: Parameters holds the parameters for the provisioner that should create volumes of this storage class.
+        :param pulumi.Input['ObjectMetaArgs'] metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+        :param pulumi.Input[List[pulumi.Input[str]]] mount_options: Dynamically provisioned PersistentVolumes of this storage class are created with these mountOptions, e.g. ["ro", "soft"]. Not validated - mount of the PVs will simply fail if one is invalid.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] parameters: Parameters holds the parameters for the provisioner that should create volumes of this storage class.
         :param pulumi.Input[str] provisioner: Provisioner indicates the type of the provisioner.
         :param pulumi.Input[str] reclaim_policy: Dynamically provisioned PersistentVolumes of this storage class are created with this reclaimPolicy. Defaults to Delete.
         :param pulumi.Input[str] volume_binding_mode: VolumeBindingMode indicates how PersistentVolumeClaims should be provisioned and bound.  When unset, VolumeBindingImmediate is used. This field is only honored by servers that enable the VolumeScheduling feature.
@@ -80,7 +83,7 @@ class StorageClass(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -123,7 +126,8 @@ class StorageClass(pulumi.CustomResource):
         return StorageClass(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+
