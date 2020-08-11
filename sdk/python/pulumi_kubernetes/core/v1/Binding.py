@@ -5,28 +5,46 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from ... import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from ... import _utilities, _tables
+from . import outputs
+from ... import meta as _meta
+from ._inputs import *
+
+__all__ = ['Binding']
 
 
 class Binding(pulumi.CustomResource):
-    api_version: pulumi.Output[str]
+    api_version: pulumi.Output[Optional[str]] = pulumi.property("apiVersion")
     """
     APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     """
-    kind: pulumi.Output[str]
+
+    kind: pulumi.Output[Optional[str]] = pulumi.property("kind")
     """
     Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
     """
-    metadata: pulumi.Output[dict]
+
+    metadata: pulumi.Output[Optional['_meta.v1.outputs.ObjectMeta']] = pulumi.property("metadata")
     """
     Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
     """
-    target: pulumi.Output[dict]
+
+    target: pulumi.Output['outputs.ObjectReference'] = pulumi.property("target")
     """
     The target object that you want to bind to the standard object.
     """
-    def __init__(__self__, resource_name, opts=None, api_version=None, kind=None, metadata=None, target=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 api_version: Optional[pulumi.Input[str]] = None,
+                 kind: Optional[pulumi.Input[str]] = None,
+                 metadata: Optional[pulumi.Input[pulumi.InputType['_meta.v1.ObjectMetaArgs']]] = None,
+                 target: Optional[pulumi.Input[pulumi.InputType['ObjectReferenceArgs']]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Binding ties one object to another; for example, a pod is bound to a node by a scheduler. Deprecated in 1.7, please use the bindings subresource of pods instead.
 
@@ -34,8 +52,8 @@ class Binding(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] api_version: APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         :param pulumi.Input[str] kind: Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-        :param pulumi.Input[dict] metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param pulumi.Input[dict] target: The target object that you want to bind to the standard object.
+        :param pulumi.Input[pulumi.InputType['_meta.v1.ObjectMetaArgs']] metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+        :param pulumi.Input[pulumi.InputType['ObjectReferenceArgs']] target: The target object that you want to bind to the standard object.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -48,7 +66,7 @@ class Binding(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -67,7 +85,9 @@ class Binding(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None) -> 'Binding':
         """
         Get an existing Binding resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -83,7 +103,8 @@ class Binding(pulumi.CustomResource):
         return Binding(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+
