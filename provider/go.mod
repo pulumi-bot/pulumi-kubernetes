@@ -4,7 +4,7 @@ go 1.14
 
 require (
 	github.com/ahmetb/go-linq v3.0.0+incompatible
-	github.com/golang/protobuf v1.3.5
+	github.com/golang/protobuf v1.4.2
 	github.com/googleapis/gnostic v0.2.0
 	github.com/imdario/mergo v0.3.8
 	github.com/onsi/ginkgo v1.12.0 // indirect
@@ -14,7 +14,7 @@ require (
 	github.com/pulumi/pulumi/pkg/v2 v2.5.1-0.20200702193010-d611740ab0fa
 	github.com/pulumi/pulumi/sdk/v2 v2.5.1-0.20200626210151-8961f5b0caae
 	github.com/stretchr/testify v1.6.1
-	google.golang.org/grpc v1.28.0
+	google.golang.org/grpc v1.29.1
 	k8s.io/api v0.18.0
 	k8s.io/apimachinery v0.18.0
 	k8s.io/client-go v0.18.0
@@ -25,3 +25,7 @@ require (
 )
 
 replace github.com/Azure/go-autorest => github.com/Azure/go-autorest v13.3.1+incompatible
+
+replace github.com/pulumi/pulumi/pkg/v2 => ../../pulumi/pkg
+
+replace github.com/pulumi/pulumi/sdk/v2 => ../../pulumi/sdk
