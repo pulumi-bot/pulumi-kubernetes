@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from ... import utilities, tables
+from ... import _utilities, _tables
 
 
 class ClusterRole(pulumi.CustomResource):
@@ -53,14 +53,14 @@ class ClusterRole(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            __props__['aggregation_rule'] = aggregation_rule
-            __props__['api_version'] = 'rbac.authorization.k8s.io/v1beta1'
+            __props__['aggregationRule'] = aggregation_rule
+            __props__['apiVersion'] = 'rbac.authorization.k8s.io/v1beta1'
             __props__['kind'] = 'ClusterRole'
             __props__['metadata'] = metadata
             __props__['rules'] = rules
@@ -89,7 +89,7 @@ class ClusterRole(pulumi.CustomResource):
         return ClusterRole(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

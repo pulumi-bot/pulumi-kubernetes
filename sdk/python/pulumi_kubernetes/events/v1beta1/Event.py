@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from ... import utilities, tables
+from ... import _utilities, _tables
 
 
 class Event(pulumi.CustomResource):
@@ -109,29 +109,29 @@ class Event(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
             __props__['action'] = action
-            __props__['api_version'] = 'events.k8s.io/v1beta1'
-            __props__['deprecated_count'] = deprecated_count
-            __props__['deprecated_first_timestamp'] = deprecated_first_timestamp
-            __props__['deprecated_last_timestamp'] = deprecated_last_timestamp
-            __props__['deprecated_source'] = deprecated_source
+            __props__['apiVersion'] = 'events.k8s.io/v1beta1'
+            __props__['deprecatedCount'] = deprecated_count
+            __props__['deprecatedFirstTimestamp'] = deprecated_first_timestamp
+            __props__['deprecatedLastTimestamp'] = deprecated_last_timestamp
+            __props__['deprecatedSource'] = deprecated_source
             if event_time is None:
                 raise TypeError("Missing required property 'event_time'")
-            __props__['event_time'] = event_time
+            __props__['eventTime'] = event_time
             __props__['kind'] = 'Event'
             __props__['metadata'] = metadata
             __props__['note'] = note
             __props__['reason'] = reason
             __props__['regarding'] = regarding
             __props__['related'] = related
-            __props__['reporting_controller'] = reporting_controller
-            __props__['reporting_instance'] = reporting_instance
+            __props__['reportingController'] = reporting_controller
+            __props__['reportingInstance'] = reporting_instance
             __props__['series'] = series
             __props__['type'] = type
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="kubernetes:core/v1:Event")])
@@ -159,7 +159,7 @@ class Event(pulumi.CustomResource):
         return Event(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

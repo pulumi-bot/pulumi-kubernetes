@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from ... import utilities, tables
+from ... import _utilities, _tables
 
 
 class StorageClass(pulumi.CustomResource):
@@ -80,24 +80,24 @@ class StorageClass(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            __props__['allow_volume_expansion'] = allow_volume_expansion
-            __props__['allowed_topologies'] = allowed_topologies
-            __props__['api_version'] = 'storage.k8s.io/v1beta1'
+            __props__['allowVolumeExpansion'] = allow_volume_expansion
+            __props__['allowedTopologies'] = allowed_topologies
+            __props__['apiVersion'] = 'storage.k8s.io/v1beta1'
             __props__['kind'] = 'StorageClass'
             __props__['metadata'] = metadata
-            __props__['mount_options'] = mount_options
+            __props__['mountOptions'] = mount_options
             __props__['parameters'] = parameters
             if provisioner is None:
                 raise TypeError("Missing required property 'provisioner'")
             __props__['provisioner'] = provisioner
-            __props__['reclaim_policy'] = reclaim_policy
-            __props__['volume_binding_mode'] = volume_binding_mode
+            __props__['reclaimPolicy'] = reclaim_policy
+            __props__['volumeBindingMode'] = volume_binding_mode
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="kubernetes:storage.k8s.io/v1:StorageClass")])
         opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(StorageClass, __self__).__init__(
@@ -123,7 +123,7 @@ class StorageClass(pulumi.CustomResource):
         return StorageClass(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
