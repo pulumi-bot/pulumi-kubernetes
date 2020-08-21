@@ -5,7 +5,7 @@ go 1.14
 require (
 	github.com/ahmetb/go-linq v3.0.0+incompatible
 	github.com/evanphx/json-patch v4.5.0+incompatible
-	github.com/golang/protobuf v1.3.5
+	github.com/golang/protobuf v1.4.2
 	github.com/googleapis/gnostic v0.2.0
 	github.com/imdario/mergo v0.3.8
 	github.com/onsi/ginkgo v1.12.0 // indirect
@@ -14,7 +14,7 @@ require (
 	github.com/pulumi/pulumi/pkg/v2 v2.8.2
 	github.com/pulumi/pulumi/sdk/v2 v2.8.2
 	github.com/stretchr/testify v1.6.1
-	google.golang.org/grpc v1.28.0
+	google.golang.org/grpc v1.29.1
 	k8s.io/api v0.18.8
 	k8s.io/apimachinery v0.18.8
 	k8s.io/cli-runtime v0.18.8
@@ -29,3 +29,7 @@ replace (
 	github.com/Azure/go-autorest => github.com/Azure/go-autorest v13.3.1+incompatible
 	github.com/evanphx/json-patch => github.com/evanphx/json-patch v0.0.0-20200808040245-162e5629780b // 162e5629780b is the SHA for git tag v4.8.0
 )
+
+replace github.com/pulumi/pulumi/pkg/v2 => ../../pulumi/pkg
+
+replace github.com/pulumi/pulumi/sdk/v2 => ../../pulumi/sdk
