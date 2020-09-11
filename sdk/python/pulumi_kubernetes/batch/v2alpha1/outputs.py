@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from ... import _utilities, _tables
 from . import outputs
 from ... import batch as _batch
@@ -102,18 +102,18 @@ class CronJobSpec(dict):
                  job_template: 'outputs.JobTemplateSpec',
                  schedule: str,
                  concurrency_policy: Optional[str] = None,
-                 failed_jobs_history_limit: Optional[float] = None,
-                 starting_deadline_seconds: Optional[float] = None,
-                 successful_jobs_history_limit: Optional[float] = None,
+                 failed_jobs_history_limit: Optional[int] = None,
+                 starting_deadline_seconds: Optional[int] = None,
+                 successful_jobs_history_limit: Optional[int] = None,
                  suspend: Optional[bool] = None):
         """
         CronJobSpec describes how the job execution will look like and when it will actually run.
         :param 'JobTemplateSpecArgs' job_template: Specifies the job that will be created when executing a CronJob.
         :param str schedule: The schedule in Cron format, see https://en.wikipedia.org/wiki/Cron.
         :param str concurrency_policy: Specifies how to treat concurrent executions of a Job. Valid values are: - "Allow" (default): allows CronJobs to run concurrently; - "Forbid": forbids concurrent runs, skipping next run if previous run hasn't finished yet; - "Replace": cancels currently running job and replaces it with a new one
-        :param float failed_jobs_history_limit: The number of failed finished jobs to retain. This is a pointer to distinguish between explicit zero and not specified.
-        :param float starting_deadline_seconds: Optional deadline in seconds for starting the job if it misses scheduled time for any reason.  Missed jobs executions will be counted as failed ones.
-        :param float successful_jobs_history_limit: The number of successful finished jobs to retain. This is a pointer to distinguish between explicit zero and not specified.
+        :param int failed_jobs_history_limit: The number of failed finished jobs to retain. This is a pointer to distinguish between explicit zero and not specified.
+        :param int starting_deadline_seconds: Optional deadline in seconds for starting the job if it misses scheduled time for any reason.  Missed jobs executions will be counted as failed ones.
+        :param int successful_jobs_history_limit: The number of successful finished jobs to retain. This is a pointer to distinguish between explicit zero and not specified.
         :param bool suspend: This flag tells the controller to suspend subsequent executions, it does not apply to already started executions.  Defaults to false.
         """
         pulumi.set(__self__, "job_template", job_template)
@@ -155,7 +155,7 @@ class CronJobSpec(dict):
 
     @property
     @pulumi.getter(name="failedJobsHistoryLimit")
-    def failed_jobs_history_limit(self) -> Optional[float]:
+    def failed_jobs_history_limit(self) -> Optional[int]:
         """
         The number of failed finished jobs to retain. This is a pointer to distinguish between explicit zero and not specified.
         """
@@ -163,7 +163,7 @@ class CronJobSpec(dict):
 
     @property
     @pulumi.getter(name="startingDeadlineSeconds")
-    def starting_deadline_seconds(self) -> Optional[float]:
+    def starting_deadline_seconds(self) -> Optional[int]:
         """
         Optional deadline in seconds for starting the job if it misses scheduled time for any reason.  Missed jobs executions will be counted as failed ones.
         """
@@ -171,7 +171,7 @@ class CronJobSpec(dict):
 
     @property
     @pulumi.getter(name="successfulJobsHistoryLimit")
-    def successful_jobs_history_limit(self) -> Optional[float]:
+    def successful_jobs_history_limit(self) -> Optional[int]:
         """
         The number of successful finished jobs to retain. This is a pointer to distinguish between explicit zero and not specified.
         """
@@ -195,11 +195,11 @@ class CronJobStatus(dict):
     CronJobStatus represents the current state of a cron job.
     """
     def __init__(__self__, *,
-                 active: Optional[Sequence['_core.v1.outputs.ObjectReference']] = None,
+                 active: Optional[List['_core.v1.outputs.ObjectReference']] = None,
                  last_schedule_time: Optional[str] = None):
         """
         CronJobStatus represents the current state of a cron job.
-        :param Sequence['_core.v1.ObjectReferenceArgs'] active: A list of pointers to currently running jobs.
+        :param List['_core.v1.ObjectReferenceArgs'] active: A list of pointers to currently running jobs.
         :param str last_schedule_time: Information when was the last time the job was successfully scheduled.
         """
         if active is not None:
@@ -209,7 +209,7 @@ class CronJobStatus(dict):
 
     @property
     @pulumi.getter
-    def active(self) -> Optional[Sequence['_core.v1.outputs.ObjectReference']]:
+    def active(self) -> Optional[List['_core.v1.outputs.ObjectReference']]:
         """
         A list of pointers to currently running jobs.
         """

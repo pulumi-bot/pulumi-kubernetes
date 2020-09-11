@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from ... import _utilities, _tables
 from . import outputs
 from ... import core as _core
@@ -304,18 +304,18 @@ class DaemonSetSpec(dict):
     """
     def __init__(__self__, *,
                  template: '_core.v1.outputs.PodTemplateSpec',
-                 min_ready_seconds: Optional[float] = None,
-                 revision_history_limit: Optional[float] = None,
+                 min_ready_seconds: Optional[int] = None,
+                 revision_history_limit: Optional[int] = None,
                  selector: Optional['_meta.v1.outputs.LabelSelector'] = None,
-                 template_generation: Optional[float] = None,
+                 template_generation: Optional[int] = None,
                  update_strategy: Optional['outputs.DaemonSetUpdateStrategy'] = None):
         """
         DaemonSetSpec is the specification of a daemon set.
         :param '_core.v1.PodTemplateSpecArgs' template: An object that describes the pod that will be created. The DaemonSet will create exactly one copy of this pod on every node that matches the template's node selector (or on every node if no node selector is specified). More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller#pod-template
-        :param float min_ready_seconds: The minimum number of seconds for which a newly created DaemonSet pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready).
-        :param float revision_history_limit: The number of old history to retain to allow rollback. This is a pointer to distinguish between explicit zero and not specified. Defaults to 10.
+        :param int min_ready_seconds: The minimum number of seconds for which a newly created DaemonSet pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready).
+        :param int revision_history_limit: The number of old history to retain to allow rollback. This is a pointer to distinguish between explicit zero and not specified. Defaults to 10.
         :param '_meta.v1.LabelSelectorArgs' selector: A label query over pods that are managed by the daemon set. Must match in order to be controlled. If empty, defaulted to labels on Pod template. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
-        :param float template_generation: DEPRECATED. A sequence number representing a specific generation of the template. Populated by the system. It can be set only during the creation.
+        :param int template_generation: DEPRECATED. A sequence number representing a specific generation of the template. Populated by the system. It can be set only during the creation.
         :param 'DaemonSetUpdateStrategyArgs' update_strategy: An update strategy to replace existing DaemonSet pods with new pods.
         """
         pulumi.set(__self__, "template", template)
@@ -340,7 +340,7 @@ class DaemonSetSpec(dict):
 
     @property
     @pulumi.getter(name="minReadySeconds")
-    def min_ready_seconds(self) -> Optional[float]:
+    def min_ready_seconds(self) -> Optional[int]:
         """
         The minimum number of seconds for which a newly created DaemonSet pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready).
         """
@@ -348,7 +348,7 @@ class DaemonSetSpec(dict):
 
     @property
     @pulumi.getter(name="revisionHistoryLimit")
-    def revision_history_limit(self) -> Optional[float]:
+    def revision_history_limit(self) -> Optional[int]:
         """
         The number of old history to retain to allow rollback. This is a pointer to distinguish between explicit zero and not specified. Defaults to 10.
         """
@@ -364,7 +364,7 @@ class DaemonSetSpec(dict):
 
     @property
     @pulumi.getter(name="templateGeneration")
-    def template_generation(self) -> Optional[float]:
+    def template_generation(self) -> Optional[int]:
         """
         DEPRECATED. A sequence number representing a specific generation of the template. Populated by the system. It can be set only during the creation.
         """
@@ -388,28 +388,28 @@ class DaemonSetStatus(dict):
     DaemonSetStatus represents the current status of a daemon set.
     """
     def __init__(__self__, *,
-                 current_number_scheduled: float,
-                 desired_number_scheduled: float,
-                 number_misscheduled: float,
-                 number_ready: float,
-                 collision_count: Optional[float] = None,
-                 conditions: Optional[Sequence['outputs.DaemonSetCondition']] = None,
-                 number_available: Optional[float] = None,
-                 number_unavailable: Optional[float] = None,
-                 observed_generation: Optional[float] = None,
-                 updated_number_scheduled: Optional[float] = None):
+                 current_number_scheduled: int,
+                 desired_number_scheduled: int,
+                 number_misscheduled: int,
+                 number_ready: int,
+                 collision_count: Optional[int] = None,
+                 conditions: Optional[List['outputs.DaemonSetCondition']] = None,
+                 number_available: Optional[int] = None,
+                 number_unavailable: Optional[int] = None,
+                 observed_generation: Optional[int] = None,
+                 updated_number_scheduled: Optional[int] = None):
         """
         DaemonSetStatus represents the current status of a daemon set.
-        :param float current_number_scheduled: The number of nodes that are running at least 1 daemon pod and are supposed to run the daemon pod. More info: https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
-        :param float desired_number_scheduled: The total number of nodes that should be running the daemon pod (including nodes correctly running the daemon pod). More info: https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
-        :param float number_misscheduled: The number of nodes that are running the daemon pod, but are not supposed to run the daemon pod. More info: https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
-        :param float number_ready: The number of nodes that should be running the daemon pod and have one or more of the daemon pod running and ready.
-        :param float collision_count: Count of hash collisions for the DaemonSet. The DaemonSet controller uses this field as a collision avoidance mechanism when it needs to create the name for the newest ControllerRevision.
-        :param Sequence['DaemonSetConditionArgs'] conditions: Represents the latest available observations of a DaemonSet's current state.
-        :param float number_available: The number of nodes that should be running the daemon pod and have one or more of the daemon pod running and available (ready for at least spec.minReadySeconds)
-        :param float number_unavailable: The number of nodes that should be running the daemon pod and have none of the daemon pod running and available (ready for at least spec.minReadySeconds)
-        :param float observed_generation: The most recent generation observed by the daemon set controller.
-        :param float updated_number_scheduled: The total number of nodes that are running updated daemon pod
+        :param int current_number_scheduled: The number of nodes that are running at least 1 daemon pod and are supposed to run the daemon pod. More info: https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
+        :param int desired_number_scheduled: The total number of nodes that should be running the daemon pod (including nodes correctly running the daemon pod). More info: https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
+        :param int number_misscheduled: The number of nodes that are running the daemon pod, but are not supposed to run the daemon pod. More info: https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
+        :param int number_ready: The number of nodes that should be running the daemon pod and have one or more of the daemon pod running and ready.
+        :param int collision_count: Count of hash collisions for the DaemonSet. The DaemonSet controller uses this field as a collision avoidance mechanism when it needs to create the name for the newest ControllerRevision.
+        :param List['DaemonSetConditionArgs'] conditions: Represents the latest available observations of a DaemonSet's current state.
+        :param int number_available: The number of nodes that should be running the daemon pod and have one or more of the daemon pod running and available (ready for at least spec.minReadySeconds)
+        :param int number_unavailable: The number of nodes that should be running the daemon pod and have none of the daemon pod running and available (ready for at least spec.minReadySeconds)
+        :param int observed_generation: The most recent generation observed by the daemon set controller.
+        :param int updated_number_scheduled: The total number of nodes that are running updated daemon pod
         """
         pulumi.set(__self__, "current_number_scheduled", current_number_scheduled)
         pulumi.set(__self__, "desired_number_scheduled", desired_number_scheduled)
@@ -430,7 +430,7 @@ class DaemonSetStatus(dict):
 
     @property
     @pulumi.getter(name="currentNumberScheduled")
-    def current_number_scheduled(self) -> float:
+    def current_number_scheduled(self) -> int:
         """
         The number of nodes that are running at least 1 daemon pod and are supposed to run the daemon pod. More info: https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
         """
@@ -438,7 +438,7 @@ class DaemonSetStatus(dict):
 
     @property
     @pulumi.getter(name="desiredNumberScheduled")
-    def desired_number_scheduled(self) -> float:
+    def desired_number_scheduled(self) -> int:
         """
         The total number of nodes that should be running the daemon pod (including nodes correctly running the daemon pod). More info: https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
         """
@@ -446,7 +446,7 @@ class DaemonSetStatus(dict):
 
     @property
     @pulumi.getter(name="numberMisscheduled")
-    def number_misscheduled(self) -> float:
+    def number_misscheduled(self) -> int:
         """
         The number of nodes that are running the daemon pod, but are not supposed to run the daemon pod. More info: https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
         """
@@ -454,7 +454,7 @@ class DaemonSetStatus(dict):
 
     @property
     @pulumi.getter(name="numberReady")
-    def number_ready(self) -> float:
+    def number_ready(self) -> int:
         """
         The number of nodes that should be running the daemon pod and have one or more of the daemon pod running and ready.
         """
@@ -462,7 +462,7 @@ class DaemonSetStatus(dict):
 
     @property
     @pulumi.getter(name="collisionCount")
-    def collision_count(self) -> Optional[float]:
+    def collision_count(self) -> Optional[int]:
         """
         Count of hash collisions for the DaemonSet. The DaemonSet controller uses this field as a collision avoidance mechanism when it needs to create the name for the newest ControllerRevision.
         """
@@ -470,7 +470,7 @@ class DaemonSetStatus(dict):
 
     @property
     @pulumi.getter
-    def conditions(self) -> Optional[Sequence['outputs.DaemonSetCondition']]:
+    def conditions(self) -> Optional[List['outputs.DaemonSetCondition']]:
         """
         Represents the latest available observations of a DaemonSet's current state.
         """
@@ -478,7 +478,7 @@ class DaemonSetStatus(dict):
 
     @property
     @pulumi.getter(name="numberAvailable")
-    def number_available(self) -> Optional[float]:
+    def number_available(self) -> Optional[int]:
         """
         The number of nodes that should be running the daemon pod and have one or more of the daemon pod running and available (ready for at least spec.minReadySeconds)
         """
@@ -486,7 +486,7 @@ class DaemonSetStatus(dict):
 
     @property
     @pulumi.getter(name="numberUnavailable")
-    def number_unavailable(self) -> Optional[float]:
+    def number_unavailable(self) -> Optional[int]:
         """
         The number of nodes that should be running the daemon pod and have none of the daemon pod running and available (ready for at least spec.minReadySeconds)
         """
@@ -494,7 +494,7 @@ class DaemonSetStatus(dict):
 
     @property
     @pulumi.getter(name="observedGeneration")
-    def observed_generation(self) -> Optional[float]:
+    def observed_generation(self) -> Optional[int]:
         """
         The most recent generation observed by the daemon set controller.
         """
@@ -502,7 +502,7 @@ class DaemonSetStatus(dict):
 
     @property
     @pulumi.getter(name="updatedNumberScheduled")
-    def updated_number_scheduled(self) -> Optional[float]:
+    def updated_number_scheduled(self) -> Optional[int]:
         """
         The total number of nodes that are running updated daemon pod
         """
@@ -755,22 +755,22 @@ class DeploymentSpec(dict):
     """
     def __init__(__self__, *,
                  template: '_core.v1.outputs.PodTemplateSpec',
-                 min_ready_seconds: Optional[float] = None,
+                 min_ready_seconds: Optional[int] = None,
                  paused: Optional[bool] = None,
-                 progress_deadline_seconds: Optional[float] = None,
-                 replicas: Optional[float] = None,
-                 revision_history_limit: Optional[float] = None,
+                 progress_deadline_seconds: Optional[int] = None,
+                 replicas: Optional[int] = None,
+                 revision_history_limit: Optional[int] = None,
                  rollback_to: Optional['outputs.RollbackConfig'] = None,
                  selector: Optional['_meta.v1.outputs.LabelSelector'] = None,
                  strategy: Optional['outputs.DeploymentStrategy'] = None):
         """
         DeploymentSpec is the specification of the desired behavior of the Deployment.
         :param '_core.v1.PodTemplateSpecArgs' template: Template describes the pods that will be created.
-        :param float min_ready_seconds: Minimum number of seconds for which a newly created pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready)
+        :param int min_ready_seconds: Minimum number of seconds for which a newly created pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready)
         :param bool paused: Indicates that the deployment is paused and will not be processed by the deployment controller.
-        :param float progress_deadline_seconds: The maximum time in seconds for a deployment to make progress before it is considered to be failed. The deployment controller will continue to process failed deployments and a condition with a ProgressDeadlineExceeded reason will be surfaced in the deployment status. Note that progress will not be estimated during the time a deployment is paused. This is set to the max value of int32 (i.e. 2147483647) by default, which means "no deadline".
-        :param float replicas: Number of desired pods. This is a pointer to distinguish between explicit zero and not specified. Defaults to 1.
-        :param float revision_history_limit: The number of old ReplicaSets to retain to allow rollback. This is a pointer to distinguish between explicit zero and not specified. This is set to the max value of int32 (i.e. 2147483647) by default, which means "retaining all old RelicaSets".
+        :param int progress_deadline_seconds: The maximum time in seconds for a deployment to make progress before it is considered to be failed. The deployment controller will continue to process failed deployments and a condition with a ProgressDeadlineExceeded reason will be surfaced in the deployment status. Note that progress will not be estimated during the time a deployment is paused. This is set to the max value of int32 (i.e. 2147483647) by default, which means "no deadline".
+        :param int replicas: Number of desired pods. This is a pointer to distinguish between explicit zero and not specified. Defaults to 1.
+        :param int revision_history_limit: The number of old ReplicaSets to retain to allow rollback. This is a pointer to distinguish between explicit zero and not specified. This is set to the max value of int32 (i.e. 2147483647) by default, which means "retaining all old RelicaSets".
         :param 'RollbackConfigArgs' rollback_to: DEPRECATED. The config this deployment is rolling back to. Will be cleared after rollback is done.
         :param '_meta.v1.LabelSelectorArgs' selector: Label selector for pods. Existing ReplicaSets whose pods are selected by this will be the ones affected by this deployment.
         :param 'DeploymentStrategyArgs' strategy: The deployment strategy to use to replace existing pods with new ones.
@@ -803,7 +803,7 @@ class DeploymentSpec(dict):
 
     @property
     @pulumi.getter(name="minReadySeconds")
-    def min_ready_seconds(self) -> Optional[float]:
+    def min_ready_seconds(self) -> Optional[int]:
         """
         Minimum number of seconds for which a newly created pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready)
         """
@@ -819,7 +819,7 @@ class DeploymentSpec(dict):
 
     @property
     @pulumi.getter(name="progressDeadlineSeconds")
-    def progress_deadline_seconds(self) -> Optional[float]:
+    def progress_deadline_seconds(self) -> Optional[int]:
         """
         The maximum time in seconds for a deployment to make progress before it is considered to be failed. The deployment controller will continue to process failed deployments and a condition with a ProgressDeadlineExceeded reason will be surfaced in the deployment status. Note that progress will not be estimated during the time a deployment is paused. This is set to the max value of int32 (i.e. 2147483647) by default, which means "no deadline".
         """
@@ -827,7 +827,7 @@ class DeploymentSpec(dict):
 
     @property
     @pulumi.getter
-    def replicas(self) -> Optional[float]:
+    def replicas(self) -> Optional[int]:
         """
         Number of desired pods. This is a pointer to distinguish between explicit zero and not specified. Defaults to 1.
         """
@@ -835,7 +835,7 @@ class DeploymentSpec(dict):
 
     @property
     @pulumi.getter(name="revisionHistoryLimit")
-    def revision_history_limit(self) -> Optional[float]:
+    def revision_history_limit(self) -> Optional[int]:
         """
         The number of old ReplicaSets to retain to allow rollback. This is a pointer to distinguish between explicit zero and not specified. This is set to the max value of int32 (i.e. 2147483647) by default, which means "retaining all old RelicaSets".
         """
@@ -875,24 +875,24 @@ class DeploymentStatus(dict):
     DeploymentStatus is the most recently observed status of the Deployment.
     """
     def __init__(__self__, *,
-                 available_replicas: Optional[float] = None,
-                 collision_count: Optional[float] = None,
-                 conditions: Optional[Sequence['outputs.DeploymentCondition']] = None,
-                 observed_generation: Optional[float] = None,
-                 ready_replicas: Optional[float] = None,
-                 replicas: Optional[float] = None,
-                 unavailable_replicas: Optional[float] = None,
-                 updated_replicas: Optional[float] = None):
+                 available_replicas: Optional[int] = None,
+                 collision_count: Optional[int] = None,
+                 conditions: Optional[List['outputs.DeploymentCondition']] = None,
+                 observed_generation: Optional[int] = None,
+                 ready_replicas: Optional[int] = None,
+                 replicas: Optional[int] = None,
+                 unavailable_replicas: Optional[int] = None,
+                 updated_replicas: Optional[int] = None):
         """
         DeploymentStatus is the most recently observed status of the Deployment.
-        :param float available_replicas: Total number of available pods (ready for at least minReadySeconds) targeted by this deployment.
-        :param float collision_count: Count of hash collisions for the Deployment. The Deployment controller uses this field as a collision avoidance mechanism when it needs to create the name for the newest ReplicaSet.
-        :param Sequence['DeploymentConditionArgs'] conditions: Represents the latest available observations of a deployment's current state.
-        :param float observed_generation: The generation observed by the deployment controller.
-        :param float ready_replicas: Total number of ready pods targeted by this deployment.
-        :param float replicas: Total number of non-terminated pods targeted by this deployment (their labels match the selector).
-        :param float unavailable_replicas: Total number of unavailable pods targeted by this deployment. This is the total number of pods that are still required for the deployment to have 100% available capacity. They may either be pods that are running but not yet available or pods that still have not been created.
-        :param float updated_replicas: Total number of non-terminated pods targeted by this deployment that have the desired template spec.
+        :param int available_replicas: Total number of available pods (ready for at least minReadySeconds) targeted by this deployment.
+        :param int collision_count: Count of hash collisions for the Deployment. The Deployment controller uses this field as a collision avoidance mechanism when it needs to create the name for the newest ReplicaSet.
+        :param List['DeploymentConditionArgs'] conditions: Represents the latest available observations of a deployment's current state.
+        :param int observed_generation: The generation observed by the deployment controller.
+        :param int ready_replicas: Total number of ready pods targeted by this deployment.
+        :param int replicas: Total number of non-terminated pods targeted by this deployment (their labels match the selector).
+        :param int unavailable_replicas: Total number of unavailable pods targeted by this deployment. This is the total number of pods that are still required for the deployment to have 100% available capacity. They may either be pods that are running but not yet available or pods that still have not been created.
+        :param int updated_replicas: Total number of non-terminated pods targeted by this deployment that have the desired template spec.
         """
         if available_replicas is not None:
             pulumi.set(__self__, "available_replicas", available_replicas)
@@ -913,7 +913,7 @@ class DeploymentStatus(dict):
 
     @property
     @pulumi.getter(name="availableReplicas")
-    def available_replicas(self) -> Optional[float]:
+    def available_replicas(self) -> Optional[int]:
         """
         Total number of available pods (ready for at least minReadySeconds) targeted by this deployment.
         """
@@ -921,7 +921,7 @@ class DeploymentStatus(dict):
 
     @property
     @pulumi.getter(name="collisionCount")
-    def collision_count(self) -> Optional[float]:
+    def collision_count(self) -> Optional[int]:
         """
         Count of hash collisions for the Deployment. The Deployment controller uses this field as a collision avoidance mechanism when it needs to create the name for the newest ReplicaSet.
         """
@@ -929,7 +929,7 @@ class DeploymentStatus(dict):
 
     @property
     @pulumi.getter
-    def conditions(self) -> Optional[Sequence['outputs.DeploymentCondition']]:
+    def conditions(self) -> Optional[List['outputs.DeploymentCondition']]:
         """
         Represents the latest available observations of a deployment's current state.
         """
@@ -937,7 +937,7 @@ class DeploymentStatus(dict):
 
     @property
     @pulumi.getter(name="observedGeneration")
-    def observed_generation(self) -> Optional[float]:
+    def observed_generation(self) -> Optional[int]:
         """
         The generation observed by the deployment controller.
         """
@@ -945,7 +945,7 @@ class DeploymentStatus(dict):
 
     @property
     @pulumi.getter(name="readyReplicas")
-    def ready_replicas(self) -> Optional[float]:
+    def ready_replicas(self) -> Optional[int]:
         """
         Total number of ready pods targeted by this deployment.
         """
@@ -953,7 +953,7 @@ class DeploymentStatus(dict):
 
     @property
     @pulumi.getter
-    def replicas(self) -> Optional[float]:
+    def replicas(self) -> Optional[int]:
         """
         Total number of non-terminated pods targeted by this deployment (their labels match the selector).
         """
@@ -961,7 +961,7 @@ class DeploymentStatus(dict):
 
     @property
     @pulumi.getter(name="unavailableReplicas")
-    def unavailable_replicas(self) -> Optional[float]:
+    def unavailable_replicas(self) -> Optional[int]:
         """
         Total number of unavailable pods targeted by this deployment. This is the total number of pods that are still required for the deployment to have 100% available capacity. They may either be pods that are running but not yet available or pods that still have not been created.
         """
@@ -969,7 +969,7 @@ class DeploymentStatus(dict):
 
     @property
     @pulumi.getter(name="updatedReplicas")
-    def updated_replicas(self) -> Optional[float]:
+    def updated_replicas(self) -> Optional[int]:
         """
         Total number of non-terminated pods targeted by this deployment that have the desired template spec.
         """
@@ -1023,11 +1023,11 @@ class FSGroupStrategyOptions(dict):
     FSGroupStrategyOptions defines the strategy type and options used to create the strategy. Deprecated: use FSGroupStrategyOptions from policy API Group instead.
     """
     def __init__(__self__, *,
-                 ranges: Optional[Sequence['outputs.IDRange']] = None,
+                 ranges: Optional[List['outputs.IDRange']] = None,
                  rule: Optional[str] = None):
         """
         FSGroupStrategyOptions defines the strategy type and options used to create the strategy. Deprecated: use FSGroupStrategyOptions from policy API Group instead.
-        :param Sequence['IDRangeArgs'] ranges: ranges are the allowed ranges of fs groups.  If you would like to force a single fs group then supply a single range with the same start and end. Required for MustRunAs.
+        :param List['IDRangeArgs'] ranges: ranges are the allowed ranges of fs groups.  If you would like to force a single fs group then supply a single range with the same start and end. Required for MustRunAs.
         :param str rule: rule is the strategy that will dictate what FSGroup is used in the SecurityContext.
         """
         if ranges is not None:
@@ -1037,7 +1037,7 @@ class FSGroupStrategyOptions(dict):
 
     @property
     @pulumi.getter
-    def ranges(self) -> Optional[Sequence['outputs.IDRange']]:
+    def ranges(self) -> Optional[List['outputs.IDRange']]:
         """
         ranges are the allowed ranges of fs groups.  If you would like to force a single fs group then supply a single range with the same start and end. Required for MustRunAs.
         """
@@ -1130,16 +1130,16 @@ class HTTPIngressRuleValue(dict):
     HTTPIngressRuleValue is a list of http selectors pointing to backends. In the example: http://<host>/<path>?<searchpart> -> backend where where parts of the url correspond to RFC 3986, this resource will be used to match against everything after the last '/' and before the first '?' or '#'.
     """
     def __init__(__self__, *,
-                 paths: Sequence['outputs.HTTPIngressPath']):
+                 paths: List['outputs.HTTPIngressPath']):
         """
         HTTPIngressRuleValue is a list of http selectors pointing to backends. In the example: http://<host>/<path>?<searchpart> -> backend where where parts of the url correspond to RFC 3986, this resource will be used to match against everything after the last '/' and before the first '?' or '#'.
-        :param Sequence['HTTPIngressPathArgs'] paths: A collection of paths that map requests to backends.
+        :param List['HTTPIngressPathArgs'] paths: A collection of paths that map requests to backends.
         """
         pulumi.set(__self__, "paths", paths)
 
     @property
     @pulumi.getter
-    def paths(self) -> Sequence['outputs.HTTPIngressPath']:
+    def paths(self) -> List['outputs.HTTPIngressPath']:
         """
         A collection of paths that map requests to backends.
         """
@@ -1155,19 +1155,19 @@ class HostPortRange(dict):
     HostPortRange defines a range of host ports that will be enabled by a policy for pods to use.  It requires both the start and end to be defined. Deprecated: use HostPortRange from policy API Group instead.
     """
     def __init__(__self__, *,
-                 max: float,
-                 min: float):
+                 max: int,
+                 min: int):
         """
         HostPortRange defines a range of host ports that will be enabled by a policy for pods to use.  It requires both the start and end to be defined. Deprecated: use HostPortRange from policy API Group instead.
-        :param float max: max is the end of the range, inclusive.
-        :param float min: min is the start of the range, inclusive.
+        :param int max: max is the end of the range, inclusive.
+        :param int min: min is the start of the range, inclusive.
         """
         pulumi.set(__self__, "max", max)
         pulumi.set(__self__, "min", min)
 
     @property
     @pulumi.getter
-    def max(self) -> float:
+    def max(self) -> int:
         """
         max is the end of the range, inclusive.
         """
@@ -1175,7 +1175,7 @@ class HostPortRange(dict):
 
     @property
     @pulumi.getter
-    def min(self) -> float:
+    def min(self) -> int:
         """
         min is the start of the range, inclusive.
         """
@@ -1191,19 +1191,19 @@ class IDRange(dict):
     IDRange provides a min/max of an allowed range of IDs. Deprecated: use IDRange from policy API Group instead.
     """
     def __init__(__self__, *,
-                 max: float,
-                 min: float):
+                 max: int,
+                 min: int):
         """
         IDRange provides a min/max of an allowed range of IDs. Deprecated: use IDRange from policy API Group instead.
-        :param float max: max is the end of the range, inclusive.
-        :param float min: min is the start of the range, inclusive.
+        :param int max: max is the end of the range, inclusive.
+        :param int min: min is the start of the range, inclusive.
         """
         pulumi.set(__self__, "max", max)
         pulumi.set(__self__, "min", min)
 
     @property
     @pulumi.getter
-    def max(self) -> float:
+    def max(self) -> int:
         """
         max is the end of the range, inclusive.
         """
@@ -1211,7 +1211,7 @@ class IDRange(dict):
 
     @property
     @pulumi.getter
-    def min(self) -> float:
+    def min(self) -> int:
         """
         min is the start of the range, inclusive.
         """
@@ -1228,11 +1228,11 @@ class IPBlock(dict):
     """
     def __init__(__self__, *,
                  cidr: str,
-                 except_: Optional[Sequence[str]] = None):
+                 except_: Optional[List[str]] = None):
         """
         DEPRECATED 1.9 - This group version of IPBlock is deprecated by networking/v1/IPBlock. IPBlock describes a particular CIDR (Ex. "192.168.1.1/24") that is allowed to the pods matched by a NetworkPolicySpec's podSelector. The except entry describes CIDRs that should not be included within this rule.
         :param str cidr: CIDR is a string representing the IP Block Valid examples are "192.168.1.1/24"
-        :param Sequence[str] except_: Except is a slice of CIDRs that should not be included within an IP Block Valid examples are "192.168.1.1/24" Except values will be rejected if they are outside the CIDR range
+        :param List[str] except_: Except is a slice of CIDRs that should not be included within an IP Block Valid examples are "192.168.1.1/24" Except values will be rejected if they are outside the CIDR range
         """
         pulumi.set(__self__, "cidr", cidr)
         if except_ is not None:
@@ -1248,7 +1248,7 @@ class IPBlock(dict):
 
     @property
     @pulumi.getter(name="except")
-    def except_(self) -> Optional[Sequence[str]]:
+    def except_(self) -> Optional[List[str]]:
         """
         Except is a slice of CIDRs that should not be included within an IP Block Valid examples are "192.168.1.1/24" Except values will be rejected if they are outside the CIDR range
         """
@@ -1372,7 +1372,7 @@ class IngressBackend(dict):
         """
         IngressBackend describes all endpoints for a given service and port.
         :param str service_name: Specifies the name of the referenced service.
-        :param Union[float, str] service_port: Specifies the port of the referenced service.
+        :param Union[int, str] service_port: Specifies the port of the referenced service.
         :param '_core.v1.TypedLocalObjectReferenceArgs' resource: Resource is an ObjectRef to another Kubernetes resource in the namespace of the Ingress object. If resource is specified, serviceName and servicePort must not be specified.
         """
         pulumi.set(__self__, "service_name", service_name)
@@ -1464,14 +1464,14 @@ class IngressSpec(dict):
     def __init__(__self__, *,
                  backend: Optional['outputs.IngressBackend'] = None,
                  ingress_class_name: Optional[str] = None,
-                 rules: Optional[Sequence['outputs.IngressRule']] = None,
-                 tls: Optional[Sequence['outputs.IngressTLS']] = None):
+                 rules: Optional[List['outputs.IngressRule']] = None,
+                 tls: Optional[List['outputs.IngressTLS']] = None):
         """
         IngressSpec describes the Ingress the user wishes to exist.
         :param 'IngressBackendArgs' backend: A default backend capable of servicing requests that don't match any rule. At least one of 'backend' or 'rules' must be specified. This field is optional to allow the loadbalancer controller or defaulting logic to specify a global default.
         :param str ingress_class_name: IngressClassName is the name of the IngressClass cluster resource. The associated IngressClass defines which controller will implement the resource. This replaces the deprecated `kubernetes.io/ingress.class` annotation. For backwards compatibility, when that annotation is set, it must be given precedence over this field. The controller may emit a warning if the field and annotation have different values. Implementations of this API should ignore Ingresses without a class specified. An IngressClass resource may be marked as default, which can be used to set a default value for this field. For more information, refer to the IngressClass documentation.
-        :param Sequence['IngressRuleArgs'] rules: A list of host rules used to configure the Ingress. If unspecified, or no rule matches, all traffic is sent to the default backend.
-        :param Sequence['IngressTLSArgs'] tls: TLS configuration. Currently the Ingress only supports a single TLS port, 443. If multiple members of this list specify different hosts, they will be multiplexed on the same port according to the hostname specified through the SNI TLS extension, if the ingress controller fulfilling the ingress supports SNI.
+        :param List['IngressRuleArgs'] rules: A list of host rules used to configure the Ingress. If unspecified, or no rule matches, all traffic is sent to the default backend.
+        :param List['IngressTLSArgs'] tls: TLS configuration. Currently the Ingress only supports a single TLS port, 443. If multiple members of this list specify different hosts, they will be multiplexed on the same port according to the hostname specified through the SNI TLS extension, if the ingress controller fulfilling the ingress supports SNI.
         """
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
@@ -1500,7 +1500,7 @@ class IngressSpec(dict):
 
     @property
     @pulumi.getter
-    def rules(self) -> Optional[Sequence['outputs.IngressRule']]:
+    def rules(self) -> Optional[List['outputs.IngressRule']]:
         """
         A list of host rules used to configure the Ingress. If unspecified, or no rule matches, all traffic is sent to the default backend.
         """
@@ -1508,7 +1508,7 @@ class IngressSpec(dict):
 
     @property
     @pulumi.getter
-    def tls(self) -> Optional[Sequence['outputs.IngressTLS']]:
+    def tls(self) -> Optional[List['outputs.IngressTLS']]:
         """
         TLS configuration. Currently the Ingress only supports a single TLS port, 443. If multiple members of this list specify different hosts, they will be multiplexed on the same port according to the hostname specified through the SNI TLS extension, if the ingress controller fulfilling the ingress supports SNI.
         """
@@ -1550,11 +1550,11 @@ class IngressTLS(dict):
     IngressTLS describes the transport layer security associated with an Ingress.
     """
     def __init__(__self__, *,
-                 hosts: Optional[Sequence[str]] = None,
+                 hosts: Optional[List[str]] = None,
                  secret_name: Optional[str] = None):
         """
         IngressTLS describes the transport layer security associated with an Ingress.
-        :param Sequence[str] hosts: Hosts are a list of hosts included in the TLS certificate. The values in this list must match the name/s used in the tlsSecret. Defaults to the wildcard host setting for the loadbalancer controller fulfilling this Ingress, if left unspecified.
+        :param List[str] hosts: Hosts are a list of hosts included in the TLS certificate. The values in this list must match the name/s used in the tlsSecret. Defaults to the wildcard host setting for the loadbalancer controller fulfilling this Ingress, if left unspecified.
         :param str secret_name: SecretName is the name of the secret used to terminate SSL traffic on 443. Field is left optional to allow SSL routing based on SNI hostname alone. If the SNI host in a listener conflicts with the "Host" header field used by an IngressRule, the SNI host is used for termination and value of the Host header is used for routing.
         """
         if hosts is not None:
@@ -1564,7 +1564,7 @@ class IngressTLS(dict):
 
     @property
     @pulumi.getter
-    def hosts(self) -> Optional[Sequence[str]]:
+    def hosts(self) -> Optional[List[str]]:
         """
         Hosts are a list of hosts included in the TLS certificate. The values in this list must match the name/s used in the tlsSecret. Defaults to the wildcard host setting for the loadbalancer controller fulfilling this Ingress, if left unspecified.
         """
@@ -1650,12 +1650,12 @@ class NetworkPolicyEgressRule(dict):
     DEPRECATED 1.9 - This group version of NetworkPolicyEgressRule is deprecated by networking/v1/NetworkPolicyEgressRule. NetworkPolicyEgressRule describes a particular set of traffic that is allowed out of pods matched by a NetworkPolicySpec's podSelector. The traffic must match both ports and to. This type is beta-level in 1.8
     """
     def __init__(__self__, *,
-                 ports: Optional[Sequence['outputs.NetworkPolicyPort']] = None,
-                 to: Optional[Sequence['outputs.NetworkPolicyPeer']] = None):
+                 ports: Optional[List['outputs.NetworkPolicyPort']] = None,
+                 to: Optional[List['outputs.NetworkPolicyPeer']] = None):
         """
         DEPRECATED 1.9 - This group version of NetworkPolicyEgressRule is deprecated by networking/v1/NetworkPolicyEgressRule. NetworkPolicyEgressRule describes a particular set of traffic that is allowed out of pods matched by a NetworkPolicySpec's podSelector. The traffic must match both ports and to. This type is beta-level in 1.8
-        :param Sequence['NetworkPolicyPortArgs'] ports: List of destination ports for outgoing traffic. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list.
-        :param Sequence['NetworkPolicyPeerArgs'] to: List of destinations for outgoing traffic of pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all destinations (traffic not restricted by destination). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the to list.
+        :param List['NetworkPolicyPortArgs'] ports: List of destination ports for outgoing traffic. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list.
+        :param List['NetworkPolicyPeerArgs'] to: List of destinations for outgoing traffic of pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all destinations (traffic not restricted by destination). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the to list.
         """
         if ports is not None:
             pulumi.set(__self__, "ports", ports)
@@ -1664,7 +1664,7 @@ class NetworkPolicyEgressRule(dict):
 
     @property
     @pulumi.getter
-    def ports(self) -> Optional[Sequence['outputs.NetworkPolicyPort']]:
+    def ports(self) -> Optional[List['outputs.NetworkPolicyPort']]:
         """
         List of destination ports for outgoing traffic. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list.
         """
@@ -1672,7 +1672,7 @@ class NetworkPolicyEgressRule(dict):
 
     @property
     @pulumi.getter
-    def to(self) -> Optional[Sequence['outputs.NetworkPolicyPeer']]:
+    def to(self) -> Optional[List['outputs.NetworkPolicyPeer']]:
         """
         List of destinations for outgoing traffic of pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all destinations (traffic not restricted by destination). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the to list.
         """
@@ -1688,12 +1688,12 @@ class NetworkPolicyIngressRule(dict):
     DEPRECATED 1.9 - This group version of NetworkPolicyIngressRule is deprecated by networking/v1/NetworkPolicyIngressRule. This NetworkPolicyIngressRule matches traffic if and only if the traffic matches both ports AND from.
     """
     def __init__(__self__, *,
-                 from_: Optional[Sequence['outputs.NetworkPolicyPeer']] = None,
-                 ports: Optional[Sequence['outputs.NetworkPolicyPort']] = None):
+                 from_: Optional[List['outputs.NetworkPolicyPeer']] = None,
+                 ports: Optional[List['outputs.NetworkPolicyPort']] = None):
         """
         DEPRECATED 1.9 - This group version of NetworkPolicyIngressRule is deprecated by networking/v1/NetworkPolicyIngressRule. This NetworkPolicyIngressRule matches traffic if and only if the traffic matches both ports AND from.
-        :param Sequence['NetworkPolicyPeerArgs'] from_: List of sources which should be able to access the pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all sources (traffic not restricted by source). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the from list.
-        :param Sequence['NetworkPolicyPortArgs'] ports: List of ports which should be made accessible on the pods selected for this rule. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list.
+        :param List['NetworkPolicyPeerArgs'] from_: List of sources which should be able to access the pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all sources (traffic not restricted by source). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the from list.
+        :param List['NetworkPolicyPortArgs'] ports: List of ports which should be made accessible on the pods selected for this rule. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list.
         """
         if from_ is not None:
             pulumi.set(__self__, "from_", from_)
@@ -1702,7 +1702,7 @@ class NetworkPolicyIngressRule(dict):
 
     @property
     @pulumi.getter(name="from")
-    def from_(self) -> Optional[Sequence['outputs.NetworkPolicyPeer']]:
+    def from_(self) -> Optional[List['outputs.NetworkPolicyPeer']]:
         """
         List of sources which should be able to access the pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all sources (traffic not restricted by source). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the from list.
         """
@@ -1710,7 +1710,7 @@ class NetworkPolicyIngressRule(dict):
 
     @property
     @pulumi.getter
-    def ports(self) -> Optional[Sequence['outputs.NetworkPolicyPort']]:
+    def ports(self) -> Optional[List['outputs.NetworkPolicyPort']]:
         """
         List of ports which should be made accessible on the pods selected for this rule. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list.
         """
@@ -1788,7 +1788,7 @@ class NetworkPolicyPort(dict):
                  protocol: Optional[str] = None):
         """
         DEPRECATED 1.9 - This group version of NetworkPolicyPort is deprecated by networking/v1/NetworkPolicyPort.
-        :param Union[float, str] port: If specified, the port on the given protocol.  This can either be a numerical or named port on a pod.  If this field is not provided, this matches all port names and numbers. If present, only traffic on the specified protocol AND port will be matched.
+        :param Union[int, str] port: If specified, the port on the given protocol.  This can either be a numerical or named port on a pod.  If this field is not provided, this matches all port names and numbers. If present, only traffic on the specified protocol AND port will be matched.
         :param str protocol: Optional.  The protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.
         """
         if port is not None:
@@ -1823,15 +1823,15 @@ class NetworkPolicySpec(dict):
     """
     def __init__(__self__, *,
                  pod_selector: '_meta.v1.outputs.LabelSelector',
-                 egress: Optional[Sequence['outputs.NetworkPolicyEgressRule']] = None,
-                 ingress: Optional[Sequence['outputs.NetworkPolicyIngressRule']] = None,
-                 policy_types: Optional[Sequence[str]] = None):
+                 egress: Optional[List['outputs.NetworkPolicyEgressRule']] = None,
+                 ingress: Optional[List['outputs.NetworkPolicyIngressRule']] = None,
+                 policy_types: Optional[List[str]] = None):
         """
         DEPRECATED 1.9 - This group version of NetworkPolicySpec is deprecated by networking/v1/NetworkPolicySpec.
         :param '_meta.v1.LabelSelectorArgs' pod_selector: Selects the pods to which this NetworkPolicy object applies.  The array of ingress rules is applied to any pods selected by this field. Multiple network policies can select the same set of pods.  In this case, the ingress rules for each are combined additively. This field is NOT optional and follows standard label selector semantics. An empty podSelector matches all pods in this namespace.
-        :param Sequence['NetworkPolicyEgressRuleArgs'] egress: List of egress rules to be applied to the selected pods. Outgoing traffic is allowed if there are no NetworkPolicies selecting the pod (and cluster policy otherwise allows the traffic), OR if the traffic matches at least one egress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy limits all outgoing traffic (and serves solely to ensure that the pods it selects are isolated by default). This field is beta-level in 1.8
-        :param Sequence['NetworkPolicyIngressRuleArgs'] ingress: List of ingress rules to be applied to the selected pods. Traffic is allowed to a pod if there are no NetworkPolicies selecting the pod OR if the traffic source is the pod's local node, OR if the traffic matches at least one ingress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy does not allow any traffic (and serves solely to ensure that the pods it selects are isolated by default).
-        :param Sequence[str] policy_types: List of rule types that the NetworkPolicy relates to. Valid options are "Ingress", "Egress", or "Ingress,Egress". If this field is not specified, it will default based on the existence of Ingress or Egress rules; policies that contain an Egress section are assumed to affect Egress, and all policies (whether or not they contain an Ingress section) are assumed to affect Ingress. If you want to write an egress-only policy, you must explicitly specify policyTypes [ "Egress" ]. Likewise, if you want to write a policy that specifies that no egress is allowed, you must specify a policyTypes value that include "Egress" (since such a policy would not include an Egress section and would otherwise default to just [ "Ingress" ]). This field is beta-level in 1.8
+        :param List['NetworkPolicyEgressRuleArgs'] egress: List of egress rules to be applied to the selected pods. Outgoing traffic is allowed if there are no NetworkPolicies selecting the pod (and cluster policy otherwise allows the traffic), OR if the traffic matches at least one egress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy limits all outgoing traffic (and serves solely to ensure that the pods it selects are isolated by default). This field is beta-level in 1.8
+        :param List['NetworkPolicyIngressRuleArgs'] ingress: List of ingress rules to be applied to the selected pods. Traffic is allowed to a pod if there are no NetworkPolicies selecting the pod OR if the traffic source is the pod's local node, OR if the traffic matches at least one ingress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy does not allow any traffic (and serves solely to ensure that the pods it selects are isolated by default).
+        :param List[str] policy_types: List of rule types that the NetworkPolicy relates to. Valid options are "Ingress", "Egress", or "Ingress,Egress". If this field is not specified, it will default based on the existence of Ingress or Egress rules; policies that contain an Egress section are assumed to affect Egress, and all policies (whether or not they contain an Ingress section) are assumed to affect Ingress. If you want to write an egress-only policy, you must explicitly specify policyTypes [ "Egress" ]. Likewise, if you want to write a policy that specifies that no egress is allowed, you must specify a policyTypes value that include "Egress" (since such a policy would not include an Egress section and would otherwise default to just [ "Ingress" ]). This field is beta-level in 1.8
         """
         pulumi.set(__self__, "pod_selector", pod_selector)
         if egress is not None:
@@ -1851,7 +1851,7 @@ class NetworkPolicySpec(dict):
 
     @property
     @pulumi.getter
-    def egress(self) -> Optional[Sequence['outputs.NetworkPolicyEgressRule']]:
+    def egress(self) -> Optional[List['outputs.NetworkPolicyEgressRule']]:
         """
         List of egress rules to be applied to the selected pods. Outgoing traffic is allowed if there are no NetworkPolicies selecting the pod (and cluster policy otherwise allows the traffic), OR if the traffic matches at least one egress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy limits all outgoing traffic (and serves solely to ensure that the pods it selects are isolated by default). This field is beta-level in 1.8
         """
@@ -1859,7 +1859,7 @@ class NetworkPolicySpec(dict):
 
     @property
     @pulumi.getter
-    def ingress(self) -> Optional[Sequence['outputs.NetworkPolicyIngressRule']]:
+    def ingress(self) -> Optional[List['outputs.NetworkPolicyIngressRule']]:
         """
         List of ingress rules to be applied to the selected pods. Traffic is allowed to a pod if there are no NetworkPolicies selecting the pod OR if the traffic source is the pod's local node, OR if the traffic matches at least one ingress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy does not allow any traffic (and serves solely to ensure that the pods it selects are isolated by default).
         """
@@ -1867,7 +1867,7 @@ class NetworkPolicySpec(dict):
 
     @property
     @pulumi.getter(name="policyTypes")
-    def policy_types(self) -> Optional[Sequence[str]]:
+    def policy_types(self) -> Optional[List[str]]:
         """
         List of rule types that the NetworkPolicy relates to. Valid options are "Ingress", "Egress", or "Ingress,Egress". If this field is not specified, it will default based on the existence of Ingress or Egress rules; policies that contain an Egress section are assumed to affect Egress, and all policies (whether or not they contain an Ingress section) are assumed to affect Ingress. If you want to write an egress-only policy, you must explicitly specify policyTypes [ "Egress" ]. Likewise, if you want to write a policy that specifies that no egress is allowed, you must specify a policyTypes value that include "Egress" (since such a policy would not include an Egress section and would otherwise default to just [ "Ingress" ]). This field is beta-level in 1.8
         """
@@ -1950,25 +1950,25 @@ class PodSecurityPolicySpec(dict):
                  se_linux: 'outputs.SELinuxStrategyOptions',
                  supplemental_groups: 'outputs.SupplementalGroupsStrategyOptions',
                  allow_privilege_escalation: Optional[bool] = None,
-                 allowed_csi_drivers: Optional[Sequence['outputs.AllowedCSIDriver']] = None,
-                 allowed_capabilities: Optional[Sequence[str]] = None,
-                 allowed_flex_volumes: Optional[Sequence['outputs.AllowedFlexVolume']] = None,
-                 allowed_host_paths: Optional[Sequence['outputs.AllowedHostPath']] = None,
-                 allowed_proc_mount_types: Optional[Sequence[str]] = None,
-                 allowed_unsafe_sysctls: Optional[Sequence[str]] = None,
-                 default_add_capabilities: Optional[Sequence[str]] = None,
+                 allowed_csi_drivers: Optional[List['outputs.AllowedCSIDriver']] = None,
+                 allowed_capabilities: Optional[List[str]] = None,
+                 allowed_flex_volumes: Optional[List['outputs.AllowedFlexVolume']] = None,
+                 allowed_host_paths: Optional[List['outputs.AllowedHostPath']] = None,
+                 allowed_proc_mount_types: Optional[List[str]] = None,
+                 allowed_unsafe_sysctls: Optional[List[str]] = None,
+                 default_add_capabilities: Optional[List[str]] = None,
                  default_allow_privilege_escalation: Optional[bool] = None,
-                 forbidden_sysctls: Optional[Sequence[str]] = None,
+                 forbidden_sysctls: Optional[List[str]] = None,
                  host_ipc: Optional[bool] = None,
                  host_network: Optional[bool] = None,
                  host_pid: Optional[bool] = None,
-                 host_ports: Optional[Sequence['outputs.HostPortRange']] = None,
+                 host_ports: Optional[List['outputs.HostPortRange']] = None,
                  privileged: Optional[bool] = None,
                  read_only_root_filesystem: Optional[bool] = None,
-                 required_drop_capabilities: Optional[Sequence[str]] = None,
+                 required_drop_capabilities: Optional[List[str]] = None,
                  run_as_group: Optional['outputs.RunAsGroupStrategyOptions'] = None,
                  runtime_class: Optional['outputs.RuntimeClassStrategyOptions'] = None,
-                 volumes: Optional[Sequence[str]] = None):
+                 volumes: Optional[List[str]] = None):
         """
         PodSecurityPolicySpec defines the policy enforced. Deprecated: use PodSecurityPolicySpec from policy API Group instead.
         :param 'FSGroupStrategyOptionsArgs' fs_group: fsGroup is the strategy that will dictate what fs group is used by the SecurityContext.
@@ -1976,29 +1976,29 @@ class PodSecurityPolicySpec(dict):
         :param 'SELinuxStrategyOptionsArgs' se_linux: seLinux is the strategy that will dictate the allowable labels that may be set.
         :param 'SupplementalGroupsStrategyOptionsArgs' supplemental_groups: supplementalGroups is the strategy that will dictate what supplemental groups are used by the SecurityContext.
         :param bool allow_privilege_escalation: allowPrivilegeEscalation determines if a pod can request to allow privilege escalation. If unspecified, defaults to true.
-        :param Sequence['AllowedCSIDriverArgs'] allowed_csi_drivers: AllowedCSIDrivers is a whitelist of inline CSI drivers that must be explicitly set to be embedded within a pod spec. An empty value indicates that any CSI driver can be used for inline ephemeral volumes.
-        :param Sequence[str] allowed_capabilities: allowedCapabilities is a list of capabilities that can be requested to add to the container. Capabilities in this field may be added at the pod author's discretion. You must not list a capability in both allowedCapabilities and requiredDropCapabilities.
-        :param Sequence['AllowedFlexVolumeArgs'] allowed_flex_volumes: allowedFlexVolumes is a whitelist of allowed Flexvolumes.  Empty or nil indicates that all Flexvolumes may be used.  This parameter is effective only when the usage of the Flexvolumes is allowed in the "volumes" field.
-        :param Sequence['AllowedHostPathArgs'] allowed_host_paths: allowedHostPaths is a white list of allowed host paths. Empty indicates that all host paths may be used.
-        :param Sequence[str] allowed_proc_mount_types: AllowedProcMountTypes is a whitelist of allowed ProcMountTypes. Empty or nil indicates that only the DefaultProcMountType may be used. This requires the ProcMountType feature flag to be enabled.
-        :param Sequence[str] allowed_unsafe_sysctls: allowedUnsafeSysctls is a list of explicitly allowed unsafe sysctls, defaults to none. Each entry is either a plain sysctl name or ends in "*" in which case it is considered as a prefix of allowed sysctls. Single * means all unsafe sysctls are allowed. Kubelet has to whitelist all allowed unsafe sysctls explicitly to avoid rejection.
+        :param List['AllowedCSIDriverArgs'] allowed_csi_drivers: AllowedCSIDrivers is a whitelist of inline CSI drivers that must be explicitly set to be embedded within a pod spec. An empty value indicates that any CSI driver can be used for inline ephemeral volumes.
+        :param List[str] allowed_capabilities: allowedCapabilities is a list of capabilities that can be requested to add to the container. Capabilities in this field may be added at the pod author's discretion. You must not list a capability in both allowedCapabilities and requiredDropCapabilities.
+        :param List['AllowedFlexVolumeArgs'] allowed_flex_volumes: allowedFlexVolumes is a whitelist of allowed Flexvolumes.  Empty or nil indicates that all Flexvolumes may be used.  This parameter is effective only when the usage of the Flexvolumes is allowed in the "volumes" field.
+        :param List['AllowedHostPathArgs'] allowed_host_paths: allowedHostPaths is a white list of allowed host paths. Empty indicates that all host paths may be used.
+        :param List[str] allowed_proc_mount_types: AllowedProcMountTypes is a whitelist of allowed ProcMountTypes. Empty or nil indicates that only the DefaultProcMountType may be used. This requires the ProcMountType feature flag to be enabled.
+        :param List[str] allowed_unsafe_sysctls: allowedUnsafeSysctls is a list of explicitly allowed unsafe sysctls, defaults to none. Each entry is either a plain sysctl name or ends in "*" in which case it is considered as a prefix of allowed sysctls. Single * means all unsafe sysctls are allowed. Kubelet has to whitelist all allowed unsafe sysctls explicitly to avoid rejection.
                
                Examples: e.g. "foo/*" allows "foo/bar", "foo/baz", etc. e.g. "foo.*" allows "foo.bar", "foo.baz", etc.
-        :param Sequence[str] default_add_capabilities: defaultAddCapabilities is the default set of capabilities that will be added to the container unless the pod spec specifically drops the capability.  You may not list a capability in both defaultAddCapabilities and requiredDropCapabilities. Capabilities added here are implicitly allowed, and need not be included in the allowedCapabilities list.
+        :param List[str] default_add_capabilities: defaultAddCapabilities is the default set of capabilities that will be added to the container unless the pod spec specifically drops the capability.  You may not list a capability in both defaultAddCapabilities and requiredDropCapabilities. Capabilities added here are implicitly allowed, and need not be included in the allowedCapabilities list.
         :param bool default_allow_privilege_escalation: defaultAllowPrivilegeEscalation controls the default setting for whether a process can gain more privileges than its parent process.
-        :param Sequence[str] forbidden_sysctls: forbiddenSysctls is a list of explicitly forbidden sysctls, defaults to none. Each entry is either a plain sysctl name or ends in "*" in which case it is considered as a prefix of forbidden sysctls. Single * means all sysctls are forbidden.
+        :param List[str] forbidden_sysctls: forbiddenSysctls is a list of explicitly forbidden sysctls, defaults to none. Each entry is either a plain sysctl name or ends in "*" in which case it is considered as a prefix of forbidden sysctls. Single * means all sysctls are forbidden.
                
                Examples: e.g. "foo/*" forbids "foo/bar", "foo/baz", etc. e.g. "foo.*" forbids "foo.bar", "foo.baz", etc.
         :param bool host_ipc: hostIPC determines if the policy allows the use of HostIPC in the pod spec.
         :param bool host_network: hostNetwork determines if the policy allows the use of HostNetwork in the pod spec.
         :param bool host_pid: hostPID determines if the policy allows the use of HostPID in the pod spec.
-        :param Sequence['HostPortRangeArgs'] host_ports: hostPorts determines which host port ranges are allowed to be exposed.
+        :param List['HostPortRangeArgs'] host_ports: hostPorts determines which host port ranges are allowed to be exposed.
         :param bool privileged: privileged determines if a pod can request to be run as privileged.
         :param bool read_only_root_filesystem: readOnlyRootFilesystem when set to true will force containers to run with a read only root file system.  If the container specifically requests to run with a non-read only root file system the PSP should deny the pod. If set to false the container may run with a read only root file system if it wishes but it will not be forced to.
-        :param Sequence[str] required_drop_capabilities: requiredDropCapabilities are the capabilities that will be dropped from the container.  These are required to be dropped and cannot be added.
+        :param List[str] required_drop_capabilities: requiredDropCapabilities are the capabilities that will be dropped from the container.  These are required to be dropped and cannot be added.
         :param 'RunAsGroupStrategyOptionsArgs' run_as_group: RunAsGroup is the strategy that will dictate the allowable RunAsGroup values that may be set. If this field is omitted, the pod's RunAsGroup can take any value. This field requires the RunAsGroup feature gate to be enabled.
         :param 'RuntimeClassStrategyOptionsArgs' runtime_class: runtimeClass is the strategy that will dictate the allowable RuntimeClasses for a pod. If this field is omitted, the pod's runtimeClassName field is unrestricted. Enforcement of this field depends on the RuntimeClass feature gate being enabled.
-        :param Sequence[str] volumes: volumes is a white list of allowed volume plugins. Empty indicates that no volumes may be used. To allow all volumes you may use '*'.
+        :param List[str] volumes: volumes is a white list of allowed volume plugins. Empty indicates that no volumes may be used. To allow all volumes you may use '*'.
         """
         pulumi.set(__self__, "fs_group", fs_group)
         pulumi.set(__self__, "run_as_user", run_as_user)
@@ -2087,7 +2087,7 @@ class PodSecurityPolicySpec(dict):
 
     @property
     @pulumi.getter(name="allowedCSIDrivers")
-    def allowed_csi_drivers(self) -> Optional[Sequence['outputs.AllowedCSIDriver']]:
+    def allowed_csi_drivers(self) -> Optional[List['outputs.AllowedCSIDriver']]:
         """
         AllowedCSIDrivers is a whitelist of inline CSI drivers that must be explicitly set to be embedded within a pod spec. An empty value indicates that any CSI driver can be used for inline ephemeral volumes.
         """
@@ -2095,7 +2095,7 @@ class PodSecurityPolicySpec(dict):
 
     @property
     @pulumi.getter(name="allowedCapabilities")
-    def allowed_capabilities(self) -> Optional[Sequence[str]]:
+    def allowed_capabilities(self) -> Optional[List[str]]:
         """
         allowedCapabilities is a list of capabilities that can be requested to add to the container. Capabilities in this field may be added at the pod author's discretion. You must not list a capability in both allowedCapabilities and requiredDropCapabilities.
         """
@@ -2103,7 +2103,7 @@ class PodSecurityPolicySpec(dict):
 
     @property
     @pulumi.getter(name="allowedFlexVolumes")
-    def allowed_flex_volumes(self) -> Optional[Sequence['outputs.AllowedFlexVolume']]:
+    def allowed_flex_volumes(self) -> Optional[List['outputs.AllowedFlexVolume']]:
         """
         allowedFlexVolumes is a whitelist of allowed Flexvolumes.  Empty or nil indicates that all Flexvolumes may be used.  This parameter is effective only when the usage of the Flexvolumes is allowed in the "volumes" field.
         """
@@ -2111,7 +2111,7 @@ class PodSecurityPolicySpec(dict):
 
     @property
     @pulumi.getter(name="allowedHostPaths")
-    def allowed_host_paths(self) -> Optional[Sequence['outputs.AllowedHostPath']]:
+    def allowed_host_paths(self) -> Optional[List['outputs.AllowedHostPath']]:
         """
         allowedHostPaths is a white list of allowed host paths. Empty indicates that all host paths may be used.
         """
@@ -2119,7 +2119,7 @@ class PodSecurityPolicySpec(dict):
 
     @property
     @pulumi.getter(name="allowedProcMountTypes")
-    def allowed_proc_mount_types(self) -> Optional[Sequence[str]]:
+    def allowed_proc_mount_types(self) -> Optional[List[str]]:
         """
         AllowedProcMountTypes is a whitelist of allowed ProcMountTypes. Empty or nil indicates that only the DefaultProcMountType may be used. This requires the ProcMountType feature flag to be enabled.
         """
@@ -2127,7 +2127,7 @@ class PodSecurityPolicySpec(dict):
 
     @property
     @pulumi.getter(name="allowedUnsafeSysctls")
-    def allowed_unsafe_sysctls(self) -> Optional[Sequence[str]]:
+    def allowed_unsafe_sysctls(self) -> Optional[List[str]]:
         """
         allowedUnsafeSysctls is a list of explicitly allowed unsafe sysctls, defaults to none. Each entry is either a plain sysctl name or ends in "*" in which case it is considered as a prefix of allowed sysctls. Single * means all unsafe sysctls are allowed. Kubelet has to whitelist all allowed unsafe sysctls explicitly to avoid rejection.
 
@@ -2137,7 +2137,7 @@ class PodSecurityPolicySpec(dict):
 
     @property
     @pulumi.getter(name="defaultAddCapabilities")
-    def default_add_capabilities(self) -> Optional[Sequence[str]]:
+    def default_add_capabilities(self) -> Optional[List[str]]:
         """
         defaultAddCapabilities is the default set of capabilities that will be added to the container unless the pod spec specifically drops the capability.  You may not list a capability in both defaultAddCapabilities and requiredDropCapabilities. Capabilities added here are implicitly allowed, and need not be included in the allowedCapabilities list.
         """
@@ -2153,7 +2153,7 @@ class PodSecurityPolicySpec(dict):
 
     @property
     @pulumi.getter(name="forbiddenSysctls")
-    def forbidden_sysctls(self) -> Optional[Sequence[str]]:
+    def forbidden_sysctls(self) -> Optional[List[str]]:
         """
         forbiddenSysctls is a list of explicitly forbidden sysctls, defaults to none. Each entry is either a plain sysctl name or ends in "*" in which case it is considered as a prefix of forbidden sysctls. Single * means all sysctls are forbidden.
 
@@ -2187,7 +2187,7 @@ class PodSecurityPolicySpec(dict):
 
     @property
     @pulumi.getter(name="hostPorts")
-    def host_ports(self) -> Optional[Sequence['outputs.HostPortRange']]:
+    def host_ports(self) -> Optional[List['outputs.HostPortRange']]:
         """
         hostPorts determines which host port ranges are allowed to be exposed.
         """
@@ -2211,7 +2211,7 @@ class PodSecurityPolicySpec(dict):
 
     @property
     @pulumi.getter(name="requiredDropCapabilities")
-    def required_drop_capabilities(self) -> Optional[Sequence[str]]:
+    def required_drop_capabilities(self) -> Optional[List[str]]:
         """
         requiredDropCapabilities are the capabilities that will be dropped from the container.  These are required to be dropped and cannot be added.
         """
@@ -2235,7 +2235,7 @@ class PodSecurityPolicySpec(dict):
 
     @property
     @pulumi.getter
-    def volumes(self) -> Optional[Sequence[str]]:
+    def volumes(self) -> Optional[List[str]]:
         """
         volumes is a white list of allowed volume plugins. Empty indicates that no volumes may be used. To allow all volumes you may use '*'.
         """
@@ -2397,14 +2397,14 @@ class ReplicaSetSpec(dict):
     ReplicaSetSpec is the specification of a ReplicaSet.
     """
     def __init__(__self__, *,
-                 min_ready_seconds: Optional[float] = None,
-                 replicas: Optional[float] = None,
+                 min_ready_seconds: Optional[int] = None,
+                 replicas: Optional[int] = None,
                  selector: Optional['_meta.v1.outputs.LabelSelector'] = None,
                  template: Optional['_core.v1.outputs.PodTemplateSpec'] = None):
         """
         ReplicaSetSpec is the specification of a ReplicaSet.
-        :param float min_ready_seconds: Minimum number of seconds for which a newly created pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready)
-        :param float replicas: Replicas is the number of desired replicas. This is a pointer to distinguish between explicit zero and unspecified. Defaults to 1. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/#what-is-a-replicationcontroller
+        :param int min_ready_seconds: Minimum number of seconds for which a newly created pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready)
+        :param int replicas: Replicas is the number of desired replicas. This is a pointer to distinguish between explicit zero and unspecified. Defaults to 1. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/#what-is-a-replicationcontroller
         :param '_meta.v1.LabelSelectorArgs' selector: Selector is a label query over pods that should match the replica count. If the selector is empty, it is defaulted to the labels present on the pod template. Label keys and values that must match in order to be controlled by this replica set. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
         :param '_core.v1.PodTemplateSpecArgs' template: Template is the object that describes the pod that will be created if insufficient replicas are detected. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller#pod-template
         """
@@ -2419,7 +2419,7 @@ class ReplicaSetSpec(dict):
 
     @property
     @pulumi.getter(name="minReadySeconds")
-    def min_ready_seconds(self) -> Optional[float]:
+    def min_ready_seconds(self) -> Optional[int]:
         """
         Minimum number of seconds for which a newly created pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready)
         """
@@ -2427,7 +2427,7 @@ class ReplicaSetSpec(dict):
 
     @property
     @pulumi.getter
-    def replicas(self) -> Optional[float]:
+    def replicas(self) -> Optional[int]:
         """
         Replicas is the number of desired replicas. This is a pointer to distinguish between explicit zero and unspecified. Defaults to 1. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/#what-is-a-replicationcontroller
         """
@@ -2459,20 +2459,20 @@ class ReplicaSetStatus(dict):
     ReplicaSetStatus represents the current status of a ReplicaSet.
     """
     def __init__(__self__, *,
-                 replicas: float,
-                 available_replicas: Optional[float] = None,
-                 conditions: Optional[Sequence['outputs.ReplicaSetCondition']] = None,
-                 fully_labeled_replicas: Optional[float] = None,
-                 observed_generation: Optional[float] = None,
-                 ready_replicas: Optional[float] = None):
+                 replicas: int,
+                 available_replicas: Optional[int] = None,
+                 conditions: Optional[List['outputs.ReplicaSetCondition']] = None,
+                 fully_labeled_replicas: Optional[int] = None,
+                 observed_generation: Optional[int] = None,
+                 ready_replicas: Optional[int] = None):
         """
         ReplicaSetStatus represents the current status of a ReplicaSet.
-        :param float replicas: Replicas is the most recently oberved number of replicas. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/#what-is-a-replicationcontroller
-        :param float available_replicas: The number of available replicas (ready for at least minReadySeconds) for this replica set.
-        :param Sequence['ReplicaSetConditionArgs'] conditions: Represents the latest available observations of a replica set's current state.
-        :param float fully_labeled_replicas: The number of pods that have labels matching the labels of the pod template of the replicaset.
-        :param float observed_generation: ObservedGeneration reflects the generation of the most recently observed ReplicaSet.
-        :param float ready_replicas: The number of ready replicas for this replica set.
+        :param int replicas: Replicas is the most recently oberved number of replicas. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/#what-is-a-replicationcontroller
+        :param int available_replicas: The number of available replicas (ready for at least minReadySeconds) for this replica set.
+        :param List['ReplicaSetConditionArgs'] conditions: Represents the latest available observations of a replica set's current state.
+        :param int fully_labeled_replicas: The number of pods that have labels matching the labels of the pod template of the replicaset.
+        :param int observed_generation: ObservedGeneration reflects the generation of the most recently observed ReplicaSet.
+        :param int ready_replicas: The number of ready replicas for this replica set.
         """
         pulumi.set(__self__, "replicas", replicas)
         if available_replicas is not None:
@@ -2488,7 +2488,7 @@ class ReplicaSetStatus(dict):
 
     @property
     @pulumi.getter
-    def replicas(self) -> float:
+    def replicas(self) -> int:
         """
         Replicas is the most recently oberved number of replicas. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/#what-is-a-replicationcontroller
         """
@@ -2496,7 +2496,7 @@ class ReplicaSetStatus(dict):
 
     @property
     @pulumi.getter(name="availableReplicas")
-    def available_replicas(self) -> Optional[float]:
+    def available_replicas(self) -> Optional[int]:
         """
         The number of available replicas (ready for at least minReadySeconds) for this replica set.
         """
@@ -2504,7 +2504,7 @@ class ReplicaSetStatus(dict):
 
     @property
     @pulumi.getter
-    def conditions(self) -> Optional[Sequence['outputs.ReplicaSetCondition']]:
+    def conditions(self) -> Optional[List['outputs.ReplicaSetCondition']]:
         """
         Represents the latest available observations of a replica set's current state.
         """
@@ -2512,7 +2512,7 @@ class ReplicaSetStatus(dict):
 
     @property
     @pulumi.getter(name="fullyLabeledReplicas")
-    def fully_labeled_replicas(self) -> Optional[float]:
+    def fully_labeled_replicas(self) -> Optional[int]:
         """
         The number of pods that have labels matching the labels of the pod template of the replicaset.
         """
@@ -2520,7 +2520,7 @@ class ReplicaSetStatus(dict):
 
     @property
     @pulumi.getter(name="observedGeneration")
-    def observed_generation(self) -> Optional[float]:
+    def observed_generation(self) -> Optional[int]:
         """
         ObservedGeneration reflects the generation of the most recently observed ReplicaSet.
         """
@@ -2528,7 +2528,7 @@ class ReplicaSetStatus(dict):
 
     @property
     @pulumi.getter(name="readyReplicas")
-    def ready_replicas(self) -> Optional[float]:
+    def ready_replicas(self) -> Optional[int]:
         """
         The number of ready replicas for this replica set.
         """
@@ -2544,17 +2544,17 @@ class RollbackConfig(dict):
     DEPRECATED.
     """
     def __init__(__self__, *,
-                 revision: Optional[float] = None):
+                 revision: Optional[int] = None):
         """
         DEPRECATED.
-        :param float revision: The revision to rollback to. If set to 0, rollback to the last revision.
+        :param int revision: The revision to rollback to. If set to 0, rollback to the last revision.
         """
         if revision is not None:
             pulumi.set(__self__, "revision", revision)
 
     @property
     @pulumi.getter
-    def revision(self) -> Optional[float]:
+    def revision(self) -> Optional[int]:
         """
         The revision to rollback to. If set to 0, rollback to the last revision.
         """
@@ -2573,7 +2573,7 @@ class RollingUpdateDaemonSet(dict):
                  max_unavailable: Optional[Any] = None):
         """
         Spec to control the desired behavior of daemon set rolling update.
-        :param Union[float, str] max_unavailable: The maximum number of DaemonSet pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of total number of DaemonSet pods at the start of the update (ex: 10%). Absolute number is calculated from percentage by rounding up. This cannot be 0. Default value is 1. Example: when this is set to 30%, at most 30% of the total number of nodes that should be running the daemon pod (i.e. status.desiredNumberScheduled) can have their pods stopped for an update at any given time. The update starts by stopping at most 30% of those DaemonSet pods and then brings up new DaemonSet pods in their place. Once the new pods are available, it then proceeds onto other DaemonSet pods, thus ensuring that at least 70% of original number of DaemonSet pods are available at all times during the update.
+        :param Union[int, str] max_unavailable: The maximum number of DaemonSet pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of total number of DaemonSet pods at the start of the update (ex: 10%). Absolute number is calculated from percentage by rounding up. This cannot be 0. Default value is 1. Example: when this is set to 30%, at most 30% of the total number of nodes that should be running the daemon pod (i.e. status.desiredNumberScheduled) can have their pods stopped for an update at any given time. The update starts by stopping at most 30% of those DaemonSet pods and then brings up new DaemonSet pods in their place. Once the new pods are available, it then proceeds onto other DaemonSet pods, thus ensuring that at least 70% of original number of DaemonSet pods are available at all times during the update.
         """
         if max_unavailable is not None:
             pulumi.set(__self__, "max_unavailable", max_unavailable)
@@ -2600,8 +2600,8 @@ class RollingUpdateDeployment(dict):
                  max_unavailable: Optional[Any] = None):
         """
         Spec to control the desired behavior of rolling update.
-        :param Union[float, str] max_surge: The maximum number of pods that can be scheduled above the desired number of pods. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. By default, a value of 1 is used. Example: when this is set to 30%, the new RC can be scaled up immediately when the rolling update starts, such that the total number of old and new pods do not exceed 130% of desired pods. Once old pods have been killed, new RC can be scaled up further, ensuring that total number of pods running at any time during the update is at most 130% of desired pods.
-        :param Union[float, str] max_unavailable: The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. By default, a fixed value of 1 is used. Example: when this is set to 30%, the old RC can be scaled down to 70% of desired pods immediately when the rolling update starts. Once new pods are ready, old RC can be scaled down further, followed by scaling up the new RC, ensuring that the total number of pods available at all times during the update is at least 70% of desired pods.
+        :param Union[int, str] max_surge: The maximum number of pods that can be scheduled above the desired number of pods. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. By default, a value of 1 is used. Example: when this is set to 30%, the new RC can be scaled up immediately when the rolling update starts, such that the total number of old and new pods do not exceed 130% of desired pods. Once old pods have been killed, new RC can be scaled up further, ensuring that total number of pods running at any time during the update is at most 130% of desired pods.
+        :param Union[int, str] max_unavailable: The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. By default, a fixed value of 1 is used. Example: when this is set to 30%, the old RC can be scaled down to 70% of desired pods immediately when the rolling update starts. Once new pods are ready, old RC can be scaled down further, followed by scaling up the new RC, ensuring that the total number of pods available at all times during the update is at least 70% of desired pods.
         """
         if max_surge is not None:
             pulumi.set(__self__, "max_surge", max_surge)
@@ -2635,11 +2635,11 @@ class RunAsGroupStrategyOptions(dict):
     """
     def __init__(__self__, *,
                  rule: str,
-                 ranges: Optional[Sequence['outputs.IDRange']] = None):
+                 ranges: Optional[List['outputs.IDRange']] = None):
         """
         RunAsGroupStrategyOptions defines the strategy type and any options used to create the strategy. Deprecated: use RunAsGroupStrategyOptions from policy API Group instead.
         :param str rule: rule is the strategy that will dictate the allowable RunAsGroup values that may be set.
-        :param Sequence['IDRangeArgs'] ranges: ranges are the allowed ranges of gids that may be used. If you would like to force a single gid then supply a single range with the same start and end. Required for MustRunAs.
+        :param List['IDRangeArgs'] ranges: ranges are the allowed ranges of gids that may be used. If you would like to force a single gid then supply a single range with the same start and end. Required for MustRunAs.
         """
         pulumi.set(__self__, "rule", rule)
         if ranges is not None:
@@ -2655,7 +2655,7 @@ class RunAsGroupStrategyOptions(dict):
 
     @property
     @pulumi.getter
-    def ranges(self) -> Optional[Sequence['outputs.IDRange']]:
+    def ranges(self) -> Optional[List['outputs.IDRange']]:
         """
         ranges are the allowed ranges of gids that may be used. If you would like to force a single gid then supply a single range with the same start and end. Required for MustRunAs.
         """
@@ -2672,11 +2672,11 @@ class RunAsUserStrategyOptions(dict):
     """
     def __init__(__self__, *,
                  rule: str,
-                 ranges: Optional[Sequence['outputs.IDRange']] = None):
+                 ranges: Optional[List['outputs.IDRange']] = None):
         """
         RunAsUserStrategyOptions defines the strategy type and any options used to create the strategy. Deprecated: use RunAsUserStrategyOptions from policy API Group instead.
         :param str rule: rule is the strategy that will dictate the allowable RunAsUser values that may be set.
-        :param Sequence['IDRangeArgs'] ranges: ranges are the allowed ranges of uids that may be used. If you would like to force a single uid then supply a single range with the same start and end. Required for MustRunAs.
+        :param List['IDRangeArgs'] ranges: ranges are the allowed ranges of uids that may be used. If you would like to force a single uid then supply a single range with the same start and end. Required for MustRunAs.
         """
         pulumi.set(__self__, "rule", rule)
         if ranges is not None:
@@ -2692,7 +2692,7 @@ class RunAsUserStrategyOptions(dict):
 
     @property
     @pulumi.getter
-    def ranges(self) -> Optional[Sequence['outputs.IDRange']]:
+    def ranges(self) -> Optional[List['outputs.IDRange']]:
         """
         ranges are the allowed ranges of uids that may be used. If you would like to force a single uid then supply a single range with the same start and end. Required for MustRunAs.
         """
@@ -2708,11 +2708,11 @@ class RuntimeClassStrategyOptions(dict):
     RuntimeClassStrategyOptions define the strategy that will dictate the allowable RuntimeClasses for a pod.
     """
     def __init__(__self__, *,
-                 allowed_runtime_class_names: Sequence[str],
+                 allowed_runtime_class_names: List[str],
                  default_runtime_class_name: Optional[str] = None):
         """
         RuntimeClassStrategyOptions define the strategy that will dictate the allowable RuntimeClasses for a pod.
-        :param Sequence[str] allowed_runtime_class_names: allowedRuntimeClassNames is a whitelist of RuntimeClass names that may be specified on a pod. A value of "*" means that any RuntimeClass name is allowed, and must be the only item in the list. An empty list requires the RuntimeClassName field to be unset.
+        :param List[str] allowed_runtime_class_names: allowedRuntimeClassNames is a whitelist of RuntimeClass names that may be specified on a pod. A value of "*" means that any RuntimeClass name is allowed, and must be the only item in the list. An empty list requires the RuntimeClassName field to be unset.
         :param str default_runtime_class_name: defaultRuntimeClassName is the default RuntimeClassName to set on the pod. The default MUST be allowed by the allowedRuntimeClassNames list. A value of nil does not mutate the Pod.
         """
         pulumi.set(__self__, "allowed_runtime_class_names", allowed_runtime_class_names)
@@ -2721,7 +2721,7 @@ class RuntimeClassStrategyOptions(dict):
 
     @property
     @pulumi.getter(name="allowedRuntimeClassNames")
-    def allowed_runtime_class_names(self) -> Sequence[str]:
+    def allowed_runtime_class_names(self) -> List[str]:
         """
         allowedRuntimeClassNames is a whitelist of RuntimeClass names that may be specified on a pod. A value of "*" means that any RuntimeClass name is allowed, and must be the only item in the list. An empty list requires the RuntimeClassName field to be unset.
         """
@@ -2782,11 +2782,11 @@ class SupplementalGroupsStrategyOptions(dict):
     SupplementalGroupsStrategyOptions defines the strategy type and options used to create the strategy. Deprecated: use SupplementalGroupsStrategyOptions from policy API Group instead.
     """
     def __init__(__self__, *,
-                 ranges: Optional[Sequence['outputs.IDRange']] = None,
+                 ranges: Optional[List['outputs.IDRange']] = None,
                  rule: Optional[str] = None):
         """
         SupplementalGroupsStrategyOptions defines the strategy type and options used to create the strategy. Deprecated: use SupplementalGroupsStrategyOptions from policy API Group instead.
-        :param Sequence['IDRangeArgs'] ranges: ranges are the allowed ranges of supplemental groups.  If you would like to force a single supplemental group then supply a single range with the same start and end. Required for MustRunAs.
+        :param List['IDRangeArgs'] ranges: ranges are the allowed ranges of supplemental groups.  If you would like to force a single supplemental group then supply a single range with the same start and end. Required for MustRunAs.
         :param str rule: rule is the strategy that will dictate what supplemental groups is used in the SecurityContext.
         """
         if ranges is not None:
@@ -2796,7 +2796,7 @@ class SupplementalGroupsStrategyOptions(dict):
 
     @property
     @pulumi.getter
-    def ranges(self) -> Optional[Sequence['outputs.IDRange']]:
+    def ranges(self) -> Optional[List['outputs.IDRange']]:
         """
         ranges are the allowed ranges of supplemental groups.  If you would like to force a single supplemental group then supply a single range with the same start and end. Required for MustRunAs.
         """
