@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from ... import _utilities, _tables
 from . import outputs
 from ... import meta as _meta
@@ -262,17 +262,17 @@ class APIServiceStatus(dict):
     APIServiceStatus contains derived information about an API server
     """
     def __init__(__self__, *,
-                 conditions: Optional[Sequence['outputs.APIServiceCondition']] = None):
+                 conditions: Optional[List['outputs.APIServiceCondition']] = None):
         """
         APIServiceStatus contains derived information about an API server
-        :param Sequence['APIServiceConditionArgs'] conditions: Current service state of apiService.
+        :param List['APIServiceConditionArgs'] conditions: Current service state of apiService.
         """
         if conditions is not None:
             pulumi.set(__self__, "conditions", conditions)
 
     @property
     @pulumi.getter
-    def conditions(self) -> Optional[Sequence['outputs.APIServiceCondition']]:
+    def conditions(self) -> Optional[List['outputs.APIServiceCondition']]:
         """
         Current service state of apiService.
         """
