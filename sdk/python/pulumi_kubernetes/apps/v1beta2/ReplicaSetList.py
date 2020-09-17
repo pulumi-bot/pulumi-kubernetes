@@ -63,7 +63,8 @@ class ReplicaSetList(pulumi.CustomResource):
             'kubernetes:apps/v1beta2:ReplicaSetList',
             resource_name,
             __props__,
-            opts)
+            opts,
+            remote=True)
 
     @staticmethod
     def get(resource_name: str,

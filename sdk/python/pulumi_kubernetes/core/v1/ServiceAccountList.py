@@ -62,7 +62,8 @@ class ServiceAccountList(pulumi.CustomResource):
             'kubernetes:core/v1:ServiceAccountList',
             resource_name,
             __props__,
-            opts)
+            opts,
+            remote=True)
 
     @staticmethod
     def get(resource_name: str,

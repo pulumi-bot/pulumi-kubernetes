@@ -93,7 +93,8 @@ class Provider(pulumi.ProviderResource):
             'kubernetes',
             resource_name,
             __props__,
-            opts)
+            opts,
+            remote=True)
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

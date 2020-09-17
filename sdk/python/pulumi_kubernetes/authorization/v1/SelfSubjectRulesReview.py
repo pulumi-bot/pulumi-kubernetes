@@ -64,7 +64,8 @@ class SelfSubjectRulesReview(pulumi.CustomResource):
             'kubernetes:authorization.k8s.io/v1:SelfSubjectRulesReview',
             resource_name,
             __props__,
-            opts)
+            opts,
+            remote=True)
 
     @staticmethod
     def get(resource_name: str,

@@ -69,7 +69,8 @@ class Status(pulumi.CustomResource):
             'kubernetes:meta/v1:Status',
             resource_name,
             __props__,
-            opts)
+            opts,
+            remote=True)
 
     @staticmethod
     def get(resource_name: str,

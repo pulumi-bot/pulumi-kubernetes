@@ -65,7 +65,8 @@ class RuntimeClass(pulumi.CustomResource):
             'kubernetes:node.k8s.io/v1alpha1:RuntimeClass',
             resource_name,
             __props__,
-            opts)
+            opts,
+            remote=True)
 
     @staticmethod
     def get(resource_name: str,

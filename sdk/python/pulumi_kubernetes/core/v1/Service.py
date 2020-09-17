@@ -86,7 +86,8 @@ class Service(pulumi.CustomResource):
             'kubernetes:core/v1:Service',
             resource_name,
             __props__,
-            opts)
+            opts,
+            remote=True)
 
     @staticmethod
     def get(resource_name: str,

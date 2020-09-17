@@ -62,7 +62,8 @@ class NetworkPolicy(pulumi.CustomResource):
             'kubernetes:networking.k8s.io/v1:NetworkPolicy',
             resource_name,
             __props__,
-            opts)
+            opts,
+            remote=True)
 
     @staticmethod
     def get(resource_name: str,

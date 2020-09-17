@@ -62,7 +62,8 @@ class ClusterRoleList(pulumi.CustomResource):
             'kubernetes:rbac.authorization.k8s.io/v1beta1:ClusterRoleList',
             resource_name,
             __props__,
-            opts)
+            opts,
+            remote=True)
 
     @staticmethod
     def get(resource_name: str,

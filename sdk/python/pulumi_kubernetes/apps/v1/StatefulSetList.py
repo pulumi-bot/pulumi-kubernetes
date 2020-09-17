@@ -61,7 +61,8 @@ class StatefulSetList(pulumi.CustomResource):
             'kubernetes:apps/v1:StatefulSetList',
             resource_name,
             __props__,
-            opts)
+            opts,
+            remote=True)
 
     @staticmethod
     def get(resource_name: str,

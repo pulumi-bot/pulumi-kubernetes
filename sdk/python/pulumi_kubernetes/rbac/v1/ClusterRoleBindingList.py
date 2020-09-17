@@ -62,7 +62,8 @@ class ClusterRoleBindingList(pulumi.CustomResource):
             'kubernetes:rbac.authorization.k8s.io/v1:ClusterRoleBindingList',
             resource_name,
             __props__,
-            opts)
+            opts,
+            remote=True)
 
     @staticmethod
     def get(resource_name: str,

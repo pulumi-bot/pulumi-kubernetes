@@ -61,7 +61,8 @@ class PersistentVolumeClaim(pulumi.CustomResource):
             'kubernetes:core/v1:PersistentVolumeClaim',
             resource_name,
             __props__,
-            opts)
+            opts,
+            remote=True)
 
     @staticmethod
     def get(resource_name: str,

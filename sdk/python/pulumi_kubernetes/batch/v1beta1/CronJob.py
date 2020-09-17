@@ -65,7 +65,8 @@ class CronJob(pulumi.CustomResource):
             'kubernetes:batch/v1beta1:CronJob',
             resource_name,
             __props__,
-            opts)
+            opts,
+            remote=True)
 
     @staticmethod
     def get(resource_name: str,

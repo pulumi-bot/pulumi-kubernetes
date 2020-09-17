@@ -64,7 +64,8 @@ class TokenReview(pulumi.CustomResource):
             'kubernetes:authentication.k8s.io/v1beta1:TokenReview',
             resource_name,
             __props__,
-            opts)
+            opts,
+            remote=True)
 
     @staticmethod
     def get(resource_name: str,

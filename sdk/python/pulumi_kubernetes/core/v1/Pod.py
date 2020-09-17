@@ -76,7 +76,8 @@ class Pod(pulumi.CustomResource):
             'kubernetes:core/v1:Pod',
             resource_name,
             __props__,
-            opts)
+            opts,
+            remote=True)
 
     @staticmethod
     def get(resource_name: str,

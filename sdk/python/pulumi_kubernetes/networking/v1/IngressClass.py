@@ -63,7 +63,8 @@ class IngressClass(pulumi.CustomResource):
             'kubernetes:networking.k8s.io/v1:IngressClass',
             resource_name,
             __props__,
-            opts)
+            opts,
+            remote=True)
 
     @staticmethod
     def get(resource_name: str,

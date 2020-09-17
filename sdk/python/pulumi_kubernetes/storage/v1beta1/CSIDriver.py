@@ -64,7 +64,8 @@ class CSIDriver(pulumi.CustomResource):
             'kubernetes:storage.k8s.io/v1beta1:CSIDriver',
             resource_name,
             __props__,
-            opts)
+            opts,
+            remote=True)
 
     @staticmethod
     def get(resource_name: str,

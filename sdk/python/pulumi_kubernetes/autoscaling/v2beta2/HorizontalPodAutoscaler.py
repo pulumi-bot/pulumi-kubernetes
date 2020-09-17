@@ -63,7 +63,8 @@ class HorizontalPodAutoscaler(pulumi.CustomResource):
             'kubernetes:autoscaling/v2beta2:HorizontalPodAutoscaler',
             resource_name,
             __props__,
-            opts)
+            opts,
+            remote=True)
 
     @staticmethod
     def get(resource_name: str,

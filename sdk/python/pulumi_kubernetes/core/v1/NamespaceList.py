@@ -62,7 +62,8 @@ class NamespaceList(pulumi.CustomResource):
             'kubernetes:core/v1:NamespaceList',
             resource_name,
             __props__,
-            opts)
+            opts,
+            remote=True)
 
     @staticmethod
     def get(resource_name: str,

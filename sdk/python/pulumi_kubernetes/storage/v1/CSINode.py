@@ -64,7 +64,8 @@ class CSINode(pulumi.CustomResource):
             'kubernetes:storage.k8s.io/v1:CSINode',
             resource_name,
             __props__,
-            opts)
+            opts,
+            remote=True)
 
     @staticmethod
     def get(resource_name: str,

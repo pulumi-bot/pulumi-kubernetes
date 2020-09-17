@@ -62,7 +62,8 @@ class Lease(pulumi.CustomResource):
             'kubernetes:coordination.k8s.io/v1:Lease',
             resource_name,
             __props__,
-            opts)
+            opts,
+            remote=True)
 
     @staticmethod
     def get(resource_name: str,

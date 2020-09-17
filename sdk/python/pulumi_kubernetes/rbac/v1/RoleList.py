@@ -62,7 +62,8 @@ class RoleList(pulumi.CustomResource):
             'kubernetes:rbac.authorization.k8s.io/v1:RoleList',
             resource_name,
             __props__,
-            opts)
+            opts,
+            remote=True)
 
     @staticmethod
     def get(resource_name: str,

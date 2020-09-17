@@ -61,7 +61,8 @@ class AuditSinkList(pulumi.CustomResource):
             'kubernetes:auditregistration.k8s.io/v1alpha1:AuditSinkList',
             resource_name,
             __props__,
-            opts)
+            opts,
+            remote=True)
 
     @staticmethod
     def get(resource_name: str,

@@ -65,7 +65,8 @@ class ControllerRevision(pulumi.CustomResource):
             'kubernetes:apps/v1beta1:ControllerRevision',
             resource_name,
             __props__,
-            opts)
+            opts,
+            remote=True)
 
     @staticmethod
     def get(resource_name: str,

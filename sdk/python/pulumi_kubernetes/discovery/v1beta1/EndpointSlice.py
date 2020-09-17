@@ -71,7 +71,8 @@ class EndpointSlice(pulumi.CustomResource):
             'kubernetes:discovery.k8s.io/v1beta1:EndpointSlice',
             resource_name,
             __props__,
-            opts)
+            opts,
+            remote=True)
 
     @staticmethod
     def get(resource_name: str,

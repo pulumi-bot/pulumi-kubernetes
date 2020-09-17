@@ -64,7 +64,8 @@ class DaemonSet(pulumi.CustomResource):
             'kubernetes:apps/v1:DaemonSet',
             resource_name,
             __props__,
-            opts)
+            opts,
+            remote=True)
 
     @staticmethod
     def get(resource_name: str,

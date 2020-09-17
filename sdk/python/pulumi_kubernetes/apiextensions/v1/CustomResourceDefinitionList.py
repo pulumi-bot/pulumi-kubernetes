@@ -61,7 +61,8 @@ class CustomResourceDefinitionList(pulumi.CustomResource):
             'kubernetes:apiextensions.k8s.io/v1:CustomResourceDefinitionList',
             resource_name,
             __props__,
-            opts)
+            opts,
+            remote=True)
 
     @staticmethod
     def get(resource_name: str,

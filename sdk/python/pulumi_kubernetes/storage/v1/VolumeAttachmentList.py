@@ -63,7 +63,8 @@ class VolumeAttachmentList(pulumi.CustomResource):
             'kubernetes:storage.k8s.io/v1:VolumeAttachmentList',
             resource_name,
             __props__,
-            opts)
+            opts,
+            remote=True)
 
     @staticmethod
     def get(resource_name: str,

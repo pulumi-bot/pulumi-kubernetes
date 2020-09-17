@@ -62,7 +62,8 @@ class FlowSchemaList(pulumi.CustomResource):
             'kubernetes:flowcontrol.apiserver.k8s.io/v1alpha1:FlowSchemaList',
             resource_name,
             __props__,
-            opts)
+            opts,
+            remote=True)
 
     @staticmethod
     def get(resource_name: str,

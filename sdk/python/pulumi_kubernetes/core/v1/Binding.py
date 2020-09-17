@@ -62,7 +62,8 @@ class Binding(pulumi.CustomResource):
             'kubernetes:core/v1:Binding',
             resource_name,
             __props__,
-            opts)
+            opts,
+            remote=True)
 
     @staticmethod
     def get(resource_name: str,

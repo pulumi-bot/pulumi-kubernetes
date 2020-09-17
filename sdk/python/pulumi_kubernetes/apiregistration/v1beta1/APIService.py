@@ -62,7 +62,8 @@ class APIService(pulumi.CustomResource):
             'kubernetes:apiregistration.k8s.io/v1beta1:APIService',
             resource_name,
             __props__,
-            opts)
+            opts,
+            remote=True)
 
     @staticmethod
     def get(resource_name: str,

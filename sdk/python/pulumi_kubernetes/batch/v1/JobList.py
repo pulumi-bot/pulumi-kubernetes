@@ -63,7 +63,8 @@ class JobList(pulumi.CustomResource):
             'kubernetes:batch/v1:JobList',
             resource_name,
             __props__,
-            opts)
+            opts,
+            remote=True)
 
     @staticmethod
     def get(resource_name: str,
