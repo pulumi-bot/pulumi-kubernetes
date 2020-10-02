@@ -290,6 +290,7 @@
         "storage/v1beta1/storageClassList.ts",
         "storage/v1beta1/volumeAttachment.ts",
         "storage/v1beta1/volumeAttachmentList.ts",
+        "types/enums.ts",
         "types/index.ts",
         "types/input.ts",
         "types/output.ts",
