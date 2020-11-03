@@ -30,9 +30,6 @@ func NewCustomResourceDefinitionList(ctx *pulumi.Context,
 	if args == nil || args.Items == nil {
 		return nil, errors.New("missing required argument 'Items'")
 	}
-	if args == nil {
-		args = &CustomResourceDefinitionListArgs{}
-	}
 	args.ApiVersion = pulumi.StringPtr("apiextensions.k8s.io/v1beta1")
 	args.Kind = pulumi.StringPtr("CustomResourceDefinitionList")
 	var resource CustomResourceDefinitionList

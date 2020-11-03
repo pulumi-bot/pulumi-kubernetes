@@ -31,9 +31,6 @@ func NewBinding(ctx *pulumi.Context,
 	if args == nil || args.Target == nil {
 		return nil, errors.New("missing required argument 'Target'")
 	}
-	if args == nil {
-		args = &BindingArgs{}
-	}
 	args.ApiVersion = pulumi.StringPtr("v1")
 	args.Kind = pulumi.StringPtr("Binding")
 	var resource Binding

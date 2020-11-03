@@ -32,9 +32,6 @@ func NewCustomResourceDefinition(ctx *pulumi.Context,
 	if args == nil || args.Spec == nil {
 		return nil, errors.New("missing required argument 'Spec'")
 	}
-	if args == nil {
-		args = &CustomResourceDefinitionArgs{}
-	}
 	args.ApiVersion = pulumi.StringPtr("apiextensions.k8s.io/v1")
 	args.Kind = pulumi.StringPtr("CustomResourceDefinition")
 	aliases := pulumi.Aliases([]pulumi.Alias{

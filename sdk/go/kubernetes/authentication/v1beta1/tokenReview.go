@@ -32,9 +32,6 @@ func NewTokenReview(ctx *pulumi.Context,
 	if args == nil || args.Spec == nil {
 		return nil, errors.New("missing required argument 'Spec'")
 	}
-	if args == nil {
-		args = &TokenReviewArgs{}
-	}
 	args.ApiVersion = pulumi.StringPtr("authentication.k8s.io/v1beta1")
 	args.Kind = pulumi.StringPtr("TokenReview")
 	aliases := pulumi.Aliases([]pulumi.Alias{

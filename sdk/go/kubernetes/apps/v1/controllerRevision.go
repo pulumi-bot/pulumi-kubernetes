@@ -33,9 +33,6 @@ func NewControllerRevision(ctx *pulumi.Context,
 	if args == nil || args.Revision == nil {
 		return nil, errors.New("missing required argument 'Revision'")
 	}
-	if args == nil {
-		args = &ControllerRevisionArgs{}
-	}
 	args.ApiVersion = pulumi.StringPtr("apps/v1")
 	args.Kind = pulumi.StringPtr("ControllerRevision")
 	aliases := pulumi.Aliases([]pulumi.Alias{

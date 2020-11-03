@@ -31,9 +31,6 @@ func NewDeploymentList(ctx *pulumi.Context,
 	if args == nil || args.Items == nil {
 		return nil, errors.New("missing required argument 'Items'")
 	}
-	if args == nil {
-		args = &DeploymentListArgs{}
-	}
 	args.ApiVersion = pulumi.StringPtr("extensions/v1beta1")
 	args.Kind = pulumi.StringPtr("DeploymentList")
 	var resource DeploymentList

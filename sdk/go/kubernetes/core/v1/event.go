@@ -60,9 +60,6 @@ func NewEvent(ctx *pulumi.Context,
 	if args == nil || args.Metadata == nil {
 		return nil, errors.New("missing required argument 'Metadata'")
 	}
-	if args == nil {
-		args = &EventArgs{}
-	}
 	args.ApiVersion = pulumi.StringPtr("v1")
 	args.Kind = pulumi.StringPtr("Event")
 	aliases := pulumi.Aliases([]pulumi.Alias{

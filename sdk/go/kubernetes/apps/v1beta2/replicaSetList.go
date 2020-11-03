@@ -31,9 +31,6 @@ func NewReplicaSetList(ctx *pulumi.Context,
 	if args == nil || args.Items == nil {
 		return nil, errors.New("missing required argument 'Items'")
 	}
-	if args == nil {
-		args = &ReplicaSetListArgs{}
-	}
 	args.ApiVersion = pulumi.StringPtr("apps/v1beta2")
 	args.Kind = pulumi.StringPtr("ReplicaSetList")
 	var resource ReplicaSetList

@@ -37,9 +37,6 @@ func NewPriorityClass(ctx *pulumi.Context,
 	if args == nil || args.Value == nil {
 		return nil, errors.New("missing required argument 'Value'")
 	}
-	if args == nil {
-		args = &PriorityClassArgs{}
-	}
 	args.ApiVersion = pulumi.StringPtr("scheduling.k8s.io/v1beta1")
 	args.Kind = pulumi.StringPtr("PriorityClass")
 	aliases := pulumi.Aliases([]pulumi.Alias{

@@ -31,9 +31,6 @@ func NewEndpointsList(ctx *pulumi.Context,
 	if args == nil || args.Items == nil {
 		return nil, errors.New("missing required argument 'Items'")
 	}
-	if args == nil {
-		args = &EndpointsListArgs{}
-	}
 	args.ApiVersion = pulumi.StringPtr("v1")
 	args.Kind = pulumi.StringPtr("EndpointsList")
 	var resource EndpointsList

@@ -31,9 +31,6 @@ func NewServiceList(ctx *pulumi.Context,
 	if args == nil || args.Items == nil {
 		return nil, errors.New("missing required argument 'Items'")
 	}
-	if args == nil {
-		args = &ServiceListArgs{}
-	}
 	args.ApiVersion = pulumi.StringPtr("v1")
 	args.Kind = pulumi.StringPtr("ServiceList")
 	var resource ServiceList

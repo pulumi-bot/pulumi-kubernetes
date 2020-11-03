@@ -30,9 +30,6 @@ func NewTokenRequest(ctx *pulumi.Context,
 	if args == nil || args.Spec == nil {
 		return nil, errors.New("missing required argument 'Spec'")
 	}
-	if args == nil {
-		args = &TokenRequestArgs{}
-	}
 	args.ApiVersion = pulumi.StringPtr("authentication.k8s.io/v1")
 	args.Kind = pulumi.StringPtr("TokenRequest")
 	var resource TokenRequest

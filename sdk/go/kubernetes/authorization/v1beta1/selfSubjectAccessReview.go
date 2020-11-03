@@ -32,9 +32,6 @@ func NewSelfSubjectAccessReview(ctx *pulumi.Context,
 	if args == nil || args.Spec == nil {
 		return nil, errors.New("missing required argument 'Spec'")
 	}
-	if args == nil {
-		args = &SelfSubjectAccessReviewArgs{}
-	}
 	args.ApiVersion = pulumi.StringPtr("authorization.k8s.io/v1beta1")
 	args.Kind = pulumi.StringPtr("SelfSubjectAccessReview")
 	aliases := pulumi.Aliases([]pulumi.Alias{

@@ -33,9 +33,6 @@ func NewClusterRoleBinding(ctx *pulumi.Context,
 	if args == nil || args.RoleRef == nil {
 		return nil, errors.New("missing required argument 'RoleRef'")
 	}
-	if args == nil {
-		args = &ClusterRoleBindingArgs{}
-	}
 	args.ApiVersion = pulumi.StringPtr("rbac.authorization.k8s.io/v1")
 	args.Kind = pulumi.StringPtr("ClusterRoleBinding")
 	aliases := pulumi.Aliases([]pulumi.Alias{

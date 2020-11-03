@@ -31,9 +31,6 @@ func NewClusterRoleList(ctx *pulumi.Context,
 	if args == nil || args.Items == nil {
 		return nil, errors.New("missing required argument 'Items'")
 	}
-	if args == nil {
-		args = &ClusterRoleListArgs{}
-	}
 	args.ApiVersion = pulumi.StringPtr("rbac.authorization.k8s.io/v1")
 	args.Kind = pulumi.StringPtr("ClusterRoleList")
 	var resource ClusterRoleList

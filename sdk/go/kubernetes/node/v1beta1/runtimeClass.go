@@ -35,9 +35,6 @@ func NewRuntimeClass(ctx *pulumi.Context,
 	if args == nil || args.Handler == nil {
 		return nil, errors.New("missing required argument 'Handler'")
 	}
-	if args == nil {
-		args = &RuntimeClassArgs{}
-	}
 	args.ApiVersion = pulumi.StringPtr("node.k8s.io/v1beta1")
 	args.Kind = pulumi.StringPtr("RuntimeClass")
 	aliases := pulumi.Aliases([]pulumi.Alias{

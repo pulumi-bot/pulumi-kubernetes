@@ -31,9 +31,6 @@ func NewIngressList(ctx *pulumi.Context,
 	if args == nil || args.Items == nil {
 		return nil, errors.New("missing required argument 'Items'")
 	}
-	if args == nil {
-		args = &IngressListArgs{}
-	}
 	args.ApiVersion = pulumi.StringPtr("networking.k8s.io/v1")
 	args.Kind = pulumi.StringPtr("IngressList")
 	var resource IngressList

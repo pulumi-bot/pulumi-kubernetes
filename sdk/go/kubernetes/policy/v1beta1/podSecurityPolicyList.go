@@ -31,9 +31,6 @@ func NewPodSecurityPolicyList(ctx *pulumi.Context,
 	if args == nil || args.Items == nil {
 		return nil, errors.New("missing required argument 'Items'")
 	}
-	if args == nil {
-		args = &PodSecurityPolicyListArgs{}
-	}
 	args.ApiVersion = pulumi.StringPtr("policy/v1beta1")
 	args.Kind = pulumi.StringPtr("PodSecurityPolicyList")
 	var resource PodSecurityPolicyList

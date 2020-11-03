@@ -46,9 +46,6 @@ func NewStorageClass(ctx *pulumi.Context,
 	if args == nil || args.Provisioner == nil {
 		return nil, errors.New("missing required argument 'Provisioner'")
 	}
-	if args == nil {
-		args = &StorageClassArgs{}
-	}
 	args.ApiVersion = pulumi.StringPtr("storage.k8s.io/v1beta1")
 	args.Kind = pulumi.StringPtr("StorageClass")
 	aliases := pulumi.Aliases([]pulumi.Alias{

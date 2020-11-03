@@ -35,9 +35,6 @@ func NewVolumeAttachment(ctx *pulumi.Context,
 	if args == nil || args.Spec == nil {
 		return nil, errors.New("missing required argument 'Spec'")
 	}
-	if args == nil {
-		args = &VolumeAttachmentArgs{}
-	}
 	args.ApiVersion = pulumi.StringPtr("storage.k8s.io/v1")
 	args.Kind = pulumi.StringPtr("VolumeAttachment")
 	aliases := pulumi.Aliases([]pulumi.Alias{

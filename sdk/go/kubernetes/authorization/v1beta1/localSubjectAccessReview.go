@@ -32,9 +32,6 @@ func NewLocalSubjectAccessReview(ctx *pulumi.Context,
 	if args == nil || args.Spec == nil {
 		return nil, errors.New("missing required argument 'Spec'")
 	}
-	if args == nil {
-		args = &LocalSubjectAccessReviewArgs{}
-	}
 	args.ApiVersion = pulumi.StringPtr("authorization.k8s.io/v1beta1")
 	args.Kind = pulumi.StringPtr("LocalSubjectAccessReview")
 	aliases := pulumi.Aliases([]pulumi.Alias{

@@ -31,9 +31,6 @@ func NewCronJobList(ctx *pulumi.Context,
 	if args == nil || args.Items == nil {
 		return nil, errors.New("missing required argument 'Items'")
 	}
-	if args == nil {
-		args = &CronJobListArgs{}
-	}
 	args.ApiVersion = pulumi.StringPtr("batch/v2alpha1")
 	args.Kind = pulumi.StringPtr("CronJobList")
 	var resource CronJobList

@@ -57,9 +57,6 @@ func NewEvent(ctx *pulumi.Context,
 	if args == nil || args.EventTime == nil {
 		return nil, errors.New("missing required argument 'EventTime'")
 	}
-	if args == nil {
-		args = &EventArgs{}
-	}
 	args.ApiVersion = pulumi.StringPtr("events.k8s.io/v1")
 	args.Kind = pulumi.StringPtr("Event")
 	aliases := pulumi.Aliases([]pulumi.Alias{

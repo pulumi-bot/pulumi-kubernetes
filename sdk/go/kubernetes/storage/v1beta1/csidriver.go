@@ -31,9 +31,6 @@ func NewCSIDriver(ctx *pulumi.Context,
 	if args == nil || args.Spec == nil {
 		return nil, errors.New("missing required argument 'Spec'")
 	}
-	if args == nil {
-		args = &CSIDriverArgs{}
-	}
 	args.ApiVersion = pulumi.StringPtr("storage.k8s.io/v1beta1")
 	args.Kind = pulumi.StringPtr("CSIDriver")
 	aliases := pulumi.Aliases([]pulumi.Alias{

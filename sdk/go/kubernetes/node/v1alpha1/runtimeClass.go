@@ -31,9 +31,6 @@ func NewRuntimeClass(ctx *pulumi.Context,
 	if args == nil || args.Spec == nil {
 		return nil, errors.New("missing required argument 'Spec'")
 	}
-	if args == nil {
-		args = &RuntimeClassArgs{}
-	}
 	args.ApiVersion = pulumi.StringPtr("node.k8s.io/v1alpha1")
 	args.Kind = pulumi.StringPtr("RuntimeClass")
 	aliases := pulumi.Aliases([]pulumi.Alias{

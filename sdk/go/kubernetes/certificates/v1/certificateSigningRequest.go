@@ -38,9 +38,6 @@ func NewCertificateSigningRequest(ctx *pulumi.Context,
 	if args == nil || args.Spec == nil {
 		return nil, errors.New("missing required argument 'Spec'")
 	}
-	if args == nil {
-		args = &CertificateSigningRequestArgs{}
-	}
 	args.ApiVersion = pulumi.StringPtr("certificates.k8s.io/v1")
 	args.Kind = pulumi.StringPtr("CertificateSigningRequest")
 	aliases := pulumi.Aliases([]pulumi.Alias{

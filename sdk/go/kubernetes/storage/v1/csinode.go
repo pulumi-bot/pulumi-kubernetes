@@ -31,9 +31,6 @@ func NewCSINode(ctx *pulumi.Context,
 	if args == nil || args.Spec == nil {
 		return nil, errors.New("missing required argument 'Spec'")
 	}
-	if args == nil {
-		args = &CSINodeArgs{}
-	}
 	args.ApiVersion = pulumi.StringPtr("storage.k8s.io/v1")
 	args.Kind = pulumi.StringPtr("CSINode")
 	aliases := pulumi.Aliases([]pulumi.Alias{

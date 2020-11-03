@@ -31,9 +31,6 @@ func NewPriorityClassList(ctx *pulumi.Context,
 	if args == nil || args.Items == nil {
 		return nil, errors.New("missing required argument 'Items'")
 	}
-	if args == nil {
-		args = &PriorityClassListArgs{}
-	}
 	args.ApiVersion = pulumi.StringPtr("scheduling.k8s.io/v1")
 	args.Kind = pulumi.StringPtr("PriorityClassList")
 	var resource PriorityClassList

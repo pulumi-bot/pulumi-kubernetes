@@ -38,9 +38,6 @@ func NewEndpointSlice(ctx *pulumi.Context,
 	if args == nil || args.Endpoints == nil {
 		return nil, errors.New("missing required argument 'Endpoints'")
 	}
-	if args == nil {
-		args = &EndpointSliceArgs{}
-	}
 	args.ApiVersion = pulumi.StringPtr("discovery.k8s.io/v1beta1")
 	args.Kind = pulumi.StringPtr("EndpointSlice")
 	var resource EndpointSlice

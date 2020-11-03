@@ -31,9 +31,6 @@ func NewCSIDriverList(ctx *pulumi.Context,
 	if args == nil || args.Items == nil {
 		return nil, errors.New("missing required argument 'Items'")
 	}
-	if args == nil {
-		args = &CSIDriverListArgs{}
-	}
 	args.ApiVersion = pulumi.StringPtr("storage.k8s.io/v1")
 	args.Kind = pulumi.StringPtr("CSIDriverList")
 	var resource CSIDriverList
