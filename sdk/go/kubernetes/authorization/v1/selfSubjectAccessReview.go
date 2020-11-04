@@ -4,6 +4,7 @@
 package v1
 
 import (
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -29,11 +30,11 @@ type SelfSubjectAccessReview struct {
 // NewSelfSubjectAccessReview registers a new resource with the given unique name, arguments, and options.
 func NewSelfSubjectAccessReview(ctx *pulumi.Context,
 	name string, args *SelfSubjectAccessReviewArgs, opts ...pulumi.ResourceOption) (*SelfSubjectAccessReview, error) {
-	if args == nil || args.Spec == nil {
-		return nil, errors.New("missing required argument 'Spec'")
-	}
 	if args == nil {
-		args = &SelfSubjectAccessReviewArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Spec == nil {
+		return nil, errors.New("invalid value for required argument 'Spec'")
 	}
 	args.ApiVersion = pulumi.StringPtr("authorization.k8s.io/v1")
 	args.Kind = pulumi.StringPtr("SelfSubjectAccessReview")

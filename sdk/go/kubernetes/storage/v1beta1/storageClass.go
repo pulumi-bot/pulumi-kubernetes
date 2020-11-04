@@ -4,6 +4,7 @@
 package v1beta1
 
 import (
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -43,11 +44,11 @@ type StorageClass struct {
 // NewStorageClass registers a new resource with the given unique name, arguments, and options.
 func NewStorageClass(ctx *pulumi.Context,
 	name string, args *StorageClassArgs, opts ...pulumi.ResourceOption) (*StorageClass, error) {
-	if args == nil || args.Provisioner == nil {
-		return nil, errors.New("missing required argument 'Provisioner'")
-	}
 	if args == nil {
-		args = &StorageClassArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Provisioner == nil {
+		return nil, errors.New("invalid value for required argument 'Provisioner'")
 	}
 	args.ApiVersion = pulumi.StringPtr("storage.k8s.io/v1beta1")
 	args.Kind = pulumi.StringPtr("StorageClass")

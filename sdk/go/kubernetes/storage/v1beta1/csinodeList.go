@@ -4,6 +4,7 @@
 package v1beta1
 
 import (
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,11 +29,11 @@ type CSINodeList struct {
 // NewCSINodeList registers a new resource with the given unique name, arguments, and options.
 func NewCSINodeList(ctx *pulumi.Context,
 	name string, args *CSINodeListArgs, opts ...pulumi.ResourceOption) (*CSINodeList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &CSINodeListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("storage.k8s.io/v1beta1")
 	args.Kind = pulumi.StringPtr("CSINodeList")
