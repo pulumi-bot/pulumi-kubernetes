@@ -4,6 +4,7 @@
 package v1
 
 import (
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -27,11 +28,11 @@ type CustomResourceDefinitionList struct {
 // NewCustomResourceDefinitionList registers a new resource with the given unique name, arguments, and options.
 func NewCustomResourceDefinitionList(ctx *pulumi.Context,
 	name string, args *CustomResourceDefinitionListArgs, opts ...pulumi.ResourceOption) (*CustomResourceDefinitionList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &CustomResourceDefinitionListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("apiextensions.k8s.io/v1")
 	args.Kind = pulumi.StringPtr("CustomResourceDefinitionList")

@@ -4,6 +4,7 @@
 package v2beta2
 
 import (
+	"fmt"
 	"reflect"
 
 	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"

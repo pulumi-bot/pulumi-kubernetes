@@ -4,6 +4,7 @@
 package v1alpha1
 
 import (
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -30,11 +31,11 @@ type RoleBinding struct {
 // NewRoleBinding registers a new resource with the given unique name, arguments, and options.
 func NewRoleBinding(ctx *pulumi.Context,
 	name string, args *RoleBindingArgs, opts ...pulumi.ResourceOption) (*RoleBinding, error) {
-	if args == nil || args.RoleRef == nil {
-		return nil, errors.New("missing required argument 'RoleRef'")
-	}
 	if args == nil {
-		args = &RoleBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.RoleRef == nil {
+		return nil, errors.New("invalid value for required argument 'RoleRef'")
 	}
 	args.ApiVersion = pulumi.StringPtr("rbac.authorization.k8s.io/v1alpha1")
 	args.Kind = pulumi.StringPtr("RoleBinding")
