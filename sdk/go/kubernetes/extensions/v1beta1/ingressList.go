@@ -4,6 +4,7 @@
 package v1beta1
 
 import (
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,11 +29,11 @@ type IngressList struct {
 // NewIngressList registers a new resource with the given unique name, arguments, and options.
 func NewIngressList(ctx *pulumi.Context,
 	name string, args *IngressListArgs, opts ...pulumi.ResourceOption) (*IngressList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &IngressListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("extensions/v1beta1")
 	args.Kind = pulumi.StringPtr("IngressList")

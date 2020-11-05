@@ -4,6 +4,7 @@
 package v1alpha1
 
 import (
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,11 +29,11 @@ type PriorityLevelConfigurationList struct {
 // NewPriorityLevelConfigurationList registers a new resource with the given unique name, arguments, and options.
 func NewPriorityLevelConfigurationList(ctx *pulumi.Context,
 	name string, args *PriorityLevelConfigurationListArgs, opts ...pulumi.ResourceOption) (*PriorityLevelConfigurationList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &PriorityLevelConfigurationListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("flowcontrol.apiserver.k8s.io/v1alpha1")
 	args.Kind = pulumi.StringPtr("PriorityLevelConfigurationList")
