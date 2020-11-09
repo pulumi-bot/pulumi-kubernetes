@@ -4,6 +4,8 @@
 package v1
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,11 +30,11 @@ type ControllerRevisionList struct {
 // NewControllerRevisionList registers a new resource with the given unique name, arguments, and options.
 func NewControllerRevisionList(ctx *pulumi.Context,
 	name string, args *ControllerRevisionListArgs, opts ...pulumi.ResourceOption) (*ControllerRevisionList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &ControllerRevisionListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("apps/v1")
 	args.Kind = pulumi.StringPtr("ControllerRevisionList")
@@ -108,4 +110,43 @@ type ControllerRevisionListArgs struct {
 
 func (ControllerRevisionListArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*controllerRevisionListArgs)(nil)).Elem()
+}
+
+type ControllerRevisionListInput interface {
+	pulumi.Input
+
+	ToControllerRevisionListOutput() ControllerRevisionListOutput
+	ToControllerRevisionListOutputWithContext(ctx context.Context) ControllerRevisionListOutput
+}
+
+func (ControllerRevisionList) ElementType() reflect.Type {
+	return reflect.TypeOf((*ControllerRevisionList)(nil)).Elem()
+}
+
+func (i ControllerRevisionList) ToControllerRevisionListOutput() ControllerRevisionListOutput {
+	return i.ToControllerRevisionListOutputWithContext(context.Background())
+}
+
+func (i ControllerRevisionList) ToControllerRevisionListOutputWithContext(ctx context.Context) ControllerRevisionListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ControllerRevisionListOutput)
+}
+
+type ControllerRevisionListOutput struct {
+	*pulumi.OutputState
+}
+
+func (ControllerRevisionListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ControllerRevisionListOutput)(nil)).Elem()
+}
+
+func (o ControllerRevisionListOutput) ToControllerRevisionListOutput() ControllerRevisionListOutput {
+	return o
+}
+
+func (o ControllerRevisionListOutput) ToControllerRevisionListOutputWithContext(ctx context.Context) ControllerRevisionListOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ControllerRevisionListOutput{})
 }

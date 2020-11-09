@@ -4,6 +4,8 @@
 package v1alpha1
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -27,11 +29,11 @@ type AuditSinkList struct {
 // NewAuditSinkList registers a new resource with the given unique name, arguments, and options.
 func NewAuditSinkList(ctx *pulumi.Context,
 	name string, args *AuditSinkListArgs, opts ...pulumi.ResourceOption) (*AuditSinkList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &AuditSinkListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("auditregistration.k8s.io/v1alpha1")
 	args.Kind = pulumi.StringPtr("AuditSinkList")
@@ -103,4 +105,43 @@ type AuditSinkListArgs struct {
 
 func (AuditSinkListArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*auditSinkListArgs)(nil)).Elem()
+}
+
+type AuditSinkListInput interface {
+	pulumi.Input
+
+	ToAuditSinkListOutput() AuditSinkListOutput
+	ToAuditSinkListOutputWithContext(ctx context.Context) AuditSinkListOutput
+}
+
+func (AuditSinkList) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuditSinkList)(nil)).Elem()
+}
+
+func (i AuditSinkList) ToAuditSinkListOutput() AuditSinkListOutput {
+	return i.ToAuditSinkListOutputWithContext(context.Background())
+}
+
+func (i AuditSinkList) ToAuditSinkListOutputWithContext(ctx context.Context) AuditSinkListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuditSinkListOutput)
+}
+
+type AuditSinkListOutput struct {
+	*pulumi.OutputState
+}
+
+func (AuditSinkListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuditSinkListOutput)(nil)).Elem()
+}
+
+func (o AuditSinkListOutput) ToAuditSinkListOutput() AuditSinkListOutput {
+	return o
+}
+
+func (o AuditSinkListOutput) ToAuditSinkListOutputWithContext(ctx context.Context) AuditSinkListOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AuditSinkListOutput{})
 }

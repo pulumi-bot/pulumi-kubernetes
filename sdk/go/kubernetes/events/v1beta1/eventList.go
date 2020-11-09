@@ -4,6 +4,8 @@
 package v1beta1
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,11 +30,11 @@ type EventList struct {
 // NewEventList registers a new resource with the given unique name, arguments, and options.
 func NewEventList(ctx *pulumi.Context,
 	name string, args *EventListArgs, opts ...pulumi.ResourceOption) (*EventList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &EventListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("events.k8s.io/v1beta1")
 	args.Kind = pulumi.StringPtr("EventList")
@@ -108,4 +110,43 @@ type EventListArgs struct {
 
 func (EventListArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*eventListArgs)(nil)).Elem()
+}
+
+type EventListInput interface {
+	pulumi.Input
+
+	ToEventListOutput() EventListOutput
+	ToEventListOutputWithContext(ctx context.Context) EventListOutput
+}
+
+func (EventList) ElementType() reflect.Type {
+	return reflect.TypeOf((*EventList)(nil)).Elem()
+}
+
+func (i EventList) ToEventListOutput() EventListOutput {
+	return i.ToEventListOutputWithContext(context.Background())
+}
+
+func (i EventList) ToEventListOutputWithContext(ctx context.Context) EventListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EventListOutput)
+}
+
+type EventListOutput struct {
+	*pulumi.OutputState
+}
+
+func (EventListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EventListOutput)(nil)).Elem()
+}
+
+func (o EventListOutput) ToEventListOutput() EventListOutput {
+	return o
+}
+
+func (o EventListOutput) ToEventListOutputWithContext(ctx context.Context) EventListOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(EventListOutput{})
 }

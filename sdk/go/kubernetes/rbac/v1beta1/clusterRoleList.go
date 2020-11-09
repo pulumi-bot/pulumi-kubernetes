@@ -4,6 +4,8 @@
 package v1beta1
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,11 +30,11 @@ type ClusterRoleList struct {
 // NewClusterRoleList registers a new resource with the given unique name, arguments, and options.
 func NewClusterRoleList(ctx *pulumi.Context,
 	name string, args *ClusterRoleListArgs, opts ...pulumi.ResourceOption) (*ClusterRoleList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &ClusterRoleListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("rbac.authorization.k8s.io/v1beta1")
 	args.Kind = pulumi.StringPtr("ClusterRoleList")
@@ -108,4 +110,43 @@ type ClusterRoleListArgs struct {
 
 func (ClusterRoleListArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*clusterRoleListArgs)(nil)).Elem()
+}
+
+type ClusterRoleListInput interface {
+	pulumi.Input
+
+	ToClusterRoleListOutput() ClusterRoleListOutput
+	ToClusterRoleListOutputWithContext(ctx context.Context) ClusterRoleListOutput
+}
+
+func (ClusterRoleList) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterRoleList)(nil)).Elem()
+}
+
+func (i ClusterRoleList) ToClusterRoleListOutput() ClusterRoleListOutput {
+	return i.ToClusterRoleListOutputWithContext(context.Background())
+}
+
+func (i ClusterRoleList) ToClusterRoleListOutputWithContext(ctx context.Context) ClusterRoleListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterRoleListOutput)
+}
+
+type ClusterRoleListOutput struct {
+	*pulumi.OutputState
+}
+
+func (ClusterRoleListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterRoleListOutput)(nil)).Elem()
+}
+
+func (o ClusterRoleListOutput) ToClusterRoleListOutput() ClusterRoleListOutput {
+	return o
+}
+
+func (o ClusterRoleListOutput) ToClusterRoleListOutputWithContext(ctx context.Context) ClusterRoleListOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ClusterRoleListOutput{})
 }

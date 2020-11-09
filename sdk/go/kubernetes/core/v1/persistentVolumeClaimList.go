@@ -4,6 +4,8 @@
 package v1
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,11 +30,11 @@ type PersistentVolumeClaimList struct {
 // NewPersistentVolumeClaimList registers a new resource with the given unique name, arguments, and options.
 func NewPersistentVolumeClaimList(ctx *pulumi.Context,
 	name string, args *PersistentVolumeClaimListArgs, opts ...pulumi.ResourceOption) (*PersistentVolumeClaimList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &PersistentVolumeClaimListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("v1")
 	args.Kind = pulumi.StringPtr("PersistentVolumeClaimList")
@@ -108,4 +110,43 @@ type PersistentVolumeClaimListArgs struct {
 
 func (PersistentVolumeClaimListArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*persistentVolumeClaimListArgs)(nil)).Elem()
+}
+
+type PersistentVolumeClaimListInput interface {
+	pulumi.Input
+
+	ToPersistentVolumeClaimListOutput() PersistentVolumeClaimListOutput
+	ToPersistentVolumeClaimListOutputWithContext(ctx context.Context) PersistentVolumeClaimListOutput
+}
+
+func (PersistentVolumeClaimList) ElementType() reflect.Type {
+	return reflect.TypeOf((*PersistentVolumeClaimList)(nil)).Elem()
+}
+
+func (i PersistentVolumeClaimList) ToPersistentVolumeClaimListOutput() PersistentVolumeClaimListOutput {
+	return i.ToPersistentVolumeClaimListOutputWithContext(context.Background())
+}
+
+func (i PersistentVolumeClaimList) ToPersistentVolumeClaimListOutputWithContext(ctx context.Context) PersistentVolumeClaimListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PersistentVolumeClaimListOutput)
+}
+
+type PersistentVolumeClaimListOutput struct {
+	*pulumi.OutputState
+}
+
+func (PersistentVolumeClaimListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PersistentVolumeClaimListOutput)(nil)).Elem()
+}
+
+func (o PersistentVolumeClaimListOutput) ToPersistentVolumeClaimListOutput() PersistentVolumeClaimListOutput {
+	return o
+}
+
+func (o PersistentVolumeClaimListOutput) ToPersistentVolumeClaimListOutputWithContext(ctx context.Context) PersistentVolumeClaimListOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(PersistentVolumeClaimListOutput{})
 }

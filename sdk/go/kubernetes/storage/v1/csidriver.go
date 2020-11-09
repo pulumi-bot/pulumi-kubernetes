@@ -4,6 +4,8 @@
 package v1
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,11 +30,11 @@ type CSIDriver struct {
 // NewCSIDriver registers a new resource with the given unique name, arguments, and options.
 func NewCSIDriver(ctx *pulumi.Context,
 	name string, args *CSIDriverArgs, opts ...pulumi.ResourceOption) (*CSIDriver, error) {
-	if args == nil || args.Spec == nil {
-		return nil, errors.New("missing required argument 'Spec'")
-	}
 	if args == nil {
-		args = &CSIDriverArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Spec == nil {
+		return nil, errors.New("invalid value for required argument 'Spec'")
 	}
 	args.ApiVersion = pulumi.StringPtr("storage.k8s.io/v1")
 	args.Kind = pulumi.StringPtr("CSIDriver")
@@ -114,4 +116,43 @@ type CSIDriverArgs struct {
 
 func (CSIDriverArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*csidriverArgs)(nil)).Elem()
+}
+
+type CSIDriverInput interface {
+	pulumi.Input
+
+	ToCSIDriverOutput() CSIDriverOutput
+	ToCSIDriverOutputWithContext(ctx context.Context) CSIDriverOutput
+}
+
+func (CSIDriver) ElementType() reflect.Type {
+	return reflect.TypeOf((*CSIDriver)(nil)).Elem()
+}
+
+func (i CSIDriver) ToCSIDriverOutput() CSIDriverOutput {
+	return i.ToCSIDriverOutputWithContext(context.Background())
+}
+
+func (i CSIDriver) ToCSIDriverOutputWithContext(ctx context.Context) CSIDriverOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CSIDriverOutput)
+}
+
+type CSIDriverOutput struct {
+	*pulumi.OutputState
+}
+
+func (CSIDriverOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CSIDriverOutput)(nil)).Elem()
+}
+
+func (o CSIDriverOutput) ToCSIDriverOutput() CSIDriverOutput {
+	return o
+}
+
+func (o CSIDriverOutput) ToCSIDriverOutputWithContext(ctx context.Context) CSIDriverOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(CSIDriverOutput{})
 }

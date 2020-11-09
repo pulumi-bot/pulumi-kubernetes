@@ -4,6 +4,8 @@
 package v1
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,11 +30,11 @@ type PodTemplateList struct {
 // NewPodTemplateList registers a new resource with the given unique name, arguments, and options.
 func NewPodTemplateList(ctx *pulumi.Context,
 	name string, args *PodTemplateListArgs, opts ...pulumi.ResourceOption) (*PodTemplateList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &PodTemplateListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("v1")
 	args.Kind = pulumi.StringPtr("PodTemplateList")
@@ -108,4 +110,43 @@ type PodTemplateListArgs struct {
 
 func (PodTemplateListArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*podTemplateListArgs)(nil)).Elem()
+}
+
+type PodTemplateListInput interface {
+	pulumi.Input
+
+	ToPodTemplateListOutput() PodTemplateListOutput
+	ToPodTemplateListOutputWithContext(ctx context.Context) PodTemplateListOutput
+}
+
+func (PodTemplateList) ElementType() reflect.Type {
+	return reflect.TypeOf((*PodTemplateList)(nil)).Elem()
+}
+
+func (i PodTemplateList) ToPodTemplateListOutput() PodTemplateListOutput {
+	return i.ToPodTemplateListOutputWithContext(context.Background())
+}
+
+func (i PodTemplateList) ToPodTemplateListOutputWithContext(ctx context.Context) PodTemplateListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PodTemplateListOutput)
+}
+
+type PodTemplateListOutput struct {
+	*pulumi.OutputState
+}
+
+func (PodTemplateListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PodTemplateListOutput)(nil)).Elem()
+}
+
+func (o PodTemplateListOutput) ToPodTemplateListOutput() PodTemplateListOutput {
+	return o
+}
+
+func (o PodTemplateListOutput) ToPodTemplateListOutputWithContext(ctx context.Context) PodTemplateListOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(PodTemplateListOutput{})
 }

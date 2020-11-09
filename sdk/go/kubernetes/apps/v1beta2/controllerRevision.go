@@ -4,6 +4,8 @@
 package v1beta2
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -32,11 +34,11 @@ type ControllerRevision struct {
 // NewControllerRevision registers a new resource with the given unique name, arguments, and options.
 func NewControllerRevision(ctx *pulumi.Context,
 	name string, args *ControllerRevisionArgs, opts ...pulumi.ResourceOption) (*ControllerRevision, error) {
-	if args == nil || args.Revision == nil {
-		return nil, errors.New("missing required argument 'Revision'")
-	}
 	if args == nil {
-		args = &ControllerRevisionArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Revision == nil {
+		return nil, errors.New("invalid value for required argument 'Revision'")
 	}
 	args.ApiVersion = pulumi.StringPtr("apps/v1beta2")
 	args.Kind = pulumi.StringPtr("ControllerRevision")
@@ -129,4 +131,43 @@ type ControllerRevisionArgs struct {
 
 func (ControllerRevisionArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*controllerRevisionArgs)(nil)).Elem()
+}
+
+type ControllerRevisionInput interface {
+	pulumi.Input
+
+	ToControllerRevisionOutput() ControllerRevisionOutput
+	ToControllerRevisionOutputWithContext(ctx context.Context) ControllerRevisionOutput
+}
+
+func (ControllerRevision) ElementType() reflect.Type {
+	return reflect.TypeOf((*ControllerRevision)(nil)).Elem()
+}
+
+func (i ControllerRevision) ToControllerRevisionOutput() ControllerRevisionOutput {
+	return i.ToControllerRevisionOutputWithContext(context.Background())
+}
+
+func (i ControllerRevision) ToControllerRevisionOutputWithContext(ctx context.Context) ControllerRevisionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ControllerRevisionOutput)
+}
+
+type ControllerRevisionOutput struct {
+	*pulumi.OutputState
+}
+
+func (ControllerRevisionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ControllerRevisionOutput)(nil)).Elem()
+}
+
+func (o ControllerRevisionOutput) ToControllerRevisionOutput() ControllerRevisionOutput {
+	return o
+}
+
+func (o ControllerRevisionOutput) ToControllerRevisionOutputWithContext(ctx context.Context) ControllerRevisionOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ControllerRevisionOutput{})
 }

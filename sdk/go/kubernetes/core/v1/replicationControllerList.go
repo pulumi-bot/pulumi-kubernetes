@@ -4,6 +4,8 @@
 package v1
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,11 +30,11 @@ type ReplicationControllerList struct {
 // NewReplicationControllerList registers a new resource with the given unique name, arguments, and options.
 func NewReplicationControllerList(ctx *pulumi.Context,
 	name string, args *ReplicationControllerListArgs, opts ...pulumi.ResourceOption) (*ReplicationControllerList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &ReplicationControllerListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("v1")
 	args.Kind = pulumi.StringPtr("ReplicationControllerList")
@@ -108,4 +110,43 @@ type ReplicationControllerListArgs struct {
 
 func (ReplicationControllerListArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*replicationControllerListArgs)(nil)).Elem()
+}
+
+type ReplicationControllerListInput interface {
+	pulumi.Input
+
+	ToReplicationControllerListOutput() ReplicationControllerListOutput
+	ToReplicationControllerListOutputWithContext(ctx context.Context) ReplicationControllerListOutput
+}
+
+func (ReplicationControllerList) ElementType() reflect.Type {
+	return reflect.TypeOf((*ReplicationControllerList)(nil)).Elem()
+}
+
+func (i ReplicationControllerList) ToReplicationControllerListOutput() ReplicationControllerListOutput {
+	return i.ToReplicationControllerListOutputWithContext(context.Background())
+}
+
+func (i ReplicationControllerList) ToReplicationControllerListOutputWithContext(ctx context.Context) ReplicationControllerListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ReplicationControllerListOutput)
+}
+
+type ReplicationControllerListOutput struct {
+	*pulumi.OutputState
+}
+
+func (ReplicationControllerListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ReplicationControllerListOutput)(nil)).Elem()
+}
+
+func (o ReplicationControllerListOutput) ToReplicationControllerListOutput() ReplicationControllerListOutput {
+	return o
+}
+
+func (o ReplicationControllerListOutput) ToReplicationControllerListOutputWithContext(ctx context.Context) ReplicationControllerListOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ReplicationControllerListOutput{})
 }

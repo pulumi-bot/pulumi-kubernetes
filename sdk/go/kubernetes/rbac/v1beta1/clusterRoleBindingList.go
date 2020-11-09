@@ -4,6 +4,8 @@
 package v1beta1
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,11 +30,11 @@ type ClusterRoleBindingList struct {
 // NewClusterRoleBindingList registers a new resource with the given unique name, arguments, and options.
 func NewClusterRoleBindingList(ctx *pulumi.Context,
 	name string, args *ClusterRoleBindingListArgs, opts ...pulumi.ResourceOption) (*ClusterRoleBindingList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &ClusterRoleBindingListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("rbac.authorization.k8s.io/v1beta1")
 	args.Kind = pulumi.StringPtr("ClusterRoleBindingList")
@@ -108,4 +110,43 @@ type ClusterRoleBindingListArgs struct {
 
 func (ClusterRoleBindingListArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*clusterRoleBindingListArgs)(nil)).Elem()
+}
+
+type ClusterRoleBindingListInput interface {
+	pulumi.Input
+
+	ToClusterRoleBindingListOutput() ClusterRoleBindingListOutput
+	ToClusterRoleBindingListOutputWithContext(ctx context.Context) ClusterRoleBindingListOutput
+}
+
+func (ClusterRoleBindingList) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterRoleBindingList)(nil)).Elem()
+}
+
+func (i ClusterRoleBindingList) ToClusterRoleBindingListOutput() ClusterRoleBindingListOutput {
+	return i.ToClusterRoleBindingListOutputWithContext(context.Background())
+}
+
+func (i ClusterRoleBindingList) ToClusterRoleBindingListOutputWithContext(ctx context.Context) ClusterRoleBindingListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterRoleBindingListOutput)
+}
+
+type ClusterRoleBindingListOutput struct {
+	*pulumi.OutputState
+}
+
+func (ClusterRoleBindingListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterRoleBindingListOutput)(nil)).Elem()
+}
+
+func (o ClusterRoleBindingListOutput) ToClusterRoleBindingListOutput() ClusterRoleBindingListOutput {
+	return o
+}
+
+func (o ClusterRoleBindingListOutput) ToClusterRoleBindingListOutputWithContext(ctx context.Context) ClusterRoleBindingListOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ClusterRoleBindingListOutput{})
 }

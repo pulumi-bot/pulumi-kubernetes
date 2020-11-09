@@ -4,6 +4,8 @@
 package v1
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,11 +30,11 @@ type NetworkPolicyList struct {
 // NewNetworkPolicyList registers a new resource with the given unique name, arguments, and options.
 func NewNetworkPolicyList(ctx *pulumi.Context,
 	name string, args *NetworkPolicyListArgs, opts ...pulumi.ResourceOption) (*NetworkPolicyList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &NetworkPolicyListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("networking.k8s.io/v1")
 	args.Kind = pulumi.StringPtr("NetworkPolicyList")
@@ -108,4 +110,43 @@ type NetworkPolicyListArgs struct {
 
 func (NetworkPolicyListArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*networkPolicyListArgs)(nil)).Elem()
+}
+
+type NetworkPolicyListInput interface {
+	pulumi.Input
+
+	ToNetworkPolicyListOutput() NetworkPolicyListOutput
+	ToNetworkPolicyListOutputWithContext(ctx context.Context) NetworkPolicyListOutput
+}
+
+func (NetworkPolicyList) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkPolicyList)(nil)).Elem()
+}
+
+func (i NetworkPolicyList) ToNetworkPolicyListOutput() NetworkPolicyListOutput {
+	return i.ToNetworkPolicyListOutputWithContext(context.Background())
+}
+
+func (i NetworkPolicyList) ToNetworkPolicyListOutputWithContext(ctx context.Context) NetworkPolicyListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkPolicyListOutput)
+}
+
+type NetworkPolicyListOutput struct {
+	*pulumi.OutputState
+}
+
+func (NetworkPolicyListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkPolicyListOutput)(nil)).Elem()
+}
+
+func (o NetworkPolicyListOutput) ToNetworkPolicyListOutput() NetworkPolicyListOutput {
+	return o
+}
+
+func (o NetworkPolicyListOutput) ToNetworkPolicyListOutputWithContext(ctx context.Context) NetworkPolicyListOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(NetworkPolicyListOutput{})
 }

@@ -4,6 +4,8 @@
 package v1beta1
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -30,11 +32,11 @@ type CSINode struct {
 // NewCSINode registers a new resource with the given unique name, arguments, and options.
 func NewCSINode(ctx *pulumi.Context,
 	name string, args *CSINodeArgs, opts ...pulumi.ResourceOption) (*CSINode, error) {
-	if args == nil || args.Spec == nil {
-		return nil, errors.New("missing required argument 'Spec'")
-	}
 	if args == nil {
-		args = &CSINodeArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Spec == nil {
+		return nil, errors.New("invalid value for required argument 'Spec'")
 	}
 	args.ApiVersion = pulumi.StringPtr("storage.k8s.io/v1beta1")
 	args.Kind = pulumi.StringPtr("CSINode")
@@ -116,4 +118,43 @@ type CSINodeArgs struct {
 
 func (CSINodeArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*csinodeArgs)(nil)).Elem()
+}
+
+type CSINodeInput interface {
+	pulumi.Input
+
+	ToCSINodeOutput() CSINodeOutput
+	ToCSINodeOutputWithContext(ctx context.Context) CSINodeOutput
+}
+
+func (CSINode) ElementType() reflect.Type {
+	return reflect.TypeOf((*CSINode)(nil)).Elem()
+}
+
+func (i CSINode) ToCSINodeOutput() CSINodeOutput {
+	return i.ToCSINodeOutputWithContext(context.Background())
+}
+
+func (i CSINode) ToCSINodeOutputWithContext(ctx context.Context) CSINodeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CSINodeOutput)
+}
+
+type CSINodeOutput struct {
+	*pulumi.OutputState
+}
+
+func (CSINodeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CSINodeOutput)(nil)).Elem()
+}
+
+func (o CSINodeOutput) ToCSINodeOutput() CSINodeOutput {
+	return o
+}
+
+func (o CSINodeOutput) ToCSINodeOutputWithContext(ctx context.Context) CSINodeOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(CSINodeOutput{})
 }

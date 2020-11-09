@@ -4,6 +4,8 @@
 package v1
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -29,11 +31,11 @@ type SubjectAccessReview struct {
 // NewSubjectAccessReview registers a new resource with the given unique name, arguments, and options.
 func NewSubjectAccessReview(ctx *pulumi.Context,
 	name string, args *SubjectAccessReviewArgs, opts ...pulumi.ResourceOption) (*SubjectAccessReview, error) {
-	if args == nil || args.Spec == nil {
-		return nil, errors.New("missing required argument 'Spec'")
-	}
 	if args == nil {
-		args = &SubjectAccessReviewArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Spec == nil {
+		return nil, errors.New("invalid value for required argument 'Spec'")
 	}
 	args.ApiVersion = pulumi.StringPtr("authorization.k8s.io/v1")
 	args.Kind = pulumi.StringPtr("SubjectAccessReview")
@@ -115,4 +117,43 @@ type SubjectAccessReviewArgs struct {
 
 func (SubjectAccessReviewArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*subjectAccessReviewArgs)(nil)).Elem()
+}
+
+type SubjectAccessReviewInput interface {
+	pulumi.Input
+
+	ToSubjectAccessReviewOutput() SubjectAccessReviewOutput
+	ToSubjectAccessReviewOutputWithContext(ctx context.Context) SubjectAccessReviewOutput
+}
+
+func (SubjectAccessReview) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubjectAccessReview)(nil)).Elem()
+}
+
+func (i SubjectAccessReview) ToSubjectAccessReviewOutput() SubjectAccessReviewOutput {
+	return i.ToSubjectAccessReviewOutputWithContext(context.Background())
+}
+
+func (i SubjectAccessReview) ToSubjectAccessReviewOutputWithContext(ctx context.Context) SubjectAccessReviewOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SubjectAccessReviewOutput)
+}
+
+type SubjectAccessReviewOutput struct {
+	*pulumi.OutputState
+}
+
+func (SubjectAccessReviewOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubjectAccessReviewOutput)(nil)).Elem()
+}
+
+func (o SubjectAccessReviewOutput) ToSubjectAccessReviewOutput() SubjectAccessReviewOutput {
+	return o
+}
+
+func (o SubjectAccessReviewOutput) ToSubjectAccessReviewOutputWithContext(ctx context.Context) SubjectAccessReviewOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SubjectAccessReviewOutput{})
 }
