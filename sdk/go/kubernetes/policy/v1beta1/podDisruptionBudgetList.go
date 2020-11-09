@@ -4,6 +4,8 @@
 package v1beta1
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -26,11 +28,11 @@ type PodDisruptionBudgetList struct {
 // NewPodDisruptionBudgetList registers a new resource with the given unique name, arguments, and options.
 func NewPodDisruptionBudgetList(ctx *pulumi.Context,
 	name string, args *PodDisruptionBudgetListArgs, opts ...pulumi.ResourceOption) (*PodDisruptionBudgetList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &PodDisruptionBudgetListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("policy/v1beta1")
 	args.Kind = pulumi.StringPtr("PodDisruptionBudgetList")
@@ -98,4 +100,43 @@ type PodDisruptionBudgetListArgs struct {
 
 func (PodDisruptionBudgetListArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*podDisruptionBudgetListArgs)(nil)).Elem()
+}
+
+type PodDisruptionBudgetListInput interface {
+	pulumi.Input
+
+	ToPodDisruptionBudgetListOutput() PodDisruptionBudgetListOutput
+	ToPodDisruptionBudgetListOutputWithContext(ctx context.Context) PodDisruptionBudgetListOutput
+}
+
+func (PodDisruptionBudgetList) ElementType() reflect.Type {
+	return reflect.TypeOf((*PodDisruptionBudgetList)(nil)).Elem()
+}
+
+func (i PodDisruptionBudgetList) ToPodDisruptionBudgetListOutput() PodDisruptionBudgetListOutput {
+	return i.ToPodDisruptionBudgetListOutputWithContext(context.Background())
+}
+
+func (i PodDisruptionBudgetList) ToPodDisruptionBudgetListOutputWithContext(ctx context.Context) PodDisruptionBudgetListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PodDisruptionBudgetListOutput)
+}
+
+type PodDisruptionBudgetListOutput struct {
+	*pulumi.OutputState
+}
+
+func (PodDisruptionBudgetListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PodDisruptionBudgetListOutput)(nil)).Elem()
+}
+
+func (o PodDisruptionBudgetListOutput) ToPodDisruptionBudgetListOutput() PodDisruptionBudgetListOutput {
+	return o
+}
+
+func (o PodDisruptionBudgetListOutput) ToPodDisruptionBudgetListOutputWithContext(ctx context.Context) PodDisruptionBudgetListOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(PodDisruptionBudgetListOutput{})
 }

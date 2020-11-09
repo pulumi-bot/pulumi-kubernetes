@@ -4,6 +4,8 @@
 package v1
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,11 +30,11 @@ type NodeList struct {
 // NewNodeList registers a new resource with the given unique name, arguments, and options.
 func NewNodeList(ctx *pulumi.Context,
 	name string, args *NodeListArgs, opts ...pulumi.ResourceOption) (*NodeList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &NodeListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("v1")
 	args.Kind = pulumi.StringPtr("NodeList")
@@ -108,4 +110,43 @@ type NodeListArgs struct {
 
 func (NodeListArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*nodeListArgs)(nil)).Elem()
+}
+
+type NodeListInput interface {
+	pulumi.Input
+
+	ToNodeListOutput() NodeListOutput
+	ToNodeListOutputWithContext(ctx context.Context) NodeListOutput
+}
+
+func (NodeList) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodeList)(nil)).Elem()
+}
+
+func (i NodeList) ToNodeListOutput() NodeListOutput {
+	return i.ToNodeListOutputWithContext(context.Background())
+}
+
+func (i NodeList) ToNodeListOutputWithContext(ctx context.Context) NodeListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodeListOutput)
+}
+
+type NodeListOutput struct {
+	*pulumi.OutputState
+}
+
+func (NodeListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodeListOutput)(nil)).Elem()
+}
+
+func (o NodeListOutput) ToNodeListOutput() NodeListOutput {
+	return o
+}
+
+func (o NodeListOutput) ToNodeListOutputWithContext(ctx context.Context) NodeListOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(NodeListOutput{})
 }

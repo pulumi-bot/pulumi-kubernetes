@@ -4,6 +4,8 @@
 package v1beta1
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,11 +30,11 @@ type EndpointSliceList struct {
 // NewEndpointSliceList registers a new resource with the given unique name, arguments, and options.
 func NewEndpointSliceList(ctx *pulumi.Context,
 	name string, args *EndpointSliceListArgs, opts ...pulumi.ResourceOption) (*EndpointSliceList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &EndpointSliceListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("discovery.k8s.io/v1beta1")
 	args.Kind = pulumi.StringPtr("EndpointSliceList")
@@ -108,4 +110,43 @@ type EndpointSliceListArgs struct {
 
 func (EndpointSliceListArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*endpointSliceListArgs)(nil)).Elem()
+}
+
+type EndpointSliceListInput interface {
+	pulumi.Input
+
+	ToEndpointSliceListOutput() EndpointSliceListOutput
+	ToEndpointSliceListOutputWithContext(ctx context.Context) EndpointSliceListOutput
+}
+
+func (EndpointSliceList) ElementType() reflect.Type {
+	return reflect.TypeOf((*EndpointSliceList)(nil)).Elem()
+}
+
+func (i EndpointSliceList) ToEndpointSliceListOutput() EndpointSliceListOutput {
+	return i.ToEndpointSliceListOutputWithContext(context.Background())
+}
+
+func (i EndpointSliceList) ToEndpointSliceListOutputWithContext(ctx context.Context) EndpointSliceListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EndpointSliceListOutput)
+}
+
+type EndpointSliceListOutput struct {
+	*pulumi.OutputState
+}
+
+func (EndpointSliceListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EndpointSliceListOutput)(nil)).Elem()
+}
+
+func (o EndpointSliceListOutput) ToEndpointSliceListOutput() EndpointSliceListOutput {
+	return o
+}
+
+func (o EndpointSliceListOutput) ToEndpointSliceListOutputWithContext(ctx context.Context) EndpointSliceListOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(EndpointSliceListOutput{})
 }

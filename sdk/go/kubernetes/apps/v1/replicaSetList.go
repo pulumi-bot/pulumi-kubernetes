@@ -4,6 +4,8 @@
 package v1
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,11 +30,11 @@ type ReplicaSetList struct {
 // NewReplicaSetList registers a new resource with the given unique name, arguments, and options.
 func NewReplicaSetList(ctx *pulumi.Context,
 	name string, args *ReplicaSetListArgs, opts ...pulumi.ResourceOption) (*ReplicaSetList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &ReplicaSetListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("apps/v1")
 	args.Kind = pulumi.StringPtr("ReplicaSetList")
@@ -108,4 +110,43 @@ type ReplicaSetListArgs struct {
 
 func (ReplicaSetListArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*replicaSetListArgs)(nil)).Elem()
+}
+
+type ReplicaSetListInput interface {
+	pulumi.Input
+
+	ToReplicaSetListOutput() ReplicaSetListOutput
+	ToReplicaSetListOutputWithContext(ctx context.Context) ReplicaSetListOutput
+}
+
+func (ReplicaSetList) ElementType() reflect.Type {
+	return reflect.TypeOf((*ReplicaSetList)(nil)).Elem()
+}
+
+func (i ReplicaSetList) ToReplicaSetListOutput() ReplicaSetListOutput {
+	return i.ToReplicaSetListOutputWithContext(context.Background())
+}
+
+func (i ReplicaSetList) ToReplicaSetListOutputWithContext(ctx context.Context) ReplicaSetListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ReplicaSetListOutput)
+}
+
+type ReplicaSetListOutput struct {
+	*pulumi.OutputState
+}
+
+func (ReplicaSetListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ReplicaSetListOutput)(nil)).Elem()
+}
+
+func (o ReplicaSetListOutput) ToReplicaSetListOutput() ReplicaSetListOutput {
+	return o
+}
+
+func (o ReplicaSetListOutput) ToReplicaSetListOutputWithContext(ctx context.Context) ReplicaSetListOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ReplicaSetListOutput{})
 }

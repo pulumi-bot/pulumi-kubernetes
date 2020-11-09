@@ -4,6 +4,8 @@
 package v1
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,11 +30,11 @@ type NamespaceList struct {
 // NewNamespaceList registers a new resource with the given unique name, arguments, and options.
 func NewNamespaceList(ctx *pulumi.Context,
 	name string, args *NamespaceListArgs, opts ...pulumi.ResourceOption) (*NamespaceList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &NamespaceListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("v1")
 	args.Kind = pulumi.StringPtr("NamespaceList")
@@ -108,4 +110,43 @@ type NamespaceListArgs struct {
 
 func (NamespaceListArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*namespaceListArgs)(nil)).Elem()
+}
+
+type NamespaceListInput interface {
+	pulumi.Input
+
+	ToNamespaceListOutput() NamespaceListOutput
+	ToNamespaceListOutputWithContext(ctx context.Context) NamespaceListOutput
+}
+
+func (NamespaceList) ElementType() reflect.Type {
+	return reflect.TypeOf((*NamespaceList)(nil)).Elem()
+}
+
+func (i NamespaceList) ToNamespaceListOutput() NamespaceListOutput {
+	return i.ToNamespaceListOutputWithContext(context.Background())
+}
+
+func (i NamespaceList) ToNamespaceListOutputWithContext(ctx context.Context) NamespaceListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NamespaceListOutput)
+}
+
+type NamespaceListOutput struct {
+	*pulumi.OutputState
+}
+
+func (NamespaceListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NamespaceListOutput)(nil)).Elem()
+}
+
+func (o NamespaceListOutput) ToNamespaceListOutput() NamespaceListOutput {
+	return o
+}
+
+func (o NamespaceListOutput) ToNamespaceListOutputWithContext(ctx context.Context) NamespaceListOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(NamespaceListOutput{})
 }

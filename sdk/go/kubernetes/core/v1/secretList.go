@@ -4,6 +4,8 @@
 package v1
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,11 +30,11 @@ type SecretList struct {
 // NewSecretList registers a new resource with the given unique name, arguments, and options.
 func NewSecretList(ctx *pulumi.Context,
 	name string, args *SecretListArgs, opts ...pulumi.ResourceOption) (*SecretList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &SecretListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("v1")
 	args.Kind = pulumi.StringPtr("SecretList")
@@ -108,4 +110,43 @@ type SecretListArgs struct {
 
 func (SecretListArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretListArgs)(nil)).Elem()
+}
+
+type SecretListInput interface {
+	pulumi.Input
+
+	ToSecretListOutput() SecretListOutput
+	ToSecretListOutputWithContext(ctx context.Context) SecretListOutput
+}
+
+func (SecretList) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretList)(nil)).Elem()
+}
+
+func (i SecretList) ToSecretListOutput() SecretListOutput {
+	return i.ToSecretListOutputWithContext(context.Background())
+}
+
+func (i SecretList) ToSecretListOutputWithContext(ctx context.Context) SecretListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretListOutput)
+}
+
+type SecretListOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecretListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretListOutput)(nil)).Elem()
+}
+
+func (o SecretListOutput) ToSecretListOutput() SecretListOutput {
+	return o
+}
+
+func (o SecretListOutput) ToSecretListOutputWithContext(ctx context.Context) SecretListOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SecretListOutput{})
 }

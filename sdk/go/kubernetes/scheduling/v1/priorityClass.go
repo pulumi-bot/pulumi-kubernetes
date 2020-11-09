@@ -4,6 +4,8 @@
 package v1
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -34,11 +36,11 @@ type PriorityClass struct {
 // NewPriorityClass registers a new resource with the given unique name, arguments, and options.
 func NewPriorityClass(ctx *pulumi.Context,
 	name string, args *PriorityClassArgs, opts ...pulumi.ResourceOption) (*PriorityClass, error) {
-	if args == nil || args.Value == nil {
-		return nil, errors.New("missing required argument 'Value'")
-	}
 	if args == nil {
-		args = &PriorityClassArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Value == nil {
+		return nil, errors.New("invalid value for required argument 'Value'")
 	}
 	args.ApiVersion = pulumi.StringPtr("scheduling.k8s.io/v1")
 	args.Kind = pulumi.StringPtr("PriorityClass")
@@ -147,4 +149,43 @@ type PriorityClassArgs struct {
 
 func (PriorityClassArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*priorityClassArgs)(nil)).Elem()
+}
+
+type PriorityClassInput interface {
+	pulumi.Input
+
+	ToPriorityClassOutput() PriorityClassOutput
+	ToPriorityClassOutputWithContext(ctx context.Context) PriorityClassOutput
+}
+
+func (PriorityClass) ElementType() reflect.Type {
+	return reflect.TypeOf((*PriorityClass)(nil)).Elem()
+}
+
+func (i PriorityClass) ToPriorityClassOutput() PriorityClassOutput {
+	return i.ToPriorityClassOutputWithContext(context.Background())
+}
+
+func (i PriorityClass) ToPriorityClassOutputWithContext(ctx context.Context) PriorityClassOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PriorityClassOutput)
+}
+
+type PriorityClassOutput struct {
+	*pulumi.OutputState
+}
+
+func (PriorityClassOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PriorityClassOutput)(nil)).Elem()
+}
+
+func (o PriorityClassOutput) ToPriorityClassOutput() PriorityClassOutput {
+	return o
+}
+
+func (o PriorityClassOutput) ToPriorityClassOutputWithContext(ctx context.Context) PriorityClassOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(PriorityClassOutput{})
 }

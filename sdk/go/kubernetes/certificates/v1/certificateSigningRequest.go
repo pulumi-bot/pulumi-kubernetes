@@ -4,6 +4,8 @@
 package v1
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -35,11 +37,11 @@ type CertificateSigningRequest struct {
 // NewCertificateSigningRequest registers a new resource with the given unique name, arguments, and options.
 func NewCertificateSigningRequest(ctx *pulumi.Context,
 	name string, args *CertificateSigningRequestArgs, opts ...pulumi.ResourceOption) (*CertificateSigningRequest, error) {
-	if args == nil || args.Spec == nil {
-		return nil, errors.New("missing required argument 'Spec'")
-	}
 	if args == nil {
-		args = &CertificateSigningRequestArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Spec == nil {
+		return nil, errors.New("invalid value for required argument 'Spec'")
 	}
 	args.ApiVersion = pulumi.StringPtr("certificates.k8s.io/v1")
 	args.Kind = pulumi.StringPtr("CertificateSigningRequest")
@@ -121,4 +123,43 @@ type CertificateSigningRequestArgs struct {
 
 func (CertificateSigningRequestArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*certificateSigningRequestArgs)(nil)).Elem()
+}
+
+type CertificateSigningRequestInput interface {
+	pulumi.Input
+
+	ToCertificateSigningRequestOutput() CertificateSigningRequestOutput
+	ToCertificateSigningRequestOutputWithContext(ctx context.Context) CertificateSigningRequestOutput
+}
+
+func (CertificateSigningRequest) ElementType() reflect.Type {
+	return reflect.TypeOf((*CertificateSigningRequest)(nil)).Elem()
+}
+
+func (i CertificateSigningRequest) ToCertificateSigningRequestOutput() CertificateSigningRequestOutput {
+	return i.ToCertificateSigningRequestOutputWithContext(context.Background())
+}
+
+func (i CertificateSigningRequest) ToCertificateSigningRequestOutputWithContext(ctx context.Context) CertificateSigningRequestOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CertificateSigningRequestOutput)
+}
+
+type CertificateSigningRequestOutput struct {
+	*pulumi.OutputState
+}
+
+func (CertificateSigningRequestOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CertificateSigningRequestOutput)(nil)).Elem()
+}
+
+func (o CertificateSigningRequestOutput) ToCertificateSigningRequestOutput() CertificateSigningRequestOutput {
+	return o
+}
+
+func (o CertificateSigningRequestOutput) ToCertificateSigningRequestOutputWithContext(ctx context.Context) CertificateSigningRequestOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(CertificateSigningRequestOutput{})
 }

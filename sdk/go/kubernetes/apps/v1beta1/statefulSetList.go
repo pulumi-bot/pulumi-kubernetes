@@ -4,6 +4,8 @@
 package v1beta1
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -26,11 +28,11 @@ type StatefulSetList struct {
 // NewStatefulSetList registers a new resource with the given unique name, arguments, and options.
 func NewStatefulSetList(ctx *pulumi.Context,
 	name string, args *StatefulSetListArgs, opts ...pulumi.ResourceOption) (*StatefulSetList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &StatefulSetListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("apps/v1beta1")
 	args.Kind = pulumi.StringPtr("StatefulSetList")
@@ -98,4 +100,43 @@ type StatefulSetListArgs struct {
 
 func (StatefulSetListArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*statefulSetListArgs)(nil)).Elem()
+}
+
+type StatefulSetListInput interface {
+	pulumi.Input
+
+	ToStatefulSetListOutput() StatefulSetListOutput
+	ToStatefulSetListOutputWithContext(ctx context.Context) StatefulSetListOutput
+}
+
+func (StatefulSetList) ElementType() reflect.Type {
+	return reflect.TypeOf((*StatefulSetList)(nil)).Elem()
+}
+
+func (i StatefulSetList) ToStatefulSetListOutput() StatefulSetListOutput {
+	return i.ToStatefulSetListOutputWithContext(context.Background())
+}
+
+func (i StatefulSetList) ToStatefulSetListOutputWithContext(ctx context.Context) StatefulSetListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StatefulSetListOutput)
+}
+
+type StatefulSetListOutput struct {
+	*pulumi.OutputState
+}
+
+func (StatefulSetListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StatefulSetListOutput)(nil)).Elem()
+}
+
+func (o StatefulSetListOutput) ToStatefulSetListOutput() StatefulSetListOutput {
+	return o
+}
+
+func (o StatefulSetListOutput) ToStatefulSetListOutputWithContext(ctx context.Context) StatefulSetListOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(StatefulSetListOutput{})
 }

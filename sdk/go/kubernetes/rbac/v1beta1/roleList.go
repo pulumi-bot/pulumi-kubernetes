@@ -4,6 +4,8 @@
 package v1beta1
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,11 +30,11 @@ type RoleList struct {
 // NewRoleList registers a new resource with the given unique name, arguments, and options.
 func NewRoleList(ctx *pulumi.Context,
 	name string, args *RoleListArgs, opts ...pulumi.ResourceOption) (*RoleList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &RoleListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("rbac.authorization.k8s.io/v1beta1")
 	args.Kind = pulumi.StringPtr("RoleList")
@@ -108,4 +110,43 @@ type RoleListArgs struct {
 
 func (RoleListArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*roleListArgs)(nil)).Elem()
+}
+
+type RoleListInput interface {
+	pulumi.Input
+
+	ToRoleListOutput() RoleListOutput
+	ToRoleListOutputWithContext(ctx context.Context) RoleListOutput
+}
+
+func (RoleList) ElementType() reflect.Type {
+	return reflect.TypeOf((*RoleList)(nil)).Elem()
+}
+
+func (i RoleList) ToRoleListOutput() RoleListOutput {
+	return i.ToRoleListOutputWithContext(context.Background())
+}
+
+func (i RoleList) ToRoleListOutputWithContext(ctx context.Context) RoleListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RoleListOutput)
+}
+
+type RoleListOutput struct {
+	*pulumi.OutputState
+}
+
+func (RoleListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RoleListOutput)(nil)).Elem()
+}
+
+func (o RoleListOutput) ToRoleListOutput() RoleListOutput {
+	return o
+}
+
+func (o RoleListOutput) ToRoleListOutputWithContext(ctx context.Context) RoleListOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RoleListOutput{})
 }

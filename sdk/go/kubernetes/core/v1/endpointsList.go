@@ -4,6 +4,8 @@
 package v1
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,11 +30,11 @@ type EndpointsList struct {
 // NewEndpointsList registers a new resource with the given unique name, arguments, and options.
 func NewEndpointsList(ctx *pulumi.Context,
 	name string, args *EndpointsListArgs, opts ...pulumi.ResourceOption) (*EndpointsList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &EndpointsListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("v1")
 	args.Kind = pulumi.StringPtr("EndpointsList")
@@ -108,4 +110,43 @@ type EndpointsListArgs struct {
 
 func (EndpointsListArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*endpointsListArgs)(nil)).Elem()
+}
+
+type EndpointsListInput interface {
+	pulumi.Input
+
+	ToEndpointsListOutput() EndpointsListOutput
+	ToEndpointsListOutputWithContext(ctx context.Context) EndpointsListOutput
+}
+
+func (EndpointsList) ElementType() reflect.Type {
+	return reflect.TypeOf((*EndpointsList)(nil)).Elem()
+}
+
+func (i EndpointsList) ToEndpointsListOutput() EndpointsListOutput {
+	return i.ToEndpointsListOutputWithContext(context.Background())
+}
+
+func (i EndpointsList) ToEndpointsListOutputWithContext(ctx context.Context) EndpointsListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EndpointsListOutput)
+}
+
+type EndpointsListOutput struct {
+	*pulumi.OutputState
+}
+
+func (EndpointsListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EndpointsListOutput)(nil)).Elem()
+}
+
+func (o EndpointsListOutput) ToEndpointsListOutput() EndpointsListOutput {
+	return o
+}
+
+func (o EndpointsListOutput) ToEndpointsListOutputWithContext(ctx context.Context) EndpointsListOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(EndpointsListOutput{})
 }

@@ -4,6 +4,8 @@
 package v1beta1
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -29,11 +31,11 @@ type LocalSubjectAccessReview struct {
 // NewLocalSubjectAccessReview registers a new resource with the given unique name, arguments, and options.
 func NewLocalSubjectAccessReview(ctx *pulumi.Context,
 	name string, args *LocalSubjectAccessReviewArgs, opts ...pulumi.ResourceOption) (*LocalSubjectAccessReview, error) {
-	if args == nil || args.Spec == nil {
-		return nil, errors.New("missing required argument 'Spec'")
-	}
 	if args == nil {
-		args = &LocalSubjectAccessReviewArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Spec == nil {
+		return nil, errors.New("invalid value for required argument 'Spec'")
 	}
 	args.ApiVersion = pulumi.StringPtr("authorization.k8s.io/v1beta1")
 	args.Kind = pulumi.StringPtr("LocalSubjectAccessReview")
@@ -115,4 +117,43 @@ type LocalSubjectAccessReviewArgs struct {
 
 func (LocalSubjectAccessReviewArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*localSubjectAccessReviewArgs)(nil)).Elem()
+}
+
+type LocalSubjectAccessReviewInput interface {
+	pulumi.Input
+
+	ToLocalSubjectAccessReviewOutput() LocalSubjectAccessReviewOutput
+	ToLocalSubjectAccessReviewOutputWithContext(ctx context.Context) LocalSubjectAccessReviewOutput
+}
+
+func (LocalSubjectAccessReview) ElementType() reflect.Type {
+	return reflect.TypeOf((*LocalSubjectAccessReview)(nil)).Elem()
+}
+
+func (i LocalSubjectAccessReview) ToLocalSubjectAccessReviewOutput() LocalSubjectAccessReviewOutput {
+	return i.ToLocalSubjectAccessReviewOutputWithContext(context.Background())
+}
+
+func (i LocalSubjectAccessReview) ToLocalSubjectAccessReviewOutputWithContext(ctx context.Context) LocalSubjectAccessReviewOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LocalSubjectAccessReviewOutput)
+}
+
+type LocalSubjectAccessReviewOutput struct {
+	*pulumi.OutputState
+}
+
+func (LocalSubjectAccessReviewOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LocalSubjectAccessReviewOutput)(nil)).Elem()
+}
+
+func (o LocalSubjectAccessReviewOutput) ToLocalSubjectAccessReviewOutput() LocalSubjectAccessReviewOutput {
+	return o
+}
+
+func (o LocalSubjectAccessReviewOutput) ToLocalSubjectAccessReviewOutputWithContext(ctx context.Context) LocalSubjectAccessReviewOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(LocalSubjectAccessReviewOutput{})
 }
