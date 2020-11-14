@@ -4,6 +4,7 @@
 package v1beta1
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,11 +29,12 @@ type RoleBindingList struct {
 // NewRoleBindingList registers a new resource with the given unique name, arguments, and options.
 func NewRoleBindingList(ctx *pulumi.Context,
 	name string, args *RoleBindingListArgs, opts ...pulumi.ResourceOption) (*RoleBindingList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &RoleBindingListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("rbac.authorization.k8s.io/v1beta1")
 	args.Kind = pulumi.StringPtr("RoleBindingList")
@@ -108,4 +110,43 @@ type RoleBindingListArgs struct {
 
 func (RoleBindingListArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*roleBindingListArgs)(nil)).Elem()
+}
+
+type RoleBindingListInput interface {
+	pulumi.Input
+
+	ToRoleBindingListOutput() RoleBindingListOutput
+	ToRoleBindingListOutputWithContext(ctx context.Context) RoleBindingListOutput
+}
+
+func (RoleBindingList) ElementType() reflect.Type {
+	return reflect.TypeOf((*RoleBindingList)(nil)).Elem()
+}
+
+func (i RoleBindingList) ToRoleBindingListOutput() RoleBindingListOutput {
+	return i.ToRoleBindingListOutputWithContext(context.Background())
+}
+
+func (i RoleBindingList) ToRoleBindingListOutputWithContext(ctx context.Context) RoleBindingListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RoleBindingListOutput)
+}
+
+type RoleBindingListOutput struct {
+	*pulumi.OutputState
+}
+
+func (RoleBindingListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RoleBindingListOutput)(nil)).Elem()
+}
+
+func (o RoleBindingListOutput) ToRoleBindingListOutput() RoleBindingListOutput {
+	return o
+}
+
+func (o RoleBindingListOutput) ToRoleBindingListOutputWithContext(ctx context.Context) RoleBindingListOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RoleBindingListOutput{})
 }

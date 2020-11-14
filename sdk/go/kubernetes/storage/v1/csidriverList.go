@@ -4,6 +4,7 @@
 package v1
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,11 +29,12 @@ type CSIDriverList struct {
 // NewCSIDriverList registers a new resource with the given unique name, arguments, and options.
 func NewCSIDriverList(ctx *pulumi.Context,
 	name string, args *CSIDriverListArgs, opts ...pulumi.ResourceOption) (*CSIDriverList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &CSIDriverListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("storage.k8s.io/v1")
 	args.Kind = pulumi.StringPtr("CSIDriverList")
@@ -108,4 +110,43 @@ type CSIDriverListArgs struct {
 
 func (CSIDriverListArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*csidriverListArgs)(nil)).Elem()
+}
+
+type CSIDriverListInput interface {
+	pulumi.Input
+
+	ToCSIDriverListOutput() CSIDriverListOutput
+	ToCSIDriverListOutputWithContext(ctx context.Context) CSIDriverListOutput
+}
+
+func (CSIDriverList) ElementType() reflect.Type {
+	return reflect.TypeOf((*CSIDriverList)(nil)).Elem()
+}
+
+func (i CSIDriverList) ToCSIDriverListOutput() CSIDriverListOutput {
+	return i.ToCSIDriverListOutputWithContext(context.Background())
+}
+
+func (i CSIDriverList) ToCSIDriverListOutputWithContext(ctx context.Context) CSIDriverListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CSIDriverListOutput)
+}
+
+type CSIDriverListOutput struct {
+	*pulumi.OutputState
+}
+
+func (CSIDriverListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CSIDriverListOutput)(nil)).Elem()
+}
+
+func (o CSIDriverListOutput) ToCSIDriverListOutput() CSIDriverListOutput {
+	return o
+}
+
+func (o CSIDriverListOutput) ToCSIDriverListOutputWithContext(ctx context.Context) CSIDriverListOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(CSIDriverListOutput{})
 }

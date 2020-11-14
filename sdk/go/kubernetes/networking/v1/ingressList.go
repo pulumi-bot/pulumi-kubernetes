@@ -4,6 +4,7 @@
 package v1
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,11 +29,12 @@ type IngressList struct {
 // NewIngressList registers a new resource with the given unique name, arguments, and options.
 func NewIngressList(ctx *pulumi.Context,
 	name string, args *IngressListArgs, opts ...pulumi.ResourceOption) (*IngressList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &IngressListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("networking.k8s.io/v1")
 	args.Kind = pulumi.StringPtr("IngressList")
@@ -108,4 +110,43 @@ type IngressListArgs struct {
 
 func (IngressListArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*ingressListArgs)(nil)).Elem()
+}
+
+type IngressListInput interface {
+	pulumi.Input
+
+	ToIngressListOutput() IngressListOutput
+	ToIngressListOutputWithContext(ctx context.Context) IngressListOutput
+}
+
+func (IngressList) ElementType() reflect.Type {
+	return reflect.TypeOf((*IngressList)(nil)).Elem()
+}
+
+func (i IngressList) ToIngressListOutput() IngressListOutput {
+	return i.ToIngressListOutputWithContext(context.Background())
+}
+
+func (i IngressList) ToIngressListOutputWithContext(ctx context.Context) IngressListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IngressListOutput)
+}
+
+type IngressListOutput struct {
+	*pulumi.OutputState
+}
+
+func (IngressListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IngressListOutput)(nil)).Elem()
+}
+
+func (o IngressListOutput) ToIngressListOutput() IngressListOutput {
+	return o
+}
+
+func (o IngressListOutput) ToIngressListOutputWithContext(ctx context.Context) IngressListOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(IngressListOutput{})
 }
