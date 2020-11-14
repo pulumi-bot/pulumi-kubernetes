@@ -4,6 +4,7 @@
 package v1beta2
 
 import (
+	"context"
 	"reflect"
 
 	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
@@ -49,6 +50,7 @@ func NewStatefulSet(ctx *pulumi.Context,
 	if args == nil {
 		args = &StatefulSetArgs{}
 	}
+
 	args.ApiVersion = pulumi.StringPtr("apps/v1beta2")
 	args.Kind = pulumi.StringPtr("StatefulSet")
 	aliases := pulumi.Aliases([]pulumi.Alias{
@@ -132,4 +134,43 @@ type StatefulSetArgs struct {
 
 func (StatefulSetArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*statefulSetArgs)(nil)).Elem()
+}
+
+type StatefulSetInput interface {
+	pulumi.Input
+
+	ToStatefulSetOutput() StatefulSetOutput
+	ToStatefulSetOutputWithContext(ctx context.Context) StatefulSetOutput
+}
+
+func (StatefulSet) ElementType() reflect.Type {
+	return reflect.TypeOf((*StatefulSet)(nil)).Elem()
+}
+
+func (i StatefulSet) ToStatefulSetOutput() StatefulSetOutput {
+	return i.ToStatefulSetOutputWithContext(context.Background())
+}
+
+func (i StatefulSet) ToStatefulSetOutputWithContext(ctx context.Context) StatefulSetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StatefulSetOutput)
+}
+
+type StatefulSetOutput struct {
+	*pulumi.OutputState
+}
+
+func (StatefulSetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StatefulSetOutput)(nil)).Elem()
+}
+
+func (o StatefulSetOutput) ToStatefulSetOutput() StatefulSetOutput {
+	return o
+}
+
+func (o StatefulSetOutput) ToStatefulSetOutputWithContext(ctx context.Context) StatefulSetOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(StatefulSetOutput{})
 }
