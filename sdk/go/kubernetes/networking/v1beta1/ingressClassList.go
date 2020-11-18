@@ -4,6 +4,7 @@
 package v1beta1
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,11 +29,12 @@ type IngressClassList struct {
 // NewIngressClassList registers a new resource with the given unique name, arguments, and options.
 func NewIngressClassList(ctx *pulumi.Context,
 	name string, args *IngressClassListArgs, opts ...pulumi.ResourceOption) (*IngressClassList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &IngressClassListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("networking.k8s.io/v1beta1")
 	args.Kind = pulumi.StringPtr("IngressClassList")
@@ -108,4 +110,43 @@ type IngressClassListArgs struct {
 
 func (IngressClassListArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*ingressClassListArgs)(nil)).Elem()
+}
+
+type IngressClassListInput interface {
+	pulumi.Input
+
+	ToIngressClassListOutput() IngressClassListOutput
+	ToIngressClassListOutputWithContext(ctx context.Context) IngressClassListOutput
+}
+
+func (IngressClassList) ElementType() reflect.Type {
+	return reflect.TypeOf((*IngressClassList)(nil)).Elem()
+}
+
+func (i IngressClassList) ToIngressClassListOutput() IngressClassListOutput {
+	return i.ToIngressClassListOutputWithContext(context.Background())
+}
+
+func (i IngressClassList) ToIngressClassListOutputWithContext(ctx context.Context) IngressClassListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IngressClassListOutput)
+}
+
+type IngressClassListOutput struct {
+	*pulumi.OutputState
+}
+
+func (IngressClassListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IngressClassListOutput)(nil)).Elem()
+}
+
+func (o IngressClassListOutput) ToIngressClassListOutput() IngressClassListOutput {
+	return o
+}
+
+func (o IngressClassListOutput) ToIngressClassListOutputWithContext(ctx context.Context) IngressClassListOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(IngressClassListOutput{})
 }

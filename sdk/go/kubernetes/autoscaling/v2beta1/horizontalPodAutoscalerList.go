@@ -4,6 +4,7 @@
 package v2beta1
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,11 +29,12 @@ type HorizontalPodAutoscalerList struct {
 // NewHorizontalPodAutoscalerList registers a new resource with the given unique name, arguments, and options.
 func NewHorizontalPodAutoscalerList(ctx *pulumi.Context,
 	name string, args *HorizontalPodAutoscalerListArgs, opts ...pulumi.ResourceOption) (*HorizontalPodAutoscalerList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &HorizontalPodAutoscalerListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("autoscaling/v2beta1")
 	args.Kind = pulumi.StringPtr("HorizontalPodAutoscalerList")
@@ -108,4 +110,43 @@ type HorizontalPodAutoscalerListArgs struct {
 
 func (HorizontalPodAutoscalerListArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*horizontalPodAutoscalerListArgs)(nil)).Elem()
+}
+
+type HorizontalPodAutoscalerListInput interface {
+	pulumi.Input
+
+	ToHorizontalPodAutoscalerListOutput() HorizontalPodAutoscalerListOutput
+	ToHorizontalPodAutoscalerListOutputWithContext(ctx context.Context) HorizontalPodAutoscalerListOutput
+}
+
+func (HorizontalPodAutoscalerList) ElementType() reflect.Type {
+	return reflect.TypeOf((*HorizontalPodAutoscalerList)(nil)).Elem()
+}
+
+func (i HorizontalPodAutoscalerList) ToHorizontalPodAutoscalerListOutput() HorizontalPodAutoscalerListOutput {
+	return i.ToHorizontalPodAutoscalerListOutputWithContext(context.Background())
+}
+
+func (i HorizontalPodAutoscalerList) ToHorizontalPodAutoscalerListOutputWithContext(ctx context.Context) HorizontalPodAutoscalerListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HorizontalPodAutoscalerListOutput)
+}
+
+type HorizontalPodAutoscalerListOutput struct {
+	*pulumi.OutputState
+}
+
+func (HorizontalPodAutoscalerListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*HorizontalPodAutoscalerListOutput)(nil)).Elem()
+}
+
+func (o HorizontalPodAutoscalerListOutput) ToHorizontalPodAutoscalerListOutput() HorizontalPodAutoscalerListOutput {
+	return o
+}
+
+func (o HorizontalPodAutoscalerListOutput) ToHorizontalPodAutoscalerListOutputWithContext(ctx context.Context) HorizontalPodAutoscalerListOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(HorizontalPodAutoscalerListOutput{})
 }

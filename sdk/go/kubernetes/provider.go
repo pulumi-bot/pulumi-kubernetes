@@ -4,6 +4,7 @@
 package kubernetes
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -20,6 +21,7 @@ func NewProvider(ctx *pulumi.Context,
 	if args == nil {
 		args = &ProviderArgs{}
 	}
+
 	if args.EnableDryRun == nil {
 		args.EnableDryRun = pulumi.BoolPtr(getEnvOrDefault(false, parseEnvBool, "PULUMI_K8S_ENABLE_DRY_RUN").(bool))
 	}
@@ -116,4 +118,43 @@ type ProviderArgs struct {
 
 func (ProviderArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*providerArgs)(nil)).Elem()
+}
+
+type ProviderInput interface {
+	pulumi.Input
+
+	ToProviderOutput() ProviderOutput
+	ToProviderOutputWithContext(ctx context.Context) ProviderOutput
+}
+
+func (Provider) ElementType() reflect.Type {
+	return reflect.TypeOf((*Provider)(nil)).Elem()
+}
+
+func (i Provider) ToProviderOutput() ProviderOutput {
+	return i.ToProviderOutputWithContext(context.Background())
+}
+
+func (i Provider) ToProviderOutputWithContext(ctx context.Context) ProviderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderOutput)
+}
+
+type ProviderOutput struct {
+	*pulumi.OutputState
+}
+
+func (ProviderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderOutput)(nil)).Elem()
+}
+
+func (o ProviderOutput) ToProviderOutput() ProviderOutput {
+	return o
+}
+
+func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) ProviderOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ProviderOutput{})
 }
