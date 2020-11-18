@@ -4,6 +4,7 @@
 package v1beta1
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,11 +29,12 @@ type LeaseList struct {
 // NewLeaseList registers a new resource with the given unique name, arguments, and options.
 func NewLeaseList(ctx *pulumi.Context,
 	name string, args *LeaseListArgs, opts ...pulumi.ResourceOption) (*LeaseList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &LeaseListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("coordination.k8s.io/v1beta1")
 	args.Kind = pulumi.StringPtr("LeaseList")
@@ -108,4 +110,43 @@ type LeaseListArgs struct {
 
 func (LeaseListArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*leaseListArgs)(nil)).Elem()
+}
+
+type LeaseListInput interface {
+	pulumi.Input
+
+	ToLeaseListOutput() LeaseListOutput
+	ToLeaseListOutputWithContext(ctx context.Context) LeaseListOutput
+}
+
+func (LeaseList) ElementType() reflect.Type {
+	return reflect.TypeOf((*LeaseList)(nil)).Elem()
+}
+
+func (i LeaseList) ToLeaseListOutput() LeaseListOutput {
+	return i.ToLeaseListOutputWithContext(context.Background())
+}
+
+func (i LeaseList) ToLeaseListOutputWithContext(ctx context.Context) LeaseListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LeaseListOutput)
+}
+
+type LeaseListOutput struct {
+	*pulumi.OutputState
+}
+
+func (LeaseListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LeaseListOutput)(nil)).Elem()
+}
+
+func (o LeaseListOutput) ToLeaseListOutput() LeaseListOutput {
+	return o
+}
+
+func (o LeaseListOutput) ToLeaseListOutputWithContext(ctx context.Context) LeaseListOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(LeaseListOutput{})
 }

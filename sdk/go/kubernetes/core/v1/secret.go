@@ -4,6 +4,7 @@
 package v1
 
 import (
+	"context"
 	"reflect"
 
 	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
@@ -46,6 +47,7 @@ func NewSecret(ctx *pulumi.Context,
 	if args == nil {
 		args = &SecretArgs{}
 	}
+
 	args.ApiVersion = pulumi.StringPtr("v1")
 	args.Kind = pulumi.StringPtr("Secret")
 	secrets := pulumi.AdditionalSecretOutputs([]string{
@@ -149,4 +151,43 @@ type SecretArgs struct {
 
 func (SecretArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretArgs)(nil)).Elem()
+}
+
+type SecretInput interface {
+	pulumi.Input
+
+	ToSecretOutput() SecretOutput
+	ToSecretOutputWithContext(ctx context.Context) SecretOutput
+}
+
+func (Secret) ElementType() reflect.Type {
+	return reflect.TypeOf((*Secret)(nil)).Elem()
+}
+
+func (i Secret) ToSecretOutput() SecretOutput {
+	return i.ToSecretOutputWithContext(context.Background())
+}
+
+func (i Secret) ToSecretOutputWithContext(ctx context.Context) SecretOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretOutput)
+}
+
+type SecretOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecretOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretOutput)(nil)).Elem()
+}
+
+func (o SecretOutput) ToSecretOutput() SecretOutput {
+	return o
+}
+
+func (o SecretOutput) ToSecretOutputWithContext(ctx context.Context) SecretOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SecretOutput{})
 }

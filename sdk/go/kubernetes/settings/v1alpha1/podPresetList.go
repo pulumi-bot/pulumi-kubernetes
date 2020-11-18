@@ -4,6 +4,7 @@
 package v1alpha1
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,11 +29,12 @@ type PodPresetList struct {
 // NewPodPresetList registers a new resource with the given unique name, arguments, and options.
 func NewPodPresetList(ctx *pulumi.Context,
 	name string, args *PodPresetListArgs, opts ...pulumi.ResourceOption) (*PodPresetList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &PodPresetListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("settings.k8s.io/v1alpha1")
 	args.Kind = pulumi.StringPtr("PodPresetList")
@@ -108,4 +110,43 @@ type PodPresetListArgs struct {
 
 func (PodPresetListArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*podPresetListArgs)(nil)).Elem()
+}
+
+type PodPresetListInput interface {
+	pulumi.Input
+
+	ToPodPresetListOutput() PodPresetListOutput
+	ToPodPresetListOutputWithContext(ctx context.Context) PodPresetListOutput
+}
+
+func (PodPresetList) ElementType() reflect.Type {
+	return reflect.TypeOf((*PodPresetList)(nil)).Elem()
+}
+
+func (i PodPresetList) ToPodPresetListOutput() PodPresetListOutput {
+	return i.ToPodPresetListOutputWithContext(context.Background())
+}
+
+func (i PodPresetList) ToPodPresetListOutputWithContext(ctx context.Context) PodPresetListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PodPresetListOutput)
+}
+
+type PodPresetListOutput struct {
+	*pulumi.OutputState
+}
+
+func (PodPresetListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PodPresetListOutput)(nil)).Elem()
+}
+
+func (o PodPresetListOutput) ToPodPresetListOutput() PodPresetListOutput {
+	return o
+}
+
+func (o PodPresetListOutput) ToPodPresetListOutputWithContext(ctx context.Context) PodPresetListOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(PodPresetListOutput{})
 }

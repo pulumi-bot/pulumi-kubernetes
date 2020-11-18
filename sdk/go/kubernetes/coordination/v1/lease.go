@@ -4,6 +4,7 @@
 package v1
 
 import (
+	"context"
 	"reflect"
 
 	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
@@ -30,6 +31,7 @@ func NewLease(ctx *pulumi.Context,
 	if args == nil {
 		args = &LeaseArgs{}
 	}
+
 	args.ApiVersion = pulumi.StringPtr("coordination.k8s.io/v1")
 	args.Kind = pulumi.StringPtr("Lease")
 	aliases := pulumi.Aliases([]pulumi.Alias{
@@ -110,4 +112,43 @@ type LeaseArgs struct {
 
 func (LeaseArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*leaseArgs)(nil)).Elem()
+}
+
+type LeaseInput interface {
+	pulumi.Input
+
+	ToLeaseOutput() LeaseOutput
+	ToLeaseOutputWithContext(ctx context.Context) LeaseOutput
+}
+
+func (Lease) ElementType() reflect.Type {
+	return reflect.TypeOf((*Lease)(nil)).Elem()
+}
+
+func (i Lease) ToLeaseOutput() LeaseOutput {
+	return i.ToLeaseOutputWithContext(context.Background())
+}
+
+func (i Lease) ToLeaseOutputWithContext(ctx context.Context) LeaseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LeaseOutput)
+}
+
+type LeaseOutput struct {
+	*pulumi.OutputState
+}
+
+func (LeaseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LeaseOutput)(nil)).Elem()
+}
+
+func (o LeaseOutput) ToLeaseOutput() LeaseOutput {
+	return o
+}
+
+func (o LeaseOutput) ToLeaseOutputWithContext(ctx context.Context) LeaseOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(LeaseOutput{})
 }
