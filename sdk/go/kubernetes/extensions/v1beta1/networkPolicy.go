@@ -4,6 +4,7 @@
 package v1beta1
 
 import (
+	"context"
 	"reflect"
 
 	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
@@ -30,6 +31,7 @@ func NewNetworkPolicy(ctx *pulumi.Context,
 	if args == nil {
 		args = &NetworkPolicyArgs{}
 	}
+
 	args.ApiVersion = pulumi.StringPtr("extensions/v1beta1")
 	args.Kind = pulumi.StringPtr("NetworkPolicy")
 	aliases := pulumi.Aliases([]pulumi.Alias{
@@ -110,4 +112,43 @@ type NetworkPolicyArgs struct {
 
 func (NetworkPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*networkPolicyArgs)(nil)).Elem()
+}
+
+type NetworkPolicyInput interface {
+	pulumi.Input
+
+	ToNetworkPolicyOutput() NetworkPolicyOutput
+	ToNetworkPolicyOutputWithContext(ctx context.Context) NetworkPolicyOutput
+}
+
+func (NetworkPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkPolicy)(nil)).Elem()
+}
+
+func (i NetworkPolicy) ToNetworkPolicyOutput() NetworkPolicyOutput {
+	return i.ToNetworkPolicyOutputWithContext(context.Background())
+}
+
+func (i NetworkPolicy) ToNetworkPolicyOutputWithContext(ctx context.Context) NetworkPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkPolicyOutput)
+}
+
+type NetworkPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (NetworkPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkPolicyOutput)(nil)).Elem()
+}
+
+func (o NetworkPolicyOutput) ToNetworkPolicyOutput() NetworkPolicyOutput {
+	return o
+}
+
+func (o NetworkPolicyOutput) ToNetworkPolicyOutputWithContext(ctx context.Context) NetworkPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(NetworkPolicyOutput{})
 }

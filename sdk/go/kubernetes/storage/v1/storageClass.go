@@ -4,6 +4,7 @@
 package v1
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -43,11 +44,12 @@ type StorageClass struct {
 // NewStorageClass registers a new resource with the given unique name, arguments, and options.
 func NewStorageClass(ctx *pulumi.Context,
 	name string, args *StorageClassArgs, opts ...pulumi.ResourceOption) (*StorageClass, error) {
-	if args == nil || args.Provisioner == nil {
-		return nil, errors.New("missing required argument 'Provisioner'")
-	}
 	if args == nil {
-		args = &StorageClassArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Provisioner == nil {
+		return nil, errors.New("invalid value for required argument 'Provisioner'")
 	}
 	args.ApiVersion = pulumi.StringPtr("storage.k8s.io/v1")
 	args.Kind = pulumi.StringPtr("StorageClass")
@@ -177,4 +179,43 @@ type StorageClassArgs struct {
 
 func (StorageClassArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*storageClassArgs)(nil)).Elem()
+}
+
+type StorageClassInput interface {
+	pulumi.Input
+
+	ToStorageClassOutput() StorageClassOutput
+	ToStorageClassOutputWithContext(ctx context.Context) StorageClassOutput
+}
+
+func (StorageClass) ElementType() reflect.Type {
+	return reflect.TypeOf((*StorageClass)(nil)).Elem()
+}
+
+func (i StorageClass) ToStorageClassOutput() StorageClassOutput {
+	return i.ToStorageClassOutputWithContext(context.Background())
+}
+
+func (i StorageClass) ToStorageClassOutputWithContext(ctx context.Context) StorageClassOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StorageClassOutput)
+}
+
+type StorageClassOutput struct {
+	*pulumi.OutputState
+}
+
+func (StorageClassOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StorageClassOutput)(nil)).Elem()
+}
+
+func (o StorageClassOutput) ToStorageClassOutput() StorageClassOutput {
+	return o
+}
+
+func (o StorageClassOutput) ToStorageClassOutputWithContext(ctx context.Context) StorageClassOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(StorageClassOutput{})
 }

@@ -4,6 +4,7 @@
 package v1alpha1
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -30,11 +31,12 @@ type RoleBinding struct {
 // NewRoleBinding registers a new resource with the given unique name, arguments, and options.
 func NewRoleBinding(ctx *pulumi.Context,
 	name string, args *RoleBindingArgs, opts ...pulumi.ResourceOption) (*RoleBinding, error) {
-	if args == nil || args.RoleRef == nil {
-		return nil, errors.New("missing required argument 'RoleRef'")
-	}
 	if args == nil {
-		args = &RoleBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.RoleRef == nil {
+		return nil, errors.New("invalid value for required argument 'RoleRef'")
 	}
 	args.ApiVersion = pulumi.StringPtr("rbac.authorization.k8s.io/v1alpha1")
 	args.Kind = pulumi.StringPtr("RoleBinding")
@@ -127,4 +129,43 @@ type RoleBindingArgs struct {
 
 func (RoleBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*roleBindingArgs)(nil)).Elem()
+}
+
+type RoleBindingInput interface {
+	pulumi.Input
+
+	ToRoleBindingOutput() RoleBindingOutput
+	ToRoleBindingOutputWithContext(ctx context.Context) RoleBindingOutput
+}
+
+func (RoleBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*RoleBinding)(nil)).Elem()
+}
+
+func (i RoleBinding) ToRoleBindingOutput() RoleBindingOutput {
+	return i.ToRoleBindingOutputWithContext(context.Background())
+}
+
+func (i RoleBinding) ToRoleBindingOutputWithContext(ctx context.Context) RoleBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RoleBindingOutput)
+}
+
+type RoleBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (RoleBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RoleBindingOutput)(nil)).Elem()
+}
+
+func (o RoleBindingOutput) ToRoleBindingOutput() RoleBindingOutput {
+	return o
+}
+
+func (o RoleBindingOutput) ToRoleBindingOutputWithContext(ctx context.Context) RoleBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RoleBindingOutput{})
 }
