@@ -4,6 +4,7 @@
 package v1
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,11 +29,12 @@ type JobList struct {
 // NewJobList registers a new resource with the given unique name, arguments, and options.
 func NewJobList(ctx *pulumi.Context,
 	name string, args *JobListArgs, opts ...pulumi.ResourceOption) (*JobList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &JobListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("batch/v1")
 	args.Kind = pulumi.StringPtr("JobList")
@@ -108,4 +110,43 @@ type JobListArgs struct {
 
 func (JobListArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*jobListArgs)(nil)).Elem()
+}
+
+type JobListInput interface {
+	pulumi.Input
+
+	ToJobListOutput() JobListOutput
+	ToJobListOutputWithContext(ctx context.Context) JobListOutput
+}
+
+func (JobList) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobList)(nil)).Elem()
+}
+
+func (i JobList) ToJobListOutput() JobListOutput {
+	return i.ToJobListOutputWithContext(context.Background())
+}
+
+func (i JobList) ToJobListOutputWithContext(ctx context.Context) JobListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobListOutput)
+}
+
+type JobListOutput struct {
+	*pulumi.OutputState
+}
+
+func (JobListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobListOutput)(nil)).Elem()
+}
+
+func (o JobListOutput) ToJobListOutput() JobListOutput {
+	return o
+}
+
+func (o JobListOutput) ToJobListOutputWithContext(ctx context.Context) JobListOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(JobListOutput{})
 }

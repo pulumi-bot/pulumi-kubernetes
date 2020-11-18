@@ -4,6 +4,7 @@
 package v1
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,11 +29,12 @@ type ConfigMapList struct {
 // NewConfigMapList registers a new resource with the given unique name, arguments, and options.
 func NewConfigMapList(ctx *pulumi.Context,
 	name string, args *ConfigMapListArgs, opts ...pulumi.ResourceOption) (*ConfigMapList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &ConfigMapListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("v1")
 	args.Kind = pulumi.StringPtr("ConfigMapList")
@@ -108,4 +110,43 @@ type ConfigMapListArgs struct {
 
 func (ConfigMapListArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*configMapListArgs)(nil)).Elem()
+}
+
+type ConfigMapListInput interface {
+	pulumi.Input
+
+	ToConfigMapListOutput() ConfigMapListOutput
+	ToConfigMapListOutputWithContext(ctx context.Context) ConfigMapListOutput
+}
+
+func (ConfigMapList) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConfigMapList)(nil)).Elem()
+}
+
+func (i ConfigMapList) ToConfigMapListOutput() ConfigMapListOutput {
+	return i.ToConfigMapListOutputWithContext(context.Background())
+}
+
+func (i ConfigMapList) ToConfigMapListOutputWithContext(ctx context.Context) ConfigMapListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConfigMapListOutput)
+}
+
+type ConfigMapListOutput struct {
+	*pulumi.OutputState
+}
+
+func (ConfigMapListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConfigMapListOutput)(nil)).Elem()
+}
+
+func (o ConfigMapListOutput) ToConfigMapListOutput() ConfigMapListOutput {
+	return o
+}
+
+func (o ConfigMapListOutput) ToConfigMapListOutputWithContext(ctx context.Context) ConfigMapListOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ConfigMapListOutput{})
 }

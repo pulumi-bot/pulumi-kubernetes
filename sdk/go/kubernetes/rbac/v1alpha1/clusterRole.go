@@ -4,6 +4,7 @@
 package v1alpha1
 
 import (
+	"context"
 	"reflect"
 
 	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
@@ -32,6 +33,7 @@ func NewClusterRole(ctx *pulumi.Context,
 	if args == nil {
 		args = &ClusterRoleArgs{}
 	}
+
 	args.ApiVersion = pulumi.StringPtr("rbac.authorization.k8s.io/v1alpha1")
 	args.Kind = pulumi.StringPtr("ClusterRole")
 	aliases := pulumi.Aliases([]pulumi.Alias{
@@ -123,4 +125,43 @@ type ClusterRoleArgs struct {
 
 func (ClusterRoleArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*clusterRoleArgs)(nil)).Elem()
+}
+
+type ClusterRoleInput interface {
+	pulumi.Input
+
+	ToClusterRoleOutput() ClusterRoleOutput
+	ToClusterRoleOutputWithContext(ctx context.Context) ClusterRoleOutput
+}
+
+func (ClusterRole) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterRole)(nil)).Elem()
+}
+
+func (i ClusterRole) ToClusterRoleOutput() ClusterRoleOutput {
+	return i.ToClusterRoleOutputWithContext(context.Background())
+}
+
+func (i ClusterRole) ToClusterRoleOutputWithContext(ctx context.Context) ClusterRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterRoleOutput)
+}
+
+type ClusterRoleOutput struct {
+	*pulumi.OutputState
+}
+
+func (ClusterRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterRoleOutput)(nil)).Elem()
+}
+
+func (o ClusterRoleOutput) ToClusterRoleOutput() ClusterRoleOutput {
+	return o
+}
+
+func (o ClusterRoleOutput) ToClusterRoleOutputWithContext(ctx context.Context) ClusterRoleOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ClusterRoleOutput{})
 }

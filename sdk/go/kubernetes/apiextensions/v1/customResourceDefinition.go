@@ -4,6 +4,7 @@
 package v1
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -29,11 +30,12 @@ type CustomResourceDefinition struct {
 // NewCustomResourceDefinition registers a new resource with the given unique name, arguments, and options.
 func NewCustomResourceDefinition(ctx *pulumi.Context,
 	name string, args *CustomResourceDefinitionArgs, opts ...pulumi.ResourceOption) (*CustomResourceDefinition, error) {
-	if args == nil || args.Spec == nil {
-		return nil, errors.New("missing required argument 'Spec'")
-	}
 	if args == nil {
-		args = &CustomResourceDefinitionArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Spec == nil {
+		return nil, errors.New("invalid value for required argument 'Spec'")
 	}
 	args.ApiVersion = pulumi.StringPtr("apiextensions.k8s.io/v1")
 	args.Kind = pulumi.StringPtr("CustomResourceDefinition")
@@ -115,4 +117,43 @@ type CustomResourceDefinitionArgs struct {
 
 func (CustomResourceDefinitionArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*customResourceDefinitionArgs)(nil)).Elem()
+}
+
+type CustomResourceDefinitionInput interface {
+	pulumi.Input
+
+	ToCustomResourceDefinitionOutput() CustomResourceDefinitionOutput
+	ToCustomResourceDefinitionOutputWithContext(ctx context.Context) CustomResourceDefinitionOutput
+}
+
+func (CustomResourceDefinition) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomResourceDefinition)(nil)).Elem()
+}
+
+func (i CustomResourceDefinition) ToCustomResourceDefinitionOutput() CustomResourceDefinitionOutput {
+	return i.ToCustomResourceDefinitionOutputWithContext(context.Background())
+}
+
+func (i CustomResourceDefinition) ToCustomResourceDefinitionOutputWithContext(ctx context.Context) CustomResourceDefinitionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceDefinitionOutput)
+}
+
+type CustomResourceDefinitionOutput struct {
+	*pulumi.OutputState
+}
+
+func (CustomResourceDefinitionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomResourceDefinitionOutput)(nil)).Elem()
+}
+
+func (o CustomResourceDefinitionOutput) ToCustomResourceDefinitionOutput() CustomResourceDefinitionOutput {
+	return o
+}
+
+func (o CustomResourceDefinitionOutput) ToCustomResourceDefinitionOutputWithContext(ctx context.Context) CustomResourceDefinitionOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(CustomResourceDefinitionOutput{})
 }

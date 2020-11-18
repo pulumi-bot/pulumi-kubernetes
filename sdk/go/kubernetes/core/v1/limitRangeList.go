@@ -4,6 +4,7 @@
 package v1
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,11 +29,12 @@ type LimitRangeList struct {
 // NewLimitRangeList registers a new resource with the given unique name, arguments, and options.
 func NewLimitRangeList(ctx *pulumi.Context,
 	name string, args *LimitRangeListArgs, opts ...pulumi.ResourceOption) (*LimitRangeList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &LimitRangeListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("v1")
 	args.Kind = pulumi.StringPtr("LimitRangeList")
@@ -108,4 +110,43 @@ type LimitRangeListArgs struct {
 
 func (LimitRangeListArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*limitRangeListArgs)(nil)).Elem()
+}
+
+type LimitRangeListInput interface {
+	pulumi.Input
+
+	ToLimitRangeListOutput() LimitRangeListOutput
+	ToLimitRangeListOutputWithContext(ctx context.Context) LimitRangeListOutput
+}
+
+func (LimitRangeList) ElementType() reflect.Type {
+	return reflect.TypeOf((*LimitRangeList)(nil)).Elem()
+}
+
+func (i LimitRangeList) ToLimitRangeListOutput() LimitRangeListOutput {
+	return i.ToLimitRangeListOutputWithContext(context.Background())
+}
+
+func (i LimitRangeList) ToLimitRangeListOutputWithContext(ctx context.Context) LimitRangeListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LimitRangeListOutput)
+}
+
+type LimitRangeListOutput struct {
+	*pulumi.OutputState
+}
+
+func (LimitRangeListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LimitRangeListOutput)(nil)).Elem()
+}
+
+func (o LimitRangeListOutput) ToLimitRangeListOutput() LimitRangeListOutput {
+	return o
+}
+
+func (o LimitRangeListOutput) ToLimitRangeListOutputWithContext(ctx context.Context) LimitRangeListOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(LimitRangeListOutput{})
 }
