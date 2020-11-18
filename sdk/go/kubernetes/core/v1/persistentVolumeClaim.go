@@ -4,6 +4,7 @@
 package v1
 
 import (
+	"context"
 	"reflect"
 
 	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
@@ -32,6 +33,7 @@ func NewPersistentVolumeClaim(ctx *pulumi.Context,
 	if args == nil {
 		args = &PersistentVolumeClaimArgs{}
 	}
+
 	args.ApiVersion = pulumi.StringPtr("v1")
 	args.Kind = pulumi.StringPtr("PersistentVolumeClaim")
 	var resource PersistentVolumeClaim
@@ -110,4 +112,43 @@ type PersistentVolumeClaimArgs struct {
 
 func (PersistentVolumeClaimArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*persistentVolumeClaimArgs)(nil)).Elem()
+}
+
+type PersistentVolumeClaimInput interface {
+	pulumi.Input
+
+	ToPersistentVolumeClaimOutput() PersistentVolumeClaimOutput
+	ToPersistentVolumeClaimOutputWithContext(ctx context.Context) PersistentVolumeClaimOutput
+}
+
+func (PersistentVolumeClaim) ElementType() reflect.Type {
+	return reflect.TypeOf((*PersistentVolumeClaim)(nil)).Elem()
+}
+
+func (i PersistentVolumeClaim) ToPersistentVolumeClaimOutput() PersistentVolumeClaimOutput {
+	return i.ToPersistentVolumeClaimOutputWithContext(context.Background())
+}
+
+func (i PersistentVolumeClaim) ToPersistentVolumeClaimOutputWithContext(ctx context.Context) PersistentVolumeClaimOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PersistentVolumeClaimOutput)
+}
+
+type PersistentVolumeClaimOutput struct {
+	*pulumi.OutputState
+}
+
+func (PersistentVolumeClaimOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PersistentVolumeClaimOutput)(nil)).Elem()
+}
+
+func (o PersistentVolumeClaimOutput) ToPersistentVolumeClaimOutput() PersistentVolumeClaimOutput {
+	return o
+}
+
+func (o PersistentVolumeClaimOutput) ToPersistentVolumeClaimOutputWithContext(ctx context.Context) PersistentVolumeClaimOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(PersistentVolumeClaimOutput{})
 }

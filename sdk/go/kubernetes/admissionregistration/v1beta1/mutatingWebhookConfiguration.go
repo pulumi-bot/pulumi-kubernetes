@@ -4,6 +4,7 @@
 package v1beta1
 
 import (
+	"context"
 	"reflect"
 
 	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
@@ -30,6 +31,7 @@ func NewMutatingWebhookConfiguration(ctx *pulumi.Context,
 	if args == nil {
 		args = &MutatingWebhookConfigurationArgs{}
 	}
+
 	args.ApiVersion = pulumi.StringPtr("admissionregistration.k8s.io/v1beta1")
 	args.Kind = pulumi.StringPtr("MutatingWebhookConfiguration")
 	aliases := pulumi.Aliases([]pulumi.Alias{
@@ -110,4 +112,43 @@ type MutatingWebhookConfigurationArgs struct {
 
 func (MutatingWebhookConfigurationArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*mutatingWebhookConfigurationArgs)(nil)).Elem()
+}
+
+type MutatingWebhookConfigurationInput interface {
+	pulumi.Input
+
+	ToMutatingWebhookConfigurationOutput() MutatingWebhookConfigurationOutput
+	ToMutatingWebhookConfigurationOutputWithContext(ctx context.Context) MutatingWebhookConfigurationOutput
+}
+
+func (MutatingWebhookConfiguration) ElementType() reflect.Type {
+	return reflect.TypeOf((*MutatingWebhookConfiguration)(nil)).Elem()
+}
+
+func (i MutatingWebhookConfiguration) ToMutatingWebhookConfigurationOutput() MutatingWebhookConfigurationOutput {
+	return i.ToMutatingWebhookConfigurationOutputWithContext(context.Background())
+}
+
+func (i MutatingWebhookConfiguration) ToMutatingWebhookConfigurationOutputWithContext(ctx context.Context) MutatingWebhookConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MutatingWebhookConfigurationOutput)
+}
+
+type MutatingWebhookConfigurationOutput struct {
+	*pulumi.OutputState
+}
+
+func (MutatingWebhookConfigurationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MutatingWebhookConfigurationOutput)(nil)).Elem()
+}
+
+func (o MutatingWebhookConfigurationOutput) ToMutatingWebhookConfigurationOutput() MutatingWebhookConfigurationOutput {
+	return o
+}
+
+func (o MutatingWebhookConfigurationOutput) ToMutatingWebhookConfigurationOutputWithContext(ctx context.Context) MutatingWebhookConfigurationOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(MutatingWebhookConfigurationOutput{})
 }

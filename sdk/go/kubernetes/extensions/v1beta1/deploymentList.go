@@ -4,6 +4,7 @@
 package v1beta1
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,11 +29,12 @@ type DeploymentList struct {
 // NewDeploymentList registers a new resource with the given unique name, arguments, and options.
 func NewDeploymentList(ctx *pulumi.Context,
 	name string, args *DeploymentListArgs, opts ...pulumi.ResourceOption) (*DeploymentList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &DeploymentListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("extensions/v1beta1")
 	args.Kind = pulumi.StringPtr("DeploymentList")
@@ -108,4 +110,43 @@ type DeploymentListArgs struct {
 
 func (DeploymentListArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*deploymentListArgs)(nil)).Elem()
+}
+
+type DeploymentListInput interface {
+	pulumi.Input
+
+	ToDeploymentListOutput() DeploymentListOutput
+	ToDeploymentListOutputWithContext(ctx context.Context) DeploymentListOutput
+}
+
+func (DeploymentList) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentList)(nil)).Elem()
+}
+
+func (i DeploymentList) ToDeploymentListOutput() DeploymentListOutput {
+	return i.ToDeploymentListOutputWithContext(context.Background())
+}
+
+func (i DeploymentList) ToDeploymentListOutputWithContext(ctx context.Context) DeploymentListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentListOutput)
+}
+
+type DeploymentListOutput struct {
+	*pulumi.OutputState
+}
+
+func (DeploymentListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentListOutput)(nil)).Elem()
+}
+
+func (o DeploymentListOutput) ToDeploymentListOutput() DeploymentListOutput {
+	return o
+}
+
+func (o DeploymentListOutput) ToDeploymentListOutputWithContext(ctx context.Context) DeploymentListOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DeploymentListOutput{})
 }

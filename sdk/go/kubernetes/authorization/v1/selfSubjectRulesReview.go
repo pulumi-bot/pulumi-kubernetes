@@ -4,6 +4,7 @@
 package v1
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -29,11 +30,12 @@ type SelfSubjectRulesReview struct {
 // NewSelfSubjectRulesReview registers a new resource with the given unique name, arguments, and options.
 func NewSelfSubjectRulesReview(ctx *pulumi.Context,
 	name string, args *SelfSubjectRulesReviewArgs, opts ...pulumi.ResourceOption) (*SelfSubjectRulesReview, error) {
-	if args == nil || args.Spec == nil {
-		return nil, errors.New("missing required argument 'Spec'")
-	}
 	if args == nil {
-		args = &SelfSubjectRulesReviewArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Spec == nil {
+		return nil, errors.New("invalid value for required argument 'Spec'")
 	}
 	args.ApiVersion = pulumi.StringPtr("authorization.k8s.io/v1")
 	args.Kind = pulumi.StringPtr("SelfSubjectRulesReview")
@@ -115,4 +117,43 @@ type SelfSubjectRulesReviewArgs struct {
 
 func (SelfSubjectRulesReviewArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*selfSubjectRulesReviewArgs)(nil)).Elem()
+}
+
+type SelfSubjectRulesReviewInput interface {
+	pulumi.Input
+
+	ToSelfSubjectRulesReviewOutput() SelfSubjectRulesReviewOutput
+	ToSelfSubjectRulesReviewOutputWithContext(ctx context.Context) SelfSubjectRulesReviewOutput
+}
+
+func (SelfSubjectRulesReview) ElementType() reflect.Type {
+	return reflect.TypeOf((*SelfSubjectRulesReview)(nil)).Elem()
+}
+
+func (i SelfSubjectRulesReview) ToSelfSubjectRulesReviewOutput() SelfSubjectRulesReviewOutput {
+	return i.ToSelfSubjectRulesReviewOutputWithContext(context.Background())
+}
+
+func (i SelfSubjectRulesReview) ToSelfSubjectRulesReviewOutputWithContext(ctx context.Context) SelfSubjectRulesReviewOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SelfSubjectRulesReviewOutput)
+}
+
+type SelfSubjectRulesReviewOutput struct {
+	*pulumi.OutputState
+}
+
+func (SelfSubjectRulesReviewOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SelfSubjectRulesReviewOutput)(nil)).Elem()
+}
+
+func (o SelfSubjectRulesReviewOutput) ToSelfSubjectRulesReviewOutput() SelfSubjectRulesReviewOutput {
+	return o
+}
+
+func (o SelfSubjectRulesReviewOutput) ToSelfSubjectRulesReviewOutputWithContext(ctx context.Context) SelfSubjectRulesReviewOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SelfSubjectRulesReviewOutput{})
 }

@@ -4,6 +4,7 @@
 package v1beta1
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -29,11 +30,12 @@ type TokenReview struct {
 // NewTokenReview registers a new resource with the given unique name, arguments, and options.
 func NewTokenReview(ctx *pulumi.Context,
 	name string, args *TokenReviewArgs, opts ...pulumi.ResourceOption) (*TokenReview, error) {
-	if args == nil || args.Spec == nil {
-		return nil, errors.New("missing required argument 'Spec'")
-	}
 	if args == nil {
-		args = &TokenReviewArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Spec == nil {
+		return nil, errors.New("invalid value for required argument 'Spec'")
 	}
 	args.ApiVersion = pulumi.StringPtr("authentication.k8s.io/v1beta1")
 	args.Kind = pulumi.StringPtr("TokenReview")
@@ -115,4 +117,43 @@ type TokenReviewArgs struct {
 
 func (TokenReviewArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*tokenReviewArgs)(nil)).Elem()
+}
+
+type TokenReviewInput interface {
+	pulumi.Input
+
+	ToTokenReviewOutput() TokenReviewOutput
+	ToTokenReviewOutputWithContext(ctx context.Context) TokenReviewOutput
+}
+
+func (TokenReview) ElementType() reflect.Type {
+	return reflect.TypeOf((*TokenReview)(nil)).Elem()
+}
+
+func (i TokenReview) ToTokenReviewOutput() TokenReviewOutput {
+	return i.ToTokenReviewOutputWithContext(context.Background())
+}
+
+func (i TokenReview) ToTokenReviewOutputWithContext(ctx context.Context) TokenReviewOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TokenReviewOutput)
+}
+
+type TokenReviewOutput struct {
+	*pulumi.OutputState
+}
+
+func (TokenReviewOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TokenReviewOutput)(nil)).Elem()
+}
+
+func (o TokenReviewOutput) ToTokenReviewOutput() TokenReviewOutput {
+	return o
+}
+
+func (o TokenReviewOutput) ToTokenReviewOutputWithContext(ctx context.Context) TokenReviewOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TokenReviewOutput{})
 }

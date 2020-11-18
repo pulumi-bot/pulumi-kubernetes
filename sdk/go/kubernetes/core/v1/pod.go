@@ -4,6 +4,7 @@
 package v1
 
 import (
+	"context"
 	"reflect"
 
 	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
@@ -47,6 +48,7 @@ func NewPod(ctx *pulumi.Context,
 	if args == nil {
 		args = &PodArgs{}
 	}
+
 	args.ApiVersion = pulumi.StringPtr("v1")
 	args.Kind = pulumi.StringPtr("Pod")
 	var resource Pod
@@ -125,4 +127,43 @@ type PodArgs struct {
 
 func (PodArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*podArgs)(nil)).Elem()
+}
+
+type PodInput interface {
+	pulumi.Input
+
+	ToPodOutput() PodOutput
+	ToPodOutputWithContext(ctx context.Context) PodOutput
+}
+
+func (Pod) ElementType() reflect.Type {
+	return reflect.TypeOf((*Pod)(nil)).Elem()
+}
+
+func (i Pod) ToPodOutput() PodOutput {
+	return i.ToPodOutputWithContext(context.Background())
+}
+
+func (i Pod) ToPodOutputWithContext(ctx context.Context) PodOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PodOutput)
+}
+
+type PodOutput struct {
+	*pulumi.OutputState
+}
+
+func (PodOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PodOutput)(nil)).Elem()
+}
+
+func (o PodOutput) ToPodOutput() PodOutput {
+	return o
+}
+
+func (o PodOutput) ToPodOutputWithContext(ctx context.Context) PodOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(PodOutput{})
 }
