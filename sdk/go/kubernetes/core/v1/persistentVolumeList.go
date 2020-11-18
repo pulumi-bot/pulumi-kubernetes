@@ -4,6 +4,7 @@
 package v1
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,11 +29,12 @@ type PersistentVolumeList struct {
 // NewPersistentVolumeList registers a new resource with the given unique name, arguments, and options.
 func NewPersistentVolumeList(ctx *pulumi.Context,
 	name string, args *PersistentVolumeListArgs, opts ...pulumi.ResourceOption) (*PersistentVolumeList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &PersistentVolumeListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("v1")
 	args.Kind = pulumi.StringPtr("PersistentVolumeList")
@@ -108,4 +110,43 @@ type PersistentVolumeListArgs struct {
 
 func (PersistentVolumeListArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*persistentVolumeListArgs)(nil)).Elem()
+}
+
+type PersistentVolumeListInput interface {
+	pulumi.Input
+
+	ToPersistentVolumeListOutput() PersistentVolumeListOutput
+	ToPersistentVolumeListOutputWithContext(ctx context.Context) PersistentVolumeListOutput
+}
+
+func (PersistentVolumeList) ElementType() reflect.Type {
+	return reflect.TypeOf((*PersistentVolumeList)(nil)).Elem()
+}
+
+func (i PersistentVolumeList) ToPersistentVolumeListOutput() PersistentVolumeListOutput {
+	return i.ToPersistentVolumeListOutputWithContext(context.Background())
+}
+
+func (i PersistentVolumeList) ToPersistentVolumeListOutputWithContext(ctx context.Context) PersistentVolumeListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PersistentVolumeListOutput)
+}
+
+type PersistentVolumeListOutput struct {
+	*pulumi.OutputState
+}
+
+func (PersistentVolumeListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PersistentVolumeListOutput)(nil)).Elem()
+}
+
+func (o PersistentVolumeListOutput) ToPersistentVolumeListOutput() PersistentVolumeListOutput {
+	return o
+}
+
+func (o PersistentVolumeListOutput) ToPersistentVolumeListOutputWithContext(ctx context.Context) PersistentVolumeListOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(PersistentVolumeListOutput{})
 }

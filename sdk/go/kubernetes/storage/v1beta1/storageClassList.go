@@ -4,6 +4,7 @@
 package v1beta1
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,11 +29,12 @@ type StorageClassList struct {
 // NewStorageClassList registers a new resource with the given unique name, arguments, and options.
 func NewStorageClassList(ctx *pulumi.Context,
 	name string, args *StorageClassListArgs, opts ...pulumi.ResourceOption) (*StorageClassList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &StorageClassListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("storage.k8s.io/v1beta1")
 	args.Kind = pulumi.StringPtr("StorageClassList")
@@ -108,4 +110,43 @@ type StorageClassListArgs struct {
 
 func (StorageClassListArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*storageClassListArgs)(nil)).Elem()
+}
+
+type StorageClassListInput interface {
+	pulumi.Input
+
+	ToStorageClassListOutput() StorageClassListOutput
+	ToStorageClassListOutputWithContext(ctx context.Context) StorageClassListOutput
+}
+
+func (StorageClassList) ElementType() reflect.Type {
+	return reflect.TypeOf((*StorageClassList)(nil)).Elem()
+}
+
+func (i StorageClassList) ToStorageClassListOutput() StorageClassListOutput {
+	return i.ToStorageClassListOutputWithContext(context.Background())
+}
+
+func (i StorageClassList) ToStorageClassListOutputWithContext(ctx context.Context) StorageClassListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StorageClassListOutput)
+}
+
+type StorageClassListOutput struct {
+	*pulumi.OutputState
+}
+
+func (StorageClassListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StorageClassListOutput)(nil)).Elem()
+}
+
+func (o StorageClassListOutput) ToStorageClassListOutput() StorageClassListOutput {
+	return o
+}
+
+func (o StorageClassListOutput) ToStorageClassListOutputWithContext(ctx context.Context) StorageClassListOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(StorageClassListOutput{})
 }

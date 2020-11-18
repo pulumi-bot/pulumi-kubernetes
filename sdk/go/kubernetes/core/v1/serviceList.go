@@ -4,6 +4,7 @@
 package v1
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,11 +29,12 @@ type ServiceList struct {
 // NewServiceList registers a new resource with the given unique name, arguments, and options.
 func NewServiceList(ctx *pulumi.Context,
 	name string, args *ServiceListArgs, opts ...pulumi.ResourceOption) (*ServiceList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &ServiceListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("v1")
 	args.Kind = pulumi.StringPtr("ServiceList")
@@ -108,4 +110,43 @@ type ServiceListArgs struct {
 
 func (ServiceListArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*serviceListArgs)(nil)).Elem()
+}
+
+type ServiceListInput interface {
+	pulumi.Input
+
+	ToServiceListOutput() ServiceListOutput
+	ToServiceListOutputWithContext(ctx context.Context) ServiceListOutput
+}
+
+func (ServiceList) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceList)(nil)).Elem()
+}
+
+func (i ServiceList) ToServiceListOutput() ServiceListOutput {
+	return i.ToServiceListOutputWithContext(context.Background())
+}
+
+func (i ServiceList) ToServiceListOutputWithContext(ctx context.Context) ServiceListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceListOutput)
+}
+
+type ServiceListOutput struct {
+	*pulumi.OutputState
+}
+
+func (ServiceListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceListOutput)(nil)).Elem()
+}
+
+func (o ServiceListOutput) ToServiceListOutput() ServiceListOutput {
+	return o
+}
+
+func (o ServiceListOutput) ToServiceListOutputWithContext(ctx context.Context) ServiceListOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ServiceListOutput{})
 }

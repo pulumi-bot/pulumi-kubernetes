@@ -4,6 +4,7 @@
 package v1
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,11 +29,12 @@ type MutatingWebhookConfigurationList struct {
 // NewMutatingWebhookConfigurationList registers a new resource with the given unique name, arguments, and options.
 func NewMutatingWebhookConfigurationList(ctx *pulumi.Context,
 	name string, args *MutatingWebhookConfigurationListArgs, opts ...pulumi.ResourceOption) (*MutatingWebhookConfigurationList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &MutatingWebhookConfigurationListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("admissionregistration.k8s.io/v1")
 	args.Kind = pulumi.StringPtr("MutatingWebhookConfigurationList")
@@ -108,4 +110,43 @@ type MutatingWebhookConfigurationListArgs struct {
 
 func (MutatingWebhookConfigurationListArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*mutatingWebhookConfigurationListArgs)(nil)).Elem()
+}
+
+type MutatingWebhookConfigurationListInput interface {
+	pulumi.Input
+
+	ToMutatingWebhookConfigurationListOutput() MutatingWebhookConfigurationListOutput
+	ToMutatingWebhookConfigurationListOutputWithContext(ctx context.Context) MutatingWebhookConfigurationListOutput
+}
+
+func (MutatingWebhookConfigurationList) ElementType() reflect.Type {
+	return reflect.TypeOf((*MutatingWebhookConfigurationList)(nil)).Elem()
+}
+
+func (i MutatingWebhookConfigurationList) ToMutatingWebhookConfigurationListOutput() MutatingWebhookConfigurationListOutput {
+	return i.ToMutatingWebhookConfigurationListOutputWithContext(context.Background())
+}
+
+func (i MutatingWebhookConfigurationList) ToMutatingWebhookConfigurationListOutputWithContext(ctx context.Context) MutatingWebhookConfigurationListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MutatingWebhookConfigurationListOutput)
+}
+
+type MutatingWebhookConfigurationListOutput struct {
+	*pulumi.OutputState
+}
+
+func (MutatingWebhookConfigurationListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MutatingWebhookConfigurationListOutput)(nil)).Elem()
+}
+
+func (o MutatingWebhookConfigurationListOutput) ToMutatingWebhookConfigurationListOutput() MutatingWebhookConfigurationListOutput {
+	return o
+}
+
+func (o MutatingWebhookConfigurationListOutput) ToMutatingWebhookConfigurationListOutputWithContext(ctx context.Context) MutatingWebhookConfigurationListOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(MutatingWebhookConfigurationListOutput{})
 }

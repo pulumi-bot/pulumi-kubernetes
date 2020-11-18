@@ -4,6 +4,7 @@
 package v1
 
 import (
+	"context"
 	"reflect"
 
 	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
@@ -31,6 +32,7 @@ func NewAPIService(ctx *pulumi.Context,
 	if args == nil {
 		args = &APIServiceArgs{}
 	}
+
 	args.ApiVersion = pulumi.StringPtr("apiregistration.k8s.io/v1")
 	args.Kind = pulumi.StringPtr("APIService")
 	aliases := pulumi.Aliases([]pulumi.Alias{
@@ -117,4 +119,43 @@ type APIServiceArgs struct {
 
 func (APIServiceArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*apiserviceArgs)(nil)).Elem()
+}
+
+type APIServiceInput interface {
+	pulumi.Input
+
+	ToAPIServiceOutput() APIServiceOutput
+	ToAPIServiceOutputWithContext(ctx context.Context) APIServiceOutput
+}
+
+func (APIService) ElementType() reflect.Type {
+	return reflect.TypeOf((*APIService)(nil)).Elem()
+}
+
+func (i APIService) ToAPIServiceOutput() APIServiceOutput {
+	return i.ToAPIServiceOutputWithContext(context.Background())
+}
+
+func (i APIService) ToAPIServiceOutputWithContext(ctx context.Context) APIServiceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(APIServiceOutput)
+}
+
+type APIServiceOutput struct {
+	*pulumi.OutputState
+}
+
+func (APIServiceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*APIServiceOutput)(nil)).Elem()
+}
+
+func (o APIServiceOutput) ToAPIServiceOutput() APIServiceOutput {
+	return o
+}
+
+func (o APIServiceOutput) ToAPIServiceOutputWithContext(ctx context.Context) APIServiceOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(APIServiceOutput{})
 }

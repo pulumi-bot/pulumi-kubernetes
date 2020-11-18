@@ -4,6 +4,7 @@
 package v1alpha1
 
 import (
+	"context"
 	"reflect"
 
 	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
@@ -32,6 +33,7 @@ func NewFlowSchema(ctx *pulumi.Context,
 	if args == nil {
 		args = &FlowSchemaArgs{}
 	}
+
 	args.ApiVersion = pulumi.StringPtr("flowcontrol.apiserver.k8s.io/v1alpha1")
 	args.Kind = pulumi.StringPtr("FlowSchema")
 	var resource FlowSchema
@@ -110,4 +112,43 @@ type FlowSchemaArgs struct {
 
 func (FlowSchemaArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*flowSchemaArgs)(nil)).Elem()
+}
+
+type FlowSchemaInput interface {
+	pulumi.Input
+
+	ToFlowSchemaOutput() FlowSchemaOutput
+	ToFlowSchemaOutputWithContext(ctx context.Context) FlowSchemaOutput
+}
+
+func (FlowSchema) ElementType() reflect.Type {
+	return reflect.TypeOf((*FlowSchema)(nil)).Elem()
+}
+
+func (i FlowSchema) ToFlowSchemaOutput() FlowSchemaOutput {
+	return i.ToFlowSchemaOutputWithContext(context.Background())
+}
+
+func (i FlowSchema) ToFlowSchemaOutputWithContext(ctx context.Context) FlowSchemaOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FlowSchemaOutput)
+}
+
+type FlowSchemaOutput struct {
+	*pulumi.OutputState
+}
+
+func (FlowSchemaOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FlowSchemaOutput)(nil)).Elem()
+}
+
+func (o FlowSchemaOutput) ToFlowSchemaOutput() FlowSchemaOutput {
+	return o
+}
+
+func (o FlowSchemaOutput) ToFlowSchemaOutputWithContext(ctx context.Context) FlowSchemaOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(FlowSchemaOutput{})
 }

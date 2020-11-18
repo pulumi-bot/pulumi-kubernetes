@@ -4,6 +4,7 @@
 package v1
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,11 +29,12 @@ type ServiceAccountList struct {
 // NewServiceAccountList registers a new resource with the given unique name, arguments, and options.
 func NewServiceAccountList(ctx *pulumi.Context,
 	name string, args *ServiceAccountListArgs, opts ...pulumi.ResourceOption) (*ServiceAccountList, error) {
-	if args == nil || args.Items == nil {
-		return nil, errors.New("missing required argument 'Items'")
-	}
 	if args == nil {
-		args = &ServiceAccountListArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Items == nil {
+		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	args.ApiVersion = pulumi.StringPtr("v1")
 	args.Kind = pulumi.StringPtr("ServiceAccountList")
@@ -108,4 +110,43 @@ type ServiceAccountListArgs struct {
 
 func (ServiceAccountListArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*serviceAccountListArgs)(nil)).Elem()
+}
+
+type ServiceAccountListInput interface {
+	pulumi.Input
+
+	ToServiceAccountListOutput() ServiceAccountListOutput
+	ToServiceAccountListOutputWithContext(ctx context.Context) ServiceAccountListOutput
+}
+
+func (ServiceAccountList) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceAccountList)(nil)).Elem()
+}
+
+func (i ServiceAccountList) ToServiceAccountListOutput() ServiceAccountListOutput {
+	return i.ToServiceAccountListOutputWithContext(context.Background())
+}
+
+func (i ServiceAccountList) ToServiceAccountListOutputWithContext(ctx context.Context) ServiceAccountListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceAccountListOutput)
+}
+
+type ServiceAccountListOutput struct {
+	*pulumi.OutputState
+}
+
+func (ServiceAccountListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceAccountListOutput)(nil)).Elem()
+}
+
+func (o ServiceAccountListOutput) ToServiceAccountListOutput() ServiceAccountListOutput {
+	return o
+}
+
+func (o ServiceAccountListOutput) ToServiceAccountListOutputWithContext(ctx context.Context) ServiceAccountListOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ServiceAccountListOutput{})
 }
