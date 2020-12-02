@@ -35,3 +35,24 @@ from . import (
     settings,
     storage,
 )
+
+def _register_module():
+    import pulumi
+    from . import _utilities
+
+
+    class Package(pulumi.runtime.ResourcePackage):
+        _version = _utilities.get_semver_version()
+
+        def version(self):
+            return Package._version
+
+        def construct_provider(self, name: str, typ: str, urn: str) -> pulumi.ProviderResource:
+            if typ != "pulumi:providers:kubernetes":
+                raise Exception(f"unknown provider type {typ}")
+            return Provider(name, pulumi.ResourceOptions(urn=urn))
+
+
+    pulumi.runtime.register_resource_package("kubernetes", Package())
+
+_register_module()
