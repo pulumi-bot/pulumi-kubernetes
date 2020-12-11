@@ -148,6 +148,13 @@ type RuntimeClassInput interface {
 	ToRuntimeClassOutputWithContext(ctx context.Context) RuntimeClassOutput
 }
 
+type RuntimeClassPtrInput interface {
+	pulumi.Input
+
+	ToRuntimeClassPtrOutput() RuntimeClassPtrOutput
+	ToRuntimeClassPtrOutputWithContext(ctx context.Context) RuntimeClassPtrOutput
+}
+
 func (RuntimeClass) ElementType() reflect.Type {
 	return reflect.TypeOf((*RuntimeClass)(nil)).Elem()
 }
@@ -158,6 +165,14 @@ func (i RuntimeClass) ToRuntimeClassOutput() RuntimeClassOutput {
 
 func (i RuntimeClass) ToRuntimeClassOutputWithContext(ctx context.Context) RuntimeClassOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RuntimeClassOutput)
+}
+
+func (i RuntimeClass) ToRuntimeClassPtrOutput() RuntimeClassPtrOutput {
+	return i.ToRuntimeClassPtrOutputWithContext(context.Background())
+}
+
+func (i RuntimeClass) ToRuntimeClassPtrOutputWithContext(ctx context.Context) RuntimeClassPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuntimeClassPtrOutput)
 }
 
 type RuntimeClassOutput struct {
@@ -176,6 +191,23 @@ func (o RuntimeClassOutput) ToRuntimeClassOutputWithContext(ctx context.Context)
 	return o
 }
 
+type RuntimeClassPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RuntimeClassPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuntimeClass)(nil)).Elem()
+}
+
+func (o RuntimeClassPtrOutput) ToRuntimeClassPtrOutput() RuntimeClassPtrOutput {
+	return o
+}
+
+func (o RuntimeClassPtrOutput) ToRuntimeClassPtrOutputWithContext(ctx context.Context) RuntimeClassPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(RuntimeClassOutput{})
+	pulumi.RegisterOutputType(RuntimeClassPtrOutput{})
 }

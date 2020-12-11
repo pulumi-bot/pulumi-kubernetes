@@ -116,6 +116,13 @@ type PodDisruptionBudgetInput interface {
 	ToPodDisruptionBudgetOutputWithContext(ctx context.Context) PodDisruptionBudgetOutput
 }
 
+type PodDisruptionBudgetPtrInput interface {
+	pulumi.Input
+
+	ToPodDisruptionBudgetPtrOutput() PodDisruptionBudgetPtrOutput
+	ToPodDisruptionBudgetPtrOutputWithContext(ctx context.Context) PodDisruptionBudgetPtrOutput
+}
+
 func (PodDisruptionBudget) ElementType() reflect.Type {
 	return reflect.TypeOf((*PodDisruptionBudget)(nil)).Elem()
 }
@@ -126,6 +133,14 @@ func (i PodDisruptionBudget) ToPodDisruptionBudgetOutput() PodDisruptionBudgetOu
 
 func (i PodDisruptionBudget) ToPodDisruptionBudgetOutputWithContext(ctx context.Context) PodDisruptionBudgetOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PodDisruptionBudgetOutput)
+}
+
+func (i PodDisruptionBudget) ToPodDisruptionBudgetPtrOutput() PodDisruptionBudgetPtrOutput {
+	return i.ToPodDisruptionBudgetPtrOutputWithContext(context.Background())
+}
+
+func (i PodDisruptionBudget) ToPodDisruptionBudgetPtrOutputWithContext(ctx context.Context) PodDisruptionBudgetPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PodDisruptionBudgetPtrOutput)
 }
 
 type PodDisruptionBudgetOutput struct {
@@ -144,6 +159,23 @@ func (o PodDisruptionBudgetOutput) ToPodDisruptionBudgetOutputWithContext(ctx co
 	return o
 }
 
+type PodDisruptionBudgetPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (PodDisruptionBudgetPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PodDisruptionBudget)(nil)).Elem()
+}
+
+func (o PodDisruptionBudgetPtrOutput) ToPodDisruptionBudgetPtrOutput() PodDisruptionBudgetPtrOutput {
+	return o
+}
+
+func (o PodDisruptionBudgetPtrOutput) ToPodDisruptionBudgetPtrOutputWithContext(ctx context.Context) PodDisruptionBudgetPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(PodDisruptionBudgetOutput{})
+	pulumi.RegisterOutputType(PodDisruptionBudgetPtrOutput{})
 }

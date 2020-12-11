@@ -126,6 +126,13 @@ type SelfSubjectRulesReviewInput interface {
 	ToSelfSubjectRulesReviewOutputWithContext(ctx context.Context) SelfSubjectRulesReviewOutput
 }
 
+type SelfSubjectRulesReviewPtrInput interface {
+	pulumi.Input
+
+	ToSelfSubjectRulesReviewPtrOutput() SelfSubjectRulesReviewPtrOutput
+	ToSelfSubjectRulesReviewPtrOutputWithContext(ctx context.Context) SelfSubjectRulesReviewPtrOutput
+}
+
 func (SelfSubjectRulesReview) ElementType() reflect.Type {
 	return reflect.TypeOf((*SelfSubjectRulesReview)(nil)).Elem()
 }
@@ -136,6 +143,14 @@ func (i SelfSubjectRulesReview) ToSelfSubjectRulesReviewOutput() SelfSubjectRule
 
 func (i SelfSubjectRulesReview) ToSelfSubjectRulesReviewOutputWithContext(ctx context.Context) SelfSubjectRulesReviewOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SelfSubjectRulesReviewOutput)
+}
+
+func (i SelfSubjectRulesReview) ToSelfSubjectRulesReviewPtrOutput() SelfSubjectRulesReviewPtrOutput {
+	return i.ToSelfSubjectRulesReviewPtrOutputWithContext(context.Background())
+}
+
+func (i SelfSubjectRulesReview) ToSelfSubjectRulesReviewPtrOutputWithContext(ctx context.Context) SelfSubjectRulesReviewPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SelfSubjectRulesReviewPtrOutput)
 }
 
 type SelfSubjectRulesReviewOutput struct {
@@ -154,6 +169,23 @@ func (o SelfSubjectRulesReviewOutput) ToSelfSubjectRulesReviewOutputWithContext(
 	return o
 }
 
+type SelfSubjectRulesReviewPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (SelfSubjectRulesReviewPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SelfSubjectRulesReview)(nil)).Elem()
+}
+
+func (o SelfSubjectRulesReviewPtrOutput) ToSelfSubjectRulesReviewPtrOutput() SelfSubjectRulesReviewPtrOutput {
+	return o
+}
+
+func (o SelfSubjectRulesReviewPtrOutput) ToSelfSubjectRulesReviewPtrOutputWithContext(ctx context.Context) SelfSubjectRulesReviewPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(SelfSubjectRulesReviewOutput{})
+	pulumi.RegisterOutputType(SelfSubjectRulesReviewPtrOutput{})
 }

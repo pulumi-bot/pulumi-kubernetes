@@ -119,6 +119,13 @@ type NodeListInput interface {
 	ToNodeListOutputWithContext(ctx context.Context) NodeListOutput
 }
 
+type NodeListPtrInput interface {
+	pulumi.Input
+
+	ToNodeListPtrOutput() NodeListPtrOutput
+	ToNodeListPtrOutputWithContext(ctx context.Context) NodeListPtrOutput
+}
+
 func (NodeList) ElementType() reflect.Type {
 	return reflect.TypeOf((*NodeList)(nil)).Elem()
 }
@@ -129,6 +136,14 @@ func (i NodeList) ToNodeListOutput() NodeListOutput {
 
 func (i NodeList) ToNodeListOutputWithContext(ctx context.Context) NodeListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NodeListOutput)
+}
+
+func (i NodeList) ToNodeListPtrOutput() NodeListPtrOutput {
+	return i.ToNodeListPtrOutputWithContext(context.Background())
+}
+
+func (i NodeList) ToNodeListPtrOutputWithContext(ctx context.Context) NodeListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodeListPtrOutput)
 }
 
 type NodeListOutput struct {
@@ -147,6 +162,23 @@ func (o NodeListOutput) ToNodeListOutputWithContext(ctx context.Context) NodeLis
 	return o
 }
 
+type NodeListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (NodeListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NodeList)(nil)).Elem()
+}
+
+func (o NodeListPtrOutput) ToNodeListPtrOutput() NodeListPtrOutput {
+	return o
+}
+
+func (o NodeListPtrOutput) ToNodeListPtrOutputWithContext(ctx context.Context) NodeListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(NodeListOutput{})
+	pulumi.RegisterOutputType(NodeListPtrOutput{})
 }

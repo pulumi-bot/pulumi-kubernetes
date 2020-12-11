@@ -132,6 +132,13 @@ type CertificateSigningRequestInput interface {
 	ToCertificateSigningRequestOutputWithContext(ctx context.Context) CertificateSigningRequestOutput
 }
 
+type CertificateSigningRequestPtrInput interface {
+	pulumi.Input
+
+	ToCertificateSigningRequestPtrOutput() CertificateSigningRequestPtrOutput
+	ToCertificateSigningRequestPtrOutputWithContext(ctx context.Context) CertificateSigningRequestPtrOutput
+}
+
 func (CertificateSigningRequest) ElementType() reflect.Type {
 	return reflect.TypeOf((*CertificateSigningRequest)(nil)).Elem()
 }
@@ -142,6 +149,14 @@ func (i CertificateSigningRequest) ToCertificateSigningRequestOutput() Certifica
 
 func (i CertificateSigningRequest) ToCertificateSigningRequestOutputWithContext(ctx context.Context) CertificateSigningRequestOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CertificateSigningRequestOutput)
+}
+
+func (i CertificateSigningRequest) ToCertificateSigningRequestPtrOutput() CertificateSigningRequestPtrOutput {
+	return i.ToCertificateSigningRequestPtrOutputWithContext(context.Background())
+}
+
+func (i CertificateSigningRequest) ToCertificateSigningRequestPtrOutputWithContext(ctx context.Context) CertificateSigningRequestPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CertificateSigningRequestPtrOutput)
 }
 
 type CertificateSigningRequestOutput struct {
@@ -160,6 +175,23 @@ func (o CertificateSigningRequestOutput) ToCertificateSigningRequestOutputWithCo
 	return o
 }
 
+type CertificateSigningRequestPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (CertificateSigningRequestPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CertificateSigningRequest)(nil)).Elem()
+}
+
+func (o CertificateSigningRequestPtrOutput) ToCertificateSigningRequestPtrOutput() CertificateSigningRequestPtrOutput {
+	return o
+}
+
+func (o CertificateSigningRequestPtrOutput) ToCertificateSigningRequestPtrOutputWithContext(ctx context.Context) CertificateSigningRequestPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(CertificateSigningRequestOutput{})
+	pulumi.RegisterOutputType(CertificateSigningRequestPtrOutput{})
 }

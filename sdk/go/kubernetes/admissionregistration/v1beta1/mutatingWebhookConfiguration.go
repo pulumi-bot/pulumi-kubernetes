@@ -121,6 +121,13 @@ type MutatingWebhookConfigurationInput interface {
 	ToMutatingWebhookConfigurationOutputWithContext(ctx context.Context) MutatingWebhookConfigurationOutput
 }
 
+type MutatingWebhookConfigurationPtrInput interface {
+	pulumi.Input
+
+	ToMutatingWebhookConfigurationPtrOutput() MutatingWebhookConfigurationPtrOutput
+	ToMutatingWebhookConfigurationPtrOutputWithContext(ctx context.Context) MutatingWebhookConfigurationPtrOutput
+}
+
 func (MutatingWebhookConfiguration) ElementType() reflect.Type {
 	return reflect.TypeOf((*MutatingWebhookConfiguration)(nil)).Elem()
 }
@@ -131,6 +138,14 @@ func (i MutatingWebhookConfiguration) ToMutatingWebhookConfigurationOutput() Mut
 
 func (i MutatingWebhookConfiguration) ToMutatingWebhookConfigurationOutputWithContext(ctx context.Context) MutatingWebhookConfigurationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(MutatingWebhookConfigurationOutput)
+}
+
+func (i MutatingWebhookConfiguration) ToMutatingWebhookConfigurationPtrOutput() MutatingWebhookConfigurationPtrOutput {
+	return i.ToMutatingWebhookConfigurationPtrOutputWithContext(context.Background())
+}
+
+func (i MutatingWebhookConfiguration) ToMutatingWebhookConfigurationPtrOutputWithContext(ctx context.Context) MutatingWebhookConfigurationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MutatingWebhookConfigurationPtrOutput)
 }
 
 type MutatingWebhookConfigurationOutput struct {
@@ -149,6 +164,23 @@ func (o MutatingWebhookConfigurationOutput) ToMutatingWebhookConfigurationOutput
 	return o
 }
 
+type MutatingWebhookConfigurationPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (MutatingWebhookConfigurationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**MutatingWebhookConfiguration)(nil)).Elem()
+}
+
+func (o MutatingWebhookConfigurationPtrOutput) ToMutatingWebhookConfigurationPtrOutput() MutatingWebhookConfigurationPtrOutput {
+	return o
+}
+
+func (o MutatingWebhookConfigurationPtrOutput) ToMutatingWebhookConfigurationPtrOutputWithContext(ctx context.Context) MutatingWebhookConfigurationPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(MutatingWebhookConfigurationOutput{})
+	pulumi.RegisterOutputType(MutatingWebhookConfigurationPtrOutput{})
 }

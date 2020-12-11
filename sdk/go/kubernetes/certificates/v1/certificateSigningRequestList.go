@@ -114,6 +114,13 @@ type CertificateSigningRequestListInput interface {
 	ToCertificateSigningRequestListOutputWithContext(ctx context.Context) CertificateSigningRequestListOutput
 }
 
+type CertificateSigningRequestListPtrInput interface {
+	pulumi.Input
+
+	ToCertificateSigningRequestListPtrOutput() CertificateSigningRequestListPtrOutput
+	ToCertificateSigningRequestListPtrOutputWithContext(ctx context.Context) CertificateSigningRequestListPtrOutput
+}
+
 func (CertificateSigningRequestList) ElementType() reflect.Type {
 	return reflect.TypeOf((*CertificateSigningRequestList)(nil)).Elem()
 }
@@ -124,6 +131,14 @@ func (i CertificateSigningRequestList) ToCertificateSigningRequestListOutput() C
 
 func (i CertificateSigningRequestList) ToCertificateSigningRequestListOutputWithContext(ctx context.Context) CertificateSigningRequestListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CertificateSigningRequestListOutput)
+}
+
+func (i CertificateSigningRequestList) ToCertificateSigningRequestListPtrOutput() CertificateSigningRequestListPtrOutput {
+	return i.ToCertificateSigningRequestListPtrOutputWithContext(context.Background())
+}
+
+func (i CertificateSigningRequestList) ToCertificateSigningRequestListPtrOutputWithContext(ctx context.Context) CertificateSigningRequestListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CertificateSigningRequestListPtrOutput)
 }
 
 type CertificateSigningRequestListOutput struct {
@@ -142,6 +157,23 @@ func (o CertificateSigningRequestListOutput) ToCertificateSigningRequestListOutp
 	return o
 }
 
+type CertificateSigningRequestListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (CertificateSigningRequestListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CertificateSigningRequestList)(nil)).Elem()
+}
+
+func (o CertificateSigningRequestListPtrOutput) ToCertificateSigningRequestListPtrOutput() CertificateSigningRequestListPtrOutput {
+	return o
+}
+
+func (o CertificateSigningRequestListPtrOutput) ToCertificateSigningRequestListPtrOutputWithContext(ctx context.Context) CertificateSigningRequestListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(CertificateSigningRequestListOutput{})
+	pulumi.RegisterOutputType(CertificateSigningRequestListPtrOutput{})
 }

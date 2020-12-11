@@ -121,6 +121,13 @@ type PodSecurityPolicyInput interface {
 	ToPodSecurityPolicyOutputWithContext(ctx context.Context) PodSecurityPolicyOutput
 }
 
+type PodSecurityPolicyPtrInput interface {
+	pulumi.Input
+
+	ToPodSecurityPolicyPtrOutput() PodSecurityPolicyPtrOutput
+	ToPodSecurityPolicyPtrOutputWithContext(ctx context.Context) PodSecurityPolicyPtrOutput
+}
+
 func (PodSecurityPolicy) ElementType() reflect.Type {
 	return reflect.TypeOf((*PodSecurityPolicy)(nil)).Elem()
 }
@@ -131,6 +138,14 @@ func (i PodSecurityPolicy) ToPodSecurityPolicyOutput() PodSecurityPolicyOutput {
 
 func (i PodSecurityPolicy) ToPodSecurityPolicyOutputWithContext(ctx context.Context) PodSecurityPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PodSecurityPolicyOutput)
+}
+
+func (i PodSecurityPolicy) ToPodSecurityPolicyPtrOutput() PodSecurityPolicyPtrOutput {
+	return i.ToPodSecurityPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i PodSecurityPolicy) ToPodSecurityPolicyPtrOutputWithContext(ctx context.Context) PodSecurityPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PodSecurityPolicyPtrOutput)
 }
 
 type PodSecurityPolicyOutput struct {
@@ -149,6 +164,23 @@ func (o PodSecurityPolicyOutput) ToPodSecurityPolicyOutputWithContext(ctx contex
 	return o
 }
 
+type PodSecurityPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (PodSecurityPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PodSecurityPolicy)(nil)).Elem()
+}
+
+func (o PodSecurityPolicyPtrOutput) ToPodSecurityPolicyPtrOutput() PodSecurityPolicyPtrOutput {
+	return o
+}
+
+func (o PodSecurityPolicyPtrOutput) ToPodSecurityPolicyPtrOutputWithContext(ctx context.Context) PodSecurityPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(PodSecurityPolicyOutput{})
+	pulumi.RegisterOutputType(PodSecurityPolicyPtrOutput{})
 }

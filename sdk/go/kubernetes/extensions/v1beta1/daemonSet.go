@@ -132,6 +132,13 @@ type DaemonSetInput interface {
 	ToDaemonSetOutputWithContext(ctx context.Context) DaemonSetOutput
 }
 
+type DaemonSetPtrInput interface {
+	pulumi.Input
+
+	ToDaemonSetPtrOutput() DaemonSetPtrOutput
+	ToDaemonSetPtrOutputWithContext(ctx context.Context) DaemonSetPtrOutput
+}
+
 func (DaemonSet) ElementType() reflect.Type {
 	return reflect.TypeOf((*DaemonSet)(nil)).Elem()
 }
@@ -142,6 +149,14 @@ func (i DaemonSet) ToDaemonSetOutput() DaemonSetOutput {
 
 func (i DaemonSet) ToDaemonSetOutputWithContext(ctx context.Context) DaemonSetOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DaemonSetOutput)
+}
+
+func (i DaemonSet) ToDaemonSetPtrOutput() DaemonSetPtrOutput {
+	return i.ToDaemonSetPtrOutputWithContext(context.Background())
+}
+
+func (i DaemonSet) ToDaemonSetPtrOutputWithContext(ctx context.Context) DaemonSetPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DaemonSetPtrOutput)
 }
 
 type DaemonSetOutput struct {
@@ -160,6 +175,23 @@ func (o DaemonSetOutput) ToDaemonSetOutputWithContext(ctx context.Context) Daemo
 	return o
 }
 
+type DaemonSetPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (DaemonSetPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DaemonSet)(nil)).Elem()
+}
+
+func (o DaemonSetPtrOutput) ToDaemonSetPtrOutput() DaemonSetPtrOutput {
+	return o
+}
+
+func (o DaemonSetPtrOutput) ToDaemonSetPtrOutputWithContext(ctx context.Context) DaemonSetPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(DaemonSetOutput{})
+	pulumi.RegisterOutputType(DaemonSetPtrOutput{})
 }

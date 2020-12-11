@@ -127,6 +127,13 @@ type PriorityLevelConfigurationInput interface {
 	ToPriorityLevelConfigurationOutputWithContext(ctx context.Context) PriorityLevelConfigurationOutput
 }
 
+type PriorityLevelConfigurationPtrInput interface {
+	pulumi.Input
+
+	ToPriorityLevelConfigurationPtrOutput() PriorityLevelConfigurationPtrOutput
+	ToPriorityLevelConfigurationPtrOutputWithContext(ctx context.Context) PriorityLevelConfigurationPtrOutput
+}
+
 func (PriorityLevelConfiguration) ElementType() reflect.Type {
 	return reflect.TypeOf((*PriorityLevelConfiguration)(nil)).Elem()
 }
@@ -137,6 +144,14 @@ func (i PriorityLevelConfiguration) ToPriorityLevelConfigurationOutput() Priorit
 
 func (i PriorityLevelConfiguration) ToPriorityLevelConfigurationOutputWithContext(ctx context.Context) PriorityLevelConfigurationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PriorityLevelConfigurationOutput)
+}
+
+func (i PriorityLevelConfiguration) ToPriorityLevelConfigurationPtrOutput() PriorityLevelConfigurationPtrOutput {
+	return i.ToPriorityLevelConfigurationPtrOutputWithContext(context.Background())
+}
+
+func (i PriorityLevelConfiguration) ToPriorityLevelConfigurationPtrOutputWithContext(ctx context.Context) PriorityLevelConfigurationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PriorityLevelConfigurationPtrOutput)
 }
 
 type PriorityLevelConfigurationOutput struct {
@@ -155,6 +170,23 @@ func (o PriorityLevelConfigurationOutput) ToPriorityLevelConfigurationOutputWith
 	return o
 }
 
+type PriorityLevelConfigurationPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (PriorityLevelConfigurationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PriorityLevelConfiguration)(nil)).Elem()
+}
+
+func (o PriorityLevelConfigurationPtrOutput) ToPriorityLevelConfigurationPtrOutput() PriorityLevelConfigurationPtrOutput {
+	return o
+}
+
+func (o PriorityLevelConfigurationPtrOutput) ToPriorityLevelConfigurationPtrOutputWithContext(ctx context.Context) PriorityLevelConfigurationPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(PriorityLevelConfigurationOutput{})
+	pulumi.RegisterOutputType(PriorityLevelConfigurationPtrOutput{})
 }

@@ -258,7 +258,7 @@ func (i AuditSinkSpecArgs) ToAuditSinkSpecPtrOutput() AuditSinkSpecPtrOutput {
 }
 
 func (i AuditSinkSpecArgs) ToAuditSinkSpecPtrOutputWithContext(ctx context.Context) AuditSinkSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AuditSinkSpecOutput).ToAuditSinkSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AuditSinkSpecOutput).ToAuditSinkSpecPtrOutput()
 }
 
 // AuditSinkSpecPtrInput is an input type that accepts AuditSinkSpecArgs, AuditSinkSpecPtr and AuditSinkSpecPtrOutput values.
@@ -291,7 +291,7 @@ func (i *auditSinkSpecPtrType) ToAuditSinkSpecPtrOutput() AuditSinkSpecPtrOutput
 }
 
 func (i *auditSinkSpecPtrType) ToAuditSinkSpecPtrOutputWithContext(ctx context.Context) AuditSinkSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AuditSinkSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AuditSinkSpecOutput).ToAuditSinkSpecPtrOutput()
 }
 
 // AuditSinkSpec holds the spec for the audit sink
@@ -411,7 +411,7 @@ func (i PolicyArgs) ToPolicyPtrOutput() PolicyPtrOutput {
 }
 
 func (i PolicyArgs) ToPolicyPtrOutputWithContext(ctx context.Context) PolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PolicyOutput).ToPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PolicyOutput).ToPolicyPtrOutput()
 }
 
 // PolicyPtrInput is an input type that accepts PolicyArgs, PolicyPtr and PolicyPtrOutput values.
@@ -444,7 +444,7 @@ func (i *policyPtrType) ToPolicyPtrOutput() PolicyPtrOutput {
 }
 
 func (i *policyPtrType) ToPolicyPtrOutputWithContext(ctx context.Context) PolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PolicyOutput).ToPolicyPtrOutput()
 }
 
 // Policy defines the configuration of how audit events are logged
@@ -572,7 +572,7 @@ func (i ServiceReferenceArgs) ToServiceReferencePtrOutput() ServiceReferencePtrO
 }
 
 func (i ServiceReferenceArgs) ToServiceReferencePtrOutputWithContext(ctx context.Context) ServiceReferencePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceReferenceOutput).ToServiceReferencePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceReferenceOutput).ToServiceReferencePtrOutput()
 }
 
 // ServiceReferencePtrInput is an input type that accepts ServiceReferenceArgs, ServiceReferencePtr and ServiceReferencePtrOutput values.
@@ -605,7 +605,7 @@ func (i *serviceReferencePtrType) ToServiceReferencePtrOutput() ServiceReference
 }
 
 func (i *serviceReferencePtrType) ToServiceReferencePtrOutputWithContext(ctx context.Context) ServiceReferencePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceReferencePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceReferenceOutput).ToServiceReferencePtrOutput()
 }
 
 // ServiceReference holds a reference to Service.legacy.k8s.io
@@ -755,7 +755,7 @@ func (i WebhookArgs) ToWebhookPtrOutput() WebhookPtrOutput {
 }
 
 func (i WebhookArgs) ToWebhookPtrOutputWithContext(ctx context.Context) WebhookPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebhookOutput).ToWebhookPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(WebhookOutput).ToWebhookPtrOutput()
 }
 
 // WebhookPtrInput is an input type that accepts WebhookArgs, WebhookPtr and WebhookPtrOutput values.
@@ -788,7 +788,7 @@ func (i *webhookPtrType) ToWebhookPtrOutput() WebhookPtrOutput {
 }
 
 func (i *webhookPtrType) ToWebhookPtrOutputWithContext(ctx context.Context) WebhookPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebhookPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(WebhookOutput).ToWebhookPtrOutput()
 }
 
 // Webhook holds the configuration of the webhook
@@ -936,7 +936,7 @@ func (i WebhookClientConfigArgs) ToWebhookClientConfigPtrOutput() WebhookClientC
 }
 
 func (i WebhookClientConfigArgs) ToWebhookClientConfigPtrOutputWithContext(ctx context.Context) WebhookClientConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebhookClientConfigOutput).ToWebhookClientConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(WebhookClientConfigOutput).ToWebhookClientConfigPtrOutput()
 }
 
 // WebhookClientConfigPtrInput is an input type that accepts WebhookClientConfigArgs, WebhookClientConfigPtr and WebhookClientConfigPtrOutput values.
@@ -969,7 +969,7 @@ func (i *webhookClientConfigPtrType) ToWebhookClientConfigPtrOutput() WebhookCli
 }
 
 func (i *webhookClientConfigPtrType) ToWebhookClientConfigPtrOutputWithContext(ctx context.Context) WebhookClientConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebhookClientConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(WebhookClientConfigOutput).ToWebhookClientConfigPtrOutput()
 }
 
 // WebhookClientConfig contains the information to make a connection with the webhook
@@ -1128,7 +1128,7 @@ func (i WebhookThrottleConfigArgs) ToWebhookThrottleConfigPtrOutput() WebhookThr
 }
 
 func (i WebhookThrottleConfigArgs) ToWebhookThrottleConfigPtrOutputWithContext(ctx context.Context) WebhookThrottleConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebhookThrottleConfigOutput).ToWebhookThrottleConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(WebhookThrottleConfigOutput).ToWebhookThrottleConfigPtrOutput()
 }
 
 // WebhookThrottleConfigPtrInput is an input type that accepts WebhookThrottleConfigArgs, WebhookThrottleConfigPtr and WebhookThrottleConfigPtrOutput values.
@@ -1161,7 +1161,7 @@ func (i *webhookThrottleConfigPtrType) ToWebhookThrottleConfigPtrOutput() Webhoo
 }
 
 func (i *webhookThrottleConfigPtrType) ToWebhookThrottleConfigPtrOutputWithContext(ctx context.Context) WebhookThrottleConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebhookThrottleConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(WebhookThrottleConfigOutput).ToWebhookThrottleConfigPtrOutput()
 }
 
 // WebhookThrottleConfig holds the configuration for throttling events

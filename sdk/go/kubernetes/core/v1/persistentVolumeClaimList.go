@@ -119,6 +119,13 @@ type PersistentVolumeClaimListInput interface {
 	ToPersistentVolumeClaimListOutputWithContext(ctx context.Context) PersistentVolumeClaimListOutput
 }
 
+type PersistentVolumeClaimListPtrInput interface {
+	pulumi.Input
+
+	ToPersistentVolumeClaimListPtrOutput() PersistentVolumeClaimListPtrOutput
+	ToPersistentVolumeClaimListPtrOutputWithContext(ctx context.Context) PersistentVolumeClaimListPtrOutput
+}
+
 func (PersistentVolumeClaimList) ElementType() reflect.Type {
 	return reflect.TypeOf((*PersistentVolumeClaimList)(nil)).Elem()
 }
@@ -129,6 +136,14 @@ func (i PersistentVolumeClaimList) ToPersistentVolumeClaimListOutput() Persisten
 
 func (i PersistentVolumeClaimList) ToPersistentVolumeClaimListOutputWithContext(ctx context.Context) PersistentVolumeClaimListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PersistentVolumeClaimListOutput)
+}
+
+func (i PersistentVolumeClaimList) ToPersistentVolumeClaimListPtrOutput() PersistentVolumeClaimListPtrOutput {
+	return i.ToPersistentVolumeClaimListPtrOutputWithContext(context.Background())
+}
+
+func (i PersistentVolumeClaimList) ToPersistentVolumeClaimListPtrOutputWithContext(ctx context.Context) PersistentVolumeClaimListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PersistentVolumeClaimListPtrOutput)
 }
 
 type PersistentVolumeClaimListOutput struct {
@@ -147,6 +162,23 @@ func (o PersistentVolumeClaimListOutput) ToPersistentVolumeClaimListOutputWithCo
 	return o
 }
 
+type PersistentVolumeClaimListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (PersistentVolumeClaimListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PersistentVolumeClaimList)(nil)).Elem()
+}
+
+func (o PersistentVolumeClaimListPtrOutput) ToPersistentVolumeClaimListPtrOutput() PersistentVolumeClaimListPtrOutput {
+	return o
+}
+
+func (o PersistentVolumeClaimListPtrOutput) ToPersistentVolumeClaimListPtrOutputWithContext(ctx context.Context) PersistentVolumeClaimListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(PersistentVolumeClaimListOutput{})
+	pulumi.RegisterOutputType(PersistentVolumeClaimListPtrOutput{})
 }

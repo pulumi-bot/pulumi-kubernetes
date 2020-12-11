@@ -188,6 +188,13 @@ type StorageClassInput interface {
 	ToStorageClassOutputWithContext(ctx context.Context) StorageClassOutput
 }
 
+type StorageClassPtrInput interface {
+	pulumi.Input
+
+	ToStorageClassPtrOutput() StorageClassPtrOutput
+	ToStorageClassPtrOutputWithContext(ctx context.Context) StorageClassPtrOutput
+}
+
 func (StorageClass) ElementType() reflect.Type {
 	return reflect.TypeOf((*StorageClass)(nil)).Elem()
 }
@@ -198,6 +205,14 @@ func (i StorageClass) ToStorageClassOutput() StorageClassOutput {
 
 func (i StorageClass) ToStorageClassOutputWithContext(ctx context.Context) StorageClassOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(StorageClassOutput)
+}
+
+func (i StorageClass) ToStorageClassPtrOutput() StorageClassPtrOutput {
+	return i.ToStorageClassPtrOutputWithContext(context.Background())
+}
+
+func (i StorageClass) ToStorageClassPtrOutputWithContext(ctx context.Context) StorageClassPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StorageClassPtrOutput)
 }
 
 type StorageClassOutput struct {
@@ -216,6 +231,23 @@ func (o StorageClassOutput) ToStorageClassOutputWithContext(ctx context.Context)
 	return o
 }
 
+type StorageClassPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (StorageClassPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StorageClass)(nil)).Elem()
+}
+
+func (o StorageClassPtrOutput) ToStorageClassPtrOutput() StorageClassPtrOutput {
+	return o
+}
+
+func (o StorageClassPtrOutput) ToStorageClassPtrOutputWithContext(ctx context.Context) StorageClassPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(StorageClassOutput{})
+	pulumi.RegisterOutputType(StorageClassPtrOutput{})
 }

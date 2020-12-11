@@ -121,6 +121,13 @@ type NetworkPolicyInput interface {
 	ToNetworkPolicyOutputWithContext(ctx context.Context) NetworkPolicyOutput
 }
 
+type NetworkPolicyPtrInput interface {
+	pulumi.Input
+
+	ToNetworkPolicyPtrOutput() NetworkPolicyPtrOutput
+	ToNetworkPolicyPtrOutputWithContext(ctx context.Context) NetworkPolicyPtrOutput
+}
+
 func (NetworkPolicy) ElementType() reflect.Type {
 	return reflect.TypeOf((*NetworkPolicy)(nil)).Elem()
 }
@@ -131,6 +138,14 @@ func (i NetworkPolicy) ToNetworkPolicyOutput() NetworkPolicyOutput {
 
 func (i NetworkPolicy) ToNetworkPolicyOutputWithContext(ctx context.Context) NetworkPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkPolicyOutput)
+}
+
+func (i NetworkPolicy) ToNetworkPolicyPtrOutput() NetworkPolicyPtrOutput {
+	return i.ToNetworkPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i NetworkPolicy) ToNetworkPolicyPtrOutputWithContext(ctx context.Context) NetworkPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkPolicyPtrOutput)
 }
 
 type NetworkPolicyOutput struct {
@@ -149,6 +164,23 @@ func (o NetworkPolicyOutput) ToNetworkPolicyOutputWithContext(ctx context.Contex
 	return o
 }
 
+type NetworkPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (NetworkPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NetworkPolicy)(nil)).Elem()
+}
+
+func (o NetworkPolicyPtrOutput) ToNetworkPolicyPtrOutput() NetworkPolicyPtrOutput {
+	return o
+}
+
+func (o NetworkPolicyPtrOutput) ToNetworkPolicyPtrOutputWithContext(ctx context.Context) NetworkPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(NetworkPolicyOutput{})
+	pulumi.RegisterOutputType(NetworkPolicyPtrOutput{})
 }

@@ -115,6 +115,13 @@ type LimitRangeInput interface {
 	ToLimitRangeOutputWithContext(ctx context.Context) LimitRangeOutput
 }
 
+type LimitRangePtrInput interface {
+	pulumi.Input
+
+	ToLimitRangePtrOutput() LimitRangePtrOutput
+	ToLimitRangePtrOutputWithContext(ctx context.Context) LimitRangePtrOutput
+}
+
 func (LimitRange) ElementType() reflect.Type {
 	return reflect.TypeOf((*LimitRange)(nil)).Elem()
 }
@@ -125,6 +132,14 @@ func (i LimitRange) ToLimitRangeOutput() LimitRangeOutput {
 
 func (i LimitRange) ToLimitRangeOutputWithContext(ctx context.Context) LimitRangeOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LimitRangeOutput)
+}
+
+func (i LimitRange) ToLimitRangePtrOutput() LimitRangePtrOutput {
+	return i.ToLimitRangePtrOutputWithContext(context.Background())
+}
+
+func (i LimitRange) ToLimitRangePtrOutputWithContext(ctx context.Context) LimitRangePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LimitRangePtrOutput)
 }
 
 type LimitRangeOutput struct {
@@ -143,6 +158,23 @@ func (o LimitRangeOutput) ToLimitRangeOutputWithContext(ctx context.Context) Lim
 	return o
 }
 
+type LimitRangePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (LimitRangePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LimitRange)(nil)).Elem()
+}
+
+func (o LimitRangePtrOutput) ToLimitRangePtrOutput() LimitRangePtrOutput {
+	return o
+}
+
+func (o LimitRangePtrOutput) ToLimitRangePtrOutputWithContext(ctx context.Context) LimitRangePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(LimitRangeOutput{})
+	pulumi.RegisterOutputType(LimitRangePtrOutput{})
 }

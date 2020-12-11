@@ -119,6 +119,13 @@ type NamespaceListInput interface {
 	ToNamespaceListOutputWithContext(ctx context.Context) NamespaceListOutput
 }
 
+type NamespaceListPtrInput interface {
+	pulumi.Input
+
+	ToNamespaceListPtrOutput() NamespaceListPtrOutput
+	ToNamespaceListPtrOutputWithContext(ctx context.Context) NamespaceListPtrOutput
+}
+
 func (NamespaceList) ElementType() reflect.Type {
 	return reflect.TypeOf((*NamespaceList)(nil)).Elem()
 }
@@ -129,6 +136,14 @@ func (i NamespaceList) ToNamespaceListOutput() NamespaceListOutput {
 
 func (i NamespaceList) ToNamespaceListOutputWithContext(ctx context.Context) NamespaceListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NamespaceListOutput)
+}
+
+func (i NamespaceList) ToNamespaceListPtrOutput() NamespaceListPtrOutput {
+	return i.ToNamespaceListPtrOutputWithContext(context.Background())
+}
+
+func (i NamespaceList) ToNamespaceListPtrOutputWithContext(ctx context.Context) NamespaceListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NamespaceListPtrOutput)
 }
 
 type NamespaceListOutput struct {
@@ -147,6 +162,23 @@ func (o NamespaceListOutput) ToNamespaceListOutputWithContext(ctx context.Contex
 	return o
 }
 
+type NamespaceListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (NamespaceListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NamespaceList)(nil)).Elem()
+}
+
+func (o NamespaceListPtrOutput) ToNamespaceListPtrOutput() NamespaceListPtrOutput {
+	return o
+}
+
+func (o NamespaceListPtrOutput) ToNamespaceListPtrOutputWithContext(ctx context.Context) NamespaceListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(NamespaceListOutput{})
+	pulumi.RegisterOutputType(NamespaceListPtrOutput{})
 }

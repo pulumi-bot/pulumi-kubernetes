@@ -119,6 +119,13 @@ type CSIDriverListInput interface {
 	ToCSIDriverListOutputWithContext(ctx context.Context) CSIDriverListOutput
 }
 
+type CSIDriverListPtrInput interface {
+	pulumi.Input
+
+	ToCSIDriverListPtrOutput() CSIDriverListPtrOutput
+	ToCSIDriverListPtrOutputWithContext(ctx context.Context) CSIDriverListPtrOutput
+}
+
 func (CSIDriverList) ElementType() reflect.Type {
 	return reflect.TypeOf((*CSIDriverList)(nil)).Elem()
 }
@@ -129,6 +136,14 @@ func (i CSIDriverList) ToCSIDriverListOutput() CSIDriverListOutput {
 
 func (i CSIDriverList) ToCSIDriverListOutputWithContext(ctx context.Context) CSIDriverListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CSIDriverListOutput)
+}
+
+func (i CSIDriverList) ToCSIDriverListPtrOutput() CSIDriverListPtrOutput {
+	return i.ToCSIDriverListPtrOutputWithContext(context.Background())
+}
+
+func (i CSIDriverList) ToCSIDriverListPtrOutputWithContext(ctx context.Context) CSIDriverListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CSIDriverListPtrOutput)
 }
 
 type CSIDriverListOutput struct {
@@ -147,6 +162,23 @@ func (o CSIDriverListOutput) ToCSIDriverListOutputWithContext(ctx context.Contex
 	return o
 }
 
+type CSIDriverListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (CSIDriverListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CSIDriverList)(nil)).Elem()
+}
+
+func (o CSIDriverListPtrOutput) ToCSIDriverListPtrOutput() CSIDriverListPtrOutput {
+	return o
+}
+
+func (o CSIDriverListPtrOutput) ToCSIDriverListPtrOutputWithContext(ctx context.Context) CSIDriverListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(CSIDriverListOutput{})
+	pulumi.RegisterOutputType(CSIDriverListPtrOutput{})
 }

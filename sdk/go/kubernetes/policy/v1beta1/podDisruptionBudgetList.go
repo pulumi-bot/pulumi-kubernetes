@@ -109,6 +109,13 @@ type PodDisruptionBudgetListInput interface {
 	ToPodDisruptionBudgetListOutputWithContext(ctx context.Context) PodDisruptionBudgetListOutput
 }
 
+type PodDisruptionBudgetListPtrInput interface {
+	pulumi.Input
+
+	ToPodDisruptionBudgetListPtrOutput() PodDisruptionBudgetListPtrOutput
+	ToPodDisruptionBudgetListPtrOutputWithContext(ctx context.Context) PodDisruptionBudgetListPtrOutput
+}
+
 func (PodDisruptionBudgetList) ElementType() reflect.Type {
 	return reflect.TypeOf((*PodDisruptionBudgetList)(nil)).Elem()
 }
@@ -119,6 +126,14 @@ func (i PodDisruptionBudgetList) ToPodDisruptionBudgetListOutput() PodDisruption
 
 func (i PodDisruptionBudgetList) ToPodDisruptionBudgetListOutputWithContext(ctx context.Context) PodDisruptionBudgetListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PodDisruptionBudgetListOutput)
+}
+
+func (i PodDisruptionBudgetList) ToPodDisruptionBudgetListPtrOutput() PodDisruptionBudgetListPtrOutput {
+	return i.ToPodDisruptionBudgetListPtrOutputWithContext(context.Background())
+}
+
+func (i PodDisruptionBudgetList) ToPodDisruptionBudgetListPtrOutputWithContext(ctx context.Context) PodDisruptionBudgetListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PodDisruptionBudgetListPtrOutput)
 }
 
 type PodDisruptionBudgetListOutput struct {
@@ -137,6 +152,23 @@ func (o PodDisruptionBudgetListOutput) ToPodDisruptionBudgetListOutputWithContex
 	return o
 }
 
+type PodDisruptionBudgetListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (PodDisruptionBudgetListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PodDisruptionBudgetList)(nil)).Elem()
+}
+
+func (o PodDisruptionBudgetListPtrOutput) ToPodDisruptionBudgetListPtrOutput() PodDisruptionBudgetListPtrOutput {
+	return o
+}
+
+func (o PodDisruptionBudgetListPtrOutput) ToPodDisruptionBudgetListPtrOutputWithContext(ctx context.Context) PodDisruptionBudgetListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(PodDisruptionBudgetListOutput{})
+	pulumi.RegisterOutputType(PodDisruptionBudgetListPtrOutput{})
 }

@@ -119,6 +119,13 @@ type SecretListInput interface {
 	ToSecretListOutputWithContext(ctx context.Context) SecretListOutput
 }
 
+type SecretListPtrInput interface {
+	pulumi.Input
+
+	ToSecretListPtrOutput() SecretListPtrOutput
+	ToSecretListPtrOutputWithContext(ctx context.Context) SecretListPtrOutput
+}
+
 func (SecretList) ElementType() reflect.Type {
 	return reflect.TypeOf((*SecretList)(nil)).Elem()
 }
@@ -129,6 +136,14 @@ func (i SecretList) ToSecretListOutput() SecretListOutput {
 
 func (i SecretList) ToSecretListOutputWithContext(ctx context.Context) SecretListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretListOutput)
+}
+
+func (i SecretList) ToSecretListPtrOutput() SecretListPtrOutput {
+	return i.ToSecretListPtrOutputWithContext(context.Background())
+}
+
+func (i SecretList) ToSecretListPtrOutputWithContext(ctx context.Context) SecretListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretListPtrOutput)
 }
 
 type SecretListOutput struct {
@@ -147,6 +162,23 @@ func (o SecretListOutput) ToSecretListOutputWithContext(ctx context.Context) Sec
 	return o
 }
 
+type SecretListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecretListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretList)(nil)).Elem()
+}
+
+func (o SecretListPtrOutput) ToSecretListPtrOutput() SecretListPtrOutput {
+	return o
+}
+
+func (o SecretListPtrOutput) ToSecretListPtrOutputWithContext(ctx context.Context) SecretListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(SecretListOutput{})
+	pulumi.RegisterOutputType(SecretListPtrOutput{})
 }

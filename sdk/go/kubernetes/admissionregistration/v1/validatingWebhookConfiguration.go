@@ -121,6 +121,13 @@ type ValidatingWebhookConfigurationInput interface {
 	ToValidatingWebhookConfigurationOutputWithContext(ctx context.Context) ValidatingWebhookConfigurationOutput
 }
 
+type ValidatingWebhookConfigurationPtrInput interface {
+	pulumi.Input
+
+	ToValidatingWebhookConfigurationPtrOutput() ValidatingWebhookConfigurationPtrOutput
+	ToValidatingWebhookConfigurationPtrOutputWithContext(ctx context.Context) ValidatingWebhookConfigurationPtrOutput
+}
+
 func (ValidatingWebhookConfiguration) ElementType() reflect.Type {
 	return reflect.TypeOf((*ValidatingWebhookConfiguration)(nil)).Elem()
 }
@@ -131,6 +138,14 @@ func (i ValidatingWebhookConfiguration) ToValidatingWebhookConfigurationOutput()
 
 func (i ValidatingWebhookConfiguration) ToValidatingWebhookConfigurationOutputWithContext(ctx context.Context) ValidatingWebhookConfigurationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ValidatingWebhookConfigurationOutput)
+}
+
+func (i ValidatingWebhookConfiguration) ToValidatingWebhookConfigurationPtrOutput() ValidatingWebhookConfigurationPtrOutput {
+	return i.ToValidatingWebhookConfigurationPtrOutputWithContext(context.Background())
+}
+
+func (i ValidatingWebhookConfiguration) ToValidatingWebhookConfigurationPtrOutputWithContext(ctx context.Context) ValidatingWebhookConfigurationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ValidatingWebhookConfigurationPtrOutput)
 }
 
 type ValidatingWebhookConfigurationOutput struct {
@@ -149,6 +164,23 @@ func (o ValidatingWebhookConfigurationOutput) ToValidatingWebhookConfigurationOu
 	return o
 }
 
+type ValidatingWebhookConfigurationPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ValidatingWebhookConfigurationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ValidatingWebhookConfiguration)(nil)).Elem()
+}
+
+func (o ValidatingWebhookConfigurationPtrOutput) ToValidatingWebhookConfigurationPtrOutput() ValidatingWebhookConfigurationPtrOutput {
+	return o
+}
+
+func (o ValidatingWebhookConfigurationPtrOutput) ToValidatingWebhookConfigurationPtrOutputWithContext(ctx context.Context) ValidatingWebhookConfigurationPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ValidatingWebhookConfigurationOutput{})
+	pulumi.RegisterOutputType(ValidatingWebhookConfigurationPtrOutput{})
 }

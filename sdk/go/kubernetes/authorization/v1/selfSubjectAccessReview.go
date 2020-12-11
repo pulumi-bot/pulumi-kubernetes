@@ -126,6 +126,13 @@ type SelfSubjectAccessReviewInput interface {
 	ToSelfSubjectAccessReviewOutputWithContext(ctx context.Context) SelfSubjectAccessReviewOutput
 }
 
+type SelfSubjectAccessReviewPtrInput interface {
+	pulumi.Input
+
+	ToSelfSubjectAccessReviewPtrOutput() SelfSubjectAccessReviewPtrOutput
+	ToSelfSubjectAccessReviewPtrOutputWithContext(ctx context.Context) SelfSubjectAccessReviewPtrOutput
+}
+
 func (SelfSubjectAccessReview) ElementType() reflect.Type {
 	return reflect.TypeOf((*SelfSubjectAccessReview)(nil)).Elem()
 }
@@ -136,6 +143,14 @@ func (i SelfSubjectAccessReview) ToSelfSubjectAccessReviewOutput() SelfSubjectAc
 
 func (i SelfSubjectAccessReview) ToSelfSubjectAccessReviewOutputWithContext(ctx context.Context) SelfSubjectAccessReviewOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SelfSubjectAccessReviewOutput)
+}
+
+func (i SelfSubjectAccessReview) ToSelfSubjectAccessReviewPtrOutput() SelfSubjectAccessReviewPtrOutput {
+	return i.ToSelfSubjectAccessReviewPtrOutputWithContext(context.Background())
+}
+
+func (i SelfSubjectAccessReview) ToSelfSubjectAccessReviewPtrOutputWithContext(ctx context.Context) SelfSubjectAccessReviewPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SelfSubjectAccessReviewPtrOutput)
 }
 
 type SelfSubjectAccessReviewOutput struct {
@@ -154,6 +169,23 @@ func (o SelfSubjectAccessReviewOutput) ToSelfSubjectAccessReviewOutputWithContex
 	return o
 }
 
+type SelfSubjectAccessReviewPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (SelfSubjectAccessReviewPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SelfSubjectAccessReview)(nil)).Elem()
+}
+
+func (o SelfSubjectAccessReviewPtrOutput) ToSelfSubjectAccessReviewPtrOutput() SelfSubjectAccessReviewPtrOutput {
+	return o
+}
+
+func (o SelfSubjectAccessReviewPtrOutput) ToSelfSubjectAccessReviewPtrOutputWithContext(ctx context.Context) SelfSubjectAccessReviewPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(SelfSubjectAccessReviewOutput{})
+	pulumi.RegisterOutputType(SelfSubjectAccessReviewPtrOutput{})
 }

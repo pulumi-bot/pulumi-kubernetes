@@ -126,6 +126,13 @@ type LocalSubjectAccessReviewInput interface {
 	ToLocalSubjectAccessReviewOutputWithContext(ctx context.Context) LocalSubjectAccessReviewOutput
 }
 
+type LocalSubjectAccessReviewPtrInput interface {
+	pulumi.Input
+
+	ToLocalSubjectAccessReviewPtrOutput() LocalSubjectAccessReviewPtrOutput
+	ToLocalSubjectAccessReviewPtrOutputWithContext(ctx context.Context) LocalSubjectAccessReviewPtrOutput
+}
+
 func (LocalSubjectAccessReview) ElementType() reflect.Type {
 	return reflect.TypeOf((*LocalSubjectAccessReview)(nil)).Elem()
 }
@@ -136,6 +143,14 @@ func (i LocalSubjectAccessReview) ToLocalSubjectAccessReviewOutput() LocalSubjec
 
 func (i LocalSubjectAccessReview) ToLocalSubjectAccessReviewOutputWithContext(ctx context.Context) LocalSubjectAccessReviewOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LocalSubjectAccessReviewOutput)
+}
+
+func (i LocalSubjectAccessReview) ToLocalSubjectAccessReviewPtrOutput() LocalSubjectAccessReviewPtrOutput {
+	return i.ToLocalSubjectAccessReviewPtrOutputWithContext(context.Background())
+}
+
+func (i LocalSubjectAccessReview) ToLocalSubjectAccessReviewPtrOutputWithContext(ctx context.Context) LocalSubjectAccessReviewPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LocalSubjectAccessReviewPtrOutput)
 }
 
 type LocalSubjectAccessReviewOutput struct {
@@ -154,6 +169,23 @@ func (o LocalSubjectAccessReviewOutput) ToLocalSubjectAccessReviewOutputWithCont
 	return o
 }
 
+type LocalSubjectAccessReviewPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (LocalSubjectAccessReviewPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LocalSubjectAccessReview)(nil)).Elem()
+}
+
+func (o LocalSubjectAccessReviewPtrOutput) ToLocalSubjectAccessReviewPtrOutput() LocalSubjectAccessReviewPtrOutput {
+	return o
+}
+
+func (o LocalSubjectAccessReviewPtrOutput) ToLocalSubjectAccessReviewPtrOutputWithContext(ctx context.Context) LocalSubjectAccessReviewPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(LocalSubjectAccessReviewOutput{})
+	pulumi.RegisterOutputType(LocalSubjectAccessReviewPtrOutput{})
 }

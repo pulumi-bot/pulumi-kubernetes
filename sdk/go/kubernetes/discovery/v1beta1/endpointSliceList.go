@@ -119,6 +119,13 @@ type EndpointSliceListInput interface {
 	ToEndpointSliceListOutputWithContext(ctx context.Context) EndpointSliceListOutput
 }
 
+type EndpointSliceListPtrInput interface {
+	pulumi.Input
+
+	ToEndpointSliceListPtrOutput() EndpointSliceListPtrOutput
+	ToEndpointSliceListPtrOutputWithContext(ctx context.Context) EndpointSliceListPtrOutput
+}
+
 func (EndpointSliceList) ElementType() reflect.Type {
 	return reflect.TypeOf((*EndpointSliceList)(nil)).Elem()
 }
@@ -129,6 +136,14 @@ func (i EndpointSliceList) ToEndpointSliceListOutput() EndpointSliceListOutput {
 
 func (i EndpointSliceList) ToEndpointSliceListOutputWithContext(ctx context.Context) EndpointSliceListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointSliceListOutput)
+}
+
+func (i EndpointSliceList) ToEndpointSliceListPtrOutput() EndpointSliceListPtrOutput {
+	return i.ToEndpointSliceListPtrOutputWithContext(context.Background())
+}
+
+func (i EndpointSliceList) ToEndpointSliceListPtrOutputWithContext(ctx context.Context) EndpointSliceListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EndpointSliceListPtrOutput)
 }
 
 type EndpointSliceListOutput struct {
@@ -147,6 +162,23 @@ func (o EndpointSliceListOutput) ToEndpointSliceListOutputWithContext(ctx contex
 	return o
 }
 
+type EndpointSliceListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (EndpointSliceListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EndpointSliceList)(nil)).Elem()
+}
+
+func (o EndpointSliceListPtrOutput) ToEndpointSliceListPtrOutput() EndpointSliceListPtrOutput {
+	return o
+}
+
+func (o EndpointSliceListPtrOutput) ToEndpointSliceListPtrOutputWithContext(ctx context.Context) EndpointSliceListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(EndpointSliceListOutput{})
+	pulumi.RegisterOutputType(EndpointSliceListPtrOutput{})
 }

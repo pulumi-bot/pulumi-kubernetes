@@ -141,6 +141,13 @@ type StatefulSetInput interface {
 	ToStatefulSetOutputWithContext(ctx context.Context) StatefulSetOutput
 }
 
+type StatefulSetPtrInput interface {
+	pulumi.Input
+
+	ToStatefulSetPtrOutput() StatefulSetPtrOutput
+	ToStatefulSetPtrOutputWithContext(ctx context.Context) StatefulSetPtrOutput
+}
+
 func (StatefulSet) ElementType() reflect.Type {
 	return reflect.TypeOf((*StatefulSet)(nil)).Elem()
 }
@@ -151,6 +158,14 @@ func (i StatefulSet) ToStatefulSetOutput() StatefulSetOutput {
 
 func (i StatefulSet) ToStatefulSetOutputWithContext(ctx context.Context) StatefulSetOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(StatefulSetOutput)
+}
+
+func (i StatefulSet) ToStatefulSetPtrOutput() StatefulSetPtrOutput {
+	return i.ToStatefulSetPtrOutputWithContext(context.Background())
+}
+
+func (i StatefulSet) ToStatefulSetPtrOutputWithContext(ctx context.Context) StatefulSetPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StatefulSetPtrOutput)
 }
 
 type StatefulSetOutput struct {
@@ -169,6 +184,23 @@ func (o StatefulSetOutput) ToStatefulSetOutputWithContext(ctx context.Context) S
 	return o
 }
 
+type StatefulSetPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (StatefulSetPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StatefulSet)(nil)).Elem()
+}
+
+func (o StatefulSetPtrOutput) ToStatefulSetPtrOutput() StatefulSetPtrOutput {
+	return o
+}
+
+func (o StatefulSetPtrOutput) ToStatefulSetPtrOutputWithContext(ctx context.Context) StatefulSetPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(StatefulSetOutput{})
+	pulumi.RegisterOutputType(StatefulSetPtrOutput{})
 }

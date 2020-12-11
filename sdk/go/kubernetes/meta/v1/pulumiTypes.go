@@ -782,7 +782,7 @@ func (i DeleteOptionsArgs) ToDeleteOptionsPtrOutput() DeleteOptionsPtrOutput {
 }
 
 func (i DeleteOptionsArgs) ToDeleteOptionsPtrOutputWithContext(ctx context.Context) DeleteOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeleteOptionsOutput).ToDeleteOptionsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DeleteOptionsOutput).ToDeleteOptionsPtrOutput()
 }
 
 // DeleteOptionsPtrInput is an input type that accepts DeleteOptionsArgs, DeleteOptionsPtr and DeleteOptionsPtrOutput values.
@@ -815,7 +815,7 @@ func (i *deleteOptionsPtrType) ToDeleteOptionsPtrOutput() DeleteOptionsPtrOutput
 }
 
 func (i *deleteOptionsPtrType) ToDeleteOptionsPtrOutputWithContext(ctx context.Context) DeleteOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeleteOptionsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DeleteOptionsOutput).ToDeleteOptionsPtrOutput()
 }
 
 // DeleteOptions may be provided when deleting an API object.
@@ -1010,7 +1010,7 @@ func (i GroupVersionForDiscoveryArgs) ToGroupVersionForDiscoveryPtrOutput() Grou
 }
 
 func (i GroupVersionForDiscoveryArgs) ToGroupVersionForDiscoveryPtrOutputWithContext(ctx context.Context) GroupVersionForDiscoveryPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GroupVersionForDiscoveryOutput).ToGroupVersionForDiscoveryPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(GroupVersionForDiscoveryOutput).ToGroupVersionForDiscoveryPtrOutput()
 }
 
 // GroupVersionForDiscoveryPtrInput is an input type that accepts GroupVersionForDiscoveryArgs, GroupVersionForDiscoveryPtr and GroupVersionForDiscoveryPtrOutput values.
@@ -1043,7 +1043,7 @@ func (i *groupVersionForDiscoveryPtrType) ToGroupVersionForDiscoveryPtrOutput() 
 }
 
 func (i *groupVersionForDiscoveryPtrType) ToGroupVersionForDiscoveryPtrOutputWithContext(ctx context.Context) GroupVersionForDiscoveryPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GroupVersionForDiscoveryPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(GroupVersionForDiscoveryOutput).ToGroupVersionForDiscoveryPtrOutput()
 }
 
 // GroupVersionForDiscoveryArrayInput is an input type that accepts GroupVersionForDiscoveryArray and GroupVersionForDiscoveryArrayOutput values.
@@ -1208,7 +1208,7 @@ func (i LabelSelectorArgs) ToLabelSelectorPtrOutput() LabelSelectorPtrOutput {
 }
 
 func (i LabelSelectorArgs) ToLabelSelectorPtrOutputWithContext(ctx context.Context) LabelSelectorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LabelSelectorOutput).ToLabelSelectorPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(LabelSelectorOutput).ToLabelSelectorPtrOutput()
 }
 
 // LabelSelectorPtrInput is an input type that accepts LabelSelectorArgs, LabelSelectorPtr and LabelSelectorPtrOutput values.
@@ -1241,7 +1241,7 @@ func (i *labelSelectorPtrType) ToLabelSelectorPtrOutput() LabelSelectorPtrOutput
 }
 
 func (i *labelSelectorPtrType) ToLabelSelectorPtrOutputWithContext(ctx context.Context) LabelSelectorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LabelSelectorPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(LabelSelectorOutput).ToLabelSelectorPtrOutput()
 }
 
 // LabelSelectorArrayInput is an input type that accepts LabelSelectorArray and LabelSelectorArrayOutput values.
@@ -1536,7 +1536,7 @@ func (i ListMetaArgs) ToListMetaPtrOutput() ListMetaPtrOutput {
 }
 
 func (i ListMetaArgs) ToListMetaPtrOutputWithContext(ctx context.Context) ListMetaPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ListMetaOutput).ToListMetaPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ListMetaOutput).ToListMetaPtrOutput()
 }
 
 // ListMetaPtrInput is an input type that accepts ListMetaArgs, ListMetaPtr and ListMetaPtrOutput values.
@@ -1569,7 +1569,7 @@ func (i *listMetaPtrType) ToListMetaPtrOutput() ListMetaPtrOutput {
 }
 
 func (i *listMetaPtrType) ToListMetaPtrOutputWithContext(ctx context.Context) ListMetaPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ListMetaPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ListMetaOutput).ToListMetaPtrOutput()
 }
 
 // ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta}.
@@ -1956,7 +1956,7 @@ func (i ObjectMetaArgs) ToObjectMetaPtrOutput() ObjectMetaPtrOutput {
 }
 
 func (i ObjectMetaArgs) ToObjectMetaPtrOutputWithContext(ctx context.Context) ObjectMetaPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ObjectMetaOutput).ToObjectMetaPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectMetaOutput).ToObjectMetaPtrOutput()
 }
 
 // ObjectMetaPtrInput is an input type that accepts ObjectMetaArgs, ObjectMetaPtr and ObjectMetaPtrOutput values.
@@ -1989,7 +1989,7 @@ func (i *objectMetaPtrType) ToObjectMetaPtrOutput() ObjectMetaPtrOutput {
 }
 
 func (i *objectMetaPtrType) ToObjectMetaPtrOutputWithContext(ctx context.Context) ObjectMetaPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ObjectMetaPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectMetaOutput).ToObjectMetaPtrOutput()
 }
 
 // ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.
@@ -2496,7 +2496,7 @@ func (i PreconditionsArgs) ToPreconditionsPtrOutput() PreconditionsPtrOutput {
 }
 
 func (i PreconditionsArgs) ToPreconditionsPtrOutputWithContext(ctx context.Context) PreconditionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PreconditionsOutput).ToPreconditionsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PreconditionsOutput).ToPreconditionsPtrOutput()
 }
 
 // PreconditionsPtrInput is an input type that accepts PreconditionsArgs, PreconditionsPtr and PreconditionsPtrOutput values.
@@ -2529,7 +2529,7 @@ func (i *preconditionsPtrType) ToPreconditionsPtrOutput() PreconditionsPtrOutput
 }
 
 func (i *preconditionsPtrType) ToPreconditionsPtrOutputWithContext(ctx context.Context) PreconditionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PreconditionsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PreconditionsOutput).ToPreconditionsPtrOutput()
 }
 
 // Preconditions must be fulfilled before an operation (update, delete, etc.) is carried out.
@@ -3022,7 +3022,7 @@ func (i StatusDetailsArgs) ToStatusDetailsPtrOutput() StatusDetailsPtrOutput {
 }
 
 func (i StatusDetailsArgs) ToStatusDetailsPtrOutputWithContext(ctx context.Context) StatusDetailsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StatusDetailsOutput).ToStatusDetailsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(StatusDetailsOutput).ToStatusDetailsPtrOutput()
 }
 
 // StatusDetailsPtrInput is an input type that accepts StatusDetailsArgs, StatusDetailsPtr and StatusDetailsPtrOutput values.
@@ -3055,7 +3055,7 @@ func (i *statusDetailsPtrType) ToStatusDetailsPtrOutput() StatusDetailsPtrOutput
 }
 
 func (i *statusDetailsPtrType) ToStatusDetailsPtrOutputWithContext(ctx context.Context) StatusDetailsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StatusDetailsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(StatusDetailsOutput).ToStatusDetailsPtrOutput()
 }
 
 // StatusDetails is a set of additional properties that MAY be set by the server to provide additional information about a response. The Reason field of a Status object defines what attributes will be set. Clients must ignore fields that do not match the defined type of each attribute, and should assume that any attribute may be empty, invalid, or under defined.

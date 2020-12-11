@@ -138,6 +138,13 @@ type RoleBindingInput interface {
 	ToRoleBindingOutputWithContext(ctx context.Context) RoleBindingOutput
 }
 
+type RoleBindingPtrInput interface {
+	pulumi.Input
+
+	ToRoleBindingPtrOutput() RoleBindingPtrOutput
+	ToRoleBindingPtrOutputWithContext(ctx context.Context) RoleBindingPtrOutput
+}
+
 func (RoleBinding) ElementType() reflect.Type {
 	return reflect.TypeOf((*RoleBinding)(nil)).Elem()
 }
@@ -148,6 +155,14 @@ func (i RoleBinding) ToRoleBindingOutput() RoleBindingOutput {
 
 func (i RoleBinding) ToRoleBindingOutputWithContext(ctx context.Context) RoleBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RoleBindingOutput)
+}
+
+func (i RoleBinding) ToRoleBindingPtrOutput() RoleBindingPtrOutput {
+	return i.ToRoleBindingPtrOutputWithContext(context.Background())
+}
+
+func (i RoleBinding) ToRoleBindingPtrOutputWithContext(ctx context.Context) RoleBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RoleBindingPtrOutput)
 }
 
 type RoleBindingOutput struct {
@@ -166,6 +181,23 @@ func (o RoleBindingOutput) ToRoleBindingOutputWithContext(ctx context.Context) R
 	return o
 }
 
+type RoleBindingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RoleBindingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RoleBinding)(nil)).Elem()
+}
+
+func (o RoleBindingPtrOutput) ToRoleBindingPtrOutput() RoleBindingPtrOutput {
+	return o
+}
+
+func (o RoleBindingPtrOutput) ToRoleBindingPtrOutputWithContext(ctx context.Context) RoleBindingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(RoleBindingOutput{})
+	pulumi.RegisterOutputType(RoleBindingPtrOutput{})
 }

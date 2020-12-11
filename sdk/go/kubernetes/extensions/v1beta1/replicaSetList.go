@@ -119,6 +119,13 @@ type ReplicaSetListInput interface {
 	ToReplicaSetListOutputWithContext(ctx context.Context) ReplicaSetListOutput
 }
 
+type ReplicaSetListPtrInput interface {
+	pulumi.Input
+
+	ToReplicaSetListPtrOutput() ReplicaSetListPtrOutput
+	ToReplicaSetListPtrOutputWithContext(ctx context.Context) ReplicaSetListPtrOutput
+}
+
 func (ReplicaSetList) ElementType() reflect.Type {
 	return reflect.TypeOf((*ReplicaSetList)(nil)).Elem()
 }
@@ -129,6 +136,14 @@ func (i ReplicaSetList) ToReplicaSetListOutput() ReplicaSetListOutput {
 
 func (i ReplicaSetList) ToReplicaSetListOutputWithContext(ctx context.Context) ReplicaSetListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ReplicaSetListOutput)
+}
+
+func (i ReplicaSetList) ToReplicaSetListPtrOutput() ReplicaSetListPtrOutput {
+	return i.ToReplicaSetListPtrOutputWithContext(context.Background())
+}
+
+func (i ReplicaSetList) ToReplicaSetListPtrOutputWithContext(ctx context.Context) ReplicaSetListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ReplicaSetListPtrOutput)
 }
 
 type ReplicaSetListOutput struct {
@@ -147,6 +162,23 @@ func (o ReplicaSetListOutput) ToReplicaSetListOutputWithContext(ctx context.Cont
 	return o
 }
 
+type ReplicaSetListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ReplicaSetListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ReplicaSetList)(nil)).Elem()
+}
+
+func (o ReplicaSetListPtrOutput) ToReplicaSetListPtrOutput() ReplicaSetListPtrOutput {
+	return o
+}
+
+func (o ReplicaSetListPtrOutput) ToReplicaSetListPtrOutputWithContext(ctx context.Context) ReplicaSetListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ReplicaSetListOutput{})
+	pulumi.RegisterOutputType(ReplicaSetListPtrOutput{})
 }

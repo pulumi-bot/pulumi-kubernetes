@@ -119,6 +119,13 @@ type ReplicationControllerListInput interface {
 	ToReplicationControllerListOutputWithContext(ctx context.Context) ReplicationControllerListOutput
 }
 
+type ReplicationControllerListPtrInput interface {
+	pulumi.Input
+
+	ToReplicationControllerListPtrOutput() ReplicationControllerListPtrOutput
+	ToReplicationControllerListPtrOutputWithContext(ctx context.Context) ReplicationControllerListPtrOutput
+}
+
 func (ReplicationControllerList) ElementType() reflect.Type {
 	return reflect.TypeOf((*ReplicationControllerList)(nil)).Elem()
 }
@@ -129,6 +136,14 @@ func (i ReplicationControllerList) ToReplicationControllerListOutput() Replicati
 
 func (i ReplicationControllerList) ToReplicationControllerListOutputWithContext(ctx context.Context) ReplicationControllerListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ReplicationControllerListOutput)
+}
+
+func (i ReplicationControllerList) ToReplicationControllerListPtrOutput() ReplicationControllerListPtrOutput {
+	return i.ToReplicationControllerListPtrOutputWithContext(context.Background())
+}
+
+func (i ReplicationControllerList) ToReplicationControllerListPtrOutputWithContext(ctx context.Context) ReplicationControllerListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ReplicationControllerListPtrOutput)
 }
 
 type ReplicationControllerListOutput struct {
@@ -147,6 +162,23 @@ func (o ReplicationControllerListOutput) ToReplicationControllerListOutputWithCo
 	return o
 }
 
+type ReplicationControllerListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ReplicationControllerListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ReplicationControllerList)(nil)).Elem()
+}
+
+func (o ReplicationControllerListPtrOutput) ToReplicationControllerListPtrOutput() ReplicationControllerListPtrOutput {
+	return o
+}
+
+func (o ReplicationControllerListPtrOutput) ToReplicationControllerListPtrOutputWithContext(ctx context.Context) ReplicationControllerListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ReplicationControllerListOutput{})
+	pulumi.RegisterOutputType(ReplicationControllerListPtrOutput{})
 }

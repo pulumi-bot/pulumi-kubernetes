@@ -144,6 +144,13 @@ type IngressInput interface {
 	ToIngressOutputWithContext(ctx context.Context) IngressOutput
 }
 
+type IngressPtrInput interface {
+	pulumi.Input
+
+	ToIngressPtrOutput() IngressPtrOutput
+	ToIngressPtrOutputWithContext(ctx context.Context) IngressPtrOutput
+}
+
 func (Ingress) ElementType() reflect.Type {
 	return reflect.TypeOf((*Ingress)(nil)).Elem()
 }
@@ -154,6 +161,14 @@ func (i Ingress) ToIngressOutput() IngressOutput {
 
 func (i Ingress) ToIngressOutputWithContext(ctx context.Context) IngressOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IngressOutput)
+}
+
+func (i Ingress) ToIngressPtrOutput() IngressPtrOutput {
+	return i.ToIngressPtrOutputWithContext(context.Background())
+}
+
+func (i Ingress) ToIngressPtrOutputWithContext(ctx context.Context) IngressPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IngressPtrOutput)
 }
 
 type IngressOutput struct {
@@ -172,6 +187,23 @@ func (o IngressOutput) ToIngressOutputWithContext(ctx context.Context) IngressOu
 	return o
 }
 
+type IngressPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (IngressPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Ingress)(nil)).Elem()
+}
+
+func (o IngressPtrOutput) ToIngressPtrOutput() IngressPtrOutput {
+	return o
+}
+
+func (o IngressPtrOutput) ToIngressPtrOutputWithContext(ctx context.Context) IngressPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(IngressOutput{})
+	pulumi.RegisterOutputType(IngressPtrOutput{})
 }

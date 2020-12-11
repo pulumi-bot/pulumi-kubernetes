@@ -121,6 +121,13 @@ type PersistentVolumeInput interface {
 	ToPersistentVolumeOutputWithContext(ctx context.Context) PersistentVolumeOutput
 }
 
+type PersistentVolumePtrInput interface {
+	pulumi.Input
+
+	ToPersistentVolumePtrOutput() PersistentVolumePtrOutput
+	ToPersistentVolumePtrOutputWithContext(ctx context.Context) PersistentVolumePtrOutput
+}
+
 func (PersistentVolume) ElementType() reflect.Type {
 	return reflect.TypeOf((*PersistentVolume)(nil)).Elem()
 }
@@ -131,6 +138,14 @@ func (i PersistentVolume) ToPersistentVolumeOutput() PersistentVolumeOutput {
 
 func (i PersistentVolume) ToPersistentVolumeOutputWithContext(ctx context.Context) PersistentVolumeOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PersistentVolumeOutput)
+}
+
+func (i PersistentVolume) ToPersistentVolumePtrOutput() PersistentVolumePtrOutput {
+	return i.ToPersistentVolumePtrOutputWithContext(context.Background())
+}
+
+func (i PersistentVolume) ToPersistentVolumePtrOutputWithContext(ctx context.Context) PersistentVolumePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PersistentVolumePtrOutput)
 }
 
 type PersistentVolumeOutput struct {
@@ -149,6 +164,23 @@ func (o PersistentVolumeOutput) ToPersistentVolumeOutputWithContext(ctx context.
 	return o
 }
 
+type PersistentVolumePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (PersistentVolumePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PersistentVolume)(nil)).Elem()
+}
+
+func (o PersistentVolumePtrOutput) ToPersistentVolumePtrOutput() PersistentVolumePtrOutput {
+	return o
+}
+
+func (o PersistentVolumePtrOutput) ToPersistentVolumePtrOutputWithContext(ctx context.Context) PersistentVolumePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(PersistentVolumeOutput{})
+	pulumi.RegisterOutputType(PersistentVolumePtrOutput{})
 }

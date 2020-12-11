@@ -150,6 +150,13 @@ type StatusInput interface {
 	ToStatusOutputWithContext(ctx context.Context) StatusOutput
 }
 
+type StatusPtrInput interface {
+	pulumi.Input
+
+	ToStatusPtrOutput() StatusPtrOutput
+	ToStatusPtrOutputWithContext(ctx context.Context) StatusPtrOutput
+}
+
 func (Status) ElementType() reflect.Type {
 	return reflect.TypeOf((*Status)(nil)).Elem()
 }
@@ -160,6 +167,14 @@ func (i Status) ToStatusOutput() StatusOutput {
 
 func (i Status) ToStatusOutputWithContext(ctx context.Context) StatusOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(StatusOutput)
+}
+
+func (i Status) ToStatusPtrOutput() StatusPtrOutput {
+	return i.ToStatusPtrOutputWithContext(context.Background())
+}
+
+func (i Status) ToStatusPtrOutputWithContext(ctx context.Context) StatusPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StatusPtrOutput)
 }
 
 type StatusOutput struct {
@@ -178,6 +193,23 @@ func (o StatusOutput) ToStatusOutputWithContext(ctx context.Context) StatusOutpu
 	return o
 }
 
+type StatusPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (StatusPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Status)(nil)).Elem()
+}
+
+func (o StatusPtrOutput) ToStatusPtrOutput() StatusPtrOutput {
+	return o
+}
+
+func (o StatusPtrOutput) ToStatusPtrOutputWithContext(ctx context.Context) StatusPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(StatusOutput{})
+	pulumi.RegisterOutputType(StatusPtrOutput{})
 }

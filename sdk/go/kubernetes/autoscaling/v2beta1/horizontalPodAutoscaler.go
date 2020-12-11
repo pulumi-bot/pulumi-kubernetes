@@ -130,6 +130,13 @@ type HorizontalPodAutoscalerInput interface {
 	ToHorizontalPodAutoscalerOutputWithContext(ctx context.Context) HorizontalPodAutoscalerOutput
 }
 
+type HorizontalPodAutoscalerPtrInput interface {
+	pulumi.Input
+
+	ToHorizontalPodAutoscalerPtrOutput() HorizontalPodAutoscalerPtrOutput
+	ToHorizontalPodAutoscalerPtrOutputWithContext(ctx context.Context) HorizontalPodAutoscalerPtrOutput
+}
+
 func (HorizontalPodAutoscaler) ElementType() reflect.Type {
 	return reflect.TypeOf((*HorizontalPodAutoscaler)(nil)).Elem()
 }
@@ -140,6 +147,14 @@ func (i HorizontalPodAutoscaler) ToHorizontalPodAutoscalerOutput() HorizontalPod
 
 func (i HorizontalPodAutoscaler) ToHorizontalPodAutoscalerOutputWithContext(ctx context.Context) HorizontalPodAutoscalerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(HorizontalPodAutoscalerOutput)
+}
+
+func (i HorizontalPodAutoscaler) ToHorizontalPodAutoscalerPtrOutput() HorizontalPodAutoscalerPtrOutput {
+	return i.ToHorizontalPodAutoscalerPtrOutputWithContext(context.Background())
+}
+
+func (i HorizontalPodAutoscaler) ToHorizontalPodAutoscalerPtrOutputWithContext(ctx context.Context) HorizontalPodAutoscalerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HorizontalPodAutoscalerPtrOutput)
 }
 
 type HorizontalPodAutoscalerOutput struct {
@@ -158,6 +173,23 @@ func (o HorizontalPodAutoscalerOutput) ToHorizontalPodAutoscalerOutputWithContex
 	return o
 }
 
+type HorizontalPodAutoscalerPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (HorizontalPodAutoscalerPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**HorizontalPodAutoscaler)(nil)).Elem()
+}
+
+func (o HorizontalPodAutoscalerPtrOutput) ToHorizontalPodAutoscalerPtrOutput() HorizontalPodAutoscalerPtrOutput {
+	return o
+}
+
+func (o HorizontalPodAutoscalerPtrOutput) ToHorizontalPodAutoscalerPtrOutputWithContext(ctx context.Context) HorizontalPodAutoscalerPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(HorizontalPodAutoscalerOutput{})
+	pulumi.RegisterOutputType(HorizontalPodAutoscalerPtrOutput{})
 }

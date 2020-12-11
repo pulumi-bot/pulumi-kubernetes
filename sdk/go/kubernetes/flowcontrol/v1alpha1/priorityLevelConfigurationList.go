@@ -119,6 +119,13 @@ type PriorityLevelConfigurationListInput interface {
 	ToPriorityLevelConfigurationListOutputWithContext(ctx context.Context) PriorityLevelConfigurationListOutput
 }
 
+type PriorityLevelConfigurationListPtrInput interface {
+	pulumi.Input
+
+	ToPriorityLevelConfigurationListPtrOutput() PriorityLevelConfigurationListPtrOutput
+	ToPriorityLevelConfigurationListPtrOutputWithContext(ctx context.Context) PriorityLevelConfigurationListPtrOutput
+}
+
 func (PriorityLevelConfigurationList) ElementType() reflect.Type {
 	return reflect.TypeOf((*PriorityLevelConfigurationList)(nil)).Elem()
 }
@@ -129,6 +136,14 @@ func (i PriorityLevelConfigurationList) ToPriorityLevelConfigurationListOutput()
 
 func (i PriorityLevelConfigurationList) ToPriorityLevelConfigurationListOutputWithContext(ctx context.Context) PriorityLevelConfigurationListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PriorityLevelConfigurationListOutput)
+}
+
+func (i PriorityLevelConfigurationList) ToPriorityLevelConfigurationListPtrOutput() PriorityLevelConfigurationListPtrOutput {
+	return i.ToPriorityLevelConfigurationListPtrOutputWithContext(context.Background())
+}
+
+func (i PriorityLevelConfigurationList) ToPriorityLevelConfigurationListPtrOutputWithContext(ctx context.Context) PriorityLevelConfigurationListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PriorityLevelConfigurationListPtrOutput)
 }
 
 type PriorityLevelConfigurationListOutput struct {
@@ -147,6 +162,23 @@ func (o PriorityLevelConfigurationListOutput) ToPriorityLevelConfigurationListOu
 	return o
 }
 
+type PriorityLevelConfigurationListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (PriorityLevelConfigurationListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PriorityLevelConfigurationList)(nil)).Elem()
+}
+
+func (o PriorityLevelConfigurationListPtrOutput) ToPriorityLevelConfigurationListPtrOutput() PriorityLevelConfigurationListPtrOutput {
+	return o
+}
+
+func (o PriorityLevelConfigurationListPtrOutput) ToPriorityLevelConfigurationListPtrOutputWithContext(ctx context.Context) PriorityLevelConfigurationListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(PriorityLevelConfigurationListOutput{})
+	pulumi.RegisterOutputType(PriorityLevelConfigurationListPtrOutput{})
 }

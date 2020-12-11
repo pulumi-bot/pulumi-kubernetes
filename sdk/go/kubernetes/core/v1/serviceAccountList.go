@@ -119,6 +119,13 @@ type ServiceAccountListInput interface {
 	ToServiceAccountListOutputWithContext(ctx context.Context) ServiceAccountListOutput
 }
 
+type ServiceAccountListPtrInput interface {
+	pulumi.Input
+
+	ToServiceAccountListPtrOutput() ServiceAccountListPtrOutput
+	ToServiceAccountListPtrOutputWithContext(ctx context.Context) ServiceAccountListPtrOutput
+}
+
 func (ServiceAccountList) ElementType() reflect.Type {
 	return reflect.TypeOf((*ServiceAccountList)(nil)).Elem()
 }
@@ -129,6 +136,14 @@ func (i ServiceAccountList) ToServiceAccountListOutput() ServiceAccountListOutpu
 
 func (i ServiceAccountList) ToServiceAccountListOutputWithContext(ctx context.Context) ServiceAccountListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceAccountListOutput)
+}
+
+func (i ServiceAccountList) ToServiceAccountListPtrOutput() ServiceAccountListPtrOutput {
+	return i.ToServiceAccountListPtrOutputWithContext(context.Background())
+}
+
+func (i ServiceAccountList) ToServiceAccountListPtrOutputWithContext(ctx context.Context) ServiceAccountListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceAccountListPtrOutput)
 }
 
 type ServiceAccountListOutput struct {
@@ -147,6 +162,23 @@ func (o ServiceAccountListOutput) ToServiceAccountListOutputWithContext(ctx cont
 	return o
 }
 
+type ServiceAccountListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ServiceAccountListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceAccountList)(nil)).Elem()
+}
+
+func (o ServiceAccountListPtrOutput) ToServiceAccountListPtrOutput() ServiceAccountListPtrOutput {
+	return o
+}
+
+func (o ServiceAccountListPtrOutput) ToServiceAccountListPtrOutputWithContext(ctx context.Context) ServiceAccountListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ServiceAccountListOutput{})
+	pulumi.RegisterOutputType(ServiceAccountListPtrOutput{})
 }

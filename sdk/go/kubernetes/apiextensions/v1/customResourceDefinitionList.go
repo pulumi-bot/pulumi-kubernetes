@@ -114,6 +114,13 @@ type CustomResourceDefinitionListInput interface {
 	ToCustomResourceDefinitionListOutputWithContext(ctx context.Context) CustomResourceDefinitionListOutput
 }
 
+type CustomResourceDefinitionListPtrInput interface {
+	pulumi.Input
+
+	ToCustomResourceDefinitionListPtrOutput() CustomResourceDefinitionListPtrOutput
+	ToCustomResourceDefinitionListPtrOutputWithContext(ctx context.Context) CustomResourceDefinitionListPtrOutput
+}
+
 func (CustomResourceDefinitionList) ElementType() reflect.Type {
 	return reflect.TypeOf((*CustomResourceDefinitionList)(nil)).Elem()
 }
@@ -124,6 +131,14 @@ func (i CustomResourceDefinitionList) ToCustomResourceDefinitionListOutput() Cus
 
 func (i CustomResourceDefinitionList) ToCustomResourceDefinitionListOutputWithContext(ctx context.Context) CustomResourceDefinitionListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceDefinitionListOutput)
+}
+
+func (i CustomResourceDefinitionList) ToCustomResourceDefinitionListPtrOutput() CustomResourceDefinitionListPtrOutput {
+	return i.ToCustomResourceDefinitionListPtrOutputWithContext(context.Background())
+}
+
+func (i CustomResourceDefinitionList) ToCustomResourceDefinitionListPtrOutputWithContext(ctx context.Context) CustomResourceDefinitionListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceDefinitionListPtrOutput)
 }
 
 type CustomResourceDefinitionListOutput struct {
@@ -142,6 +157,23 @@ func (o CustomResourceDefinitionListOutput) ToCustomResourceDefinitionListOutput
 	return o
 }
 
+type CustomResourceDefinitionListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (CustomResourceDefinitionListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CustomResourceDefinitionList)(nil)).Elem()
+}
+
+func (o CustomResourceDefinitionListPtrOutput) ToCustomResourceDefinitionListPtrOutput() CustomResourceDefinitionListPtrOutput {
+	return o
+}
+
+func (o CustomResourceDefinitionListPtrOutput) ToCustomResourceDefinitionListPtrOutputWithContext(ctx context.Context) CustomResourceDefinitionListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(CustomResourceDefinitionListOutput{})
+	pulumi.RegisterOutputType(CustomResourceDefinitionListPtrOutput{})
 }

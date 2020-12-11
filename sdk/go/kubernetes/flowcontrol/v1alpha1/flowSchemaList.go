@@ -119,6 +119,13 @@ type FlowSchemaListInput interface {
 	ToFlowSchemaListOutputWithContext(ctx context.Context) FlowSchemaListOutput
 }
 
+type FlowSchemaListPtrInput interface {
+	pulumi.Input
+
+	ToFlowSchemaListPtrOutput() FlowSchemaListPtrOutput
+	ToFlowSchemaListPtrOutputWithContext(ctx context.Context) FlowSchemaListPtrOutput
+}
+
 func (FlowSchemaList) ElementType() reflect.Type {
 	return reflect.TypeOf((*FlowSchemaList)(nil)).Elem()
 }
@@ -129,6 +136,14 @@ func (i FlowSchemaList) ToFlowSchemaListOutput() FlowSchemaListOutput {
 
 func (i FlowSchemaList) ToFlowSchemaListOutputWithContext(ctx context.Context) FlowSchemaListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FlowSchemaListOutput)
+}
+
+func (i FlowSchemaList) ToFlowSchemaListPtrOutput() FlowSchemaListPtrOutput {
+	return i.ToFlowSchemaListPtrOutputWithContext(context.Background())
+}
+
+func (i FlowSchemaList) ToFlowSchemaListPtrOutputWithContext(ctx context.Context) FlowSchemaListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FlowSchemaListPtrOutput)
 }
 
 type FlowSchemaListOutput struct {
@@ -147,6 +162,23 @@ func (o FlowSchemaListOutput) ToFlowSchemaListOutputWithContext(ctx context.Cont
 	return o
 }
 
+type FlowSchemaListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (FlowSchemaListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**FlowSchemaList)(nil)).Elem()
+}
+
+func (o FlowSchemaListPtrOutput) ToFlowSchemaListPtrOutput() FlowSchemaListPtrOutput {
+	return o
+}
+
+func (o FlowSchemaListPtrOutput) ToFlowSchemaListPtrOutputWithContext(ctx context.Context) FlowSchemaListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(FlowSchemaListOutput{})
+	pulumi.RegisterOutputType(FlowSchemaListPtrOutput{})
 }

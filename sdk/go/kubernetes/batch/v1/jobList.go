@@ -119,6 +119,13 @@ type JobListInput interface {
 	ToJobListOutputWithContext(ctx context.Context) JobListOutput
 }
 
+type JobListPtrInput interface {
+	pulumi.Input
+
+	ToJobListPtrOutput() JobListPtrOutput
+	ToJobListPtrOutputWithContext(ctx context.Context) JobListPtrOutput
+}
+
 func (JobList) ElementType() reflect.Type {
 	return reflect.TypeOf((*JobList)(nil)).Elem()
 }
@@ -129,6 +136,14 @@ func (i JobList) ToJobListOutput() JobListOutput {
 
 func (i JobList) ToJobListOutputWithContext(ctx context.Context) JobListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(JobListOutput)
+}
+
+func (i JobList) ToJobListPtrOutput() JobListPtrOutput {
+	return i.ToJobListPtrOutputWithContext(context.Background())
+}
+
+func (i JobList) ToJobListPtrOutputWithContext(ctx context.Context) JobListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobListPtrOutput)
 }
 
 type JobListOutput struct {
@@ -147,6 +162,23 @@ func (o JobListOutput) ToJobListOutputWithContext(ctx context.Context) JobListOu
 	return o
 }
 
+type JobListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (JobListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**JobList)(nil)).Elem()
+}
+
+func (o JobListPtrOutput) ToJobListPtrOutput() JobListPtrOutput {
+	return o
+}
+
+func (o JobListPtrOutput) ToJobListPtrOutputWithContext(ctx context.Context) JobListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(JobListOutput{})
+	pulumi.RegisterOutputType(JobListPtrOutput{})
 }

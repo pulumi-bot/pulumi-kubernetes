@@ -105,6 +105,13 @@ type PodPresetInput interface {
 	ToPodPresetOutputWithContext(ctx context.Context) PodPresetOutput
 }
 
+type PodPresetPtrInput interface {
+	pulumi.Input
+
+	ToPodPresetPtrOutput() PodPresetPtrOutput
+	ToPodPresetPtrOutputWithContext(ctx context.Context) PodPresetPtrOutput
+}
+
 func (PodPreset) ElementType() reflect.Type {
 	return reflect.TypeOf((*PodPreset)(nil)).Elem()
 }
@@ -115,6 +122,14 @@ func (i PodPreset) ToPodPresetOutput() PodPresetOutput {
 
 func (i PodPreset) ToPodPresetOutputWithContext(ctx context.Context) PodPresetOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PodPresetOutput)
+}
+
+func (i PodPreset) ToPodPresetPtrOutput() PodPresetPtrOutput {
+	return i.ToPodPresetPtrOutputWithContext(context.Background())
+}
+
+func (i PodPreset) ToPodPresetPtrOutputWithContext(ctx context.Context) PodPresetPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PodPresetPtrOutput)
 }
 
 type PodPresetOutput struct {
@@ -133,6 +148,23 @@ func (o PodPresetOutput) ToPodPresetOutputWithContext(ctx context.Context) PodPr
 	return o
 }
 
+type PodPresetPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (PodPresetPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PodPreset)(nil)).Elem()
+}
+
+func (o PodPresetPtrOutput) ToPodPresetPtrOutput() PodPresetPtrOutput {
+	return o
+}
+
+func (o PodPresetPtrOutput) ToPodPresetPtrOutputWithContext(ctx context.Context) PodPresetPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(PodPresetOutput{})
+	pulumi.RegisterOutputType(PodPresetPtrOutput{})
 }

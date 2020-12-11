@@ -126,6 +126,13 @@ type CustomResourceDefinitionInput interface {
 	ToCustomResourceDefinitionOutputWithContext(ctx context.Context) CustomResourceDefinitionOutput
 }
 
+type CustomResourceDefinitionPtrInput interface {
+	pulumi.Input
+
+	ToCustomResourceDefinitionPtrOutput() CustomResourceDefinitionPtrOutput
+	ToCustomResourceDefinitionPtrOutputWithContext(ctx context.Context) CustomResourceDefinitionPtrOutput
+}
+
 func (CustomResourceDefinition) ElementType() reflect.Type {
 	return reflect.TypeOf((*CustomResourceDefinition)(nil)).Elem()
 }
@@ -136,6 +143,14 @@ func (i CustomResourceDefinition) ToCustomResourceDefinitionOutput() CustomResou
 
 func (i CustomResourceDefinition) ToCustomResourceDefinitionOutputWithContext(ctx context.Context) CustomResourceDefinitionOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceDefinitionOutput)
+}
+
+func (i CustomResourceDefinition) ToCustomResourceDefinitionPtrOutput() CustomResourceDefinitionPtrOutput {
+	return i.ToCustomResourceDefinitionPtrOutputWithContext(context.Background())
+}
+
+func (i CustomResourceDefinition) ToCustomResourceDefinitionPtrOutputWithContext(ctx context.Context) CustomResourceDefinitionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceDefinitionPtrOutput)
 }
 
 type CustomResourceDefinitionOutput struct {
@@ -154,6 +169,23 @@ func (o CustomResourceDefinitionOutput) ToCustomResourceDefinitionOutputWithCont
 	return o
 }
 
+type CustomResourceDefinitionPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (CustomResourceDefinitionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CustomResourceDefinition)(nil)).Elem()
+}
+
+func (o CustomResourceDefinitionPtrOutput) ToCustomResourceDefinitionPtrOutput() CustomResourceDefinitionPtrOutput {
+	return o
+}
+
+func (o CustomResourceDefinitionPtrOutput) ToCustomResourceDefinitionPtrOutputWithContext(ctx context.Context) CustomResourceDefinitionPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(CustomResourceDefinitionOutput{})
+	pulumi.RegisterOutputType(CustomResourceDefinitionPtrOutput{})
 }

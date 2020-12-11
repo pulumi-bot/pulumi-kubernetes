@@ -383,7 +383,7 @@ func (i EventSeriesArgs) ToEventSeriesPtrOutput() EventSeriesPtrOutput {
 }
 
 func (i EventSeriesArgs) ToEventSeriesPtrOutputWithContext(ctx context.Context) EventSeriesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EventSeriesOutput).ToEventSeriesPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(EventSeriesOutput).ToEventSeriesPtrOutput()
 }
 
 // EventSeriesPtrInput is an input type that accepts EventSeriesArgs, EventSeriesPtr and EventSeriesPtrOutput values.
@@ -416,7 +416,7 @@ func (i *eventSeriesPtrType) ToEventSeriesPtrOutput() EventSeriesPtrOutput {
 }
 
 func (i *eventSeriesPtrType) ToEventSeriesPtrOutputWithContext(ctx context.Context) EventSeriesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EventSeriesPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(EventSeriesOutput).ToEventSeriesPtrOutput()
 }
 
 // EventSeries contain information on series of events, i.e. thing that was/is happening continuously for some time.

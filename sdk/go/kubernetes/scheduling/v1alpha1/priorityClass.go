@@ -158,6 +158,13 @@ type PriorityClassInput interface {
 	ToPriorityClassOutputWithContext(ctx context.Context) PriorityClassOutput
 }
 
+type PriorityClassPtrInput interface {
+	pulumi.Input
+
+	ToPriorityClassPtrOutput() PriorityClassPtrOutput
+	ToPriorityClassPtrOutputWithContext(ctx context.Context) PriorityClassPtrOutput
+}
+
 func (PriorityClass) ElementType() reflect.Type {
 	return reflect.TypeOf((*PriorityClass)(nil)).Elem()
 }
@@ -168,6 +175,14 @@ func (i PriorityClass) ToPriorityClassOutput() PriorityClassOutput {
 
 func (i PriorityClass) ToPriorityClassOutputWithContext(ctx context.Context) PriorityClassOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PriorityClassOutput)
+}
+
+func (i PriorityClass) ToPriorityClassPtrOutput() PriorityClassPtrOutput {
+	return i.ToPriorityClassPtrOutputWithContext(context.Background())
+}
+
+func (i PriorityClass) ToPriorityClassPtrOutputWithContext(ctx context.Context) PriorityClassPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PriorityClassPtrOutput)
 }
 
 type PriorityClassOutput struct {
@@ -186,6 +201,23 @@ func (o PriorityClassOutput) ToPriorityClassOutputWithContext(ctx context.Contex
 	return o
 }
 
+type PriorityClassPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (PriorityClassPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PriorityClass)(nil)).Elem()
+}
+
+func (o PriorityClassPtrOutput) ToPriorityClassPtrOutput() PriorityClassPtrOutput {
+	return o
+}
+
+func (o PriorityClassPtrOutput) ToPriorityClassPtrOutputWithContext(ctx context.Context) PriorityClassPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(PriorityClassOutput{})
+	pulumi.RegisterOutputType(PriorityClassPtrOutput{})
 }

@@ -126,6 +126,13 @@ type EndpointsInput interface {
 	ToEndpointsOutputWithContext(ctx context.Context) EndpointsOutput
 }
 
+type EndpointsPtrInput interface {
+	pulumi.Input
+
+	ToEndpointsPtrOutput() EndpointsPtrOutput
+	ToEndpointsPtrOutputWithContext(ctx context.Context) EndpointsPtrOutput
+}
+
 func (Endpoints) ElementType() reflect.Type {
 	return reflect.TypeOf((*Endpoints)(nil)).Elem()
 }
@@ -136,6 +143,14 @@ func (i Endpoints) ToEndpointsOutput() EndpointsOutput {
 
 func (i Endpoints) ToEndpointsOutputWithContext(ctx context.Context) EndpointsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointsOutput)
+}
+
+func (i Endpoints) ToEndpointsPtrOutput() EndpointsPtrOutput {
+	return i.ToEndpointsPtrOutputWithContext(context.Background())
+}
+
+func (i Endpoints) ToEndpointsPtrOutputWithContext(ctx context.Context) EndpointsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EndpointsPtrOutput)
 }
 
 type EndpointsOutput struct {
@@ -154,6 +169,23 @@ func (o EndpointsOutput) ToEndpointsOutputWithContext(ctx context.Context) Endpo
 	return o
 }
 
+type EndpointsPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (EndpointsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Endpoints)(nil)).Elem()
+}
+
+func (o EndpointsPtrOutput) ToEndpointsPtrOutput() EndpointsPtrOutput {
+	return o
+}
+
+func (o EndpointsPtrOutput) ToEndpointsPtrOutputWithContext(ctx context.Context) EndpointsPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(EndpointsOutput{})
+	pulumi.RegisterOutputType(EndpointsPtrOutput{})
 }
