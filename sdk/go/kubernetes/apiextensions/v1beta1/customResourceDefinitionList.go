@@ -114,16 +114,31 @@ type CustomResourceDefinitionListInput interface {
 	ToCustomResourceDefinitionListOutputWithContext(ctx context.Context) CustomResourceDefinitionListOutput
 }
 
-func (CustomResourceDefinitionList) ElementType() reflect.Type {
-	return reflect.TypeOf((*CustomResourceDefinitionList)(nil)).Elem()
+func (*CustomResourceDefinitionList) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomResourceDefinitionList)(nil))
 }
 
-func (i CustomResourceDefinitionList) ToCustomResourceDefinitionListOutput() CustomResourceDefinitionListOutput {
+func (i *CustomResourceDefinitionList) ToCustomResourceDefinitionListOutput() CustomResourceDefinitionListOutput {
 	return i.ToCustomResourceDefinitionListOutputWithContext(context.Background())
 }
 
-func (i CustomResourceDefinitionList) ToCustomResourceDefinitionListOutputWithContext(ctx context.Context) CustomResourceDefinitionListOutput {
+func (i *CustomResourceDefinitionList) ToCustomResourceDefinitionListOutputWithContext(ctx context.Context) CustomResourceDefinitionListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceDefinitionListOutput)
+}
+
+func (i *CustomResourceDefinitionList) ToCustomResourceDefinitionListPtrOutput() CustomResourceDefinitionListPtrOutput {
+	return i.ToCustomResourceDefinitionListPtrOutputWithContext(context.Background())
+}
+
+func (i *CustomResourceDefinitionList) ToCustomResourceDefinitionListPtrOutputWithContext(ctx context.Context) CustomResourceDefinitionListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceDefinitionListPtrOutput)
+}
+
+type CustomResourceDefinitionListPtrInput interface {
+	pulumi.Input
+
+	ToCustomResourceDefinitionListPtrOutput() CustomResourceDefinitionListPtrOutput
+	ToCustomResourceDefinitionListPtrOutputWithContext(ctx context.Context) CustomResourceDefinitionListPtrOutput
 }
 
 type CustomResourceDefinitionListOutput struct {
@@ -131,7 +146,7 @@ type CustomResourceDefinitionListOutput struct {
 }
 
 func (CustomResourceDefinitionListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CustomResourceDefinitionListOutput)(nil)).Elem()
+	return reflect.TypeOf((*CustomResourceDefinitionList)(nil))
 }
 
 func (o CustomResourceDefinitionListOutput) ToCustomResourceDefinitionListOutput() CustomResourceDefinitionListOutput {
@@ -142,6 +157,23 @@ func (o CustomResourceDefinitionListOutput) ToCustomResourceDefinitionListOutput
 	return o
 }
 
+type CustomResourceDefinitionListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (CustomResourceDefinitionListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CustomResourceDefinitionList)(nil))
+}
+
+func (o CustomResourceDefinitionListPtrOutput) ToCustomResourceDefinitionListPtrOutput() CustomResourceDefinitionListPtrOutput {
+	return o
+}
+
+func (o CustomResourceDefinitionListPtrOutput) ToCustomResourceDefinitionListPtrOutputWithContext(ctx context.Context) CustomResourceDefinitionListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(CustomResourceDefinitionListOutput{})
+	pulumi.RegisterOutputType(CustomResourceDefinitionListPtrOutput{})
 }

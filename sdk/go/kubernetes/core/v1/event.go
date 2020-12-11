@@ -261,16 +261,31 @@ type EventInput interface {
 	ToEventOutputWithContext(ctx context.Context) EventOutput
 }
 
-func (Event) ElementType() reflect.Type {
-	return reflect.TypeOf((*Event)(nil)).Elem()
+func (*Event) ElementType() reflect.Type {
+	return reflect.TypeOf((*Event)(nil))
 }
 
-func (i Event) ToEventOutput() EventOutput {
+func (i *Event) ToEventOutput() EventOutput {
 	return i.ToEventOutputWithContext(context.Background())
 }
 
-func (i Event) ToEventOutputWithContext(ctx context.Context) EventOutput {
+func (i *Event) ToEventOutputWithContext(ctx context.Context) EventOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EventOutput)
+}
+
+func (i *Event) ToEventPtrOutput() EventPtrOutput {
+	return i.ToEventPtrOutputWithContext(context.Background())
+}
+
+func (i *Event) ToEventPtrOutputWithContext(ctx context.Context) EventPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EventPtrOutput)
+}
+
+type EventPtrInput interface {
+	pulumi.Input
+
+	ToEventPtrOutput() EventPtrOutput
+	ToEventPtrOutputWithContext(ctx context.Context) EventPtrOutput
 }
 
 type EventOutput struct {
@@ -278,7 +293,7 @@ type EventOutput struct {
 }
 
 func (EventOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EventOutput)(nil)).Elem()
+	return reflect.TypeOf((*Event)(nil))
 }
 
 func (o EventOutput) ToEventOutput() EventOutput {
@@ -289,6 +304,23 @@ func (o EventOutput) ToEventOutputWithContext(ctx context.Context) EventOutput {
 	return o
 }
 
+type EventPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (EventPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Event)(nil))
+}
+
+func (o EventPtrOutput) ToEventPtrOutput() EventPtrOutput {
+	return o
+}
+
+func (o EventPtrOutput) ToEventPtrOutputWithContext(ctx context.Context) EventPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(EventOutput{})
+	pulumi.RegisterOutputType(EventPtrOutput{})
 }

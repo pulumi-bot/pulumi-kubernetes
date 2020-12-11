@@ -119,16 +119,31 @@ type EndpointsListInput interface {
 	ToEndpointsListOutputWithContext(ctx context.Context) EndpointsListOutput
 }
 
-func (EndpointsList) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointsList)(nil)).Elem()
+func (*EndpointsList) ElementType() reflect.Type {
+	return reflect.TypeOf((*EndpointsList)(nil))
 }
 
-func (i EndpointsList) ToEndpointsListOutput() EndpointsListOutput {
+func (i *EndpointsList) ToEndpointsListOutput() EndpointsListOutput {
 	return i.ToEndpointsListOutputWithContext(context.Background())
 }
 
-func (i EndpointsList) ToEndpointsListOutputWithContext(ctx context.Context) EndpointsListOutput {
+func (i *EndpointsList) ToEndpointsListOutputWithContext(ctx context.Context) EndpointsListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointsListOutput)
+}
+
+func (i *EndpointsList) ToEndpointsListPtrOutput() EndpointsListPtrOutput {
+	return i.ToEndpointsListPtrOutputWithContext(context.Background())
+}
+
+func (i *EndpointsList) ToEndpointsListPtrOutputWithContext(ctx context.Context) EndpointsListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EndpointsListPtrOutput)
+}
+
+type EndpointsListPtrInput interface {
+	pulumi.Input
+
+	ToEndpointsListPtrOutput() EndpointsListPtrOutput
+	ToEndpointsListPtrOutputWithContext(ctx context.Context) EndpointsListPtrOutput
 }
 
 type EndpointsListOutput struct {
@@ -136,7 +151,7 @@ type EndpointsListOutput struct {
 }
 
 func (EndpointsListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointsListOutput)(nil)).Elem()
+	return reflect.TypeOf((*EndpointsList)(nil))
 }
 
 func (o EndpointsListOutput) ToEndpointsListOutput() EndpointsListOutput {
@@ -147,6 +162,23 @@ func (o EndpointsListOutput) ToEndpointsListOutputWithContext(ctx context.Contex
 	return o
 }
 
+type EndpointsListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (EndpointsListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EndpointsList)(nil))
+}
+
+func (o EndpointsListPtrOutput) ToEndpointsListPtrOutput() EndpointsListPtrOutput {
+	return o
+}
+
+func (o EndpointsListPtrOutput) ToEndpointsListPtrOutputWithContext(ctx context.Context) EndpointsListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(EndpointsListOutput{})
+	pulumi.RegisterOutputType(EndpointsListPtrOutput{})
 }

@@ -119,16 +119,31 @@ type DeploymentListInput interface {
 	ToDeploymentListOutputWithContext(ctx context.Context) DeploymentListOutput
 }
 
-func (DeploymentList) ElementType() reflect.Type {
-	return reflect.TypeOf((*DeploymentList)(nil)).Elem()
+func (*DeploymentList) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentList)(nil))
 }
 
-func (i DeploymentList) ToDeploymentListOutput() DeploymentListOutput {
+func (i *DeploymentList) ToDeploymentListOutput() DeploymentListOutput {
 	return i.ToDeploymentListOutputWithContext(context.Background())
 }
 
-func (i DeploymentList) ToDeploymentListOutputWithContext(ctx context.Context) DeploymentListOutput {
+func (i *DeploymentList) ToDeploymentListOutputWithContext(ctx context.Context) DeploymentListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentListOutput)
+}
+
+func (i *DeploymentList) ToDeploymentListPtrOutput() DeploymentListPtrOutput {
+	return i.ToDeploymentListPtrOutputWithContext(context.Background())
+}
+
+func (i *DeploymentList) ToDeploymentListPtrOutputWithContext(ctx context.Context) DeploymentListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentListPtrOutput)
+}
+
+type DeploymentListPtrInput interface {
+	pulumi.Input
+
+	ToDeploymentListPtrOutput() DeploymentListPtrOutput
+	ToDeploymentListPtrOutputWithContext(ctx context.Context) DeploymentListPtrOutput
 }
 
 type DeploymentListOutput struct {
@@ -136,7 +151,7 @@ type DeploymentListOutput struct {
 }
 
 func (DeploymentListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DeploymentListOutput)(nil)).Elem()
+	return reflect.TypeOf((*DeploymentList)(nil))
 }
 
 func (o DeploymentListOutput) ToDeploymentListOutput() DeploymentListOutput {
@@ -147,6 +162,23 @@ func (o DeploymentListOutput) ToDeploymentListOutputWithContext(ctx context.Cont
 	return o
 }
 
+type DeploymentListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (DeploymentListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentList)(nil))
+}
+
+func (o DeploymentListPtrOutput) ToDeploymentListPtrOutput() DeploymentListPtrOutput {
+	return o
+}
+
+func (o DeploymentListPtrOutput) ToDeploymentListPtrOutputWithContext(ctx context.Context) DeploymentListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(DeploymentListOutput{})
+	pulumi.RegisterOutputType(DeploymentListPtrOutput{})
 }

@@ -140,16 +140,31 @@ type ControllerRevisionInput interface {
 	ToControllerRevisionOutputWithContext(ctx context.Context) ControllerRevisionOutput
 }
 
-func (ControllerRevision) ElementType() reflect.Type {
-	return reflect.TypeOf((*ControllerRevision)(nil)).Elem()
+func (*ControllerRevision) ElementType() reflect.Type {
+	return reflect.TypeOf((*ControllerRevision)(nil))
 }
 
-func (i ControllerRevision) ToControllerRevisionOutput() ControllerRevisionOutput {
+func (i *ControllerRevision) ToControllerRevisionOutput() ControllerRevisionOutput {
 	return i.ToControllerRevisionOutputWithContext(context.Background())
 }
 
-func (i ControllerRevision) ToControllerRevisionOutputWithContext(ctx context.Context) ControllerRevisionOutput {
+func (i *ControllerRevision) ToControllerRevisionOutputWithContext(ctx context.Context) ControllerRevisionOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ControllerRevisionOutput)
+}
+
+func (i *ControllerRevision) ToControllerRevisionPtrOutput() ControllerRevisionPtrOutput {
+	return i.ToControllerRevisionPtrOutputWithContext(context.Background())
+}
+
+func (i *ControllerRevision) ToControllerRevisionPtrOutputWithContext(ctx context.Context) ControllerRevisionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ControllerRevisionPtrOutput)
+}
+
+type ControllerRevisionPtrInput interface {
+	pulumi.Input
+
+	ToControllerRevisionPtrOutput() ControllerRevisionPtrOutput
+	ToControllerRevisionPtrOutputWithContext(ctx context.Context) ControllerRevisionPtrOutput
 }
 
 type ControllerRevisionOutput struct {
@@ -157,7 +172,7 @@ type ControllerRevisionOutput struct {
 }
 
 func (ControllerRevisionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ControllerRevisionOutput)(nil)).Elem()
+	return reflect.TypeOf((*ControllerRevision)(nil))
 }
 
 func (o ControllerRevisionOutput) ToControllerRevisionOutput() ControllerRevisionOutput {
@@ -168,6 +183,23 @@ func (o ControllerRevisionOutput) ToControllerRevisionOutputWithContext(ctx cont
 	return o
 }
 
+type ControllerRevisionPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ControllerRevisionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ControllerRevision)(nil))
+}
+
+func (o ControllerRevisionPtrOutput) ToControllerRevisionPtrOutput() ControllerRevisionPtrOutput {
+	return o
+}
+
+func (o ControllerRevisionPtrOutput) ToControllerRevisionPtrOutputWithContext(ctx context.Context) ControllerRevisionPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ControllerRevisionOutput{})
+	pulumi.RegisterOutputType(ControllerRevisionPtrOutput{})
 }

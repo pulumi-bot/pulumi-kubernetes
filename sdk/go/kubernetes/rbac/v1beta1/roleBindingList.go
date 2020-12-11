@@ -119,16 +119,31 @@ type RoleBindingListInput interface {
 	ToRoleBindingListOutputWithContext(ctx context.Context) RoleBindingListOutput
 }
 
-func (RoleBindingList) ElementType() reflect.Type {
-	return reflect.TypeOf((*RoleBindingList)(nil)).Elem()
+func (*RoleBindingList) ElementType() reflect.Type {
+	return reflect.TypeOf((*RoleBindingList)(nil))
 }
 
-func (i RoleBindingList) ToRoleBindingListOutput() RoleBindingListOutput {
+func (i *RoleBindingList) ToRoleBindingListOutput() RoleBindingListOutput {
 	return i.ToRoleBindingListOutputWithContext(context.Background())
 }
 
-func (i RoleBindingList) ToRoleBindingListOutputWithContext(ctx context.Context) RoleBindingListOutput {
+func (i *RoleBindingList) ToRoleBindingListOutputWithContext(ctx context.Context) RoleBindingListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RoleBindingListOutput)
+}
+
+func (i *RoleBindingList) ToRoleBindingListPtrOutput() RoleBindingListPtrOutput {
+	return i.ToRoleBindingListPtrOutputWithContext(context.Background())
+}
+
+func (i *RoleBindingList) ToRoleBindingListPtrOutputWithContext(ctx context.Context) RoleBindingListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RoleBindingListPtrOutput)
+}
+
+type RoleBindingListPtrInput interface {
+	pulumi.Input
+
+	ToRoleBindingListPtrOutput() RoleBindingListPtrOutput
+	ToRoleBindingListPtrOutputWithContext(ctx context.Context) RoleBindingListPtrOutput
 }
 
 type RoleBindingListOutput struct {
@@ -136,7 +151,7 @@ type RoleBindingListOutput struct {
 }
 
 func (RoleBindingListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RoleBindingListOutput)(nil)).Elem()
+	return reflect.TypeOf((*RoleBindingList)(nil))
 }
 
 func (o RoleBindingListOutput) ToRoleBindingListOutput() RoleBindingListOutput {
@@ -147,6 +162,23 @@ func (o RoleBindingListOutput) ToRoleBindingListOutputWithContext(ctx context.Co
 	return o
 }
 
+type RoleBindingListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RoleBindingListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RoleBindingList)(nil))
+}
+
+func (o RoleBindingListPtrOutput) ToRoleBindingListPtrOutput() RoleBindingListPtrOutput {
+	return o
+}
+
+func (o RoleBindingListPtrOutput) ToRoleBindingListPtrOutputWithContext(ctx context.Context) RoleBindingListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(RoleBindingListOutput{})
+	pulumi.RegisterOutputType(RoleBindingListPtrOutput{})
 }

@@ -119,16 +119,31 @@ type RuntimeClassListInput interface {
 	ToRuntimeClassListOutputWithContext(ctx context.Context) RuntimeClassListOutput
 }
 
-func (RuntimeClassList) ElementType() reflect.Type {
-	return reflect.TypeOf((*RuntimeClassList)(nil)).Elem()
+func (*RuntimeClassList) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuntimeClassList)(nil))
 }
 
-func (i RuntimeClassList) ToRuntimeClassListOutput() RuntimeClassListOutput {
+func (i *RuntimeClassList) ToRuntimeClassListOutput() RuntimeClassListOutput {
 	return i.ToRuntimeClassListOutputWithContext(context.Background())
 }
 
-func (i RuntimeClassList) ToRuntimeClassListOutputWithContext(ctx context.Context) RuntimeClassListOutput {
+func (i *RuntimeClassList) ToRuntimeClassListOutputWithContext(ctx context.Context) RuntimeClassListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RuntimeClassListOutput)
+}
+
+func (i *RuntimeClassList) ToRuntimeClassListPtrOutput() RuntimeClassListPtrOutput {
+	return i.ToRuntimeClassListPtrOutputWithContext(context.Background())
+}
+
+func (i *RuntimeClassList) ToRuntimeClassListPtrOutputWithContext(ctx context.Context) RuntimeClassListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuntimeClassListPtrOutput)
+}
+
+type RuntimeClassListPtrInput interface {
+	pulumi.Input
+
+	ToRuntimeClassListPtrOutput() RuntimeClassListPtrOutput
+	ToRuntimeClassListPtrOutputWithContext(ctx context.Context) RuntimeClassListPtrOutput
 }
 
 type RuntimeClassListOutput struct {
@@ -136,7 +151,7 @@ type RuntimeClassListOutput struct {
 }
 
 func (RuntimeClassListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RuntimeClassListOutput)(nil)).Elem()
+	return reflect.TypeOf((*RuntimeClassList)(nil))
 }
 
 func (o RuntimeClassListOutput) ToRuntimeClassListOutput() RuntimeClassListOutput {
@@ -147,6 +162,23 @@ func (o RuntimeClassListOutput) ToRuntimeClassListOutputWithContext(ctx context.
 	return o
 }
 
+type RuntimeClassListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RuntimeClassListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuntimeClassList)(nil))
+}
+
+func (o RuntimeClassListPtrOutput) ToRuntimeClassListPtrOutput() RuntimeClassListPtrOutput {
+	return o
+}
+
+func (o RuntimeClassListPtrOutput) ToRuntimeClassListPtrOutputWithContext(ctx context.Context) RuntimeClassListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(RuntimeClassListOutput{})
+	pulumi.RegisterOutputType(RuntimeClassListPtrOutput{})
 }

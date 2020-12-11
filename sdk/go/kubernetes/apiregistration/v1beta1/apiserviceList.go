@@ -115,16 +115,31 @@ type APIServiceListInput interface {
 	ToAPIServiceListOutputWithContext(ctx context.Context) APIServiceListOutput
 }
 
-func (APIServiceList) ElementType() reflect.Type {
-	return reflect.TypeOf((*APIServiceList)(nil)).Elem()
+func (*APIServiceList) ElementType() reflect.Type {
+	return reflect.TypeOf((*APIServiceList)(nil))
 }
 
-func (i APIServiceList) ToAPIServiceListOutput() APIServiceListOutput {
+func (i *APIServiceList) ToAPIServiceListOutput() APIServiceListOutput {
 	return i.ToAPIServiceListOutputWithContext(context.Background())
 }
 
-func (i APIServiceList) ToAPIServiceListOutputWithContext(ctx context.Context) APIServiceListOutput {
+func (i *APIServiceList) ToAPIServiceListOutputWithContext(ctx context.Context) APIServiceListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(APIServiceListOutput)
+}
+
+func (i *APIServiceList) ToAPIServiceListPtrOutput() APIServiceListPtrOutput {
+	return i.ToAPIServiceListPtrOutputWithContext(context.Background())
+}
+
+func (i *APIServiceList) ToAPIServiceListPtrOutputWithContext(ctx context.Context) APIServiceListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(APIServiceListPtrOutput)
+}
+
+type APIServiceListPtrInput interface {
+	pulumi.Input
+
+	ToAPIServiceListPtrOutput() APIServiceListPtrOutput
+	ToAPIServiceListPtrOutputWithContext(ctx context.Context) APIServiceListPtrOutput
 }
 
 type APIServiceListOutput struct {
@@ -132,7 +147,7 @@ type APIServiceListOutput struct {
 }
 
 func (APIServiceListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*APIServiceListOutput)(nil)).Elem()
+	return reflect.TypeOf((*APIServiceList)(nil))
 }
 
 func (o APIServiceListOutput) ToAPIServiceListOutput() APIServiceListOutput {
@@ -143,6 +158,23 @@ func (o APIServiceListOutput) ToAPIServiceListOutputWithContext(ctx context.Cont
 	return o
 }
 
+type APIServiceListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (APIServiceListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**APIServiceList)(nil))
+}
+
+func (o APIServiceListPtrOutput) ToAPIServiceListPtrOutput() APIServiceListPtrOutput {
+	return o
+}
+
+func (o APIServiceListPtrOutput) ToAPIServiceListPtrOutputWithContext(ctx context.Context) APIServiceListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(APIServiceListOutput{})
+	pulumi.RegisterOutputType(APIServiceListPtrOutput{})
 }

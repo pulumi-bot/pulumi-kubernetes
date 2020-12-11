@@ -119,16 +119,31 @@ type PriorityClassListInput interface {
 	ToPriorityClassListOutputWithContext(ctx context.Context) PriorityClassListOutput
 }
 
-func (PriorityClassList) ElementType() reflect.Type {
-	return reflect.TypeOf((*PriorityClassList)(nil)).Elem()
+func (*PriorityClassList) ElementType() reflect.Type {
+	return reflect.TypeOf((*PriorityClassList)(nil))
 }
 
-func (i PriorityClassList) ToPriorityClassListOutput() PriorityClassListOutput {
+func (i *PriorityClassList) ToPriorityClassListOutput() PriorityClassListOutput {
 	return i.ToPriorityClassListOutputWithContext(context.Background())
 }
 
-func (i PriorityClassList) ToPriorityClassListOutputWithContext(ctx context.Context) PriorityClassListOutput {
+func (i *PriorityClassList) ToPriorityClassListOutputWithContext(ctx context.Context) PriorityClassListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PriorityClassListOutput)
+}
+
+func (i *PriorityClassList) ToPriorityClassListPtrOutput() PriorityClassListPtrOutput {
+	return i.ToPriorityClassListPtrOutputWithContext(context.Background())
+}
+
+func (i *PriorityClassList) ToPriorityClassListPtrOutputWithContext(ctx context.Context) PriorityClassListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PriorityClassListPtrOutput)
+}
+
+type PriorityClassListPtrInput interface {
+	pulumi.Input
+
+	ToPriorityClassListPtrOutput() PriorityClassListPtrOutput
+	ToPriorityClassListPtrOutputWithContext(ctx context.Context) PriorityClassListPtrOutput
 }
 
 type PriorityClassListOutput struct {
@@ -136,7 +151,7 @@ type PriorityClassListOutput struct {
 }
 
 func (PriorityClassListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*PriorityClassListOutput)(nil)).Elem()
+	return reflect.TypeOf((*PriorityClassList)(nil))
 }
 
 func (o PriorityClassListOutput) ToPriorityClassListOutput() PriorityClassListOutput {
@@ -147,6 +162,23 @@ func (o PriorityClassListOutput) ToPriorityClassListOutputWithContext(ctx contex
 	return o
 }
 
+type PriorityClassListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (PriorityClassListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PriorityClassList)(nil))
+}
+
+func (o PriorityClassListPtrOutput) ToPriorityClassListPtrOutput() PriorityClassListPtrOutput {
+	return o
+}
+
+func (o PriorityClassListPtrOutput) ToPriorityClassListPtrOutputWithContext(ctx context.Context) PriorityClassListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(PriorityClassListOutput{})
+	pulumi.RegisterOutputType(PriorityClassListPtrOutput{})
 }

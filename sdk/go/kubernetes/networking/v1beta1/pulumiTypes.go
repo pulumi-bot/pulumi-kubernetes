@@ -200,7 +200,7 @@ func (i HTTPIngressRuleValueArgs) ToHTTPIngressRuleValuePtrOutput() HTTPIngressR
 }
 
 func (i HTTPIngressRuleValueArgs) ToHTTPIngressRuleValuePtrOutputWithContext(ctx context.Context) HTTPIngressRuleValuePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HTTPIngressRuleValueOutput).ToHTTPIngressRuleValuePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(HTTPIngressRuleValueOutput).ToHTTPIngressRuleValuePtrOutput()
 }
 
 // HTTPIngressRuleValuePtrInput is an input type that accepts HTTPIngressRuleValueArgs, HTTPIngressRuleValuePtr and HTTPIngressRuleValuePtrOutput values.
@@ -233,7 +233,7 @@ func (i *httpingressRuleValuePtrType) ToHTTPIngressRuleValuePtrOutput() HTTPIngr
 }
 
 func (i *httpingressRuleValuePtrType) ToHTTPIngressRuleValuePtrOutputWithContext(ctx context.Context) HTTPIngressRuleValuePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HTTPIngressRuleValuePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(HTTPIngressRuleValueOutput).ToHTTPIngressRuleValuePtrOutput()
 }
 
 // HTTPIngressRuleValue is a list of http selectors pointing to backends. In the example: http://<host>/<path>?<searchpart> -> backend where where parts of the url correspond to RFC 3986, this resource will be used to match against everything after the last '/' and before the first '?' or '#'.
@@ -520,7 +520,7 @@ func (i IngressBackendArgs) ToIngressBackendPtrOutput() IngressBackendPtrOutput 
 }
 
 func (i IngressBackendArgs) ToIngressBackendPtrOutputWithContext(ctx context.Context) IngressBackendPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IngressBackendOutput).ToIngressBackendPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(IngressBackendOutput).ToIngressBackendPtrOutput()
 }
 
 // IngressBackendPtrInput is an input type that accepts IngressBackendArgs, IngressBackendPtr and IngressBackendPtrOutput values.
@@ -553,7 +553,7 @@ func (i *ingressBackendPtrType) ToIngressBackendPtrOutput() IngressBackendPtrOut
 }
 
 func (i *ingressBackendPtrType) ToIngressBackendPtrOutputWithContext(ctx context.Context) IngressBackendPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IngressBackendPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(IngressBackendOutput).ToIngressBackendPtrOutput()
 }
 
 // IngressBackend describes all endpoints for a given service and port.
@@ -897,7 +897,7 @@ func (i IngressClassSpecArgs) ToIngressClassSpecPtrOutput() IngressClassSpecPtrO
 }
 
 func (i IngressClassSpecArgs) ToIngressClassSpecPtrOutputWithContext(ctx context.Context) IngressClassSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IngressClassSpecOutput).ToIngressClassSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(IngressClassSpecOutput).ToIngressClassSpecPtrOutput()
 }
 
 // IngressClassSpecPtrInput is an input type that accepts IngressClassSpecArgs, IngressClassSpecPtr and IngressClassSpecPtrOutput values.
@@ -930,7 +930,7 @@ func (i *ingressClassSpecPtrType) ToIngressClassSpecPtrOutput() IngressClassSpec
 }
 
 func (i *ingressClassSpecPtrType) ToIngressClassSpecPtrOutputWithContext(ctx context.Context) IngressClassSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IngressClassSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(IngressClassSpecOutput).ToIngressClassSpecPtrOutput()
 }
 
 // IngressClassSpec provides information about the class of an Ingress.
@@ -1267,7 +1267,7 @@ func (i IngressSpecArgs) ToIngressSpecPtrOutput() IngressSpecPtrOutput {
 }
 
 func (i IngressSpecArgs) ToIngressSpecPtrOutputWithContext(ctx context.Context) IngressSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IngressSpecOutput).ToIngressSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(IngressSpecOutput).ToIngressSpecPtrOutput()
 }
 
 // IngressSpecPtrInput is an input type that accepts IngressSpecArgs, IngressSpecPtr and IngressSpecPtrOutput values.
@@ -1300,7 +1300,7 @@ func (i *ingressSpecPtrType) ToIngressSpecPtrOutput() IngressSpecPtrOutput {
 }
 
 func (i *ingressSpecPtrType) ToIngressSpecPtrOutputWithContext(ctx context.Context) IngressSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IngressSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(IngressSpecOutput).ToIngressSpecPtrOutput()
 }
 
 // IngressSpec describes the Ingress the user wishes to exist.
@@ -1446,7 +1446,7 @@ func (i IngressStatusArgs) ToIngressStatusPtrOutput() IngressStatusPtrOutput {
 }
 
 func (i IngressStatusArgs) ToIngressStatusPtrOutputWithContext(ctx context.Context) IngressStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IngressStatusOutput).ToIngressStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(IngressStatusOutput).ToIngressStatusPtrOutput()
 }
 
 // IngressStatusPtrInput is an input type that accepts IngressStatusArgs, IngressStatusPtr and IngressStatusPtrOutput values.
@@ -1479,7 +1479,7 @@ func (i *ingressStatusPtrType) ToIngressStatusPtrOutput() IngressStatusPtrOutput
 }
 
 func (i *ingressStatusPtrType) ToIngressStatusPtrOutputWithContext(ctx context.Context) IngressStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IngressStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(IngressStatusOutput).ToIngressStatusPtrOutput()
 }
 
 // IngressStatus describe the current state of the Ingress.

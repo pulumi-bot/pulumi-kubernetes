@@ -119,16 +119,31 @@ type EventListInput interface {
 	ToEventListOutputWithContext(ctx context.Context) EventListOutput
 }
 
-func (EventList) ElementType() reflect.Type {
-	return reflect.TypeOf((*EventList)(nil)).Elem()
+func (*EventList) ElementType() reflect.Type {
+	return reflect.TypeOf((*EventList)(nil))
 }
 
-func (i EventList) ToEventListOutput() EventListOutput {
+func (i *EventList) ToEventListOutput() EventListOutput {
 	return i.ToEventListOutputWithContext(context.Background())
 }
 
-func (i EventList) ToEventListOutputWithContext(ctx context.Context) EventListOutput {
+func (i *EventList) ToEventListOutputWithContext(ctx context.Context) EventListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EventListOutput)
+}
+
+func (i *EventList) ToEventListPtrOutput() EventListPtrOutput {
+	return i.ToEventListPtrOutputWithContext(context.Background())
+}
+
+func (i *EventList) ToEventListPtrOutputWithContext(ctx context.Context) EventListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EventListPtrOutput)
+}
+
+type EventListPtrInput interface {
+	pulumi.Input
+
+	ToEventListPtrOutput() EventListPtrOutput
+	ToEventListPtrOutputWithContext(ctx context.Context) EventListPtrOutput
 }
 
 type EventListOutput struct {
@@ -136,7 +151,7 @@ type EventListOutput struct {
 }
 
 func (EventListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EventListOutput)(nil)).Elem()
+	return reflect.TypeOf((*EventList)(nil))
 }
 
 func (o EventListOutput) ToEventListOutput() EventListOutput {
@@ -147,6 +162,23 @@ func (o EventListOutput) ToEventListOutputWithContext(ctx context.Context) Event
 	return o
 }
 
+type EventListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (EventListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EventList)(nil))
+}
+
+func (o EventListPtrOutput) ToEventListPtrOutput() EventListPtrOutput {
+	return o
+}
+
+func (o EventListPtrOutput) ToEventListPtrOutputWithContext(ctx context.Context) EventListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(EventListOutput{})
+	pulumi.RegisterOutputType(EventListPtrOutput{})
 }

@@ -280,7 +280,7 @@ func (i VolumeAttachmentSourceArgs) ToVolumeAttachmentSourcePtrOutput() VolumeAt
 }
 
 func (i VolumeAttachmentSourceArgs) ToVolumeAttachmentSourcePtrOutputWithContext(ctx context.Context) VolumeAttachmentSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VolumeAttachmentSourceOutput).ToVolumeAttachmentSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(VolumeAttachmentSourceOutput).ToVolumeAttachmentSourcePtrOutput()
 }
 
 // VolumeAttachmentSourcePtrInput is an input type that accepts VolumeAttachmentSourceArgs, VolumeAttachmentSourcePtr and VolumeAttachmentSourcePtrOutput values.
@@ -313,7 +313,7 @@ func (i *volumeAttachmentSourcePtrType) ToVolumeAttachmentSourcePtrOutput() Volu
 }
 
 func (i *volumeAttachmentSourcePtrType) ToVolumeAttachmentSourcePtrOutputWithContext(ctx context.Context) VolumeAttachmentSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VolumeAttachmentSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(VolumeAttachmentSourceOutput).ToVolumeAttachmentSourcePtrOutput()
 }
 
 // VolumeAttachmentSource represents a volume that should be attached. Right now only PersistenVolumes can be attached via external attacher, in future we may allow also inline volumes in pods. Exactly one member can be set.
@@ -437,7 +437,7 @@ func (i VolumeAttachmentSpecArgs) ToVolumeAttachmentSpecPtrOutput() VolumeAttach
 }
 
 func (i VolumeAttachmentSpecArgs) ToVolumeAttachmentSpecPtrOutputWithContext(ctx context.Context) VolumeAttachmentSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VolumeAttachmentSpecOutput).ToVolumeAttachmentSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(VolumeAttachmentSpecOutput).ToVolumeAttachmentSpecPtrOutput()
 }
 
 // VolumeAttachmentSpecPtrInput is an input type that accepts VolumeAttachmentSpecArgs, VolumeAttachmentSpecPtr and VolumeAttachmentSpecPtrOutput values.
@@ -470,7 +470,7 @@ func (i *volumeAttachmentSpecPtrType) ToVolumeAttachmentSpecPtrOutput() VolumeAt
 }
 
 func (i *volumeAttachmentSpecPtrType) ToVolumeAttachmentSpecPtrOutputWithContext(ctx context.Context) VolumeAttachmentSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VolumeAttachmentSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(VolumeAttachmentSpecOutput).ToVolumeAttachmentSpecPtrOutput()
 }
 
 // VolumeAttachmentSpec is the specification of a VolumeAttachment request.
@@ -613,7 +613,7 @@ func (i VolumeAttachmentStatusArgs) ToVolumeAttachmentStatusPtrOutput() VolumeAt
 }
 
 func (i VolumeAttachmentStatusArgs) ToVolumeAttachmentStatusPtrOutputWithContext(ctx context.Context) VolumeAttachmentStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VolumeAttachmentStatusOutput).ToVolumeAttachmentStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(VolumeAttachmentStatusOutput).ToVolumeAttachmentStatusPtrOutput()
 }
 
 // VolumeAttachmentStatusPtrInput is an input type that accepts VolumeAttachmentStatusArgs, VolumeAttachmentStatusPtr and VolumeAttachmentStatusPtrOutput values.
@@ -646,7 +646,7 @@ func (i *volumeAttachmentStatusPtrType) ToVolumeAttachmentStatusPtrOutput() Volu
 }
 
 func (i *volumeAttachmentStatusPtrType) ToVolumeAttachmentStatusPtrOutputWithContext(ctx context.Context) VolumeAttachmentStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VolumeAttachmentStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(VolumeAttachmentStatusOutput).ToVolumeAttachmentStatusPtrOutput()
 }
 
 // VolumeAttachmentStatus is the status of a VolumeAttachment request.
@@ -796,7 +796,7 @@ func (i VolumeErrorArgs) ToVolumeErrorPtrOutput() VolumeErrorPtrOutput {
 }
 
 func (i VolumeErrorArgs) ToVolumeErrorPtrOutputWithContext(ctx context.Context) VolumeErrorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VolumeErrorOutput).ToVolumeErrorPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(VolumeErrorOutput).ToVolumeErrorPtrOutput()
 }
 
 // VolumeErrorPtrInput is an input type that accepts VolumeErrorArgs, VolumeErrorPtr and VolumeErrorPtrOutput values.
@@ -829,7 +829,7 @@ func (i *volumeErrorPtrType) ToVolumeErrorPtrOutput() VolumeErrorPtrOutput {
 }
 
 func (i *volumeErrorPtrType) ToVolumeErrorPtrOutputWithContext(ctx context.Context) VolumeErrorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VolumeErrorPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(VolumeErrorOutput).ToVolumeErrorPtrOutput()
 }
 
 // VolumeError captures an error encountered during a volume operation.

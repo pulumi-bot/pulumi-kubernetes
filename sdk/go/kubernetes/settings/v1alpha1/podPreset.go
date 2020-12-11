@@ -105,16 +105,31 @@ type PodPresetInput interface {
 	ToPodPresetOutputWithContext(ctx context.Context) PodPresetOutput
 }
 
-func (PodPreset) ElementType() reflect.Type {
-	return reflect.TypeOf((*PodPreset)(nil)).Elem()
+func (*PodPreset) ElementType() reflect.Type {
+	return reflect.TypeOf((*PodPreset)(nil))
 }
 
-func (i PodPreset) ToPodPresetOutput() PodPresetOutput {
+func (i *PodPreset) ToPodPresetOutput() PodPresetOutput {
 	return i.ToPodPresetOutputWithContext(context.Background())
 }
 
-func (i PodPreset) ToPodPresetOutputWithContext(ctx context.Context) PodPresetOutput {
+func (i *PodPreset) ToPodPresetOutputWithContext(ctx context.Context) PodPresetOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PodPresetOutput)
+}
+
+func (i *PodPreset) ToPodPresetPtrOutput() PodPresetPtrOutput {
+	return i.ToPodPresetPtrOutputWithContext(context.Background())
+}
+
+func (i *PodPreset) ToPodPresetPtrOutputWithContext(ctx context.Context) PodPresetPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PodPresetPtrOutput)
+}
+
+type PodPresetPtrInput interface {
+	pulumi.Input
+
+	ToPodPresetPtrOutput() PodPresetPtrOutput
+	ToPodPresetPtrOutputWithContext(ctx context.Context) PodPresetPtrOutput
 }
 
 type PodPresetOutput struct {
@@ -122,7 +137,7 @@ type PodPresetOutput struct {
 }
 
 func (PodPresetOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*PodPresetOutput)(nil)).Elem()
+	return reflect.TypeOf((*PodPreset)(nil))
 }
 
 func (o PodPresetOutput) ToPodPresetOutput() PodPresetOutput {
@@ -133,6 +148,23 @@ func (o PodPresetOutput) ToPodPresetOutputWithContext(ctx context.Context) PodPr
 	return o
 }
 
+type PodPresetPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (PodPresetPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PodPreset)(nil))
+}
+
+func (o PodPresetPtrOutput) ToPodPresetPtrOutput() PodPresetPtrOutput {
+	return o
+}
+
+func (o PodPresetPtrOutput) ToPodPresetPtrOutputWithContext(ctx context.Context) PodPresetPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(PodPresetOutput{})
+	pulumi.RegisterOutputType(PodPresetPtrOutput{})
 }

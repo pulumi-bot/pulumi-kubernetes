@@ -119,16 +119,31 @@ type ServiceAccountListInput interface {
 	ToServiceAccountListOutputWithContext(ctx context.Context) ServiceAccountListOutput
 }
 
-func (ServiceAccountList) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceAccountList)(nil)).Elem()
+func (*ServiceAccountList) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceAccountList)(nil))
 }
 
-func (i ServiceAccountList) ToServiceAccountListOutput() ServiceAccountListOutput {
+func (i *ServiceAccountList) ToServiceAccountListOutput() ServiceAccountListOutput {
 	return i.ToServiceAccountListOutputWithContext(context.Background())
 }
 
-func (i ServiceAccountList) ToServiceAccountListOutputWithContext(ctx context.Context) ServiceAccountListOutput {
+func (i *ServiceAccountList) ToServiceAccountListOutputWithContext(ctx context.Context) ServiceAccountListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceAccountListOutput)
+}
+
+func (i *ServiceAccountList) ToServiceAccountListPtrOutput() ServiceAccountListPtrOutput {
+	return i.ToServiceAccountListPtrOutputWithContext(context.Background())
+}
+
+func (i *ServiceAccountList) ToServiceAccountListPtrOutputWithContext(ctx context.Context) ServiceAccountListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceAccountListPtrOutput)
+}
+
+type ServiceAccountListPtrInput interface {
+	pulumi.Input
+
+	ToServiceAccountListPtrOutput() ServiceAccountListPtrOutput
+	ToServiceAccountListPtrOutputWithContext(ctx context.Context) ServiceAccountListPtrOutput
 }
 
 type ServiceAccountListOutput struct {
@@ -136,7 +151,7 @@ type ServiceAccountListOutput struct {
 }
 
 func (ServiceAccountListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceAccountListOutput)(nil)).Elem()
+	return reflect.TypeOf((*ServiceAccountList)(nil))
 }
 
 func (o ServiceAccountListOutput) ToServiceAccountListOutput() ServiceAccountListOutput {
@@ -147,6 +162,23 @@ func (o ServiceAccountListOutput) ToServiceAccountListOutputWithContext(ctx cont
 	return o
 }
 
+type ServiceAccountListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ServiceAccountListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceAccountList)(nil))
+}
+
+func (o ServiceAccountListPtrOutput) ToServiceAccountListPtrOutput() ServiceAccountListPtrOutput {
+	return o
+}
+
+func (o ServiceAccountListPtrOutput) ToServiceAccountListPtrOutputWithContext(ctx context.Context) ServiceAccountListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ServiceAccountListOutput{})
+	pulumi.RegisterOutputType(ServiceAccountListPtrOutput{})
 }

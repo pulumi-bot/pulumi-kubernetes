@@ -142,16 +142,31 @@ type EndpointSliceInput interface {
 	ToEndpointSliceOutputWithContext(ctx context.Context) EndpointSliceOutput
 }
 
-func (EndpointSlice) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointSlice)(nil)).Elem()
+func (*EndpointSlice) ElementType() reflect.Type {
+	return reflect.TypeOf((*EndpointSlice)(nil))
 }
 
-func (i EndpointSlice) ToEndpointSliceOutput() EndpointSliceOutput {
+func (i *EndpointSlice) ToEndpointSliceOutput() EndpointSliceOutput {
 	return i.ToEndpointSliceOutputWithContext(context.Background())
 }
 
-func (i EndpointSlice) ToEndpointSliceOutputWithContext(ctx context.Context) EndpointSliceOutput {
+func (i *EndpointSlice) ToEndpointSliceOutputWithContext(ctx context.Context) EndpointSliceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointSliceOutput)
+}
+
+func (i *EndpointSlice) ToEndpointSlicePtrOutput() EndpointSlicePtrOutput {
+	return i.ToEndpointSlicePtrOutputWithContext(context.Background())
+}
+
+func (i *EndpointSlice) ToEndpointSlicePtrOutputWithContext(ctx context.Context) EndpointSlicePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EndpointSlicePtrOutput)
+}
+
+type EndpointSlicePtrInput interface {
+	pulumi.Input
+
+	ToEndpointSlicePtrOutput() EndpointSlicePtrOutput
+	ToEndpointSlicePtrOutputWithContext(ctx context.Context) EndpointSlicePtrOutput
 }
 
 type EndpointSliceOutput struct {
@@ -159,7 +174,7 @@ type EndpointSliceOutput struct {
 }
 
 func (EndpointSliceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointSliceOutput)(nil)).Elem()
+	return reflect.TypeOf((*EndpointSlice)(nil))
 }
 
 func (o EndpointSliceOutput) ToEndpointSliceOutput() EndpointSliceOutput {
@@ -170,6 +185,23 @@ func (o EndpointSliceOutput) ToEndpointSliceOutputWithContext(ctx context.Contex
 	return o
 }
 
+type EndpointSlicePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (EndpointSlicePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EndpointSlice)(nil))
+}
+
+func (o EndpointSlicePtrOutput) ToEndpointSlicePtrOutput() EndpointSlicePtrOutput {
+	return o
+}
+
+func (o EndpointSlicePtrOutput) ToEndpointSlicePtrOutputWithContext(ctx context.Context) EndpointSlicePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(EndpointSliceOutput{})
+	pulumi.RegisterOutputType(EndpointSlicePtrOutput{})
 }

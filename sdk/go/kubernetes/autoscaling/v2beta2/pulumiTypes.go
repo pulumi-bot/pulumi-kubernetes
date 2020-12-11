@@ -59,7 +59,7 @@ func (i ContainerResourceMetricSourceArgs) ToContainerResourceMetricSourcePtrOut
 }
 
 func (i ContainerResourceMetricSourceArgs) ToContainerResourceMetricSourcePtrOutputWithContext(ctx context.Context) ContainerResourceMetricSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ContainerResourceMetricSourceOutput).ToContainerResourceMetricSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerResourceMetricSourceOutput).ToContainerResourceMetricSourcePtrOutput()
 }
 
 // ContainerResourceMetricSourcePtrInput is an input type that accepts ContainerResourceMetricSourceArgs, ContainerResourceMetricSourcePtr and ContainerResourceMetricSourcePtrOutput values.
@@ -92,7 +92,7 @@ func (i *containerResourceMetricSourcePtrType) ToContainerResourceMetricSourcePt
 }
 
 func (i *containerResourceMetricSourcePtrType) ToContainerResourceMetricSourcePtrOutputWithContext(ctx context.Context) ContainerResourceMetricSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ContainerResourceMetricSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerResourceMetricSourceOutput).ToContainerResourceMetricSourcePtrOutput()
 }
 
 // ContainerResourceMetricSource indicates how to scale on a resource metric known to Kubernetes, as specified in requests and limits, describing each pod in the current scale target (e.g. CPU or memory).  The values will be averaged together before being compared to the target.  Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source.  Only one "target" type should be set.
@@ -231,7 +231,7 @@ func (i ContainerResourceMetricStatusArgs) ToContainerResourceMetricStatusPtrOut
 }
 
 func (i ContainerResourceMetricStatusArgs) ToContainerResourceMetricStatusPtrOutputWithContext(ctx context.Context) ContainerResourceMetricStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ContainerResourceMetricStatusOutput).ToContainerResourceMetricStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerResourceMetricStatusOutput).ToContainerResourceMetricStatusPtrOutput()
 }
 
 // ContainerResourceMetricStatusPtrInput is an input type that accepts ContainerResourceMetricStatusArgs, ContainerResourceMetricStatusPtr and ContainerResourceMetricStatusPtrOutput values.
@@ -264,7 +264,7 @@ func (i *containerResourceMetricStatusPtrType) ToContainerResourceMetricStatusPt
 }
 
 func (i *containerResourceMetricStatusPtrType) ToContainerResourceMetricStatusPtrOutputWithContext(ctx context.Context) ContainerResourceMetricStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ContainerResourceMetricStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerResourceMetricStatusOutput).ToContainerResourceMetricStatusPtrOutput()
 }
 
 // ContainerResourceMetricStatus indicates the current value of a resource metric known to Kubernetes, as specified in requests and limits, describing a single container in each pod in the current scale target (e.g. CPU or memory).  Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source.
@@ -403,7 +403,7 @@ func (i CrossVersionObjectReferenceArgs) ToCrossVersionObjectReferencePtrOutput(
 }
 
 func (i CrossVersionObjectReferenceArgs) ToCrossVersionObjectReferencePtrOutputWithContext(ctx context.Context) CrossVersionObjectReferencePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CrossVersionObjectReferenceOutput).ToCrossVersionObjectReferencePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(CrossVersionObjectReferenceOutput).ToCrossVersionObjectReferencePtrOutput()
 }
 
 // CrossVersionObjectReferencePtrInput is an input type that accepts CrossVersionObjectReferenceArgs, CrossVersionObjectReferencePtr and CrossVersionObjectReferencePtrOutput values.
@@ -436,7 +436,7 @@ func (i *crossVersionObjectReferencePtrType) ToCrossVersionObjectReferencePtrOut
 }
 
 func (i *crossVersionObjectReferencePtrType) ToCrossVersionObjectReferencePtrOutputWithContext(ctx context.Context) CrossVersionObjectReferencePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CrossVersionObjectReferencePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(CrossVersionObjectReferenceOutput).ToCrossVersionObjectReferencePtrOutput()
 }
 
 // CrossVersionObjectReference contains enough information to let you identify the referred resource.
@@ -571,7 +571,7 @@ func (i ExternalMetricSourceArgs) ToExternalMetricSourcePtrOutput() ExternalMetr
 }
 
 func (i ExternalMetricSourceArgs) ToExternalMetricSourcePtrOutputWithContext(ctx context.Context) ExternalMetricSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ExternalMetricSourceOutput).ToExternalMetricSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ExternalMetricSourceOutput).ToExternalMetricSourcePtrOutput()
 }
 
 // ExternalMetricSourcePtrInput is an input type that accepts ExternalMetricSourceArgs, ExternalMetricSourcePtr and ExternalMetricSourcePtrOutput values.
@@ -604,7 +604,7 @@ func (i *externalMetricSourcePtrType) ToExternalMetricSourcePtrOutput() External
 }
 
 func (i *externalMetricSourcePtrType) ToExternalMetricSourcePtrOutputWithContext(ctx context.Context) ExternalMetricSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ExternalMetricSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ExternalMetricSourceOutput).ToExternalMetricSourcePtrOutput()
 }
 
 // ExternalMetricSource indicates how to scale on a metric not associated with any Kubernetes object (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster).
@@ -724,7 +724,7 @@ func (i ExternalMetricStatusArgs) ToExternalMetricStatusPtrOutput() ExternalMetr
 }
 
 func (i ExternalMetricStatusArgs) ToExternalMetricStatusPtrOutputWithContext(ctx context.Context) ExternalMetricStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ExternalMetricStatusOutput).ToExternalMetricStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ExternalMetricStatusOutput).ToExternalMetricStatusPtrOutput()
 }
 
 // ExternalMetricStatusPtrInput is an input type that accepts ExternalMetricStatusArgs, ExternalMetricStatusPtr and ExternalMetricStatusPtrOutput values.
@@ -757,7 +757,7 @@ func (i *externalMetricStatusPtrType) ToExternalMetricStatusPtrOutput() External
 }
 
 func (i *externalMetricStatusPtrType) ToExternalMetricStatusPtrOutputWithContext(ctx context.Context) ExternalMetricStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ExternalMetricStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ExternalMetricStatusOutput).ToExternalMetricStatusPtrOutput()
 }
 
 // ExternalMetricStatus indicates the current value of a global metric not associated with any Kubernetes object.
@@ -999,7 +999,7 @@ func (i HPAScalingRulesArgs) ToHPAScalingRulesPtrOutput() HPAScalingRulesPtrOutp
 }
 
 func (i HPAScalingRulesArgs) ToHPAScalingRulesPtrOutputWithContext(ctx context.Context) HPAScalingRulesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HPAScalingRulesOutput).ToHPAScalingRulesPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(HPAScalingRulesOutput).ToHPAScalingRulesPtrOutput()
 }
 
 // HPAScalingRulesPtrInput is an input type that accepts HPAScalingRulesArgs, HPAScalingRulesPtr and HPAScalingRulesPtrOutput values.
@@ -1032,7 +1032,7 @@ func (i *hpascalingRulesPtrType) ToHPAScalingRulesPtrOutput() HPAScalingRulesPtr
 }
 
 func (i *hpascalingRulesPtrType) ToHPAScalingRulesPtrOutputWithContext(ctx context.Context) HPAScalingRulesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HPAScalingRulesPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(HPAScalingRulesOutput).ToHPAScalingRulesPtrOutput()
 }
 
 // HPAScalingRules configures the scaling behavior for one direction. These Rules are applied after calculating DesiredReplicas from metrics for the HPA. They can limit the scaling velocity by specifying scaling policies. They can prevent flapping by specifying the stabilization window, so that the number of replicas is not set instantly, instead, the safest value from the stabilization window is chosen.
@@ -1309,7 +1309,7 @@ func (i HorizontalPodAutoscalerBehaviorArgs) ToHorizontalPodAutoscalerBehaviorPt
 }
 
 func (i HorizontalPodAutoscalerBehaviorArgs) ToHorizontalPodAutoscalerBehaviorPtrOutputWithContext(ctx context.Context) HorizontalPodAutoscalerBehaviorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HorizontalPodAutoscalerBehaviorOutput).ToHorizontalPodAutoscalerBehaviorPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(HorizontalPodAutoscalerBehaviorOutput).ToHorizontalPodAutoscalerBehaviorPtrOutput()
 }
 
 // HorizontalPodAutoscalerBehaviorPtrInput is an input type that accepts HorizontalPodAutoscalerBehaviorArgs, HorizontalPodAutoscalerBehaviorPtr and HorizontalPodAutoscalerBehaviorPtrOutput values.
@@ -1342,7 +1342,7 @@ func (i *horizontalPodAutoscalerBehaviorPtrType) ToHorizontalPodAutoscalerBehavi
 }
 
 func (i *horizontalPodAutoscalerBehaviorPtrType) ToHorizontalPodAutoscalerBehaviorPtrOutputWithContext(ctx context.Context) HorizontalPodAutoscalerBehaviorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HorizontalPodAutoscalerBehaviorPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(HorizontalPodAutoscalerBehaviorOutput).ToHorizontalPodAutoscalerBehaviorPtrOutput()
 }
 
 // HorizontalPodAutoscalerBehavior configures the scaling behavior of the target in both Up and Down directions (scaleUp and scaleDown fields respectively).
@@ -1698,7 +1698,7 @@ func (i HorizontalPodAutoscalerSpecArgs) ToHorizontalPodAutoscalerSpecPtrOutput(
 }
 
 func (i HorizontalPodAutoscalerSpecArgs) ToHorizontalPodAutoscalerSpecPtrOutputWithContext(ctx context.Context) HorizontalPodAutoscalerSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HorizontalPodAutoscalerSpecOutput).ToHorizontalPodAutoscalerSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(HorizontalPodAutoscalerSpecOutput).ToHorizontalPodAutoscalerSpecPtrOutput()
 }
 
 // HorizontalPodAutoscalerSpecPtrInput is an input type that accepts HorizontalPodAutoscalerSpecArgs, HorizontalPodAutoscalerSpecPtr and HorizontalPodAutoscalerSpecPtrOutput values.
@@ -1731,7 +1731,7 @@ func (i *horizontalPodAutoscalerSpecPtrType) ToHorizontalPodAutoscalerSpecPtrOut
 }
 
 func (i *horizontalPodAutoscalerSpecPtrType) ToHorizontalPodAutoscalerSpecPtrOutputWithContext(ctx context.Context) HorizontalPodAutoscalerSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HorizontalPodAutoscalerSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(HorizontalPodAutoscalerSpecOutput).ToHorizontalPodAutoscalerSpecPtrOutput()
 }
 
 // HorizontalPodAutoscalerSpec describes the desired functionality of the HorizontalPodAutoscaler.
@@ -1912,7 +1912,7 @@ func (i HorizontalPodAutoscalerStatusArgs) ToHorizontalPodAutoscalerStatusPtrOut
 }
 
 func (i HorizontalPodAutoscalerStatusArgs) ToHorizontalPodAutoscalerStatusPtrOutputWithContext(ctx context.Context) HorizontalPodAutoscalerStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HorizontalPodAutoscalerStatusOutput).ToHorizontalPodAutoscalerStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(HorizontalPodAutoscalerStatusOutput).ToHorizontalPodAutoscalerStatusPtrOutput()
 }
 
 // HorizontalPodAutoscalerStatusPtrInput is an input type that accepts HorizontalPodAutoscalerStatusArgs, HorizontalPodAutoscalerStatusPtr and HorizontalPodAutoscalerStatusPtrOutput values.
@@ -1945,7 +1945,7 @@ func (i *horizontalPodAutoscalerStatusPtrType) ToHorizontalPodAutoscalerStatusPt
 }
 
 func (i *horizontalPodAutoscalerStatusPtrType) ToHorizontalPodAutoscalerStatusPtrOutputWithContext(ctx context.Context) HorizontalPodAutoscalerStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HorizontalPodAutoscalerStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(HorizontalPodAutoscalerStatusOutput).ToHorizontalPodAutoscalerStatusPtrOutput()
 }
 
 // HorizontalPodAutoscalerStatus describes the current status of a horizontal pod autoscaler.
@@ -2125,7 +2125,7 @@ func (i MetricIdentifierArgs) ToMetricIdentifierPtrOutput() MetricIdentifierPtrO
 }
 
 func (i MetricIdentifierArgs) ToMetricIdentifierPtrOutputWithContext(ctx context.Context) MetricIdentifierPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MetricIdentifierOutput).ToMetricIdentifierPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(MetricIdentifierOutput).ToMetricIdentifierPtrOutput()
 }
 
 // MetricIdentifierPtrInput is an input type that accepts MetricIdentifierArgs, MetricIdentifierPtr and MetricIdentifierPtrOutput values.
@@ -2158,7 +2158,7 @@ func (i *metricIdentifierPtrType) ToMetricIdentifierPtrOutput() MetricIdentifier
 }
 
 func (i *metricIdentifierPtrType) ToMetricIdentifierPtrOutputWithContext(ctx context.Context) MetricIdentifierPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MetricIdentifierPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(MetricIdentifierOutput).ToMetricIdentifierPtrOutput()
 }
 
 // MetricIdentifier defines the name and optionally selector for a metric
@@ -2576,7 +2576,7 @@ func (i MetricTargetArgs) ToMetricTargetPtrOutput() MetricTargetPtrOutput {
 }
 
 func (i MetricTargetArgs) ToMetricTargetPtrOutputWithContext(ctx context.Context) MetricTargetPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MetricTargetOutput).ToMetricTargetPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(MetricTargetOutput).ToMetricTargetPtrOutput()
 }
 
 // MetricTargetPtrInput is an input type that accepts MetricTargetArgs, MetricTargetPtr and MetricTargetPtrOutput values.
@@ -2609,7 +2609,7 @@ func (i *metricTargetPtrType) ToMetricTargetPtrOutput() MetricTargetPtrOutput {
 }
 
 func (i *metricTargetPtrType) ToMetricTargetPtrOutputWithContext(ctx context.Context) MetricTargetPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MetricTargetPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(MetricTargetOutput).ToMetricTargetPtrOutput()
 }
 
 // MetricTarget defines the target value, average value, or average utilization of a specific metric
@@ -2763,7 +2763,7 @@ func (i MetricValueStatusArgs) ToMetricValueStatusPtrOutput() MetricValueStatusP
 }
 
 func (i MetricValueStatusArgs) ToMetricValueStatusPtrOutputWithContext(ctx context.Context) MetricValueStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MetricValueStatusOutput).ToMetricValueStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(MetricValueStatusOutput).ToMetricValueStatusPtrOutput()
 }
 
 // MetricValueStatusPtrInput is an input type that accepts MetricValueStatusArgs, MetricValueStatusPtr and MetricValueStatusPtrOutput values.
@@ -2796,7 +2796,7 @@ func (i *metricValueStatusPtrType) ToMetricValueStatusPtrOutput() MetricValueSta
 }
 
 func (i *metricValueStatusPtrType) ToMetricValueStatusPtrOutputWithContext(ctx context.Context) MetricValueStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MetricValueStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(MetricValueStatusOutput).ToMetricValueStatusPtrOutput()
 }
 
 // MetricValueStatus holds the current value for a metric
@@ -2933,7 +2933,7 @@ func (i ObjectMetricSourceArgs) ToObjectMetricSourcePtrOutput() ObjectMetricSour
 }
 
 func (i ObjectMetricSourceArgs) ToObjectMetricSourcePtrOutputWithContext(ctx context.Context) ObjectMetricSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ObjectMetricSourceOutput).ToObjectMetricSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectMetricSourceOutput).ToObjectMetricSourcePtrOutput()
 }
 
 // ObjectMetricSourcePtrInput is an input type that accepts ObjectMetricSourceArgs, ObjectMetricSourcePtr and ObjectMetricSourcePtrOutput values.
@@ -2966,7 +2966,7 @@ func (i *objectMetricSourcePtrType) ToObjectMetricSourcePtrOutput() ObjectMetric
 }
 
 func (i *objectMetricSourcePtrType) ToObjectMetricSourcePtrOutputWithContext(ctx context.Context) ObjectMetricSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ObjectMetricSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectMetricSourceOutput).ToObjectMetricSourcePtrOutput()
 }
 
 // ObjectMetricSource indicates how to scale on a metric describing a kubernetes object (for example, hits-per-second on an Ingress object).
@@ -3100,7 +3100,7 @@ func (i ObjectMetricStatusArgs) ToObjectMetricStatusPtrOutput() ObjectMetricStat
 }
 
 func (i ObjectMetricStatusArgs) ToObjectMetricStatusPtrOutputWithContext(ctx context.Context) ObjectMetricStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ObjectMetricStatusOutput).ToObjectMetricStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectMetricStatusOutput).ToObjectMetricStatusPtrOutput()
 }
 
 // ObjectMetricStatusPtrInput is an input type that accepts ObjectMetricStatusArgs, ObjectMetricStatusPtr and ObjectMetricStatusPtrOutput values.
@@ -3133,7 +3133,7 @@ func (i *objectMetricStatusPtrType) ToObjectMetricStatusPtrOutput() ObjectMetric
 }
 
 func (i *objectMetricStatusPtrType) ToObjectMetricStatusPtrOutputWithContext(ctx context.Context) ObjectMetricStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ObjectMetricStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectMetricStatusOutput).ToObjectMetricStatusPtrOutput()
 }
 
 // ObjectMetricStatus indicates the current value of a metric describing a kubernetes object (for example, hits-per-second on an Ingress object).
@@ -3266,7 +3266,7 @@ func (i PodsMetricSourceArgs) ToPodsMetricSourcePtrOutput() PodsMetricSourcePtrO
 }
 
 func (i PodsMetricSourceArgs) ToPodsMetricSourcePtrOutputWithContext(ctx context.Context) PodsMetricSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PodsMetricSourceOutput).ToPodsMetricSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PodsMetricSourceOutput).ToPodsMetricSourcePtrOutput()
 }
 
 // PodsMetricSourcePtrInput is an input type that accepts PodsMetricSourceArgs, PodsMetricSourcePtr and PodsMetricSourcePtrOutput values.
@@ -3299,7 +3299,7 @@ func (i *podsMetricSourcePtrType) ToPodsMetricSourcePtrOutput() PodsMetricSource
 }
 
 func (i *podsMetricSourcePtrType) ToPodsMetricSourcePtrOutputWithContext(ctx context.Context) PodsMetricSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PodsMetricSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PodsMetricSourceOutput).ToPodsMetricSourcePtrOutput()
 }
 
 // PodsMetricSource indicates how to scale on a metric describing each pod in the current scale target (for example, transactions-processed-per-second). The values will be averaged together before being compared to the target value.
@@ -3419,7 +3419,7 @@ func (i PodsMetricStatusArgs) ToPodsMetricStatusPtrOutput() PodsMetricStatusPtrO
 }
 
 func (i PodsMetricStatusArgs) ToPodsMetricStatusPtrOutputWithContext(ctx context.Context) PodsMetricStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PodsMetricStatusOutput).ToPodsMetricStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PodsMetricStatusOutput).ToPodsMetricStatusPtrOutput()
 }
 
 // PodsMetricStatusPtrInput is an input type that accepts PodsMetricStatusArgs, PodsMetricStatusPtr and PodsMetricStatusPtrOutput values.
@@ -3452,7 +3452,7 @@ func (i *podsMetricStatusPtrType) ToPodsMetricStatusPtrOutput() PodsMetricStatus
 }
 
 func (i *podsMetricStatusPtrType) ToPodsMetricStatusPtrOutputWithContext(ctx context.Context) PodsMetricStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PodsMetricStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PodsMetricStatusOutput).ToPodsMetricStatusPtrOutput()
 }
 
 // PodsMetricStatus indicates the current value of a metric describing each pod in the current scale target (for example, transactions-processed-per-second).
@@ -3572,7 +3572,7 @@ func (i ResourceMetricSourceArgs) ToResourceMetricSourcePtrOutput() ResourceMetr
 }
 
 func (i ResourceMetricSourceArgs) ToResourceMetricSourcePtrOutputWithContext(ctx context.Context) ResourceMetricSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourceMetricSourceOutput).ToResourceMetricSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ResourceMetricSourceOutput).ToResourceMetricSourcePtrOutput()
 }
 
 // ResourceMetricSourcePtrInput is an input type that accepts ResourceMetricSourceArgs, ResourceMetricSourcePtr and ResourceMetricSourcePtrOutput values.
@@ -3605,7 +3605,7 @@ func (i *resourceMetricSourcePtrType) ToResourceMetricSourcePtrOutput() Resource
 }
 
 func (i *resourceMetricSourcePtrType) ToResourceMetricSourcePtrOutputWithContext(ctx context.Context) ResourceMetricSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourceMetricSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ResourceMetricSourceOutput).ToResourceMetricSourcePtrOutput()
 }
 
 // ResourceMetricSource indicates how to scale on a resource metric known to Kubernetes, as specified in requests and limits, describing each pod in the current scale target (e.g. CPU or memory).  The values will be averaged together before being compared to the target.  Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source.  Only one "target" type should be set.
@@ -3725,7 +3725,7 @@ func (i ResourceMetricStatusArgs) ToResourceMetricStatusPtrOutput() ResourceMetr
 }
 
 func (i ResourceMetricStatusArgs) ToResourceMetricStatusPtrOutputWithContext(ctx context.Context) ResourceMetricStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourceMetricStatusOutput).ToResourceMetricStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ResourceMetricStatusOutput).ToResourceMetricStatusPtrOutput()
 }
 
 // ResourceMetricStatusPtrInput is an input type that accepts ResourceMetricStatusArgs, ResourceMetricStatusPtr and ResourceMetricStatusPtrOutput values.
@@ -3758,7 +3758,7 @@ func (i *resourceMetricStatusPtrType) ToResourceMetricStatusPtrOutput() Resource
 }
 
 func (i *resourceMetricStatusPtrType) ToResourceMetricStatusPtrOutputWithContext(ctx context.Context) ResourceMetricStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourceMetricStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ResourceMetricStatusOutput).ToResourceMetricStatusPtrOutput()
 }
 
 // ResourceMetricStatus indicates the current value of a resource metric known to Kubernetes, as specified in requests and limits, describing each pod in the current scale target (e.g. CPU or memory).  Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source.

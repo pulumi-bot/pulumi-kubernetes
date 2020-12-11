@@ -121,16 +121,31 @@ type LeaseInput interface {
 	ToLeaseOutputWithContext(ctx context.Context) LeaseOutput
 }
 
-func (Lease) ElementType() reflect.Type {
-	return reflect.TypeOf((*Lease)(nil)).Elem()
+func (*Lease) ElementType() reflect.Type {
+	return reflect.TypeOf((*Lease)(nil))
 }
 
-func (i Lease) ToLeaseOutput() LeaseOutput {
+func (i *Lease) ToLeaseOutput() LeaseOutput {
 	return i.ToLeaseOutputWithContext(context.Background())
 }
 
-func (i Lease) ToLeaseOutputWithContext(ctx context.Context) LeaseOutput {
+func (i *Lease) ToLeaseOutputWithContext(ctx context.Context) LeaseOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LeaseOutput)
+}
+
+func (i *Lease) ToLeasePtrOutput() LeasePtrOutput {
+	return i.ToLeasePtrOutputWithContext(context.Background())
+}
+
+func (i *Lease) ToLeasePtrOutputWithContext(ctx context.Context) LeasePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LeasePtrOutput)
+}
+
+type LeasePtrInput interface {
+	pulumi.Input
+
+	ToLeasePtrOutput() LeasePtrOutput
+	ToLeasePtrOutputWithContext(ctx context.Context) LeasePtrOutput
 }
 
 type LeaseOutput struct {
@@ -138,7 +153,7 @@ type LeaseOutput struct {
 }
 
 func (LeaseOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LeaseOutput)(nil)).Elem()
+	return reflect.TypeOf((*Lease)(nil))
 }
 
 func (o LeaseOutput) ToLeaseOutput() LeaseOutput {
@@ -149,6 +164,23 @@ func (o LeaseOutput) ToLeaseOutputWithContext(ctx context.Context) LeaseOutput {
 	return o
 }
 
+type LeasePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (LeasePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Lease)(nil))
+}
+
+func (o LeasePtrOutput) ToLeasePtrOutput() LeasePtrOutput {
+	return o
+}
+
+func (o LeasePtrOutput) ToLeasePtrOutputWithContext(ctx context.Context) LeasePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(LeaseOutput{})
+	pulumi.RegisterOutputType(LeasePtrOutput{})
 }
