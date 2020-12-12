@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	corev1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/core/v1"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/core/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -188,16 +188,31 @@ type StorageClassInput interface {
 	ToStorageClassOutputWithContext(ctx context.Context) StorageClassOutput
 }
 
-func (StorageClass) ElementType() reflect.Type {
-	return reflect.TypeOf((*StorageClass)(nil)).Elem()
+func (*StorageClass) ElementType() reflect.Type {
+	return reflect.TypeOf((*StorageClass)(nil))
 }
 
-func (i StorageClass) ToStorageClassOutput() StorageClassOutput {
+func (i *StorageClass) ToStorageClassOutput() StorageClassOutput {
 	return i.ToStorageClassOutputWithContext(context.Background())
 }
 
-func (i StorageClass) ToStorageClassOutputWithContext(ctx context.Context) StorageClassOutput {
+func (i *StorageClass) ToStorageClassOutputWithContext(ctx context.Context) StorageClassOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(StorageClassOutput)
+}
+
+func (i *StorageClass) ToStorageClassPtrOutput() StorageClassPtrOutput {
+	return i.ToStorageClassPtrOutputWithContext(context.Background())
+}
+
+func (i *StorageClass) ToStorageClassPtrOutputWithContext(ctx context.Context) StorageClassPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StorageClassPtrOutput)
+}
+
+type StorageClassPtrInput interface {
+	pulumi.Input
+
+	ToStorageClassPtrOutput() StorageClassPtrOutput
+	ToStorageClassPtrOutputWithContext(ctx context.Context) StorageClassPtrOutput
 }
 
 type StorageClassOutput struct {
@@ -205,7 +220,7 @@ type StorageClassOutput struct {
 }
 
 func (StorageClassOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*StorageClassOutput)(nil)).Elem()
+	return reflect.TypeOf((*StorageClass)(nil))
 }
 
 func (o StorageClassOutput) ToStorageClassOutput() StorageClassOutput {
@@ -216,6 +231,23 @@ func (o StorageClassOutput) ToStorageClassOutputWithContext(ctx context.Context)
 	return o
 }
 
+type StorageClassPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (StorageClassPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StorageClass)(nil))
+}
+
+func (o StorageClassPtrOutput) ToStorageClassPtrOutput() StorageClassPtrOutput {
+	return o
+}
+
+func (o StorageClassPtrOutput) ToStorageClassPtrOutputWithContext(ctx context.Context) StorageClassPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(StorageClassOutput{})
+	pulumi.RegisterOutputType(StorageClassPtrOutput{})
 }

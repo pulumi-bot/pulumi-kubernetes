@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -119,16 +119,31 @@ type LimitRangeListInput interface {
 	ToLimitRangeListOutputWithContext(ctx context.Context) LimitRangeListOutput
 }
 
-func (LimitRangeList) ElementType() reflect.Type {
-	return reflect.TypeOf((*LimitRangeList)(nil)).Elem()
+func (*LimitRangeList) ElementType() reflect.Type {
+	return reflect.TypeOf((*LimitRangeList)(nil))
 }
 
-func (i LimitRangeList) ToLimitRangeListOutput() LimitRangeListOutput {
+func (i *LimitRangeList) ToLimitRangeListOutput() LimitRangeListOutput {
 	return i.ToLimitRangeListOutputWithContext(context.Background())
 }
 
-func (i LimitRangeList) ToLimitRangeListOutputWithContext(ctx context.Context) LimitRangeListOutput {
+func (i *LimitRangeList) ToLimitRangeListOutputWithContext(ctx context.Context) LimitRangeListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LimitRangeListOutput)
+}
+
+func (i *LimitRangeList) ToLimitRangeListPtrOutput() LimitRangeListPtrOutput {
+	return i.ToLimitRangeListPtrOutputWithContext(context.Background())
+}
+
+func (i *LimitRangeList) ToLimitRangeListPtrOutputWithContext(ctx context.Context) LimitRangeListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LimitRangeListPtrOutput)
+}
+
+type LimitRangeListPtrInput interface {
+	pulumi.Input
+
+	ToLimitRangeListPtrOutput() LimitRangeListPtrOutput
+	ToLimitRangeListPtrOutputWithContext(ctx context.Context) LimitRangeListPtrOutput
 }
 
 type LimitRangeListOutput struct {
@@ -136,7 +151,7 @@ type LimitRangeListOutput struct {
 }
 
 func (LimitRangeListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LimitRangeListOutput)(nil)).Elem()
+	return reflect.TypeOf((*LimitRangeList)(nil))
 }
 
 func (o LimitRangeListOutput) ToLimitRangeListOutput() LimitRangeListOutput {
@@ -147,6 +162,23 @@ func (o LimitRangeListOutput) ToLimitRangeListOutputWithContext(ctx context.Cont
 	return o
 }
 
+type LimitRangeListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (LimitRangeListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LimitRangeList)(nil))
+}
+
+func (o LimitRangeListPtrOutput) ToLimitRangeListPtrOutput() LimitRangeListPtrOutput {
+	return o
+}
+
+func (o LimitRangeListPtrOutput) ToLimitRangeListPtrOutputWithContext(ctx context.Context) LimitRangeListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(LimitRangeListOutput{})
+	pulumi.RegisterOutputType(LimitRangeListPtrOutput{})
 }

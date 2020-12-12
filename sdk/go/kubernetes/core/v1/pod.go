@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -136,16 +136,31 @@ type PodInput interface {
 	ToPodOutputWithContext(ctx context.Context) PodOutput
 }
 
-func (Pod) ElementType() reflect.Type {
-	return reflect.TypeOf((*Pod)(nil)).Elem()
+func (*Pod) ElementType() reflect.Type {
+	return reflect.TypeOf((*Pod)(nil))
 }
 
-func (i Pod) ToPodOutput() PodOutput {
+func (i *Pod) ToPodOutput() PodOutput {
 	return i.ToPodOutputWithContext(context.Background())
 }
 
-func (i Pod) ToPodOutputWithContext(ctx context.Context) PodOutput {
+func (i *Pod) ToPodOutputWithContext(ctx context.Context) PodOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PodOutput)
+}
+
+func (i *Pod) ToPodPtrOutput() PodPtrOutput {
+	return i.ToPodPtrOutputWithContext(context.Background())
+}
+
+func (i *Pod) ToPodPtrOutputWithContext(ctx context.Context) PodPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PodPtrOutput)
+}
+
+type PodPtrInput interface {
+	pulumi.Input
+
+	ToPodPtrOutput() PodPtrOutput
+	ToPodPtrOutputWithContext(ctx context.Context) PodPtrOutput
 }
 
 type PodOutput struct {
@@ -153,7 +168,7 @@ type PodOutput struct {
 }
 
 func (PodOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*PodOutput)(nil)).Elem()
+	return reflect.TypeOf((*Pod)(nil))
 }
 
 func (o PodOutput) ToPodOutput() PodOutput {
@@ -164,6 +179,23 @@ func (o PodOutput) ToPodOutputWithContext(ctx context.Context) PodOutput {
 	return o
 }
 
+type PodPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (PodPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Pod)(nil))
+}
+
+func (o PodPtrOutput) ToPodPtrOutput() PodPtrOutput {
+	return o
+}
+
+func (o PodPtrOutput) ToPodPtrOutputWithContext(ctx context.Context) PodPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(PodOutput{})
+	pulumi.RegisterOutputType(PodPtrOutput{})
 }

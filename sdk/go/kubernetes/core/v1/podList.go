@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -119,16 +119,31 @@ type PodListInput interface {
 	ToPodListOutputWithContext(ctx context.Context) PodListOutput
 }
 
-func (PodList) ElementType() reflect.Type {
-	return reflect.TypeOf((*PodList)(nil)).Elem()
+func (*PodList) ElementType() reflect.Type {
+	return reflect.TypeOf((*PodList)(nil))
 }
 
-func (i PodList) ToPodListOutput() PodListOutput {
+func (i *PodList) ToPodListOutput() PodListOutput {
 	return i.ToPodListOutputWithContext(context.Background())
 }
 
-func (i PodList) ToPodListOutputWithContext(ctx context.Context) PodListOutput {
+func (i *PodList) ToPodListOutputWithContext(ctx context.Context) PodListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PodListOutput)
+}
+
+func (i *PodList) ToPodListPtrOutput() PodListPtrOutput {
+	return i.ToPodListPtrOutputWithContext(context.Background())
+}
+
+func (i *PodList) ToPodListPtrOutputWithContext(ctx context.Context) PodListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PodListPtrOutput)
+}
+
+type PodListPtrInput interface {
+	pulumi.Input
+
+	ToPodListPtrOutput() PodListPtrOutput
+	ToPodListPtrOutputWithContext(ctx context.Context) PodListPtrOutput
 }
 
 type PodListOutput struct {
@@ -136,7 +151,7 @@ type PodListOutput struct {
 }
 
 func (PodListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*PodListOutput)(nil)).Elem()
+	return reflect.TypeOf((*PodList)(nil))
 }
 
 func (o PodListOutput) ToPodListOutput() PodListOutput {
@@ -147,6 +162,23 @@ func (o PodListOutput) ToPodListOutputWithContext(ctx context.Context) PodListOu
 	return o
 }
 
+type PodListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (PodListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PodList)(nil))
+}
+
+func (o PodListPtrOutput) ToPodListPtrOutput() PodListPtrOutput {
+	return o
+}
+
+func (o PodListPtrOutput) ToPodListPtrOutputWithContext(ctx context.Context) PodListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(PodListOutput{})
+	pulumi.RegisterOutputType(PodListPtrOutput{})
 }

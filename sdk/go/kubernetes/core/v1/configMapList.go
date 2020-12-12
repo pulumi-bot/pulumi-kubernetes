@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -119,16 +119,31 @@ type ConfigMapListInput interface {
 	ToConfigMapListOutputWithContext(ctx context.Context) ConfigMapListOutput
 }
 
-func (ConfigMapList) ElementType() reflect.Type {
-	return reflect.TypeOf((*ConfigMapList)(nil)).Elem()
+func (*ConfigMapList) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConfigMapList)(nil))
 }
 
-func (i ConfigMapList) ToConfigMapListOutput() ConfigMapListOutput {
+func (i *ConfigMapList) ToConfigMapListOutput() ConfigMapListOutput {
 	return i.ToConfigMapListOutputWithContext(context.Background())
 }
 
-func (i ConfigMapList) ToConfigMapListOutputWithContext(ctx context.Context) ConfigMapListOutput {
+func (i *ConfigMapList) ToConfigMapListOutputWithContext(ctx context.Context) ConfigMapListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ConfigMapListOutput)
+}
+
+func (i *ConfigMapList) ToConfigMapListPtrOutput() ConfigMapListPtrOutput {
+	return i.ToConfigMapListPtrOutputWithContext(context.Background())
+}
+
+func (i *ConfigMapList) ToConfigMapListPtrOutputWithContext(ctx context.Context) ConfigMapListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConfigMapListPtrOutput)
+}
+
+type ConfigMapListPtrInput interface {
+	pulumi.Input
+
+	ToConfigMapListPtrOutput() ConfigMapListPtrOutput
+	ToConfigMapListPtrOutputWithContext(ctx context.Context) ConfigMapListPtrOutput
 }
 
 type ConfigMapListOutput struct {
@@ -136,7 +151,7 @@ type ConfigMapListOutput struct {
 }
 
 func (ConfigMapListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ConfigMapListOutput)(nil)).Elem()
+	return reflect.TypeOf((*ConfigMapList)(nil))
 }
 
 func (o ConfigMapListOutput) ToConfigMapListOutput() ConfigMapListOutput {
@@ -147,6 +162,23 @@ func (o ConfigMapListOutput) ToConfigMapListOutputWithContext(ctx context.Contex
 	return o
 }
 
+type ConfigMapListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ConfigMapListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ConfigMapList)(nil))
+}
+
+func (o ConfigMapListPtrOutput) ToConfigMapListPtrOutput() ConfigMapListPtrOutput {
+	return o
+}
+
+func (o ConfigMapListPtrOutput) ToConfigMapListPtrOutputWithContext(ctx context.Context) ConfigMapListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ConfigMapListOutput{})
+	pulumi.RegisterOutputType(ConfigMapListPtrOutput{})
 }

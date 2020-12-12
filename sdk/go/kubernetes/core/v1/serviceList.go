@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -119,16 +119,31 @@ type ServiceListInput interface {
 	ToServiceListOutputWithContext(ctx context.Context) ServiceListOutput
 }
 
-func (ServiceList) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceList)(nil)).Elem()
+func (*ServiceList) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceList)(nil))
 }
 
-func (i ServiceList) ToServiceListOutput() ServiceListOutput {
+func (i *ServiceList) ToServiceListOutput() ServiceListOutput {
 	return i.ToServiceListOutputWithContext(context.Background())
 }
 
-func (i ServiceList) ToServiceListOutputWithContext(ctx context.Context) ServiceListOutput {
+func (i *ServiceList) ToServiceListOutputWithContext(ctx context.Context) ServiceListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceListOutput)
+}
+
+func (i *ServiceList) ToServiceListPtrOutput() ServiceListPtrOutput {
+	return i.ToServiceListPtrOutputWithContext(context.Background())
+}
+
+func (i *ServiceList) ToServiceListPtrOutputWithContext(ctx context.Context) ServiceListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceListPtrOutput)
+}
+
+type ServiceListPtrInput interface {
+	pulumi.Input
+
+	ToServiceListPtrOutput() ServiceListPtrOutput
+	ToServiceListPtrOutputWithContext(ctx context.Context) ServiceListPtrOutput
 }
 
 type ServiceListOutput struct {
@@ -136,7 +151,7 @@ type ServiceListOutput struct {
 }
 
 func (ServiceListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceListOutput)(nil)).Elem()
+	return reflect.TypeOf((*ServiceList)(nil))
 }
 
 func (o ServiceListOutput) ToServiceListOutput() ServiceListOutput {
@@ -147,6 +162,23 @@ func (o ServiceListOutput) ToServiceListOutputWithContext(ctx context.Context) S
 	return o
 }
 
+type ServiceListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ServiceListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceList)(nil))
+}
+
+func (o ServiceListPtrOutput) ToServiceListPtrOutput() ServiceListPtrOutput {
+	return o
+}
+
+func (o ServiceListPtrOutput) ToServiceListPtrOutputWithContext(ctx context.Context) ServiceListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ServiceListOutput{})
+	pulumi.RegisterOutputType(ServiceListPtrOutput{})
 }

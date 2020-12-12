@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -158,16 +158,31 @@ type PriorityClassInput interface {
 	ToPriorityClassOutputWithContext(ctx context.Context) PriorityClassOutput
 }
 
-func (PriorityClass) ElementType() reflect.Type {
-	return reflect.TypeOf((*PriorityClass)(nil)).Elem()
+func (*PriorityClass) ElementType() reflect.Type {
+	return reflect.TypeOf((*PriorityClass)(nil))
 }
 
-func (i PriorityClass) ToPriorityClassOutput() PriorityClassOutput {
+func (i *PriorityClass) ToPriorityClassOutput() PriorityClassOutput {
 	return i.ToPriorityClassOutputWithContext(context.Background())
 }
 
-func (i PriorityClass) ToPriorityClassOutputWithContext(ctx context.Context) PriorityClassOutput {
+func (i *PriorityClass) ToPriorityClassOutputWithContext(ctx context.Context) PriorityClassOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PriorityClassOutput)
+}
+
+func (i *PriorityClass) ToPriorityClassPtrOutput() PriorityClassPtrOutput {
+	return i.ToPriorityClassPtrOutputWithContext(context.Background())
+}
+
+func (i *PriorityClass) ToPriorityClassPtrOutputWithContext(ctx context.Context) PriorityClassPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PriorityClassPtrOutput)
+}
+
+type PriorityClassPtrInput interface {
+	pulumi.Input
+
+	ToPriorityClassPtrOutput() PriorityClassPtrOutput
+	ToPriorityClassPtrOutputWithContext(ctx context.Context) PriorityClassPtrOutput
 }
 
 type PriorityClassOutput struct {
@@ -175,7 +190,7 @@ type PriorityClassOutput struct {
 }
 
 func (PriorityClassOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*PriorityClassOutput)(nil)).Elem()
+	return reflect.TypeOf((*PriorityClass)(nil))
 }
 
 func (o PriorityClassOutput) ToPriorityClassOutput() PriorityClassOutput {
@@ -186,6 +201,23 @@ func (o PriorityClassOutput) ToPriorityClassOutputWithContext(ctx context.Contex
 	return o
 }
 
+type PriorityClassPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (PriorityClassPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PriorityClass)(nil))
+}
+
+func (o PriorityClassPtrOutput) ToPriorityClassPtrOutput() PriorityClassPtrOutput {
+	return o
+}
+
+func (o PriorityClassPtrOutput) ToPriorityClassPtrOutputWithContext(ctx context.Context) PriorityClassPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(PriorityClassOutput{})
+	pulumi.RegisterOutputType(PriorityClassPtrOutput{})
 }

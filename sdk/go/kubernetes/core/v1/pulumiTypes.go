@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -67,7 +67,7 @@ func (i AWSElasticBlockStoreVolumeSourceArgs) ToAWSElasticBlockStoreVolumeSource
 }
 
 func (i AWSElasticBlockStoreVolumeSourceArgs) ToAWSElasticBlockStoreVolumeSourcePtrOutputWithContext(ctx context.Context) AWSElasticBlockStoreVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AWSElasticBlockStoreVolumeSourceOutput).ToAWSElasticBlockStoreVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AWSElasticBlockStoreVolumeSourceOutput).ToAWSElasticBlockStoreVolumeSourcePtrOutput()
 }
 
 // AWSElasticBlockStoreVolumeSourcePtrInput is an input type that accepts AWSElasticBlockStoreVolumeSourceArgs, AWSElasticBlockStoreVolumeSourcePtr and AWSElasticBlockStoreVolumeSourcePtrOutput values.
@@ -100,7 +100,7 @@ func (i *awselasticBlockStoreVolumeSourcePtrType) ToAWSElasticBlockStoreVolumeSo
 }
 
 func (i *awselasticBlockStoreVolumeSourcePtrType) ToAWSElasticBlockStoreVolumeSourcePtrOutputWithContext(ctx context.Context) AWSElasticBlockStoreVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AWSElasticBlockStoreVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AWSElasticBlockStoreVolumeSourceOutput).ToAWSElasticBlockStoreVolumeSourcePtrOutput()
 }
 
 // Represents a Persistent Disk resource in AWS.
@@ -256,7 +256,7 @@ func (i AffinityArgs) ToAffinityPtrOutput() AffinityPtrOutput {
 }
 
 func (i AffinityArgs) ToAffinityPtrOutputWithContext(ctx context.Context) AffinityPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AffinityOutput).ToAffinityPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AffinityOutput).ToAffinityPtrOutput()
 }
 
 // AffinityPtrInput is an input type that accepts AffinityArgs, AffinityPtr and AffinityPtrOutput values.
@@ -289,7 +289,7 @@ func (i *affinityPtrType) ToAffinityPtrOutput() AffinityPtrOutput {
 }
 
 func (i *affinityPtrType) ToAffinityPtrOutputWithContext(ctx context.Context) AffinityPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AffinityPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AffinityOutput).ToAffinityPtrOutput()
 }
 
 // Affinity is a group of affinity scheduling rules.
@@ -549,7 +549,7 @@ func (i AzureDiskVolumeSourceArgs) ToAzureDiskVolumeSourcePtrOutput() AzureDiskV
 }
 
 func (i AzureDiskVolumeSourceArgs) ToAzureDiskVolumeSourcePtrOutputWithContext(ctx context.Context) AzureDiskVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AzureDiskVolumeSourceOutput).ToAzureDiskVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AzureDiskVolumeSourceOutput).ToAzureDiskVolumeSourcePtrOutput()
 }
 
 // AzureDiskVolumeSourcePtrInput is an input type that accepts AzureDiskVolumeSourceArgs, AzureDiskVolumeSourcePtr and AzureDiskVolumeSourcePtrOutput values.
@@ -582,7 +582,7 @@ func (i *azureDiskVolumeSourcePtrType) ToAzureDiskVolumeSourcePtrOutput() AzureD
 }
 
 func (i *azureDiskVolumeSourcePtrType) ToAzureDiskVolumeSourcePtrOutputWithContext(ctx context.Context) AzureDiskVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AzureDiskVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AzureDiskVolumeSourceOutput).ToAzureDiskVolumeSourcePtrOutput()
 }
 
 // AzureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.
@@ -770,7 +770,7 @@ func (i AzureFilePersistentVolumeSourceArgs) ToAzureFilePersistentVolumeSourcePt
 }
 
 func (i AzureFilePersistentVolumeSourceArgs) ToAzureFilePersistentVolumeSourcePtrOutputWithContext(ctx context.Context) AzureFilePersistentVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AzureFilePersistentVolumeSourceOutput).ToAzureFilePersistentVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AzureFilePersistentVolumeSourceOutput).ToAzureFilePersistentVolumeSourcePtrOutput()
 }
 
 // AzureFilePersistentVolumeSourcePtrInput is an input type that accepts AzureFilePersistentVolumeSourceArgs, AzureFilePersistentVolumeSourcePtr and AzureFilePersistentVolumeSourcePtrOutput values.
@@ -803,7 +803,7 @@ func (i *azureFilePersistentVolumeSourcePtrType) ToAzureFilePersistentVolumeSour
 }
 
 func (i *azureFilePersistentVolumeSourcePtrType) ToAzureFilePersistentVolumeSourcePtrOutputWithContext(ctx context.Context) AzureFilePersistentVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AzureFilePersistentVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AzureFilePersistentVolumeSourceOutput).ToAzureFilePersistentVolumeSourcePtrOutput()
 }
 
 // AzureFile represents an Azure File Service mount on the host and bind mount to the pod.
@@ -957,7 +957,7 @@ func (i AzureFileVolumeSourceArgs) ToAzureFileVolumeSourcePtrOutput() AzureFileV
 }
 
 func (i AzureFileVolumeSourceArgs) ToAzureFileVolumeSourcePtrOutputWithContext(ctx context.Context) AzureFileVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AzureFileVolumeSourceOutput).ToAzureFileVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AzureFileVolumeSourceOutput).ToAzureFileVolumeSourcePtrOutput()
 }
 
 // AzureFileVolumeSourcePtrInput is an input type that accepts AzureFileVolumeSourceArgs, AzureFileVolumeSourcePtr and AzureFileVolumeSourcePtrOutput values.
@@ -990,7 +990,7 @@ func (i *azureFileVolumeSourcePtrType) ToAzureFileVolumeSourcePtrOutput() AzureF
 }
 
 func (i *azureFileVolumeSourcePtrType) ToAzureFileVolumeSourcePtrOutputWithContext(ctx context.Context) AzureFileVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AzureFileVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AzureFileVolumeSourceOutput).ToAzureFileVolumeSourcePtrOutput()
 }
 
 // AzureFile represents an Azure File Service mount on the host and bind mount to the pod.
@@ -1235,7 +1235,7 @@ func (i CSIPersistentVolumeSourceArgs) ToCSIPersistentVolumeSourcePtrOutput() CS
 }
 
 func (i CSIPersistentVolumeSourceArgs) ToCSIPersistentVolumeSourcePtrOutputWithContext(ctx context.Context) CSIPersistentVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CSIPersistentVolumeSourceOutput).ToCSIPersistentVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(CSIPersistentVolumeSourceOutput).ToCSIPersistentVolumeSourcePtrOutput()
 }
 
 // CSIPersistentVolumeSourcePtrInput is an input type that accepts CSIPersistentVolumeSourceArgs, CSIPersistentVolumeSourcePtr and CSIPersistentVolumeSourcePtrOutput values.
@@ -1268,7 +1268,7 @@ func (i *csipersistentVolumeSourcePtrType) ToCSIPersistentVolumeSourcePtrOutput(
 }
 
 func (i *csipersistentVolumeSourcePtrType) ToCSIPersistentVolumeSourcePtrOutputWithContext(ctx context.Context) CSIPersistentVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CSIPersistentVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(CSIPersistentVolumeSourceOutput).ToCSIPersistentVolumeSourcePtrOutput()
 }
 
 // Represents storage that is managed by an external CSI volume driver (Beta feature)
@@ -1505,7 +1505,7 @@ func (i CSIVolumeSourceArgs) ToCSIVolumeSourcePtrOutput() CSIVolumeSourcePtrOutp
 }
 
 func (i CSIVolumeSourceArgs) ToCSIVolumeSourcePtrOutputWithContext(ctx context.Context) CSIVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CSIVolumeSourceOutput).ToCSIVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(CSIVolumeSourceOutput).ToCSIVolumeSourcePtrOutput()
 }
 
 // CSIVolumeSourcePtrInput is an input type that accepts CSIVolumeSourceArgs, CSIVolumeSourcePtr and CSIVolumeSourcePtrOutput values.
@@ -1538,7 +1538,7 @@ func (i *csivolumeSourcePtrType) ToCSIVolumeSourcePtrOutput() CSIVolumeSourcePtr
 }
 
 func (i *csivolumeSourcePtrType) ToCSIVolumeSourcePtrOutputWithContext(ctx context.Context) CSIVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CSIVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(CSIVolumeSourceOutput).ToCSIVolumeSourcePtrOutput()
 }
 
 // Represents a source location of a volume to mount, managed by an external CSI driver
@@ -1703,7 +1703,7 @@ func (i CapabilitiesArgs) ToCapabilitiesPtrOutput() CapabilitiesPtrOutput {
 }
 
 func (i CapabilitiesArgs) ToCapabilitiesPtrOutputWithContext(ctx context.Context) CapabilitiesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CapabilitiesOutput).ToCapabilitiesPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(CapabilitiesOutput).ToCapabilitiesPtrOutput()
 }
 
 // CapabilitiesPtrInput is an input type that accepts CapabilitiesArgs, CapabilitiesPtr and CapabilitiesPtrOutput values.
@@ -1736,7 +1736,7 @@ func (i *capabilitiesPtrType) ToCapabilitiesPtrOutput() CapabilitiesPtrOutput {
 }
 
 func (i *capabilitiesPtrType) ToCapabilitiesPtrOutputWithContext(ctx context.Context) CapabilitiesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CapabilitiesPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(CapabilitiesOutput).ToCapabilitiesPtrOutput()
 }
 
 // Adds and removes POSIX capabilities from running containers.
@@ -1872,7 +1872,7 @@ func (i CephFSPersistentVolumeSourceArgs) ToCephFSPersistentVolumeSourcePtrOutpu
 }
 
 func (i CephFSPersistentVolumeSourceArgs) ToCephFSPersistentVolumeSourcePtrOutputWithContext(ctx context.Context) CephFSPersistentVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CephFSPersistentVolumeSourceOutput).ToCephFSPersistentVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(CephFSPersistentVolumeSourceOutput).ToCephFSPersistentVolumeSourcePtrOutput()
 }
 
 // CephFSPersistentVolumeSourcePtrInput is an input type that accepts CephFSPersistentVolumeSourceArgs, CephFSPersistentVolumeSourcePtr and CephFSPersistentVolumeSourcePtrOutput values.
@@ -1905,7 +1905,7 @@ func (i *cephFSPersistentVolumeSourcePtrType) ToCephFSPersistentVolumeSourcePtrO
 }
 
 func (i *cephFSPersistentVolumeSourcePtrType) ToCephFSPersistentVolumeSourcePtrOutputWithContext(ctx context.Context) CephFSPersistentVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CephFSPersistentVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(CephFSPersistentVolumeSourceOutput).ToCephFSPersistentVolumeSourcePtrOutput()
 }
 
 // Represents a Ceph Filesystem mount that lasts the lifetime of a pod Cephfs volumes do not support ownership management or SELinux relabeling.
@@ -2101,7 +2101,7 @@ func (i CephFSVolumeSourceArgs) ToCephFSVolumeSourcePtrOutput() CephFSVolumeSour
 }
 
 func (i CephFSVolumeSourceArgs) ToCephFSVolumeSourcePtrOutputWithContext(ctx context.Context) CephFSVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CephFSVolumeSourceOutput).ToCephFSVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(CephFSVolumeSourceOutput).ToCephFSVolumeSourcePtrOutput()
 }
 
 // CephFSVolumeSourcePtrInput is an input type that accepts CephFSVolumeSourceArgs, CephFSVolumeSourcePtr and CephFSVolumeSourcePtrOutput values.
@@ -2134,7 +2134,7 @@ func (i *cephFSVolumeSourcePtrType) ToCephFSVolumeSourcePtrOutput() CephFSVolume
 }
 
 func (i *cephFSVolumeSourcePtrType) ToCephFSVolumeSourcePtrOutputWithContext(ctx context.Context) CephFSVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CephFSVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(CephFSVolumeSourceOutput).ToCephFSVolumeSourcePtrOutput()
 }
 
 // Represents a Ceph Filesystem mount that lasts the lifetime of a pod Cephfs volumes do not support ownership management or SELinux relabeling.
@@ -2322,7 +2322,7 @@ func (i CinderPersistentVolumeSourceArgs) ToCinderPersistentVolumeSourcePtrOutpu
 }
 
 func (i CinderPersistentVolumeSourceArgs) ToCinderPersistentVolumeSourcePtrOutputWithContext(ctx context.Context) CinderPersistentVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CinderPersistentVolumeSourceOutput).ToCinderPersistentVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(CinderPersistentVolumeSourceOutput).ToCinderPersistentVolumeSourcePtrOutput()
 }
 
 // CinderPersistentVolumeSourcePtrInput is an input type that accepts CinderPersistentVolumeSourceArgs, CinderPersistentVolumeSourcePtr and CinderPersistentVolumeSourcePtrOutput values.
@@ -2355,7 +2355,7 @@ func (i *cinderPersistentVolumeSourcePtrType) ToCinderPersistentVolumeSourcePtrO
 }
 
 func (i *cinderPersistentVolumeSourcePtrType) ToCinderPersistentVolumeSourcePtrOutputWithContext(ctx context.Context) CinderPersistentVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CinderPersistentVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(CinderPersistentVolumeSourceOutput).ToCinderPersistentVolumeSourcePtrOutput()
 }
 
 // Represents a cinder volume resource in Openstack. A Cinder volume must exist before mounting to a container. The volume must also be in the same region as the kubelet. Cinder volumes support ownership management and SELinux relabeling.
@@ -2513,7 +2513,7 @@ func (i CinderVolumeSourceArgs) ToCinderVolumeSourcePtrOutput() CinderVolumeSour
 }
 
 func (i CinderVolumeSourceArgs) ToCinderVolumeSourcePtrOutputWithContext(ctx context.Context) CinderVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CinderVolumeSourceOutput).ToCinderVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(CinderVolumeSourceOutput).ToCinderVolumeSourcePtrOutput()
 }
 
 // CinderVolumeSourcePtrInput is an input type that accepts CinderVolumeSourceArgs, CinderVolumeSourcePtr and CinderVolumeSourcePtrOutput values.
@@ -2546,7 +2546,7 @@ func (i *cinderVolumeSourcePtrType) ToCinderVolumeSourcePtrOutput() CinderVolume
 }
 
 func (i *cinderVolumeSourcePtrType) ToCinderVolumeSourcePtrOutputWithContext(ctx context.Context) CinderVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CinderVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(CinderVolumeSourceOutput).ToCinderVolumeSourcePtrOutput()
 }
 
 // Represents a cinder volume resource in Openstack. A Cinder volume must exist before mounting to a container. The volume must also be in the same region as the kubelet. Cinder volumes support ownership management and SELinux relabeling.
@@ -2692,7 +2692,7 @@ func (i ClientIPConfigArgs) ToClientIPConfigPtrOutput() ClientIPConfigPtrOutput 
 }
 
 func (i ClientIPConfigArgs) ToClientIPConfigPtrOutputWithContext(ctx context.Context) ClientIPConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClientIPConfigOutput).ToClientIPConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClientIPConfigOutput).ToClientIPConfigPtrOutput()
 }
 
 // ClientIPConfigPtrInput is an input type that accepts ClientIPConfigArgs, ClientIPConfigPtr and ClientIPConfigPtrOutput values.
@@ -2725,7 +2725,7 @@ func (i *clientIPConfigPtrType) ToClientIPConfigPtrOutput() ClientIPConfigPtrOut
 }
 
 func (i *clientIPConfigPtrType) ToClientIPConfigPtrOutputWithContext(ctx context.Context) ClientIPConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClientIPConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClientIPConfigOutput).ToClientIPConfigPtrOutput()
 }
 
 // ClientIPConfig represents the configurations of Client IP based session affinity.
@@ -3315,7 +3315,7 @@ func (i ConfigMapEnvSourceArgs) ToConfigMapEnvSourcePtrOutput() ConfigMapEnvSour
 }
 
 func (i ConfigMapEnvSourceArgs) ToConfigMapEnvSourcePtrOutputWithContext(ctx context.Context) ConfigMapEnvSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConfigMapEnvSourceOutput).ToConfigMapEnvSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ConfigMapEnvSourceOutput).ToConfigMapEnvSourcePtrOutput()
 }
 
 // ConfigMapEnvSourcePtrInput is an input type that accepts ConfigMapEnvSourceArgs, ConfigMapEnvSourcePtr and ConfigMapEnvSourcePtrOutput values.
@@ -3348,7 +3348,7 @@ func (i *configMapEnvSourcePtrType) ToConfigMapEnvSourcePtrOutput() ConfigMapEnv
 }
 
 func (i *configMapEnvSourcePtrType) ToConfigMapEnvSourcePtrOutputWithContext(ctx context.Context) ConfigMapEnvSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConfigMapEnvSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ConfigMapEnvSourceOutput).ToConfigMapEnvSourcePtrOutput()
 }
 
 // ConfigMapEnvSource selects a ConfigMap to populate the environment variables with.
@@ -3474,7 +3474,7 @@ func (i ConfigMapKeySelectorArgs) ToConfigMapKeySelectorPtrOutput() ConfigMapKey
 }
 
 func (i ConfigMapKeySelectorArgs) ToConfigMapKeySelectorPtrOutputWithContext(ctx context.Context) ConfigMapKeySelectorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConfigMapKeySelectorOutput).ToConfigMapKeySelectorPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ConfigMapKeySelectorOutput).ToConfigMapKeySelectorPtrOutput()
 }
 
 // ConfigMapKeySelectorPtrInput is an input type that accepts ConfigMapKeySelectorArgs, ConfigMapKeySelectorPtr and ConfigMapKeySelectorPtrOutput values.
@@ -3507,7 +3507,7 @@ func (i *configMapKeySelectorPtrType) ToConfigMapKeySelectorPtrOutput() ConfigMa
 }
 
 func (i *configMapKeySelectorPtrType) ToConfigMapKeySelectorPtrOutputWithContext(ctx context.Context) ConfigMapKeySelectorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConfigMapKeySelectorPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ConfigMapKeySelectorOutput).ToConfigMapKeySelectorPtrOutput()
 }
 
 // Selects a key from a ConfigMap.
@@ -3736,7 +3736,7 @@ func (i ConfigMapNodeConfigSourceArgs) ToConfigMapNodeConfigSourcePtrOutput() Co
 }
 
 func (i ConfigMapNodeConfigSourceArgs) ToConfigMapNodeConfigSourcePtrOutputWithContext(ctx context.Context) ConfigMapNodeConfigSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConfigMapNodeConfigSourceOutput).ToConfigMapNodeConfigSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ConfigMapNodeConfigSourceOutput).ToConfigMapNodeConfigSourcePtrOutput()
 }
 
 // ConfigMapNodeConfigSourcePtrInput is an input type that accepts ConfigMapNodeConfigSourceArgs, ConfigMapNodeConfigSourcePtr and ConfigMapNodeConfigSourcePtrOutput values.
@@ -3769,7 +3769,7 @@ func (i *configMapNodeConfigSourcePtrType) ToConfigMapNodeConfigSourcePtrOutput(
 }
 
 func (i *configMapNodeConfigSourcePtrType) ToConfigMapNodeConfigSourcePtrOutputWithContext(ctx context.Context) ConfigMapNodeConfigSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConfigMapNodeConfigSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ConfigMapNodeConfigSourceOutput).ToConfigMapNodeConfigSourcePtrOutput()
 }
 
 // ConfigMapNodeConfigSource contains the information to reference a ConfigMap as a config source for the Node.
@@ -3942,7 +3942,7 @@ func (i ConfigMapProjectionArgs) ToConfigMapProjectionPtrOutput() ConfigMapProje
 }
 
 func (i ConfigMapProjectionArgs) ToConfigMapProjectionPtrOutputWithContext(ctx context.Context) ConfigMapProjectionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConfigMapProjectionOutput).ToConfigMapProjectionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ConfigMapProjectionOutput).ToConfigMapProjectionPtrOutput()
 }
 
 // ConfigMapProjectionPtrInput is an input type that accepts ConfigMapProjectionArgs, ConfigMapProjectionPtr and ConfigMapProjectionPtrOutput values.
@@ -3975,7 +3975,7 @@ func (i *configMapProjectionPtrType) ToConfigMapProjectionPtrOutput() ConfigMapP
 }
 
 func (i *configMapProjectionPtrType) ToConfigMapProjectionPtrOutputWithContext(ctx context.Context) ConfigMapProjectionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConfigMapProjectionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ConfigMapProjectionOutput).ToConfigMapProjectionPtrOutput()
 }
 
 // Adapts a ConfigMap into a projected volume.
@@ -4124,7 +4124,7 @@ func (i ConfigMapVolumeSourceArgs) ToConfigMapVolumeSourcePtrOutput() ConfigMapV
 }
 
 func (i ConfigMapVolumeSourceArgs) ToConfigMapVolumeSourcePtrOutputWithContext(ctx context.Context) ConfigMapVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConfigMapVolumeSourceOutput).ToConfigMapVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ConfigMapVolumeSourceOutput).ToConfigMapVolumeSourcePtrOutput()
 }
 
 // ConfigMapVolumeSourcePtrInput is an input type that accepts ConfigMapVolumeSourceArgs, ConfigMapVolumeSourcePtr and ConfigMapVolumeSourcePtrOutput values.
@@ -4157,7 +4157,7 @@ func (i *configMapVolumeSourcePtrType) ToConfigMapVolumeSourcePtrOutput() Config
 }
 
 func (i *configMapVolumeSourcePtrType) ToConfigMapVolumeSourcePtrOutputWithContext(ctx context.Context) ConfigMapVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConfigMapVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ConfigMapVolumeSourceOutput).ToConfigMapVolumeSourcePtrOutput()
 }
 
 // Adapts a ConfigMap into a volume.
@@ -4847,7 +4847,7 @@ func (i ContainerStateArgs) ToContainerStatePtrOutput() ContainerStatePtrOutput 
 }
 
 func (i ContainerStateArgs) ToContainerStatePtrOutputWithContext(ctx context.Context) ContainerStatePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ContainerStateOutput).ToContainerStatePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerStateOutput).ToContainerStatePtrOutput()
 }
 
 // ContainerStatePtrInput is an input type that accepts ContainerStateArgs, ContainerStatePtr and ContainerStatePtrOutput values.
@@ -4880,7 +4880,7 @@ func (i *containerStatePtrType) ToContainerStatePtrOutput() ContainerStatePtrOut
 }
 
 func (i *containerStatePtrType) ToContainerStatePtrOutputWithContext(ctx context.Context) ContainerStatePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ContainerStatePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerStateOutput).ToContainerStatePtrOutput()
 }
 
 // ContainerState holds a possible state of container. Only one of its members may be specified. If none of them is specified, the default one is ContainerStateWaiting.
@@ -5011,7 +5011,7 @@ func (i ContainerStateRunningArgs) ToContainerStateRunningPtrOutput() ContainerS
 }
 
 func (i ContainerStateRunningArgs) ToContainerStateRunningPtrOutputWithContext(ctx context.Context) ContainerStateRunningPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ContainerStateRunningOutput).ToContainerStateRunningPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerStateRunningOutput).ToContainerStateRunningPtrOutput()
 }
 
 // ContainerStateRunningPtrInput is an input type that accepts ContainerStateRunningArgs, ContainerStateRunningPtr and ContainerStateRunningPtrOutput values.
@@ -5044,7 +5044,7 @@ func (i *containerStateRunningPtrType) ToContainerStateRunningPtrOutput() Contai
 }
 
 func (i *containerStateRunningPtrType) ToContainerStateRunningPtrOutputWithContext(ctx context.Context) ContainerStateRunningPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ContainerStateRunningPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerStateRunningOutput).ToContainerStateRunningPtrOutput()
 }
 
 // ContainerStateRunning is a running state of a container.
@@ -5169,7 +5169,7 @@ func (i ContainerStateTerminatedArgs) ToContainerStateTerminatedPtrOutput() Cont
 }
 
 func (i ContainerStateTerminatedArgs) ToContainerStateTerminatedPtrOutputWithContext(ctx context.Context) ContainerStateTerminatedPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ContainerStateTerminatedOutput).ToContainerStateTerminatedPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerStateTerminatedOutput).ToContainerStateTerminatedPtrOutput()
 }
 
 // ContainerStateTerminatedPtrInput is an input type that accepts ContainerStateTerminatedArgs, ContainerStateTerminatedPtr and ContainerStateTerminatedPtrOutput values.
@@ -5202,7 +5202,7 @@ func (i *containerStateTerminatedPtrType) ToContainerStateTerminatedPtrOutput() 
 }
 
 func (i *containerStateTerminatedPtrType) ToContainerStateTerminatedPtrOutputWithContext(ctx context.Context) ContainerStateTerminatedPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ContainerStateTerminatedPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerStateTerminatedOutput).ToContainerStateTerminatedPtrOutput()
 }
 
 // ContainerStateTerminated is a terminated state of a container.
@@ -5397,7 +5397,7 @@ func (i ContainerStateWaitingArgs) ToContainerStateWaitingPtrOutput() ContainerS
 }
 
 func (i ContainerStateWaitingArgs) ToContainerStateWaitingPtrOutputWithContext(ctx context.Context) ContainerStateWaitingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ContainerStateWaitingOutput).ToContainerStateWaitingPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerStateWaitingOutput).ToContainerStateWaitingPtrOutput()
 }
 
 // ContainerStateWaitingPtrInput is an input type that accepts ContainerStateWaitingArgs, ContainerStateWaitingPtr and ContainerStateWaitingPtrOutput values.
@@ -5430,7 +5430,7 @@ func (i *containerStateWaitingPtrType) ToContainerStateWaitingPtrOutput() Contai
 }
 
 func (i *containerStateWaitingPtrType) ToContainerStateWaitingPtrOutputWithContext(ctx context.Context) ContainerStateWaitingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ContainerStateWaitingPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerStateWaitingOutput).ToContainerStateWaitingPtrOutput()
 }
 
 // ContainerStateWaiting is a waiting state of a container.
@@ -5718,7 +5718,7 @@ func (i DaemonEndpointArgs) ToDaemonEndpointPtrOutput() DaemonEndpointPtrOutput 
 }
 
 func (i DaemonEndpointArgs) ToDaemonEndpointPtrOutputWithContext(ctx context.Context) DaemonEndpointPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DaemonEndpointOutput).ToDaemonEndpointPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DaemonEndpointOutput).ToDaemonEndpointPtrOutput()
 }
 
 // DaemonEndpointPtrInput is an input type that accepts DaemonEndpointArgs, DaemonEndpointPtr and DaemonEndpointPtrOutput values.
@@ -5751,7 +5751,7 @@ func (i *daemonEndpointPtrType) ToDaemonEndpointPtrOutput() DaemonEndpointPtrOut
 }
 
 func (i *daemonEndpointPtrType) ToDaemonEndpointPtrOutputWithContext(ctx context.Context) DaemonEndpointPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DaemonEndpointPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DaemonEndpointOutput).ToDaemonEndpointPtrOutput()
 }
 
 // DaemonEndpoint contains information about a single Daemon endpoint.
@@ -5852,7 +5852,7 @@ func (i DownwardAPIProjectionArgs) ToDownwardAPIProjectionPtrOutput() DownwardAP
 }
 
 func (i DownwardAPIProjectionArgs) ToDownwardAPIProjectionPtrOutputWithContext(ctx context.Context) DownwardAPIProjectionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DownwardAPIProjectionOutput).ToDownwardAPIProjectionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DownwardAPIProjectionOutput).ToDownwardAPIProjectionPtrOutput()
 }
 
 // DownwardAPIProjectionPtrInput is an input type that accepts DownwardAPIProjectionArgs, DownwardAPIProjectionPtr and DownwardAPIProjectionPtrOutput values.
@@ -5885,7 +5885,7 @@ func (i *downwardAPIProjectionPtrType) ToDownwardAPIProjectionPtrOutput() Downwa
 }
 
 func (i *downwardAPIProjectionPtrType) ToDownwardAPIProjectionPtrOutputWithContext(ctx context.Context) DownwardAPIProjectionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DownwardAPIProjectionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DownwardAPIProjectionOutput).ToDownwardAPIProjectionPtrOutput()
 }
 
 // Represents downward API info for projecting into a projected volume. Note that this is identical to a downwardAPI volume source without the default mode.
@@ -6117,7 +6117,7 @@ func (i DownwardAPIVolumeSourceArgs) ToDownwardAPIVolumeSourcePtrOutput() Downwa
 }
 
 func (i DownwardAPIVolumeSourceArgs) ToDownwardAPIVolumeSourcePtrOutputWithContext(ctx context.Context) DownwardAPIVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DownwardAPIVolumeSourceOutput).ToDownwardAPIVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DownwardAPIVolumeSourceOutput).ToDownwardAPIVolumeSourcePtrOutput()
 }
 
 // DownwardAPIVolumeSourcePtrInput is an input type that accepts DownwardAPIVolumeSourceArgs, DownwardAPIVolumeSourcePtr and DownwardAPIVolumeSourcePtrOutput values.
@@ -6150,7 +6150,7 @@ func (i *downwardAPIVolumeSourcePtrType) ToDownwardAPIVolumeSourcePtrOutput() Do
 }
 
 func (i *downwardAPIVolumeSourcePtrType) ToDownwardAPIVolumeSourcePtrOutputWithContext(ctx context.Context) DownwardAPIVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DownwardAPIVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DownwardAPIVolumeSourceOutput).ToDownwardAPIVolumeSourcePtrOutput()
 }
 
 // DownwardAPIVolumeSource represents a volume containing downward API info. Downward API volumes support ownership management and SELinux relabeling.
@@ -6270,7 +6270,7 @@ func (i EmptyDirVolumeSourceArgs) ToEmptyDirVolumeSourcePtrOutput() EmptyDirVolu
 }
 
 func (i EmptyDirVolumeSourceArgs) ToEmptyDirVolumeSourcePtrOutputWithContext(ctx context.Context) EmptyDirVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EmptyDirVolumeSourceOutput).ToEmptyDirVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(EmptyDirVolumeSourceOutput).ToEmptyDirVolumeSourcePtrOutput()
 }
 
 // EmptyDirVolumeSourcePtrInput is an input type that accepts EmptyDirVolumeSourceArgs, EmptyDirVolumeSourcePtr and EmptyDirVolumeSourcePtrOutput values.
@@ -6303,7 +6303,7 @@ func (i *emptyDirVolumeSourcePtrType) ToEmptyDirVolumeSourcePtrOutput() EmptyDir
 }
 
 func (i *emptyDirVolumeSourcePtrType) ToEmptyDirVolumeSourcePtrOutputWithContext(ctx context.Context) EmptyDirVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EmptyDirVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(EmptyDirVolumeSourceOutput).ToEmptyDirVolumeSourcePtrOutput()
 }
 
 // Represents an empty directory for a pod. Empty directory volumes support ownership management and SELinux relabeling.
@@ -7302,7 +7302,7 @@ func (i EnvVarSourceArgs) ToEnvVarSourcePtrOutput() EnvVarSourcePtrOutput {
 }
 
 func (i EnvVarSourceArgs) ToEnvVarSourcePtrOutputWithContext(ctx context.Context) EnvVarSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EnvVarSourceOutput).ToEnvVarSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(EnvVarSourceOutput).ToEnvVarSourcePtrOutput()
 }
 
 // EnvVarSourcePtrInput is an input type that accepts EnvVarSourceArgs, EnvVarSourcePtr and EnvVarSourcePtrOutput values.
@@ -7335,7 +7335,7 @@ func (i *envVarSourcePtrType) ToEnvVarSourcePtrOutput() EnvVarSourcePtrOutput {
 }
 
 func (i *envVarSourcePtrType) ToEnvVarSourcePtrOutputWithContext(ctx context.Context) EnvVarSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EnvVarSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(EnvVarSourceOutput).ToEnvVarSourcePtrOutput()
 }
 
 // EnvVarSource represents a source for the value of an EnvVar.
@@ -7795,7 +7795,7 @@ func (i EphemeralVolumeSourceArgs) ToEphemeralVolumeSourcePtrOutput() EphemeralV
 }
 
 func (i EphemeralVolumeSourceArgs) ToEphemeralVolumeSourcePtrOutputWithContext(ctx context.Context) EphemeralVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EphemeralVolumeSourceOutput).ToEphemeralVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(EphemeralVolumeSourceOutput).ToEphemeralVolumeSourcePtrOutput()
 }
 
 // EphemeralVolumeSourcePtrInput is an input type that accepts EphemeralVolumeSourceArgs, EphemeralVolumeSourcePtr and EphemeralVolumeSourcePtrOutput values.
@@ -7828,7 +7828,7 @@ func (i *ephemeralVolumeSourcePtrType) ToEphemeralVolumeSourcePtrOutput() Epheme
 }
 
 func (i *ephemeralVolumeSourcePtrType) ToEphemeralVolumeSourcePtrOutputWithContext(ctx context.Context) EphemeralVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EphemeralVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(EphemeralVolumeSourceOutput).ToEphemeralVolumeSourcePtrOutput()
 }
 
 // Represents an ephemeral volume that is handled by a normal storage driver.
@@ -8290,7 +8290,7 @@ func (i EventSeriesArgs) ToEventSeriesPtrOutput() EventSeriesPtrOutput {
 }
 
 func (i EventSeriesArgs) ToEventSeriesPtrOutputWithContext(ctx context.Context) EventSeriesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EventSeriesOutput).ToEventSeriesPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(EventSeriesOutput).ToEventSeriesPtrOutput()
 }
 
 // EventSeriesPtrInput is an input type that accepts EventSeriesArgs, EventSeriesPtr and EventSeriesPtrOutput values.
@@ -8323,7 +8323,7 @@ func (i *eventSeriesPtrType) ToEventSeriesPtrOutput() EventSeriesPtrOutput {
 }
 
 func (i *eventSeriesPtrType) ToEventSeriesPtrOutputWithContext(ctx context.Context) EventSeriesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EventSeriesPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(EventSeriesOutput).ToEventSeriesPtrOutput()
 }
 
 // EventSeries contain information on series of events, i.e. thing that was/is happening continuously for some time.
@@ -8458,7 +8458,7 @@ func (i EventSourceArgs) ToEventSourcePtrOutput() EventSourcePtrOutput {
 }
 
 func (i EventSourceArgs) ToEventSourcePtrOutputWithContext(ctx context.Context) EventSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EventSourceOutput).ToEventSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(EventSourceOutput).ToEventSourcePtrOutput()
 }
 
 // EventSourcePtrInput is an input type that accepts EventSourceArgs, EventSourcePtr and EventSourcePtrOutput values.
@@ -8491,7 +8491,7 @@ func (i *eventSourcePtrType) ToEventSourcePtrOutput() EventSourcePtrOutput {
 }
 
 func (i *eventSourcePtrType) ToEventSourcePtrOutputWithContext(ctx context.Context) EventSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EventSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(EventSourceOutput).ToEventSourcePtrOutput()
 }
 
 // EventSource contains information for an event.
@@ -8607,7 +8607,7 @@ func (i ExecActionArgs) ToExecActionPtrOutput() ExecActionPtrOutput {
 }
 
 func (i ExecActionArgs) ToExecActionPtrOutputWithContext(ctx context.Context) ExecActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ExecActionOutput).ToExecActionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ExecActionOutput).ToExecActionPtrOutput()
 }
 
 // ExecActionPtrInput is an input type that accepts ExecActionArgs, ExecActionPtr and ExecActionPtrOutput values.
@@ -8640,7 +8640,7 @@ func (i *execActionPtrType) ToExecActionPtrOutput() ExecActionPtrOutput {
 }
 
 func (i *execActionPtrType) ToExecActionPtrOutputWithContext(ctx context.Context) ExecActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ExecActionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ExecActionOutput).ToExecActionPtrOutput()
 }
 
 // ExecAction describes a "run in container" action.
@@ -8757,7 +8757,7 @@ func (i FCVolumeSourceArgs) ToFCVolumeSourcePtrOutput() FCVolumeSourcePtrOutput 
 }
 
 func (i FCVolumeSourceArgs) ToFCVolumeSourcePtrOutputWithContext(ctx context.Context) FCVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FCVolumeSourceOutput).ToFCVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FCVolumeSourceOutput).ToFCVolumeSourcePtrOutput()
 }
 
 // FCVolumeSourcePtrInput is an input type that accepts FCVolumeSourceArgs, FCVolumeSourcePtr and FCVolumeSourcePtrOutput values.
@@ -8790,7 +8790,7 @@ func (i *fcvolumeSourcePtrType) ToFCVolumeSourcePtrOutput() FCVolumeSourcePtrOut
 }
 
 func (i *fcvolumeSourcePtrType) ToFCVolumeSourcePtrOutputWithContext(ctx context.Context) FCVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FCVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FCVolumeSourceOutput).ToFCVolumeSourcePtrOutput()
 }
 
 // Represents a Fibre Channel volume. Fibre Channel volumes can only be mounted as read/write once. Fibre Channel volumes support ownership management and SELinux relabeling.
@@ -8967,7 +8967,7 @@ func (i FlexPersistentVolumeSourceArgs) ToFlexPersistentVolumeSourcePtrOutput() 
 }
 
 func (i FlexPersistentVolumeSourceArgs) ToFlexPersistentVolumeSourcePtrOutputWithContext(ctx context.Context) FlexPersistentVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexPersistentVolumeSourceOutput).ToFlexPersistentVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexPersistentVolumeSourceOutput).ToFlexPersistentVolumeSourcePtrOutput()
 }
 
 // FlexPersistentVolumeSourcePtrInput is an input type that accepts FlexPersistentVolumeSourceArgs, FlexPersistentVolumeSourcePtr and FlexPersistentVolumeSourcePtrOutput values.
@@ -9000,7 +9000,7 @@ func (i *flexPersistentVolumeSourcePtrType) ToFlexPersistentVolumeSourcePtrOutpu
 }
 
 func (i *flexPersistentVolumeSourcePtrType) ToFlexPersistentVolumeSourcePtrOutputWithContext(ctx context.Context) FlexPersistentVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexPersistentVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexPersistentVolumeSourceOutput).ToFlexPersistentVolumeSourcePtrOutput()
 }
 
 // FlexPersistentVolumeSource represents a generic persistent volume resource that is provisioned/attached using an exec based plugin.
@@ -9177,7 +9177,7 @@ func (i FlexVolumeSourceArgs) ToFlexVolumeSourcePtrOutput() FlexVolumeSourcePtrO
 }
 
 func (i FlexVolumeSourceArgs) ToFlexVolumeSourcePtrOutputWithContext(ctx context.Context) FlexVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexVolumeSourceOutput).ToFlexVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexVolumeSourceOutput).ToFlexVolumeSourcePtrOutput()
 }
 
 // FlexVolumeSourcePtrInput is an input type that accepts FlexVolumeSourceArgs, FlexVolumeSourcePtr and FlexVolumeSourcePtrOutput values.
@@ -9210,7 +9210,7 @@ func (i *flexVolumeSourcePtrType) ToFlexVolumeSourcePtrOutput() FlexVolumeSource
 }
 
 func (i *flexVolumeSourcePtrType) ToFlexVolumeSourcePtrOutputWithContext(ctx context.Context) FlexVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexVolumeSourceOutput).ToFlexVolumeSourcePtrOutput()
 }
 
 // FlexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.
@@ -9375,7 +9375,7 @@ func (i FlockerVolumeSourceArgs) ToFlockerVolumeSourcePtrOutput() FlockerVolumeS
 }
 
 func (i FlockerVolumeSourceArgs) ToFlockerVolumeSourcePtrOutputWithContext(ctx context.Context) FlockerVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlockerVolumeSourceOutput).ToFlockerVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FlockerVolumeSourceOutput).ToFlockerVolumeSourcePtrOutput()
 }
 
 // FlockerVolumeSourcePtrInput is an input type that accepts FlockerVolumeSourceArgs, FlockerVolumeSourcePtr and FlockerVolumeSourcePtrOutput values.
@@ -9408,7 +9408,7 @@ func (i *flockerVolumeSourcePtrType) ToFlockerVolumeSourcePtrOutput() FlockerVol
 }
 
 func (i *flockerVolumeSourcePtrType) ToFlockerVolumeSourcePtrOutputWithContext(ctx context.Context) FlockerVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlockerVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FlockerVolumeSourceOutput).ToFlockerVolumeSourcePtrOutput()
 }
 
 // Represents a Flocker volume mounted by the Flocker agent. One and only one of datasetName and datasetUUID should be set. Flocker volumes do not support ownership management or SELinux relabeling.
@@ -9540,7 +9540,7 @@ func (i GCEPersistentDiskVolumeSourceArgs) ToGCEPersistentDiskVolumeSourcePtrOut
 }
 
 func (i GCEPersistentDiskVolumeSourceArgs) ToGCEPersistentDiskVolumeSourcePtrOutputWithContext(ctx context.Context) GCEPersistentDiskVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GCEPersistentDiskVolumeSourceOutput).ToGCEPersistentDiskVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(GCEPersistentDiskVolumeSourceOutput).ToGCEPersistentDiskVolumeSourcePtrOutput()
 }
 
 // GCEPersistentDiskVolumeSourcePtrInput is an input type that accepts GCEPersistentDiskVolumeSourceArgs, GCEPersistentDiskVolumeSourcePtr and GCEPersistentDiskVolumeSourcePtrOutput values.
@@ -9573,7 +9573,7 @@ func (i *gcepersistentDiskVolumeSourcePtrType) ToGCEPersistentDiskVolumeSourcePt
 }
 
 func (i *gcepersistentDiskVolumeSourcePtrType) ToGCEPersistentDiskVolumeSourcePtrOutputWithContext(ctx context.Context) GCEPersistentDiskVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GCEPersistentDiskVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(GCEPersistentDiskVolumeSourceOutput).ToGCEPersistentDiskVolumeSourcePtrOutput()
 }
 
 // Represents a Persistent Disk resource in Google Compute Engine.
@@ -9733,7 +9733,7 @@ func (i GitRepoVolumeSourceArgs) ToGitRepoVolumeSourcePtrOutput() GitRepoVolumeS
 }
 
 func (i GitRepoVolumeSourceArgs) ToGitRepoVolumeSourcePtrOutputWithContext(ctx context.Context) GitRepoVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GitRepoVolumeSourceOutput).ToGitRepoVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(GitRepoVolumeSourceOutput).ToGitRepoVolumeSourcePtrOutput()
 }
 
 // GitRepoVolumeSourcePtrInput is an input type that accepts GitRepoVolumeSourceArgs, GitRepoVolumeSourcePtr and GitRepoVolumeSourcePtrOutput values.
@@ -9766,7 +9766,7 @@ func (i *gitRepoVolumeSourcePtrType) ToGitRepoVolumeSourcePtrOutput() GitRepoVol
 }
 
 func (i *gitRepoVolumeSourcePtrType) ToGitRepoVolumeSourcePtrOutputWithContext(ctx context.Context) GitRepoVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GitRepoVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(GitRepoVolumeSourceOutput).ToGitRepoVolumeSourcePtrOutput()
 }
 
 // Represents a volume that is populated with the contents of a git repository. Git repo volumes do not support ownership management. Git repo volumes support SELinux relabeling.
@@ -9911,7 +9911,7 @@ func (i GlusterfsPersistentVolumeSourceArgs) ToGlusterfsPersistentVolumeSourcePt
 }
 
 func (i GlusterfsPersistentVolumeSourceArgs) ToGlusterfsPersistentVolumeSourcePtrOutputWithContext(ctx context.Context) GlusterfsPersistentVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GlusterfsPersistentVolumeSourceOutput).ToGlusterfsPersistentVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(GlusterfsPersistentVolumeSourceOutput).ToGlusterfsPersistentVolumeSourcePtrOutput()
 }
 
 // GlusterfsPersistentVolumeSourcePtrInput is an input type that accepts GlusterfsPersistentVolumeSourceArgs, GlusterfsPersistentVolumeSourcePtr and GlusterfsPersistentVolumeSourcePtrOutput values.
@@ -9944,7 +9944,7 @@ func (i *glusterfsPersistentVolumeSourcePtrType) ToGlusterfsPersistentVolumeSour
 }
 
 func (i *glusterfsPersistentVolumeSourcePtrType) ToGlusterfsPersistentVolumeSourcePtrOutputWithContext(ctx context.Context) GlusterfsPersistentVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GlusterfsPersistentVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(GlusterfsPersistentVolumeSourceOutput).ToGlusterfsPersistentVolumeSourcePtrOutput()
 }
 
 // Represents a Glusterfs mount that lasts the lifetime of a pod. Glusterfs volumes do not support ownership management or SELinux relabeling.
@@ -10098,7 +10098,7 @@ func (i GlusterfsVolumeSourceArgs) ToGlusterfsVolumeSourcePtrOutput() GlusterfsV
 }
 
 func (i GlusterfsVolumeSourceArgs) ToGlusterfsVolumeSourcePtrOutputWithContext(ctx context.Context) GlusterfsVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GlusterfsVolumeSourceOutput).ToGlusterfsVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(GlusterfsVolumeSourceOutput).ToGlusterfsVolumeSourcePtrOutput()
 }
 
 // GlusterfsVolumeSourcePtrInput is an input type that accepts GlusterfsVolumeSourceArgs, GlusterfsVolumeSourcePtr and GlusterfsVolumeSourcePtrOutput values.
@@ -10131,7 +10131,7 @@ func (i *glusterfsVolumeSourcePtrType) ToGlusterfsVolumeSourcePtrOutput() Gluste
 }
 
 func (i *glusterfsVolumeSourcePtrType) ToGlusterfsVolumeSourcePtrOutputWithContext(ctx context.Context) GlusterfsVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GlusterfsVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(GlusterfsVolumeSourceOutput).ToGlusterfsVolumeSourcePtrOutput()
 }
 
 // Represents a Glusterfs mount that lasts the lifetime of a pod. Glusterfs volumes do not support ownership management or SELinux relabeling.
@@ -10278,7 +10278,7 @@ func (i HTTPGetActionArgs) ToHTTPGetActionPtrOutput() HTTPGetActionPtrOutput {
 }
 
 func (i HTTPGetActionArgs) ToHTTPGetActionPtrOutputWithContext(ctx context.Context) HTTPGetActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HTTPGetActionOutput).ToHTTPGetActionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(HTTPGetActionOutput).ToHTTPGetActionPtrOutput()
 }
 
 // HTTPGetActionPtrInput is an input type that accepts HTTPGetActionArgs, HTTPGetActionPtr and HTTPGetActionPtrOutput values.
@@ -10311,7 +10311,7 @@ func (i *httpgetActionPtrType) ToHTTPGetActionPtrOutput() HTTPGetActionPtrOutput
 }
 
 func (i *httpgetActionPtrType) ToHTTPGetActionPtrOutputWithContext(ctx context.Context) HTTPGetActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HTTPGetActionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(HTTPGetActionOutput).ToHTTPGetActionPtrOutput()
 }
 
 // HTTPGetAction describes an action based on HTTP Get requests.
@@ -10589,7 +10589,7 @@ func (i HandlerArgs) ToHandlerPtrOutput() HandlerPtrOutput {
 }
 
 func (i HandlerArgs) ToHandlerPtrOutputWithContext(ctx context.Context) HandlerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HandlerOutput).ToHandlerPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(HandlerOutput).ToHandlerPtrOutput()
 }
 
 // HandlerPtrInput is an input type that accepts HandlerArgs, HandlerPtr and HandlerPtrOutput values.
@@ -10622,7 +10622,7 @@ func (i *handlerPtrType) ToHandlerPtrOutput() HandlerPtrOutput {
 }
 
 func (i *handlerPtrType) ToHandlerPtrOutputWithContext(ctx context.Context) HandlerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HandlerPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(HandlerOutput).ToHandlerPtrOutput()
 }
 
 // Handler defines a specific action that should be taken
@@ -10866,7 +10866,7 @@ func (i HostPathVolumeSourceArgs) ToHostPathVolumeSourcePtrOutput() HostPathVolu
 }
 
 func (i HostPathVolumeSourceArgs) ToHostPathVolumeSourcePtrOutputWithContext(ctx context.Context) HostPathVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HostPathVolumeSourceOutput).ToHostPathVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(HostPathVolumeSourceOutput).ToHostPathVolumeSourcePtrOutput()
 }
 
 // HostPathVolumeSourcePtrInput is an input type that accepts HostPathVolumeSourceArgs, HostPathVolumeSourcePtr and HostPathVolumeSourcePtrOutput values.
@@ -10899,7 +10899,7 @@ func (i *hostPathVolumeSourcePtrType) ToHostPathVolumeSourcePtrOutput() HostPath
 }
 
 func (i *hostPathVolumeSourcePtrType) ToHostPathVolumeSourcePtrOutputWithContext(ctx context.Context) HostPathVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HostPathVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(HostPathVolumeSourceOutput).ToHostPathVolumeSourcePtrOutput()
 }
 
 // Represents a host path mapped into a pod. Host path volumes do not support ownership management or SELinux relabeling.
@@ -11055,7 +11055,7 @@ func (i ISCSIPersistentVolumeSourceArgs) ToISCSIPersistentVolumeSourcePtrOutput(
 }
 
 func (i ISCSIPersistentVolumeSourceArgs) ToISCSIPersistentVolumeSourcePtrOutputWithContext(ctx context.Context) ISCSIPersistentVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ISCSIPersistentVolumeSourceOutput).ToISCSIPersistentVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ISCSIPersistentVolumeSourceOutput).ToISCSIPersistentVolumeSourcePtrOutput()
 }
 
 // ISCSIPersistentVolumeSourcePtrInput is an input type that accepts ISCSIPersistentVolumeSourceArgs, ISCSIPersistentVolumeSourcePtr and ISCSIPersistentVolumeSourcePtrOutput values.
@@ -11088,7 +11088,7 @@ func (i *iscsipersistentVolumeSourcePtrType) ToISCSIPersistentVolumeSourcePtrOut
 }
 
 func (i *iscsipersistentVolumeSourcePtrType) ToISCSIPersistentVolumeSourcePtrOutputWithContext(ctx context.Context) ISCSIPersistentVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ISCSIPersistentVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ISCSIPersistentVolumeSourceOutput).ToISCSIPersistentVolumeSourcePtrOutput()
 }
 
 // ISCSIPersistentVolumeSource represents an ISCSI disk. ISCSI volumes can only be mounted as read/write once. ISCSI volumes support ownership management and SELinux relabeling.
@@ -11379,7 +11379,7 @@ func (i ISCSIVolumeSourceArgs) ToISCSIVolumeSourcePtrOutput() ISCSIVolumeSourceP
 }
 
 func (i ISCSIVolumeSourceArgs) ToISCSIVolumeSourcePtrOutputWithContext(ctx context.Context) ISCSIVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ISCSIVolumeSourceOutput).ToISCSIVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ISCSIVolumeSourceOutput).ToISCSIVolumeSourcePtrOutput()
 }
 
 // ISCSIVolumeSourcePtrInput is an input type that accepts ISCSIVolumeSourceArgs, ISCSIVolumeSourcePtr and ISCSIVolumeSourcePtrOutput values.
@@ -11412,7 +11412,7 @@ func (i *iscsivolumeSourcePtrType) ToISCSIVolumeSourcePtrOutput() ISCSIVolumeSou
 }
 
 func (i *iscsivolumeSourcePtrType) ToISCSIVolumeSourcePtrOutputWithContext(ctx context.Context) ISCSIVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ISCSIVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ISCSIVolumeSourceOutput).ToISCSIVolumeSourcePtrOutput()
 }
 
 // Represents an ISCSI disk. ISCSI volumes can only be mounted as read/write once. ISCSI volumes support ownership management and SELinux relabeling.
@@ -11785,7 +11785,7 @@ func (i LifecycleArgs) ToLifecyclePtrOutput() LifecyclePtrOutput {
 }
 
 func (i LifecycleArgs) ToLifecyclePtrOutputWithContext(ctx context.Context) LifecyclePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LifecycleOutput).ToLifecyclePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(LifecycleOutput).ToLifecyclePtrOutput()
 }
 
 // LifecyclePtrInput is an input type that accepts LifecycleArgs, LifecyclePtr and LifecyclePtrOutput values.
@@ -11818,7 +11818,7 @@ func (i *lifecyclePtrType) ToLifecyclePtrOutput() LifecyclePtrOutput {
 }
 
 func (i *lifecyclePtrType) ToLifecyclePtrOutputWithContext(ctx context.Context) LifecyclePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LifecyclePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(LifecycleOutput).ToLifecyclePtrOutput()
 }
 
 // Lifecycle describes actions that the management system should take in response to container lifecycle events. For the PostStart and PreStop lifecycle handlers, management of the container blocks until the action is complete, unless the container process fails, in which case the handler is aborted.
@@ -12288,7 +12288,7 @@ func (i LimitRangeSpecArgs) ToLimitRangeSpecPtrOutput() LimitRangeSpecPtrOutput 
 }
 
 func (i LimitRangeSpecArgs) ToLimitRangeSpecPtrOutputWithContext(ctx context.Context) LimitRangeSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LimitRangeSpecOutput).ToLimitRangeSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(LimitRangeSpecOutput).ToLimitRangeSpecPtrOutput()
 }
 
 // LimitRangeSpecPtrInput is an input type that accepts LimitRangeSpecArgs, LimitRangeSpecPtr and LimitRangeSpecPtrOutput values.
@@ -12321,7 +12321,7 @@ func (i *limitRangeSpecPtrType) ToLimitRangeSpecPtrOutput() LimitRangeSpecPtrOut
 }
 
 func (i *limitRangeSpecPtrType) ToLimitRangeSpecPtrOutputWithContext(ctx context.Context) LimitRangeSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LimitRangeSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(LimitRangeSpecOutput).ToLimitRangeSpecPtrOutput()
 }
 
 // LimitRangeSpec defines a min/max usage limit for resources that match on kind.
@@ -12540,7 +12540,7 @@ func (i LoadBalancerStatusArgs) ToLoadBalancerStatusPtrOutput() LoadBalancerStat
 }
 
 func (i LoadBalancerStatusArgs) ToLoadBalancerStatusPtrOutputWithContext(ctx context.Context) LoadBalancerStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LoadBalancerStatusOutput).ToLoadBalancerStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(LoadBalancerStatusOutput).ToLoadBalancerStatusPtrOutput()
 }
 
 // LoadBalancerStatusPtrInput is an input type that accepts LoadBalancerStatusArgs, LoadBalancerStatusPtr and LoadBalancerStatusPtrOutput values.
@@ -12573,7 +12573,7 @@ func (i *loadBalancerStatusPtrType) ToLoadBalancerStatusPtrOutput() LoadBalancer
 }
 
 func (i *loadBalancerStatusPtrType) ToLoadBalancerStatusPtrOutputWithContext(ctx context.Context) LoadBalancerStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LoadBalancerStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(LoadBalancerStatusOutput).ToLoadBalancerStatusPtrOutput()
 }
 
 // LoadBalancerStatus represents the status of a load-balancer.
@@ -12674,7 +12674,7 @@ func (i LocalObjectReferenceArgs) ToLocalObjectReferencePtrOutput() LocalObjectR
 }
 
 func (i LocalObjectReferenceArgs) ToLocalObjectReferencePtrOutputWithContext(ctx context.Context) LocalObjectReferencePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LocalObjectReferenceOutput).ToLocalObjectReferencePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(LocalObjectReferenceOutput).ToLocalObjectReferencePtrOutput()
 }
 
 // LocalObjectReferencePtrInput is an input type that accepts LocalObjectReferenceArgs, LocalObjectReferencePtr and LocalObjectReferencePtrOutput values.
@@ -12707,7 +12707,7 @@ func (i *localObjectReferencePtrType) ToLocalObjectReferencePtrOutput() LocalObj
 }
 
 func (i *localObjectReferencePtrType) ToLocalObjectReferencePtrOutputWithContext(ctx context.Context) LocalObjectReferencePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LocalObjectReferencePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(LocalObjectReferenceOutput).ToLocalObjectReferencePtrOutput()
 }
 
 // LocalObjectReferenceArrayInput is an input type that accepts LocalObjectReferenceArray and LocalObjectReferenceArrayOutput values.
@@ -12857,7 +12857,7 @@ func (i LocalVolumeSourceArgs) ToLocalVolumeSourcePtrOutput() LocalVolumeSourceP
 }
 
 func (i LocalVolumeSourceArgs) ToLocalVolumeSourcePtrOutputWithContext(ctx context.Context) LocalVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LocalVolumeSourceOutput).ToLocalVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(LocalVolumeSourceOutput).ToLocalVolumeSourcePtrOutput()
 }
 
 // LocalVolumeSourcePtrInput is an input type that accepts LocalVolumeSourceArgs, LocalVolumeSourcePtr and LocalVolumeSourcePtrOutput values.
@@ -12890,7 +12890,7 @@ func (i *localVolumeSourcePtrType) ToLocalVolumeSourcePtrOutput() LocalVolumeSou
 }
 
 func (i *localVolumeSourcePtrType) ToLocalVolumeSourcePtrOutputWithContext(ctx context.Context) LocalVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LocalVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(LocalVolumeSourceOutput).ToLocalVolumeSourcePtrOutput()
 }
 
 // Local represents directly-attached storage with node affinity (Beta feature)
@@ -13014,7 +13014,7 @@ func (i NFSVolumeSourceArgs) ToNFSVolumeSourcePtrOutput() NFSVolumeSourcePtrOutp
 }
 
 func (i NFSVolumeSourceArgs) ToNFSVolumeSourcePtrOutputWithContext(ctx context.Context) NFSVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NFSVolumeSourceOutput).ToNFSVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(NFSVolumeSourceOutput).ToNFSVolumeSourcePtrOutput()
 }
 
 // NFSVolumeSourcePtrInput is an input type that accepts NFSVolumeSourceArgs, NFSVolumeSourcePtr and NFSVolumeSourcePtrOutput values.
@@ -13047,7 +13047,7 @@ func (i *nfsvolumeSourcePtrType) ToNFSVolumeSourcePtrOutput() NFSVolumeSourcePtr
 }
 
 func (i *nfsvolumeSourcePtrType) ToNFSVolumeSourcePtrOutputWithContext(ctx context.Context) NFSVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NFSVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(NFSVolumeSourceOutput).ToNFSVolumeSourcePtrOutput()
 }
 
 // Represents an NFS mount that lasts the lifetime of a pod. NFS volumes do not support ownership management or SELinux relabeling.
@@ -13523,7 +13523,7 @@ func (i NamespaceSpecArgs) ToNamespaceSpecPtrOutput() NamespaceSpecPtrOutput {
 }
 
 func (i NamespaceSpecArgs) ToNamespaceSpecPtrOutputWithContext(ctx context.Context) NamespaceSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NamespaceSpecOutput).ToNamespaceSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(NamespaceSpecOutput).ToNamespaceSpecPtrOutput()
 }
 
 // NamespaceSpecPtrInput is an input type that accepts NamespaceSpecArgs, NamespaceSpecPtr and NamespaceSpecPtrOutput values.
@@ -13556,7 +13556,7 @@ func (i *namespaceSpecPtrType) ToNamespaceSpecPtrOutput() NamespaceSpecPtrOutput
 }
 
 func (i *namespaceSpecPtrType) ToNamespaceSpecPtrOutputWithContext(ctx context.Context) NamespaceSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NamespaceSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(NamespaceSpecOutput).ToNamespaceSpecPtrOutput()
 }
 
 // NamespaceSpec describes the attributes on a Namespace.
@@ -13661,7 +13661,7 @@ func (i NamespaceStatusArgs) ToNamespaceStatusPtrOutput() NamespaceStatusPtrOutp
 }
 
 func (i NamespaceStatusArgs) ToNamespaceStatusPtrOutputWithContext(ctx context.Context) NamespaceStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NamespaceStatusOutput).ToNamespaceStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(NamespaceStatusOutput).ToNamespaceStatusPtrOutput()
 }
 
 // NamespaceStatusPtrInput is an input type that accepts NamespaceStatusArgs, NamespaceStatusPtr and NamespaceStatusPtrOutput values.
@@ -13694,7 +13694,7 @@ func (i *namespaceStatusPtrType) ToNamespaceStatusPtrOutput() NamespaceStatusPtr
 }
 
 func (i *namespaceStatusPtrType) ToNamespaceStatusPtrOutputWithContext(ctx context.Context) NamespaceStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NamespaceStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(NamespaceStatusOutput).ToNamespaceStatusPtrOutput()
 }
 
 // NamespaceStatus is information about the current status of a Namespace.
@@ -14059,7 +14059,7 @@ func (i NodeAffinityArgs) ToNodeAffinityPtrOutput() NodeAffinityPtrOutput {
 }
 
 func (i NodeAffinityArgs) ToNodeAffinityPtrOutputWithContext(ctx context.Context) NodeAffinityPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodeAffinityOutput).ToNodeAffinityPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(NodeAffinityOutput).ToNodeAffinityPtrOutput()
 }
 
 // NodeAffinityPtrInput is an input type that accepts NodeAffinityArgs, NodeAffinityPtr and NodeAffinityPtrOutput values.
@@ -14092,7 +14092,7 @@ func (i *nodeAffinityPtrType) ToNodeAffinityPtrOutput() NodeAffinityPtrOutput {
 }
 
 func (i *nodeAffinityPtrType) ToNodeAffinityPtrOutputWithContext(ctx context.Context) NodeAffinityPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodeAffinityPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(NodeAffinityOutput).ToNodeAffinityPtrOutput()
 }
 
 // Node affinity is a group of node affinity scheduling rules.
@@ -14355,7 +14355,7 @@ func (i NodeConfigSourceArgs) ToNodeConfigSourcePtrOutput() NodeConfigSourcePtrO
 }
 
 func (i NodeConfigSourceArgs) ToNodeConfigSourcePtrOutputWithContext(ctx context.Context) NodeConfigSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodeConfigSourceOutput).ToNodeConfigSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(NodeConfigSourceOutput).ToNodeConfigSourcePtrOutput()
 }
 
 // NodeConfigSourcePtrInput is an input type that accepts NodeConfigSourceArgs, NodeConfigSourcePtr and NodeConfigSourcePtrOutput values.
@@ -14388,7 +14388,7 @@ func (i *nodeConfigSourcePtrType) ToNodeConfigSourcePtrOutput() NodeConfigSource
 }
 
 func (i *nodeConfigSourcePtrType) ToNodeConfigSourcePtrOutputWithContext(ctx context.Context) NodeConfigSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodeConfigSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(NodeConfigSourceOutput).ToNodeConfigSourcePtrOutput()
 }
 
 // NodeConfigSource specifies a source of node configuration. Exactly one subfield (excluding metadata) must be non-nil.
@@ -14501,7 +14501,7 @@ func (i NodeConfigStatusArgs) ToNodeConfigStatusPtrOutput() NodeConfigStatusPtrO
 }
 
 func (i NodeConfigStatusArgs) ToNodeConfigStatusPtrOutputWithContext(ctx context.Context) NodeConfigStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodeConfigStatusOutput).ToNodeConfigStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(NodeConfigStatusOutput).ToNodeConfigStatusPtrOutput()
 }
 
 // NodeConfigStatusPtrInput is an input type that accepts NodeConfigStatusArgs, NodeConfigStatusPtr and NodeConfigStatusPtrOutput values.
@@ -14534,7 +14534,7 @@ func (i *nodeConfigStatusPtrType) ToNodeConfigStatusPtrOutput() NodeConfigStatus
 }
 
 func (i *nodeConfigStatusPtrType) ToNodeConfigStatusPtrOutputWithContext(ctx context.Context) NodeConfigStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodeConfigStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(NodeConfigStatusOutput).ToNodeConfigStatusPtrOutput()
 }
 
 // NodeConfigStatus describes the status of the config assigned by Node.Spec.ConfigSource.
@@ -14680,7 +14680,7 @@ func (i NodeDaemonEndpointsArgs) ToNodeDaemonEndpointsPtrOutput() NodeDaemonEndp
 }
 
 func (i NodeDaemonEndpointsArgs) ToNodeDaemonEndpointsPtrOutputWithContext(ctx context.Context) NodeDaemonEndpointsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodeDaemonEndpointsOutput).ToNodeDaemonEndpointsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(NodeDaemonEndpointsOutput).ToNodeDaemonEndpointsPtrOutput()
 }
 
 // NodeDaemonEndpointsPtrInput is an input type that accepts NodeDaemonEndpointsArgs, NodeDaemonEndpointsPtr and NodeDaemonEndpointsPtrOutput values.
@@ -14713,7 +14713,7 @@ func (i *nodeDaemonEndpointsPtrType) ToNodeDaemonEndpointsPtrOutput() NodeDaemon
 }
 
 func (i *nodeDaemonEndpointsPtrType) ToNodeDaemonEndpointsPtrOutputWithContext(ctx context.Context) NodeDaemonEndpointsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodeDaemonEndpointsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(NodeDaemonEndpointsOutput).ToNodeDaemonEndpointsPtrOutput()
 }
 
 // NodeDaemonEndpoints lists ports opened by daemons running on the Node.
@@ -14896,7 +14896,7 @@ func (i NodeSelectorArgs) ToNodeSelectorPtrOutput() NodeSelectorPtrOutput {
 }
 
 func (i NodeSelectorArgs) ToNodeSelectorPtrOutputWithContext(ctx context.Context) NodeSelectorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodeSelectorOutput).ToNodeSelectorPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(NodeSelectorOutput).ToNodeSelectorPtrOutput()
 }
 
 // NodeSelectorPtrInput is an input type that accepts NodeSelectorArgs, NodeSelectorPtr and NodeSelectorPtrOutput values.
@@ -14929,7 +14929,7 @@ func (i *nodeSelectorPtrType) ToNodeSelectorPtrOutput() NodeSelectorPtrOutput {
 }
 
 func (i *nodeSelectorPtrType) ToNodeSelectorPtrOutputWithContext(ctx context.Context) NodeSelectorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodeSelectorPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(NodeSelectorOutput).ToNodeSelectorPtrOutput()
 }
 
 // A node selector represents the union of the results of one or more label queries over a set of nodes; that is, it represents the OR of the selectors represented by the node selector terms.
@@ -15281,7 +15281,7 @@ func (i NodeSpecArgs) ToNodeSpecPtrOutput() NodeSpecPtrOutput {
 }
 
 func (i NodeSpecArgs) ToNodeSpecPtrOutputWithContext(ctx context.Context) NodeSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodeSpecOutput).ToNodeSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(NodeSpecOutput).ToNodeSpecPtrOutput()
 }
 
 // NodeSpecPtrInput is an input type that accepts NodeSpecArgs, NodeSpecPtr and NodeSpecPtrOutput values.
@@ -15314,7 +15314,7 @@ func (i *nodeSpecPtrType) ToNodeSpecPtrOutput() NodeSpecPtrOutput {
 }
 
 func (i *nodeSpecPtrType) ToNodeSpecPtrOutputWithContext(ctx context.Context) NodeSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodeSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(NodeSpecOutput).ToNodeSpecPtrOutput()
 }
 
 // NodeSpec describes the attributes that a node is created with.
@@ -15545,7 +15545,7 @@ func (i NodeStatusArgs) ToNodeStatusPtrOutput() NodeStatusPtrOutput {
 }
 
 func (i NodeStatusArgs) ToNodeStatusPtrOutputWithContext(ctx context.Context) NodeStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodeStatusOutput).ToNodeStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(NodeStatusOutput).ToNodeStatusPtrOutput()
 }
 
 // NodeStatusPtrInput is an input type that accepts NodeStatusArgs, NodeStatusPtr and NodeStatusPtrOutput values.
@@ -15578,7 +15578,7 @@ func (i *nodeStatusPtrType) ToNodeStatusPtrOutput() NodeStatusPtrOutput {
 }
 
 func (i *nodeStatusPtrType) ToNodeStatusPtrOutputWithContext(ctx context.Context) NodeStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodeStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(NodeStatusOutput).ToNodeStatusPtrOutput()
 }
 
 // NodeStatus is information about the current status of a node.
@@ -15865,7 +15865,7 @@ func (i NodeSystemInfoArgs) ToNodeSystemInfoPtrOutput() NodeSystemInfoPtrOutput 
 }
 
 func (i NodeSystemInfoArgs) ToNodeSystemInfoPtrOutputWithContext(ctx context.Context) NodeSystemInfoPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodeSystemInfoOutput).ToNodeSystemInfoPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(NodeSystemInfoOutput).ToNodeSystemInfoPtrOutput()
 }
 
 // NodeSystemInfoPtrInput is an input type that accepts NodeSystemInfoArgs, NodeSystemInfoPtr and NodeSystemInfoPtrOutput values.
@@ -15898,7 +15898,7 @@ func (i *nodeSystemInfoPtrType) ToNodeSystemInfoPtrOutput() NodeSystemInfoPtrOut
 }
 
 func (i *nodeSystemInfoPtrType) ToNodeSystemInfoPtrOutputWithContext(ctx context.Context) NodeSystemInfoPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodeSystemInfoPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(NodeSystemInfoOutput).ToNodeSystemInfoPtrOutput()
 }
 
 // NodeSystemInfo is a set of ids/uuids to uniquely identify the node.
@@ -16138,7 +16138,7 @@ func (i ObjectFieldSelectorArgs) ToObjectFieldSelectorPtrOutput() ObjectFieldSel
 }
 
 func (i ObjectFieldSelectorArgs) ToObjectFieldSelectorPtrOutputWithContext(ctx context.Context) ObjectFieldSelectorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ObjectFieldSelectorOutput).ToObjectFieldSelectorPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectFieldSelectorOutput).ToObjectFieldSelectorPtrOutput()
 }
 
 // ObjectFieldSelectorPtrInput is an input type that accepts ObjectFieldSelectorArgs, ObjectFieldSelectorPtr and ObjectFieldSelectorPtrOutput values.
@@ -16171,7 +16171,7 @@ func (i *objectFieldSelectorPtrType) ToObjectFieldSelectorPtrOutput() ObjectFiel
 }
 
 func (i *objectFieldSelectorPtrType) ToObjectFieldSelectorPtrOutputWithContext(ctx context.Context) ObjectFieldSelectorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ObjectFieldSelectorPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectFieldSelectorOutput).ToObjectFieldSelectorPtrOutput()
 }
 
 // ObjectFieldSelector selects an APIVersioned field of an object.
@@ -16311,7 +16311,7 @@ func (i ObjectReferenceArgs) ToObjectReferencePtrOutput() ObjectReferencePtrOutp
 }
 
 func (i ObjectReferenceArgs) ToObjectReferencePtrOutputWithContext(ctx context.Context) ObjectReferencePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ObjectReferenceOutput).ToObjectReferencePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectReferenceOutput).ToObjectReferencePtrOutput()
 }
 
 // ObjectReferencePtrInput is an input type that accepts ObjectReferenceArgs, ObjectReferencePtr and ObjectReferencePtrOutput values.
@@ -16344,7 +16344,7 @@ func (i *objectReferencePtrType) ToObjectReferencePtrOutput() ObjectReferencePtr
 }
 
 func (i *objectReferencePtrType) ToObjectReferencePtrOutputWithContext(ctx context.Context) ObjectReferencePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ObjectReferencePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectReferenceOutput).ToObjectReferencePtrOutput()
 }
 
 // ObjectReferenceArrayInput is an input type that accepts ObjectReferenceArray and ObjectReferenceArrayOutput values.
@@ -17097,7 +17097,7 @@ func (i PersistentVolumeClaimSpecArgs) ToPersistentVolumeClaimSpecPtrOutput() Pe
 }
 
 func (i PersistentVolumeClaimSpecArgs) ToPersistentVolumeClaimSpecPtrOutputWithContext(ctx context.Context) PersistentVolumeClaimSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PersistentVolumeClaimSpecOutput).ToPersistentVolumeClaimSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PersistentVolumeClaimSpecOutput).ToPersistentVolumeClaimSpecPtrOutput()
 }
 
 // PersistentVolumeClaimSpecPtrInput is an input type that accepts PersistentVolumeClaimSpecArgs, PersistentVolumeClaimSpecPtr and PersistentVolumeClaimSpecPtrOutput values.
@@ -17130,7 +17130,7 @@ func (i *persistentVolumeClaimSpecPtrType) ToPersistentVolumeClaimSpecPtrOutput(
 }
 
 func (i *persistentVolumeClaimSpecPtrType) ToPersistentVolumeClaimSpecPtrOutputWithContext(ctx context.Context) PersistentVolumeClaimSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PersistentVolumeClaimSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PersistentVolumeClaimSpecOutput).ToPersistentVolumeClaimSpecPtrOutput()
 }
 
 // PersistentVolumeClaimSpec describes the common attributes of storage devices and allows a Source for provider-specific attributes
@@ -17333,7 +17333,7 @@ func (i PersistentVolumeClaimStatusArgs) ToPersistentVolumeClaimStatusPtrOutput(
 }
 
 func (i PersistentVolumeClaimStatusArgs) ToPersistentVolumeClaimStatusPtrOutputWithContext(ctx context.Context) PersistentVolumeClaimStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PersistentVolumeClaimStatusOutput).ToPersistentVolumeClaimStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PersistentVolumeClaimStatusOutput).ToPersistentVolumeClaimStatusPtrOutput()
 }
 
 // PersistentVolumeClaimStatusPtrInput is an input type that accepts PersistentVolumeClaimStatusArgs, PersistentVolumeClaimStatusPtr and PersistentVolumeClaimStatusPtrOutput values.
@@ -17366,7 +17366,7 @@ func (i *persistentVolumeClaimStatusPtrType) ToPersistentVolumeClaimStatusPtrOut
 }
 
 func (i *persistentVolumeClaimStatusPtrType) ToPersistentVolumeClaimStatusPtrOutputWithContext(ctx context.Context) PersistentVolumeClaimStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PersistentVolumeClaimStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PersistentVolumeClaimStatusOutput).ToPersistentVolumeClaimStatusPtrOutput()
 }
 
 // PersistentVolumeClaimStatus is the current status of a persistent volume claim.
@@ -17516,7 +17516,7 @@ func (i PersistentVolumeClaimTemplateArgs) ToPersistentVolumeClaimTemplatePtrOut
 }
 
 func (i PersistentVolumeClaimTemplateArgs) ToPersistentVolumeClaimTemplatePtrOutputWithContext(ctx context.Context) PersistentVolumeClaimTemplatePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PersistentVolumeClaimTemplateOutput).ToPersistentVolumeClaimTemplatePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PersistentVolumeClaimTemplateOutput).ToPersistentVolumeClaimTemplatePtrOutput()
 }
 
 // PersistentVolumeClaimTemplatePtrInput is an input type that accepts PersistentVolumeClaimTemplateArgs, PersistentVolumeClaimTemplatePtr and PersistentVolumeClaimTemplatePtrOutput values.
@@ -17549,7 +17549,7 @@ func (i *persistentVolumeClaimTemplatePtrType) ToPersistentVolumeClaimTemplatePt
 }
 
 func (i *persistentVolumeClaimTemplatePtrType) ToPersistentVolumeClaimTemplatePtrOutputWithContext(ctx context.Context) PersistentVolumeClaimTemplatePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PersistentVolumeClaimTemplatePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PersistentVolumeClaimTemplateOutput).ToPersistentVolumeClaimTemplatePtrOutput()
 }
 
 // PersistentVolumeClaimTemplate is used to produce PersistentVolumeClaim objects as part of an EphemeralVolumeSource.
@@ -17669,7 +17669,7 @@ func (i PersistentVolumeClaimVolumeSourceArgs) ToPersistentVolumeClaimVolumeSour
 }
 
 func (i PersistentVolumeClaimVolumeSourceArgs) ToPersistentVolumeClaimVolumeSourcePtrOutputWithContext(ctx context.Context) PersistentVolumeClaimVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PersistentVolumeClaimVolumeSourceOutput).ToPersistentVolumeClaimVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PersistentVolumeClaimVolumeSourceOutput).ToPersistentVolumeClaimVolumeSourcePtrOutput()
 }
 
 // PersistentVolumeClaimVolumeSourcePtrInput is an input type that accepts PersistentVolumeClaimVolumeSourceArgs, PersistentVolumeClaimVolumeSourcePtr and PersistentVolumeClaimVolumeSourcePtrOutput values.
@@ -17702,7 +17702,7 @@ func (i *persistentVolumeClaimVolumeSourcePtrType) ToPersistentVolumeClaimVolume
 }
 
 func (i *persistentVolumeClaimVolumeSourcePtrType) ToPersistentVolumeClaimVolumeSourcePtrOutputWithContext(ctx context.Context) PersistentVolumeClaimVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PersistentVolumeClaimVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PersistentVolumeClaimVolumeSourceOutput).ToPersistentVolumeClaimVolumeSourcePtrOutput()
 }
 
 // PersistentVolumeClaimVolumeSource references the user's PVC in the same namespace. This volume finds the bound PV and mounts that volume for the pod. A PersistentVolumeClaimVolumeSource is, essentially, a wrapper around another type of volume that is owned by someone else (the system).
@@ -18016,7 +18016,7 @@ func (i PersistentVolumeSpecArgs) ToPersistentVolumeSpecPtrOutput() PersistentVo
 }
 
 func (i PersistentVolumeSpecArgs) ToPersistentVolumeSpecPtrOutputWithContext(ctx context.Context) PersistentVolumeSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PersistentVolumeSpecOutput).ToPersistentVolumeSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PersistentVolumeSpecOutput).ToPersistentVolumeSpecPtrOutput()
 }
 
 // PersistentVolumeSpecPtrInput is an input type that accepts PersistentVolumeSpecArgs, PersistentVolumeSpecPtr and PersistentVolumeSpecPtrOutput values.
@@ -18049,7 +18049,7 @@ func (i *persistentVolumeSpecPtrType) ToPersistentVolumeSpecPtrOutput() Persiste
 }
 
 func (i *persistentVolumeSpecPtrType) ToPersistentVolumeSpecPtrOutputWithContext(ctx context.Context) PersistentVolumeSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PersistentVolumeSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PersistentVolumeSpecOutput).ToPersistentVolumeSpecPtrOutput()
 }
 
 // PersistentVolumeSpec is the specification of a persistent volume.
@@ -18593,7 +18593,7 @@ func (i PersistentVolumeStatusArgs) ToPersistentVolumeStatusPtrOutput() Persiste
 }
 
 func (i PersistentVolumeStatusArgs) ToPersistentVolumeStatusPtrOutputWithContext(ctx context.Context) PersistentVolumeStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PersistentVolumeStatusOutput).ToPersistentVolumeStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PersistentVolumeStatusOutput).ToPersistentVolumeStatusPtrOutput()
 }
 
 // PersistentVolumeStatusPtrInput is an input type that accepts PersistentVolumeStatusArgs, PersistentVolumeStatusPtr and PersistentVolumeStatusPtrOutput values.
@@ -18626,7 +18626,7 @@ func (i *persistentVolumeStatusPtrType) ToPersistentVolumeStatusPtrOutput() Pers
 }
 
 func (i *persistentVolumeStatusPtrType) ToPersistentVolumeStatusPtrOutputWithContext(ctx context.Context) PersistentVolumeStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PersistentVolumeStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PersistentVolumeStatusOutput).ToPersistentVolumeStatusPtrOutput()
 }
 
 // PersistentVolumeStatus is the current status of a persistent volume.
@@ -18761,7 +18761,7 @@ func (i PhotonPersistentDiskVolumeSourceArgs) ToPhotonPersistentDiskVolumeSource
 }
 
 func (i PhotonPersistentDiskVolumeSourceArgs) ToPhotonPersistentDiskVolumeSourcePtrOutputWithContext(ctx context.Context) PhotonPersistentDiskVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PhotonPersistentDiskVolumeSourceOutput).ToPhotonPersistentDiskVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PhotonPersistentDiskVolumeSourceOutput).ToPhotonPersistentDiskVolumeSourcePtrOutput()
 }
 
 // PhotonPersistentDiskVolumeSourcePtrInput is an input type that accepts PhotonPersistentDiskVolumeSourceArgs, PhotonPersistentDiskVolumeSourcePtr and PhotonPersistentDiskVolumeSourcePtrOutput values.
@@ -18794,7 +18794,7 @@ func (i *photonPersistentDiskVolumeSourcePtrType) ToPhotonPersistentDiskVolumeSo
 }
 
 func (i *photonPersistentDiskVolumeSourcePtrType) ToPhotonPersistentDiskVolumeSourcePtrOutputWithContext(ctx context.Context) PhotonPersistentDiskVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PhotonPersistentDiskVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PhotonPersistentDiskVolumeSourceOutput).ToPhotonPersistentDiskVolumeSourcePtrOutput()
 }
 
 // Represents a Photon Controller persistent disk resource.
@@ -19095,7 +19095,7 @@ func (i PodAffinityArgs) ToPodAffinityPtrOutput() PodAffinityPtrOutput {
 }
 
 func (i PodAffinityArgs) ToPodAffinityPtrOutputWithContext(ctx context.Context) PodAffinityPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PodAffinityOutput).ToPodAffinityPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PodAffinityOutput).ToPodAffinityPtrOutput()
 }
 
 // PodAffinityPtrInput is an input type that accepts PodAffinityArgs, PodAffinityPtr and PodAffinityPtrOutput values.
@@ -19128,7 +19128,7 @@ func (i *podAffinityPtrType) ToPodAffinityPtrOutput() PodAffinityPtrOutput {
 }
 
 func (i *podAffinityPtrType) ToPodAffinityPtrOutputWithContext(ctx context.Context) PodAffinityPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PodAffinityPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PodAffinityOutput).ToPodAffinityPtrOutput()
 }
 
 // Pod affinity is a group of inter pod affinity scheduling rules.
@@ -19368,7 +19368,7 @@ func (i PodAntiAffinityArgs) ToPodAntiAffinityPtrOutput() PodAntiAffinityPtrOutp
 }
 
 func (i PodAntiAffinityArgs) ToPodAntiAffinityPtrOutputWithContext(ctx context.Context) PodAntiAffinityPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PodAntiAffinityOutput).ToPodAntiAffinityPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PodAntiAffinityOutput).ToPodAntiAffinityPtrOutput()
 }
 
 // PodAntiAffinityPtrInput is an input type that accepts PodAntiAffinityArgs, PodAntiAffinityPtr and PodAntiAffinityPtrOutput values.
@@ -19401,7 +19401,7 @@ func (i *podAntiAffinityPtrType) ToPodAntiAffinityPtrOutput() PodAntiAffinityPtr
 }
 
 func (i *podAntiAffinityPtrType) ToPodAntiAffinityPtrOutputWithContext(ctx context.Context) PodAntiAffinityPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PodAntiAffinityPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PodAntiAffinityOutput).ToPodAntiAffinityPtrOutput()
 }
 
 // Pod anti affinity is a group of inter pod anti affinity scheduling rules.
@@ -19672,7 +19672,7 @@ func (i PodDNSConfigArgs) ToPodDNSConfigPtrOutput() PodDNSConfigPtrOutput {
 }
 
 func (i PodDNSConfigArgs) ToPodDNSConfigPtrOutputWithContext(ctx context.Context) PodDNSConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PodDNSConfigOutput).ToPodDNSConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PodDNSConfigOutput).ToPodDNSConfigPtrOutput()
 }
 
 // PodDNSConfigPtrInput is an input type that accepts PodDNSConfigArgs, PodDNSConfigPtr and PodDNSConfigPtrOutput values.
@@ -19705,7 +19705,7 @@ func (i *podDNSConfigPtrType) ToPodDNSConfigPtrOutput() PodDNSConfigPtrOutput {
 }
 
 func (i *podDNSConfigPtrType) ToPodDNSConfigPtrOutputWithContext(ctx context.Context) PodDNSConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PodDNSConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PodDNSConfigOutput).ToPodDNSConfigPtrOutput()
 }
 
 // PodDNSConfig defines the DNS parameters of a pod in addition to those generated from DNSPolicy.
@@ -20271,7 +20271,7 @@ func (i PodSecurityContextArgs) ToPodSecurityContextPtrOutput() PodSecurityConte
 }
 
 func (i PodSecurityContextArgs) ToPodSecurityContextPtrOutputWithContext(ctx context.Context) PodSecurityContextPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PodSecurityContextOutput).ToPodSecurityContextPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PodSecurityContextOutput).ToPodSecurityContextPtrOutput()
 }
 
 // PodSecurityContextPtrInput is an input type that accepts PodSecurityContextArgs, PodSecurityContextPtr and PodSecurityContextPtrOutput values.
@@ -20304,7 +20304,7 @@ func (i *podSecurityContextPtrType) ToPodSecurityContextPtrOutput() PodSecurityC
 }
 
 func (i *podSecurityContextPtrType) ToPodSecurityContextPtrOutputWithContext(ctx context.Context) PodSecurityContextPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PodSecurityContextPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PodSecurityContextOutput).ToPodSecurityContextPtrOutput()
 }
 
 // PodSecurityContext holds pod-level security attributes and common container settings. Some fields are also present in container.securityContext.  Field values of container.securityContext take precedence over field values of PodSecurityContext.
@@ -20684,7 +20684,7 @@ func (i PodSpecArgs) ToPodSpecPtrOutput() PodSpecPtrOutput {
 }
 
 func (i PodSpecArgs) ToPodSpecPtrOutputWithContext(ctx context.Context) PodSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PodSpecOutput).ToPodSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PodSpecOutput).ToPodSpecPtrOutput()
 }
 
 // PodSpecPtrInput is an input type that accepts PodSpecArgs, PodSpecPtr and PodSpecPtrOutput values.
@@ -20717,7 +20717,7 @@ func (i *podSpecPtrType) ToPodSpecPtrOutput() PodSpecPtrOutput {
 }
 
 func (i *podSpecPtrType) ToPodSpecPtrOutputWithContext(ctx context.Context) PodSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PodSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PodSpecOutput).ToPodSpecPtrOutput()
 }
 
 // PodSpec is a description of a pod.
@@ -21384,7 +21384,7 @@ func (i PodStatusArgs) ToPodStatusPtrOutput() PodStatusPtrOutput {
 }
 
 func (i PodStatusArgs) ToPodStatusPtrOutputWithContext(ctx context.Context) PodStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PodStatusOutput).ToPodStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PodStatusOutput).ToPodStatusPtrOutput()
 }
 
 // PodStatusPtrInput is an input type that accepts PodStatusArgs, PodStatusPtr and PodStatusPtrOutput values.
@@ -21417,7 +21417,7 @@ func (i *podStatusPtrType) ToPodStatusPtrOutput() PodStatusPtrOutput {
 }
 
 func (i *podStatusPtrType) ToPodStatusPtrOutputWithContext(ctx context.Context) PodStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PodStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PodStatusOutput).ToPodStatusPtrOutput()
 }
 
 // PodStatus represents information about the status of a pod. Status may trail the actual state of a system, especially if the node that hosts the pod cannot contact the control plane.
@@ -21919,7 +21919,7 @@ func (i PodTemplateSpecArgs) ToPodTemplateSpecPtrOutput() PodTemplateSpecPtrOutp
 }
 
 func (i PodTemplateSpecArgs) ToPodTemplateSpecPtrOutputWithContext(ctx context.Context) PodTemplateSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PodTemplateSpecOutput).ToPodTemplateSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PodTemplateSpecOutput).ToPodTemplateSpecPtrOutput()
 }
 
 // PodTemplateSpecPtrInput is an input type that accepts PodTemplateSpecArgs, PodTemplateSpecPtr and PodTemplateSpecPtrOutput values.
@@ -21952,7 +21952,7 @@ func (i *podTemplateSpecPtrType) ToPodTemplateSpecPtrOutput() PodTemplateSpecPtr
 }
 
 func (i *podTemplateSpecPtrType) ToPodTemplateSpecPtrOutputWithContext(ctx context.Context) PodTemplateSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PodTemplateSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PodTemplateSpecOutput).ToPodTemplateSpecPtrOutput()
 }
 
 // PodTemplateSpec describes the data a pod should have when created from a template
@@ -22200,7 +22200,7 @@ func (i PortworxVolumeSourceArgs) ToPortworxVolumeSourcePtrOutput() PortworxVolu
 }
 
 func (i PortworxVolumeSourceArgs) ToPortworxVolumeSourcePtrOutputWithContext(ctx context.Context) PortworxVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PortworxVolumeSourceOutput).ToPortworxVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PortworxVolumeSourceOutput).ToPortworxVolumeSourcePtrOutput()
 }
 
 // PortworxVolumeSourcePtrInput is an input type that accepts PortworxVolumeSourceArgs, PortworxVolumeSourcePtr and PortworxVolumeSourcePtrOutput values.
@@ -22233,7 +22233,7 @@ func (i *portworxVolumeSourcePtrType) ToPortworxVolumeSourcePtrOutput() Portworx
 }
 
 func (i *portworxVolumeSourcePtrType) ToPortworxVolumeSourcePtrOutputWithContext(ctx context.Context) PortworxVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PortworxVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PortworxVolumeSourceOutput).ToPortworxVolumeSourcePtrOutput()
 }
 
 // PortworxVolumeSource represents a Portworx volume resource.
@@ -22501,7 +22501,7 @@ func (i ProbeArgs) ToProbePtrOutput() ProbePtrOutput {
 }
 
 func (i ProbeArgs) ToProbePtrOutputWithContext(ctx context.Context) ProbePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ProbeOutput).ToProbePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ProbeOutput).ToProbePtrOutput()
 }
 
 // ProbePtrInput is an input type that accepts ProbeArgs, ProbePtr and ProbePtrOutput values.
@@ -22534,7 +22534,7 @@ func (i *probePtrType) ToProbePtrOutput() ProbePtrOutput {
 }
 
 func (i *probePtrType) ToProbePtrOutputWithContext(ctx context.Context) ProbePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ProbePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ProbeOutput).ToProbePtrOutput()
 }
 
 // Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic.
@@ -22744,7 +22744,7 @@ func (i ProjectedVolumeSourceArgs) ToProjectedVolumeSourcePtrOutput() ProjectedV
 }
 
 func (i ProjectedVolumeSourceArgs) ToProjectedVolumeSourcePtrOutputWithContext(ctx context.Context) ProjectedVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ProjectedVolumeSourceOutput).ToProjectedVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectedVolumeSourceOutput).ToProjectedVolumeSourcePtrOutput()
 }
 
 // ProjectedVolumeSourcePtrInput is an input type that accepts ProjectedVolumeSourceArgs, ProjectedVolumeSourcePtr and ProjectedVolumeSourcePtrOutput values.
@@ -22777,7 +22777,7 @@ func (i *projectedVolumeSourcePtrType) ToProjectedVolumeSourcePtrOutput() Projec
 }
 
 func (i *projectedVolumeSourcePtrType) ToProjectedVolumeSourcePtrOutputWithContext(ctx context.Context) ProjectedVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ProjectedVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectedVolumeSourceOutput).ToProjectedVolumeSourcePtrOutput()
 }
 
 // Represents a projected volume source
@@ -22913,7 +22913,7 @@ func (i QuobyteVolumeSourceArgs) ToQuobyteVolumeSourcePtrOutput() QuobyteVolumeS
 }
 
 func (i QuobyteVolumeSourceArgs) ToQuobyteVolumeSourcePtrOutputWithContext(ctx context.Context) QuobyteVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(QuobyteVolumeSourceOutput).ToQuobyteVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(QuobyteVolumeSourceOutput).ToQuobyteVolumeSourcePtrOutput()
 }
 
 // QuobyteVolumeSourcePtrInput is an input type that accepts QuobyteVolumeSourceArgs, QuobyteVolumeSourcePtr and QuobyteVolumeSourcePtrOutput values.
@@ -22946,7 +22946,7 @@ func (i *quobyteVolumeSourcePtrType) ToQuobyteVolumeSourcePtrOutput() QuobyteVol
 }
 
 func (i *quobyteVolumeSourcePtrType) ToQuobyteVolumeSourcePtrOutputWithContext(ctx context.Context) QuobyteVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(QuobyteVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(QuobyteVolumeSourceOutput).ToQuobyteVolumeSourcePtrOutput()
 }
 
 // Represents a Quobyte mount that lasts the lifetime of a pod. Quobyte volumes do not support ownership management or SELinux relabeling.
@@ -23150,7 +23150,7 @@ func (i RBDPersistentVolumeSourceArgs) ToRBDPersistentVolumeSourcePtrOutput() RB
 }
 
 func (i RBDPersistentVolumeSourceArgs) ToRBDPersistentVolumeSourcePtrOutputWithContext(ctx context.Context) RBDPersistentVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RBDPersistentVolumeSourceOutput).ToRBDPersistentVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RBDPersistentVolumeSourceOutput).ToRBDPersistentVolumeSourcePtrOutput()
 }
 
 // RBDPersistentVolumeSourcePtrInput is an input type that accepts RBDPersistentVolumeSourceArgs, RBDPersistentVolumeSourcePtr and RBDPersistentVolumeSourcePtrOutput values.
@@ -23183,7 +23183,7 @@ func (i *rbdpersistentVolumeSourcePtrType) ToRBDPersistentVolumeSourcePtrOutput(
 }
 
 func (i *rbdpersistentVolumeSourcePtrType) ToRBDPersistentVolumeSourcePtrOutputWithContext(ctx context.Context) RBDPersistentVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RBDPersistentVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RBDPersistentVolumeSourceOutput).ToRBDPersistentVolumeSourcePtrOutput()
 }
 
 // Represents a Rados Block Device mount that lasts the lifetime of a pod. RBD volumes support ownership management and SELinux relabeling.
@@ -23417,7 +23417,7 @@ func (i RBDVolumeSourceArgs) ToRBDVolumeSourcePtrOutput() RBDVolumeSourcePtrOutp
 }
 
 func (i RBDVolumeSourceArgs) ToRBDVolumeSourcePtrOutputWithContext(ctx context.Context) RBDVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RBDVolumeSourceOutput).ToRBDVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RBDVolumeSourceOutput).ToRBDVolumeSourcePtrOutput()
 }
 
 // RBDVolumeSourcePtrInput is an input type that accepts RBDVolumeSourceArgs, RBDVolumeSourcePtr and RBDVolumeSourcePtrOutput values.
@@ -23450,7 +23450,7 @@ func (i *rbdvolumeSourcePtrType) ToRBDVolumeSourcePtrOutput() RBDVolumeSourcePtr
 }
 
 func (i *rbdvolumeSourcePtrType) ToRBDVolumeSourcePtrOutputWithContext(ctx context.Context) RBDVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RBDVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RBDVolumeSourceOutput).ToRBDVolumeSourcePtrOutput()
 }
 
 // Represents a Rados Block Device mount that lasts the lifetime of a pod. RBD volumes support ownership management and SELinux relabeling.
@@ -24022,7 +24022,7 @@ func (i ReplicationControllerSpecArgs) ToReplicationControllerSpecPtrOutput() Re
 }
 
 func (i ReplicationControllerSpecArgs) ToReplicationControllerSpecPtrOutputWithContext(ctx context.Context) ReplicationControllerSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ReplicationControllerSpecOutput).ToReplicationControllerSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ReplicationControllerSpecOutput).ToReplicationControllerSpecPtrOutput()
 }
 
 // ReplicationControllerSpecPtrInput is an input type that accepts ReplicationControllerSpecArgs, ReplicationControllerSpecPtr and ReplicationControllerSpecPtrOutput values.
@@ -24055,7 +24055,7 @@ func (i *replicationControllerSpecPtrType) ToReplicationControllerSpecPtrOutput(
 }
 
 func (i *replicationControllerSpecPtrType) ToReplicationControllerSpecPtrOutputWithContext(ctx context.Context) ReplicationControllerSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ReplicationControllerSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ReplicationControllerSpecOutput).ToReplicationControllerSpecPtrOutput()
 }
 
 // ReplicationControllerSpec is the specification of a replication controller.
@@ -24221,7 +24221,7 @@ func (i ReplicationControllerStatusArgs) ToReplicationControllerStatusPtrOutput(
 }
 
 func (i ReplicationControllerStatusArgs) ToReplicationControllerStatusPtrOutputWithContext(ctx context.Context) ReplicationControllerStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ReplicationControllerStatusOutput).ToReplicationControllerStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ReplicationControllerStatusOutput).ToReplicationControllerStatusPtrOutput()
 }
 
 // ReplicationControllerStatusPtrInput is an input type that accepts ReplicationControllerStatusArgs, ReplicationControllerStatusPtr and ReplicationControllerStatusPtrOutput values.
@@ -24254,7 +24254,7 @@ func (i *replicationControllerStatusPtrType) ToReplicationControllerStatusPtrOut
 }
 
 func (i *replicationControllerStatusPtrType) ToReplicationControllerStatusPtrOutputWithContext(ctx context.Context) ReplicationControllerStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ReplicationControllerStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ReplicationControllerStatusOutput).ToReplicationControllerStatusPtrOutput()
 }
 
 // ReplicationControllerStatus represents the current status of a replication controller.
@@ -24438,7 +24438,7 @@ func (i ResourceFieldSelectorArgs) ToResourceFieldSelectorPtrOutput() ResourceFi
 }
 
 func (i ResourceFieldSelectorArgs) ToResourceFieldSelectorPtrOutputWithContext(ctx context.Context) ResourceFieldSelectorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourceFieldSelectorOutput).ToResourceFieldSelectorPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ResourceFieldSelectorOutput).ToResourceFieldSelectorPtrOutput()
 }
 
 // ResourceFieldSelectorPtrInput is an input type that accepts ResourceFieldSelectorArgs, ResourceFieldSelectorPtr and ResourceFieldSelectorPtrOutput values.
@@ -24471,7 +24471,7 @@ func (i *resourceFieldSelectorPtrType) ToResourceFieldSelectorPtrOutput() Resour
 }
 
 func (i *resourceFieldSelectorPtrType) ToResourceFieldSelectorPtrOutputWithContext(ctx context.Context) ResourceFieldSelectorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourceFieldSelectorPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ResourceFieldSelectorOutput).ToResourceFieldSelectorPtrOutput()
 }
 
 // ResourceFieldSelector represents container resources (cpu, memory) and their output format
@@ -24828,7 +24828,7 @@ func (i ResourceQuotaSpecArgs) ToResourceQuotaSpecPtrOutput() ResourceQuotaSpecP
 }
 
 func (i ResourceQuotaSpecArgs) ToResourceQuotaSpecPtrOutputWithContext(ctx context.Context) ResourceQuotaSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourceQuotaSpecOutput).ToResourceQuotaSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ResourceQuotaSpecOutput).ToResourceQuotaSpecPtrOutput()
 }
 
 // ResourceQuotaSpecPtrInput is an input type that accepts ResourceQuotaSpecArgs, ResourceQuotaSpecPtr and ResourceQuotaSpecPtrOutput values.
@@ -24861,7 +24861,7 @@ func (i *resourceQuotaSpecPtrType) ToResourceQuotaSpecPtrOutput() ResourceQuotaS
 }
 
 func (i *resourceQuotaSpecPtrType) ToResourceQuotaSpecPtrOutputWithContext(ctx context.Context) ResourceQuotaSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourceQuotaSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ResourceQuotaSpecOutput).ToResourceQuotaSpecPtrOutput()
 }
 
 // ResourceQuotaSpec defines the desired hard limits to enforce for Quota.
@@ -24996,7 +24996,7 @@ func (i ResourceQuotaStatusArgs) ToResourceQuotaStatusPtrOutput() ResourceQuotaS
 }
 
 func (i ResourceQuotaStatusArgs) ToResourceQuotaStatusPtrOutputWithContext(ctx context.Context) ResourceQuotaStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourceQuotaStatusOutput).ToResourceQuotaStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ResourceQuotaStatusOutput).ToResourceQuotaStatusPtrOutput()
 }
 
 // ResourceQuotaStatusPtrInput is an input type that accepts ResourceQuotaStatusArgs, ResourceQuotaStatusPtr and ResourceQuotaStatusPtrOutput values.
@@ -25029,7 +25029,7 @@ func (i *resourceQuotaStatusPtrType) ToResourceQuotaStatusPtrOutput() ResourceQu
 }
 
 func (i *resourceQuotaStatusPtrType) ToResourceQuotaStatusPtrOutputWithContext(ctx context.Context) ResourceQuotaStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourceQuotaStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ResourceQuotaStatusOutput).ToResourceQuotaStatusPtrOutput()
 }
 
 // ResourceQuotaStatus defines the enforced hard limits and observed use.
@@ -25149,7 +25149,7 @@ func (i ResourceRequirementsArgs) ToResourceRequirementsPtrOutput() ResourceRequ
 }
 
 func (i ResourceRequirementsArgs) ToResourceRequirementsPtrOutputWithContext(ctx context.Context) ResourceRequirementsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourceRequirementsOutput).ToResourceRequirementsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ResourceRequirementsOutput).ToResourceRequirementsPtrOutput()
 }
 
 // ResourceRequirementsPtrInput is an input type that accepts ResourceRequirementsArgs, ResourceRequirementsPtr and ResourceRequirementsPtrOutput values.
@@ -25182,7 +25182,7 @@ func (i *resourceRequirementsPtrType) ToResourceRequirementsPtrOutput() Resource
 }
 
 func (i *resourceRequirementsPtrType) ToResourceRequirementsPtrOutputWithContext(ctx context.Context) ResourceRequirementsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourceRequirementsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ResourceRequirementsOutput).ToResourceRequirementsPtrOutput()
 }
 
 // ResourceRequirements describes the compute resource requirements.
@@ -25310,7 +25310,7 @@ func (i SELinuxOptionsArgs) ToSELinuxOptionsPtrOutput() SELinuxOptionsPtrOutput 
 }
 
 func (i SELinuxOptionsArgs) ToSELinuxOptionsPtrOutputWithContext(ctx context.Context) SELinuxOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SELinuxOptionsOutput).ToSELinuxOptionsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SELinuxOptionsOutput).ToSELinuxOptionsPtrOutput()
 }
 
 // SELinuxOptionsPtrInput is an input type that accepts SELinuxOptionsArgs, SELinuxOptionsPtr and SELinuxOptionsPtrOutput values.
@@ -25343,7 +25343,7 @@ func (i *selinuxOptionsPtrType) ToSELinuxOptionsPtrOutput() SELinuxOptionsPtrOut
 }
 
 func (i *selinuxOptionsPtrType) ToSELinuxOptionsPtrOutputWithContext(ctx context.Context) SELinuxOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SELinuxOptionsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SELinuxOptionsOutput).ToSELinuxOptionsPtrOutput()
 }
 
 // SELinuxOptions are the labels to be applied to the container
@@ -25525,7 +25525,7 @@ func (i ScaleIOPersistentVolumeSourceArgs) ToScaleIOPersistentVolumeSourcePtrOut
 }
 
 func (i ScaleIOPersistentVolumeSourceArgs) ToScaleIOPersistentVolumeSourcePtrOutputWithContext(ctx context.Context) ScaleIOPersistentVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ScaleIOPersistentVolumeSourceOutput).ToScaleIOPersistentVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ScaleIOPersistentVolumeSourceOutput).ToScaleIOPersistentVolumeSourcePtrOutput()
 }
 
 // ScaleIOPersistentVolumeSourcePtrInput is an input type that accepts ScaleIOPersistentVolumeSourceArgs, ScaleIOPersistentVolumeSourcePtr and ScaleIOPersistentVolumeSourcePtrOutput values.
@@ -25558,7 +25558,7 @@ func (i *scaleIOPersistentVolumeSourcePtrType) ToScaleIOPersistentVolumeSourcePt
 }
 
 func (i *scaleIOPersistentVolumeSourcePtrType) ToScaleIOPersistentVolumeSourcePtrOutputWithContext(ctx context.Context) ScaleIOPersistentVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ScaleIOPersistentVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ScaleIOPersistentVolumeSourceOutput).ToScaleIOPersistentVolumeSourcePtrOutput()
 }
 
 // ScaleIOPersistentVolumeSource represents a persistent ScaleIO volume
@@ -25830,7 +25830,7 @@ func (i ScaleIOVolumeSourceArgs) ToScaleIOVolumeSourcePtrOutput() ScaleIOVolumeS
 }
 
 func (i ScaleIOVolumeSourceArgs) ToScaleIOVolumeSourcePtrOutputWithContext(ctx context.Context) ScaleIOVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ScaleIOVolumeSourceOutput).ToScaleIOVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ScaleIOVolumeSourceOutput).ToScaleIOVolumeSourcePtrOutput()
 }
 
 // ScaleIOVolumeSourcePtrInput is an input type that accepts ScaleIOVolumeSourceArgs, ScaleIOVolumeSourcePtr and ScaleIOVolumeSourcePtrOutput values.
@@ -25863,7 +25863,7 @@ func (i *scaleIOVolumeSourcePtrType) ToScaleIOVolumeSourcePtrOutput() ScaleIOVol
 }
 
 func (i *scaleIOVolumeSourcePtrType) ToScaleIOVolumeSourcePtrOutputWithContext(ctx context.Context) ScaleIOVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ScaleIOVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ScaleIOVolumeSourceOutput).ToScaleIOVolumeSourcePtrOutput()
 }
 
 // ScaleIOVolumeSource represents a persistent ScaleIO volume
@@ -26099,7 +26099,7 @@ func (i ScopeSelectorArgs) ToScopeSelectorPtrOutput() ScopeSelectorPtrOutput {
 }
 
 func (i ScopeSelectorArgs) ToScopeSelectorPtrOutputWithContext(ctx context.Context) ScopeSelectorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ScopeSelectorOutput).ToScopeSelectorPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ScopeSelectorOutput).ToScopeSelectorPtrOutput()
 }
 
 // ScopeSelectorPtrInput is an input type that accepts ScopeSelectorArgs, ScopeSelectorPtr and ScopeSelectorPtrOutput values.
@@ -26132,7 +26132,7 @@ func (i *scopeSelectorPtrType) ToScopeSelectorPtrOutput() ScopeSelectorPtrOutput
 }
 
 func (i *scopeSelectorPtrType) ToScopeSelectorPtrOutputWithContext(ctx context.Context) ScopeSelectorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ScopeSelectorPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ScopeSelectorOutput).ToScopeSelectorPtrOutput()
 }
 
 // A scope selector represents the AND of the selectors represented by the scoped-resource selector requirements.
@@ -26359,7 +26359,7 @@ func (i SeccompProfileArgs) ToSeccompProfilePtrOutput() SeccompProfilePtrOutput 
 }
 
 func (i SeccompProfileArgs) ToSeccompProfilePtrOutputWithContext(ctx context.Context) SeccompProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SeccompProfileOutput).ToSeccompProfilePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SeccompProfileOutput).ToSeccompProfilePtrOutput()
 }
 
 // SeccompProfilePtrInput is an input type that accepts SeccompProfileArgs, SeccompProfilePtr and SeccompProfilePtrOutput values.
@@ -26392,7 +26392,7 @@ func (i *seccompProfilePtrType) ToSeccompProfilePtrOutput() SeccompProfilePtrOut
 }
 
 func (i *seccompProfilePtrType) ToSeccompProfilePtrOutputWithContext(ctx context.Context) SeccompProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SeccompProfilePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SeccompProfileOutput).ToSeccompProfilePtrOutput()
 }
 
 // SeccompProfile defines a pod/container's seccomp profile settings. Only one profile source may be set.
@@ -26704,7 +26704,7 @@ func (i SecretEnvSourceArgs) ToSecretEnvSourcePtrOutput() SecretEnvSourcePtrOutp
 }
 
 func (i SecretEnvSourceArgs) ToSecretEnvSourcePtrOutputWithContext(ctx context.Context) SecretEnvSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretEnvSourceOutput).ToSecretEnvSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SecretEnvSourceOutput).ToSecretEnvSourcePtrOutput()
 }
 
 // SecretEnvSourcePtrInput is an input type that accepts SecretEnvSourceArgs, SecretEnvSourcePtr and SecretEnvSourcePtrOutput values.
@@ -26737,7 +26737,7 @@ func (i *secretEnvSourcePtrType) ToSecretEnvSourcePtrOutput() SecretEnvSourcePtr
 }
 
 func (i *secretEnvSourcePtrType) ToSecretEnvSourcePtrOutputWithContext(ctx context.Context) SecretEnvSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretEnvSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SecretEnvSourceOutput).ToSecretEnvSourcePtrOutput()
 }
 
 // SecretEnvSource selects a Secret to populate the environment variables with.
@@ -26863,7 +26863,7 @@ func (i SecretKeySelectorArgs) ToSecretKeySelectorPtrOutput() SecretKeySelectorP
 }
 
 func (i SecretKeySelectorArgs) ToSecretKeySelectorPtrOutputWithContext(ctx context.Context) SecretKeySelectorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretKeySelectorOutput).ToSecretKeySelectorPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SecretKeySelectorOutput).ToSecretKeySelectorPtrOutput()
 }
 
 // SecretKeySelectorPtrInput is an input type that accepts SecretKeySelectorArgs, SecretKeySelectorPtr and SecretKeySelectorPtrOutput values.
@@ -26896,7 +26896,7 @@ func (i *secretKeySelectorPtrType) ToSecretKeySelectorPtrOutput() SecretKeySelec
 }
 
 func (i *secretKeySelectorPtrType) ToSecretKeySelectorPtrOutputWithContext(ctx context.Context) SecretKeySelectorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretKeySelectorPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SecretKeySelectorOutput).ToSecretKeySelectorPtrOutput()
 }
 
 // SecretKeySelector selects a key of a Secret.
@@ -27121,7 +27121,7 @@ func (i SecretProjectionArgs) ToSecretProjectionPtrOutput() SecretProjectionPtrO
 }
 
 func (i SecretProjectionArgs) ToSecretProjectionPtrOutputWithContext(ctx context.Context) SecretProjectionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretProjectionOutput).ToSecretProjectionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SecretProjectionOutput).ToSecretProjectionPtrOutput()
 }
 
 // SecretProjectionPtrInput is an input type that accepts SecretProjectionArgs, SecretProjectionPtr and SecretProjectionPtrOutput values.
@@ -27154,7 +27154,7 @@ func (i *secretProjectionPtrType) ToSecretProjectionPtrOutput() SecretProjection
 }
 
 func (i *secretProjectionPtrType) ToSecretProjectionPtrOutputWithContext(ctx context.Context) SecretProjectionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretProjectionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SecretProjectionOutput).ToSecretProjectionPtrOutput()
 }
 
 // Adapts a secret into a projected volume.
@@ -27291,7 +27291,7 @@ func (i SecretReferenceArgs) ToSecretReferencePtrOutput() SecretReferencePtrOutp
 }
 
 func (i SecretReferenceArgs) ToSecretReferencePtrOutputWithContext(ctx context.Context) SecretReferencePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretReferenceOutput).ToSecretReferencePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SecretReferenceOutput).ToSecretReferencePtrOutput()
 }
 
 // SecretReferencePtrInput is an input type that accepts SecretReferenceArgs, SecretReferencePtr and SecretReferencePtrOutput values.
@@ -27324,7 +27324,7 @@ func (i *secretReferencePtrType) ToSecretReferencePtrOutput() SecretReferencePtr
 }
 
 func (i *secretReferencePtrType) ToSecretReferencePtrOutputWithContext(ctx context.Context) SecretReferencePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretReferencePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SecretReferenceOutput).ToSecretReferencePtrOutput()
 }
 
 // SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace
@@ -27456,7 +27456,7 @@ func (i SecretVolumeSourceArgs) ToSecretVolumeSourcePtrOutput() SecretVolumeSour
 }
 
 func (i SecretVolumeSourceArgs) ToSecretVolumeSourcePtrOutputWithContext(ctx context.Context) SecretVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretVolumeSourceOutput).ToSecretVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SecretVolumeSourceOutput).ToSecretVolumeSourcePtrOutput()
 }
 
 // SecretVolumeSourcePtrInput is an input type that accepts SecretVolumeSourceArgs, SecretVolumeSourcePtr and SecretVolumeSourcePtrOutput values.
@@ -27489,7 +27489,7 @@ func (i *secretVolumeSourcePtrType) ToSecretVolumeSourcePtrOutput() SecretVolume
 }
 
 func (i *secretVolumeSourcePtrType) ToSecretVolumeSourcePtrOutputWithContext(ctx context.Context) SecretVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SecretVolumeSourceOutput).ToSecretVolumeSourcePtrOutput()
 }
 
 // Adapts a Secret into a volume.
@@ -27677,7 +27677,7 @@ func (i SecurityContextArgs) ToSecurityContextPtrOutput() SecurityContextPtrOutp
 }
 
 func (i SecurityContextArgs) ToSecurityContextPtrOutputWithContext(ctx context.Context) SecurityContextPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecurityContextOutput).ToSecurityContextPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityContextOutput).ToSecurityContextPtrOutput()
 }
 
 // SecurityContextPtrInput is an input type that accepts SecurityContextArgs, SecurityContextPtr and SecurityContextPtrOutput values.
@@ -27710,7 +27710,7 @@ func (i *securityContextPtrType) ToSecurityContextPtrOutput() SecurityContextPtr
 }
 
 func (i *securityContextPtrType) ToSecurityContextPtrOutputWithContext(ctx context.Context) SecurityContextPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecurityContextPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityContextOutput).ToSecurityContextPtrOutput()
 }
 
 // SecurityContext holds security configuration that will be applied to a container. Some fields are present in both SecurityContext and PodSecurityContext.  When both are set, the values in SecurityContext take precedence.
@@ -28407,7 +28407,7 @@ func (i ServiceAccountTokenProjectionArgs) ToServiceAccountTokenProjectionPtrOut
 }
 
 func (i ServiceAccountTokenProjectionArgs) ToServiceAccountTokenProjectionPtrOutputWithContext(ctx context.Context) ServiceAccountTokenProjectionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceAccountTokenProjectionOutput).ToServiceAccountTokenProjectionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceAccountTokenProjectionOutput).ToServiceAccountTokenProjectionPtrOutput()
 }
 
 // ServiceAccountTokenProjectionPtrInput is an input type that accepts ServiceAccountTokenProjectionArgs, ServiceAccountTokenProjectionPtr and ServiceAccountTokenProjectionPtrOutput values.
@@ -28440,7 +28440,7 @@ func (i *serviceAccountTokenProjectionPtrType) ToServiceAccountTokenProjectionPt
 }
 
 func (i *serviceAccountTokenProjectionPtrType) ToServiceAccountTokenProjectionPtrOutputWithContext(ctx context.Context) ServiceAccountTokenProjectionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceAccountTokenProjectionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceAccountTokenProjectionOutput).ToServiceAccountTokenProjectionPtrOutput()
 }
 
 // ServiceAccountTokenProjection represents a projected service account token volume. This projection can be used to insert a service account token into the pods runtime filesystem for use against APIs (Kubernetes API Server or otherwise).
@@ -28878,7 +28878,7 @@ func (i ServiceSpecArgs) ToServiceSpecPtrOutput() ServiceSpecPtrOutput {
 }
 
 func (i ServiceSpecArgs) ToServiceSpecPtrOutputWithContext(ctx context.Context) ServiceSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceSpecOutput).ToServiceSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceSpecOutput).ToServiceSpecPtrOutput()
 }
 
 // ServiceSpecPtrInput is an input type that accepts ServiceSpecArgs, ServiceSpecPtr and ServiceSpecPtrOutput values.
@@ -28911,7 +28911,7 @@ func (i *serviceSpecPtrType) ToServiceSpecPtrOutput() ServiceSpecPtrOutput {
 }
 
 func (i *serviceSpecPtrType) ToServiceSpecPtrOutputWithContext(ctx context.Context) ServiceSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceSpecOutput).ToServiceSpecPtrOutput()
 }
 
 // ServiceSpec describes the attributes that a user creates on a service.
@@ -29294,7 +29294,7 @@ func (i ServiceStatusArgs) ToServiceStatusPtrOutput() ServiceStatusPtrOutput {
 }
 
 func (i ServiceStatusArgs) ToServiceStatusPtrOutputWithContext(ctx context.Context) ServiceStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceStatusOutput).ToServiceStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceStatusOutput).ToServiceStatusPtrOutput()
 }
 
 // ServiceStatusPtrInput is an input type that accepts ServiceStatusArgs, ServiceStatusPtr and ServiceStatusPtrOutput values.
@@ -29327,7 +29327,7 @@ func (i *serviceStatusPtrType) ToServiceStatusPtrOutput() ServiceStatusPtrOutput
 }
 
 func (i *serviceStatusPtrType) ToServiceStatusPtrOutputWithContext(ctx context.Context) ServiceStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceStatusOutput).ToServiceStatusPtrOutput()
 }
 
 // ServiceStatus represents the current status of a service.
@@ -29443,7 +29443,7 @@ func (i SessionAffinityConfigArgs) ToSessionAffinityConfigPtrOutput() SessionAff
 }
 
 func (i SessionAffinityConfigArgs) ToSessionAffinityConfigPtrOutputWithContext(ctx context.Context) SessionAffinityConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SessionAffinityConfigOutput).ToSessionAffinityConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SessionAffinityConfigOutput).ToSessionAffinityConfigPtrOutput()
 }
 
 // SessionAffinityConfigPtrInput is an input type that accepts SessionAffinityConfigArgs, SessionAffinityConfigPtr and SessionAffinityConfigPtrOutput values.
@@ -29476,7 +29476,7 @@ func (i *sessionAffinityConfigPtrType) ToSessionAffinityConfigPtrOutput() Sessio
 }
 
 func (i *sessionAffinityConfigPtrType) ToSessionAffinityConfigPtrOutputWithContext(ctx context.Context) SessionAffinityConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SessionAffinityConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SessionAffinityConfigOutput).ToSessionAffinityConfigPtrOutput()
 }
 
 // SessionAffinityConfig represents the configurations of session affinity.
@@ -29593,7 +29593,7 @@ func (i StorageOSPersistentVolumeSourceArgs) ToStorageOSPersistentVolumeSourcePt
 }
 
 func (i StorageOSPersistentVolumeSourceArgs) ToStorageOSPersistentVolumeSourcePtrOutputWithContext(ctx context.Context) StorageOSPersistentVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StorageOSPersistentVolumeSourceOutput).ToStorageOSPersistentVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(StorageOSPersistentVolumeSourceOutput).ToStorageOSPersistentVolumeSourcePtrOutput()
 }
 
 // StorageOSPersistentVolumeSourcePtrInput is an input type that accepts StorageOSPersistentVolumeSourceArgs, StorageOSPersistentVolumeSourcePtr and StorageOSPersistentVolumeSourcePtrOutput values.
@@ -29626,7 +29626,7 @@ func (i *storageOSPersistentVolumeSourcePtrType) ToStorageOSPersistentVolumeSour
 }
 
 func (i *storageOSPersistentVolumeSourcePtrType) ToStorageOSPersistentVolumeSourcePtrOutputWithContext(ctx context.Context) StorageOSPersistentVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StorageOSPersistentVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(StorageOSPersistentVolumeSourceOutput).ToStorageOSPersistentVolumeSourcePtrOutput()
 }
 
 // Represents a StorageOS persistent volume resource.
@@ -29803,7 +29803,7 @@ func (i StorageOSVolumeSourceArgs) ToStorageOSVolumeSourcePtrOutput() StorageOSV
 }
 
 func (i StorageOSVolumeSourceArgs) ToStorageOSVolumeSourcePtrOutputWithContext(ctx context.Context) StorageOSVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StorageOSVolumeSourceOutput).ToStorageOSVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(StorageOSVolumeSourceOutput).ToStorageOSVolumeSourcePtrOutput()
 }
 
 // StorageOSVolumeSourcePtrInput is an input type that accepts StorageOSVolumeSourceArgs, StorageOSVolumeSourcePtr and StorageOSVolumeSourcePtrOutput values.
@@ -29836,7 +29836,7 @@ func (i *storageOSVolumeSourcePtrType) ToStorageOSVolumeSourcePtrOutput() Storag
 }
 
 func (i *storageOSVolumeSourcePtrType) ToStorageOSVolumeSourcePtrOutputWithContext(ctx context.Context) StorageOSVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StorageOSVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(StorageOSVolumeSourceOutput).ToStorageOSVolumeSourcePtrOutput()
 }
 
 // Represents a StorageOS persistent volume resource.
@@ -30110,7 +30110,7 @@ func (i TCPSocketActionArgs) ToTCPSocketActionPtrOutput() TCPSocketActionPtrOutp
 }
 
 func (i TCPSocketActionArgs) ToTCPSocketActionPtrOutputWithContext(ctx context.Context) TCPSocketActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TCPSocketActionOutput).ToTCPSocketActionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TCPSocketActionOutput).ToTCPSocketActionPtrOutput()
 }
 
 // TCPSocketActionPtrInput is an input type that accepts TCPSocketActionArgs, TCPSocketActionPtr and TCPSocketActionPtrOutput values.
@@ -30143,7 +30143,7 @@ func (i *tcpsocketActionPtrType) ToTCPSocketActionPtrOutput() TCPSocketActionPtr
 }
 
 func (i *tcpsocketActionPtrType) ToTCPSocketActionPtrOutputWithContext(ctx context.Context) TCPSocketActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TCPSocketActionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TCPSocketActionOutput).ToTCPSocketActionPtrOutput()
 }
 
 // TCPSocketAction describes an action based on opening a socket
@@ -30875,7 +30875,7 @@ func (i TypedLocalObjectReferenceArgs) ToTypedLocalObjectReferencePtrOutput() Ty
 }
 
 func (i TypedLocalObjectReferenceArgs) ToTypedLocalObjectReferencePtrOutputWithContext(ctx context.Context) TypedLocalObjectReferencePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TypedLocalObjectReferenceOutput).ToTypedLocalObjectReferencePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TypedLocalObjectReferenceOutput).ToTypedLocalObjectReferencePtrOutput()
 }
 
 // TypedLocalObjectReferencePtrInput is an input type that accepts TypedLocalObjectReferenceArgs, TypedLocalObjectReferencePtr and TypedLocalObjectReferencePtrOutput values.
@@ -30908,7 +30908,7 @@ func (i *typedLocalObjectReferencePtrType) ToTypedLocalObjectReferencePtrOutput(
 }
 
 func (i *typedLocalObjectReferencePtrType) ToTypedLocalObjectReferencePtrOutputWithContext(ctx context.Context) TypedLocalObjectReferencePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TypedLocalObjectReferencePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TypedLocalObjectReferenceOutput).ToTypedLocalObjectReferencePtrOutput()
 }
 
 // TypedLocalObjectReference contains enough information to let you locate the typed referenced object inside the same namespace.
@@ -31693,7 +31693,7 @@ func (i VolumeNodeAffinityArgs) ToVolumeNodeAffinityPtrOutput() VolumeNodeAffini
 }
 
 func (i VolumeNodeAffinityArgs) ToVolumeNodeAffinityPtrOutputWithContext(ctx context.Context) VolumeNodeAffinityPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VolumeNodeAffinityOutput).ToVolumeNodeAffinityPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(VolumeNodeAffinityOutput).ToVolumeNodeAffinityPtrOutput()
 }
 
 // VolumeNodeAffinityPtrInput is an input type that accepts VolumeNodeAffinityArgs, VolumeNodeAffinityPtr and VolumeNodeAffinityPtrOutput values.
@@ -31726,7 +31726,7 @@ func (i *volumeNodeAffinityPtrType) ToVolumeNodeAffinityPtrOutput() VolumeNodeAf
 }
 
 func (i *volumeNodeAffinityPtrType) ToVolumeNodeAffinityPtrOutputWithContext(ctx context.Context) VolumeNodeAffinityPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VolumeNodeAffinityPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(VolumeNodeAffinityOutput).ToVolumeNodeAffinityPtrOutput()
 }
 
 // VolumeNodeAffinity defines constraints that limit what nodes this volume can be accessed from.
@@ -31966,7 +31966,7 @@ func (i VsphereVirtualDiskVolumeSourceArgs) ToVsphereVirtualDiskVolumeSourcePtrO
 }
 
 func (i VsphereVirtualDiskVolumeSourceArgs) ToVsphereVirtualDiskVolumeSourcePtrOutputWithContext(ctx context.Context) VsphereVirtualDiskVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VsphereVirtualDiskVolumeSourceOutput).ToVsphereVirtualDiskVolumeSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(VsphereVirtualDiskVolumeSourceOutput).ToVsphereVirtualDiskVolumeSourcePtrOutput()
 }
 
 // VsphereVirtualDiskVolumeSourcePtrInput is an input type that accepts VsphereVirtualDiskVolumeSourceArgs, VsphereVirtualDiskVolumeSourcePtr and VsphereVirtualDiskVolumeSourcePtrOutput values.
@@ -31999,7 +31999,7 @@ func (i *vsphereVirtualDiskVolumeSourcePtrType) ToVsphereVirtualDiskVolumeSource
 }
 
 func (i *vsphereVirtualDiskVolumeSourcePtrType) ToVsphereVirtualDiskVolumeSourcePtrOutputWithContext(ctx context.Context) VsphereVirtualDiskVolumeSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VsphereVirtualDiskVolumeSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(VsphereVirtualDiskVolumeSourceOutput).ToVsphereVirtualDiskVolumeSourcePtrOutput()
 }
 
 // Represents a vSphere volume resource.
@@ -32262,7 +32262,7 @@ func (i WindowsSecurityContextOptionsArgs) ToWindowsSecurityContextOptionsPtrOut
 }
 
 func (i WindowsSecurityContextOptionsArgs) ToWindowsSecurityContextOptionsPtrOutputWithContext(ctx context.Context) WindowsSecurityContextOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WindowsSecurityContextOptionsOutput).ToWindowsSecurityContextOptionsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(WindowsSecurityContextOptionsOutput).ToWindowsSecurityContextOptionsPtrOutput()
 }
 
 // WindowsSecurityContextOptionsPtrInput is an input type that accepts WindowsSecurityContextOptionsArgs, WindowsSecurityContextOptionsPtr and WindowsSecurityContextOptionsPtrOutput values.
@@ -32295,7 +32295,7 @@ func (i *windowsSecurityContextOptionsPtrType) ToWindowsSecurityContextOptionsPt
 }
 
 func (i *windowsSecurityContextOptionsPtrType) ToWindowsSecurityContextOptionsPtrOutputWithContext(ctx context.Context) WindowsSecurityContextOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WindowsSecurityContextOptionsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(WindowsSecurityContextOptionsOutput).ToWindowsSecurityContextOptionsPtrOutput()
 }
 
 // WindowsSecurityContextOptions contain Windows-specific options and credentials.

@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -119,16 +119,31 @@ type ControllerRevisionListInput interface {
 	ToControllerRevisionListOutputWithContext(ctx context.Context) ControllerRevisionListOutput
 }
 
-func (ControllerRevisionList) ElementType() reflect.Type {
-	return reflect.TypeOf((*ControllerRevisionList)(nil)).Elem()
+func (*ControllerRevisionList) ElementType() reflect.Type {
+	return reflect.TypeOf((*ControllerRevisionList)(nil))
 }
 
-func (i ControllerRevisionList) ToControllerRevisionListOutput() ControllerRevisionListOutput {
+func (i *ControllerRevisionList) ToControllerRevisionListOutput() ControllerRevisionListOutput {
 	return i.ToControllerRevisionListOutputWithContext(context.Background())
 }
 
-func (i ControllerRevisionList) ToControllerRevisionListOutputWithContext(ctx context.Context) ControllerRevisionListOutput {
+func (i *ControllerRevisionList) ToControllerRevisionListOutputWithContext(ctx context.Context) ControllerRevisionListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ControllerRevisionListOutput)
+}
+
+func (i *ControllerRevisionList) ToControllerRevisionListPtrOutput() ControllerRevisionListPtrOutput {
+	return i.ToControllerRevisionListPtrOutputWithContext(context.Background())
+}
+
+func (i *ControllerRevisionList) ToControllerRevisionListPtrOutputWithContext(ctx context.Context) ControllerRevisionListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ControllerRevisionListPtrOutput)
+}
+
+type ControllerRevisionListPtrInput interface {
+	pulumi.Input
+
+	ToControllerRevisionListPtrOutput() ControllerRevisionListPtrOutput
+	ToControllerRevisionListPtrOutputWithContext(ctx context.Context) ControllerRevisionListPtrOutput
 }
 
 type ControllerRevisionListOutput struct {
@@ -136,7 +151,7 @@ type ControllerRevisionListOutput struct {
 }
 
 func (ControllerRevisionListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ControllerRevisionListOutput)(nil)).Elem()
+	return reflect.TypeOf((*ControllerRevisionList)(nil))
 }
 
 func (o ControllerRevisionListOutput) ToControllerRevisionListOutput() ControllerRevisionListOutput {
@@ -147,6 +162,23 @@ func (o ControllerRevisionListOutput) ToControllerRevisionListOutputWithContext(
 	return o
 }
 
+type ControllerRevisionListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ControllerRevisionListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ControllerRevisionList)(nil))
+}
+
+func (o ControllerRevisionListPtrOutput) ToControllerRevisionListPtrOutput() ControllerRevisionListPtrOutput {
+	return o
+}
+
+func (o ControllerRevisionListPtrOutput) ToControllerRevisionListPtrOutputWithContext(ctx context.Context) ControllerRevisionListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ControllerRevisionListOutput{})
+	pulumi.RegisterOutputType(ControllerRevisionListPtrOutput{})
 }

@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -119,16 +119,31 @@ type PriorityLevelConfigurationListInput interface {
 	ToPriorityLevelConfigurationListOutputWithContext(ctx context.Context) PriorityLevelConfigurationListOutput
 }
 
-func (PriorityLevelConfigurationList) ElementType() reflect.Type {
-	return reflect.TypeOf((*PriorityLevelConfigurationList)(nil)).Elem()
+func (*PriorityLevelConfigurationList) ElementType() reflect.Type {
+	return reflect.TypeOf((*PriorityLevelConfigurationList)(nil))
 }
 
-func (i PriorityLevelConfigurationList) ToPriorityLevelConfigurationListOutput() PriorityLevelConfigurationListOutput {
+func (i *PriorityLevelConfigurationList) ToPriorityLevelConfigurationListOutput() PriorityLevelConfigurationListOutput {
 	return i.ToPriorityLevelConfigurationListOutputWithContext(context.Background())
 }
 
-func (i PriorityLevelConfigurationList) ToPriorityLevelConfigurationListOutputWithContext(ctx context.Context) PriorityLevelConfigurationListOutput {
+func (i *PriorityLevelConfigurationList) ToPriorityLevelConfigurationListOutputWithContext(ctx context.Context) PriorityLevelConfigurationListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PriorityLevelConfigurationListOutput)
+}
+
+func (i *PriorityLevelConfigurationList) ToPriorityLevelConfigurationListPtrOutput() PriorityLevelConfigurationListPtrOutput {
+	return i.ToPriorityLevelConfigurationListPtrOutputWithContext(context.Background())
+}
+
+func (i *PriorityLevelConfigurationList) ToPriorityLevelConfigurationListPtrOutputWithContext(ctx context.Context) PriorityLevelConfigurationListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PriorityLevelConfigurationListPtrOutput)
+}
+
+type PriorityLevelConfigurationListPtrInput interface {
+	pulumi.Input
+
+	ToPriorityLevelConfigurationListPtrOutput() PriorityLevelConfigurationListPtrOutput
+	ToPriorityLevelConfigurationListPtrOutputWithContext(ctx context.Context) PriorityLevelConfigurationListPtrOutput
 }
 
 type PriorityLevelConfigurationListOutput struct {
@@ -136,7 +151,7 @@ type PriorityLevelConfigurationListOutput struct {
 }
 
 func (PriorityLevelConfigurationListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*PriorityLevelConfigurationListOutput)(nil)).Elem()
+	return reflect.TypeOf((*PriorityLevelConfigurationList)(nil))
 }
 
 func (o PriorityLevelConfigurationListOutput) ToPriorityLevelConfigurationListOutput() PriorityLevelConfigurationListOutput {
@@ -147,6 +162,23 @@ func (o PriorityLevelConfigurationListOutput) ToPriorityLevelConfigurationListOu
 	return o
 }
 
+type PriorityLevelConfigurationListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (PriorityLevelConfigurationListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PriorityLevelConfigurationList)(nil))
+}
+
+func (o PriorityLevelConfigurationListPtrOutput) ToPriorityLevelConfigurationListPtrOutput() PriorityLevelConfigurationListPtrOutput {
+	return o
+}
+
+func (o PriorityLevelConfigurationListPtrOutput) ToPriorityLevelConfigurationListPtrOutputWithContext(ctx context.Context) PriorityLevelConfigurationListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(PriorityLevelConfigurationListOutput{})
+	pulumi.RegisterOutputType(PriorityLevelConfigurationListPtrOutput{})
 }

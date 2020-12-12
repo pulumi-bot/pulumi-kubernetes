@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -119,16 +119,31 @@ type LeaseListInput interface {
 	ToLeaseListOutputWithContext(ctx context.Context) LeaseListOutput
 }
 
-func (LeaseList) ElementType() reflect.Type {
-	return reflect.TypeOf((*LeaseList)(nil)).Elem()
+func (*LeaseList) ElementType() reflect.Type {
+	return reflect.TypeOf((*LeaseList)(nil))
 }
 
-func (i LeaseList) ToLeaseListOutput() LeaseListOutput {
+func (i *LeaseList) ToLeaseListOutput() LeaseListOutput {
 	return i.ToLeaseListOutputWithContext(context.Background())
 }
 
-func (i LeaseList) ToLeaseListOutputWithContext(ctx context.Context) LeaseListOutput {
+func (i *LeaseList) ToLeaseListOutputWithContext(ctx context.Context) LeaseListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LeaseListOutput)
+}
+
+func (i *LeaseList) ToLeaseListPtrOutput() LeaseListPtrOutput {
+	return i.ToLeaseListPtrOutputWithContext(context.Background())
+}
+
+func (i *LeaseList) ToLeaseListPtrOutputWithContext(ctx context.Context) LeaseListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LeaseListPtrOutput)
+}
+
+type LeaseListPtrInput interface {
+	pulumi.Input
+
+	ToLeaseListPtrOutput() LeaseListPtrOutput
+	ToLeaseListPtrOutputWithContext(ctx context.Context) LeaseListPtrOutput
 }
 
 type LeaseListOutput struct {
@@ -136,7 +151,7 @@ type LeaseListOutput struct {
 }
 
 func (LeaseListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LeaseListOutput)(nil)).Elem()
+	return reflect.TypeOf((*LeaseList)(nil))
 }
 
 func (o LeaseListOutput) ToLeaseListOutput() LeaseListOutput {
@@ -147,6 +162,23 @@ func (o LeaseListOutput) ToLeaseListOutputWithContext(ctx context.Context) Lease
 	return o
 }
 
+type LeaseListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (LeaseListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LeaseList)(nil))
+}
+
+func (o LeaseListPtrOutput) ToLeaseListPtrOutput() LeaseListPtrOutput {
+	return o
+}
+
+func (o LeaseListPtrOutput) ToLeaseListPtrOutputWithContext(ctx context.Context) LeaseListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(LeaseListOutput{})
+	pulumi.RegisterOutputType(LeaseListPtrOutput{})
 }

@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -138,16 +138,31 @@ type RoleBindingInput interface {
 	ToRoleBindingOutputWithContext(ctx context.Context) RoleBindingOutput
 }
 
-func (RoleBinding) ElementType() reflect.Type {
-	return reflect.TypeOf((*RoleBinding)(nil)).Elem()
+func (*RoleBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*RoleBinding)(nil))
 }
 
-func (i RoleBinding) ToRoleBindingOutput() RoleBindingOutput {
+func (i *RoleBinding) ToRoleBindingOutput() RoleBindingOutput {
 	return i.ToRoleBindingOutputWithContext(context.Background())
 }
 
-func (i RoleBinding) ToRoleBindingOutputWithContext(ctx context.Context) RoleBindingOutput {
+func (i *RoleBinding) ToRoleBindingOutputWithContext(ctx context.Context) RoleBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RoleBindingOutput)
+}
+
+func (i *RoleBinding) ToRoleBindingPtrOutput() RoleBindingPtrOutput {
+	return i.ToRoleBindingPtrOutputWithContext(context.Background())
+}
+
+func (i *RoleBinding) ToRoleBindingPtrOutputWithContext(ctx context.Context) RoleBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RoleBindingPtrOutput)
+}
+
+type RoleBindingPtrInput interface {
+	pulumi.Input
+
+	ToRoleBindingPtrOutput() RoleBindingPtrOutput
+	ToRoleBindingPtrOutputWithContext(ctx context.Context) RoleBindingPtrOutput
 }
 
 type RoleBindingOutput struct {
@@ -155,7 +170,7 @@ type RoleBindingOutput struct {
 }
 
 func (RoleBindingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RoleBindingOutput)(nil)).Elem()
+	return reflect.TypeOf((*RoleBinding)(nil))
 }
 
 func (o RoleBindingOutput) ToRoleBindingOutput() RoleBindingOutput {
@@ -166,6 +181,23 @@ func (o RoleBindingOutput) ToRoleBindingOutputWithContext(ctx context.Context) R
 	return o
 }
 
+type RoleBindingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RoleBindingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RoleBinding)(nil))
+}
+
+func (o RoleBindingPtrOutput) ToRoleBindingPtrOutput() RoleBindingPtrOutput {
+	return o
+}
+
+func (o RoleBindingPtrOutput) ToRoleBindingPtrOutputWithContext(ctx context.Context) RoleBindingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(RoleBindingOutput{})
+	pulumi.RegisterOutputType(RoleBindingPtrOutput{})
 }

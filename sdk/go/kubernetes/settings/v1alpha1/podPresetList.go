@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -119,16 +119,31 @@ type PodPresetListInput interface {
 	ToPodPresetListOutputWithContext(ctx context.Context) PodPresetListOutput
 }
 
-func (PodPresetList) ElementType() reflect.Type {
-	return reflect.TypeOf((*PodPresetList)(nil)).Elem()
+func (*PodPresetList) ElementType() reflect.Type {
+	return reflect.TypeOf((*PodPresetList)(nil))
 }
 
-func (i PodPresetList) ToPodPresetListOutput() PodPresetListOutput {
+func (i *PodPresetList) ToPodPresetListOutput() PodPresetListOutput {
 	return i.ToPodPresetListOutputWithContext(context.Background())
 }
 
-func (i PodPresetList) ToPodPresetListOutputWithContext(ctx context.Context) PodPresetListOutput {
+func (i *PodPresetList) ToPodPresetListOutputWithContext(ctx context.Context) PodPresetListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PodPresetListOutput)
+}
+
+func (i *PodPresetList) ToPodPresetListPtrOutput() PodPresetListPtrOutput {
+	return i.ToPodPresetListPtrOutputWithContext(context.Background())
+}
+
+func (i *PodPresetList) ToPodPresetListPtrOutputWithContext(ctx context.Context) PodPresetListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PodPresetListPtrOutput)
+}
+
+type PodPresetListPtrInput interface {
+	pulumi.Input
+
+	ToPodPresetListPtrOutput() PodPresetListPtrOutput
+	ToPodPresetListPtrOutputWithContext(ctx context.Context) PodPresetListPtrOutput
 }
 
 type PodPresetListOutput struct {
@@ -136,7 +151,7 @@ type PodPresetListOutput struct {
 }
 
 func (PodPresetListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*PodPresetListOutput)(nil)).Elem()
+	return reflect.TypeOf((*PodPresetList)(nil))
 }
 
 func (o PodPresetListOutput) ToPodPresetListOutput() PodPresetListOutput {
@@ -147,6 +162,23 @@ func (o PodPresetListOutput) ToPodPresetListOutputWithContext(ctx context.Contex
 	return o
 }
 
+type PodPresetListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (PodPresetListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PodPresetList)(nil))
+}
+
+func (o PodPresetListPtrOutput) ToPodPresetListPtrOutput() PodPresetListPtrOutput {
+	return o
+}
+
+func (o PodPresetListPtrOutput) ToPodPresetListPtrOutputWithContext(ctx context.Context) PodPresetListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(PodPresetListOutput{})
+	pulumi.RegisterOutputType(PodPresetListPtrOutput{})
 }

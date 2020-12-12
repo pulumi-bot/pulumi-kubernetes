@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -126,16 +126,31 @@ type SubjectAccessReviewInput interface {
 	ToSubjectAccessReviewOutputWithContext(ctx context.Context) SubjectAccessReviewOutput
 }
 
-func (SubjectAccessReview) ElementType() reflect.Type {
-	return reflect.TypeOf((*SubjectAccessReview)(nil)).Elem()
+func (*SubjectAccessReview) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubjectAccessReview)(nil))
 }
 
-func (i SubjectAccessReview) ToSubjectAccessReviewOutput() SubjectAccessReviewOutput {
+func (i *SubjectAccessReview) ToSubjectAccessReviewOutput() SubjectAccessReviewOutput {
 	return i.ToSubjectAccessReviewOutputWithContext(context.Background())
 }
 
-func (i SubjectAccessReview) ToSubjectAccessReviewOutputWithContext(ctx context.Context) SubjectAccessReviewOutput {
+func (i *SubjectAccessReview) ToSubjectAccessReviewOutputWithContext(ctx context.Context) SubjectAccessReviewOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SubjectAccessReviewOutput)
+}
+
+func (i *SubjectAccessReview) ToSubjectAccessReviewPtrOutput() SubjectAccessReviewPtrOutput {
+	return i.ToSubjectAccessReviewPtrOutputWithContext(context.Background())
+}
+
+func (i *SubjectAccessReview) ToSubjectAccessReviewPtrOutputWithContext(ctx context.Context) SubjectAccessReviewPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SubjectAccessReviewPtrOutput)
+}
+
+type SubjectAccessReviewPtrInput interface {
+	pulumi.Input
+
+	ToSubjectAccessReviewPtrOutput() SubjectAccessReviewPtrOutput
+	ToSubjectAccessReviewPtrOutputWithContext(ctx context.Context) SubjectAccessReviewPtrOutput
 }
 
 type SubjectAccessReviewOutput struct {
@@ -143,7 +158,7 @@ type SubjectAccessReviewOutput struct {
 }
 
 func (SubjectAccessReviewOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SubjectAccessReviewOutput)(nil)).Elem()
+	return reflect.TypeOf((*SubjectAccessReview)(nil))
 }
 
 func (o SubjectAccessReviewOutput) ToSubjectAccessReviewOutput() SubjectAccessReviewOutput {
@@ -154,6 +169,23 @@ func (o SubjectAccessReviewOutput) ToSubjectAccessReviewOutputWithContext(ctx co
 	return o
 }
 
+type SubjectAccessReviewPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (SubjectAccessReviewPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SubjectAccessReview)(nil))
+}
+
+func (o SubjectAccessReviewPtrOutput) ToSubjectAccessReviewPtrOutput() SubjectAccessReviewPtrOutput {
+	return o
+}
+
+func (o SubjectAccessReviewPtrOutput) ToSubjectAccessReviewPtrOutputWithContext(ctx context.Context) SubjectAccessReviewPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(SubjectAccessReviewOutput{})
+	pulumi.RegisterOutputType(SubjectAccessReviewPtrOutput{})
 }

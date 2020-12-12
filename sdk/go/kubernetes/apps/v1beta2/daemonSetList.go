@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -119,16 +119,31 @@ type DaemonSetListInput interface {
 	ToDaemonSetListOutputWithContext(ctx context.Context) DaemonSetListOutput
 }
 
-func (DaemonSetList) ElementType() reflect.Type {
-	return reflect.TypeOf((*DaemonSetList)(nil)).Elem()
+func (*DaemonSetList) ElementType() reflect.Type {
+	return reflect.TypeOf((*DaemonSetList)(nil))
 }
 
-func (i DaemonSetList) ToDaemonSetListOutput() DaemonSetListOutput {
+func (i *DaemonSetList) ToDaemonSetListOutput() DaemonSetListOutput {
 	return i.ToDaemonSetListOutputWithContext(context.Background())
 }
 
-func (i DaemonSetList) ToDaemonSetListOutputWithContext(ctx context.Context) DaemonSetListOutput {
+func (i *DaemonSetList) ToDaemonSetListOutputWithContext(ctx context.Context) DaemonSetListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DaemonSetListOutput)
+}
+
+func (i *DaemonSetList) ToDaemonSetListPtrOutput() DaemonSetListPtrOutput {
+	return i.ToDaemonSetListPtrOutputWithContext(context.Background())
+}
+
+func (i *DaemonSetList) ToDaemonSetListPtrOutputWithContext(ctx context.Context) DaemonSetListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DaemonSetListPtrOutput)
+}
+
+type DaemonSetListPtrInput interface {
+	pulumi.Input
+
+	ToDaemonSetListPtrOutput() DaemonSetListPtrOutput
+	ToDaemonSetListPtrOutputWithContext(ctx context.Context) DaemonSetListPtrOutput
 }
 
 type DaemonSetListOutput struct {
@@ -136,7 +151,7 @@ type DaemonSetListOutput struct {
 }
 
 func (DaemonSetListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DaemonSetListOutput)(nil)).Elem()
+	return reflect.TypeOf((*DaemonSetList)(nil))
 }
 
 func (o DaemonSetListOutput) ToDaemonSetListOutput() DaemonSetListOutput {
@@ -147,6 +162,23 @@ func (o DaemonSetListOutput) ToDaemonSetListOutputWithContext(ctx context.Contex
 	return o
 }
 
+type DaemonSetListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (DaemonSetListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DaemonSetList)(nil))
+}
+
+func (o DaemonSetListPtrOutput) ToDaemonSetListPtrOutput() DaemonSetListPtrOutput {
+	return o
+}
+
+func (o DaemonSetListPtrOutput) ToDaemonSetListPtrOutputWithContext(ctx context.Context) DaemonSetListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(DaemonSetListOutput{})
+	pulumi.RegisterOutputType(DaemonSetListPtrOutput{})
 }

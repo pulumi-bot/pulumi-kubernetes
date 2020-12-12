@@ -7,9 +7,9 @@ import (
 	"context"
 	"reflect"
 
-	batchv1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/batch/v1"
-	corev1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/core/v1"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/batch/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/core/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -295,7 +295,7 @@ func (i CronJobSpecArgs) ToCronJobSpecPtrOutput() CronJobSpecPtrOutput {
 }
 
 func (i CronJobSpecArgs) ToCronJobSpecPtrOutputWithContext(ctx context.Context) CronJobSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CronJobSpecOutput).ToCronJobSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(CronJobSpecOutput).ToCronJobSpecPtrOutput()
 }
 
 // CronJobSpecPtrInput is an input type that accepts CronJobSpecArgs, CronJobSpecPtr and CronJobSpecPtrOutput values.
@@ -328,7 +328,7 @@ func (i *cronJobSpecPtrType) ToCronJobSpecPtrOutput() CronJobSpecPtrOutput {
 }
 
 func (i *cronJobSpecPtrType) ToCronJobSpecPtrOutputWithContext(ctx context.Context) CronJobSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CronJobSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(CronJobSpecOutput).ToCronJobSpecPtrOutput()
 }
 
 // CronJobSpec describes how the job execution will look like and when it will actually run.
@@ -523,7 +523,7 @@ func (i CronJobStatusArgs) ToCronJobStatusPtrOutput() CronJobStatusPtrOutput {
 }
 
 func (i CronJobStatusArgs) ToCronJobStatusPtrOutputWithContext(ctx context.Context) CronJobStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CronJobStatusOutput).ToCronJobStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(CronJobStatusOutput).ToCronJobStatusPtrOutput()
 }
 
 // CronJobStatusPtrInput is an input type that accepts CronJobStatusArgs, CronJobStatusPtr and CronJobStatusPtrOutput values.
@@ -556,7 +556,7 @@ func (i *cronJobStatusPtrType) ToCronJobStatusPtrOutput() CronJobStatusPtrOutput
 }
 
 func (i *cronJobStatusPtrType) ToCronJobStatusPtrOutputWithContext(ctx context.Context) CronJobStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CronJobStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(CronJobStatusOutput).ToCronJobStatusPtrOutput()
 }
 
 // CronJobStatus represents the current state of a cron job.
@@ -676,7 +676,7 @@ func (i JobTemplateSpecArgs) ToJobTemplateSpecPtrOutput() JobTemplateSpecPtrOutp
 }
 
 func (i JobTemplateSpecArgs) ToJobTemplateSpecPtrOutputWithContext(ctx context.Context) JobTemplateSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobTemplateSpecOutput).ToJobTemplateSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(JobTemplateSpecOutput).ToJobTemplateSpecPtrOutput()
 }
 
 // JobTemplateSpecPtrInput is an input type that accepts JobTemplateSpecArgs, JobTemplateSpecPtr and JobTemplateSpecPtrOutput values.
@@ -709,7 +709,7 @@ func (i *jobTemplateSpecPtrType) ToJobTemplateSpecPtrOutput() JobTemplateSpecPtr
 }
 
 func (i *jobTemplateSpecPtrType) ToJobTemplateSpecPtrOutputWithContext(ctx context.Context) JobTemplateSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobTemplateSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(JobTemplateSpecOutput).ToJobTemplateSpecPtrOutput()
 }
 
 // JobTemplateSpec describes the data a Job should have when created from a template

@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -126,16 +126,31 @@ type SelfSubjectAccessReviewInput interface {
 	ToSelfSubjectAccessReviewOutputWithContext(ctx context.Context) SelfSubjectAccessReviewOutput
 }
 
-func (SelfSubjectAccessReview) ElementType() reflect.Type {
-	return reflect.TypeOf((*SelfSubjectAccessReview)(nil)).Elem()
+func (*SelfSubjectAccessReview) ElementType() reflect.Type {
+	return reflect.TypeOf((*SelfSubjectAccessReview)(nil))
 }
 
-func (i SelfSubjectAccessReview) ToSelfSubjectAccessReviewOutput() SelfSubjectAccessReviewOutput {
+func (i *SelfSubjectAccessReview) ToSelfSubjectAccessReviewOutput() SelfSubjectAccessReviewOutput {
 	return i.ToSelfSubjectAccessReviewOutputWithContext(context.Background())
 }
 
-func (i SelfSubjectAccessReview) ToSelfSubjectAccessReviewOutputWithContext(ctx context.Context) SelfSubjectAccessReviewOutput {
+func (i *SelfSubjectAccessReview) ToSelfSubjectAccessReviewOutputWithContext(ctx context.Context) SelfSubjectAccessReviewOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SelfSubjectAccessReviewOutput)
+}
+
+func (i *SelfSubjectAccessReview) ToSelfSubjectAccessReviewPtrOutput() SelfSubjectAccessReviewPtrOutput {
+	return i.ToSelfSubjectAccessReviewPtrOutputWithContext(context.Background())
+}
+
+func (i *SelfSubjectAccessReview) ToSelfSubjectAccessReviewPtrOutputWithContext(ctx context.Context) SelfSubjectAccessReviewPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SelfSubjectAccessReviewPtrOutput)
+}
+
+type SelfSubjectAccessReviewPtrInput interface {
+	pulumi.Input
+
+	ToSelfSubjectAccessReviewPtrOutput() SelfSubjectAccessReviewPtrOutput
+	ToSelfSubjectAccessReviewPtrOutputWithContext(ctx context.Context) SelfSubjectAccessReviewPtrOutput
 }
 
 type SelfSubjectAccessReviewOutput struct {
@@ -143,7 +158,7 @@ type SelfSubjectAccessReviewOutput struct {
 }
 
 func (SelfSubjectAccessReviewOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SelfSubjectAccessReviewOutput)(nil)).Elem()
+	return reflect.TypeOf((*SelfSubjectAccessReview)(nil))
 }
 
 func (o SelfSubjectAccessReviewOutput) ToSelfSubjectAccessReviewOutput() SelfSubjectAccessReviewOutput {
@@ -154,6 +169,23 @@ func (o SelfSubjectAccessReviewOutput) ToSelfSubjectAccessReviewOutputWithContex
 	return o
 }
 
+type SelfSubjectAccessReviewPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (SelfSubjectAccessReviewPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SelfSubjectAccessReview)(nil))
+}
+
+func (o SelfSubjectAccessReviewPtrOutput) ToSelfSubjectAccessReviewPtrOutput() SelfSubjectAccessReviewPtrOutput {
+	return o
+}
+
+func (o SelfSubjectAccessReviewPtrOutput) ToSelfSubjectAccessReviewPtrOutputWithContext(ctx context.Context) SelfSubjectAccessReviewPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(SelfSubjectAccessReviewOutput{})
+	pulumi.RegisterOutputType(SelfSubjectAccessReviewPtrOutput{})
 }

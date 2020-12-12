@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -119,16 +119,31 @@ type RoleListInput interface {
 	ToRoleListOutputWithContext(ctx context.Context) RoleListOutput
 }
 
-func (RoleList) ElementType() reflect.Type {
-	return reflect.TypeOf((*RoleList)(nil)).Elem()
+func (*RoleList) ElementType() reflect.Type {
+	return reflect.TypeOf((*RoleList)(nil))
 }
 
-func (i RoleList) ToRoleListOutput() RoleListOutput {
+func (i *RoleList) ToRoleListOutput() RoleListOutput {
 	return i.ToRoleListOutputWithContext(context.Background())
 }
 
-func (i RoleList) ToRoleListOutputWithContext(ctx context.Context) RoleListOutput {
+func (i *RoleList) ToRoleListOutputWithContext(ctx context.Context) RoleListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RoleListOutput)
+}
+
+func (i *RoleList) ToRoleListPtrOutput() RoleListPtrOutput {
+	return i.ToRoleListPtrOutputWithContext(context.Background())
+}
+
+func (i *RoleList) ToRoleListPtrOutputWithContext(ctx context.Context) RoleListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RoleListPtrOutput)
+}
+
+type RoleListPtrInput interface {
+	pulumi.Input
+
+	ToRoleListPtrOutput() RoleListPtrOutput
+	ToRoleListPtrOutputWithContext(ctx context.Context) RoleListPtrOutput
 }
 
 type RoleListOutput struct {
@@ -136,7 +151,7 @@ type RoleListOutput struct {
 }
 
 func (RoleListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RoleListOutput)(nil)).Elem()
+	return reflect.TypeOf((*RoleList)(nil))
 }
 
 func (o RoleListOutput) ToRoleListOutput() RoleListOutput {
@@ -147,6 +162,23 @@ func (o RoleListOutput) ToRoleListOutputWithContext(ctx context.Context) RoleLis
 	return o
 }
 
+type RoleListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RoleListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RoleList)(nil))
+}
+
+func (o RoleListPtrOutput) ToRoleListPtrOutput() RoleListPtrOutput {
+	return o
+}
+
+func (o RoleListPtrOutput) ToRoleListPtrOutputWithContext(ctx context.Context) RoleListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(RoleListOutput{})
+	pulumi.RegisterOutputType(RoleListPtrOutput{})
 }

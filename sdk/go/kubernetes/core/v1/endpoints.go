@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -126,16 +126,31 @@ type EndpointsInput interface {
 	ToEndpointsOutputWithContext(ctx context.Context) EndpointsOutput
 }
 
-func (Endpoints) ElementType() reflect.Type {
-	return reflect.TypeOf((*Endpoints)(nil)).Elem()
+func (*Endpoints) ElementType() reflect.Type {
+	return reflect.TypeOf((*Endpoints)(nil))
 }
 
-func (i Endpoints) ToEndpointsOutput() EndpointsOutput {
+func (i *Endpoints) ToEndpointsOutput() EndpointsOutput {
 	return i.ToEndpointsOutputWithContext(context.Background())
 }
 
-func (i Endpoints) ToEndpointsOutputWithContext(ctx context.Context) EndpointsOutput {
+func (i *Endpoints) ToEndpointsOutputWithContext(ctx context.Context) EndpointsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointsOutput)
+}
+
+func (i *Endpoints) ToEndpointsPtrOutput() EndpointsPtrOutput {
+	return i.ToEndpointsPtrOutputWithContext(context.Background())
+}
+
+func (i *Endpoints) ToEndpointsPtrOutputWithContext(ctx context.Context) EndpointsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EndpointsPtrOutput)
+}
+
+type EndpointsPtrInput interface {
+	pulumi.Input
+
+	ToEndpointsPtrOutput() EndpointsPtrOutput
+	ToEndpointsPtrOutputWithContext(ctx context.Context) EndpointsPtrOutput
 }
 
 type EndpointsOutput struct {
@@ -143,7 +158,7 @@ type EndpointsOutput struct {
 }
 
 func (EndpointsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointsOutput)(nil)).Elem()
+	return reflect.TypeOf((*Endpoints)(nil))
 }
 
 func (o EndpointsOutput) ToEndpointsOutput() EndpointsOutput {
@@ -154,6 +169,23 @@ func (o EndpointsOutput) ToEndpointsOutputWithContext(ctx context.Context) Endpo
 	return o
 }
 
+type EndpointsPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (EndpointsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Endpoints)(nil))
+}
+
+func (o EndpointsPtrOutput) ToEndpointsPtrOutput() EndpointsPtrOutput {
+	return o
+}
+
+func (o EndpointsPtrOutput) ToEndpointsPtrOutputWithContext(ctx context.Context) EndpointsPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(EndpointsOutput{})
+	pulumi.RegisterOutputType(EndpointsPtrOutput{})
 }
