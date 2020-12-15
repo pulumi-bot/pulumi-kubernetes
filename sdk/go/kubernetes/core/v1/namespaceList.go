@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -119,16 +119,31 @@ type NamespaceListInput interface {
 	ToNamespaceListOutputWithContext(ctx context.Context) NamespaceListOutput
 }
 
-func (NamespaceList) ElementType() reflect.Type {
-	return reflect.TypeOf((*NamespaceList)(nil)).Elem()
+func (*NamespaceList) ElementType() reflect.Type {
+	return reflect.TypeOf((*NamespaceList)(nil))
 }
 
-func (i NamespaceList) ToNamespaceListOutput() NamespaceListOutput {
+func (i *NamespaceList) ToNamespaceListOutput() NamespaceListOutput {
 	return i.ToNamespaceListOutputWithContext(context.Background())
 }
 
-func (i NamespaceList) ToNamespaceListOutputWithContext(ctx context.Context) NamespaceListOutput {
+func (i *NamespaceList) ToNamespaceListOutputWithContext(ctx context.Context) NamespaceListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NamespaceListOutput)
+}
+
+func (i *NamespaceList) ToNamespaceListPtrOutput() NamespaceListPtrOutput {
+	return i.ToNamespaceListPtrOutputWithContext(context.Background())
+}
+
+func (i *NamespaceList) ToNamespaceListPtrOutputWithContext(ctx context.Context) NamespaceListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NamespaceListPtrOutput)
+}
+
+type NamespaceListPtrInput interface {
+	pulumi.Input
+
+	ToNamespaceListPtrOutput() NamespaceListPtrOutput
+	ToNamespaceListPtrOutputWithContext(ctx context.Context) NamespaceListPtrOutput
 }
 
 type NamespaceListOutput struct {
@@ -136,7 +151,7 @@ type NamespaceListOutput struct {
 }
 
 func (NamespaceListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*NamespaceListOutput)(nil)).Elem()
+	return reflect.TypeOf((*NamespaceList)(nil))
 }
 
 func (o NamespaceListOutput) ToNamespaceListOutput() NamespaceListOutput {
@@ -147,6 +162,23 @@ func (o NamespaceListOutput) ToNamespaceListOutputWithContext(ctx context.Contex
 	return o
 }
 
+type NamespaceListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (NamespaceListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NamespaceList)(nil))
+}
+
+func (o NamespaceListPtrOutput) ToNamespaceListPtrOutput() NamespaceListPtrOutput {
+	return o
+}
+
+func (o NamespaceListPtrOutput) ToNamespaceListPtrOutputWithContext(ctx context.Context) NamespaceListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(NamespaceListOutput{})
+	pulumi.RegisterOutputType(NamespaceListPtrOutput{})
 }

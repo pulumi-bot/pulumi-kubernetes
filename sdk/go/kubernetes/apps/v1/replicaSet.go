@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -130,16 +130,31 @@ type ReplicaSetInput interface {
 	ToReplicaSetOutputWithContext(ctx context.Context) ReplicaSetOutput
 }
 
-func (ReplicaSet) ElementType() reflect.Type {
-	return reflect.TypeOf((*ReplicaSet)(nil)).Elem()
+func (*ReplicaSet) ElementType() reflect.Type {
+	return reflect.TypeOf((*ReplicaSet)(nil))
 }
 
-func (i ReplicaSet) ToReplicaSetOutput() ReplicaSetOutput {
+func (i *ReplicaSet) ToReplicaSetOutput() ReplicaSetOutput {
 	return i.ToReplicaSetOutputWithContext(context.Background())
 }
 
-func (i ReplicaSet) ToReplicaSetOutputWithContext(ctx context.Context) ReplicaSetOutput {
+func (i *ReplicaSet) ToReplicaSetOutputWithContext(ctx context.Context) ReplicaSetOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ReplicaSetOutput)
+}
+
+func (i *ReplicaSet) ToReplicaSetPtrOutput() ReplicaSetPtrOutput {
+	return i.ToReplicaSetPtrOutputWithContext(context.Background())
+}
+
+func (i *ReplicaSet) ToReplicaSetPtrOutputWithContext(ctx context.Context) ReplicaSetPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ReplicaSetPtrOutput)
+}
+
+type ReplicaSetPtrInput interface {
+	pulumi.Input
+
+	ToReplicaSetPtrOutput() ReplicaSetPtrOutput
+	ToReplicaSetPtrOutputWithContext(ctx context.Context) ReplicaSetPtrOutput
 }
 
 type ReplicaSetOutput struct {
@@ -147,7 +162,7 @@ type ReplicaSetOutput struct {
 }
 
 func (ReplicaSetOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ReplicaSetOutput)(nil)).Elem()
+	return reflect.TypeOf((*ReplicaSet)(nil))
 }
 
 func (o ReplicaSetOutput) ToReplicaSetOutput() ReplicaSetOutput {
@@ -158,6 +173,23 @@ func (o ReplicaSetOutput) ToReplicaSetOutputWithContext(ctx context.Context) Rep
 	return o
 }
 
+type ReplicaSetPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ReplicaSetPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ReplicaSet)(nil))
+}
+
+func (o ReplicaSetPtrOutput) ToReplicaSetPtrOutput() ReplicaSetPtrOutput {
+	return o
+}
+
+func (o ReplicaSetPtrOutput) ToReplicaSetPtrOutputWithContext(ctx context.Context) ReplicaSetPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ReplicaSetOutput{})
+	pulumi.RegisterOutputType(ReplicaSetPtrOutput{})
 }

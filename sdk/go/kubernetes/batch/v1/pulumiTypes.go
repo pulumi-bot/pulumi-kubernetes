@@ -7,8 +7,8 @@ import (
 	"context"
 	"reflect"
 
-	corev1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/core/v1"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/core/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -488,7 +488,7 @@ func (i JobSpecArgs) ToJobSpecPtrOutput() JobSpecPtrOutput {
 }
 
 func (i JobSpecArgs) ToJobSpecPtrOutputWithContext(ctx context.Context) JobSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobSpecOutput).ToJobSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(JobSpecOutput).ToJobSpecPtrOutput()
 }
 
 // JobSpecPtrInput is an input type that accepts JobSpecArgs, JobSpecPtr and JobSpecPtrOutput values.
@@ -521,7 +521,7 @@ func (i *jobSpecPtrType) ToJobSpecPtrOutput() JobSpecPtrOutput {
 }
 
 func (i *jobSpecPtrType) ToJobSpecPtrOutputWithContext(ctx context.Context) JobSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(JobSpecOutput).ToJobSpecPtrOutput()
 }
 
 // JobSpec describes how the job execution will look like.
@@ -747,7 +747,7 @@ func (i JobStatusArgs) ToJobStatusPtrOutput() JobStatusPtrOutput {
 }
 
 func (i JobStatusArgs) ToJobStatusPtrOutputWithContext(ctx context.Context) JobStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobStatusOutput).ToJobStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(JobStatusOutput).ToJobStatusPtrOutput()
 }
 
 // JobStatusPtrInput is an input type that accepts JobStatusArgs, JobStatusPtr and JobStatusPtrOutput values.
@@ -780,7 +780,7 @@ func (i *jobStatusPtrType) ToJobStatusPtrOutput() JobStatusPtrOutput {
 }
 
 func (i *jobStatusPtrType) ToJobStatusPtrOutputWithContext(ctx context.Context) JobStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(JobStatusOutput).ToJobStatusPtrOutput()
 }
 
 // JobStatus represents the current state of a Job.

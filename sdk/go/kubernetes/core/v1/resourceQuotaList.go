@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -119,16 +119,31 @@ type ResourceQuotaListInput interface {
 	ToResourceQuotaListOutputWithContext(ctx context.Context) ResourceQuotaListOutput
 }
 
-func (ResourceQuotaList) ElementType() reflect.Type {
-	return reflect.TypeOf((*ResourceQuotaList)(nil)).Elem()
+func (*ResourceQuotaList) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourceQuotaList)(nil))
 }
 
-func (i ResourceQuotaList) ToResourceQuotaListOutput() ResourceQuotaListOutput {
+func (i *ResourceQuotaList) ToResourceQuotaListOutput() ResourceQuotaListOutput {
 	return i.ToResourceQuotaListOutputWithContext(context.Background())
 }
 
-func (i ResourceQuotaList) ToResourceQuotaListOutputWithContext(ctx context.Context) ResourceQuotaListOutput {
+func (i *ResourceQuotaList) ToResourceQuotaListOutputWithContext(ctx context.Context) ResourceQuotaListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ResourceQuotaListOutput)
+}
+
+func (i *ResourceQuotaList) ToResourceQuotaListPtrOutput() ResourceQuotaListPtrOutput {
+	return i.ToResourceQuotaListPtrOutputWithContext(context.Background())
+}
+
+func (i *ResourceQuotaList) ToResourceQuotaListPtrOutputWithContext(ctx context.Context) ResourceQuotaListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourceQuotaListPtrOutput)
+}
+
+type ResourceQuotaListPtrInput interface {
+	pulumi.Input
+
+	ToResourceQuotaListPtrOutput() ResourceQuotaListPtrOutput
+	ToResourceQuotaListPtrOutputWithContext(ctx context.Context) ResourceQuotaListPtrOutput
 }
 
 type ResourceQuotaListOutput struct {
@@ -136,7 +151,7 @@ type ResourceQuotaListOutput struct {
 }
 
 func (ResourceQuotaListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ResourceQuotaListOutput)(nil)).Elem()
+	return reflect.TypeOf((*ResourceQuotaList)(nil))
 }
 
 func (o ResourceQuotaListOutput) ToResourceQuotaListOutput() ResourceQuotaListOutput {
@@ -147,6 +162,23 @@ func (o ResourceQuotaListOutput) ToResourceQuotaListOutputWithContext(ctx contex
 	return o
 }
 
+type ResourceQuotaListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ResourceQuotaListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ResourceQuotaList)(nil))
+}
+
+func (o ResourceQuotaListPtrOutput) ToResourceQuotaListPtrOutput() ResourceQuotaListPtrOutput {
+	return o
+}
+
+func (o ResourceQuotaListPtrOutput) ToResourceQuotaListPtrOutputWithContext(ctx context.Context) ResourceQuotaListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ResourceQuotaListOutput{})
+	pulumi.RegisterOutputType(ResourceQuotaListPtrOutput{})
 }

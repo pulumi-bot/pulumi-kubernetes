@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -121,16 +121,31 @@ type ResourceQuotaInput interface {
 	ToResourceQuotaOutputWithContext(ctx context.Context) ResourceQuotaOutput
 }
 
-func (ResourceQuota) ElementType() reflect.Type {
-	return reflect.TypeOf((*ResourceQuota)(nil)).Elem()
+func (*ResourceQuota) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourceQuota)(nil))
 }
 
-func (i ResourceQuota) ToResourceQuotaOutput() ResourceQuotaOutput {
+func (i *ResourceQuota) ToResourceQuotaOutput() ResourceQuotaOutput {
 	return i.ToResourceQuotaOutputWithContext(context.Background())
 }
 
-func (i ResourceQuota) ToResourceQuotaOutputWithContext(ctx context.Context) ResourceQuotaOutput {
+func (i *ResourceQuota) ToResourceQuotaOutputWithContext(ctx context.Context) ResourceQuotaOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ResourceQuotaOutput)
+}
+
+func (i *ResourceQuota) ToResourceQuotaPtrOutput() ResourceQuotaPtrOutput {
+	return i.ToResourceQuotaPtrOutputWithContext(context.Background())
+}
+
+func (i *ResourceQuota) ToResourceQuotaPtrOutputWithContext(ctx context.Context) ResourceQuotaPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourceQuotaPtrOutput)
+}
+
+type ResourceQuotaPtrInput interface {
+	pulumi.Input
+
+	ToResourceQuotaPtrOutput() ResourceQuotaPtrOutput
+	ToResourceQuotaPtrOutputWithContext(ctx context.Context) ResourceQuotaPtrOutput
 }
 
 type ResourceQuotaOutput struct {
@@ -138,7 +153,7 @@ type ResourceQuotaOutput struct {
 }
 
 func (ResourceQuotaOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ResourceQuotaOutput)(nil)).Elem()
+	return reflect.TypeOf((*ResourceQuota)(nil))
 }
 
 func (o ResourceQuotaOutput) ToResourceQuotaOutput() ResourceQuotaOutput {
@@ -149,6 +164,23 @@ func (o ResourceQuotaOutput) ToResourceQuotaOutputWithContext(ctx context.Contex
 	return o
 }
 
+type ResourceQuotaPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ResourceQuotaPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ResourceQuota)(nil))
+}
+
+func (o ResourceQuotaPtrOutput) ToResourceQuotaPtrOutput() ResourceQuotaPtrOutput {
+	return o
+}
+
+func (o ResourceQuotaPtrOutput) ToResourceQuotaPtrOutputWithContext(ctx context.Context) ResourceQuotaPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ResourceQuotaOutput{})
+	pulumi.RegisterOutputType(ResourceQuotaPtrOutput{})
 }

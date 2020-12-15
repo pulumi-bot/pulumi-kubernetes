@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -130,16 +130,31 @@ type HorizontalPodAutoscalerInput interface {
 	ToHorizontalPodAutoscalerOutputWithContext(ctx context.Context) HorizontalPodAutoscalerOutput
 }
 
-func (HorizontalPodAutoscaler) ElementType() reflect.Type {
-	return reflect.TypeOf((*HorizontalPodAutoscaler)(nil)).Elem()
+func (*HorizontalPodAutoscaler) ElementType() reflect.Type {
+	return reflect.TypeOf((*HorizontalPodAutoscaler)(nil))
 }
 
-func (i HorizontalPodAutoscaler) ToHorizontalPodAutoscalerOutput() HorizontalPodAutoscalerOutput {
+func (i *HorizontalPodAutoscaler) ToHorizontalPodAutoscalerOutput() HorizontalPodAutoscalerOutput {
 	return i.ToHorizontalPodAutoscalerOutputWithContext(context.Background())
 }
 
-func (i HorizontalPodAutoscaler) ToHorizontalPodAutoscalerOutputWithContext(ctx context.Context) HorizontalPodAutoscalerOutput {
+func (i *HorizontalPodAutoscaler) ToHorizontalPodAutoscalerOutputWithContext(ctx context.Context) HorizontalPodAutoscalerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(HorizontalPodAutoscalerOutput)
+}
+
+func (i *HorizontalPodAutoscaler) ToHorizontalPodAutoscalerPtrOutput() HorizontalPodAutoscalerPtrOutput {
+	return i.ToHorizontalPodAutoscalerPtrOutputWithContext(context.Background())
+}
+
+func (i *HorizontalPodAutoscaler) ToHorizontalPodAutoscalerPtrOutputWithContext(ctx context.Context) HorizontalPodAutoscalerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HorizontalPodAutoscalerPtrOutput)
+}
+
+type HorizontalPodAutoscalerPtrInput interface {
+	pulumi.Input
+
+	ToHorizontalPodAutoscalerPtrOutput() HorizontalPodAutoscalerPtrOutput
+	ToHorizontalPodAutoscalerPtrOutputWithContext(ctx context.Context) HorizontalPodAutoscalerPtrOutput
 }
 
 type HorizontalPodAutoscalerOutput struct {
@@ -147,7 +162,7 @@ type HorizontalPodAutoscalerOutput struct {
 }
 
 func (HorizontalPodAutoscalerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*HorizontalPodAutoscalerOutput)(nil)).Elem()
+	return reflect.TypeOf((*HorizontalPodAutoscaler)(nil))
 }
 
 func (o HorizontalPodAutoscalerOutput) ToHorizontalPodAutoscalerOutput() HorizontalPodAutoscalerOutput {
@@ -158,6 +173,23 @@ func (o HorizontalPodAutoscalerOutput) ToHorizontalPodAutoscalerOutputWithContex
 	return o
 }
 
+type HorizontalPodAutoscalerPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (HorizontalPodAutoscalerPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**HorizontalPodAutoscaler)(nil))
+}
+
+func (o HorizontalPodAutoscalerPtrOutput) ToHorizontalPodAutoscalerPtrOutput() HorizontalPodAutoscalerPtrOutput {
+	return o
+}
+
+func (o HorizontalPodAutoscalerPtrOutput) ToHorizontalPodAutoscalerPtrOutputWithContext(ctx context.Context) HorizontalPodAutoscalerPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(HorizontalPodAutoscalerOutput{})
+	pulumi.RegisterOutputType(HorizontalPodAutoscalerPtrOutput{})
 }

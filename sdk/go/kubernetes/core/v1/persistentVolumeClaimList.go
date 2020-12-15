@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -119,16 +119,31 @@ type PersistentVolumeClaimListInput interface {
 	ToPersistentVolumeClaimListOutputWithContext(ctx context.Context) PersistentVolumeClaimListOutput
 }
 
-func (PersistentVolumeClaimList) ElementType() reflect.Type {
-	return reflect.TypeOf((*PersistentVolumeClaimList)(nil)).Elem()
+func (*PersistentVolumeClaimList) ElementType() reflect.Type {
+	return reflect.TypeOf((*PersistentVolumeClaimList)(nil))
 }
 
-func (i PersistentVolumeClaimList) ToPersistentVolumeClaimListOutput() PersistentVolumeClaimListOutput {
+func (i *PersistentVolumeClaimList) ToPersistentVolumeClaimListOutput() PersistentVolumeClaimListOutput {
 	return i.ToPersistentVolumeClaimListOutputWithContext(context.Background())
 }
 
-func (i PersistentVolumeClaimList) ToPersistentVolumeClaimListOutputWithContext(ctx context.Context) PersistentVolumeClaimListOutput {
+func (i *PersistentVolumeClaimList) ToPersistentVolumeClaimListOutputWithContext(ctx context.Context) PersistentVolumeClaimListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PersistentVolumeClaimListOutput)
+}
+
+func (i *PersistentVolumeClaimList) ToPersistentVolumeClaimListPtrOutput() PersistentVolumeClaimListPtrOutput {
+	return i.ToPersistentVolumeClaimListPtrOutputWithContext(context.Background())
+}
+
+func (i *PersistentVolumeClaimList) ToPersistentVolumeClaimListPtrOutputWithContext(ctx context.Context) PersistentVolumeClaimListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PersistentVolumeClaimListPtrOutput)
+}
+
+type PersistentVolumeClaimListPtrInput interface {
+	pulumi.Input
+
+	ToPersistentVolumeClaimListPtrOutput() PersistentVolumeClaimListPtrOutput
+	ToPersistentVolumeClaimListPtrOutputWithContext(ctx context.Context) PersistentVolumeClaimListPtrOutput
 }
 
 type PersistentVolumeClaimListOutput struct {
@@ -136,7 +151,7 @@ type PersistentVolumeClaimListOutput struct {
 }
 
 func (PersistentVolumeClaimListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*PersistentVolumeClaimListOutput)(nil)).Elem()
+	return reflect.TypeOf((*PersistentVolumeClaimList)(nil))
 }
 
 func (o PersistentVolumeClaimListOutput) ToPersistentVolumeClaimListOutput() PersistentVolumeClaimListOutput {
@@ -147,6 +162,23 @@ func (o PersistentVolumeClaimListOutput) ToPersistentVolumeClaimListOutputWithCo
 	return o
 }
 
+type PersistentVolumeClaimListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (PersistentVolumeClaimListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PersistentVolumeClaimList)(nil))
+}
+
+func (o PersistentVolumeClaimListPtrOutput) ToPersistentVolumeClaimListPtrOutput() PersistentVolumeClaimListPtrOutput {
+	return o
+}
+
+func (o PersistentVolumeClaimListPtrOutput) ToPersistentVolumeClaimListPtrOutputWithContext(ctx context.Context) PersistentVolumeClaimListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(PersistentVolumeClaimListOutput{})
+	pulumi.RegisterOutputType(PersistentVolumeClaimListPtrOutput{})
 }

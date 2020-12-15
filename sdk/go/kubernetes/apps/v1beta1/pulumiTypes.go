@@ -7,8 +7,8 @@ import (
 	"context"
 	"reflect"
 
-	corev1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/core/v1"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/core/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -822,7 +822,7 @@ func (i DeploymentSpecArgs) ToDeploymentSpecPtrOutput() DeploymentSpecPtrOutput 
 }
 
 func (i DeploymentSpecArgs) ToDeploymentSpecPtrOutputWithContext(ctx context.Context) DeploymentSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentSpecOutput).ToDeploymentSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentSpecOutput).ToDeploymentSpecPtrOutput()
 }
 
 // DeploymentSpecPtrInput is an input type that accepts DeploymentSpecArgs, DeploymentSpecPtr and DeploymentSpecPtrOutput values.
@@ -855,7 +855,7 @@ func (i *deploymentSpecPtrType) ToDeploymentSpecPtrOutput() DeploymentSpecPtrOut
 }
 
 func (i *deploymentSpecPtrType) ToDeploymentSpecPtrOutputWithContext(ctx context.Context) DeploymentSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentSpecOutput).ToDeploymentSpecPtrOutput()
 }
 
 // DeploymentSpec is the specification of the desired behavior of the Deployment.
@@ -1104,7 +1104,7 @@ func (i DeploymentStatusArgs) ToDeploymentStatusPtrOutput() DeploymentStatusPtrO
 }
 
 func (i DeploymentStatusArgs) ToDeploymentStatusPtrOutputWithContext(ctx context.Context) DeploymentStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentStatusOutput).ToDeploymentStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentStatusOutput).ToDeploymentStatusPtrOutput()
 }
 
 // DeploymentStatusPtrInput is an input type that accepts DeploymentStatusArgs, DeploymentStatusPtr and DeploymentStatusPtrOutput values.
@@ -1137,7 +1137,7 @@ func (i *deploymentStatusPtrType) ToDeploymentStatusPtrOutput() DeploymentStatus
 }
 
 func (i *deploymentStatusPtrType) ToDeploymentStatusPtrOutputWithContext(ctx context.Context) DeploymentStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentStatusOutput).ToDeploymentStatusPtrOutput()
 }
 
 // DeploymentStatus is the most recently observed status of the Deployment.
@@ -1347,7 +1347,7 @@ func (i DeploymentStrategyArgs) ToDeploymentStrategyPtrOutput() DeploymentStrate
 }
 
 func (i DeploymentStrategyArgs) ToDeploymentStrategyPtrOutputWithContext(ctx context.Context) DeploymentStrategyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentStrategyOutput).ToDeploymentStrategyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentStrategyOutput).ToDeploymentStrategyPtrOutput()
 }
 
 // DeploymentStrategyPtrInput is an input type that accepts DeploymentStrategyArgs, DeploymentStrategyPtr and DeploymentStrategyPtrOutput values.
@@ -1380,7 +1380,7 @@ func (i *deploymentStrategyPtrType) ToDeploymentStrategyPtrOutput() DeploymentSt
 }
 
 func (i *deploymentStrategyPtrType) ToDeploymentStrategyPtrOutputWithContext(ctx context.Context) DeploymentStrategyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentStrategyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentStrategyOutput).ToDeploymentStrategyPtrOutput()
 }
 
 // DeploymentStrategy describes how to replace existing pods with new ones.
@@ -1496,7 +1496,7 @@ func (i RollbackConfigArgs) ToRollbackConfigPtrOutput() RollbackConfigPtrOutput 
 }
 
 func (i RollbackConfigArgs) ToRollbackConfigPtrOutputWithContext(ctx context.Context) RollbackConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RollbackConfigOutput).ToRollbackConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RollbackConfigOutput).ToRollbackConfigPtrOutput()
 }
 
 // RollbackConfigPtrInput is an input type that accepts RollbackConfigArgs, RollbackConfigPtr and RollbackConfigPtrOutput values.
@@ -1529,7 +1529,7 @@ func (i *rollbackConfigPtrType) ToRollbackConfigPtrOutput() RollbackConfigPtrOut
 }
 
 func (i *rollbackConfigPtrType) ToRollbackConfigPtrOutputWithContext(ctx context.Context) RollbackConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RollbackConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RollbackConfigOutput).ToRollbackConfigPtrOutput()
 }
 
 // DEPRECATED.
@@ -1634,7 +1634,7 @@ func (i RollingUpdateDeploymentArgs) ToRollingUpdateDeploymentPtrOutput() Rollin
 }
 
 func (i RollingUpdateDeploymentArgs) ToRollingUpdateDeploymentPtrOutputWithContext(ctx context.Context) RollingUpdateDeploymentPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RollingUpdateDeploymentOutput).ToRollingUpdateDeploymentPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RollingUpdateDeploymentOutput).ToRollingUpdateDeploymentPtrOutput()
 }
 
 // RollingUpdateDeploymentPtrInput is an input type that accepts RollingUpdateDeploymentArgs, RollingUpdateDeploymentPtr and RollingUpdateDeploymentPtrOutput values.
@@ -1667,7 +1667,7 @@ func (i *rollingUpdateDeploymentPtrType) ToRollingUpdateDeploymentPtrOutput() Ro
 }
 
 func (i *rollingUpdateDeploymentPtrType) ToRollingUpdateDeploymentPtrOutputWithContext(ctx context.Context) RollingUpdateDeploymentPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RollingUpdateDeploymentPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RollingUpdateDeploymentOutput).ToRollingUpdateDeploymentPtrOutput()
 }
 
 // Spec to control the desired behavior of rolling update.
@@ -1783,7 +1783,7 @@ func (i RollingUpdateStatefulSetStrategyArgs) ToRollingUpdateStatefulSetStrategy
 }
 
 func (i RollingUpdateStatefulSetStrategyArgs) ToRollingUpdateStatefulSetStrategyPtrOutputWithContext(ctx context.Context) RollingUpdateStatefulSetStrategyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RollingUpdateStatefulSetStrategyOutput).ToRollingUpdateStatefulSetStrategyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RollingUpdateStatefulSetStrategyOutput).ToRollingUpdateStatefulSetStrategyPtrOutput()
 }
 
 // RollingUpdateStatefulSetStrategyPtrInput is an input type that accepts RollingUpdateStatefulSetStrategyArgs, RollingUpdateStatefulSetStrategyPtr and RollingUpdateStatefulSetStrategyPtrOutput values.
@@ -1816,7 +1816,7 @@ func (i *rollingUpdateStatefulSetStrategyPtrType) ToRollingUpdateStatefulSetStra
 }
 
 func (i *rollingUpdateStatefulSetStrategyPtrType) ToRollingUpdateStatefulSetStrategyPtrOutputWithContext(ctx context.Context) RollingUpdateStatefulSetStrategyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RollingUpdateStatefulSetStrategyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RollingUpdateStatefulSetStrategyOutput).ToRollingUpdateStatefulSetStrategyPtrOutput()
 }
 
 // RollingUpdateStatefulSetStrategy is used to communicate parameter for RollingUpdateStatefulSetStrategyType.
@@ -2008,7 +2008,7 @@ func (i ScaleSpecArgs) ToScaleSpecPtrOutput() ScaleSpecPtrOutput {
 }
 
 func (i ScaleSpecArgs) ToScaleSpecPtrOutputWithContext(ctx context.Context) ScaleSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ScaleSpecOutput).ToScaleSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ScaleSpecOutput).ToScaleSpecPtrOutput()
 }
 
 // ScaleSpecPtrInput is an input type that accepts ScaleSpecArgs, ScaleSpecPtr and ScaleSpecPtrOutput values.
@@ -2041,7 +2041,7 @@ func (i *scaleSpecPtrType) ToScaleSpecPtrOutput() ScaleSpecPtrOutput {
 }
 
 func (i *scaleSpecPtrType) ToScaleSpecPtrOutputWithContext(ctx context.Context) ScaleSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ScaleSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ScaleSpecOutput).ToScaleSpecPtrOutput()
 }
 
 // ScaleSpec describes the attributes of a scale subresource
@@ -2150,7 +2150,7 @@ func (i ScaleStatusArgs) ToScaleStatusPtrOutput() ScaleStatusPtrOutput {
 }
 
 func (i ScaleStatusArgs) ToScaleStatusPtrOutputWithContext(ctx context.Context) ScaleStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ScaleStatusOutput).ToScaleStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ScaleStatusOutput).ToScaleStatusPtrOutput()
 }
 
 // ScaleStatusPtrInput is an input type that accepts ScaleStatusArgs, ScaleStatusPtr and ScaleStatusPtrOutput values.
@@ -2183,7 +2183,7 @@ func (i *scaleStatusPtrType) ToScaleStatusPtrOutput() ScaleStatusPtrOutput {
 }
 
 func (i *scaleStatusPtrType) ToScaleStatusPtrOutputWithContext(ctx context.Context) ScaleStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ScaleStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ScaleStatusOutput).ToScaleStatusPtrOutput()
 }
 
 // ScaleStatus represents the current status of a scale subresource.
@@ -2735,7 +2735,7 @@ func (i StatefulSetSpecArgs) ToStatefulSetSpecPtrOutput() StatefulSetSpecPtrOutp
 }
 
 func (i StatefulSetSpecArgs) ToStatefulSetSpecPtrOutputWithContext(ctx context.Context) StatefulSetSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StatefulSetSpecOutput).ToStatefulSetSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(StatefulSetSpecOutput).ToStatefulSetSpecPtrOutput()
 }
 
 // StatefulSetSpecPtrInput is an input type that accepts StatefulSetSpecArgs, StatefulSetSpecPtr and StatefulSetSpecPtrOutput values.
@@ -2768,7 +2768,7 @@ func (i *statefulSetSpecPtrType) ToStatefulSetSpecPtrOutput() StatefulSetSpecPtr
 }
 
 func (i *statefulSetSpecPtrType) ToStatefulSetSpecPtrOutputWithContext(ctx context.Context) StatefulSetSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StatefulSetSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(StatefulSetSpecOutput).ToStatefulSetSpecPtrOutput()
 }
 
 // A StatefulSetSpec is the specification of a StatefulSet.
@@ -3006,7 +3006,7 @@ func (i StatefulSetStatusArgs) ToStatefulSetStatusPtrOutput() StatefulSetStatusP
 }
 
 func (i StatefulSetStatusArgs) ToStatefulSetStatusPtrOutputWithContext(ctx context.Context) StatefulSetStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StatefulSetStatusOutput).ToStatefulSetStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(StatefulSetStatusOutput).ToStatefulSetStatusPtrOutput()
 }
 
 // StatefulSetStatusPtrInput is an input type that accepts StatefulSetStatusArgs, StatefulSetStatusPtr and StatefulSetStatusPtrOutput values.
@@ -3039,7 +3039,7 @@ func (i *statefulSetStatusPtrType) ToStatefulSetStatusPtrOutput() StatefulSetSta
 }
 
 func (i *statefulSetStatusPtrType) ToStatefulSetStatusPtrOutputWithContext(ctx context.Context) StatefulSetStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StatefulSetStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(StatefulSetStatusOutput).ToStatefulSetStatusPtrOutput()
 }
 
 // StatefulSetStatus represents the current state of a StatefulSet.
@@ -3264,7 +3264,7 @@ func (i StatefulSetUpdateStrategyArgs) ToStatefulSetUpdateStrategyPtrOutput() St
 }
 
 func (i StatefulSetUpdateStrategyArgs) ToStatefulSetUpdateStrategyPtrOutputWithContext(ctx context.Context) StatefulSetUpdateStrategyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StatefulSetUpdateStrategyOutput).ToStatefulSetUpdateStrategyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(StatefulSetUpdateStrategyOutput).ToStatefulSetUpdateStrategyPtrOutput()
 }
 
 // StatefulSetUpdateStrategyPtrInput is an input type that accepts StatefulSetUpdateStrategyArgs, StatefulSetUpdateStrategyPtr and StatefulSetUpdateStrategyPtrOutput values.
@@ -3297,7 +3297,7 @@ func (i *statefulSetUpdateStrategyPtrType) ToStatefulSetUpdateStrategyPtrOutput(
 }
 
 func (i *statefulSetUpdateStrategyPtrType) ToStatefulSetUpdateStrategyPtrOutputWithContext(ctx context.Context) StatefulSetUpdateStrategyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StatefulSetUpdateStrategyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(StatefulSetUpdateStrategyOutput).ToStatefulSetUpdateStrategyPtrOutput()
 }
 
 // StatefulSetUpdateStrategy indicates the strategy that the StatefulSet controller will use to perform updates. It includes any additional parameters necessary to perform the update for the indicated strategy.

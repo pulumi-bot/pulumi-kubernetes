@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -126,16 +126,31 @@ type TokenReviewInput interface {
 	ToTokenReviewOutputWithContext(ctx context.Context) TokenReviewOutput
 }
 
-func (TokenReview) ElementType() reflect.Type {
-	return reflect.TypeOf((*TokenReview)(nil)).Elem()
+func (*TokenReview) ElementType() reflect.Type {
+	return reflect.TypeOf((*TokenReview)(nil))
 }
 
-func (i TokenReview) ToTokenReviewOutput() TokenReviewOutput {
+func (i *TokenReview) ToTokenReviewOutput() TokenReviewOutput {
 	return i.ToTokenReviewOutputWithContext(context.Background())
 }
 
-func (i TokenReview) ToTokenReviewOutputWithContext(ctx context.Context) TokenReviewOutput {
+func (i *TokenReview) ToTokenReviewOutputWithContext(ctx context.Context) TokenReviewOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TokenReviewOutput)
+}
+
+func (i *TokenReview) ToTokenReviewPtrOutput() TokenReviewPtrOutput {
+	return i.ToTokenReviewPtrOutputWithContext(context.Background())
+}
+
+func (i *TokenReview) ToTokenReviewPtrOutputWithContext(ctx context.Context) TokenReviewPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TokenReviewPtrOutput)
+}
+
+type TokenReviewPtrInput interface {
+	pulumi.Input
+
+	ToTokenReviewPtrOutput() TokenReviewPtrOutput
+	ToTokenReviewPtrOutputWithContext(ctx context.Context) TokenReviewPtrOutput
 }
 
 type TokenReviewOutput struct {
@@ -143,7 +158,7 @@ type TokenReviewOutput struct {
 }
 
 func (TokenReviewOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*TokenReviewOutput)(nil)).Elem()
+	return reflect.TypeOf((*TokenReview)(nil))
 }
 
 func (o TokenReviewOutput) ToTokenReviewOutput() TokenReviewOutput {
@@ -154,6 +169,23 @@ func (o TokenReviewOutput) ToTokenReviewOutputWithContext(ctx context.Context) T
 	return o
 }
 
+type TokenReviewPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (TokenReviewPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TokenReview)(nil))
+}
+
+func (o TokenReviewPtrOutput) ToTokenReviewPtrOutput() TokenReviewPtrOutput {
+	return o
+}
+
+func (o TokenReviewPtrOutput) ToTokenReviewPtrOutputWithContext(ctx context.Context) TokenReviewPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(TokenReviewOutput{})
+	pulumi.RegisterOutputType(TokenReviewPtrOutput{})
 }

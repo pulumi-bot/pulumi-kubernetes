@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -127,16 +127,31 @@ type FlowSchemaInput interface {
 	ToFlowSchemaOutputWithContext(ctx context.Context) FlowSchemaOutput
 }
 
-func (FlowSchema) ElementType() reflect.Type {
-	return reflect.TypeOf((*FlowSchema)(nil)).Elem()
+func (*FlowSchema) ElementType() reflect.Type {
+	return reflect.TypeOf((*FlowSchema)(nil))
 }
 
-func (i FlowSchema) ToFlowSchemaOutput() FlowSchemaOutput {
+func (i *FlowSchema) ToFlowSchemaOutput() FlowSchemaOutput {
 	return i.ToFlowSchemaOutputWithContext(context.Background())
 }
 
-func (i FlowSchema) ToFlowSchemaOutputWithContext(ctx context.Context) FlowSchemaOutput {
+func (i *FlowSchema) ToFlowSchemaOutputWithContext(ctx context.Context) FlowSchemaOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FlowSchemaOutput)
+}
+
+func (i *FlowSchema) ToFlowSchemaPtrOutput() FlowSchemaPtrOutput {
+	return i.ToFlowSchemaPtrOutputWithContext(context.Background())
+}
+
+func (i *FlowSchema) ToFlowSchemaPtrOutputWithContext(ctx context.Context) FlowSchemaPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FlowSchemaPtrOutput)
+}
+
+type FlowSchemaPtrInput interface {
+	pulumi.Input
+
+	ToFlowSchemaPtrOutput() FlowSchemaPtrOutput
+	ToFlowSchemaPtrOutputWithContext(ctx context.Context) FlowSchemaPtrOutput
 }
 
 type FlowSchemaOutput struct {
@@ -144,7 +159,7 @@ type FlowSchemaOutput struct {
 }
 
 func (FlowSchemaOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FlowSchemaOutput)(nil)).Elem()
+	return reflect.TypeOf((*FlowSchema)(nil))
 }
 
 func (o FlowSchemaOutput) ToFlowSchemaOutput() FlowSchemaOutput {
@@ -155,6 +170,23 @@ func (o FlowSchemaOutput) ToFlowSchemaOutputWithContext(ctx context.Context) Flo
 	return o
 }
 
+type FlowSchemaPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (FlowSchemaPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**FlowSchema)(nil))
+}
+
+func (o FlowSchemaPtrOutput) ToFlowSchemaPtrOutput() FlowSchemaPtrOutput {
+	return o
+}
+
+func (o FlowSchemaPtrOutput) ToFlowSchemaPtrOutputWithContext(ctx context.Context) FlowSchemaPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(FlowSchemaOutput{})
+	pulumi.RegisterOutputType(FlowSchemaPtrOutput{})
 }

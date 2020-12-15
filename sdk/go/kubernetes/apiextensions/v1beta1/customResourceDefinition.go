@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -126,16 +126,31 @@ type CustomResourceDefinitionInput interface {
 	ToCustomResourceDefinitionOutputWithContext(ctx context.Context) CustomResourceDefinitionOutput
 }
 
-func (CustomResourceDefinition) ElementType() reflect.Type {
-	return reflect.TypeOf((*CustomResourceDefinition)(nil)).Elem()
+func (*CustomResourceDefinition) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomResourceDefinition)(nil))
 }
 
-func (i CustomResourceDefinition) ToCustomResourceDefinitionOutput() CustomResourceDefinitionOutput {
+func (i *CustomResourceDefinition) ToCustomResourceDefinitionOutput() CustomResourceDefinitionOutput {
 	return i.ToCustomResourceDefinitionOutputWithContext(context.Background())
 }
 
-func (i CustomResourceDefinition) ToCustomResourceDefinitionOutputWithContext(ctx context.Context) CustomResourceDefinitionOutput {
+func (i *CustomResourceDefinition) ToCustomResourceDefinitionOutputWithContext(ctx context.Context) CustomResourceDefinitionOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceDefinitionOutput)
+}
+
+func (i *CustomResourceDefinition) ToCustomResourceDefinitionPtrOutput() CustomResourceDefinitionPtrOutput {
+	return i.ToCustomResourceDefinitionPtrOutputWithContext(context.Background())
+}
+
+func (i *CustomResourceDefinition) ToCustomResourceDefinitionPtrOutputWithContext(ctx context.Context) CustomResourceDefinitionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceDefinitionPtrOutput)
+}
+
+type CustomResourceDefinitionPtrInput interface {
+	pulumi.Input
+
+	ToCustomResourceDefinitionPtrOutput() CustomResourceDefinitionPtrOutput
+	ToCustomResourceDefinitionPtrOutputWithContext(ctx context.Context) CustomResourceDefinitionPtrOutput
 }
 
 type CustomResourceDefinitionOutput struct {
@@ -143,7 +158,7 @@ type CustomResourceDefinitionOutput struct {
 }
 
 func (CustomResourceDefinitionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CustomResourceDefinitionOutput)(nil)).Elem()
+	return reflect.TypeOf((*CustomResourceDefinition)(nil))
 }
 
 func (o CustomResourceDefinitionOutput) ToCustomResourceDefinitionOutput() CustomResourceDefinitionOutput {
@@ -154,6 +169,23 @@ func (o CustomResourceDefinitionOutput) ToCustomResourceDefinitionOutputWithCont
 	return o
 }
 
+type CustomResourceDefinitionPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (CustomResourceDefinitionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CustomResourceDefinition)(nil))
+}
+
+func (o CustomResourceDefinitionPtrOutput) ToCustomResourceDefinitionPtrOutput() CustomResourceDefinitionPtrOutput {
+	return o
+}
+
+func (o CustomResourceDefinitionPtrOutput) ToCustomResourceDefinitionPtrOutputWithContext(ctx context.Context) CustomResourceDefinitionPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(CustomResourceDefinitionOutput{})
+	pulumi.RegisterOutputType(CustomResourceDefinitionPtrOutput{})
 }

@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -119,16 +119,31 @@ type CSIDriverListInput interface {
 	ToCSIDriverListOutputWithContext(ctx context.Context) CSIDriverListOutput
 }
 
-func (CSIDriverList) ElementType() reflect.Type {
-	return reflect.TypeOf((*CSIDriverList)(nil)).Elem()
+func (*CSIDriverList) ElementType() reflect.Type {
+	return reflect.TypeOf((*CSIDriverList)(nil))
 }
 
-func (i CSIDriverList) ToCSIDriverListOutput() CSIDriverListOutput {
+func (i *CSIDriverList) ToCSIDriverListOutput() CSIDriverListOutput {
 	return i.ToCSIDriverListOutputWithContext(context.Background())
 }
 
-func (i CSIDriverList) ToCSIDriverListOutputWithContext(ctx context.Context) CSIDriverListOutput {
+func (i *CSIDriverList) ToCSIDriverListOutputWithContext(ctx context.Context) CSIDriverListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CSIDriverListOutput)
+}
+
+func (i *CSIDriverList) ToCSIDriverListPtrOutput() CSIDriverListPtrOutput {
+	return i.ToCSIDriverListPtrOutputWithContext(context.Background())
+}
+
+func (i *CSIDriverList) ToCSIDriverListPtrOutputWithContext(ctx context.Context) CSIDriverListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CSIDriverListPtrOutput)
+}
+
+type CSIDriverListPtrInput interface {
+	pulumi.Input
+
+	ToCSIDriverListPtrOutput() CSIDriverListPtrOutput
+	ToCSIDriverListPtrOutputWithContext(ctx context.Context) CSIDriverListPtrOutput
 }
 
 type CSIDriverListOutput struct {
@@ -136,7 +151,7 @@ type CSIDriverListOutput struct {
 }
 
 func (CSIDriverListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CSIDriverListOutput)(nil)).Elem()
+	return reflect.TypeOf((*CSIDriverList)(nil))
 }
 
 func (o CSIDriverListOutput) ToCSIDriverListOutput() CSIDriverListOutput {
@@ -147,6 +162,23 @@ func (o CSIDriverListOutput) ToCSIDriverListOutputWithContext(ctx context.Contex
 	return o
 }
 
+type CSIDriverListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (CSIDriverListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CSIDriverList)(nil))
+}
+
+func (o CSIDriverListPtrOutput) ToCSIDriverListPtrOutput() CSIDriverListPtrOutput {
+	return o
+}
+
+func (o CSIDriverListPtrOutput) ToCSIDriverListPtrOutputWithContext(ctx context.Context) CSIDriverListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(CSIDriverListOutput{})
+	pulumi.RegisterOutputType(CSIDriverListPtrOutput{})
 }

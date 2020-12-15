@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -108,16 +108,31 @@ type CertificateSigningRequestListInput interface {
 	ToCertificateSigningRequestListOutputWithContext(ctx context.Context) CertificateSigningRequestListOutput
 }
 
-func (CertificateSigningRequestList) ElementType() reflect.Type {
-	return reflect.TypeOf((*CertificateSigningRequestList)(nil)).Elem()
+func (*CertificateSigningRequestList) ElementType() reflect.Type {
+	return reflect.TypeOf((*CertificateSigningRequestList)(nil))
 }
 
-func (i CertificateSigningRequestList) ToCertificateSigningRequestListOutput() CertificateSigningRequestListOutput {
+func (i *CertificateSigningRequestList) ToCertificateSigningRequestListOutput() CertificateSigningRequestListOutput {
 	return i.ToCertificateSigningRequestListOutputWithContext(context.Background())
 }
 
-func (i CertificateSigningRequestList) ToCertificateSigningRequestListOutputWithContext(ctx context.Context) CertificateSigningRequestListOutput {
+func (i *CertificateSigningRequestList) ToCertificateSigningRequestListOutputWithContext(ctx context.Context) CertificateSigningRequestListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CertificateSigningRequestListOutput)
+}
+
+func (i *CertificateSigningRequestList) ToCertificateSigningRequestListPtrOutput() CertificateSigningRequestListPtrOutput {
+	return i.ToCertificateSigningRequestListPtrOutputWithContext(context.Background())
+}
+
+func (i *CertificateSigningRequestList) ToCertificateSigningRequestListPtrOutputWithContext(ctx context.Context) CertificateSigningRequestListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CertificateSigningRequestListPtrOutput)
+}
+
+type CertificateSigningRequestListPtrInput interface {
+	pulumi.Input
+
+	ToCertificateSigningRequestListPtrOutput() CertificateSigningRequestListPtrOutput
+	ToCertificateSigningRequestListPtrOutputWithContext(ctx context.Context) CertificateSigningRequestListPtrOutput
 }
 
 type CertificateSigningRequestListOutput struct {
@@ -125,7 +140,7 @@ type CertificateSigningRequestListOutput struct {
 }
 
 func (CertificateSigningRequestListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CertificateSigningRequestListOutput)(nil)).Elem()
+	return reflect.TypeOf((*CertificateSigningRequestList)(nil))
 }
 
 func (o CertificateSigningRequestListOutput) ToCertificateSigningRequestListOutput() CertificateSigningRequestListOutput {
@@ -136,6 +151,23 @@ func (o CertificateSigningRequestListOutput) ToCertificateSigningRequestListOutp
 	return o
 }
 
+type CertificateSigningRequestListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (CertificateSigningRequestListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CertificateSigningRequestList)(nil))
+}
+
+func (o CertificateSigningRequestListPtrOutput) ToCertificateSigningRequestListPtrOutput() CertificateSigningRequestListPtrOutput {
+	return o
+}
+
+func (o CertificateSigningRequestListPtrOutput) ToCertificateSigningRequestListPtrOutputWithContext(ctx context.Context) CertificateSigningRequestListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(CertificateSigningRequestListOutput{})
+	pulumi.RegisterOutputType(CertificateSigningRequestListPtrOutput{})
 }

@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -109,16 +109,31 @@ type StatefulSetListInput interface {
 	ToStatefulSetListOutputWithContext(ctx context.Context) StatefulSetListOutput
 }
 
-func (StatefulSetList) ElementType() reflect.Type {
-	return reflect.TypeOf((*StatefulSetList)(nil)).Elem()
+func (*StatefulSetList) ElementType() reflect.Type {
+	return reflect.TypeOf((*StatefulSetList)(nil))
 }
 
-func (i StatefulSetList) ToStatefulSetListOutput() StatefulSetListOutput {
+func (i *StatefulSetList) ToStatefulSetListOutput() StatefulSetListOutput {
 	return i.ToStatefulSetListOutputWithContext(context.Background())
 }
 
-func (i StatefulSetList) ToStatefulSetListOutputWithContext(ctx context.Context) StatefulSetListOutput {
+func (i *StatefulSetList) ToStatefulSetListOutputWithContext(ctx context.Context) StatefulSetListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(StatefulSetListOutput)
+}
+
+func (i *StatefulSetList) ToStatefulSetListPtrOutput() StatefulSetListPtrOutput {
+	return i.ToStatefulSetListPtrOutputWithContext(context.Background())
+}
+
+func (i *StatefulSetList) ToStatefulSetListPtrOutputWithContext(ctx context.Context) StatefulSetListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StatefulSetListPtrOutput)
+}
+
+type StatefulSetListPtrInput interface {
+	pulumi.Input
+
+	ToStatefulSetListPtrOutput() StatefulSetListPtrOutput
+	ToStatefulSetListPtrOutputWithContext(ctx context.Context) StatefulSetListPtrOutput
 }
 
 type StatefulSetListOutput struct {
@@ -126,7 +141,7 @@ type StatefulSetListOutput struct {
 }
 
 func (StatefulSetListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*StatefulSetListOutput)(nil)).Elem()
+	return reflect.TypeOf((*StatefulSetList)(nil))
 }
 
 func (o StatefulSetListOutput) ToStatefulSetListOutput() StatefulSetListOutput {
@@ -137,6 +152,23 @@ func (o StatefulSetListOutput) ToStatefulSetListOutputWithContext(ctx context.Co
 	return o
 }
 
+type StatefulSetListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (StatefulSetListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StatefulSetList)(nil))
+}
+
+func (o StatefulSetListPtrOutput) ToStatefulSetListPtrOutput() StatefulSetListPtrOutput {
+	return o
+}
+
+func (o StatefulSetListPtrOutput) ToStatefulSetListPtrOutputWithContext(ctx context.Context) StatefulSetListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(StatefulSetListOutput{})
+	pulumi.RegisterOutputType(StatefulSetListPtrOutput{})
 }

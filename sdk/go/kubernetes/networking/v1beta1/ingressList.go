@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -119,16 +119,31 @@ type IngressListInput interface {
 	ToIngressListOutputWithContext(ctx context.Context) IngressListOutput
 }
 
-func (IngressList) ElementType() reflect.Type {
-	return reflect.TypeOf((*IngressList)(nil)).Elem()
+func (*IngressList) ElementType() reflect.Type {
+	return reflect.TypeOf((*IngressList)(nil))
 }
 
-func (i IngressList) ToIngressListOutput() IngressListOutput {
+func (i *IngressList) ToIngressListOutput() IngressListOutput {
 	return i.ToIngressListOutputWithContext(context.Background())
 }
 
-func (i IngressList) ToIngressListOutputWithContext(ctx context.Context) IngressListOutput {
+func (i *IngressList) ToIngressListOutputWithContext(ctx context.Context) IngressListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IngressListOutput)
+}
+
+func (i *IngressList) ToIngressListPtrOutput() IngressListPtrOutput {
+	return i.ToIngressListPtrOutputWithContext(context.Background())
+}
+
+func (i *IngressList) ToIngressListPtrOutputWithContext(ctx context.Context) IngressListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IngressListPtrOutput)
+}
+
+type IngressListPtrInput interface {
+	pulumi.Input
+
+	ToIngressListPtrOutput() IngressListPtrOutput
+	ToIngressListPtrOutputWithContext(ctx context.Context) IngressListPtrOutput
 }
 
 type IngressListOutput struct {
@@ -136,7 +151,7 @@ type IngressListOutput struct {
 }
 
 func (IngressListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*IngressListOutput)(nil)).Elem()
+	return reflect.TypeOf((*IngressList)(nil))
 }
 
 func (o IngressListOutput) ToIngressListOutput() IngressListOutput {
@@ -147,6 +162,23 @@ func (o IngressListOutput) ToIngressListOutputWithContext(ctx context.Context) I
 	return o
 }
 
+type IngressListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (IngressListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IngressList)(nil))
+}
+
+func (o IngressListPtrOutput) ToIngressListPtrOutput() IngressListPtrOutput {
+	return o
+}
+
+func (o IngressListPtrOutput) ToIngressListPtrOutputWithContext(ctx context.Context) IngressListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(IngressListOutput{})
+	pulumi.RegisterOutputType(IngressListPtrOutput{})
 }

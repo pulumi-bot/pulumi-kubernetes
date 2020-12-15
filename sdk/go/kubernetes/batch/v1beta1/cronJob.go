@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -127,16 +127,31 @@ type CronJobInput interface {
 	ToCronJobOutputWithContext(ctx context.Context) CronJobOutput
 }
 
-func (CronJob) ElementType() reflect.Type {
-	return reflect.TypeOf((*CronJob)(nil)).Elem()
+func (*CronJob) ElementType() reflect.Type {
+	return reflect.TypeOf((*CronJob)(nil))
 }
 
-func (i CronJob) ToCronJobOutput() CronJobOutput {
+func (i *CronJob) ToCronJobOutput() CronJobOutput {
 	return i.ToCronJobOutputWithContext(context.Background())
 }
 
-func (i CronJob) ToCronJobOutputWithContext(ctx context.Context) CronJobOutput {
+func (i *CronJob) ToCronJobOutputWithContext(ctx context.Context) CronJobOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CronJobOutput)
+}
+
+func (i *CronJob) ToCronJobPtrOutput() CronJobPtrOutput {
+	return i.ToCronJobPtrOutputWithContext(context.Background())
+}
+
+func (i *CronJob) ToCronJobPtrOutputWithContext(ctx context.Context) CronJobPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CronJobPtrOutput)
+}
+
+type CronJobPtrInput interface {
+	pulumi.Input
+
+	ToCronJobPtrOutput() CronJobPtrOutput
+	ToCronJobPtrOutputWithContext(ctx context.Context) CronJobPtrOutput
 }
 
 type CronJobOutput struct {
@@ -144,7 +159,7 @@ type CronJobOutput struct {
 }
 
 func (CronJobOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CronJobOutput)(nil)).Elem()
+	return reflect.TypeOf((*CronJob)(nil))
 }
 
 func (o CronJobOutput) ToCronJobOutput() CronJobOutput {
@@ -155,6 +170,23 @@ func (o CronJobOutput) ToCronJobOutputWithContext(ctx context.Context) CronJobOu
 	return o
 }
 
+type CronJobPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (CronJobPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CronJob)(nil))
+}
+
+func (o CronJobPtrOutput) ToCronJobPtrOutput() CronJobPtrOutput {
+	return o
+}
+
+func (o CronJobPtrOutput) ToCronJobPtrOutputWithContext(ctx context.Context) CronJobPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(CronJobOutput{})
+	pulumi.RegisterOutputType(CronJobPtrOutput{})
 }

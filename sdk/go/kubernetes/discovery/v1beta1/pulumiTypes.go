@@ -7,8 +7,8 @@ import (
 	"context"
 	"reflect"
 
-	corev1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/core/v1"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/core/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -226,7 +226,7 @@ func (i EndpointConditionsArgs) ToEndpointConditionsPtrOutput() EndpointConditio
 }
 
 func (i EndpointConditionsArgs) ToEndpointConditionsPtrOutputWithContext(ctx context.Context) EndpointConditionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConditionsOutput).ToEndpointConditionsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(EndpointConditionsOutput).ToEndpointConditionsPtrOutput()
 }
 
 // EndpointConditionsPtrInput is an input type that accepts EndpointConditionsArgs, EndpointConditionsPtr and EndpointConditionsPtrOutput values.
@@ -259,7 +259,7 @@ func (i *endpointConditionsPtrType) ToEndpointConditionsPtrOutput() EndpointCond
 }
 
 func (i *endpointConditionsPtrType) ToEndpointConditionsPtrOutputWithContext(ctx context.Context) EndpointConditionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointConditionsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(EndpointConditionsOutput).ToEndpointConditionsPtrOutput()
 }
 
 // EndpointConditions represents the current condition of an endpoint.

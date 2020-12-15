@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -119,16 +119,31 @@ type CSINodeListInput interface {
 	ToCSINodeListOutputWithContext(ctx context.Context) CSINodeListOutput
 }
 
-func (CSINodeList) ElementType() reflect.Type {
-	return reflect.TypeOf((*CSINodeList)(nil)).Elem()
+func (*CSINodeList) ElementType() reflect.Type {
+	return reflect.TypeOf((*CSINodeList)(nil))
 }
 
-func (i CSINodeList) ToCSINodeListOutput() CSINodeListOutput {
+func (i *CSINodeList) ToCSINodeListOutput() CSINodeListOutput {
 	return i.ToCSINodeListOutputWithContext(context.Background())
 }
 
-func (i CSINodeList) ToCSINodeListOutputWithContext(ctx context.Context) CSINodeListOutput {
+func (i *CSINodeList) ToCSINodeListOutputWithContext(ctx context.Context) CSINodeListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CSINodeListOutput)
+}
+
+func (i *CSINodeList) ToCSINodeListPtrOutput() CSINodeListPtrOutput {
+	return i.ToCSINodeListPtrOutputWithContext(context.Background())
+}
+
+func (i *CSINodeList) ToCSINodeListPtrOutputWithContext(ctx context.Context) CSINodeListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CSINodeListPtrOutput)
+}
+
+type CSINodeListPtrInput interface {
+	pulumi.Input
+
+	ToCSINodeListPtrOutput() CSINodeListPtrOutput
+	ToCSINodeListPtrOutputWithContext(ctx context.Context) CSINodeListPtrOutput
 }
 
 type CSINodeListOutput struct {
@@ -136,7 +151,7 @@ type CSINodeListOutput struct {
 }
 
 func (CSINodeListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CSINodeListOutput)(nil)).Elem()
+	return reflect.TypeOf((*CSINodeList)(nil))
 }
 
 func (o CSINodeListOutput) ToCSINodeListOutput() CSINodeListOutput {
@@ -147,6 +162,23 @@ func (o CSINodeListOutput) ToCSINodeListOutputWithContext(ctx context.Context) C
 	return o
 }
 
+type CSINodeListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (CSINodeListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CSINodeList)(nil))
+}
+
+func (o CSINodeListPtrOutput) ToCSINodeListPtrOutput() CSINodeListPtrOutput {
+	return o
+}
+
+func (o CSINodeListPtrOutput) ToCSINodeListPtrOutputWithContext(ctx context.Context) CSINodeListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(CSINodeListOutput{})
+	pulumi.RegisterOutputType(CSINodeListPtrOutput{})
 }

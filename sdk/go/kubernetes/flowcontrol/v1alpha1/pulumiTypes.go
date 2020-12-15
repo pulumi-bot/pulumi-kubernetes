@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -51,7 +51,7 @@ func (i FlowDistinguisherMethodArgs) ToFlowDistinguisherMethodPtrOutput() FlowDi
 }
 
 func (i FlowDistinguisherMethodArgs) ToFlowDistinguisherMethodPtrOutputWithContext(ctx context.Context) FlowDistinguisherMethodPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlowDistinguisherMethodOutput).ToFlowDistinguisherMethodPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FlowDistinguisherMethodOutput).ToFlowDistinguisherMethodPtrOutput()
 }
 
 // FlowDistinguisherMethodPtrInput is an input type that accepts FlowDistinguisherMethodArgs, FlowDistinguisherMethodPtr and FlowDistinguisherMethodPtrOutput values.
@@ -84,7 +84,7 @@ func (i *flowDistinguisherMethodPtrType) ToFlowDistinguisherMethodPtrOutput() Fl
 }
 
 func (i *flowDistinguisherMethodPtrType) ToFlowDistinguisherMethodPtrOutputWithContext(ctx context.Context) FlowDistinguisherMethodPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlowDistinguisherMethodPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FlowDistinguisherMethodOutput).ToFlowDistinguisherMethodPtrOutput()
 }
 
 // FlowDistinguisherMethod specifies the method of a flow distinguisher.
@@ -551,7 +551,7 @@ func (i FlowSchemaSpecArgs) ToFlowSchemaSpecPtrOutput() FlowSchemaSpecPtrOutput 
 }
 
 func (i FlowSchemaSpecArgs) ToFlowSchemaSpecPtrOutputWithContext(ctx context.Context) FlowSchemaSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlowSchemaSpecOutput).ToFlowSchemaSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FlowSchemaSpecOutput).ToFlowSchemaSpecPtrOutput()
 }
 
 // FlowSchemaSpecPtrInput is an input type that accepts FlowSchemaSpecArgs, FlowSchemaSpecPtr and FlowSchemaSpecPtrOutput values.
@@ -584,7 +584,7 @@ func (i *flowSchemaSpecPtrType) ToFlowSchemaSpecPtrOutput() FlowSchemaSpecPtrOut
 }
 
 func (i *flowSchemaSpecPtrType) ToFlowSchemaSpecPtrOutputWithContext(ctx context.Context) FlowSchemaSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlowSchemaSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FlowSchemaSpecOutput).ToFlowSchemaSpecPtrOutput()
 }
 
 // FlowSchemaSpec describes how the FlowSchema's specification looks like.
@@ -730,7 +730,7 @@ func (i FlowSchemaStatusArgs) ToFlowSchemaStatusPtrOutput() FlowSchemaStatusPtrO
 }
 
 func (i FlowSchemaStatusArgs) ToFlowSchemaStatusPtrOutputWithContext(ctx context.Context) FlowSchemaStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlowSchemaStatusOutput).ToFlowSchemaStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FlowSchemaStatusOutput).ToFlowSchemaStatusPtrOutput()
 }
 
 // FlowSchemaStatusPtrInput is an input type that accepts FlowSchemaStatusArgs, FlowSchemaStatusPtr and FlowSchemaStatusPtrOutput values.
@@ -763,7 +763,7 @@ func (i *flowSchemaStatusPtrType) ToFlowSchemaStatusPtrOutput() FlowSchemaStatus
 }
 
 func (i *flowSchemaStatusPtrType) ToFlowSchemaStatusPtrOutputWithContext(ctx context.Context) FlowSchemaStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlowSchemaStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FlowSchemaStatusOutput).ToFlowSchemaStatusPtrOutput()
 }
 
 // FlowSchemaStatus represents the current state of a FlowSchema.
@@ -864,7 +864,7 @@ func (i GroupSubjectArgs) ToGroupSubjectPtrOutput() GroupSubjectPtrOutput {
 }
 
 func (i GroupSubjectArgs) ToGroupSubjectPtrOutputWithContext(ctx context.Context) GroupSubjectPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GroupSubjectOutput).ToGroupSubjectPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(GroupSubjectOutput).ToGroupSubjectPtrOutput()
 }
 
 // GroupSubjectPtrInput is an input type that accepts GroupSubjectArgs, GroupSubjectPtr and GroupSubjectPtrOutput values.
@@ -897,7 +897,7 @@ func (i *groupSubjectPtrType) ToGroupSubjectPtrOutput() GroupSubjectPtrOutput {
 }
 
 func (i *groupSubjectPtrType) ToGroupSubjectPtrOutputWithContext(ctx context.Context) GroupSubjectPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GroupSubjectPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(GroupSubjectOutput).ToGroupSubjectPtrOutput()
 }
 
 // GroupSubject holds detailed information for group-kind subject.
@@ -1002,7 +1002,7 @@ func (i LimitResponseArgs) ToLimitResponsePtrOutput() LimitResponsePtrOutput {
 }
 
 func (i LimitResponseArgs) ToLimitResponsePtrOutputWithContext(ctx context.Context) LimitResponsePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LimitResponseOutput).ToLimitResponsePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(LimitResponseOutput).ToLimitResponsePtrOutput()
 }
 
 // LimitResponsePtrInput is an input type that accepts LimitResponseArgs, LimitResponsePtr and LimitResponsePtrOutput values.
@@ -1035,7 +1035,7 @@ func (i *limitResponsePtrType) ToLimitResponsePtrOutput() LimitResponsePtrOutput
 }
 
 func (i *limitResponsePtrType) ToLimitResponsePtrOutputWithContext(ctx context.Context) LimitResponsePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LimitResponsePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(LimitResponseOutput).ToLimitResponsePtrOutput()
 }
 
 // LimitResponse defines how to handle requests that can not be executed right now.
@@ -1167,7 +1167,7 @@ func (i LimitedPriorityLevelConfigurationArgs) ToLimitedPriorityLevelConfigurati
 }
 
 func (i LimitedPriorityLevelConfigurationArgs) ToLimitedPriorityLevelConfigurationPtrOutputWithContext(ctx context.Context) LimitedPriorityLevelConfigurationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LimitedPriorityLevelConfigurationOutput).ToLimitedPriorityLevelConfigurationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(LimitedPriorityLevelConfigurationOutput).ToLimitedPriorityLevelConfigurationPtrOutput()
 }
 
 // LimitedPriorityLevelConfigurationPtrInput is an input type that accepts LimitedPriorityLevelConfigurationArgs, LimitedPriorityLevelConfigurationPtr and LimitedPriorityLevelConfigurationPtrOutput values.
@@ -1200,7 +1200,7 @@ func (i *limitedPriorityLevelConfigurationPtrType) ToLimitedPriorityLevelConfigu
 }
 
 func (i *limitedPriorityLevelConfigurationPtrType) ToLimitedPriorityLevelConfigurationPtrOutputWithContext(ctx context.Context) LimitedPriorityLevelConfigurationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LimitedPriorityLevelConfigurationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(LimitedPriorityLevelConfigurationOutput).ToLimitedPriorityLevelConfigurationPtrOutput()
 }
 
 // LimitedPriorityLevelConfiguration specifies how to handle requests that are subject to limits. It addresses two issues:
@@ -1925,7 +1925,7 @@ func (i PriorityLevelConfigurationReferenceArgs) ToPriorityLevelConfigurationRef
 }
 
 func (i PriorityLevelConfigurationReferenceArgs) ToPriorityLevelConfigurationReferencePtrOutputWithContext(ctx context.Context) PriorityLevelConfigurationReferencePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PriorityLevelConfigurationReferenceOutput).ToPriorityLevelConfigurationReferencePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PriorityLevelConfigurationReferenceOutput).ToPriorityLevelConfigurationReferencePtrOutput()
 }
 
 // PriorityLevelConfigurationReferencePtrInput is an input type that accepts PriorityLevelConfigurationReferenceArgs, PriorityLevelConfigurationReferencePtr and PriorityLevelConfigurationReferencePtrOutput values.
@@ -1958,7 +1958,7 @@ func (i *priorityLevelConfigurationReferencePtrType) ToPriorityLevelConfiguratio
 }
 
 func (i *priorityLevelConfigurationReferencePtrType) ToPriorityLevelConfigurationReferencePtrOutputWithContext(ctx context.Context) PriorityLevelConfigurationReferencePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PriorityLevelConfigurationReferencePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PriorityLevelConfigurationReferenceOutput).ToPriorityLevelConfigurationReferencePtrOutput()
 }
 
 // PriorityLevelConfigurationReference contains information that points to the "request-priority" being used.
@@ -2063,7 +2063,7 @@ func (i PriorityLevelConfigurationSpecArgs) ToPriorityLevelConfigurationSpecPtrO
 }
 
 func (i PriorityLevelConfigurationSpecArgs) ToPriorityLevelConfigurationSpecPtrOutputWithContext(ctx context.Context) PriorityLevelConfigurationSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PriorityLevelConfigurationSpecOutput).ToPriorityLevelConfigurationSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PriorityLevelConfigurationSpecOutput).ToPriorityLevelConfigurationSpecPtrOutput()
 }
 
 // PriorityLevelConfigurationSpecPtrInput is an input type that accepts PriorityLevelConfigurationSpecArgs, PriorityLevelConfigurationSpecPtr and PriorityLevelConfigurationSpecPtrOutput values.
@@ -2096,7 +2096,7 @@ func (i *priorityLevelConfigurationSpecPtrType) ToPriorityLevelConfigurationSpec
 }
 
 func (i *priorityLevelConfigurationSpecPtrType) ToPriorityLevelConfigurationSpecPtrOutputWithContext(ctx context.Context) PriorityLevelConfigurationSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PriorityLevelConfigurationSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PriorityLevelConfigurationSpecOutput).ToPriorityLevelConfigurationSpecPtrOutput()
 }
 
 // PriorityLevelConfigurationSpec specifies the configuration of a priority level.
@@ -2212,7 +2212,7 @@ func (i PriorityLevelConfigurationStatusArgs) ToPriorityLevelConfigurationStatus
 }
 
 func (i PriorityLevelConfigurationStatusArgs) ToPriorityLevelConfigurationStatusPtrOutputWithContext(ctx context.Context) PriorityLevelConfigurationStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PriorityLevelConfigurationStatusOutput).ToPriorityLevelConfigurationStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PriorityLevelConfigurationStatusOutput).ToPriorityLevelConfigurationStatusPtrOutput()
 }
 
 // PriorityLevelConfigurationStatusPtrInput is an input type that accepts PriorityLevelConfigurationStatusArgs, PriorityLevelConfigurationStatusPtr and PriorityLevelConfigurationStatusPtrOutput values.
@@ -2245,7 +2245,7 @@ func (i *priorityLevelConfigurationStatusPtrType) ToPriorityLevelConfigurationSt
 }
 
 func (i *priorityLevelConfigurationStatusPtrType) ToPriorityLevelConfigurationStatusPtrOutputWithContext(ctx context.Context) PriorityLevelConfigurationStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PriorityLevelConfigurationStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PriorityLevelConfigurationStatusOutput).ToPriorityLevelConfigurationStatusPtrOutput()
 }
 
 // PriorityLevelConfigurationStatus represents the current state of a "request-priority".
@@ -2354,7 +2354,7 @@ func (i QueuingConfigurationArgs) ToQueuingConfigurationPtrOutput() QueuingConfi
 }
 
 func (i QueuingConfigurationArgs) ToQueuingConfigurationPtrOutputWithContext(ctx context.Context) QueuingConfigurationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(QueuingConfigurationOutput).ToQueuingConfigurationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(QueuingConfigurationOutput).ToQueuingConfigurationPtrOutput()
 }
 
 // QueuingConfigurationPtrInput is an input type that accepts QueuingConfigurationArgs, QueuingConfigurationPtr and QueuingConfigurationPtrOutput values.
@@ -2387,7 +2387,7 @@ func (i *queuingConfigurationPtrType) ToQueuingConfigurationPtrOutput() QueuingC
 }
 
 func (i *queuingConfigurationPtrType) ToQueuingConfigurationPtrOutputWithContext(ctx context.Context) QueuingConfigurationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(QueuingConfigurationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(QueuingConfigurationOutput).ToQueuingConfigurationPtrOutput()
 }
 
 // QueuingConfiguration holds the configuration parameters for queuing
@@ -2658,7 +2658,7 @@ func (i ServiceAccountSubjectArgs) ToServiceAccountSubjectPtrOutput() ServiceAcc
 }
 
 func (i ServiceAccountSubjectArgs) ToServiceAccountSubjectPtrOutputWithContext(ctx context.Context) ServiceAccountSubjectPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceAccountSubjectOutput).ToServiceAccountSubjectPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceAccountSubjectOutput).ToServiceAccountSubjectPtrOutput()
 }
 
 // ServiceAccountSubjectPtrInput is an input type that accepts ServiceAccountSubjectArgs, ServiceAccountSubjectPtr and ServiceAccountSubjectPtrOutput values.
@@ -2691,7 +2691,7 @@ func (i *serviceAccountSubjectPtrType) ToServiceAccountSubjectPtrOutput() Servic
 }
 
 func (i *serviceAccountSubjectPtrType) ToServiceAccountSubjectPtrOutputWithContext(ctx context.Context) ServiceAccountSubjectPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceAccountSubjectPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceAccountSubjectOutput).ToServiceAccountSubjectPtrOutput()
 }
 
 // ServiceAccountSubject holds detailed information for service-account-kind subject.
@@ -2925,7 +2925,7 @@ func (i UserSubjectArgs) ToUserSubjectPtrOutput() UserSubjectPtrOutput {
 }
 
 func (i UserSubjectArgs) ToUserSubjectPtrOutputWithContext(ctx context.Context) UserSubjectPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserSubjectOutput).ToUserSubjectPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(UserSubjectOutput).ToUserSubjectPtrOutput()
 }
 
 // UserSubjectPtrInput is an input type that accepts UserSubjectArgs, UserSubjectPtr and UserSubjectPtrOutput values.
@@ -2958,7 +2958,7 @@ func (i *userSubjectPtrType) ToUserSubjectPtrOutput() UserSubjectPtrOutput {
 }
 
 func (i *userSubjectPtrType) ToUserSubjectPtrOutputWithContext(ctx context.Context) UserSubjectPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserSubjectPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(UserSubjectOutput).ToUserSubjectPtrOutput()
 }
 
 // UserSubject holds detailed information for user-kind subject.

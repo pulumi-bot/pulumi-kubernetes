@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -114,16 +114,31 @@ type AuditSinkListInput interface {
 	ToAuditSinkListOutputWithContext(ctx context.Context) AuditSinkListOutput
 }
 
-func (AuditSinkList) ElementType() reflect.Type {
-	return reflect.TypeOf((*AuditSinkList)(nil)).Elem()
+func (*AuditSinkList) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuditSinkList)(nil))
 }
 
-func (i AuditSinkList) ToAuditSinkListOutput() AuditSinkListOutput {
+func (i *AuditSinkList) ToAuditSinkListOutput() AuditSinkListOutput {
 	return i.ToAuditSinkListOutputWithContext(context.Background())
 }
 
-func (i AuditSinkList) ToAuditSinkListOutputWithContext(ctx context.Context) AuditSinkListOutput {
+func (i *AuditSinkList) ToAuditSinkListOutputWithContext(ctx context.Context) AuditSinkListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuditSinkListOutput)
+}
+
+func (i *AuditSinkList) ToAuditSinkListPtrOutput() AuditSinkListPtrOutput {
+	return i.ToAuditSinkListPtrOutputWithContext(context.Background())
+}
+
+func (i *AuditSinkList) ToAuditSinkListPtrOutputWithContext(ctx context.Context) AuditSinkListPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuditSinkListPtrOutput)
+}
+
+type AuditSinkListPtrInput interface {
+	pulumi.Input
+
+	ToAuditSinkListPtrOutput() AuditSinkListPtrOutput
+	ToAuditSinkListPtrOutputWithContext(ctx context.Context) AuditSinkListPtrOutput
 }
 
 type AuditSinkListOutput struct {
@@ -131,7 +146,7 @@ type AuditSinkListOutput struct {
 }
 
 func (AuditSinkListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AuditSinkListOutput)(nil)).Elem()
+	return reflect.TypeOf((*AuditSinkList)(nil))
 }
 
 func (o AuditSinkListOutput) ToAuditSinkListOutput() AuditSinkListOutput {
@@ -142,6 +157,23 @@ func (o AuditSinkListOutput) ToAuditSinkListOutputWithContext(ctx context.Contex
 	return o
 }
 
+type AuditSinkListPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (AuditSinkListPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AuditSinkList)(nil))
+}
+
+func (o AuditSinkListPtrOutput) ToAuditSinkListPtrOutput() AuditSinkListPtrOutput {
+	return o
+}
+
+func (o AuditSinkListPtrOutput) ToAuditSinkListPtrOutputWithContext(ctx context.Context) AuditSinkListPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(AuditSinkListOutput{})
+	pulumi.RegisterOutputType(AuditSinkListPtrOutput{})
 }

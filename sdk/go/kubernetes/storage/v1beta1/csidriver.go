@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -125,16 +125,31 @@ type CSIDriverInput interface {
 	ToCSIDriverOutputWithContext(ctx context.Context) CSIDriverOutput
 }
 
-func (CSIDriver) ElementType() reflect.Type {
-	return reflect.TypeOf((*CSIDriver)(nil)).Elem()
+func (*CSIDriver) ElementType() reflect.Type {
+	return reflect.TypeOf((*CSIDriver)(nil))
 }
 
-func (i CSIDriver) ToCSIDriverOutput() CSIDriverOutput {
+func (i *CSIDriver) ToCSIDriverOutput() CSIDriverOutput {
 	return i.ToCSIDriverOutputWithContext(context.Background())
 }
 
-func (i CSIDriver) ToCSIDriverOutputWithContext(ctx context.Context) CSIDriverOutput {
+func (i *CSIDriver) ToCSIDriverOutputWithContext(ctx context.Context) CSIDriverOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CSIDriverOutput)
+}
+
+func (i *CSIDriver) ToCSIDriverPtrOutput() CSIDriverPtrOutput {
+	return i.ToCSIDriverPtrOutputWithContext(context.Background())
+}
+
+func (i *CSIDriver) ToCSIDriverPtrOutputWithContext(ctx context.Context) CSIDriverPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CSIDriverPtrOutput)
+}
+
+type CSIDriverPtrInput interface {
+	pulumi.Input
+
+	ToCSIDriverPtrOutput() CSIDriverPtrOutput
+	ToCSIDriverPtrOutputWithContext(ctx context.Context) CSIDriverPtrOutput
 }
 
 type CSIDriverOutput struct {
@@ -142,7 +157,7 @@ type CSIDriverOutput struct {
 }
 
 func (CSIDriverOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CSIDriverOutput)(nil)).Elem()
+	return reflect.TypeOf((*CSIDriver)(nil))
 }
 
 func (o CSIDriverOutput) ToCSIDriverOutput() CSIDriverOutput {
@@ -153,6 +168,23 @@ func (o CSIDriverOutput) ToCSIDriverOutputWithContext(ctx context.Context) CSIDr
 	return o
 }
 
+type CSIDriverPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (CSIDriverPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CSIDriver)(nil))
+}
+
+func (o CSIDriverPtrOutput) ToCSIDriverPtrOutput() CSIDriverPtrOutput {
+	return o
+}
+
+func (o CSIDriverPtrOutput) ToCSIDriverPtrOutputWithContext(ctx context.Context) CSIDriverPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(CSIDriverOutput{})
+	pulumi.RegisterOutputType(CSIDriverPtrOutput{})
 }

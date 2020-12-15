@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -128,16 +128,31 @@ type APIServiceInput interface {
 	ToAPIServiceOutputWithContext(ctx context.Context) APIServiceOutput
 }
 
-func (APIService) ElementType() reflect.Type {
-	return reflect.TypeOf((*APIService)(nil)).Elem()
+func (*APIService) ElementType() reflect.Type {
+	return reflect.TypeOf((*APIService)(nil))
 }
 
-func (i APIService) ToAPIServiceOutput() APIServiceOutput {
+func (i *APIService) ToAPIServiceOutput() APIServiceOutput {
 	return i.ToAPIServiceOutputWithContext(context.Background())
 }
 
-func (i APIService) ToAPIServiceOutputWithContext(ctx context.Context) APIServiceOutput {
+func (i *APIService) ToAPIServiceOutputWithContext(ctx context.Context) APIServiceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(APIServiceOutput)
+}
+
+func (i *APIService) ToAPIServicePtrOutput() APIServicePtrOutput {
+	return i.ToAPIServicePtrOutputWithContext(context.Background())
+}
+
+func (i *APIService) ToAPIServicePtrOutputWithContext(ctx context.Context) APIServicePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(APIServicePtrOutput)
+}
+
+type APIServicePtrInput interface {
+	pulumi.Input
+
+	ToAPIServicePtrOutput() APIServicePtrOutput
+	ToAPIServicePtrOutputWithContext(ctx context.Context) APIServicePtrOutput
 }
 
 type APIServiceOutput struct {
@@ -145,7 +160,7 @@ type APIServiceOutput struct {
 }
 
 func (APIServiceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*APIServiceOutput)(nil)).Elem()
+	return reflect.TypeOf((*APIService)(nil))
 }
 
 func (o APIServiceOutput) ToAPIServiceOutput() APIServiceOutput {
@@ -156,6 +171,23 @@ func (o APIServiceOutput) ToAPIServiceOutputWithContext(ctx context.Context) API
 	return o
 }
 
+type APIServicePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (APIServicePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**APIService)(nil))
+}
+
+func (o APIServicePtrOutput) ToAPIServicePtrOutput() APIServicePtrOutput {
+	return o
+}
+
+func (o APIServicePtrOutput) ToAPIServicePtrOutputWithContext(ctx context.Context) APIServicePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(APIServiceOutput{})
+	pulumi.RegisterOutputType(APIServicePtrOutput{})
 }

@@ -7,8 +7,8 @@ import (
 	"context"
 	"reflect"
 
-	corev1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/core/v1"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/core/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -52,7 +52,7 @@ func (i OverheadArgs) ToOverheadPtrOutput() OverheadPtrOutput {
 }
 
 func (i OverheadArgs) ToOverheadPtrOutputWithContext(ctx context.Context) OverheadPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(OverheadOutput).ToOverheadPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(OverheadOutput).ToOverheadPtrOutput()
 }
 
 // OverheadPtrInput is an input type that accepts OverheadArgs, OverheadPtr and OverheadPtrOutput values.
@@ -85,7 +85,7 @@ func (i *overheadPtrType) ToOverheadPtrOutput() OverheadPtrOutput {
 }
 
 func (i *overheadPtrType) ToOverheadPtrOutputWithContext(ctx context.Context) OverheadPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(OverheadPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(OverheadOutput).ToOverheadPtrOutput()
 }
 
 // Overhead structure represents the resource overhead associated with running a pod.
@@ -423,7 +423,7 @@ func (i SchedulingArgs) ToSchedulingPtrOutput() SchedulingPtrOutput {
 }
 
 func (i SchedulingArgs) ToSchedulingPtrOutputWithContext(ctx context.Context) SchedulingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SchedulingOutput).ToSchedulingPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SchedulingOutput).ToSchedulingPtrOutput()
 }
 
 // SchedulingPtrInput is an input type that accepts SchedulingArgs, SchedulingPtr and SchedulingPtrOutput values.
@@ -456,7 +456,7 @@ func (i *schedulingPtrType) ToSchedulingPtrOutput() SchedulingPtrOutput {
 }
 
 func (i *schedulingPtrType) ToSchedulingPtrOutputWithContext(ctx context.Context) SchedulingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SchedulingPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SchedulingOutput).ToSchedulingPtrOutput()
 }
 
 // Scheduling specifies the scheduling constraints for nodes supporting a RuntimeClass.

@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -742,7 +742,7 @@ func (i ServiceReferenceArgs) ToServiceReferencePtrOutput() ServiceReferencePtrO
 }
 
 func (i ServiceReferenceArgs) ToServiceReferencePtrOutputWithContext(ctx context.Context) ServiceReferencePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceReferenceOutput).ToServiceReferencePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceReferenceOutput).ToServiceReferencePtrOutput()
 }
 
 // ServiceReferencePtrInput is an input type that accepts ServiceReferenceArgs, ServiceReferencePtr and ServiceReferencePtrOutput values.
@@ -775,7 +775,7 @@ func (i *serviceReferencePtrType) ToServiceReferencePtrOutput() ServiceReference
 }
 
 func (i *serviceReferencePtrType) ToServiceReferencePtrOutputWithContext(ctx context.Context) ServiceReferencePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceReferencePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceReferenceOutput).ToServiceReferencePtrOutput()
 }
 
 // ServiceReference holds a reference to Service.legacy.k8s.io

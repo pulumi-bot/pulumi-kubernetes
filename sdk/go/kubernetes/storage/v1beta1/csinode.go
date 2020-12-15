@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -127,16 +127,31 @@ type CSINodeInput interface {
 	ToCSINodeOutputWithContext(ctx context.Context) CSINodeOutput
 }
 
-func (CSINode) ElementType() reflect.Type {
-	return reflect.TypeOf((*CSINode)(nil)).Elem()
+func (*CSINode) ElementType() reflect.Type {
+	return reflect.TypeOf((*CSINode)(nil))
 }
 
-func (i CSINode) ToCSINodeOutput() CSINodeOutput {
+func (i *CSINode) ToCSINodeOutput() CSINodeOutput {
 	return i.ToCSINodeOutputWithContext(context.Background())
 }
 
-func (i CSINode) ToCSINodeOutputWithContext(ctx context.Context) CSINodeOutput {
+func (i *CSINode) ToCSINodeOutputWithContext(ctx context.Context) CSINodeOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CSINodeOutput)
+}
+
+func (i *CSINode) ToCSINodePtrOutput() CSINodePtrOutput {
+	return i.ToCSINodePtrOutputWithContext(context.Background())
+}
+
+func (i *CSINode) ToCSINodePtrOutputWithContext(ctx context.Context) CSINodePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CSINodePtrOutput)
+}
+
+type CSINodePtrInput interface {
+	pulumi.Input
+
+	ToCSINodePtrOutput() CSINodePtrOutput
+	ToCSINodePtrOutputWithContext(ctx context.Context) CSINodePtrOutput
 }
 
 type CSINodeOutput struct {
@@ -144,7 +159,7 @@ type CSINodeOutput struct {
 }
 
 func (CSINodeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CSINodeOutput)(nil)).Elem()
+	return reflect.TypeOf((*CSINode)(nil))
 }
 
 func (o CSINodeOutput) ToCSINodeOutput() CSINodeOutput {
@@ -155,6 +170,23 @@ func (o CSINodeOutput) ToCSINodeOutputWithContext(ctx context.Context) CSINodeOu
 	return o
 }
 
+type CSINodePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (CSINodePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CSINode)(nil))
+}
+
+func (o CSINodePtrOutput) ToCSINodePtrOutput() CSINodePtrOutput {
+	return o
+}
+
+func (o CSINodePtrOutput) ToCSINodePtrOutputWithContext(ctx context.Context) CSINodePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(CSINodeOutput{})
+	pulumi.RegisterOutputType(CSINodePtrOutput{})
 }

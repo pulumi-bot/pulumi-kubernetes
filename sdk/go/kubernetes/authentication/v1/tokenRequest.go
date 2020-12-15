@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v2/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -112,16 +112,31 @@ type TokenRequestInput interface {
 	ToTokenRequestOutputWithContext(ctx context.Context) TokenRequestOutput
 }
 
-func (TokenRequest) ElementType() reflect.Type {
-	return reflect.TypeOf((*TokenRequest)(nil)).Elem()
+func (*TokenRequest) ElementType() reflect.Type {
+	return reflect.TypeOf((*TokenRequest)(nil))
 }
 
-func (i TokenRequest) ToTokenRequestOutput() TokenRequestOutput {
+func (i *TokenRequest) ToTokenRequestOutput() TokenRequestOutput {
 	return i.ToTokenRequestOutputWithContext(context.Background())
 }
 
-func (i TokenRequest) ToTokenRequestOutputWithContext(ctx context.Context) TokenRequestOutput {
+func (i *TokenRequest) ToTokenRequestOutputWithContext(ctx context.Context) TokenRequestOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TokenRequestOutput)
+}
+
+func (i *TokenRequest) ToTokenRequestPtrOutput() TokenRequestPtrOutput {
+	return i.ToTokenRequestPtrOutputWithContext(context.Background())
+}
+
+func (i *TokenRequest) ToTokenRequestPtrOutputWithContext(ctx context.Context) TokenRequestPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TokenRequestPtrOutput)
+}
+
+type TokenRequestPtrInput interface {
+	pulumi.Input
+
+	ToTokenRequestPtrOutput() TokenRequestPtrOutput
+	ToTokenRequestPtrOutputWithContext(ctx context.Context) TokenRequestPtrOutput
 }
 
 type TokenRequestOutput struct {
@@ -129,7 +144,7 @@ type TokenRequestOutput struct {
 }
 
 func (TokenRequestOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*TokenRequestOutput)(nil)).Elem()
+	return reflect.TypeOf((*TokenRequest)(nil))
 }
 
 func (o TokenRequestOutput) ToTokenRequestOutput() TokenRequestOutput {
@@ -140,6 +155,23 @@ func (o TokenRequestOutput) ToTokenRequestOutputWithContext(ctx context.Context)
 	return o
 }
 
+type TokenRequestPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (TokenRequestPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TokenRequest)(nil))
+}
+
+func (o TokenRequestPtrOutput) ToTokenRequestPtrOutput() TokenRequestPtrOutput {
+	return o
+}
+
+func (o TokenRequestPtrOutput) ToTokenRequestPtrOutputWithContext(ctx context.Context) TokenRequestPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(TokenRequestOutput{})
+	pulumi.RegisterOutputType(TokenRequestPtrOutput{})
 }
