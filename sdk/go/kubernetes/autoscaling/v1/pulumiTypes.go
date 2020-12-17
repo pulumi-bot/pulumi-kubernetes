@@ -59,7 +59,7 @@ func (i CrossVersionObjectReferenceArgs) ToCrossVersionObjectReferencePtrOutput(
 }
 
 func (i CrossVersionObjectReferenceArgs) ToCrossVersionObjectReferencePtrOutputWithContext(ctx context.Context) CrossVersionObjectReferencePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CrossVersionObjectReferenceOutput).ToCrossVersionObjectReferencePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(CrossVersionObjectReferenceOutput).ToCrossVersionObjectReferencePtrOutput()
 }
 
 // CrossVersionObjectReferencePtrInput is an input type that accepts CrossVersionObjectReferenceArgs, CrossVersionObjectReferencePtr and CrossVersionObjectReferencePtrOutput values.
@@ -92,7 +92,7 @@ func (i *crossVersionObjectReferencePtrType) ToCrossVersionObjectReferencePtrOut
 }
 
 func (i *crossVersionObjectReferencePtrType) ToCrossVersionObjectReferencePtrOutputWithContext(ctx context.Context) CrossVersionObjectReferencePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CrossVersionObjectReferencePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(CrossVersionObjectReferenceOutput).ToCrossVersionObjectReferencePtrOutput()
 }
 
 // CrossVersionObjectReference contains enough information to let you identify the referred resource.
@@ -453,7 +453,7 @@ func (i HorizontalPodAutoscalerSpecArgs) ToHorizontalPodAutoscalerSpecPtrOutput(
 }
 
 func (i HorizontalPodAutoscalerSpecArgs) ToHorizontalPodAutoscalerSpecPtrOutputWithContext(ctx context.Context) HorizontalPodAutoscalerSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HorizontalPodAutoscalerSpecOutput).ToHorizontalPodAutoscalerSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(HorizontalPodAutoscalerSpecOutput).ToHorizontalPodAutoscalerSpecPtrOutput()
 }
 
 // HorizontalPodAutoscalerSpecPtrInput is an input type that accepts HorizontalPodAutoscalerSpecArgs, HorizontalPodAutoscalerSpecPtr and HorizontalPodAutoscalerSpecPtrOutput values.
@@ -486,7 +486,7 @@ func (i *horizontalPodAutoscalerSpecPtrType) ToHorizontalPodAutoscalerSpecPtrOut
 }
 
 func (i *horizontalPodAutoscalerSpecPtrType) ToHorizontalPodAutoscalerSpecPtrOutputWithContext(ctx context.Context) HorizontalPodAutoscalerSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HorizontalPodAutoscalerSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(HorizontalPodAutoscalerSpecOutput).ToHorizontalPodAutoscalerSpecPtrOutput()
 }
 
 // specification of a horizontal pod autoscaler.
@@ -648,7 +648,7 @@ func (i HorizontalPodAutoscalerStatusArgs) ToHorizontalPodAutoscalerStatusPtrOut
 }
 
 func (i HorizontalPodAutoscalerStatusArgs) ToHorizontalPodAutoscalerStatusPtrOutputWithContext(ctx context.Context) HorizontalPodAutoscalerStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HorizontalPodAutoscalerStatusOutput).ToHorizontalPodAutoscalerStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(HorizontalPodAutoscalerStatusOutput).ToHorizontalPodAutoscalerStatusPtrOutput()
 }
 
 // HorizontalPodAutoscalerStatusPtrInput is an input type that accepts HorizontalPodAutoscalerStatusArgs, HorizontalPodAutoscalerStatusPtr and HorizontalPodAutoscalerStatusPtrOutput values.
@@ -681,7 +681,7 @@ func (i *horizontalPodAutoscalerStatusPtrType) ToHorizontalPodAutoscalerStatusPt
 }
 
 func (i *horizontalPodAutoscalerStatusPtrType) ToHorizontalPodAutoscalerStatusPtrOutputWithContext(ctx context.Context) HorizontalPodAutoscalerStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HorizontalPodAutoscalerStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(HorizontalPodAutoscalerStatusOutput).ToHorizontalPodAutoscalerStatusPtrOutput()
 }
 
 // current status of a horizontal pod autoscaler
@@ -933,7 +933,7 @@ func (i ScaleSpecArgs) ToScaleSpecPtrOutput() ScaleSpecPtrOutput {
 }
 
 func (i ScaleSpecArgs) ToScaleSpecPtrOutputWithContext(ctx context.Context) ScaleSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ScaleSpecOutput).ToScaleSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ScaleSpecOutput).ToScaleSpecPtrOutput()
 }
 
 // ScaleSpecPtrInput is an input type that accepts ScaleSpecArgs, ScaleSpecPtr and ScaleSpecPtrOutput values.
@@ -966,7 +966,7 @@ func (i *scaleSpecPtrType) ToScaleSpecPtrOutput() ScaleSpecPtrOutput {
 }
 
 func (i *scaleSpecPtrType) ToScaleSpecPtrOutputWithContext(ctx context.Context) ScaleSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ScaleSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ScaleSpecOutput).ToScaleSpecPtrOutput()
 }
 
 // ScaleSpec describes the attributes of a scale subresource.
@@ -1071,7 +1071,7 @@ func (i ScaleStatusArgs) ToScaleStatusPtrOutput() ScaleStatusPtrOutput {
 }
 
 func (i ScaleStatusArgs) ToScaleStatusPtrOutputWithContext(ctx context.Context) ScaleStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ScaleStatusOutput).ToScaleStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ScaleStatusOutput).ToScaleStatusPtrOutput()
 }
 
 // ScaleStatusPtrInput is an input type that accepts ScaleStatusArgs, ScaleStatusPtr and ScaleStatusPtrOutput values.
@@ -1104,7 +1104,7 @@ func (i *scaleStatusPtrType) ToScaleStatusPtrOutput() ScaleStatusPtrOutput {
 }
 
 func (i *scaleStatusPtrType) ToScaleStatusPtrOutputWithContext(ctx context.Context) ScaleStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ScaleStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ScaleStatusOutput).ToScaleStatusPtrOutput()
 }
 
 // ScaleStatus represents the current status of a scale subresource.

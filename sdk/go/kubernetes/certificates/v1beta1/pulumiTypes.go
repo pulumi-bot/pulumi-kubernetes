@@ -485,7 +485,7 @@ func (i CertificateSigningRequestSpecArgs) ToCertificateSigningRequestSpecPtrOut
 }
 
 func (i CertificateSigningRequestSpecArgs) ToCertificateSigningRequestSpecPtrOutputWithContext(ctx context.Context) CertificateSigningRequestSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CertificateSigningRequestSpecOutput).ToCertificateSigningRequestSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(CertificateSigningRequestSpecOutput).ToCertificateSigningRequestSpecPtrOutput()
 }
 
 // CertificateSigningRequestSpecPtrInput is an input type that accepts CertificateSigningRequestSpecArgs, CertificateSigningRequestSpecPtr and CertificateSigningRequestSpecPtrOutput values.
@@ -518,7 +518,7 @@ func (i *certificateSigningRequestSpecPtrType) ToCertificateSigningRequestSpecPt
 }
 
 func (i *certificateSigningRequestSpecPtrType) ToCertificateSigningRequestSpecPtrOutputWithContext(ctx context.Context) CertificateSigningRequestSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CertificateSigningRequestSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(CertificateSigningRequestSpecOutput).ToCertificateSigningRequestSpecPtrOutput()
 }
 
 // This information is immutable after the request is created. Only the Request and Usages fields can be set on creation, other fields are derived by Kubernetes and cannot be modified by users.
@@ -773,7 +773,7 @@ func (i CertificateSigningRequestStatusArgs) ToCertificateSigningRequestStatusPt
 }
 
 func (i CertificateSigningRequestStatusArgs) ToCertificateSigningRequestStatusPtrOutputWithContext(ctx context.Context) CertificateSigningRequestStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CertificateSigningRequestStatusOutput).ToCertificateSigningRequestStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(CertificateSigningRequestStatusOutput).ToCertificateSigningRequestStatusPtrOutput()
 }
 
 // CertificateSigningRequestStatusPtrInput is an input type that accepts CertificateSigningRequestStatusArgs, CertificateSigningRequestStatusPtr and CertificateSigningRequestStatusPtrOutput values.
@@ -806,7 +806,7 @@ func (i *certificateSigningRequestStatusPtrType) ToCertificateSigningRequestStat
 }
 
 func (i *certificateSigningRequestStatusPtrType) ToCertificateSigningRequestStatusPtrOutputWithContext(ctx context.Context) CertificateSigningRequestStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CertificateSigningRequestStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(CertificateSigningRequestStatusOutput).ToCertificateSigningRequestStatusPtrOutput()
 }
 
 type CertificateSigningRequestStatusOutput struct{ *pulumi.OutputState }
