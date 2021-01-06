@@ -143,7 +143,7 @@ func (i TokenReviewSpecArgs) ToTokenReviewSpecPtrOutput() TokenReviewSpecPtrOutp
 }
 
 func (i TokenReviewSpecArgs) ToTokenReviewSpecPtrOutputWithContext(ctx context.Context) TokenReviewSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TokenReviewSpecOutput).ToTokenReviewSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TokenReviewSpecOutput).ToTokenReviewSpecPtrOutput()
 }
 
 // TokenReviewSpecPtrInput is an input type that accepts TokenReviewSpecArgs, TokenReviewSpecPtr and TokenReviewSpecPtrOutput values.
@@ -176,7 +176,7 @@ func (i *tokenReviewSpecPtrType) ToTokenReviewSpecPtrOutput() TokenReviewSpecPtr
 }
 
 func (i *tokenReviewSpecPtrType) ToTokenReviewSpecPtrOutputWithContext(ctx context.Context) TokenReviewSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TokenReviewSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TokenReviewSpecOutput).ToTokenReviewSpecPtrOutput()
 }
 
 // TokenReviewSpec is a description of the token authentication request.
@@ -304,7 +304,7 @@ func (i TokenReviewStatusArgs) ToTokenReviewStatusPtrOutput() TokenReviewStatusP
 }
 
 func (i TokenReviewStatusArgs) ToTokenReviewStatusPtrOutputWithContext(ctx context.Context) TokenReviewStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TokenReviewStatusOutput).ToTokenReviewStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TokenReviewStatusOutput).ToTokenReviewStatusPtrOutput()
 }
 
 // TokenReviewStatusPtrInput is an input type that accepts TokenReviewStatusArgs, TokenReviewStatusPtr and TokenReviewStatusPtrOutput values.
@@ -337,7 +337,7 @@ func (i *tokenReviewStatusPtrType) ToTokenReviewStatusPtrOutput() TokenReviewSta
 }
 
 func (i *tokenReviewStatusPtrType) ToTokenReviewStatusPtrOutputWithContext(ctx context.Context) TokenReviewStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TokenReviewStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TokenReviewStatusOutput).ToTokenReviewStatusPtrOutput()
 }
 
 // TokenReviewStatus is the result of the token authentication request.
@@ -495,7 +495,7 @@ func (i UserInfoArgs) ToUserInfoPtrOutput() UserInfoPtrOutput {
 }
 
 func (i UserInfoArgs) ToUserInfoPtrOutputWithContext(ctx context.Context) UserInfoPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserInfoOutput).ToUserInfoPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(UserInfoOutput).ToUserInfoPtrOutput()
 }
 
 // UserInfoPtrInput is an input type that accepts UserInfoArgs, UserInfoPtr and UserInfoPtrOutput values.
@@ -528,7 +528,7 @@ func (i *userInfoPtrType) ToUserInfoPtrOutput() UserInfoPtrOutput {
 }
 
 func (i *userInfoPtrType) ToUserInfoPtrOutputWithContext(ctx context.Context) UserInfoPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserInfoPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(UserInfoOutput).ToUserInfoPtrOutput()
 }
 
 // UserInfo holds the information about the user needed to implement the user.Info interface.

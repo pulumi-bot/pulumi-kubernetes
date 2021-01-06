@@ -143,7 +143,7 @@ func (i NonResourceAttributesArgs) ToNonResourceAttributesPtrOutput() NonResourc
 }
 
 func (i NonResourceAttributesArgs) ToNonResourceAttributesPtrOutputWithContext(ctx context.Context) NonResourceAttributesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NonResourceAttributesOutput).ToNonResourceAttributesPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(NonResourceAttributesOutput).ToNonResourceAttributesPtrOutput()
 }
 
 // NonResourceAttributesPtrInput is an input type that accepts NonResourceAttributesArgs, NonResourceAttributesPtr and NonResourceAttributesPtrOutput values.
@@ -176,7 +176,7 @@ func (i *nonResourceAttributesPtrType) ToNonResourceAttributesPtrOutput() NonRes
 }
 
 func (i *nonResourceAttributesPtrType) ToNonResourceAttributesPtrOutputWithContext(ctx context.Context) NonResourceAttributesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NonResourceAttributesPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(NonResourceAttributesOutput).ToNonResourceAttributesPtrOutput()
 }
 
 // NonResourceAttributes includes the authorization attributes available for non-resource requests to the Authorizer interface
@@ -425,7 +425,7 @@ func (i ResourceAttributesArgs) ToResourceAttributesPtrOutput() ResourceAttribut
 }
 
 func (i ResourceAttributesArgs) ToResourceAttributesPtrOutputWithContext(ctx context.Context) ResourceAttributesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourceAttributesOutput).ToResourceAttributesPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ResourceAttributesOutput).ToResourceAttributesPtrOutput()
 }
 
 // ResourceAttributesPtrInput is an input type that accepts ResourceAttributesArgs, ResourceAttributesPtr and ResourceAttributesPtrOutput values.
@@ -458,7 +458,7 @@ func (i *resourceAttributesPtrType) ToResourceAttributesPtrOutput() ResourceAttr
 }
 
 func (i *resourceAttributesPtrType) ToResourceAttributesPtrOutputWithContext(ctx context.Context) ResourceAttributesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourceAttributesPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ResourceAttributesOutput).ToResourceAttributesPtrOutput()
 }
 
 // ResourceAttributes includes the authorization attributes available for resource requests to the Authorizer interface
@@ -871,7 +871,7 @@ func (i SelfSubjectAccessReviewSpecArgs) ToSelfSubjectAccessReviewSpecPtrOutput(
 }
 
 func (i SelfSubjectAccessReviewSpecArgs) ToSelfSubjectAccessReviewSpecPtrOutputWithContext(ctx context.Context) SelfSubjectAccessReviewSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SelfSubjectAccessReviewSpecOutput).ToSelfSubjectAccessReviewSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SelfSubjectAccessReviewSpecOutput).ToSelfSubjectAccessReviewSpecPtrOutput()
 }
 
 // SelfSubjectAccessReviewSpecPtrInput is an input type that accepts SelfSubjectAccessReviewSpecArgs, SelfSubjectAccessReviewSpecPtr and SelfSubjectAccessReviewSpecPtrOutput values.
@@ -904,7 +904,7 @@ func (i *selfSubjectAccessReviewSpecPtrType) ToSelfSubjectAccessReviewSpecPtrOut
 }
 
 func (i *selfSubjectAccessReviewSpecPtrType) ToSelfSubjectAccessReviewSpecPtrOutputWithContext(ctx context.Context) SelfSubjectAccessReviewSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SelfSubjectAccessReviewSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SelfSubjectAccessReviewSpecOutput).ToSelfSubjectAccessReviewSpecPtrOutput()
 }
 
 // SelfSubjectAccessReviewSpec is a description of the access request.  Exactly one of ResourceAuthorizationAttributes and NonResourceAuthorizationAttributes must be set
@@ -1106,7 +1106,7 @@ func (i SelfSubjectRulesReviewSpecArgs) ToSelfSubjectRulesReviewSpecPtrOutput() 
 }
 
 func (i SelfSubjectRulesReviewSpecArgs) ToSelfSubjectRulesReviewSpecPtrOutputWithContext(ctx context.Context) SelfSubjectRulesReviewSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SelfSubjectRulesReviewSpecOutput).ToSelfSubjectRulesReviewSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SelfSubjectRulesReviewSpecOutput).ToSelfSubjectRulesReviewSpecPtrOutput()
 }
 
 // SelfSubjectRulesReviewSpecPtrInput is an input type that accepts SelfSubjectRulesReviewSpecArgs, SelfSubjectRulesReviewSpecPtr and SelfSubjectRulesReviewSpecPtrOutput values.
@@ -1139,7 +1139,7 @@ func (i *selfSubjectRulesReviewSpecPtrType) ToSelfSubjectRulesReviewSpecPtrOutpu
 }
 
 func (i *selfSubjectRulesReviewSpecPtrType) ToSelfSubjectRulesReviewSpecPtrOutputWithContext(ctx context.Context) SelfSubjectRulesReviewSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SelfSubjectRulesReviewSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SelfSubjectRulesReviewSpecOutput).ToSelfSubjectRulesReviewSpecPtrOutput()
 }
 
 type SelfSubjectRulesReviewSpecOutput struct{ *pulumi.OutputState }
@@ -1347,7 +1347,7 @@ func (i SubjectAccessReviewSpecArgs) ToSubjectAccessReviewSpecPtrOutput() Subjec
 }
 
 func (i SubjectAccessReviewSpecArgs) ToSubjectAccessReviewSpecPtrOutputWithContext(ctx context.Context) SubjectAccessReviewSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SubjectAccessReviewSpecOutput).ToSubjectAccessReviewSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SubjectAccessReviewSpecOutput).ToSubjectAccessReviewSpecPtrOutput()
 }
 
 // SubjectAccessReviewSpecPtrInput is an input type that accepts SubjectAccessReviewSpecArgs, SubjectAccessReviewSpecPtr and SubjectAccessReviewSpecPtrOutput values.
@@ -1380,7 +1380,7 @@ func (i *subjectAccessReviewSpecPtrType) ToSubjectAccessReviewSpecPtrOutput() Su
 }
 
 func (i *subjectAccessReviewSpecPtrType) ToSubjectAccessReviewSpecPtrOutputWithContext(ctx context.Context) SubjectAccessReviewSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SubjectAccessReviewSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SubjectAccessReviewSpecOutput).ToSubjectAccessReviewSpecPtrOutput()
 }
 
 // SubjectAccessReviewSpec is a description of the access request.  Exactly one of ResourceAuthorizationAttributes and NonResourceAuthorizationAttributes must be set
@@ -1568,7 +1568,7 @@ func (i SubjectAccessReviewStatusArgs) ToSubjectAccessReviewStatusPtrOutput() Su
 }
 
 func (i SubjectAccessReviewStatusArgs) ToSubjectAccessReviewStatusPtrOutputWithContext(ctx context.Context) SubjectAccessReviewStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SubjectAccessReviewStatusOutput).ToSubjectAccessReviewStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SubjectAccessReviewStatusOutput).ToSubjectAccessReviewStatusPtrOutput()
 }
 
 // SubjectAccessReviewStatusPtrInput is an input type that accepts SubjectAccessReviewStatusArgs, SubjectAccessReviewStatusPtr and SubjectAccessReviewStatusPtrOutput values.
@@ -1601,7 +1601,7 @@ func (i *subjectAccessReviewStatusPtrType) ToSubjectAccessReviewStatusPtrOutput(
 }
 
 func (i *subjectAccessReviewStatusPtrType) ToSubjectAccessReviewStatusPtrOutputWithContext(ctx context.Context) SubjectAccessReviewStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SubjectAccessReviewStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SubjectAccessReviewStatusOutput).ToSubjectAccessReviewStatusPtrOutput()
 }
 
 // SubjectAccessReviewStatus
@@ -1759,7 +1759,7 @@ func (i SubjectRulesReviewStatusArgs) ToSubjectRulesReviewStatusPtrOutput() Subj
 }
 
 func (i SubjectRulesReviewStatusArgs) ToSubjectRulesReviewStatusPtrOutputWithContext(ctx context.Context) SubjectRulesReviewStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SubjectRulesReviewStatusOutput).ToSubjectRulesReviewStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SubjectRulesReviewStatusOutput).ToSubjectRulesReviewStatusPtrOutput()
 }
 
 // SubjectRulesReviewStatusPtrInput is an input type that accepts SubjectRulesReviewStatusArgs, SubjectRulesReviewStatusPtr and SubjectRulesReviewStatusPtrOutput values.
@@ -1792,7 +1792,7 @@ func (i *subjectRulesReviewStatusPtrType) ToSubjectRulesReviewStatusPtrOutput() 
 }
 
 func (i *subjectRulesReviewStatusPtrType) ToSubjectRulesReviewStatusPtrOutputWithContext(ctx context.Context) SubjectRulesReviewStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SubjectRulesReviewStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SubjectRulesReviewStatusOutput).ToSubjectRulesReviewStatusPtrOutput()
 }
 
 // SubjectRulesReviewStatus contains the result of a rules check. This check can be incomplete depending on the set of authorizers the server is configured with and any errors experienced during evaluation. Because authorization rules are additive, if a rule appears in a list it's safe to assume the subject has that permission, even if that list is incomplete.

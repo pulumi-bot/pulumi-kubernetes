@@ -51,7 +51,7 @@ func (i AggregationRuleArgs) ToAggregationRulePtrOutput() AggregationRulePtrOutp
 }
 
 func (i AggregationRuleArgs) ToAggregationRulePtrOutputWithContext(ctx context.Context) AggregationRulePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AggregationRuleOutput).ToAggregationRulePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AggregationRuleOutput).ToAggregationRulePtrOutput()
 }
 
 // AggregationRulePtrInput is an input type that accepts AggregationRuleArgs, AggregationRulePtr and AggregationRulePtrOutput values.
@@ -84,7 +84,7 @@ func (i *aggregationRulePtrType) ToAggregationRulePtrOutput() AggregationRulePtr
 }
 
 func (i *aggregationRulePtrType) ToAggregationRulePtrOutputWithContext(ctx context.Context) AggregationRulePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AggregationRulePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AggregationRuleOutput).ToAggregationRulePtrOutput()
 }
 
 // AggregationRule describes how to locate ClusterRoles to aggregate into the ClusterRole
@@ -1192,7 +1192,7 @@ func (i RoleRefArgs) ToRoleRefPtrOutput() RoleRefPtrOutput {
 }
 
 func (i RoleRefArgs) ToRoleRefPtrOutputWithContext(ctx context.Context) RoleRefPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RoleRefOutput).ToRoleRefPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RoleRefOutput).ToRoleRefPtrOutput()
 }
 
 // RoleRefPtrInput is an input type that accepts RoleRefArgs, RoleRefPtr and RoleRefPtrOutput values.
@@ -1225,7 +1225,7 @@ func (i *roleRefPtrType) ToRoleRefPtrOutput() RoleRefPtrOutput {
 }
 
 func (i *roleRefPtrType) ToRoleRefPtrOutputWithContext(ctx context.Context) RoleRefPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RoleRefPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RoleRefOutput).ToRoleRefPtrOutput()
 }
 
 // RoleRef contains information that points to the role being used
