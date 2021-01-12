@@ -52,7 +52,7 @@ func (i OverheadArgs) ToOverheadPtrOutput() OverheadPtrOutput {
 }
 
 func (i OverheadArgs) ToOverheadPtrOutputWithContext(ctx context.Context) OverheadPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(OverheadOutput).ToOverheadPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(OverheadOutput).ToOverheadPtrOutput()
 }
 
 // OverheadPtrInput is an input type that accepts OverheadArgs, OverheadPtr and OverheadPtrOutput values.
@@ -85,7 +85,7 @@ func (i *overheadPtrType) ToOverheadPtrOutput() OverheadPtrOutput {
 }
 
 func (i *overheadPtrType) ToOverheadPtrOutputWithContext(ctx context.Context) OverheadPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(OverheadPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(OverheadOutput).ToOverheadPtrOutput()
 }
 
 // Overhead structure represents the resource overhead associated with running a pod.
@@ -403,7 +403,7 @@ func (i RuntimeClassSpecArgs) ToRuntimeClassSpecPtrOutput() RuntimeClassSpecPtrO
 }
 
 func (i RuntimeClassSpecArgs) ToRuntimeClassSpecPtrOutputWithContext(ctx context.Context) RuntimeClassSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RuntimeClassSpecOutput).ToRuntimeClassSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RuntimeClassSpecOutput).ToRuntimeClassSpecPtrOutput()
 }
 
 // RuntimeClassSpecPtrInput is an input type that accepts RuntimeClassSpecArgs, RuntimeClassSpecPtr and RuntimeClassSpecPtrOutput values.
@@ -436,7 +436,7 @@ func (i *runtimeClassSpecPtrType) ToRuntimeClassSpecPtrOutput() RuntimeClassSpec
 }
 
 func (i *runtimeClassSpecPtrType) ToRuntimeClassSpecPtrOutputWithContext(ctx context.Context) RuntimeClassSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RuntimeClassSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RuntimeClassSpecOutput).ToRuntimeClassSpecPtrOutput()
 }
 
 // RuntimeClassSpec is a specification of a RuntimeClass. It contains parameters that are required to describe the RuntimeClass to the Container Runtime Interface (CRI) implementation, as well as any other components that need to understand how the pod will be run. The RuntimeClassSpec is immutable.
@@ -571,7 +571,7 @@ func (i SchedulingArgs) ToSchedulingPtrOutput() SchedulingPtrOutput {
 }
 
 func (i SchedulingArgs) ToSchedulingPtrOutputWithContext(ctx context.Context) SchedulingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SchedulingOutput).ToSchedulingPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SchedulingOutput).ToSchedulingPtrOutput()
 }
 
 // SchedulingPtrInput is an input type that accepts SchedulingArgs, SchedulingPtr and SchedulingPtrOutput values.
@@ -604,7 +604,7 @@ func (i *schedulingPtrType) ToSchedulingPtrOutput() SchedulingPtrOutput {
 }
 
 func (i *schedulingPtrType) ToSchedulingPtrOutputWithContext(ctx context.Context) SchedulingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SchedulingPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SchedulingOutput).ToSchedulingPtrOutput()
 }
 
 // Scheduling specifies the scheduling constraints for nodes supporting a RuntimeClass.

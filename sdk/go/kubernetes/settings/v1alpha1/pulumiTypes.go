@@ -271,7 +271,7 @@ func (i PodPresetSpecArgs) ToPodPresetSpecPtrOutput() PodPresetSpecPtrOutput {
 }
 
 func (i PodPresetSpecArgs) ToPodPresetSpecPtrOutputWithContext(ctx context.Context) PodPresetSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PodPresetSpecOutput).ToPodPresetSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PodPresetSpecOutput).ToPodPresetSpecPtrOutput()
 }
 
 // PodPresetSpecPtrInput is an input type that accepts PodPresetSpecArgs, PodPresetSpecPtr and PodPresetSpecPtrOutput values.
@@ -304,7 +304,7 @@ func (i *podPresetSpecPtrType) ToPodPresetSpecPtrOutput() PodPresetSpecPtrOutput
 }
 
 func (i *podPresetSpecPtrType) ToPodPresetSpecPtrOutputWithContext(ctx context.Context) PodPresetSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PodPresetSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PodPresetSpecOutput).ToPodPresetSpecPtrOutput()
 }
 
 // PodPresetSpec is a description of a pod preset.

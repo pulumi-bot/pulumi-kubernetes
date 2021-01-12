@@ -453,7 +453,7 @@ func (i FSGroupStrategyOptionsArgs) ToFSGroupStrategyOptionsPtrOutput() FSGroupS
 }
 
 func (i FSGroupStrategyOptionsArgs) ToFSGroupStrategyOptionsPtrOutputWithContext(ctx context.Context) FSGroupStrategyOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FSGroupStrategyOptionsOutput).ToFSGroupStrategyOptionsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FSGroupStrategyOptionsOutput).ToFSGroupStrategyOptionsPtrOutput()
 }
 
 // FSGroupStrategyOptionsPtrInput is an input type that accepts FSGroupStrategyOptionsArgs, FSGroupStrategyOptionsPtr and FSGroupStrategyOptionsPtrOutput values.
@@ -486,7 +486,7 @@ func (i *fsgroupStrategyOptionsPtrType) ToFSGroupStrategyOptionsPtrOutput() FSGr
 }
 
 func (i *fsgroupStrategyOptionsPtrType) ToFSGroupStrategyOptionsPtrOutputWithContext(ctx context.Context) FSGroupStrategyOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FSGroupStrategyOptionsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FSGroupStrategyOptionsOutput).ToFSGroupStrategyOptionsPtrOutput()
 }
 
 // FSGroupStrategyOptions defines the strategy type and options used to create the strategy.
@@ -1037,7 +1037,7 @@ func (i PodDisruptionBudgetSpecArgs) ToPodDisruptionBudgetSpecPtrOutput() PodDis
 }
 
 func (i PodDisruptionBudgetSpecArgs) ToPodDisruptionBudgetSpecPtrOutputWithContext(ctx context.Context) PodDisruptionBudgetSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PodDisruptionBudgetSpecOutput).ToPodDisruptionBudgetSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PodDisruptionBudgetSpecOutput).ToPodDisruptionBudgetSpecPtrOutput()
 }
 
 // PodDisruptionBudgetSpecPtrInput is an input type that accepts PodDisruptionBudgetSpecArgs, PodDisruptionBudgetSpecPtr and PodDisruptionBudgetSpecPtrOutput values.
@@ -1070,7 +1070,7 @@ func (i *podDisruptionBudgetSpecPtrType) ToPodDisruptionBudgetSpecPtrOutput() Po
 }
 
 func (i *podDisruptionBudgetSpecPtrType) ToPodDisruptionBudgetSpecPtrOutputWithContext(ctx context.Context) PodDisruptionBudgetSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PodDisruptionBudgetSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PodDisruptionBudgetSpecOutput).ToPodDisruptionBudgetSpecPtrOutput()
 }
 
 // PodDisruptionBudgetSpec is a description of a PodDisruptionBudget.
@@ -1221,7 +1221,7 @@ func (i PodDisruptionBudgetStatusArgs) ToPodDisruptionBudgetStatusPtrOutput() Po
 }
 
 func (i PodDisruptionBudgetStatusArgs) ToPodDisruptionBudgetStatusPtrOutputWithContext(ctx context.Context) PodDisruptionBudgetStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PodDisruptionBudgetStatusOutput).ToPodDisruptionBudgetStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PodDisruptionBudgetStatusOutput).ToPodDisruptionBudgetStatusPtrOutput()
 }
 
 // PodDisruptionBudgetStatusPtrInput is an input type that accepts PodDisruptionBudgetStatusArgs, PodDisruptionBudgetStatusPtr and PodDisruptionBudgetStatusPtrOutput values.
@@ -1254,7 +1254,7 @@ func (i *podDisruptionBudgetStatusPtrType) ToPodDisruptionBudgetStatusPtrOutput(
 }
 
 func (i *podDisruptionBudgetStatusPtrType) ToPodDisruptionBudgetStatusPtrOutputWithContext(ctx context.Context) PodDisruptionBudgetStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PodDisruptionBudgetStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PodDisruptionBudgetStatusOutput).ToPodDisruptionBudgetStatusPtrOutput()
 }
 
 // PodDisruptionBudgetStatus represents information about the status of a PodDisruptionBudget. Status may trail the actual state of a system.
@@ -1739,7 +1739,7 @@ func (i PodSecurityPolicySpecArgs) ToPodSecurityPolicySpecPtrOutput() PodSecurit
 }
 
 func (i PodSecurityPolicySpecArgs) ToPodSecurityPolicySpecPtrOutputWithContext(ctx context.Context) PodSecurityPolicySpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PodSecurityPolicySpecOutput).ToPodSecurityPolicySpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PodSecurityPolicySpecOutput).ToPodSecurityPolicySpecPtrOutput()
 }
 
 // PodSecurityPolicySpecPtrInput is an input type that accepts PodSecurityPolicySpecArgs, PodSecurityPolicySpecPtr and PodSecurityPolicySpecPtrOutput values.
@@ -1772,7 +1772,7 @@ func (i *podSecurityPolicySpecPtrType) ToPodSecurityPolicySpecPtrOutput() PodSec
 }
 
 func (i *podSecurityPolicySpecPtrType) ToPodSecurityPolicySpecPtrOutputWithContext(ctx context.Context) PodSecurityPolicySpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PodSecurityPolicySpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PodSecurityPolicySpecOutput).ToPodSecurityPolicySpecPtrOutput()
 }
 
 // PodSecurityPolicySpec defines the policy enforced.
@@ -2230,7 +2230,7 @@ func (i RunAsGroupStrategyOptionsArgs) ToRunAsGroupStrategyOptionsPtrOutput() Ru
 }
 
 func (i RunAsGroupStrategyOptionsArgs) ToRunAsGroupStrategyOptionsPtrOutputWithContext(ctx context.Context) RunAsGroupStrategyOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RunAsGroupStrategyOptionsOutput).ToRunAsGroupStrategyOptionsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RunAsGroupStrategyOptionsOutput).ToRunAsGroupStrategyOptionsPtrOutput()
 }
 
 // RunAsGroupStrategyOptionsPtrInput is an input type that accepts RunAsGroupStrategyOptionsArgs, RunAsGroupStrategyOptionsPtr and RunAsGroupStrategyOptionsPtrOutput values.
@@ -2263,7 +2263,7 @@ func (i *runAsGroupStrategyOptionsPtrType) ToRunAsGroupStrategyOptionsPtrOutput(
 }
 
 func (i *runAsGroupStrategyOptionsPtrType) ToRunAsGroupStrategyOptionsPtrOutputWithContext(ctx context.Context) RunAsGroupStrategyOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RunAsGroupStrategyOptionsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RunAsGroupStrategyOptionsOutput).ToRunAsGroupStrategyOptionsPtrOutput()
 }
 
 // RunAsGroupStrategyOptions defines the strategy type and any options used to create the strategy.
@@ -2383,7 +2383,7 @@ func (i RunAsUserStrategyOptionsArgs) ToRunAsUserStrategyOptionsPtrOutput() RunA
 }
 
 func (i RunAsUserStrategyOptionsArgs) ToRunAsUserStrategyOptionsPtrOutputWithContext(ctx context.Context) RunAsUserStrategyOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RunAsUserStrategyOptionsOutput).ToRunAsUserStrategyOptionsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RunAsUserStrategyOptionsOutput).ToRunAsUserStrategyOptionsPtrOutput()
 }
 
 // RunAsUserStrategyOptionsPtrInput is an input type that accepts RunAsUserStrategyOptionsArgs, RunAsUserStrategyOptionsPtr and RunAsUserStrategyOptionsPtrOutput values.
@@ -2416,7 +2416,7 @@ func (i *runAsUserStrategyOptionsPtrType) ToRunAsUserStrategyOptionsPtrOutput() 
 }
 
 func (i *runAsUserStrategyOptionsPtrType) ToRunAsUserStrategyOptionsPtrOutputWithContext(ctx context.Context) RunAsUserStrategyOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RunAsUserStrategyOptionsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RunAsUserStrategyOptionsOutput).ToRunAsUserStrategyOptionsPtrOutput()
 }
 
 // RunAsUserStrategyOptions defines the strategy type and any options used to create the strategy.
@@ -2536,7 +2536,7 @@ func (i RuntimeClassStrategyOptionsArgs) ToRuntimeClassStrategyOptionsPtrOutput(
 }
 
 func (i RuntimeClassStrategyOptionsArgs) ToRuntimeClassStrategyOptionsPtrOutputWithContext(ctx context.Context) RuntimeClassStrategyOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RuntimeClassStrategyOptionsOutput).ToRuntimeClassStrategyOptionsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RuntimeClassStrategyOptionsOutput).ToRuntimeClassStrategyOptionsPtrOutput()
 }
 
 // RuntimeClassStrategyOptionsPtrInput is an input type that accepts RuntimeClassStrategyOptionsArgs, RuntimeClassStrategyOptionsPtr and RuntimeClassStrategyOptionsPtrOutput values.
@@ -2569,7 +2569,7 @@ func (i *runtimeClassStrategyOptionsPtrType) ToRuntimeClassStrategyOptionsPtrOut
 }
 
 func (i *runtimeClassStrategyOptionsPtrType) ToRuntimeClassStrategyOptionsPtrOutputWithContext(ctx context.Context) RuntimeClassStrategyOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RuntimeClassStrategyOptionsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RuntimeClassStrategyOptionsOutput).ToRuntimeClassStrategyOptionsPtrOutput()
 }
 
 // RuntimeClassStrategyOptions define the strategy that will dictate the allowable RuntimeClasses for a pod.
@@ -2689,7 +2689,7 @@ func (i SELinuxStrategyOptionsArgs) ToSELinuxStrategyOptionsPtrOutput() SELinuxS
 }
 
 func (i SELinuxStrategyOptionsArgs) ToSELinuxStrategyOptionsPtrOutputWithContext(ctx context.Context) SELinuxStrategyOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SELinuxStrategyOptionsOutput).ToSELinuxStrategyOptionsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SELinuxStrategyOptionsOutput).ToSELinuxStrategyOptionsPtrOutput()
 }
 
 // SELinuxStrategyOptionsPtrInput is an input type that accepts SELinuxStrategyOptionsArgs, SELinuxStrategyOptionsPtr and SELinuxStrategyOptionsPtrOutput values.
@@ -2722,7 +2722,7 @@ func (i *selinuxStrategyOptionsPtrType) ToSELinuxStrategyOptionsPtrOutput() SELi
 }
 
 func (i *selinuxStrategyOptionsPtrType) ToSELinuxStrategyOptionsPtrOutputWithContext(ctx context.Context) SELinuxStrategyOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SELinuxStrategyOptionsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SELinuxStrategyOptionsOutput).ToSELinuxStrategyOptionsPtrOutput()
 }
 
 // SELinuxStrategyOptions defines the strategy type and any options used to create the strategy.
@@ -2842,7 +2842,7 @@ func (i SupplementalGroupsStrategyOptionsArgs) ToSupplementalGroupsStrategyOptio
 }
 
 func (i SupplementalGroupsStrategyOptionsArgs) ToSupplementalGroupsStrategyOptionsPtrOutputWithContext(ctx context.Context) SupplementalGroupsStrategyOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SupplementalGroupsStrategyOptionsOutput).ToSupplementalGroupsStrategyOptionsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SupplementalGroupsStrategyOptionsOutput).ToSupplementalGroupsStrategyOptionsPtrOutput()
 }
 
 // SupplementalGroupsStrategyOptionsPtrInput is an input type that accepts SupplementalGroupsStrategyOptionsArgs, SupplementalGroupsStrategyOptionsPtr and SupplementalGroupsStrategyOptionsPtrOutput values.
@@ -2875,7 +2875,7 @@ func (i *supplementalGroupsStrategyOptionsPtrType) ToSupplementalGroupsStrategyO
 }
 
 func (i *supplementalGroupsStrategyOptionsPtrType) ToSupplementalGroupsStrategyOptionsPtrOutputWithContext(ctx context.Context) SupplementalGroupsStrategyOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SupplementalGroupsStrategyOptionsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SupplementalGroupsStrategyOptionsOutput).ToSupplementalGroupsStrategyOptionsPtrOutput()
 }
 
 // SupplementalGroupsStrategyOptions defines the strategy type and options used to create the strategy.

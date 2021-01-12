@@ -276,7 +276,7 @@ func (i LeaseSpecArgs) ToLeaseSpecPtrOutput() LeaseSpecPtrOutput {
 }
 
 func (i LeaseSpecArgs) ToLeaseSpecPtrOutputWithContext(ctx context.Context) LeaseSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LeaseSpecOutput).ToLeaseSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(LeaseSpecOutput).ToLeaseSpecPtrOutput()
 }
 
 // LeaseSpecPtrInput is an input type that accepts LeaseSpecArgs, LeaseSpecPtr and LeaseSpecPtrOutput values.
@@ -309,7 +309,7 @@ func (i *leaseSpecPtrType) ToLeaseSpecPtrOutput() LeaseSpecPtrOutput {
 }
 
 func (i *leaseSpecPtrType) ToLeaseSpecPtrOutputWithContext(ctx context.Context) LeaseSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LeaseSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(LeaseSpecOutput).ToLeaseSpecPtrOutput()
 }
 
 // LeaseSpec is a specification of a Lease.

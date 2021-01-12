@@ -202,7 +202,7 @@ func (i CustomResourceConversionArgs) ToCustomResourceConversionPtrOutput() Cust
 }
 
 func (i CustomResourceConversionArgs) ToCustomResourceConversionPtrOutputWithContext(ctx context.Context) CustomResourceConversionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceConversionOutput).ToCustomResourceConversionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceConversionOutput).ToCustomResourceConversionPtrOutput()
 }
 
 // CustomResourceConversionPtrInput is an input type that accepts CustomResourceConversionArgs, CustomResourceConversionPtr and CustomResourceConversionPtrOutput values.
@@ -235,7 +235,7 @@ func (i *customResourceConversionPtrType) ToCustomResourceConversionPtrOutput() 
 }
 
 func (i *customResourceConversionPtrType) ToCustomResourceConversionPtrOutputWithContext(ctx context.Context) CustomResourceConversionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceConversionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceConversionOutput).ToCustomResourceConversionPtrOutput()
 }
 
 // CustomResourceConversion describes how to convert different versions of a CR.
@@ -721,7 +721,7 @@ func (i CustomResourceDefinitionNamesArgs) ToCustomResourceDefinitionNamesPtrOut
 }
 
 func (i CustomResourceDefinitionNamesArgs) ToCustomResourceDefinitionNamesPtrOutputWithContext(ctx context.Context) CustomResourceDefinitionNamesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceDefinitionNamesOutput).ToCustomResourceDefinitionNamesPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceDefinitionNamesOutput).ToCustomResourceDefinitionNamesPtrOutput()
 }
 
 // CustomResourceDefinitionNamesPtrInput is an input type that accepts CustomResourceDefinitionNamesArgs, CustomResourceDefinitionNamesPtr and CustomResourceDefinitionNamesPtrOutput values.
@@ -754,7 +754,7 @@ func (i *customResourceDefinitionNamesPtrType) ToCustomResourceDefinitionNamesPt
 }
 
 func (i *customResourceDefinitionNamesPtrType) ToCustomResourceDefinitionNamesPtrOutputWithContext(ctx context.Context) CustomResourceDefinitionNamesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceDefinitionNamesPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceDefinitionNamesOutput).ToCustomResourceDefinitionNamesPtrOutput()
 }
 
 // CustomResourceDefinitionNames indicates the names to serve this CustomResourceDefinition
@@ -950,7 +950,7 @@ func (i CustomResourceDefinitionSpecArgs) ToCustomResourceDefinitionSpecPtrOutpu
 }
 
 func (i CustomResourceDefinitionSpecArgs) ToCustomResourceDefinitionSpecPtrOutputWithContext(ctx context.Context) CustomResourceDefinitionSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceDefinitionSpecOutput).ToCustomResourceDefinitionSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceDefinitionSpecOutput).ToCustomResourceDefinitionSpecPtrOutput()
 }
 
 // CustomResourceDefinitionSpecPtrInput is an input type that accepts CustomResourceDefinitionSpecArgs, CustomResourceDefinitionSpecPtr and CustomResourceDefinitionSpecPtrOutput values.
@@ -983,7 +983,7 @@ func (i *customResourceDefinitionSpecPtrType) ToCustomResourceDefinitionSpecPtrO
 }
 
 func (i *customResourceDefinitionSpecPtrType) ToCustomResourceDefinitionSpecPtrOutputWithContext(ctx context.Context) CustomResourceDefinitionSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceDefinitionSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceDefinitionSpecOutput).ToCustomResourceDefinitionSpecPtrOutput()
 }
 
 // CustomResourceDefinitionSpec describes how a user wants their resource to appear
@@ -1167,7 +1167,7 @@ func (i CustomResourceDefinitionStatusArgs) ToCustomResourceDefinitionStatusPtrO
 }
 
 func (i CustomResourceDefinitionStatusArgs) ToCustomResourceDefinitionStatusPtrOutputWithContext(ctx context.Context) CustomResourceDefinitionStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceDefinitionStatusOutput).ToCustomResourceDefinitionStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceDefinitionStatusOutput).ToCustomResourceDefinitionStatusPtrOutput()
 }
 
 // CustomResourceDefinitionStatusPtrInput is an input type that accepts CustomResourceDefinitionStatusArgs, CustomResourceDefinitionStatusPtr and CustomResourceDefinitionStatusPtrOutput values.
@@ -1200,7 +1200,7 @@ func (i *customResourceDefinitionStatusPtrType) ToCustomResourceDefinitionStatus
 }
 
 func (i *customResourceDefinitionStatusPtrType) ToCustomResourceDefinitionStatusPtrOutputWithContext(ctx context.Context) CustomResourceDefinitionStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceDefinitionStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceDefinitionStatusOutput).ToCustomResourceDefinitionStatusPtrOutput()
 }
 
 // CustomResourceDefinitionStatus indicates the state of the CustomResourceDefinition
@@ -1504,7 +1504,7 @@ func (i CustomResourceSubresourceScaleArgs) ToCustomResourceSubresourceScalePtrO
 }
 
 func (i CustomResourceSubresourceScaleArgs) ToCustomResourceSubresourceScalePtrOutputWithContext(ctx context.Context) CustomResourceSubresourceScalePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceSubresourceScaleOutput).ToCustomResourceSubresourceScalePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceSubresourceScaleOutput).ToCustomResourceSubresourceScalePtrOutput()
 }
 
 // CustomResourceSubresourceScalePtrInput is an input type that accepts CustomResourceSubresourceScaleArgs, CustomResourceSubresourceScalePtr and CustomResourceSubresourceScalePtrOutput values.
@@ -1537,7 +1537,7 @@ func (i *customResourceSubresourceScalePtrType) ToCustomResourceSubresourceScale
 }
 
 func (i *customResourceSubresourceScalePtrType) ToCustomResourceSubresourceScalePtrOutputWithContext(ctx context.Context) CustomResourceSubresourceScalePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceSubresourceScalePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceSubresourceScaleOutput).ToCustomResourceSubresourceScalePtrOutput()
 }
 
 // CustomResourceSubresourceScale defines how to serve the scale subresource for CustomResources.
@@ -1672,7 +1672,7 @@ func (i CustomResourceSubresourcesArgs) ToCustomResourceSubresourcesPtrOutput() 
 }
 
 func (i CustomResourceSubresourcesArgs) ToCustomResourceSubresourcesPtrOutputWithContext(ctx context.Context) CustomResourceSubresourcesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceSubresourcesOutput).ToCustomResourceSubresourcesPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceSubresourcesOutput).ToCustomResourceSubresourcesPtrOutput()
 }
 
 // CustomResourceSubresourcesPtrInput is an input type that accepts CustomResourceSubresourcesArgs, CustomResourceSubresourcesPtr and CustomResourceSubresourcesPtrOutput values.
@@ -1705,7 +1705,7 @@ func (i *customResourceSubresourcesPtrType) ToCustomResourceSubresourcesPtrOutpu
 }
 
 func (i *customResourceSubresourcesPtrType) ToCustomResourceSubresourcesPtrOutputWithContext(ctx context.Context) CustomResourceSubresourcesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceSubresourcesPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceSubresourcesOutput).ToCustomResourceSubresourcesPtrOutput()
 }
 
 // CustomResourceSubresources defines the status and scale subresources for CustomResources.
@@ -1821,7 +1821,7 @@ func (i CustomResourceValidationArgs) ToCustomResourceValidationPtrOutput() Cust
 }
 
 func (i CustomResourceValidationArgs) ToCustomResourceValidationPtrOutputWithContext(ctx context.Context) CustomResourceValidationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceValidationOutput).ToCustomResourceValidationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceValidationOutput).ToCustomResourceValidationPtrOutput()
 }
 
 // CustomResourceValidationPtrInput is an input type that accepts CustomResourceValidationArgs, CustomResourceValidationPtr and CustomResourceValidationPtrOutput values.
@@ -1854,7 +1854,7 @@ func (i *customResourceValidationPtrType) ToCustomResourceValidationPtrOutput() 
 }
 
 func (i *customResourceValidationPtrType) ToCustomResourceValidationPtrOutputWithContext(ctx context.Context) CustomResourceValidationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceValidationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(CustomResourceValidationOutput).ToCustomResourceValidationPtrOutput()
 }
 
 // CustomResourceValidation is a list of validation methods for CustomResources.
@@ -1955,7 +1955,7 @@ func (i ExternalDocumentationArgs) ToExternalDocumentationPtrOutput() ExternalDo
 }
 
 func (i ExternalDocumentationArgs) ToExternalDocumentationPtrOutputWithContext(ctx context.Context) ExternalDocumentationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ExternalDocumentationOutput).ToExternalDocumentationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ExternalDocumentationOutput).ToExternalDocumentationPtrOutput()
 }
 
 // ExternalDocumentationPtrInput is an input type that accepts ExternalDocumentationArgs, ExternalDocumentationPtr and ExternalDocumentationPtrOutput values.
@@ -1988,7 +1988,7 @@ func (i *externalDocumentationPtrType) ToExternalDocumentationPtrOutput() Extern
 }
 
 func (i *externalDocumentationPtrType) ToExternalDocumentationPtrOutputWithContext(ctx context.Context) ExternalDocumentationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ExternalDocumentationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ExternalDocumentationOutput).ToExternalDocumentationPtrOutput()
 }
 
 // ExternalDocumentation allows referencing an external resource for extended documentation.
@@ -2267,7 +2267,7 @@ func (i JSONSchemaPropsArgs) ToJSONSchemaPropsPtrOutput() JSONSchemaPropsPtrOutp
 }
 
 func (i JSONSchemaPropsArgs) ToJSONSchemaPropsPtrOutputWithContext(ctx context.Context) JSONSchemaPropsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JSONSchemaPropsOutput).ToJSONSchemaPropsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(JSONSchemaPropsOutput).ToJSONSchemaPropsPtrOutput()
 }
 
 // JSONSchemaPropsPtrInput is an input type that accepts JSONSchemaPropsArgs, JSONSchemaPropsPtr and JSONSchemaPropsPtrOutput values.
@@ -2300,7 +2300,7 @@ func (i *jsonschemaPropsPtrType) ToJSONSchemaPropsPtrOutput() JSONSchemaPropsPtr
 }
 
 func (i *jsonschemaPropsPtrType) ToJSONSchemaPropsPtrOutputWithContext(ctx context.Context) JSONSchemaPropsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JSONSchemaPropsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(JSONSchemaPropsOutput).ToJSONSchemaPropsPtrOutput()
 }
 
 // JSONSchemaPropsArrayInput is an input type that accepts JSONSchemaPropsArray and JSONSchemaPropsArrayOutput values.
@@ -3132,7 +3132,7 @@ func (i ServiceReferenceArgs) ToServiceReferencePtrOutput() ServiceReferencePtrO
 }
 
 func (i ServiceReferenceArgs) ToServiceReferencePtrOutputWithContext(ctx context.Context) ServiceReferencePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceReferenceOutput).ToServiceReferencePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceReferenceOutput).ToServiceReferencePtrOutput()
 }
 
 // ServiceReferencePtrInput is an input type that accepts ServiceReferenceArgs, ServiceReferencePtr and ServiceReferencePtrOutput values.
@@ -3165,7 +3165,7 @@ func (i *serviceReferencePtrType) ToServiceReferencePtrOutput() ServiceReference
 }
 
 func (i *serviceReferencePtrType) ToServiceReferencePtrOutputWithContext(ctx context.Context) ServiceReferencePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceReferencePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceReferenceOutput).ToServiceReferencePtrOutput()
 }
 
 // ServiceReference holds a reference to Service.legacy.k8s.io
@@ -3343,7 +3343,7 @@ func (i WebhookClientConfigArgs) ToWebhookClientConfigPtrOutput() WebhookClientC
 }
 
 func (i WebhookClientConfigArgs) ToWebhookClientConfigPtrOutputWithContext(ctx context.Context) WebhookClientConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebhookClientConfigOutput).ToWebhookClientConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(WebhookClientConfigOutput).ToWebhookClientConfigPtrOutput()
 }
 
 // WebhookClientConfigPtrInput is an input type that accepts WebhookClientConfigArgs, WebhookClientConfigPtr and WebhookClientConfigPtrOutput values.
@@ -3376,7 +3376,7 @@ func (i *webhookClientConfigPtrType) ToWebhookClientConfigPtrOutput() WebhookCli
 }
 
 func (i *webhookClientConfigPtrType) ToWebhookClientConfigPtrOutputWithContext(ctx context.Context) WebhookClientConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebhookClientConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(WebhookClientConfigOutput).ToWebhookClientConfigPtrOutput()
 }
 
 // WebhookClientConfig contains the information to make a TLS connection with the webhook.
@@ -3535,7 +3535,7 @@ func (i WebhookConversionArgs) ToWebhookConversionPtrOutput() WebhookConversionP
 }
 
 func (i WebhookConversionArgs) ToWebhookConversionPtrOutputWithContext(ctx context.Context) WebhookConversionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebhookConversionOutput).ToWebhookConversionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(WebhookConversionOutput).ToWebhookConversionPtrOutput()
 }
 
 // WebhookConversionPtrInput is an input type that accepts WebhookConversionArgs, WebhookConversionPtr and WebhookConversionPtrOutput values.
@@ -3568,7 +3568,7 @@ func (i *webhookConversionPtrType) ToWebhookConversionPtrOutput() WebhookConvers
 }
 
 func (i *webhookConversionPtrType) ToWebhookConversionPtrOutputWithContext(ctx context.Context) WebhookConversionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebhookConversionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(WebhookConversionOutput).ToWebhookConversionPtrOutput()
 }
 
 // WebhookConversion describes how to call a conversion webhook

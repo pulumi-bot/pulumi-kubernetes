@@ -741,7 +741,7 @@ func (i DaemonSetSpecArgs) ToDaemonSetSpecPtrOutput() DaemonSetSpecPtrOutput {
 }
 
 func (i DaemonSetSpecArgs) ToDaemonSetSpecPtrOutputWithContext(ctx context.Context) DaemonSetSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DaemonSetSpecOutput).ToDaemonSetSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DaemonSetSpecOutput).ToDaemonSetSpecPtrOutput()
 }
 
 // DaemonSetSpecPtrInput is an input type that accepts DaemonSetSpecArgs, DaemonSetSpecPtr and DaemonSetSpecPtrOutput values.
@@ -774,7 +774,7 @@ func (i *daemonSetSpecPtrType) ToDaemonSetSpecPtrOutput() DaemonSetSpecPtrOutput
 }
 
 func (i *daemonSetSpecPtrType) ToDaemonSetSpecPtrOutputWithContext(ctx context.Context) DaemonSetSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DaemonSetSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DaemonSetSpecOutput).ToDaemonSetSpecPtrOutput()
 }
 
 // DaemonSetSpec is the specification of a daemon set.
@@ -986,7 +986,7 @@ func (i DaemonSetStatusArgs) ToDaemonSetStatusPtrOutput() DaemonSetStatusPtrOutp
 }
 
 func (i DaemonSetStatusArgs) ToDaemonSetStatusPtrOutputWithContext(ctx context.Context) DaemonSetStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DaemonSetStatusOutput).ToDaemonSetStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DaemonSetStatusOutput).ToDaemonSetStatusPtrOutput()
 }
 
 // DaemonSetStatusPtrInput is an input type that accepts DaemonSetStatusArgs, DaemonSetStatusPtr and DaemonSetStatusPtrOutput values.
@@ -1019,7 +1019,7 @@ func (i *daemonSetStatusPtrType) ToDaemonSetStatusPtrOutput() DaemonSetStatusPtr
 }
 
 func (i *daemonSetStatusPtrType) ToDaemonSetStatusPtrOutputWithContext(ctx context.Context) DaemonSetStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DaemonSetStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DaemonSetStatusOutput).ToDaemonSetStatusPtrOutput()
 }
 
 // DaemonSetStatus represents the current status of a daemon set.
@@ -1257,7 +1257,7 @@ func (i DaemonSetUpdateStrategyArgs) ToDaemonSetUpdateStrategyPtrOutput() Daemon
 }
 
 func (i DaemonSetUpdateStrategyArgs) ToDaemonSetUpdateStrategyPtrOutputWithContext(ctx context.Context) DaemonSetUpdateStrategyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DaemonSetUpdateStrategyOutput).ToDaemonSetUpdateStrategyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DaemonSetUpdateStrategyOutput).ToDaemonSetUpdateStrategyPtrOutput()
 }
 
 // DaemonSetUpdateStrategyPtrInput is an input type that accepts DaemonSetUpdateStrategyArgs, DaemonSetUpdateStrategyPtr and DaemonSetUpdateStrategyPtrOutput values.
@@ -1290,7 +1290,7 @@ func (i *daemonSetUpdateStrategyPtrType) ToDaemonSetUpdateStrategyPtrOutput() Da
 }
 
 func (i *daemonSetUpdateStrategyPtrType) ToDaemonSetUpdateStrategyPtrOutputWithContext(ctx context.Context) DaemonSetUpdateStrategyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DaemonSetUpdateStrategyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DaemonSetUpdateStrategyOutput).ToDaemonSetUpdateStrategyPtrOutput()
 }
 
 type DaemonSetUpdateStrategyOutput struct{ *pulumi.OutputState }
@@ -1957,7 +1957,7 @@ func (i DeploymentSpecArgs) ToDeploymentSpecPtrOutput() DeploymentSpecPtrOutput 
 }
 
 func (i DeploymentSpecArgs) ToDeploymentSpecPtrOutputWithContext(ctx context.Context) DeploymentSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentSpecOutput).ToDeploymentSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentSpecOutput).ToDeploymentSpecPtrOutput()
 }
 
 // DeploymentSpecPtrInput is an input type that accepts DeploymentSpecArgs, DeploymentSpecPtr and DeploymentSpecPtrOutput values.
@@ -1990,7 +1990,7 @@ func (i *deploymentSpecPtrType) ToDeploymentSpecPtrOutput() DeploymentSpecPtrOut
 }
 
 func (i *deploymentSpecPtrType) ToDeploymentSpecPtrOutputWithContext(ctx context.Context) DeploymentSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentSpecOutput).ToDeploymentSpecPtrOutput()
 }
 
 // DeploymentSpec is the specification of the desired behavior of the Deployment.
@@ -2239,7 +2239,7 @@ func (i DeploymentStatusArgs) ToDeploymentStatusPtrOutput() DeploymentStatusPtrO
 }
 
 func (i DeploymentStatusArgs) ToDeploymentStatusPtrOutputWithContext(ctx context.Context) DeploymentStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentStatusOutput).ToDeploymentStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentStatusOutput).ToDeploymentStatusPtrOutput()
 }
 
 // DeploymentStatusPtrInput is an input type that accepts DeploymentStatusArgs, DeploymentStatusPtr and DeploymentStatusPtrOutput values.
@@ -2272,7 +2272,7 @@ func (i *deploymentStatusPtrType) ToDeploymentStatusPtrOutput() DeploymentStatus
 }
 
 func (i *deploymentStatusPtrType) ToDeploymentStatusPtrOutputWithContext(ctx context.Context) DeploymentStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentStatusOutput).ToDeploymentStatusPtrOutput()
 }
 
 // DeploymentStatus is the most recently observed status of the Deployment.
@@ -2482,7 +2482,7 @@ func (i DeploymentStrategyArgs) ToDeploymentStrategyPtrOutput() DeploymentStrate
 }
 
 func (i DeploymentStrategyArgs) ToDeploymentStrategyPtrOutputWithContext(ctx context.Context) DeploymentStrategyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentStrategyOutput).ToDeploymentStrategyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentStrategyOutput).ToDeploymentStrategyPtrOutput()
 }
 
 // DeploymentStrategyPtrInput is an input type that accepts DeploymentStrategyArgs, DeploymentStrategyPtr and DeploymentStrategyPtrOutput values.
@@ -2515,7 +2515,7 @@ func (i *deploymentStrategyPtrType) ToDeploymentStrategyPtrOutput() DeploymentSt
 }
 
 func (i *deploymentStrategyPtrType) ToDeploymentStrategyPtrOutputWithContext(ctx context.Context) DeploymentStrategyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentStrategyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentStrategyOutput).ToDeploymentStrategyPtrOutput()
 }
 
 // DeploymentStrategy describes how to replace existing pods with new ones.
@@ -2635,7 +2635,7 @@ func (i FSGroupStrategyOptionsArgs) ToFSGroupStrategyOptionsPtrOutput() FSGroupS
 }
 
 func (i FSGroupStrategyOptionsArgs) ToFSGroupStrategyOptionsPtrOutputWithContext(ctx context.Context) FSGroupStrategyOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FSGroupStrategyOptionsOutput).ToFSGroupStrategyOptionsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FSGroupStrategyOptionsOutput).ToFSGroupStrategyOptionsPtrOutput()
 }
 
 // FSGroupStrategyOptionsPtrInput is an input type that accepts FSGroupStrategyOptionsArgs, FSGroupStrategyOptionsPtr and FSGroupStrategyOptionsPtrOutput values.
@@ -2668,7 +2668,7 @@ func (i *fsgroupStrategyOptionsPtrType) ToFSGroupStrategyOptionsPtrOutput() FSGr
 }
 
 func (i *fsgroupStrategyOptionsPtrType) ToFSGroupStrategyOptionsPtrOutputWithContext(ctx context.Context) FSGroupStrategyOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FSGroupStrategyOptionsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FSGroupStrategyOptionsOutput).ToFSGroupStrategyOptionsPtrOutput()
 }
 
 // FSGroupStrategyOptions defines the strategy type and options used to create the strategy. Deprecated: use FSGroupStrategyOptions from policy API Group instead.
@@ -2932,7 +2932,7 @@ func (i HTTPIngressRuleValueArgs) ToHTTPIngressRuleValuePtrOutput() HTTPIngressR
 }
 
 func (i HTTPIngressRuleValueArgs) ToHTTPIngressRuleValuePtrOutputWithContext(ctx context.Context) HTTPIngressRuleValuePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HTTPIngressRuleValueOutput).ToHTTPIngressRuleValuePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(HTTPIngressRuleValueOutput).ToHTTPIngressRuleValuePtrOutput()
 }
 
 // HTTPIngressRuleValuePtrInput is an input type that accepts HTTPIngressRuleValueArgs, HTTPIngressRuleValuePtr and HTTPIngressRuleValuePtrOutput values.
@@ -2965,7 +2965,7 @@ func (i *httpingressRuleValuePtrType) ToHTTPIngressRuleValuePtrOutput() HTTPIngr
 }
 
 func (i *httpingressRuleValuePtrType) ToHTTPIngressRuleValuePtrOutputWithContext(ctx context.Context) HTTPIngressRuleValuePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HTTPIngressRuleValuePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(HTTPIngressRuleValueOutput).ToHTTPIngressRuleValuePtrOutput()
 }
 
 // HTTPIngressRuleValue is a list of http selectors pointing to backends. In the example: http://<host>/<path>?<searchpart> -> backend where where parts of the url correspond to RFC 3986, this resource will be used to match against everything after the last '/' and before the first '?' or '#'.
@@ -3288,7 +3288,7 @@ func (i IPBlockArgs) ToIPBlockPtrOutput() IPBlockPtrOutput {
 }
 
 func (i IPBlockArgs) ToIPBlockPtrOutputWithContext(ctx context.Context) IPBlockPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IPBlockOutput).ToIPBlockPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(IPBlockOutput).ToIPBlockPtrOutput()
 }
 
 // IPBlockPtrInput is an input type that accepts IPBlockArgs, IPBlockPtr and IPBlockPtrOutput values.
@@ -3321,7 +3321,7 @@ func (i *ipblockPtrType) ToIPBlockPtrOutput() IPBlockPtrOutput {
 }
 
 func (i *ipblockPtrType) ToIPBlockPtrOutputWithContext(ctx context.Context) IPBlockPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IPBlockPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(IPBlockOutput).ToIPBlockPtrOutput()
 }
 
 // DEPRECATED 1.9 - This group version of IPBlock is deprecated by networking/v1/IPBlock. IPBlock describes a particular CIDR (Ex. "192.168.1.1/24") that is allowed to the pods matched by a NetworkPolicySpec's podSelector. The except entry describes CIDRs that should not be included within this rule.
@@ -3623,7 +3623,7 @@ func (i IngressBackendArgs) ToIngressBackendPtrOutput() IngressBackendPtrOutput 
 }
 
 func (i IngressBackendArgs) ToIngressBackendPtrOutputWithContext(ctx context.Context) IngressBackendPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IngressBackendOutput).ToIngressBackendPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(IngressBackendOutput).ToIngressBackendPtrOutput()
 }
 
 // IngressBackendPtrInput is an input type that accepts IngressBackendArgs, IngressBackendPtr and IngressBackendPtrOutput values.
@@ -3656,7 +3656,7 @@ func (i *ingressBackendPtrType) ToIngressBackendPtrOutput() IngressBackendPtrOut
 }
 
 func (i *ingressBackendPtrType) ToIngressBackendPtrOutputWithContext(ctx context.Context) IngressBackendPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IngressBackendPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(IngressBackendOutput).ToIngressBackendPtrOutput()
 }
 
 // IngressBackend describes all endpoints for a given service and port.
@@ -4008,7 +4008,7 @@ func (i IngressSpecArgs) ToIngressSpecPtrOutput() IngressSpecPtrOutput {
 }
 
 func (i IngressSpecArgs) ToIngressSpecPtrOutputWithContext(ctx context.Context) IngressSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IngressSpecOutput).ToIngressSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(IngressSpecOutput).ToIngressSpecPtrOutput()
 }
 
 // IngressSpecPtrInput is an input type that accepts IngressSpecArgs, IngressSpecPtr and IngressSpecPtrOutput values.
@@ -4041,7 +4041,7 @@ func (i *ingressSpecPtrType) ToIngressSpecPtrOutput() IngressSpecPtrOutput {
 }
 
 func (i *ingressSpecPtrType) ToIngressSpecPtrOutputWithContext(ctx context.Context) IngressSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IngressSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(IngressSpecOutput).ToIngressSpecPtrOutput()
 }
 
 // IngressSpec describes the Ingress the user wishes to exist.
@@ -4187,7 +4187,7 @@ func (i IngressStatusArgs) ToIngressStatusPtrOutput() IngressStatusPtrOutput {
 }
 
 func (i IngressStatusArgs) ToIngressStatusPtrOutputWithContext(ctx context.Context) IngressStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IngressStatusOutput).ToIngressStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(IngressStatusOutput).ToIngressStatusPtrOutput()
 }
 
 // IngressStatusPtrInput is an input type that accepts IngressStatusArgs, IngressStatusPtr and IngressStatusPtrOutput values.
@@ -4220,7 +4220,7 @@ func (i *ingressStatusPtrType) ToIngressStatusPtrOutput() IngressStatusPtrOutput
 }
 
 func (i *ingressStatusPtrType) ToIngressStatusPtrOutputWithContext(ctx context.Context) IngressStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IngressStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(IngressStatusOutput).ToIngressStatusPtrOutput()
 }
 
 // IngressStatus describe the current state of the Ingress.
@@ -5108,7 +5108,7 @@ func (i NetworkPolicySpecArgs) ToNetworkPolicySpecPtrOutput() NetworkPolicySpecP
 }
 
 func (i NetworkPolicySpecArgs) ToNetworkPolicySpecPtrOutputWithContext(ctx context.Context) NetworkPolicySpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NetworkPolicySpecOutput).ToNetworkPolicySpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkPolicySpecOutput).ToNetworkPolicySpecPtrOutput()
 }
 
 // NetworkPolicySpecPtrInput is an input type that accepts NetworkPolicySpecArgs, NetworkPolicySpecPtr and NetworkPolicySpecPtrOutput values.
@@ -5141,7 +5141,7 @@ func (i *networkPolicySpecPtrType) ToNetworkPolicySpecPtrOutput() NetworkPolicyS
 }
 
 func (i *networkPolicySpecPtrType) ToNetworkPolicySpecPtrOutputWithContext(ctx context.Context) NetworkPolicySpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NetworkPolicySpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkPolicySpecOutput).ToNetworkPolicySpecPtrOutput()
 }
 
 // DEPRECATED 1.9 - This group version of NetworkPolicySpec is deprecated by networking/v1/NetworkPolicySpec.
@@ -5596,7 +5596,7 @@ func (i PodSecurityPolicySpecArgs) ToPodSecurityPolicySpecPtrOutput() PodSecurit
 }
 
 func (i PodSecurityPolicySpecArgs) ToPodSecurityPolicySpecPtrOutputWithContext(ctx context.Context) PodSecurityPolicySpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PodSecurityPolicySpecOutput).ToPodSecurityPolicySpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PodSecurityPolicySpecOutput).ToPodSecurityPolicySpecPtrOutput()
 }
 
 // PodSecurityPolicySpecPtrInput is an input type that accepts PodSecurityPolicySpecArgs, PodSecurityPolicySpecPtr and PodSecurityPolicySpecPtrOutput values.
@@ -5629,7 +5629,7 @@ func (i *podSecurityPolicySpecPtrType) ToPodSecurityPolicySpecPtrOutput() PodSec
 }
 
 func (i *podSecurityPolicySpecPtrType) ToPodSecurityPolicySpecPtrOutputWithContext(ctx context.Context) PodSecurityPolicySpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PodSecurityPolicySpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PodSecurityPolicySpecOutput).ToPodSecurityPolicySpecPtrOutput()
 }
 
 // PodSecurityPolicySpec defines the policy enforced. Deprecated: use PodSecurityPolicySpec from policy API Group instead.
@@ -6449,7 +6449,7 @@ func (i ReplicaSetSpecArgs) ToReplicaSetSpecPtrOutput() ReplicaSetSpecPtrOutput 
 }
 
 func (i ReplicaSetSpecArgs) ToReplicaSetSpecPtrOutputWithContext(ctx context.Context) ReplicaSetSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ReplicaSetSpecOutput).ToReplicaSetSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ReplicaSetSpecOutput).ToReplicaSetSpecPtrOutput()
 }
 
 // ReplicaSetSpecPtrInput is an input type that accepts ReplicaSetSpecArgs, ReplicaSetSpecPtr and ReplicaSetSpecPtrOutput values.
@@ -6482,7 +6482,7 @@ func (i *replicaSetSpecPtrType) ToReplicaSetSpecPtrOutput() ReplicaSetSpecPtrOut
 }
 
 func (i *replicaSetSpecPtrType) ToReplicaSetSpecPtrOutputWithContext(ctx context.Context) ReplicaSetSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ReplicaSetSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ReplicaSetSpecOutput).ToReplicaSetSpecPtrOutput()
 }
 
 // ReplicaSetSpec is the specification of a ReplicaSet.
@@ -6648,7 +6648,7 @@ func (i ReplicaSetStatusArgs) ToReplicaSetStatusPtrOutput() ReplicaSetStatusPtrO
 }
 
 func (i ReplicaSetStatusArgs) ToReplicaSetStatusPtrOutputWithContext(ctx context.Context) ReplicaSetStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ReplicaSetStatusOutput).ToReplicaSetStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ReplicaSetStatusOutput).ToReplicaSetStatusPtrOutput()
 }
 
 // ReplicaSetStatusPtrInput is an input type that accepts ReplicaSetStatusArgs, ReplicaSetStatusPtr and ReplicaSetStatusPtrOutput values.
@@ -6681,7 +6681,7 @@ func (i *replicaSetStatusPtrType) ToReplicaSetStatusPtrOutput() ReplicaSetStatus
 }
 
 func (i *replicaSetStatusPtrType) ToReplicaSetStatusPtrOutputWithContext(ctx context.Context) ReplicaSetStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ReplicaSetStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ReplicaSetStatusOutput).ToReplicaSetStatusPtrOutput()
 }
 
 // ReplicaSetStatus represents the current status of a ReplicaSet.
@@ -6857,7 +6857,7 @@ func (i RollbackConfigArgs) ToRollbackConfigPtrOutput() RollbackConfigPtrOutput 
 }
 
 func (i RollbackConfigArgs) ToRollbackConfigPtrOutputWithContext(ctx context.Context) RollbackConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RollbackConfigOutput).ToRollbackConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RollbackConfigOutput).ToRollbackConfigPtrOutput()
 }
 
 // RollbackConfigPtrInput is an input type that accepts RollbackConfigArgs, RollbackConfigPtr and RollbackConfigPtrOutput values.
@@ -6890,7 +6890,7 @@ func (i *rollbackConfigPtrType) ToRollbackConfigPtrOutput() RollbackConfigPtrOut
 }
 
 func (i *rollbackConfigPtrType) ToRollbackConfigPtrOutputWithContext(ctx context.Context) RollbackConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RollbackConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RollbackConfigOutput).ToRollbackConfigPtrOutput()
 }
 
 // DEPRECATED.
@@ -6991,7 +6991,7 @@ func (i RollingUpdateDaemonSetArgs) ToRollingUpdateDaemonSetPtrOutput() RollingU
 }
 
 func (i RollingUpdateDaemonSetArgs) ToRollingUpdateDaemonSetPtrOutputWithContext(ctx context.Context) RollingUpdateDaemonSetPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RollingUpdateDaemonSetOutput).ToRollingUpdateDaemonSetPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RollingUpdateDaemonSetOutput).ToRollingUpdateDaemonSetPtrOutput()
 }
 
 // RollingUpdateDaemonSetPtrInput is an input type that accepts RollingUpdateDaemonSetArgs, RollingUpdateDaemonSetPtr and RollingUpdateDaemonSetPtrOutput values.
@@ -7024,7 +7024,7 @@ func (i *rollingUpdateDaemonSetPtrType) ToRollingUpdateDaemonSetPtrOutput() Roll
 }
 
 func (i *rollingUpdateDaemonSetPtrType) ToRollingUpdateDaemonSetPtrOutputWithContext(ctx context.Context) RollingUpdateDaemonSetPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RollingUpdateDaemonSetPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RollingUpdateDaemonSetOutput).ToRollingUpdateDaemonSetPtrOutput()
 }
 
 // Spec to control the desired behavior of daemon set rolling update.
@@ -7129,7 +7129,7 @@ func (i RollingUpdateDeploymentArgs) ToRollingUpdateDeploymentPtrOutput() Rollin
 }
 
 func (i RollingUpdateDeploymentArgs) ToRollingUpdateDeploymentPtrOutputWithContext(ctx context.Context) RollingUpdateDeploymentPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RollingUpdateDeploymentOutput).ToRollingUpdateDeploymentPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RollingUpdateDeploymentOutput).ToRollingUpdateDeploymentPtrOutput()
 }
 
 // RollingUpdateDeploymentPtrInput is an input type that accepts RollingUpdateDeploymentArgs, RollingUpdateDeploymentPtr and RollingUpdateDeploymentPtrOutput values.
@@ -7162,7 +7162,7 @@ func (i *rollingUpdateDeploymentPtrType) ToRollingUpdateDeploymentPtrOutput() Ro
 }
 
 func (i *rollingUpdateDeploymentPtrType) ToRollingUpdateDeploymentPtrOutputWithContext(ctx context.Context) RollingUpdateDeploymentPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RollingUpdateDeploymentPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RollingUpdateDeploymentOutput).ToRollingUpdateDeploymentPtrOutput()
 }
 
 // Spec to control the desired behavior of rolling update.
@@ -7282,7 +7282,7 @@ func (i RunAsGroupStrategyOptionsArgs) ToRunAsGroupStrategyOptionsPtrOutput() Ru
 }
 
 func (i RunAsGroupStrategyOptionsArgs) ToRunAsGroupStrategyOptionsPtrOutputWithContext(ctx context.Context) RunAsGroupStrategyOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RunAsGroupStrategyOptionsOutput).ToRunAsGroupStrategyOptionsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RunAsGroupStrategyOptionsOutput).ToRunAsGroupStrategyOptionsPtrOutput()
 }
 
 // RunAsGroupStrategyOptionsPtrInput is an input type that accepts RunAsGroupStrategyOptionsArgs, RunAsGroupStrategyOptionsPtr and RunAsGroupStrategyOptionsPtrOutput values.
@@ -7315,7 +7315,7 @@ func (i *runAsGroupStrategyOptionsPtrType) ToRunAsGroupStrategyOptionsPtrOutput(
 }
 
 func (i *runAsGroupStrategyOptionsPtrType) ToRunAsGroupStrategyOptionsPtrOutputWithContext(ctx context.Context) RunAsGroupStrategyOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RunAsGroupStrategyOptionsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RunAsGroupStrategyOptionsOutput).ToRunAsGroupStrategyOptionsPtrOutput()
 }
 
 // RunAsGroupStrategyOptions defines the strategy type and any options used to create the strategy. Deprecated: use RunAsGroupStrategyOptions from policy API Group instead.
@@ -7435,7 +7435,7 @@ func (i RunAsUserStrategyOptionsArgs) ToRunAsUserStrategyOptionsPtrOutput() RunA
 }
 
 func (i RunAsUserStrategyOptionsArgs) ToRunAsUserStrategyOptionsPtrOutputWithContext(ctx context.Context) RunAsUserStrategyOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RunAsUserStrategyOptionsOutput).ToRunAsUserStrategyOptionsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RunAsUserStrategyOptionsOutput).ToRunAsUserStrategyOptionsPtrOutput()
 }
 
 // RunAsUserStrategyOptionsPtrInput is an input type that accepts RunAsUserStrategyOptionsArgs, RunAsUserStrategyOptionsPtr and RunAsUserStrategyOptionsPtrOutput values.
@@ -7468,7 +7468,7 @@ func (i *runAsUserStrategyOptionsPtrType) ToRunAsUserStrategyOptionsPtrOutput() 
 }
 
 func (i *runAsUserStrategyOptionsPtrType) ToRunAsUserStrategyOptionsPtrOutputWithContext(ctx context.Context) RunAsUserStrategyOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RunAsUserStrategyOptionsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RunAsUserStrategyOptionsOutput).ToRunAsUserStrategyOptionsPtrOutput()
 }
 
 // RunAsUserStrategyOptions defines the strategy type and any options used to create the strategy. Deprecated: use RunAsUserStrategyOptions from policy API Group instead.
@@ -7588,7 +7588,7 @@ func (i RuntimeClassStrategyOptionsArgs) ToRuntimeClassStrategyOptionsPtrOutput(
 }
 
 func (i RuntimeClassStrategyOptionsArgs) ToRuntimeClassStrategyOptionsPtrOutputWithContext(ctx context.Context) RuntimeClassStrategyOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RuntimeClassStrategyOptionsOutput).ToRuntimeClassStrategyOptionsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RuntimeClassStrategyOptionsOutput).ToRuntimeClassStrategyOptionsPtrOutput()
 }
 
 // RuntimeClassStrategyOptionsPtrInput is an input type that accepts RuntimeClassStrategyOptionsArgs, RuntimeClassStrategyOptionsPtr and RuntimeClassStrategyOptionsPtrOutput values.
@@ -7621,7 +7621,7 @@ func (i *runtimeClassStrategyOptionsPtrType) ToRuntimeClassStrategyOptionsPtrOut
 }
 
 func (i *runtimeClassStrategyOptionsPtrType) ToRuntimeClassStrategyOptionsPtrOutputWithContext(ctx context.Context) RuntimeClassStrategyOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RuntimeClassStrategyOptionsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RuntimeClassStrategyOptionsOutput).ToRuntimeClassStrategyOptionsPtrOutput()
 }
 
 // RuntimeClassStrategyOptions define the strategy that will dictate the allowable RuntimeClasses for a pod.
@@ -7741,7 +7741,7 @@ func (i SELinuxStrategyOptionsArgs) ToSELinuxStrategyOptionsPtrOutput() SELinuxS
 }
 
 func (i SELinuxStrategyOptionsArgs) ToSELinuxStrategyOptionsPtrOutputWithContext(ctx context.Context) SELinuxStrategyOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SELinuxStrategyOptionsOutput).ToSELinuxStrategyOptionsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SELinuxStrategyOptionsOutput).ToSELinuxStrategyOptionsPtrOutput()
 }
 
 // SELinuxStrategyOptionsPtrInput is an input type that accepts SELinuxStrategyOptionsArgs, SELinuxStrategyOptionsPtr and SELinuxStrategyOptionsPtrOutput values.
@@ -7774,7 +7774,7 @@ func (i *selinuxStrategyOptionsPtrType) ToSELinuxStrategyOptionsPtrOutput() SELi
 }
 
 func (i *selinuxStrategyOptionsPtrType) ToSELinuxStrategyOptionsPtrOutputWithContext(ctx context.Context) SELinuxStrategyOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SELinuxStrategyOptionsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SELinuxStrategyOptionsOutput).ToSELinuxStrategyOptionsPtrOutput()
 }
 
 // SELinuxStrategyOptions defines the strategy type and any options used to create the strategy. Deprecated: use SELinuxStrategyOptions from policy API Group instead.
@@ -7981,7 +7981,7 @@ func (i ScaleSpecArgs) ToScaleSpecPtrOutput() ScaleSpecPtrOutput {
 }
 
 func (i ScaleSpecArgs) ToScaleSpecPtrOutputWithContext(ctx context.Context) ScaleSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ScaleSpecOutput).ToScaleSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ScaleSpecOutput).ToScaleSpecPtrOutput()
 }
 
 // ScaleSpecPtrInput is an input type that accepts ScaleSpecArgs, ScaleSpecPtr and ScaleSpecPtrOutput values.
@@ -8014,7 +8014,7 @@ func (i *scaleSpecPtrType) ToScaleSpecPtrOutput() ScaleSpecPtrOutput {
 }
 
 func (i *scaleSpecPtrType) ToScaleSpecPtrOutputWithContext(ctx context.Context) ScaleSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ScaleSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ScaleSpecOutput).ToScaleSpecPtrOutput()
 }
 
 // describes the attributes of a scale subresource
@@ -8123,7 +8123,7 @@ func (i ScaleStatusArgs) ToScaleStatusPtrOutput() ScaleStatusPtrOutput {
 }
 
 func (i ScaleStatusArgs) ToScaleStatusPtrOutputWithContext(ctx context.Context) ScaleStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ScaleStatusOutput).ToScaleStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ScaleStatusOutput).ToScaleStatusPtrOutput()
 }
 
 // ScaleStatusPtrInput is an input type that accepts ScaleStatusArgs, ScaleStatusPtr and ScaleStatusPtrOutput values.
@@ -8156,7 +8156,7 @@ func (i *scaleStatusPtrType) ToScaleStatusPtrOutput() ScaleStatusPtrOutput {
 }
 
 func (i *scaleStatusPtrType) ToScaleStatusPtrOutputWithContext(ctx context.Context) ScaleStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ScaleStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ScaleStatusOutput).ToScaleStatusPtrOutput()
 }
 
 // represents the current status of a scale subresource.
@@ -8291,7 +8291,7 @@ func (i SupplementalGroupsStrategyOptionsArgs) ToSupplementalGroupsStrategyOptio
 }
 
 func (i SupplementalGroupsStrategyOptionsArgs) ToSupplementalGroupsStrategyOptionsPtrOutputWithContext(ctx context.Context) SupplementalGroupsStrategyOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SupplementalGroupsStrategyOptionsOutput).ToSupplementalGroupsStrategyOptionsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SupplementalGroupsStrategyOptionsOutput).ToSupplementalGroupsStrategyOptionsPtrOutput()
 }
 
 // SupplementalGroupsStrategyOptionsPtrInput is an input type that accepts SupplementalGroupsStrategyOptionsArgs, SupplementalGroupsStrategyOptionsPtr and SupplementalGroupsStrategyOptionsPtrOutput values.
@@ -8324,7 +8324,7 @@ func (i *supplementalGroupsStrategyOptionsPtrType) ToSupplementalGroupsStrategyO
 }
 
 func (i *supplementalGroupsStrategyOptionsPtrType) ToSupplementalGroupsStrategyOptionsPtrOutputWithContext(ctx context.Context) SupplementalGroupsStrategyOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SupplementalGroupsStrategyOptionsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SupplementalGroupsStrategyOptionsOutput).ToSupplementalGroupsStrategyOptionsPtrOutput()
 }
 
 // SupplementalGroupsStrategyOptions defines the strategy type and options used to create the strategy. Deprecated: use SupplementalGroupsStrategyOptions from policy API Group instead.

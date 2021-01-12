@@ -420,7 +420,7 @@ func (i APIServiceSpecArgs) ToAPIServiceSpecPtrOutput() APIServiceSpecPtrOutput 
 }
 
 func (i APIServiceSpecArgs) ToAPIServiceSpecPtrOutputWithContext(ctx context.Context) APIServiceSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(APIServiceSpecOutput).ToAPIServiceSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(APIServiceSpecOutput).ToAPIServiceSpecPtrOutput()
 }
 
 // APIServiceSpecPtrInput is an input type that accepts APIServiceSpecArgs, APIServiceSpecPtr and APIServiceSpecPtrOutput values.
@@ -453,7 +453,7 @@ func (i *apiserviceSpecPtrType) ToAPIServiceSpecPtrOutput() APIServiceSpecPtrOut
 }
 
 func (i *apiserviceSpecPtrType) ToAPIServiceSpecPtrOutputWithContext(ctx context.Context) APIServiceSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(APIServiceSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(APIServiceSpecOutput).ToAPIServiceSpecPtrOutput()
 }
 
 // APIServiceSpec contains information for locating and communicating with a server. Only https is supported, though you are able to disable certificate verification.
@@ -644,7 +644,7 @@ func (i APIServiceStatusArgs) ToAPIServiceStatusPtrOutput() APIServiceStatusPtrO
 }
 
 func (i APIServiceStatusArgs) ToAPIServiceStatusPtrOutputWithContext(ctx context.Context) APIServiceStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(APIServiceStatusOutput).ToAPIServiceStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(APIServiceStatusOutput).ToAPIServiceStatusPtrOutput()
 }
 
 // APIServiceStatusPtrInput is an input type that accepts APIServiceStatusArgs, APIServiceStatusPtr and APIServiceStatusPtrOutput values.
@@ -677,7 +677,7 @@ func (i *apiserviceStatusPtrType) ToAPIServiceStatusPtrOutput() APIServiceStatus
 }
 
 func (i *apiserviceStatusPtrType) ToAPIServiceStatusPtrOutputWithContext(ctx context.Context) APIServiceStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(APIServiceStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(APIServiceStatusOutput).ToAPIServiceStatusPtrOutput()
 }
 
 // APIServiceStatus contains derived information about an API server
@@ -786,7 +786,7 @@ func (i ServiceReferenceArgs) ToServiceReferencePtrOutput() ServiceReferencePtrO
 }
 
 func (i ServiceReferenceArgs) ToServiceReferencePtrOutputWithContext(ctx context.Context) ServiceReferencePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceReferenceOutput).ToServiceReferencePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceReferenceOutput).ToServiceReferencePtrOutput()
 }
 
 // ServiceReferencePtrInput is an input type that accepts ServiceReferenceArgs, ServiceReferencePtr and ServiceReferencePtrOutput values.
@@ -819,7 +819,7 @@ func (i *serviceReferencePtrType) ToServiceReferencePtrOutput() ServiceReference
 }
 
 func (i *serviceReferencePtrType) ToServiceReferencePtrOutputWithContext(ctx context.Context) ServiceReferencePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceReferencePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceReferenceOutput).ToServiceReferencePtrOutput()
 }
 
 // ServiceReference holds a reference to Service.legacy.k8s.io
