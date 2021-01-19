@@ -28,3 +28,7 @@ require (
 )
 
 replace github.com/evanphx/json-patch => github.com/evanphx/json-patch v4.9.0+incompatible
+
+replace github.com/pulumi/pulumi/pkg/v2 => ../../pulumi/pkg
+
+replace github.com/pulumi/pulumi/sdk/v2 => ../../pulumi/sdk
