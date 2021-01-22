@@ -38,3 +38,11 @@ func (e ServiceSpecType) ToStringPtrOutput() pulumi.StringPtrOutput {
 func (e ServiceSpecType) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
 	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
 }
+
+func (e ServiceSpecType) Valid() bool {
+	switch e {
+	case ServiceSpecTypeExternalName, ServiceSpecTypeClusterIP, ServiceSpecTypeNodePort, ServiceSpecTypeLoadBalancer:
+		return true
+	}
+	return false
+}
