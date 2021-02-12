@@ -90,7 +90,7 @@ export interface CertificateSigningRequestListArgs {
     /**
      * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
      */
-    readonly apiVersion?: pulumi.Input<"certificates.k8s.io/v1">;
+    readonly apiVersion?: pulumi.Input<"certificates.k8s.io/v1" | undefined>;
     /**
      * items is a collection of CertificateSigningRequest objects
      */
@@ -98,6 +98,6 @@ export interface CertificateSigningRequestListArgs {
     /**
      * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
      */
-    readonly kind?: pulumi.Input<"CertificateSigningRequestList">;
-    readonly metadata?: pulumi.Input<inputs.meta.v1.ListMeta>;
+    readonly kind?: pulumi.Input<"CertificateSigningRequestList" | undefined>;
+    readonly metadata?: pulumi.Input<inputs.meta.v1.ListMeta | undefined>;
 }

@@ -21,7 +21,7 @@ export namespace admissionregistration {
             /**
              * FailurePolicy defines how unrecognized errors from the admission endpoint are handled - allowed values are Ignore or Fail. Defaults to Fail.
              */
-            failurePolicy?: pulumi.Input<string>;
+            failurePolicy?: pulumi.Input<string | undefined>;
             /**
              * matchPolicy defines how the "rules" list is used to match incoming requests. Allowed values are "Exact" or "Equivalent".
              *
@@ -31,7 +31,7 @@ export namespace admissionregistration {
              *
              * Defaults to "Equivalent"
              */
-            matchPolicy?: pulumi.Input<string>;
+            matchPolicy?: pulumi.Input<string | undefined>;
             /**
              * The name of the admission webhook. Name should be fully qualified, e.g., imagepolicy.kubernetes.io, where "imagepolicy" is the name of the webhook, and kubernetes.io is the name of the organization. Required.
              */
@@ -69,11 +69,11 @@ export namespace admissionregistration {
              *
              * Default to the empty LabelSelector, which matches everything.
              */
-            namespaceSelector?: pulumi.Input<inputs.meta.v1.LabelSelector>;
+            namespaceSelector?: pulumi.Input<inputs.meta.v1.LabelSelector | undefined>;
             /**
              * ObjectSelector decides whether to run the webhook based on if the object has matching labels. objectSelector is evaluated against both the oldObject and newObject that would be sent to the webhook, and is considered to match if either object matches the selector. A null object (oldObject in the case of create, or newObject in the case of delete) or an object that cannot have labels (like a DeploymentRollback or a PodProxyOptions object) is not considered to match. Use the object selector only if the webhook is opt-in, because end users may skip the admission webhook by setting the labels. Default to the empty LabelSelector, which matches everything.
              */
-            objectSelector?: pulumi.Input<inputs.meta.v1.LabelSelector>;
+            objectSelector?: pulumi.Input<inputs.meta.v1.LabelSelector | undefined>;
             /**
              * reinvocationPolicy indicates whether this webhook should be called multiple times as part of a single admission evaluation. Allowed values are "Never" and "IfNeeded".
              *
@@ -83,11 +83,11 @@ export namespace admissionregistration {
              *
              * Defaults to "Never".
              */
-            reinvocationPolicy?: pulumi.Input<string>;
+            reinvocationPolicy?: pulumi.Input<string | undefined>;
             /**
              * Rules describes what operations on what resources/subresources the webhook cares about. The webhook cares about an operation if it matches _any_ Rule. However, in order to prevent ValidatingAdmissionWebhooks and MutatingAdmissionWebhooks from putting the cluster in a state which cannot be recovered from without completely disabling the plugin, ValidatingAdmissionWebhooks and MutatingAdmissionWebhooks are never called on admission requests for ValidatingWebhookConfiguration and MutatingWebhookConfiguration objects.
              */
-            rules?: pulumi.Input<pulumi.Input<inputs.admissionregistration.v1.RuleWithOperations>[]>;
+            rules?: pulumi.Input<pulumi.Input<inputs.admissionregistration.v1.RuleWithOperations>[] | undefined>;
             /**
              * SideEffects states whether this webhook has side effects. Acceptable values are: None, NoneOnDryRun (webhooks created via v1beta1 may also specify Some or Unknown). Webhooks with side effects MUST implement a reconciliation system, since a request may be rejected by a future step in the admission change and the side effects therefore need to be undone. Requests with the dryRun attribute will be auto-rejected if they match a webhook with sideEffects == Unknown or Some.
              */
@@ -95,7 +95,7 @@ export namespace admissionregistration {
             /**
              * TimeoutSeconds specifies the timeout for this webhook. After the timeout passes, the webhook call will be ignored or the API call will fail based on the failure policy. The timeout value must be between 1 and 30 seconds. Default to 10 seconds.
              */
-            timeoutSeconds?: pulumi.Input<number>;
+            timeoutSeconds?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -105,19 +105,19 @@ export namespace admissionregistration {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"admissionregistration.k8s.io/v1">;
+            apiVersion?: pulumi.Input<"admissionregistration.k8s.io/v1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"MutatingWebhookConfiguration">;
+            kind?: pulumi.Input<"MutatingWebhookConfiguration" | undefined>;
             /**
              * Standard object metadata; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Webhooks is a list of webhooks and the affected resources and operations.
              */
-            webhooks?: pulumi.Input<pulumi.Input<inputs.admissionregistration.v1.MutatingWebhook>[]>;
+            webhooks?: pulumi.Input<pulumi.Input<inputs.admissionregistration.v1.MutatingWebhook>[] | undefined>;
         }
 
         /**
@@ -127,15 +127,15 @@ export namespace admissionregistration {
             /**
              * APIGroups is the API groups the resources belong to. '*' is all groups. If '*' is present, the length of the slice must be one. Required.
              */
-            apiGroups?: pulumi.Input<pulumi.Input<string>[]>;
+            apiGroups?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * APIVersions is the API versions the resources belong to. '*' is all versions. If '*' is present, the length of the slice must be one. Required.
              */
-            apiVersions?: pulumi.Input<pulumi.Input<string>[]>;
+            apiVersions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * Operations is the operations the admission hook cares about - CREATE, UPDATE, DELETE, CONNECT or * for all of those operations and any future admission operations that are added. If '*' is present, the length of the slice must be one. Required.
              */
-            operations?: pulumi.Input<pulumi.Input<string>[]>;
+            operations?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * Resources is a list of resources this rule applies to.
              *
@@ -145,11 +145,11 @@ export namespace admissionregistration {
              *
              * Depending on the enclosing object, subresources might not be allowed. Required.
              */
-            resources?: pulumi.Input<pulumi.Input<string>[]>;
+            resources?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * scope specifies the scope of this rule. Valid values are "Cluster", "Namespaced", and "*" "Cluster" means that only cluster-scoped resources will match this rule. Namespace API objects are cluster-scoped. "Namespaced" means that only namespaced resources will match this rule. "*" means that there are no scope restrictions. Subresources match the scope of their parent resource. Default is "*".
              */
-            scope?: pulumi.Input<string>;
+            scope?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -167,11 +167,11 @@ export namespace admissionregistration {
             /**
              * `path` is an optional URL path which will be sent in any request to this service.
              */
-            path?: pulumi.Input<string>;
+            path?: pulumi.Input<string | undefined>;
             /**
              * If specified, the port on the service that hosting webhook. Default to 443 for backward compatibility. `port` should be a valid port number (1-65535, inclusive).
              */
-            port?: pulumi.Input<number>;
+            port?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -189,7 +189,7 @@ export namespace admissionregistration {
             /**
              * FailurePolicy defines how unrecognized errors from the admission endpoint are handled - allowed values are Ignore or Fail. Defaults to Fail.
              */
-            failurePolicy?: pulumi.Input<string>;
+            failurePolicy?: pulumi.Input<string | undefined>;
             /**
              * matchPolicy defines how the "rules" list is used to match incoming requests. Allowed values are "Exact" or "Equivalent".
              *
@@ -199,7 +199,7 @@ export namespace admissionregistration {
              *
              * Defaults to "Equivalent"
              */
-            matchPolicy?: pulumi.Input<string>;
+            matchPolicy?: pulumi.Input<string | undefined>;
             /**
              * The name of the admission webhook. Name should be fully qualified, e.g., imagepolicy.kubernetes.io, where "imagepolicy" is the name of the webhook, and kubernetes.io is the name of the organization. Required.
              */
@@ -237,15 +237,15 @@ export namespace admissionregistration {
              *
              * Default to the empty LabelSelector, which matches everything.
              */
-            namespaceSelector?: pulumi.Input<inputs.meta.v1.LabelSelector>;
+            namespaceSelector?: pulumi.Input<inputs.meta.v1.LabelSelector | undefined>;
             /**
              * ObjectSelector decides whether to run the webhook based on if the object has matching labels. objectSelector is evaluated against both the oldObject and newObject that would be sent to the webhook, and is considered to match if either object matches the selector. A null object (oldObject in the case of create, or newObject in the case of delete) or an object that cannot have labels (like a DeploymentRollback or a PodProxyOptions object) is not considered to match. Use the object selector only if the webhook is opt-in, because end users may skip the admission webhook by setting the labels. Default to the empty LabelSelector, which matches everything.
              */
-            objectSelector?: pulumi.Input<inputs.meta.v1.LabelSelector>;
+            objectSelector?: pulumi.Input<inputs.meta.v1.LabelSelector | undefined>;
             /**
              * Rules describes what operations on what resources/subresources the webhook cares about. The webhook cares about an operation if it matches _any_ Rule. However, in order to prevent ValidatingAdmissionWebhooks and MutatingAdmissionWebhooks from putting the cluster in a state which cannot be recovered from without completely disabling the plugin, ValidatingAdmissionWebhooks and MutatingAdmissionWebhooks are never called on admission requests for ValidatingWebhookConfiguration and MutatingWebhookConfiguration objects.
              */
-            rules?: pulumi.Input<pulumi.Input<inputs.admissionregistration.v1.RuleWithOperations>[]>;
+            rules?: pulumi.Input<pulumi.Input<inputs.admissionregistration.v1.RuleWithOperations>[] | undefined>;
             /**
              * SideEffects states whether this webhook has side effects. Acceptable values are: None, NoneOnDryRun (webhooks created via v1beta1 may also specify Some or Unknown). Webhooks with side effects MUST implement a reconciliation system, since a request may be rejected by a future step in the admission change and the side effects therefore need to be undone. Requests with the dryRun attribute will be auto-rejected if they match a webhook with sideEffects == Unknown or Some.
              */
@@ -253,7 +253,7 @@ export namespace admissionregistration {
             /**
              * TimeoutSeconds specifies the timeout for this webhook. After the timeout passes, the webhook call will be ignored or the API call will fail based on the failure policy. The timeout value must be between 1 and 30 seconds. Default to 10 seconds.
              */
-            timeoutSeconds?: pulumi.Input<number>;
+            timeoutSeconds?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -263,19 +263,19 @@ export namespace admissionregistration {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"admissionregistration.k8s.io/v1">;
+            apiVersion?: pulumi.Input<"admissionregistration.k8s.io/v1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"ValidatingWebhookConfiguration">;
+            kind?: pulumi.Input<"ValidatingWebhookConfiguration" | undefined>;
             /**
              * Standard object metadata; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Webhooks is a list of webhooks and the affected resources and operations.
              */
-            webhooks?: pulumi.Input<pulumi.Input<inputs.admissionregistration.v1.ValidatingWebhook>[]>;
+            webhooks?: pulumi.Input<pulumi.Input<inputs.admissionregistration.v1.ValidatingWebhook>[] | undefined>;
         }
 
         /**
@@ -285,13 +285,13 @@ export namespace admissionregistration {
             /**
              * `caBundle` is a PEM encoded CA bundle which will be used to validate the webhook's server certificate. If unspecified, system trust roots on the apiserver are used.
              */
-            caBundle?: pulumi.Input<string>;
+            caBundle?: pulumi.Input<string | undefined>;
             /**
              * `service` is a reference to the service for this webhook. Either `service` or `url` must be specified.
              *
              * If the webhook is running within the cluster, then you should use `service`.
              */
-            service?: pulumi.Input<inputs.admissionregistration.v1.ServiceReference>;
+            service?: pulumi.Input<inputs.admissionregistration.v1.ServiceReference | undefined>;
             /**
              * `url` gives the location of the webhook, in standard URL form (`scheme://host:port/path`). Exactly one of `url` or `service` must be specified.
              *
@@ -305,7 +305,7 @@ export namespace admissionregistration {
              *
              * Attempting to use a user or basic auth e.g. "user:password@" is not allowed. Fragments ("#...") and query parameters ("?...") are not allowed, either.
              */
-            url?: pulumi.Input<string>;
+            url?: pulumi.Input<string | undefined>;
         }
     }
 
@@ -317,7 +317,7 @@ export namespace admissionregistration {
             /**
              * AdmissionReviewVersions is an ordered list of preferred `AdmissionReview` versions the Webhook expects. API server will try to use first version in the list which it supports. If none of the versions specified in this list supported by API server, validation will fail for this object. If a persisted webhook configuration specifies allowed versions and does not include any versions known to the API Server, calls to the webhook will fail and be subject to the failure policy. Default to `['v1beta1']`.
              */
-            admissionReviewVersions?: pulumi.Input<pulumi.Input<string>[]>;
+            admissionReviewVersions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * ClientConfig defines how to communicate with the hook. Required
              */
@@ -325,7 +325,7 @@ export namespace admissionregistration {
             /**
              * FailurePolicy defines how unrecognized errors from the admission endpoint are handled - allowed values are Ignore or Fail. Defaults to Ignore.
              */
-            failurePolicy?: pulumi.Input<string>;
+            failurePolicy?: pulumi.Input<string | undefined>;
             /**
              * matchPolicy defines how the "rules" list is used to match incoming requests. Allowed values are "Exact" or "Equivalent".
              *
@@ -335,7 +335,7 @@ export namespace admissionregistration {
              *
              * Defaults to "Exact"
              */
-            matchPolicy?: pulumi.Input<string>;
+            matchPolicy?: pulumi.Input<string | undefined>;
             /**
              * The name of the admission webhook. Name should be fully qualified, e.g., imagepolicy.kubernetes.io, where "imagepolicy" is the name of the webhook, and kubernetes.io is the name of the organization. Required.
              */
@@ -373,11 +373,11 @@ export namespace admissionregistration {
              *
              * Default to the empty LabelSelector, which matches everything.
              */
-            namespaceSelector?: pulumi.Input<inputs.meta.v1.LabelSelector>;
+            namespaceSelector?: pulumi.Input<inputs.meta.v1.LabelSelector | undefined>;
             /**
              * ObjectSelector decides whether to run the webhook based on if the object has matching labels. objectSelector is evaluated against both the oldObject and newObject that would be sent to the webhook, and is considered to match if either object matches the selector. A null object (oldObject in the case of create, or newObject in the case of delete) or an object that cannot have labels (like a DeploymentRollback or a PodProxyOptions object) is not considered to match. Use the object selector only if the webhook is opt-in, because end users may skip the admission webhook by setting the labels. Default to the empty LabelSelector, which matches everything.
              */
-            objectSelector?: pulumi.Input<inputs.meta.v1.LabelSelector>;
+            objectSelector?: pulumi.Input<inputs.meta.v1.LabelSelector | undefined>;
             /**
              * reinvocationPolicy indicates whether this webhook should be called multiple times as part of a single admission evaluation. Allowed values are "Never" and "IfNeeded".
              *
@@ -387,19 +387,19 @@ export namespace admissionregistration {
              *
              * Defaults to "Never".
              */
-            reinvocationPolicy?: pulumi.Input<string>;
+            reinvocationPolicy?: pulumi.Input<string | undefined>;
             /**
              * Rules describes what operations on what resources/subresources the webhook cares about. The webhook cares about an operation if it matches _any_ Rule. However, in order to prevent ValidatingAdmissionWebhooks and MutatingAdmissionWebhooks from putting the cluster in a state which cannot be recovered from without completely disabling the plugin, ValidatingAdmissionWebhooks and MutatingAdmissionWebhooks are never called on admission requests for ValidatingWebhookConfiguration and MutatingWebhookConfiguration objects.
              */
-            rules?: pulumi.Input<pulumi.Input<inputs.admissionregistration.v1beta1.RuleWithOperations>[]>;
+            rules?: pulumi.Input<pulumi.Input<inputs.admissionregistration.v1beta1.RuleWithOperations>[] | undefined>;
             /**
              * SideEffects states whether this webhook has side effects. Acceptable values are: Unknown, None, Some, NoneOnDryRun Webhooks with side effects MUST implement a reconciliation system, since a request may be rejected by a future step in the admission change and the side effects therefore need to be undone. Requests with the dryRun attribute will be auto-rejected if they match a webhook with sideEffects == Unknown or Some. Defaults to Unknown.
              */
-            sideEffects?: pulumi.Input<string>;
+            sideEffects?: pulumi.Input<string | undefined>;
             /**
              * TimeoutSeconds specifies the timeout for this webhook. After the timeout passes, the webhook call will be ignored or the API call will fail based on the failure policy. The timeout value must be between 1 and 30 seconds. Default to 30 seconds.
              */
-            timeoutSeconds?: pulumi.Input<number>;
+            timeoutSeconds?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -409,19 +409,19 @@ export namespace admissionregistration {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"admissionregistration.k8s.io/v1beta1">;
+            apiVersion?: pulumi.Input<"admissionregistration.k8s.io/v1beta1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"MutatingWebhookConfiguration">;
+            kind?: pulumi.Input<"MutatingWebhookConfiguration" | undefined>;
             /**
              * Standard object metadata; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Webhooks is a list of webhooks and the affected resources and operations.
              */
-            webhooks?: pulumi.Input<pulumi.Input<inputs.admissionregistration.v1beta1.MutatingWebhook>[]>;
+            webhooks?: pulumi.Input<pulumi.Input<inputs.admissionregistration.v1beta1.MutatingWebhook>[] | undefined>;
         }
 
         /**
@@ -431,15 +431,15 @@ export namespace admissionregistration {
             /**
              * APIGroups is the API groups the resources belong to. '*' is all groups. If '*' is present, the length of the slice must be one. Required.
              */
-            apiGroups?: pulumi.Input<pulumi.Input<string>[]>;
+            apiGroups?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * APIVersions is the API versions the resources belong to. '*' is all versions. If '*' is present, the length of the slice must be one. Required.
              */
-            apiVersions?: pulumi.Input<pulumi.Input<string>[]>;
+            apiVersions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * Operations is the operations the admission hook cares about - CREATE, UPDATE, DELETE, CONNECT or * for all of those operations and any future admission operations that are added. If '*' is present, the length of the slice must be one. Required.
              */
-            operations?: pulumi.Input<pulumi.Input<string>[]>;
+            operations?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * Resources is a list of resources this rule applies to.
              *
@@ -449,11 +449,11 @@ export namespace admissionregistration {
              *
              * Depending on the enclosing object, subresources might not be allowed. Required.
              */
-            resources?: pulumi.Input<pulumi.Input<string>[]>;
+            resources?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * scope specifies the scope of this rule. Valid values are "Cluster", "Namespaced", and "*" "Cluster" means that only cluster-scoped resources will match this rule. Namespace API objects are cluster-scoped. "Namespaced" means that only namespaced resources will match this rule. "*" means that there are no scope restrictions. Subresources match the scope of their parent resource. Default is "*".
              */
-            scope?: pulumi.Input<string>;
+            scope?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -471,11 +471,11 @@ export namespace admissionregistration {
             /**
              * `path` is an optional URL path which will be sent in any request to this service.
              */
-            path?: pulumi.Input<string>;
+            path?: pulumi.Input<string | undefined>;
             /**
              * If specified, the port on the service that hosting webhook. Default to 443 for backward compatibility. `port` should be a valid port number (1-65535, inclusive).
              */
-            port?: pulumi.Input<number>;
+            port?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -485,7 +485,7 @@ export namespace admissionregistration {
             /**
              * AdmissionReviewVersions is an ordered list of preferred `AdmissionReview` versions the Webhook expects. API server will try to use first version in the list which it supports. If none of the versions specified in this list supported by API server, validation will fail for this object. If a persisted webhook configuration specifies allowed versions and does not include any versions known to the API Server, calls to the webhook will fail and be subject to the failure policy. Default to `['v1beta1']`.
              */
-            admissionReviewVersions?: pulumi.Input<pulumi.Input<string>[]>;
+            admissionReviewVersions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * ClientConfig defines how to communicate with the hook. Required
              */
@@ -493,7 +493,7 @@ export namespace admissionregistration {
             /**
              * FailurePolicy defines how unrecognized errors from the admission endpoint are handled - allowed values are Ignore or Fail. Defaults to Ignore.
              */
-            failurePolicy?: pulumi.Input<string>;
+            failurePolicy?: pulumi.Input<string | undefined>;
             /**
              * matchPolicy defines how the "rules" list is used to match incoming requests. Allowed values are "Exact" or "Equivalent".
              *
@@ -503,7 +503,7 @@ export namespace admissionregistration {
              *
              * Defaults to "Exact"
              */
-            matchPolicy?: pulumi.Input<string>;
+            matchPolicy?: pulumi.Input<string | undefined>;
             /**
              * The name of the admission webhook. Name should be fully qualified, e.g., imagepolicy.kubernetes.io, where "imagepolicy" is the name of the webhook, and kubernetes.io is the name of the organization. Required.
              */
@@ -541,23 +541,23 @@ export namespace admissionregistration {
              *
              * Default to the empty LabelSelector, which matches everything.
              */
-            namespaceSelector?: pulumi.Input<inputs.meta.v1.LabelSelector>;
+            namespaceSelector?: pulumi.Input<inputs.meta.v1.LabelSelector | undefined>;
             /**
              * ObjectSelector decides whether to run the webhook based on if the object has matching labels. objectSelector is evaluated against both the oldObject and newObject that would be sent to the webhook, and is considered to match if either object matches the selector. A null object (oldObject in the case of create, or newObject in the case of delete) or an object that cannot have labels (like a DeploymentRollback or a PodProxyOptions object) is not considered to match. Use the object selector only if the webhook is opt-in, because end users may skip the admission webhook by setting the labels. Default to the empty LabelSelector, which matches everything.
              */
-            objectSelector?: pulumi.Input<inputs.meta.v1.LabelSelector>;
+            objectSelector?: pulumi.Input<inputs.meta.v1.LabelSelector | undefined>;
             /**
              * Rules describes what operations on what resources/subresources the webhook cares about. The webhook cares about an operation if it matches _any_ Rule. However, in order to prevent ValidatingAdmissionWebhooks and MutatingAdmissionWebhooks from putting the cluster in a state which cannot be recovered from without completely disabling the plugin, ValidatingAdmissionWebhooks and MutatingAdmissionWebhooks are never called on admission requests for ValidatingWebhookConfiguration and MutatingWebhookConfiguration objects.
              */
-            rules?: pulumi.Input<pulumi.Input<inputs.admissionregistration.v1beta1.RuleWithOperations>[]>;
+            rules?: pulumi.Input<pulumi.Input<inputs.admissionregistration.v1beta1.RuleWithOperations>[] | undefined>;
             /**
              * SideEffects states whether this webhook has side effects. Acceptable values are: Unknown, None, Some, NoneOnDryRun Webhooks with side effects MUST implement a reconciliation system, since a request may be rejected by a future step in the admission change and the side effects therefore need to be undone. Requests with the dryRun attribute will be auto-rejected if they match a webhook with sideEffects == Unknown or Some. Defaults to Unknown.
              */
-            sideEffects?: pulumi.Input<string>;
+            sideEffects?: pulumi.Input<string | undefined>;
             /**
              * TimeoutSeconds specifies the timeout for this webhook. After the timeout passes, the webhook call will be ignored or the API call will fail based on the failure policy. The timeout value must be between 1 and 30 seconds. Default to 30 seconds.
              */
-            timeoutSeconds?: pulumi.Input<number>;
+            timeoutSeconds?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -567,19 +567,19 @@ export namespace admissionregistration {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"admissionregistration.k8s.io/v1beta1">;
+            apiVersion?: pulumi.Input<"admissionregistration.k8s.io/v1beta1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"ValidatingWebhookConfiguration">;
+            kind?: pulumi.Input<"ValidatingWebhookConfiguration" | undefined>;
             /**
              * Standard object metadata; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Webhooks is a list of webhooks and the affected resources and operations.
              */
-            webhooks?: pulumi.Input<pulumi.Input<inputs.admissionregistration.v1beta1.ValidatingWebhook>[]>;
+            webhooks?: pulumi.Input<pulumi.Input<inputs.admissionregistration.v1beta1.ValidatingWebhook>[] | undefined>;
         }
 
         /**
@@ -589,13 +589,13 @@ export namespace admissionregistration {
             /**
              * `caBundle` is a PEM encoded CA bundle which will be used to validate the webhook's server certificate. If unspecified, system trust roots on the apiserver are used.
              */
-            caBundle?: pulumi.Input<string>;
+            caBundle?: pulumi.Input<string | undefined>;
             /**
              * `service` is a reference to the service for this webhook. Either `service` or `url` must be specified.
              *
              * If the webhook is running within the cluster, then you should use `service`.
              */
-            service?: pulumi.Input<inputs.admissionregistration.v1beta1.ServiceReference>;
+            service?: pulumi.Input<inputs.admissionregistration.v1beta1.ServiceReference | undefined>;
             /**
              * `url` gives the location of the webhook, in standard URL form (`scheme://host:port/path`). Exactly one of `url` or `service` must be specified.
              *
@@ -609,7 +609,7 @@ export namespace admissionregistration {
              *
              * Attempting to use a user or basic auth e.g. "user:password@" is not allowed. Fragments ("#...") and query parameters ("?...") are not allowed, either.
              */
-            url?: pulumi.Input<string>;
+            url?: pulumi.Input<string | undefined>;
         }
     }
 }
@@ -623,11 +623,11 @@ export namespace apiextensions {
             /**
              * description is a human readable description of this column.
              */
-            description?: pulumi.Input<string>;
+            description?: pulumi.Input<string | undefined>;
             /**
              * format is an optional OpenAPI type definition for this column. The 'name' format is applied to the primary identifier column to assist in clients identifying column is the resource name. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for details.
              */
-            format?: pulumi.Input<string>;
+            format?: pulumi.Input<string | undefined>;
             /**
              * jsonPath is a simple JSON path (i.e. with array notation) which is evaluated against each custom resource to produce the value for this column.
              */
@@ -639,7 +639,7 @@ export namespace apiextensions {
             /**
              * priority is an integer defining the relative importance of this column compared to others. Lower numbers are considered higher priority. Columns that may be omitted in limited space scenarios should be given a priority greater than 0.
              */
-            priority?: pulumi.Input<number>;
+            priority?: pulumi.Input<number | undefined>;
             /**
              * type is an OpenAPI type definition for this column. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for details.
              */
@@ -658,7 +658,7 @@ export namespace apiextensions {
             /**
              * webhook describes how to call the conversion webhook. Required when `strategy` is set to `Webhook`.
              */
-            webhook?: pulumi.Input<inputs.apiextensions.v1.WebhookConversion>;
+            webhook?: pulumi.Input<inputs.apiextensions.v1.WebhookConversion | undefined>;
         }
 
         /**
@@ -668,12 +668,12 @@ export namespace apiextensions {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"apiextensions.k8s.io/v1">;
+            apiVersion?: pulumi.Input<"apiextensions.k8s.io/v1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"CustomResourceDefinition">;
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            kind?: pulumi.Input<"CustomResourceDefinition" | undefined>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * spec describes how the user wants the resources to appear
              */
@@ -681,7 +681,7 @@ export namespace apiextensions {
             /**
              * status indicates the actual state of the CustomResourceDefinition
              */
-            status?: pulumi.Input<inputs.apiextensions.v1.CustomResourceDefinitionStatus>;
+            status?: pulumi.Input<inputs.apiextensions.v1.CustomResourceDefinitionStatus | undefined>;
         }
 
         /**
@@ -691,15 +691,15 @@ export namespace apiextensions {
             /**
              * lastTransitionTime last time the condition transitioned from one status to another.
              */
-            lastTransitionTime?: pulumi.Input<string>;
+            lastTransitionTime?: pulumi.Input<string | undefined>;
             /**
              * message is a human-readable message indicating details about last transition.
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * reason is a unique, one-word, CamelCase reason for the condition's last transition.
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
             /**
              * status is the status of the condition. Can be True, False, Unknown.
              */
@@ -717,7 +717,7 @@ export namespace apiextensions {
             /**
              * categories is a list of grouped resources this custom resource belongs to (e.g. 'all'). This is published in API discovery documents, and used by clients to support invocations like `kubectl get all`.
              */
-            categories?: pulumi.Input<pulumi.Input<string>[]>;
+            categories?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * kind is the serialized kind of the resource. It is normally CamelCase and singular. Custom resource instances will use this value as the `kind` attribute in API calls.
              */
@@ -725,7 +725,7 @@ export namespace apiextensions {
             /**
              * listKind is the serialized kind of the list for this resource. Defaults to "`kind`List".
              */
-            listKind?: pulumi.Input<string>;
+            listKind?: pulumi.Input<string | undefined>;
             /**
              * plural is the plural name of the resource to serve. The custom resources are served under `/apis/<group>/<version>/.../<plural>`. Must match the name of the CustomResourceDefinition (in the form `<names.plural>.<group>`). Must be all lowercase.
              */
@@ -733,11 +733,11 @@ export namespace apiextensions {
             /**
              * shortNames are short names for the resource, exposed in API discovery documents, and used by clients to support invocations like `kubectl get <shortname>`. It must be all lowercase.
              */
-            shortNames?: pulumi.Input<pulumi.Input<string>[]>;
+            shortNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * singular is the singular name of the resource. It must be all lowercase. Defaults to lowercased `kind`.
              */
-            singular?: pulumi.Input<string>;
+            singular?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -747,7 +747,7 @@ export namespace apiextensions {
             /**
              * conversion defines conversion settings for the CRD.
              */
-            conversion?: pulumi.Input<inputs.apiextensions.v1.CustomResourceConversion>;
+            conversion?: pulumi.Input<inputs.apiextensions.v1.CustomResourceConversion | undefined>;
             /**
              * group is the API group of the defined custom resource. The custom resources are served under `/apis/<group>/...`. Must match the name of the CustomResourceDefinition (in the form `<names.plural>.<group>`).
              */
@@ -759,7 +759,7 @@ export namespace apiextensions {
             /**
              * preserveUnknownFields indicates that object fields which are not specified in the OpenAPI schema should be preserved when persisting to storage. apiVersion, kind, metadata and known fields inside metadata are always preserved. This field is deprecated in favor of setting `x-preserve-unknown-fields` to true in `spec.versions[*].schema.openAPIV3Schema`. See https://kubernetes.io/docs/tasks/access-kubernetes-api/custom-resources/custom-resource-definitions/#pruning-versus-preserving-unknown-fields for details.
              */
-            preserveUnknownFields?: pulumi.Input<boolean>;
+            preserveUnknownFields?: pulumi.Input<boolean | undefined>;
             /**
              * scope indicates whether the defined custom resource is cluster- or namespace-scoped. Allowed values are `Cluster` and `Namespaced`.
              */
@@ -781,7 +781,7 @@ export namespace apiextensions {
             /**
              * conditions indicate state for particular aspects of a CustomResourceDefinition
              */
-            conditions?: pulumi.Input<pulumi.Input<inputs.apiextensions.v1.CustomResourceDefinitionCondition>[]>;
+            conditions?: pulumi.Input<pulumi.Input<inputs.apiextensions.v1.CustomResourceDefinitionCondition>[] | undefined>;
             /**
              * storedVersions lists all versions of CustomResources that were ever persisted. Tracking these versions allows a migration path for stored versions in etcd. The field is mutable so a migration controller can finish a migration to another version (ensuring no old objects are left in storage), and then remove the rest of the versions from this list. Versions may not be removed from `spec.versions` while they exist in this list.
              */
@@ -795,15 +795,15 @@ export namespace apiextensions {
             /**
              * additionalPrinterColumns specifies additional columns returned in Table output. See https://kubernetes.io/docs/reference/using-api/api-concepts/#receiving-resources-as-tables for details. If no columns are specified, a single column displaying the age of the custom resource is used.
              */
-            additionalPrinterColumns?: pulumi.Input<pulumi.Input<inputs.apiextensions.v1.CustomResourceColumnDefinition>[]>;
+            additionalPrinterColumns?: pulumi.Input<pulumi.Input<inputs.apiextensions.v1.CustomResourceColumnDefinition>[] | undefined>;
             /**
              * deprecated indicates this version of the custom resource API is deprecated. When set to true, API requests to this version receive a warning header in the server response. Defaults to false.
              */
-            deprecated?: pulumi.Input<boolean>;
+            deprecated?: pulumi.Input<boolean | undefined>;
             /**
              * deprecationWarning overrides the default warning returned to API clients. May only be set when `deprecated` is true. The default warning indicates this version is deprecated and recommends use of the newest served version of equal or greater stability, if one exists.
              */
-            deprecationWarning?: pulumi.Input<string>;
+            deprecationWarning?: pulumi.Input<string | undefined>;
             /**
              * name is the version name, e.g. “v1”, “v2beta1”, etc. The custom resources are served under this version at `/apis/<group>/<version>/...` if `served` is true.
              */
@@ -811,7 +811,7 @@ export namespace apiextensions {
             /**
              * schema describes the schema used for validation, pruning, and defaulting of this version of the custom resource.
              */
-            schema?: pulumi.Input<inputs.apiextensions.v1.CustomResourceValidation>;
+            schema?: pulumi.Input<inputs.apiextensions.v1.CustomResourceValidation | undefined>;
             /**
              * served is a flag enabling/disabling this version from being served via REST APIs
              */
@@ -823,7 +823,7 @@ export namespace apiextensions {
             /**
              * subresources specify what subresources this version of the defined custom resource have.
              */
-            subresources?: pulumi.Input<inputs.apiextensions.v1.CustomResourceSubresources>;
+            subresources?: pulumi.Input<inputs.apiextensions.v1.CustomResourceSubresources | undefined>;
         }
 
         /**
@@ -833,7 +833,7 @@ export namespace apiextensions {
             /**
              * labelSelectorPath defines the JSON path inside of a custom resource that corresponds to Scale `status.selector`. Only JSON paths without the array notation are allowed. Must be a JSON Path under `.status` or `.spec`. Must be set to work with HorizontalPodAutoscaler. The field pointed by this JSON path must be a string field (not a complex selector struct) which contains a serialized label selector in string form. More info: https://kubernetes.io/docs/tasks/access-kubernetes-api/custom-resources/custom-resource-definitions#scale-subresource If there is no value under the given path in the custom resource, the `status.selector` value in the `/scale` subresource will default to the empty string.
              */
-            labelSelectorPath?: pulumi.Input<string>;
+            labelSelectorPath?: pulumi.Input<string | undefined>;
             /**
              * specReplicasPath defines the JSON path inside of a custom resource that corresponds to Scale `spec.replicas`. Only JSON paths without the array notation are allowed. Must be a JSON Path under `.spec`. If there is no value under the given path in the custom resource, the `/scale` subresource will return an error on GET.
              */
@@ -851,11 +851,11 @@ export namespace apiextensions {
             /**
              * scale indicates the custom resource should serve a `/scale` subresource that returns an `autoscaling/v1` Scale object.
              */
-            scale?: pulumi.Input<inputs.apiextensions.v1.CustomResourceSubresourceScale>;
+            scale?: pulumi.Input<inputs.apiextensions.v1.CustomResourceSubresourceScale | undefined>;
             /**
              * status indicates the custom resource should serve a `/status` subresource. When enabled: 1. requests to the custom resource primary endpoint ignore changes to the `status` stanza of the object. 2. requests to the custom resource `/status` subresource ignore changes to anything other than the `status` stanza of the object.
              */
-            status?: any;
+            status?: pulumi.Input<any | undefined>;
         }
 
         /**
@@ -865,70 +865,70 @@ export namespace apiextensions {
             /**
              * openAPIV3Schema is the OpenAPI v3 schema to use for validation and pruning.
              */
-            openAPIV3Schema?: pulumi.Input<inputs.apiextensions.v1.JSONSchemaProps>;
+            openAPIV3Schema?: pulumi.Input<inputs.apiextensions.v1.JSONSchemaProps | undefined>;
         }
 
         /**
          * ExternalDocumentation allows referencing an external resource for extended documentation.
          */
         export interface ExternalDocumentation {
-            description?: pulumi.Input<string>;
-            url?: pulumi.Input<string>;
+            description?: pulumi.Input<string | undefined>;
+            url?: pulumi.Input<string | undefined>;
         }
 
         /**
          * JSONSchemaProps is a JSON-Schema following Specification Draft 4 (http://json-schema.org/).
          */
         export interface JSONSchemaProps {
-            $ref?: pulumi.Input<string>;
-            $schema?: pulumi.Input<string>;
-            additionalItems?: pulumi.Input<inputs.apiextensions.v1.JSONSchemaProps | boolean>;
-            additionalProperties?: pulumi.Input<inputs.apiextensions.v1.JSONSchemaProps | boolean>;
-            allOf?: pulumi.Input<pulumi.Input<inputs.apiextensions.v1.JSONSchemaProps>[]>;
-            anyOf?: pulumi.Input<pulumi.Input<inputs.apiextensions.v1.JSONSchemaProps>[]>;
+            $ref?: pulumi.Input<string | undefined>;
+            $schema?: pulumi.Input<string | undefined>;
+            additionalItems?: pulumi.Input<inputs.apiextensions.v1.JSONSchemaProps | boolean | undefined>;
+            additionalProperties?: pulumi.Input<inputs.apiextensions.v1.JSONSchemaProps | boolean | undefined>;
+            allOf?: pulumi.Input<pulumi.Input<inputs.apiextensions.v1.JSONSchemaProps>[] | undefined>;
+            anyOf?: pulumi.Input<pulumi.Input<inputs.apiextensions.v1.JSONSchemaProps>[] | undefined>;
             /**
              * default is a default value for undefined object fields. Defaulting is a beta feature under the CustomResourceDefaulting feature gate. Defaulting requires spec.preserveUnknownFields to be false.
              */
-            default?: any;
-            definitions?: pulumi.Input<{[key: string]: pulumi.Input<inputs.apiextensions.v1.JSONSchemaProps>}>;
-            dependencies?: pulumi.Input<{[key: string]: pulumi.Input<inputs.apiextensions.v1.JSONSchemaProps | pulumi.Input<string>[]>}>;
-            description?: pulumi.Input<string>;
-            enum?: pulumi.Input<any[]>;
-            example?: any;
-            exclusiveMaximum?: pulumi.Input<boolean>;
-            exclusiveMinimum?: pulumi.Input<boolean>;
-            externalDocs?: pulumi.Input<inputs.apiextensions.v1.ExternalDocumentation>;
+            default?: pulumi.Input<any | undefined>;
+            definitions?: pulumi.Input<{[key: string]: pulumi.Input<inputs.apiextensions.v1.JSONSchemaProps>} | undefined>;
+            dependencies?: pulumi.Input<{[key: string]: pulumi.Input<inputs.apiextensions.v1.JSONSchemaProps | pulumi.Input<string>[]>} | undefined>;
+            description?: pulumi.Input<string | undefined>;
+            enum?: pulumi.Input<any[] | undefined>;
+            example?: pulumi.Input<any | undefined>;
+            exclusiveMaximum?: pulumi.Input<boolean | undefined>;
+            exclusiveMinimum?: pulumi.Input<boolean | undefined>;
+            externalDocs?: pulumi.Input<inputs.apiextensions.v1.ExternalDocumentation | undefined>;
             /**
              * format is an OpenAPI v3 format string. Unknown formats are ignored. The following formats are validated:
              *
              * - bsonobjectid: a bson object ID, i.e. a 24 characters hex string - uri: an URI as parsed by Golang net/url.ParseRequestURI - email: an email address as parsed by Golang net/mail.ParseAddress - hostname: a valid representation for an Internet host name, as defined by RFC 1034, section 3.1 [RFC1034]. - ipv4: an IPv4 IP as parsed by Golang net.ParseIP - ipv6: an IPv6 IP as parsed by Golang net.ParseIP - cidr: a CIDR as parsed by Golang net.ParseCIDR - mac: a MAC address as parsed by Golang net.ParseMAC - uuid: an UUID that allows uppercase defined by the regex (?i)^[0-9a-f]{8}-?[0-9a-f]{4}-?[0-9a-f]{4}-?[0-9a-f]{4}-?[0-9a-f]{12}$ - uuid3: an UUID3 that allows uppercase defined by the regex (?i)^[0-9a-f]{8}-?[0-9a-f]{4}-?3[0-9a-f]{3}-?[0-9a-f]{4}-?[0-9a-f]{12}$ - uuid4: an UUID4 that allows uppercase defined by the regex (?i)^[0-9a-f]{8}-?[0-9a-f]{4}-?4[0-9a-f]{3}-?[89ab][0-9a-f]{3}-?[0-9a-f]{12}$ - uuid5: an UUID5 that allows uppercase defined by the regex (?i)^[0-9a-f]{8}-?[0-9a-f]{4}-?5[0-9a-f]{3}-?[89ab][0-9a-f]{3}-?[0-9a-f]{12}$ - isbn: an ISBN10 or ISBN13 number string like "0321751043" or "978-0321751041" - isbn10: an ISBN10 number string like "0321751043" - isbn13: an ISBN13 number string like "978-0321751041" - creditcard: a credit card number defined by the regex ^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$ with any non digit characters mixed in - ssn: a U.S. social security number following the regex ^\d{3}[- ]?\d{2}[- ]?\d{4}$ - hexcolor: an hexadecimal color code like "#FFFFFF: following the regex ^#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$ - rgbcolor: an RGB color code like rgb like "rgb(255,255,2559" - byte: base64 encoded binary data - password: any kind of string - date: a date string like "2006-01-02" as defined by full-date in RFC3339 - duration: a duration string like "22 ns" as parsed by Golang time.ParseDuration or compatible with Scala duration format - datetime: a date time string like "2014-12-15T19:30:20.000Z" as defined by date-time in RFC3339.
              */
-            format?: pulumi.Input<string>;
-            id?: pulumi.Input<string>;
-            items?: pulumi.Input<inputs.apiextensions.v1.JSONSchemaProps | any[]>;
-            maxItems?: pulumi.Input<number>;
-            maxLength?: pulumi.Input<number>;
-            maxProperties?: pulumi.Input<number>;
-            maximum?: pulumi.Input<number>;
-            minItems?: pulumi.Input<number>;
-            minLength?: pulumi.Input<number>;
-            minProperties?: pulumi.Input<number>;
-            minimum?: pulumi.Input<number>;
-            multipleOf?: pulumi.Input<number>;
-            not?: pulumi.Input<inputs.apiextensions.v1.JSONSchemaProps>;
-            nullable?: pulumi.Input<boolean>;
-            oneOf?: pulumi.Input<pulumi.Input<inputs.apiextensions.v1.JSONSchemaProps>[]>;
-            pattern?: pulumi.Input<string>;
-            patternProperties?: pulumi.Input<{[key: string]: pulumi.Input<inputs.apiextensions.v1.JSONSchemaProps>}>;
-            properties?: pulumi.Input<{[key: string]: pulumi.Input<inputs.apiextensions.v1.JSONSchemaProps>}>;
-            required?: pulumi.Input<pulumi.Input<string>[]>;
-            title?: pulumi.Input<string>;
-            type?: pulumi.Input<string>;
-            uniqueItems?: pulumi.Input<boolean>;
+            format?: pulumi.Input<string | undefined>;
+            id?: pulumi.Input<string | undefined>;
+            items?: pulumi.Input<inputs.apiextensions.v1.JSONSchemaProps | any[] | undefined>;
+            maxItems?: pulumi.Input<number | undefined>;
+            maxLength?: pulumi.Input<number | undefined>;
+            maxProperties?: pulumi.Input<number | undefined>;
+            maximum?: pulumi.Input<number | undefined>;
+            minItems?: pulumi.Input<number | undefined>;
+            minLength?: pulumi.Input<number | undefined>;
+            minProperties?: pulumi.Input<number | undefined>;
+            minimum?: pulumi.Input<number | undefined>;
+            multipleOf?: pulumi.Input<number | undefined>;
+            not?: pulumi.Input<inputs.apiextensions.v1.JSONSchemaProps | undefined>;
+            nullable?: pulumi.Input<boolean | undefined>;
+            oneOf?: pulumi.Input<pulumi.Input<inputs.apiextensions.v1.JSONSchemaProps>[] | undefined>;
+            pattern?: pulumi.Input<string | undefined>;
+            patternProperties?: pulumi.Input<{[key: string]: pulumi.Input<inputs.apiextensions.v1.JSONSchemaProps>} | undefined>;
+            properties?: pulumi.Input<{[key: string]: pulumi.Input<inputs.apiextensions.v1.JSONSchemaProps>} | undefined>;
+            required?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+            title?: pulumi.Input<string | undefined>;
+            type?: pulumi.Input<string | undefined>;
+            uniqueItems?: pulumi.Input<boolean | undefined>;
             /**
              * x-kubernetes-embedded-resource defines that the value is an embedded Kubernetes runtime.Object, with TypeMeta and ObjectMeta. The type must be object. It is allowed to further restrict the embedded object. kind, apiVersion and metadata are validated automatically. x-kubernetes-preserve-unknown-fields is allowed to be true, but does not have to be if the object is fully specified (up to kind, apiVersion, metadata).
              */
-            x_kubernetes_embedded_resource?: pulumi.Input<boolean>;
+            x_kubernetes_embedded_resource?: pulumi.Input<boolean | undefined>;
             /**
              * x-kubernetes-int-or-string specifies that this value is either an integer or a string. If this is true, an empty type is allowed and type as child of anyOf is permitted if following one of the following patterns:
              *
@@ -941,7 +941,7 @@ export namespace apiextensions {
              *      - type: string
              *    - ... zero or more
              */
-            x_kubernetes_int_or_string?: pulumi.Input<boolean>;
+            x_kubernetes_int_or_string?: pulumi.Input<boolean | undefined>;
             /**
              * x-kubernetes-list-map-keys annotates an array with the x-kubernetes-list-type `map` by specifying the keys used as the index of the map.
              *
@@ -949,7 +949,7 @@ export namespace apiextensions {
              *
              * The properties specified must either be required or have a default value, to ensure those properties are present for all list items.
              */
-            x_kubernetes_list_map_keys?: pulumi.Input<pulumi.Input<string>[]>;
+            x_kubernetes_list_map_keys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * x-kubernetes-list-type annotates an array to further describe its topology. This extension must only be used on lists and may have 3 possible values:
              *
@@ -966,7 +966,7 @@ export namespace apiextensions {
              *      must only be used on a list with elements of type object.
              * Defaults to atomic for arrays.
              */
-            x_kubernetes_list_type?: pulumi.Input<string>;
+            x_kubernetes_list_type?: pulumi.Input<string | undefined>;
             /**
              * x-kubernetes-map-type annotates an object to further describe its topology. This extension must only be used when type is object and may have 2 possible values:
              *
@@ -977,11 +977,11 @@ export namespace apiextensions {
              * 2) `atomic`: the list is treated as a single entity, like a scalar.
              *      Atomic maps will be entirely replaced when updated.
              */
-            x_kubernetes_map_type?: pulumi.Input<string>;
+            x_kubernetes_map_type?: pulumi.Input<string | undefined>;
             /**
              * x-kubernetes-preserve-unknown-fields stops the API server decoding step from pruning fields which are not specified in the validation schema. This affects fields recursively, but switches back to normal pruning behaviour if nested properties or additionalProperties are specified in the schema. This can either be true or undefined. False is forbidden.
              */
-            x_kubernetes_preserve_unknown_fields?: pulumi.Input<boolean>;
+            x_kubernetes_preserve_unknown_fields?: pulumi.Input<boolean | undefined>;
         }
 
         /**
@@ -999,11 +999,11 @@ export namespace apiextensions {
             /**
              * path is an optional URL path at which the webhook will be contacted.
              */
-            path?: pulumi.Input<string>;
+            path?: pulumi.Input<string | undefined>;
             /**
              * port is an optional service port at which the webhook will be contacted. `port` should be a valid port number (1-65535, inclusive). Defaults to 443 for backward compatibility.
              */
-            port?: pulumi.Input<number>;
+            port?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -1013,13 +1013,13 @@ export namespace apiextensions {
             /**
              * caBundle is a PEM encoded CA bundle which will be used to validate the webhook's server certificate. If unspecified, system trust roots on the apiserver are used.
              */
-            caBundle?: pulumi.Input<string>;
+            caBundle?: pulumi.Input<string | undefined>;
             /**
              * service is a reference to the service for this webhook. Either service or url must be specified.
              *
              * If the webhook is running within the cluster, then you should use `service`.
              */
-            service?: pulumi.Input<inputs.apiextensions.v1.ServiceReference>;
+            service?: pulumi.Input<inputs.apiextensions.v1.ServiceReference | undefined>;
             /**
              * url gives the location of the webhook, in standard URL form (`scheme://host:port/path`). Exactly one of `url` or `service` must be specified.
              *
@@ -1033,7 +1033,7 @@ export namespace apiextensions {
              *
              * Attempting to use a user or basic auth e.g. "user:password@" is not allowed. Fragments ("#...") and query parameters ("?...") are not allowed, either.
              */
-            url?: pulumi.Input<string>;
+            url?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -1043,7 +1043,7 @@ export namespace apiextensions {
             /**
              * clientConfig is the instructions for how to call the webhook if strategy is `Webhook`.
              */
-            clientConfig?: pulumi.Input<inputs.apiextensions.v1.WebhookClientConfig>;
+            clientConfig?: pulumi.Input<inputs.apiextensions.v1.WebhookClientConfig | undefined>;
             /**
              * conversionReviewVersions is an ordered list of preferred `ConversionReview` versions the Webhook expects. The API server will use the first version in the list which it supports. If none of the versions specified in this list are supported by API server, conversion will fail for the custom resource. If a persisted Webhook configuration specifies allowed versions and does not include any versions known to the API Server, calls to the webhook will fail.
              */
@@ -1063,11 +1063,11 @@ export namespace apiextensions {
             /**
              * description is a human readable description of this column.
              */
-            description?: pulumi.Input<string>;
+            description?: pulumi.Input<string | undefined>;
             /**
              * format is an optional OpenAPI type definition for this column. The 'name' format is applied to the primary identifier column to assist in clients identifying column is the resource name. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for details.
              */
-            format?: pulumi.Input<string>;
+            format?: pulumi.Input<string | undefined>;
             /**
              * name is a human readable name for the column.
              */
@@ -1075,7 +1075,7 @@ export namespace apiextensions {
             /**
              * priority is an integer defining the relative importance of this column compared to others. Lower numbers are considered higher priority. Columns that may be omitted in limited space scenarios should be given a priority greater than 0.
              */
-            priority?: pulumi.Input<number>;
+            priority?: pulumi.Input<number | undefined>;
             /**
              * type is an OpenAPI type definition for this column. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for details.
              */
@@ -1089,7 +1089,7 @@ export namespace apiextensions {
             /**
              * conversionReviewVersions is an ordered list of preferred `ConversionReview` versions the Webhook expects. The API server will use the first version in the list which it supports. If none of the versions specified in this list are supported by API server, conversion will fail for the custom resource. If a persisted Webhook configuration specifies allowed versions and does not include any versions known to the API Server, calls to the webhook will fail. Defaults to `["v1beta1"]`.
              */
-            conversionReviewVersions?: pulumi.Input<pulumi.Input<string>[]>;
+            conversionReviewVersions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * strategy specifies how custom resources are converted between versions. Allowed values are: - `None`: The converter only change the apiVersion and would not touch any other field in the custom resource. - `Webhook`: API Server will call to an external webhook to do the conversion. Additional information
              *   is needed for this option. This requires spec.preserveUnknownFields to be false, and spec.conversion.webhookClientConfig to be set.
@@ -1098,7 +1098,7 @@ export namespace apiextensions {
             /**
              * webhookClientConfig is the instructions for how to call the webhook if strategy is `Webhook`. Required when `strategy` is set to `Webhook`.
              */
-            webhookClientConfig?: pulumi.Input<inputs.apiextensions.v1beta1.WebhookClientConfig>;
+            webhookClientConfig?: pulumi.Input<inputs.apiextensions.v1beta1.WebhookClientConfig | undefined>;
         }
 
         /**
@@ -1108,12 +1108,12 @@ export namespace apiextensions {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"apiextensions.k8s.io/v1beta1">;
+            apiVersion?: pulumi.Input<"apiextensions.k8s.io/v1beta1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"CustomResourceDefinition">;
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            kind?: pulumi.Input<"CustomResourceDefinition" | undefined>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * spec describes how the user wants the resources to appear
              */
@@ -1121,7 +1121,7 @@ export namespace apiextensions {
             /**
              * status indicates the actual state of the CustomResourceDefinition
              */
-            status?: pulumi.Input<inputs.apiextensions.v1beta1.CustomResourceDefinitionStatus>;
+            status?: pulumi.Input<inputs.apiextensions.v1beta1.CustomResourceDefinitionStatus | undefined>;
         }
 
         /**
@@ -1131,15 +1131,15 @@ export namespace apiextensions {
             /**
              * lastTransitionTime last time the condition transitioned from one status to another.
              */
-            lastTransitionTime?: pulumi.Input<string>;
+            lastTransitionTime?: pulumi.Input<string | undefined>;
             /**
              * message is a human-readable message indicating details about last transition.
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * reason is a unique, one-word, CamelCase reason for the condition's last transition.
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
             /**
              * status is the status of the condition. Can be True, False, Unknown.
              */
@@ -1157,7 +1157,7 @@ export namespace apiextensions {
             /**
              * categories is a list of grouped resources this custom resource belongs to (e.g. 'all'). This is published in API discovery documents, and used by clients to support invocations like `kubectl get all`.
              */
-            categories?: pulumi.Input<pulumi.Input<string>[]>;
+            categories?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * kind is the serialized kind of the resource. It is normally CamelCase and singular. Custom resource instances will use this value as the `kind` attribute in API calls.
              */
@@ -1165,7 +1165,7 @@ export namespace apiextensions {
             /**
              * listKind is the serialized kind of the list for this resource. Defaults to "`kind`List".
              */
-            listKind?: pulumi.Input<string>;
+            listKind?: pulumi.Input<string | undefined>;
             /**
              * plural is the plural name of the resource to serve. The custom resources are served under `/apis/<group>/<version>/.../<plural>`. Must match the name of the CustomResourceDefinition (in the form `<names.plural>.<group>`). Must be all lowercase.
              */
@@ -1173,11 +1173,11 @@ export namespace apiextensions {
             /**
              * shortNames are short names for the resource, exposed in API discovery documents, and used by clients to support invocations like `kubectl get <shortname>`. It must be all lowercase.
              */
-            shortNames?: pulumi.Input<pulumi.Input<string>[]>;
+            shortNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * singular is the singular name of the resource. It must be all lowercase. Defaults to lowercased `kind`.
              */
-            singular?: pulumi.Input<string>;
+            singular?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -1187,11 +1187,11 @@ export namespace apiextensions {
             /**
              * additionalPrinterColumns specifies additional columns returned in Table output. See https://kubernetes.io/docs/reference/using-api/api-concepts/#receiving-resources-as-tables for details. If present, this field configures columns for all versions. Top-level and per-version columns are mutually exclusive. If no top-level or per-version columns are specified, a single column displaying the age of the custom resource is used.
              */
-            additionalPrinterColumns?: pulumi.Input<pulumi.Input<inputs.apiextensions.v1beta1.CustomResourceColumnDefinition>[]>;
+            additionalPrinterColumns?: pulumi.Input<pulumi.Input<inputs.apiextensions.v1beta1.CustomResourceColumnDefinition>[] | undefined>;
             /**
              * conversion defines conversion settings for the CRD.
              */
-            conversion?: pulumi.Input<inputs.apiextensions.v1beta1.CustomResourceConversion>;
+            conversion?: pulumi.Input<inputs.apiextensions.v1beta1.CustomResourceConversion | undefined>;
             /**
              * group is the API group of the defined custom resource. The custom resources are served under `/apis/<group>/...`. Must match the name of the CustomResourceDefinition (in the form `<names.plural>.<group>`).
              */
@@ -1203,7 +1203,7 @@ export namespace apiextensions {
             /**
              * preserveUnknownFields indicates that object fields which are not specified in the OpenAPI schema should be preserved when persisting to storage. apiVersion, kind, metadata and known fields inside metadata are always preserved. If false, schemas must be defined for all versions. Defaults to true in v1beta for backwards compatibility. Deprecated: will be required to be false in v1. Preservation of unknown fields can be specified in the validation schema using the `x-kubernetes-preserve-unknown-fields: true` extension. See https://kubernetes.io/docs/tasks/access-kubernetes-api/custom-resources/custom-resource-definitions/#pruning-versus-preserving-unknown-fields for details.
              */
-            preserveUnknownFields?: pulumi.Input<boolean>;
+            preserveUnknownFields?: pulumi.Input<boolean | undefined>;
             /**
              * scope indicates whether the defined custom resource is cluster- or namespace-scoped. Allowed values are `Cluster` and `Namespaced`. Default is `Namespaced`.
              */
@@ -1211,19 +1211,19 @@ export namespace apiextensions {
             /**
              * subresources specify what subresources the defined custom resource has. If present, this field configures subresources for all versions. Top-level and per-version subresources are mutually exclusive.
              */
-            subresources?: pulumi.Input<inputs.apiextensions.v1beta1.CustomResourceSubresources>;
+            subresources?: pulumi.Input<inputs.apiextensions.v1beta1.CustomResourceSubresources | undefined>;
             /**
              * validation describes the schema used for validation and pruning of the custom resource. If present, this validation schema is used to validate all versions. Top-level and per-version schemas are mutually exclusive.
              */
-            validation?: pulumi.Input<inputs.apiextensions.v1beta1.CustomResourceValidation>;
+            validation?: pulumi.Input<inputs.apiextensions.v1beta1.CustomResourceValidation | undefined>;
             /**
              * version is the API version of the defined custom resource. The custom resources are served under `/apis/<group>/<version>/...`. Must match the name of the first item in the `versions` list if `version` and `versions` are both specified. Optional if `versions` is specified. Deprecated: use `versions` instead.
              */
-            version?: pulumi.Input<string>;
+            version?: pulumi.Input<string | undefined>;
             /**
              * versions is the list of all API versions of the defined custom resource. Optional if `version` is specified. The name of the first item in the `versions` list must match the `version` field if `version` and `versions` are both specified. Version names are used to compute the order in which served versions are listed in API discovery. If the version string is "kube-like", it will sort above non "kube-like" version strings, which are ordered lexicographically. "Kube-like" versions start with a "v", then are followed by a number (the major version), then optionally the string "alpha" or "beta" and another number (the minor version). These are sorted first by GA > beta > alpha (where GA is a version with no suffix such as beta or alpha), and then by comparing major version, then minor version. An example sorted list of versions: v10, v2, v1, v11beta2, v10beta3, v3beta1, v12alpha1, v11alpha2, foo1, foo10.
              */
-            versions?: pulumi.Input<pulumi.Input<inputs.apiextensions.v1beta1.CustomResourceDefinitionVersion>[]>;
+            versions?: pulumi.Input<pulumi.Input<inputs.apiextensions.v1beta1.CustomResourceDefinitionVersion>[] | undefined>;
         }
 
         /**
@@ -1237,7 +1237,7 @@ export namespace apiextensions {
             /**
              * conditions indicate state for particular aspects of a CustomResourceDefinition
              */
-            conditions?: pulumi.Input<pulumi.Input<inputs.apiextensions.v1beta1.CustomResourceDefinitionCondition>[]>;
+            conditions?: pulumi.Input<pulumi.Input<inputs.apiextensions.v1beta1.CustomResourceDefinitionCondition>[] | undefined>;
             /**
              * storedVersions lists all versions of CustomResources that were ever persisted. Tracking these versions allows a migration path for stored versions in etcd. The field is mutable so a migration controller can finish a migration to another version (ensuring no old objects are left in storage), and then remove the rest of the versions from this list. Versions may not be removed from `spec.versions` while they exist in this list.
              */
@@ -1251,15 +1251,15 @@ export namespace apiextensions {
             /**
              * additionalPrinterColumns specifies additional columns returned in Table output. See https://kubernetes.io/docs/reference/using-api/api-concepts/#receiving-resources-as-tables for details. Top-level and per-version columns are mutually exclusive. Per-version columns must not all be set to identical values (top-level columns should be used instead). If no top-level or per-version columns are specified, a single column displaying the age of the custom resource is used.
              */
-            additionalPrinterColumns?: pulumi.Input<pulumi.Input<inputs.apiextensions.v1beta1.CustomResourceColumnDefinition>[]>;
+            additionalPrinterColumns?: pulumi.Input<pulumi.Input<inputs.apiextensions.v1beta1.CustomResourceColumnDefinition>[] | undefined>;
             /**
              * deprecated indicates this version of the custom resource API is deprecated. When set to true, API requests to this version receive a warning header in the server response. Defaults to false.
              */
-            deprecated?: pulumi.Input<boolean>;
+            deprecated?: pulumi.Input<boolean | undefined>;
             /**
              * deprecationWarning overrides the default warning returned to API clients. May only be set when `deprecated` is true. The default warning indicates this version is deprecated and recommends use of the newest served version of equal or greater stability, if one exists.
              */
-            deprecationWarning?: pulumi.Input<string>;
+            deprecationWarning?: pulumi.Input<string | undefined>;
             /**
              * name is the version name, e.g. “v1”, “v2beta1”, etc. The custom resources are served under this version at `/apis/<group>/<version>/...` if `served` is true.
              */
@@ -1267,7 +1267,7 @@ export namespace apiextensions {
             /**
              * schema describes the schema used for validation and pruning of this version of the custom resource. Top-level and per-version schemas are mutually exclusive. Per-version schemas must not all be set to identical values (top-level validation schema should be used instead).
              */
-            schema?: pulumi.Input<inputs.apiextensions.v1beta1.CustomResourceValidation>;
+            schema?: pulumi.Input<inputs.apiextensions.v1beta1.CustomResourceValidation | undefined>;
             /**
              * served is a flag enabling/disabling this version from being served via REST APIs
              */
@@ -1279,7 +1279,7 @@ export namespace apiextensions {
             /**
              * subresources specify what subresources this version of the defined custom resource have. Top-level and per-version subresources are mutually exclusive. Per-version subresources must not all be set to identical values (top-level subresources should be used instead).
              */
-            subresources?: pulumi.Input<inputs.apiextensions.v1beta1.CustomResourceSubresources>;
+            subresources?: pulumi.Input<inputs.apiextensions.v1beta1.CustomResourceSubresources | undefined>;
         }
 
         /**
@@ -1289,7 +1289,7 @@ export namespace apiextensions {
             /**
              * labelSelectorPath defines the JSON path inside of a custom resource that corresponds to Scale `status.selector`. Only JSON paths without the array notation are allowed. Must be a JSON Path under `.status` or `.spec`. Must be set to work with HorizontalPodAutoscaler. The field pointed by this JSON path must be a string field (not a complex selector struct) which contains a serialized label selector in string form. More info: https://kubernetes.io/docs/tasks/access-kubernetes-api/custom-resources/custom-resource-definitions#scale-subresource If there is no value under the given path in the custom resource, the `status.selector` value in the `/scale` subresource will default to the empty string.
              */
-            labelSelectorPath?: pulumi.Input<string>;
+            labelSelectorPath?: pulumi.Input<string | undefined>;
             /**
              * specReplicasPath defines the JSON path inside of a custom resource that corresponds to Scale `spec.replicas`. Only JSON paths without the array notation are allowed. Must be a JSON Path under `.spec`. If there is no value under the given path in the custom resource, the `/scale` subresource will return an error on GET.
              */
@@ -1307,11 +1307,11 @@ export namespace apiextensions {
             /**
              * scale indicates the custom resource should serve a `/scale` subresource that returns an `autoscaling/v1` Scale object.
              */
-            scale?: pulumi.Input<inputs.apiextensions.v1beta1.CustomResourceSubresourceScale>;
+            scale?: pulumi.Input<inputs.apiextensions.v1beta1.CustomResourceSubresourceScale | undefined>;
             /**
              * status indicates the custom resource should serve a `/status` subresource. When enabled: 1. requests to the custom resource primary endpoint ignore changes to the `status` stanza of the object. 2. requests to the custom resource `/status` subresource ignore changes to anything other than the `status` stanza of the object.
              */
-            status?: any;
+            status?: pulumi.Input<any | undefined>;
         }
 
         /**
@@ -1321,70 +1321,70 @@ export namespace apiextensions {
             /**
              * openAPIV3Schema is the OpenAPI v3 schema to use for validation and pruning.
              */
-            openAPIV3Schema?: pulumi.Input<inputs.apiextensions.v1beta1.JSONSchemaProps>;
+            openAPIV3Schema?: pulumi.Input<inputs.apiextensions.v1beta1.JSONSchemaProps | undefined>;
         }
 
         /**
          * ExternalDocumentation allows referencing an external resource for extended documentation.
          */
         export interface ExternalDocumentation {
-            description?: pulumi.Input<string>;
-            url?: pulumi.Input<string>;
+            description?: pulumi.Input<string | undefined>;
+            url?: pulumi.Input<string | undefined>;
         }
 
         /**
          * JSONSchemaProps is a JSON-Schema following Specification Draft 4 (http://json-schema.org/).
          */
         export interface JSONSchemaProps {
-            $ref?: pulumi.Input<string>;
-            $schema?: pulumi.Input<string>;
-            additionalItems?: pulumi.Input<inputs.apiextensions.v1beta1.JSONSchemaProps | boolean>;
-            additionalProperties?: pulumi.Input<inputs.apiextensions.v1beta1.JSONSchemaProps | boolean>;
-            allOf?: pulumi.Input<pulumi.Input<inputs.apiextensions.v1beta1.JSONSchemaProps>[]>;
-            anyOf?: pulumi.Input<pulumi.Input<inputs.apiextensions.v1beta1.JSONSchemaProps>[]>;
+            $ref?: pulumi.Input<string | undefined>;
+            $schema?: pulumi.Input<string | undefined>;
+            additionalItems?: pulumi.Input<inputs.apiextensions.v1beta1.JSONSchemaProps | boolean | undefined>;
+            additionalProperties?: pulumi.Input<inputs.apiextensions.v1beta1.JSONSchemaProps | boolean | undefined>;
+            allOf?: pulumi.Input<pulumi.Input<inputs.apiextensions.v1beta1.JSONSchemaProps>[] | undefined>;
+            anyOf?: pulumi.Input<pulumi.Input<inputs.apiextensions.v1beta1.JSONSchemaProps>[] | undefined>;
             /**
              * default is a default value for undefined object fields. Defaulting is a beta feature under the CustomResourceDefaulting feature gate. CustomResourceDefinitions with defaults must be created using the v1 (or newer) CustomResourceDefinition API.
              */
-            default?: any;
-            definitions?: pulumi.Input<{[key: string]: pulumi.Input<inputs.apiextensions.v1beta1.JSONSchemaProps>}>;
-            dependencies?: pulumi.Input<{[key: string]: pulumi.Input<inputs.apiextensions.v1beta1.JSONSchemaProps | pulumi.Input<string>[]>}>;
-            description?: pulumi.Input<string>;
-            enum?: pulumi.Input<any[]>;
-            example?: any;
-            exclusiveMaximum?: pulumi.Input<boolean>;
-            exclusiveMinimum?: pulumi.Input<boolean>;
-            externalDocs?: pulumi.Input<inputs.apiextensions.v1beta1.ExternalDocumentation>;
+            default?: pulumi.Input<any | undefined>;
+            definitions?: pulumi.Input<{[key: string]: pulumi.Input<inputs.apiextensions.v1beta1.JSONSchemaProps>} | undefined>;
+            dependencies?: pulumi.Input<{[key: string]: pulumi.Input<inputs.apiextensions.v1beta1.JSONSchemaProps | pulumi.Input<string>[]>} | undefined>;
+            description?: pulumi.Input<string | undefined>;
+            enum?: pulumi.Input<any[] | undefined>;
+            example?: pulumi.Input<any | undefined>;
+            exclusiveMaximum?: pulumi.Input<boolean | undefined>;
+            exclusiveMinimum?: pulumi.Input<boolean | undefined>;
+            externalDocs?: pulumi.Input<inputs.apiextensions.v1beta1.ExternalDocumentation | undefined>;
             /**
              * format is an OpenAPI v3 format string. Unknown formats are ignored. The following formats are validated:
              *
              * - bsonobjectid: a bson object ID, i.e. a 24 characters hex string - uri: an URI as parsed by Golang net/url.ParseRequestURI - email: an email address as parsed by Golang net/mail.ParseAddress - hostname: a valid representation for an Internet host name, as defined by RFC 1034, section 3.1 [RFC1034]. - ipv4: an IPv4 IP as parsed by Golang net.ParseIP - ipv6: an IPv6 IP as parsed by Golang net.ParseIP - cidr: a CIDR as parsed by Golang net.ParseCIDR - mac: a MAC address as parsed by Golang net.ParseMAC - uuid: an UUID that allows uppercase defined by the regex (?i)^[0-9a-f]{8}-?[0-9a-f]{4}-?[0-9a-f]{4}-?[0-9a-f]{4}-?[0-9a-f]{12}$ - uuid3: an UUID3 that allows uppercase defined by the regex (?i)^[0-9a-f]{8}-?[0-9a-f]{4}-?3[0-9a-f]{3}-?[0-9a-f]{4}-?[0-9a-f]{12}$ - uuid4: an UUID4 that allows uppercase defined by the regex (?i)^[0-9a-f]{8}-?[0-9a-f]{4}-?4[0-9a-f]{3}-?[89ab][0-9a-f]{3}-?[0-9a-f]{12}$ - uuid5: an UUID5 that allows uppercase defined by the regex (?i)^[0-9a-f]{8}-?[0-9a-f]{4}-?5[0-9a-f]{3}-?[89ab][0-9a-f]{3}-?[0-9a-f]{12}$ - isbn: an ISBN10 or ISBN13 number string like "0321751043" or "978-0321751041" - isbn10: an ISBN10 number string like "0321751043" - isbn13: an ISBN13 number string like "978-0321751041" - creditcard: a credit card number defined by the regex ^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$ with any non digit characters mixed in - ssn: a U.S. social security number following the regex ^\d{3}[- ]?\d{2}[- ]?\d{4}$ - hexcolor: an hexadecimal color code like "#FFFFFF: following the regex ^#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$ - rgbcolor: an RGB color code like rgb like "rgb(255,255,2559" - byte: base64 encoded binary data - password: any kind of string - date: a date string like "2006-01-02" as defined by full-date in RFC3339 - duration: a duration string like "22 ns" as parsed by Golang time.ParseDuration or compatible with Scala duration format - datetime: a date time string like "2014-12-15T19:30:20.000Z" as defined by date-time in RFC3339.
              */
-            format?: pulumi.Input<string>;
-            id?: pulumi.Input<string>;
-            items?: pulumi.Input<inputs.apiextensions.v1beta1.JSONSchemaProps | any[]>;
-            maxItems?: pulumi.Input<number>;
-            maxLength?: pulumi.Input<number>;
-            maxProperties?: pulumi.Input<number>;
-            maximum?: pulumi.Input<number>;
-            minItems?: pulumi.Input<number>;
-            minLength?: pulumi.Input<number>;
-            minProperties?: pulumi.Input<number>;
-            minimum?: pulumi.Input<number>;
-            multipleOf?: pulumi.Input<number>;
-            not?: pulumi.Input<inputs.apiextensions.v1beta1.JSONSchemaProps>;
-            nullable?: pulumi.Input<boolean>;
-            oneOf?: pulumi.Input<pulumi.Input<inputs.apiextensions.v1beta1.JSONSchemaProps>[]>;
-            pattern?: pulumi.Input<string>;
-            patternProperties?: pulumi.Input<{[key: string]: pulumi.Input<inputs.apiextensions.v1beta1.JSONSchemaProps>}>;
-            properties?: pulumi.Input<{[key: string]: pulumi.Input<inputs.apiextensions.v1beta1.JSONSchemaProps>}>;
-            required?: pulumi.Input<pulumi.Input<string>[]>;
-            title?: pulumi.Input<string>;
-            type?: pulumi.Input<string>;
-            uniqueItems?: pulumi.Input<boolean>;
+            format?: pulumi.Input<string | undefined>;
+            id?: pulumi.Input<string | undefined>;
+            items?: pulumi.Input<inputs.apiextensions.v1beta1.JSONSchemaProps | any[] | undefined>;
+            maxItems?: pulumi.Input<number | undefined>;
+            maxLength?: pulumi.Input<number | undefined>;
+            maxProperties?: pulumi.Input<number | undefined>;
+            maximum?: pulumi.Input<number | undefined>;
+            minItems?: pulumi.Input<number | undefined>;
+            minLength?: pulumi.Input<number | undefined>;
+            minProperties?: pulumi.Input<number | undefined>;
+            minimum?: pulumi.Input<number | undefined>;
+            multipleOf?: pulumi.Input<number | undefined>;
+            not?: pulumi.Input<inputs.apiextensions.v1beta1.JSONSchemaProps | undefined>;
+            nullable?: pulumi.Input<boolean | undefined>;
+            oneOf?: pulumi.Input<pulumi.Input<inputs.apiextensions.v1beta1.JSONSchemaProps>[] | undefined>;
+            pattern?: pulumi.Input<string | undefined>;
+            patternProperties?: pulumi.Input<{[key: string]: pulumi.Input<inputs.apiextensions.v1beta1.JSONSchemaProps>} | undefined>;
+            properties?: pulumi.Input<{[key: string]: pulumi.Input<inputs.apiextensions.v1beta1.JSONSchemaProps>} | undefined>;
+            required?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+            title?: pulumi.Input<string | undefined>;
+            type?: pulumi.Input<string | undefined>;
+            uniqueItems?: pulumi.Input<boolean | undefined>;
             /**
              * x-kubernetes-embedded-resource defines that the value is an embedded Kubernetes runtime.Object, with TypeMeta and ObjectMeta. The type must be object. It is allowed to further restrict the embedded object. kind, apiVersion and metadata are validated automatically. x-kubernetes-preserve-unknown-fields is allowed to be true, but does not have to be if the object is fully specified (up to kind, apiVersion, metadata).
              */
-            x_kubernetes_embedded_resource?: pulumi.Input<boolean>;
+            x_kubernetes_embedded_resource?: pulumi.Input<boolean | undefined>;
             /**
              * x-kubernetes-int-or-string specifies that this value is either an integer or a string. If this is true, an empty type is allowed and type as child of anyOf is permitted if following one of the following patterns:
              *
@@ -1397,7 +1397,7 @@ export namespace apiextensions {
              *      - type: string
              *    - ... zero or more
              */
-            x_kubernetes_int_or_string?: pulumi.Input<boolean>;
+            x_kubernetes_int_or_string?: pulumi.Input<boolean | undefined>;
             /**
              * x-kubernetes-list-map-keys annotates an array with the x-kubernetes-list-type `map` by specifying the keys used as the index of the map.
              *
@@ -1405,7 +1405,7 @@ export namespace apiextensions {
              *
              * The properties specified must either be required or have a default value, to ensure those properties are present for all list items.
              */
-            x_kubernetes_list_map_keys?: pulumi.Input<pulumi.Input<string>[]>;
+            x_kubernetes_list_map_keys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * x-kubernetes-list-type annotates an array to further describe its topology. This extension must only be used on lists and may have 3 possible values:
              *
@@ -1422,7 +1422,7 @@ export namespace apiextensions {
              *      must only be used on a list with elements of type object.
              * Defaults to atomic for arrays.
              */
-            x_kubernetes_list_type?: pulumi.Input<string>;
+            x_kubernetes_list_type?: pulumi.Input<string | undefined>;
             /**
              * x-kubernetes-map-type annotates an object to further describe its topology. This extension must only be used when type is object and may have 2 possible values:
              *
@@ -1433,11 +1433,11 @@ export namespace apiextensions {
              * 2) `atomic`: the list is treated as a single entity, like a scalar.
              *      Atomic maps will be entirely replaced when updated.
              */
-            x_kubernetes_map_type?: pulumi.Input<string>;
+            x_kubernetes_map_type?: pulumi.Input<string | undefined>;
             /**
              * x-kubernetes-preserve-unknown-fields stops the API server decoding step from pruning fields which are not specified in the validation schema. This affects fields recursively, but switches back to normal pruning behaviour if nested properties or additionalProperties are specified in the schema. This can either be true or undefined. False is forbidden.
              */
-            x_kubernetes_preserve_unknown_fields?: pulumi.Input<boolean>;
+            x_kubernetes_preserve_unknown_fields?: pulumi.Input<boolean | undefined>;
         }
 
         /**
@@ -1455,11 +1455,11 @@ export namespace apiextensions {
             /**
              * path is an optional URL path at which the webhook will be contacted.
              */
-            path?: pulumi.Input<string>;
+            path?: pulumi.Input<string | undefined>;
             /**
              * port is an optional service port at which the webhook will be contacted. `port` should be a valid port number (1-65535, inclusive). Defaults to 443 for backward compatibility.
              */
-            port?: pulumi.Input<number>;
+            port?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -1469,13 +1469,13 @@ export namespace apiextensions {
             /**
              * caBundle is a PEM encoded CA bundle which will be used to validate the webhook's server certificate. If unspecified, system trust roots on the apiserver are used.
              */
-            caBundle?: pulumi.Input<string>;
+            caBundle?: pulumi.Input<string | undefined>;
             /**
              * service is a reference to the service for this webhook. Either service or url must be specified.
              *
              * If the webhook is running within the cluster, then you should use `service`.
              */
-            service?: pulumi.Input<inputs.apiextensions.v1beta1.ServiceReference>;
+            service?: pulumi.Input<inputs.apiextensions.v1beta1.ServiceReference | undefined>;
             /**
              * url gives the location of the webhook, in standard URL form (`scheme://host:port/path`). Exactly one of `url` or `service` must be specified.
              *
@@ -1489,7 +1489,7 @@ export namespace apiextensions {
              *
              * Attempting to use a user or basic auth e.g. "user:password@" is not allowed. Fragments ("#...") and query parameters ("?...") are not allowed, either.
              */
-            url?: pulumi.Input<string>;
+            url?: pulumi.Input<string | undefined>;
         }
     }
 }
@@ -1503,20 +1503,20 @@ export namespace apiregistration {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"apiregistration.k8s.io/v1">;
+            apiVersion?: pulumi.Input<"apiregistration.k8s.io/v1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"APIService">;
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            kind?: pulumi.Input<"APIService" | undefined>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Spec contains information for locating and communicating with a server
              */
-            spec?: pulumi.Input<inputs.apiregistration.v1.APIServiceSpec>;
+            spec?: pulumi.Input<inputs.apiregistration.v1.APIServiceSpec | undefined>;
             /**
              * Status contains derived information about an API server
              */
-            status?: pulumi.Input<inputs.apiregistration.v1.APIServiceStatus>;
+            status?: pulumi.Input<inputs.apiregistration.v1.APIServiceStatus | undefined>;
         }
 
         /**
@@ -1526,15 +1526,15 @@ export namespace apiregistration {
             /**
              * Last time the condition transitioned from one status to another.
              */
-            lastTransitionTime?: pulumi.Input<string>;
+            lastTransitionTime?: pulumi.Input<string | undefined>;
             /**
              * Human-readable message indicating details about last transition.
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * Unique, one-word, CamelCase reason for the condition's last transition.
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
             /**
              * Status is the status of the condition. Can be True, False, Unknown.
              */
@@ -1552,11 +1552,11 @@ export namespace apiregistration {
             /**
              * CABundle is a PEM encoded CA bundle which will be used to validate an API server's serving certificate. If unspecified, system trust roots on the apiserver are used.
              */
-            caBundle?: pulumi.Input<string>;
+            caBundle?: pulumi.Input<string | undefined>;
             /**
              * Group is the API group name this server hosts
              */
-            group?: pulumi.Input<string>;
+            group?: pulumi.Input<string | undefined>;
             /**
              * GroupPriorityMininum is the priority this group should have at least. Higher priority means that the group is preferred by clients over lower priority ones. Note that other versions of this group might specify even higher GroupPriorityMininum values such that the whole group gets a higher priority. The primary sort is based on GroupPriorityMinimum, ordered highest number to lowest (20 before 10). The secondary sort is based on the alphabetical comparison of the name of the object.  (v1.bar before v1.foo) We'd recommend something like: *.k8s.io (except extensions) at 18000 and PaaSes (OpenShift, Deis) are recommended to be in the 2000s
              */
@@ -1564,15 +1564,15 @@ export namespace apiregistration {
             /**
              * InsecureSkipTLSVerify disables TLS certificate verification when communicating with this server. This is strongly discouraged.  You should use the CABundle instead.
              */
-            insecureSkipTLSVerify?: pulumi.Input<boolean>;
+            insecureSkipTLSVerify?: pulumi.Input<boolean | undefined>;
             /**
              * Service is a reference to the service for this API server.  It must communicate on port 443. If the Service is nil, that means the handling for the API groupversion is handled locally on this server. The call will simply delegate to the normal handler chain to be fulfilled.
              */
-            service?: pulumi.Input<inputs.apiregistration.v1.ServiceReference>;
+            service?: pulumi.Input<inputs.apiregistration.v1.ServiceReference | undefined>;
             /**
              * Version is the API version this server hosts.  For example, "v1"
              */
-            version?: pulumi.Input<string>;
+            version?: pulumi.Input<string | undefined>;
             /**
              * VersionPriority controls the ordering of this API version inside of its group.  Must be greater than zero. The primary sort is based on VersionPriority, ordered highest to lowest (20 before 10). Since it's inside of a group, the number can be small, probably in the 10s. In case of equal version priorities, the version string will be used to compute the order inside a group. If the version string is "kube-like", it will sort above non "kube-like" version strings, which are ordered lexicographically. "Kube-like" versions start with a "v", then are followed by a number (the major version), then optionally the string "alpha" or "beta" and another number (the minor version). These are sorted first by GA > beta > alpha (where GA is a version with no suffix such as beta or alpha), and then by comparing major version, then minor version. An example sorted list of versions: v10, v2, v1, v11beta2, v10beta3, v3beta1, v12alpha1, v11alpha2, foo1, foo10.
              */
@@ -1586,7 +1586,7 @@ export namespace apiregistration {
             /**
              * Current service state of apiService.
              */
-            conditions?: pulumi.Input<pulumi.Input<inputs.apiregistration.v1.APIServiceCondition>[]>;
+            conditions?: pulumi.Input<pulumi.Input<inputs.apiregistration.v1.APIServiceCondition>[] | undefined>;
         }
 
         /**
@@ -1596,15 +1596,15 @@ export namespace apiregistration {
             /**
              * Name is the name of the service
              */
-            name?: pulumi.Input<string>;
+            name?: pulumi.Input<string | undefined>;
             /**
              * Namespace is the namespace of the service
              */
-            namespace?: pulumi.Input<string>;
+            namespace?: pulumi.Input<string | undefined>;
             /**
              * If specified, the port on the service that hosting webhook. Default to 443 for backward compatibility. `port` should be a valid port number (1-65535, inclusive).
              */
-            port?: pulumi.Input<number>;
+            port?: pulumi.Input<number | undefined>;
         }
     }
 
@@ -1616,20 +1616,20 @@ export namespace apiregistration {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"apiregistration.k8s.io/v1beta1">;
+            apiVersion?: pulumi.Input<"apiregistration.k8s.io/v1beta1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"APIService">;
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            kind?: pulumi.Input<"APIService" | undefined>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Spec contains information for locating and communicating with a server
              */
-            spec?: pulumi.Input<inputs.apiregistration.v1beta1.APIServiceSpec>;
+            spec?: pulumi.Input<inputs.apiregistration.v1beta1.APIServiceSpec | undefined>;
             /**
              * Status contains derived information about an API server
              */
-            status?: pulumi.Input<inputs.apiregistration.v1beta1.APIServiceStatus>;
+            status?: pulumi.Input<inputs.apiregistration.v1beta1.APIServiceStatus | undefined>;
         }
 
         /**
@@ -1639,15 +1639,15 @@ export namespace apiregistration {
             /**
              * Last time the condition transitioned from one status to another.
              */
-            lastTransitionTime?: pulumi.Input<string>;
+            lastTransitionTime?: pulumi.Input<string | undefined>;
             /**
              * Human-readable message indicating details about last transition.
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * Unique, one-word, CamelCase reason for the condition's last transition.
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
             /**
              * Status is the status of the condition. Can be True, False, Unknown.
              */
@@ -1665,11 +1665,11 @@ export namespace apiregistration {
             /**
              * CABundle is a PEM encoded CA bundle which will be used to validate an API server's serving certificate. If unspecified, system trust roots on the apiserver are used.
              */
-            caBundle?: pulumi.Input<string>;
+            caBundle?: pulumi.Input<string | undefined>;
             /**
              * Group is the API group name this server hosts
              */
-            group?: pulumi.Input<string>;
+            group?: pulumi.Input<string | undefined>;
             /**
              * GroupPriorityMininum is the priority this group should have at least. Higher priority means that the group is preferred by clients over lower priority ones. Note that other versions of this group might specify even higher GroupPriorityMininum values such that the whole group gets a higher priority. The primary sort is based on GroupPriorityMinimum, ordered highest number to lowest (20 before 10). The secondary sort is based on the alphabetical comparison of the name of the object.  (v1.bar before v1.foo) We'd recommend something like: *.k8s.io (except extensions) at 18000 and PaaSes (OpenShift, Deis) are recommended to be in the 2000s
              */
@@ -1677,15 +1677,15 @@ export namespace apiregistration {
             /**
              * InsecureSkipTLSVerify disables TLS certificate verification when communicating with this server. This is strongly discouraged.  You should use the CABundle instead.
              */
-            insecureSkipTLSVerify?: pulumi.Input<boolean>;
+            insecureSkipTLSVerify?: pulumi.Input<boolean | undefined>;
             /**
              * Service is a reference to the service for this API server.  It must communicate on port 443. If the Service is nil, that means the handling for the API groupversion is handled locally on this server. The call will simply delegate to the normal handler chain to be fulfilled.
              */
-            service?: pulumi.Input<inputs.apiregistration.v1beta1.ServiceReference>;
+            service?: pulumi.Input<inputs.apiregistration.v1beta1.ServiceReference | undefined>;
             /**
              * Version is the API version this server hosts.  For example, "v1"
              */
-            version?: pulumi.Input<string>;
+            version?: pulumi.Input<string | undefined>;
             /**
              * VersionPriority controls the ordering of this API version inside of its group.  Must be greater than zero. The primary sort is based on VersionPriority, ordered highest to lowest (20 before 10). Since it's inside of a group, the number can be small, probably in the 10s. In case of equal version priorities, the version string will be used to compute the order inside a group. If the version string is "kube-like", it will sort above non "kube-like" version strings, which are ordered lexicographically. "Kube-like" versions start with a "v", then are followed by a number (the major version), then optionally the string "alpha" or "beta" and another number (the minor version). These are sorted first by GA > beta > alpha (where GA is a version with no suffix such as beta or alpha), and then by comparing major version, then minor version. An example sorted list of versions: v10, v2, v1, v11beta2, v10beta3, v3beta1, v12alpha1, v11alpha2, foo1, foo10.
              */
@@ -1699,7 +1699,7 @@ export namespace apiregistration {
             /**
              * Current service state of apiService.
              */
-            conditions?: pulumi.Input<pulumi.Input<inputs.apiregistration.v1beta1.APIServiceCondition>[]>;
+            conditions?: pulumi.Input<pulumi.Input<inputs.apiregistration.v1beta1.APIServiceCondition>[] | undefined>;
         }
 
         /**
@@ -1709,15 +1709,15 @@ export namespace apiregistration {
             /**
              * Name is the name of the service
              */
-            name?: pulumi.Input<string>;
+            name?: pulumi.Input<string | undefined>;
             /**
              * Namespace is the namespace of the service
              */
-            namespace?: pulumi.Input<string>;
+            namespace?: pulumi.Input<string | undefined>;
             /**
              * If specified, the port on the service that hosting webhook. Default to 443 for backward compatibility. `port` should be a valid port number (1-65535, inclusive).
              */
-            port?: pulumi.Input<number>;
+            port?: pulumi.Input<number | undefined>;
         }
     }
 }
@@ -1731,19 +1731,19 @@ export namespace apps {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"apps/v1">;
+            apiVersion?: pulumi.Input<"apps/v1" | undefined>;
             /**
              * Data is the serialized representation of the state.
              */
-            data?: any;
+            data?: pulumi.Input<any | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"ControllerRevision">;
+            kind?: pulumi.Input<"ControllerRevision" | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Revision indicates the revision of the state represented by Data.
              */
@@ -1757,23 +1757,23 @@ export namespace apps {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"apps/v1">;
+            apiVersion?: pulumi.Input<"apps/v1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"DaemonSet">;
+            kind?: pulumi.Input<"DaemonSet" | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * The desired behavior of this daemon set. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            spec?: pulumi.Input<inputs.apps.v1.DaemonSetSpec>;
+            spec?: pulumi.Input<inputs.apps.v1.DaemonSetSpec | undefined>;
             /**
              * The current status of this daemon set. This data may be out of date by some window of time. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            status?: pulumi.Input<inputs.apps.v1.DaemonSetStatus>;
+            status?: pulumi.Input<inputs.apps.v1.DaemonSetStatus | undefined>;
         }
 
         /**
@@ -1783,15 +1783,15 @@ export namespace apps {
             /**
              * Last time the condition transitioned from one status to another.
              */
-            lastTransitionTime?: pulumi.Input<string>;
+            lastTransitionTime?: pulumi.Input<string | undefined>;
             /**
              * A human readable message indicating details about the transition.
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * The reason for the condition's last transition.
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
             /**
              * Status of the condition, one of True, False, Unknown.
              */
@@ -1809,11 +1809,11 @@ export namespace apps {
             /**
              * The minimum number of seconds for which a newly created DaemonSet pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready).
              */
-            minReadySeconds?: pulumi.Input<number>;
+            minReadySeconds?: pulumi.Input<number | undefined>;
             /**
              * The number of old history to retain to allow rollback. This is a pointer to distinguish between explicit zero and not specified. Defaults to 10.
              */
-            revisionHistoryLimit?: pulumi.Input<number>;
+            revisionHistoryLimit?: pulumi.Input<number | undefined>;
             /**
              * A label query over pods that are managed by the daemon set. Must match in order to be controlled. It must match the pod template's labels. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
              */
@@ -1825,7 +1825,7 @@ export namespace apps {
             /**
              * An update strategy to replace existing DaemonSet pods with new pods.
              */
-            updateStrategy?: pulumi.Input<inputs.apps.v1.DaemonSetUpdateStrategy>;
+            updateStrategy?: pulumi.Input<inputs.apps.v1.DaemonSetUpdateStrategy | undefined>;
         }
 
         /**
@@ -1835,11 +1835,11 @@ export namespace apps {
             /**
              * Count of hash collisions for the DaemonSet. The DaemonSet controller uses this field as a collision avoidance mechanism when it needs to create the name for the newest ControllerRevision.
              */
-            collisionCount?: pulumi.Input<number>;
+            collisionCount?: pulumi.Input<number | undefined>;
             /**
              * Represents the latest available observations of a DaemonSet's current state.
              */
-            conditions?: pulumi.Input<pulumi.Input<inputs.apps.v1.DaemonSetCondition>[]>;
+            conditions?: pulumi.Input<pulumi.Input<inputs.apps.v1.DaemonSetCondition>[] | undefined>;
             /**
              * The number of nodes that are running at least 1 daemon pod and are supposed to run the daemon pod. More info: https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
              */
@@ -1851,7 +1851,7 @@ export namespace apps {
             /**
              * The number of nodes that should be running the daemon pod and have one or more of the daemon pod running and available (ready for at least spec.minReadySeconds)
              */
-            numberAvailable?: pulumi.Input<number>;
+            numberAvailable?: pulumi.Input<number | undefined>;
             /**
              * The number of nodes that are running the daemon pod, but are not supposed to run the daemon pod. More info: https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
              */
@@ -1863,15 +1863,15 @@ export namespace apps {
             /**
              * The number of nodes that should be running the daemon pod and have none of the daemon pod running and available (ready for at least spec.minReadySeconds)
              */
-            numberUnavailable?: pulumi.Input<number>;
+            numberUnavailable?: pulumi.Input<number | undefined>;
             /**
              * The most recent generation observed by the daemon set controller.
              */
-            observedGeneration?: pulumi.Input<number>;
+            observedGeneration?: pulumi.Input<number | undefined>;
             /**
              * The total number of nodes that are running updated daemon pod
              */
-            updatedNumberScheduled?: pulumi.Input<number>;
+            updatedNumberScheduled?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -1881,11 +1881,11 @@ export namespace apps {
             /**
              * Rolling update config params. Present only if type = "RollingUpdate".
              */
-            rollingUpdate?: pulumi.Input<inputs.apps.v1.RollingUpdateDaemonSet>;
+            rollingUpdate?: pulumi.Input<inputs.apps.v1.RollingUpdateDaemonSet | undefined>;
             /**
              * Type of daemon set update. Can be "RollingUpdate" or "OnDelete". Default is RollingUpdate.
              */
-            type?: pulumi.Input<string>;
+            type?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -1917,23 +1917,23 @@ export namespace apps {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"apps/v1">;
+            apiVersion?: pulumi.Input<"apps/v1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"Deployment">;
+            kind?: pulumi.Input<"Deployment" | undefined>;
             /**
              * Standard object metadata.
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Specification of the desired behavior of the Deployment.
              */
-            spec?: pulumi.Input<inputs.apps.v1.DeploymentSpec>;
+            spec?: pulumi.Input<inputs.apps.v1.DeploymentSpec | undefined>;
             /**
              * Most recently observed status of the Deployment.
              */
-            status?: pulumi.Input<inputs.apps.v1.DeploymentStatus>;
+            status?: pulumi.Input<inputs.apps.v1.DeploymentStatus | undefined>;
         }
 
         /**
@@ -1943,19 +1943,19 @@ export namespace apps {
             /**
              * Last time the condition transitioned from one status to another.
              */
-            lastTransitionTime?: pulumi.Input<string>;
+            lastTransitionTime?: pulumi.Input<string | undefined>;
             /**
              * The last time this condition was updated.
              */
-            lastUpdateTime?: pulumi.Input<string>;
+            lastUpdateTime?: pulumi.Input<string | undefined>;
             /**
              * A human readable message indicating details about the transition.
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * The reason for the condition's last transition.
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
             /**
              * Status of the condition, one of True, False, Unknown.
              */
@@ -1973,23 +1973,23 @@ export namespace apps {
             /**
              * Minimum number of seconds for which a newly created pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready)
              */
-            minReadySeconds?: pulumi.Input<number>;
+            minReadySeconds?: pulumi.Input<number | undefined>;
             /**
              * Indicates that the deployment is paused.
              */
-            paused?: pulumi.Input<boolean>;
+            paused?: pulumi.Input<boolean | undefined>;
             /**
              * The maximum time in seconds for a deployment to make progress before it is considered to be failed. The deployment controller will continue to process failed deployments and a condition with a ProgressDeadlineExceeded reason will be surfaced in the deployment status. Note that progress will not be estimated during the time a deployment is paused. Defaults to 600s.
              */
-            progressDeadlineSeconds?: pulumi.Input<number>;
+            progressDeadlineSeconds?: pulumi.Input<number | undefined>;
             /**
              * Number of desired pods. This is a pointer to distinguish between explicit zero and not specified. Defaults to 1.
              */
-            replicas?: pulumi.Input<number>;
+            replicas?: pulumi.Input<number | undefined>;
             /**
              * The number of old ReplicaSets to retain to allow rollback. This is a pointer to distinguish between explicit zero and not specified. Defaults to 10.
              */
-            revisionHistoryLimit?: pulumi.Input<number>;
+            revisionHistoryLimit?: pulumi.Input<number | undefined>;
             /**
              * Label selector for pods. Existing ReplicaSets whose pods are selected by this will be the ones affected by this deployment. It must match the pod template's labels.
              */
@@ -1997,7 +1997,7 @@ export namespace apps {
             /**
              * The deployment strategy to use to replace existing pods with new ones.
              */
-            strategy?: pulumi.Input<inputs.apps.v1.DeploymentStrategy>;
+            strategy?: pulumi.Input<inputs.apps.v1.DeploymentStrategy | undefined>;
             /**
              * Template describes the pods that will be created.
              */
@@ -2011,35 +2011,35 @@ export namespace apps {
             /**
              * Total number of available pods (ready for at least minReadySeconds) targeted by this deployment.
              */
-            availableReplicas?: pulumi.Input<number>;
+            availableReplicas?: pulumi.Input<number | undefined>;
             /**
              * Count of hash collisions for the Deployment. The Deployment controller uses this field as a collision avoidance mechanism when it needs to create the name for the newest ReplicaSet.
              */
-            collisionCount?: pulumi.Input<number>;
+            collisionCount?: pulumi.Input<number | undefined>;
             /**
              * Represents the latest available observations of a deployment's current state.
              */
-            conditions?: pulumi.Input<pulumi.Input<inputs.apps.v1.DeploymentCondition>[]>;
+            conditions?: pulumi.Input<pulumi.Input<inputs.apps.v1.DeploymentCondition>[] | undefined>;
             /**
              * The generation observed by the deployment controller.
              */
-            observedGeneration?: pulumi.Input<number>;
+            observedGeneration?: pulumi.Input<number | undefined>;
             /**
              * Total number of ready pods targeted by this deployment.
              */
-            readyReplicas?: pulumi.Input<number>;
+            readyReplicas?: pulumi.Input<number | undefined>;
             /**
              * Total number of non-terminated pods targeted by this deployment (their labels match the selector).
              */
-            replicas?: pulumi.Input<number>;
+            replicas?: pulumi.Input<number | undefined>;
             /**
              * Total number of unavailable pods targeted by this deployment. This is the total number of pods that are still required for the deployment to have 100% available capacity. They may either be pods that are running but not yet available or pods that still have not been created.
              */
-            unavailableReplicas?: pulumi.Input<number>;
+            unavailableReplicas?: pulumi.Input<number | undefined>;
             /**
              * Total number of non-terminated pods targeted by this deployment that have the desired template spec.
              */
-            updatedReplicas?: pulumi.Input<number>;
+            updatedReplicas?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -2049,11 +2049,11 @@ export namespace apps {
             /**
              * Rolling update config params. Present only if DeploymentStrategyType = RollingUpdate.
              */
-            rollingUpdate?: pulumi.Input<inputs.apps.v1.RollingUpdateDeployment>;
+            rollingUpdate?: pulumi.Input<inputs.apps.v1.RollingUpdateDeployment | undefined>;
             /**
              * Type of deployment. Can be "Recreate" or "RollingUpdate". Default is RollingUpdate.
              */
-            type?: pulumi.Input<string>;
+            type?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -2063,23 +2063,23 @@ export namespace apps {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"apps/v1">;
+            apiVersion?: pulumi.Input<"apps/v1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"ReplicaSet">;
+            kind?: pulumi.Input<"ReplicaSet" | undefined>;
             /**
              * If the Labels of a ReplicaSet are empty, they are defaulted to be the same as the Pod(s) that the ReplicaSet manages. Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Spec defines the specification of the desired behavior of the ReplicaSet. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            spec?: pulumi.Input<inputs.apps.v1.ReplicaSetSpec>;
+            spec?: pulumi.Input<inputs.apps.v1.ReplicaSetSpec | undefined>;
             /**
              * Status is the most recently observed status of the ReplicaSet. This data may be out of date by some window of time. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            status?: pulumi.Input<inputs.apps.v1.ReplicaSetStatus>;
+            status?: pulumi.Input<inputs.apps.v1.ReplicaSetStatus | undefined>;
         }
 
         /**
@@ -2089,15 +2089,15 @@ export namespace apps {
             /**
              * The last time the condition transitioned from one status to another.
              */
-            lastTransitionTime?: pulumi.Input<string>;
+            lastTransitionTime?: pulumi.Input<string | undefined>;
             /**
              * A human readable message indicating details about the transition.
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * The reason for the condition's last transition.
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
             /**
              * Status of the condition, one of True, False, Unknown.
              */
@@ -2115,11 +2115,11 @@ export namespace apps {
             /**
              * Minimum number of seconds for which a newly created pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready)
              */
-            minReadySeconds?: pulumi.Input<number>;
+            minReadySeconds?: pulumi.Input<number | undefined>;
             /**
              * Replicas is the number of desired replicas. This is a pointer to distinguish between explicit zero and unspecified. Defaults to 1. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/#what-is-a-replicationcontroller
              */
-            replicas?: pulumi.Input<number>;
+            replicas?: pulumi.Input<number | undefined>;
             /**
              * Selector is a label query over pods that should match the replica count. Label keys and values that must match in order to be controlled by this replica set. It must match the pod template's labels. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
              */
@@ -2127,7 +2127,7 @@ export namespace apps {
             /**
              * Template is the object that describes the pod that will be created if insufficient replicas are detected. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller#pod-template
              */
-            template?: pulumi.Input<inputs.core.v1.PodTemplateSpec>;
+            template?: pulumi.Input<inputs.core.v1.PodTemplateSpec | undefined>;
         }
 
         /**
@@ -2137,23 +2137,23 @@ export namespace apps {
             /**
              * The number of available replicas (ready for at least minReadySeconds) for this replica set.
              */
-            availableReplicas?: pulumi.Input<number>;
+            availableReplicas?: pulumi.Input<number | undefined>;
             /**
              * Represents the latest available observations of a replica set's current state.
              */
-            conditions?: pulumi.Input<pulumi.Input<inputs.apps.v1.ReplicaSetCondition>[]>;
+            conditions?: pulumi.Input<pulumi.Input<inputs.apps.v1.ReplicaSetCondition>[] | undefined>;
             /**
              * The number of pods that have labels matching the labels of the pod template of the replicaset.
              */
-            fullyLabeledReplicas?: pulumi.Input<number>;
+            fullyLabeledReplicas?: pulumi.Input<number | undefined>;
             /**
              * ObservedGeneration reflects the generation of the most recently observed ReplicaSet.
              */
-            observedGeneration?: pulumi.Input<number>;
+            observedGeneration?: pulumi.Input<number | undefined>;
             /**
              * The number of ready replicas for this replica set.
              */
-            readyReplicas?: pulumi.Input<number>;
+            readyReplicas?: pulumi.Input<number | undefined>;
             /**
              * Replicas is the most recently oberved number of replicas. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/#what-is-a-replicationcontroller
              */
@@ -2167,7 +2167,7 @@ export namespace apps {
             /**
              * The maximum number of DaemonSet pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of total number of DaemonSet pods at the start of the update (ex: 10%). Absolute number is calculated from percentage by rounding up. This cannot be 0. Default value is 1. Example: when this is set to 30%, at most 30% of the total number of nodes that should be running the daemon pod (i.e. status.desiredNumberScheduled) can have their pods stopped for an update at any given time. The update starts by stopping at most 30% of those DaemonSet pods and then brings up new DaemonSet pods in their place. Once the new pods are available, it then proceeds onto other DaemonSet pods, thus ensuring that at least 70% of original number of DaemonSet pods are available at all times during the update.
              */
-            maxUnavailable?: pulumi.Input<number | string>;
+            maxUnavailable?: pulumi.Input<number | string | undefined>;
         }
 
         /**
@@ -2177,11 +2177,11 @@ export namespace apps {
             /**
              * The maximum number of pods that can be scheduled above the desired number of pods. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to 25%. Example: when this is set to 30%, the new ReplicaSet can be scaled up immediately when the rolling update starts, such that the total number of old and new pods do not exceed 130% of desired pods. Once old pods have been killed, new ReplicaSet can be scaled up further, ensuring that total number of pods running at any time during the update is at most 130% of desired pods.
              */
-            maxSurge?: pulumi.Input<number | string>;
+            maxSurge?: pulumi.Input<number | string | undefined>;
             /**
              * The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to 25%. Example: when this is set to 30%, the old ReplicaSet can be scaled down to 70% of desired pods immediately when the rolling update starts. Once new pods are ready, old ReplicaSet can be scaled down further, followed by scaling up the new ReplicaSet, ensuring that the total number of pods available at all times during the update is at least 70% of desired pods.
              */
-            maxUnavailable?: pulumi.Input<number | string>;
+            maxUnavailable?: pulumi.Input<number | string | undefined>;
         }
 
         /**
@@ -2191,7 +2191,7 @@ export namespace apps {
             /**
              * Partition indicates the ordinal at which the StatefulSet should be partitioned. Default value is 0.
              */
-            partition?: pulumi.Input<number>;
+            partition?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -2217,20 +2217,20 @@ export namespace apps {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"apps/v1">;
+            apiVersion?: pulumi.Input<"apps/v1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"StatefulSet">;
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            kind?: pulumi.Input<"StatefulSet" | undefined>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Spec defines the desired identities of pods in this set.
              */
-            spec?: pulumi.Input<inputs.apps.v1.StatefulSetSpec>;
+            spec?: pulumi.Input<inputs.apps.v1.StatefulSetSpec | undefined>;
             /**
              * Status is the current status of Pods in this StatefulSet. This data may be out of date by some window of time.
              */
-            status?: pulumi.Input<inputs.apps.v1.StatefulSetStatus>;
+            status?: pulumi.Input<inputs.apps.v1.StatefulSetStatus | undefined>;
         }
 
         /**
@@ -2240,15 +2240,15 @@ export namespace apps {
             /**
              * Last time the condition transitioned from one status to another.
              */
-            lastTransitionTime?: pulumi.Input<string>;
+            lastTransitionTime?: pulumi.Input<string | undefined>;
             /**
              * A human readable message indicating details about the transition.
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * The reason for the condition's last transition.
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
             /**
              * Status of the condition, one of True, False, Unknown.
              */
@@ -2266,15 +2266,15 @@ export namespace apps {
             /**
              * podManagementPolicy controls how pods are created during initial scale up, when replacing pods on nodes, or when scaling down. The default policy is `OrderedReady`, where pods are created in increasing order (pod-0, then pod-1, etc) and the controller will wait until each pod is ready before continuing. When scaling down, the pods are removed in the opposite order. The alternative policy is `Parallel` which will create pods in parallel to match the desired scale without waiting, and on scale down will delete all pods at once.
              */
-            podManagementPolicy?: pulumi.Input<string>;
+            podManagementPolicy?: pulumi.Input<string | undefined>;
             /**
              * replicas is the desired number of replicas of the given Template. These are replicas in the sense that they are instantiations of the same Template, but individual replicas also have a consistent identity. If unspecified, defaults to 1.
              */
-            replicas?: pulumi.Input<number>;
+            replicas?: pulumi.Input<number | undefined>;
             /**
              * revisionHistoryLimit is the maximum number of revisions that will be maintained in the StatefulSet's revision history. The revision history consists of all revisions not represented by a currently applied StatefulSetSpec version. The default value is 10.
              */
-            revisionHistoryLimit?: pulumi.Input<number>;
+            revisionHistoryLimit?: pulumi.Input<number | undefined>;
             /**
              * selector is a label query over pods that should match the replica count. It must match the pod template's labels. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
              */
@@ -2290,11 +2290,11 @@ export namespace apps {
             /**
              * updateStrategy indicates the StatefulSetUpdateStrategy that will be employed to update Pods in the StatefulSet when a revision is made to Template.
              */
-            updateStrategy?: pulumi.Input<inputs.apps.v1.StatefulSetUpdateStrategy>;
+            updateStrategy?: pulumi.Input<inputs.apps.v1.StatefulSetUpdateStrategy | undefined>;
             /**
              * volumeClaimTemplates is a list of claims that pods are allowed to reference. The StatefulSet controller is responsible for mapping network identities to claims in a way that maintains the identity of a pod. Every claim in this list must have at least one matching (by name) volumeMount in one container in the template. A claim in this list takes precedence over any volumes in the template, with the same name.
              */
-            volumeClaimTemplates?: pulumi.Input<pulumi.Input<inputs.core.v1.PersistentVolumeClaim>[]>;
+            volumeClaimTemplates?: pulumi.Input<pulumi.Input<inputs.core.v1.PersistentVolumeClaim>[] | undefined>;
         }
 
         /**
@@ -2304,27 +2304,27 @@ export namespace apps {
             /**
              * collisionCount is the count of hash collisions for the StatefulSet. The StatefulSet controller uses this field as a collision avoidance mechanism when it needs to create the name for the newest ControllerRevision.
              */
-            collisionCount?: pulumi.Input<number>;
+            collisionCount?: pulumi.Input<number | undefined>;
             /**
              * Represents the latest available observations of a statefulset's current state.
              */
-            conditions?: pulumi.Input<pulumi.Input<inputs.apps.v1.StatefulSetCondition>[]>;
+            conditions?: pulumi.Input<pulumi.Input<inputs.apps.v1.StatefulSetCondition>[] | undefined>;
             /**
              * currentReplicas is the number of Pods created by the StatefulSet controller from the StatefulSet version indicated by currentRevision.
              */
-            currentReplicas?: pulumi.Input<number>;
+            currentReplicas?: pulumi.Input<number | undefined>;
             /**
              * currentRevision, if not empty, indicates the version of the StatefulSet used to generate Pods in the sequence [0,currentReplicas).
              */
-            currentRevision?: pulumi.Input<string>;
+            currentRevision?: pulumi.Input<string | undefined>;
             /**
              * observedGeneration is the most recent generation observed for this StatefulSet. It corresponds to the StatefulSet's generation, which is updated on mutation by the API Server.
              */
-            observedGeneration?: pulumi.Input<number>;
+            observedGeneration?: pulumi.Input<number | undefined>;
             /**
              * readyReplicas is the number of Pods created by the StatefulSet controller that have a Ready Condition.
              */
-            readyReplicas?: pulumi.Input<number>;
+            readyReplicas?: pulumi.Input<number | undefined>;
             /**
              * replicas is the number of Pods created by the StatefulSet controller.
              */
@@ -2332,11 +2332,11 @@ export namespace apps {
             /**
              * updateRevision, if not empty, indicates the version of the StatefulSet used to generate Pods in the sequence [replicas-updatedReplicas,replicas)
              */
-            updateRevision?: pulumi.Input<string>;
+            updateRevision?: pulumi.Input<string | undefined>;
             /**
              * updatedReplicas is the number of Pods created by the StatefulSet controller from the StatefulSet version indicated by updateRevision.
              */
-            updatedReplicas?: pulumi.Input<number>;
+            updatedReplicas?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -2346,11 +2346,11 @@ export namespace apps {
             /**
              * RollingUpdate is used to communicate parameters when Type is RollingUpdateStatefulSetStrategyType.
              */
-            rollingUpdate?: pulumi.Input<inputs.apps.v1.RollingUpdateStatefulSetStrategy>;
+            rollingUpdate?: pulumi.Input<inputs.apps.v1.RollingUpdateStatefulSetStrategy | undefined>;
             /**
              * Type indicates the type of the StatefulSetUpdateStrategy. Default is RollingUpdate.
              */
-            type?: pulumi.Input<string>;
+            type?: pulumi.Input<string | undefined>;
         }
     }
 
@@ -2362,19 +2362,19 @@ export namespace apps {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"apps/v1beta1">;
+            apiVersion?: pulumi.Input<"apps/v1beta1" | undefined>;
             /**
              * Data is the serialized representation of the state.
              */
-            data?: any;
+            data?: pulumi.Input<any | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"ControllerRevision">;
+            kind?: pulumi.Input<"ControllerRevision" | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Revision indicates the revision of the state represented by Data.
              */
@@ -2410,23 +2410,23 @@ export namespace apps {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"apps/v1beta1">;
+            apiVersion?: pulumi.Input<"apps/v1beta1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"Deployment">;
+            kind?: pulumi.Input<"Deployment" | undefined>;
             /**
              * Standard object metadata.
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Specification of the desired behavior of the Deployment.
              */
-            spec?: pulumi.Input<inputs.apps.v1beta1.DeploymentSpec>;
+            spec?: pulumi.Input<inputs.apps.v1beta1.DeploymentSpec | undefined>;
             /**
              * Most recently observed status of the Deployment.
              */
-            status?: pulumi.Input<inputs.apps.v1beta1.DeploymentStatus>;
+            status?: pulumi.Input<inputs.apps.v1beta1.DeploymentStatus | undefined>;
         }
 
         /**
@@ -2436,19 +2436,19 @@ export namespace apps {
             /**
              * Last time the condition transitioned from one status to another.
              */
-            lastTransitionTime?: pulumi.Input<string>;
+            lastTransitionTime?: pulumi.Input<string | undefined>;
             /**
              * The last time this condition was updated.
              */
-            lastUpdateTime?: pulumi.Input<string>;
+            lastUpdateTime?: pulumi.Input<string | undefined>;
             /**
              * A human readable message indicating details about the transition.
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * The reason for the condition's last transition.
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
             /**
              * Status of the condition, one of True, False, Unknown.
              */
@@ -2466,35 +2466,35 @@ export namespace apps {
             /**
              * Minimum number of seconds for which a newly created pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready)
              */
-            minReadySeconds?: pulumi.Input<number>;
+            minReadySeconds?: pulumi.Input<number | undefined>;
             /**
              * Indicates that the deployment is paused.
              */
-            paused?: pulumi.Input<boolean>;
+            paused?: pulumi.Input<boolean | undefined>;
             /**
              * The maximum time in seconds for a deployment to make progress before it is considered to be failed. The deployment controller will continue to process failed deployments and a condition with a ProgressDeadlineExceeded reason will be surfaced in the deployment status. Note that progress will not be estimated during the time a deployment is paused. Defaults to 600s.
              */
-            progressDeadlineSeconds?: pulumi.Input<number>;
+            progressDeadlineSeconds?: pulumi.Input<number | undefined>;
             /**
              * Number of desired pods. This is a pointer to distinguish between explicit zero and not specified. Defaults to 1.
              */
-            replicas?: pulumi.Input<number>;
+            replicas?: pulumi.Input<number | undefined>;
             /**
              * The number of old ReplicaSets to retain to allow rollback. This is a pointer to distinguish between explicit zero and not specified. Defaults to 2.
              */
-            revisionHistoryLimit?: pulumi.Input<number>;
+            revisionHistoryLimit?: pulumi.Input<number | undefined>;
             /**
              * DEPRECATED. The config this deployment is rolling back to. Will be cleared after rollback is done.
              */
-            rollbackTo?: pulumi.Input<inputs.apps.v1beta1.RollbackConfig>;
+            rollbackTo?: pulumi.Input<inputs.apps.v1beta1.RollbackConfig | undefined>;
             /**
              * Label selector for pods. Existing ReplicaSets whose pods are selected by this will be the ones affected by this deployment.
              */
-            selector?: pulumi.Input<inputs.meta.v1.LabelSelector>;
+            selector?: pulumi.Input<inputs.meta.v1.LabelSelector | undefined>;
             /**
              * The deployment strategy to use to replace existing pods with new ones.
              */
-            strategy?: pulumi.Input<inputs.apps.v1beta1.DeploymentStrategy>;
+            strategy?: pulumi.Input<inputs.apps.v1beta1.DeploymentStrategy | undefined>;
             /**
              * Template describes the pods that will be created.
              */
@@ -2508,35 +2508,35 @@ export namespace apps {
             /**
              * Total number of available pods (ready for at least minReadySeconds) targeted by this deployment.
              */
-            availableReplicas?: pulumi.Input<number>;
+            availableReplicas?: pulumi.Input<number | undefined>;
             /**
              * Count of hash collisions for the Deployment. The Deployment controller uses this field as a collision avoidance mechanism when it needs to create the name for the newest ReplicaSet.
              */
-            collisionCount?: pulumi.Input<number>;
+            collisionCount?: pulumi.Input<number | undefined>;
             /**
              * Represents the latest available observations of a deployment's current state.
              */
-            conditions?: pulumi.Input<pulumi.Input<inputs.apps.v1beta1.DeploymentCondition>[]>;
+            conditions?: pulumi.Input<pulumi.Input<inputs.apps.v1beta1.DeploymentCondition>[] | undefined>;
             /**
              * The generation observed by the deployment controller.
              */
-            observedGeneration?: pulumi.Input<number>;
+            observedGeneration?: pulumi.Input<number | undefined>;
             /**
              * Total number of ready pods targeted by this deployment.
              */
-            readyReplicas?: pulumi.Input<number>;
+            readyReplicas?: pulumi.Input<number | undefined>;
             /**
              * Total number of non-terminated pods targeted by this deployment (their labels match the selector).
              */
-            replicas?: pulumi.Input<number>;
+            replicas?: pulumi.Input<number | undefined>;
             /**
              * Total number of unavailable pods targeted by this deployment. This is the total number of pods that are still required for the deployment to have 100% available capacity. They may either be pods that are running but not yet available or pods that still have not been created.
              */
-            unavailableReplicas?: pulumi.Input<number>;
+            unavailableReplicas?: pulumi.Input<number | undefined>;
             /**
              * Total number of non-terminated pods targeted by this deployment that have the desired template spec.
              */
-            updatedReplicas?: pulumi.Input<number>;
+            updatedReplicas?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -2546,11 +2546,11 @@ export namespace apps {
             /**
              * Rolling update config params. Present only if DeploymentStrategyType = RollingUpdate.
              */
-            rollingUpdate?: pulumi.Input<inputs.apps.v1beta1.RollingUpdateDeployment>;
+            rollingUpdate?: pulumi.Input<inputs.apps.v1beta1.RollingUpdateDeployment | undefined>;
             /**
              * Type of deployment. Can be "Recreate" or "RollingUpdate". Default is RollingUpdate.
              */
-            type?: pulumi.Input<string>;
+            type?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -2560,7 +2560,7 @@ export namespace apps {
             /**
              * The revision to rollback to. If set to 0, rollback to the last revision.
              */
-            revision?: pulumi.Input<number>;
+            revision?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -2570,11 +2570,11 @@ export namespace apps {
             /**
              * The maximum number of pods that can be scheduled above the desired number of pods. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to 25%. Example: when this is set to 30%, the new ReplicaSet can be scaled up immediately when the rolling update starts, such that the total number of old and new pods do not exceed 130% of desired pods. Once old pods have been killed, new ReplicaSet can be scaled up further, ensuring that total number of pods running at any time during the update is at most 130% of desired pods.
              */
-            maxSurge?: pulumi.Input<number | string>;
+            maxSurge?: pulumi.Input<number | string | undefined>;
             /**
              * The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to 25%. Example: when this is set to 30%, the old ReplicaSet can be scaled down to 70% of desired pods immediately when the rolling update starts. Once new pods are ready, old ReplicaSet can be scaled down further, followed by scaling up the new ReplicaSet, ensuring that the total number of pods available at all times during the update is at least 70% of desired pods.
              */
-            maxUnavailable?: pulumi.Input<number | string>;
+            maxUnavailable?: pulumi.Input<number | string | undefined>;
         }
 
         /**
@@ -2584,7 +2584,7 @@ export namespace apps {
             /**
              * Partition indicates the ordinal at which the StatefulSet should be partitioned.
              */
-            partition?: pulumi.Input<number>;
+            partition?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -2610,20 +2610,20 @@ export namespace apps {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"apps/v1beta1">;
+            apiVersion?: pulumi.Input<"apps/v1beta1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"StatefulSet">;
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            kind?: pulumi.Input<"StatefulSet" | undefined>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Spec defines the desired identities of pods in this set.
              */
-            spec?: pulumi.Input<inputs.apps.v1beta1.StatefulSetSpec>;
+            spec?: pulumi.Input<inputs.apps.v1beta1.StatefulSetSpec | undefined>;
             /**
              * Status is the current status of Pods in this StatefulSet. This data may be out of date by some window of time.
              */
-            status?: pulumi.Input<inputs.apps.v1beta1.StatefulSetStatus>;
+            status?: pulumi.Input<inputs.apps.v1beta1.StatefulSetStatus | undefined>;
         }
 
         /**
@@ -2633,15 +2633,15 @@ export namespace apps {
             /**
              * Last time the condition transitioned from one status to another.
              */
-            lastTransitionTime?: pulumi.Input<string>;
+            lastTransitionTime?: pulumi.Input<string | undefined>;
             /**
              * A human readable message indicating details about the transition.
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * The reason for the condition's last transition.
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
             /**
              * Status of the condition, one of True, False, Unknown.
              */
@@ -2659,19 +2659,19 @@ export namespace apps {
             /**
              * podManagementPolicy controls how pods are created during initial scale up, when replacing pods on nodes, or when scaling down. The default policy is `OrderedReady`, where pods are created in increasing order (pod-0, then pod-1, etc) and the controller will wait until each pod is ready before continuing. When scaling down, the pods are removed in the opposite order. The alternative policy is `Parallel` which will create pods in parallel to match the desired scale without waiting, and on scale down will delete all pods at once.
              */
-            podManagementPolicy?: pulumi.Input<string>;
+            podManagementPolicy?: pulumi.Input<string | undefined>;
             /**
              * replicas is the desired number of replicas of the given Template. These are replicas in the sense that they are instantiations of the same Template, but individual replicas also have a consistent identity. If unspecified, defaults to 1.
              */
-            replicas?: pulumi.Input<number>;
+            replicas?: pulumi.Input<number | undefined>;
             /**
              * revisionHistoryLimit is the maximum number of revisions that will be maintained in the StatefulSet's revision history. The revision history consists of all revisions not represented by a currently applied StatefulSetSpec version. The default value is 10.
              */
-            revisionHistoryLimit?: pulumi.Input<number>;
+            revisionHistoryLimit?: pulumi.Input<number | undefined>;
             /**
              * selector is a label query over pods that should match the replica count. If empty, defaulted to labels on the pod template. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
              */
-            selector?: pulumi.Input<inputs.meta.v1.LabelSelector>;
+            selector?: pulumi.Input<inputs.meta.v1.LabelSelector | undefined>;
             /**
              * serviceName is the name of the service that governs this StatefulSet. This service must exist before the StatefulSet, and is responsible for the network identity of the set. Pods get DNS/hostnames that follow the pattern: pod-specific-string.serviceName.default.svc.cluster.local where "pod-specific-string" is managed by the StatefulSet controller.
              */
@@ -2683,11 +2683,11 @@ export namespace apps {
             /**
              * updateStrategy indicates the StatefulSetUpdateStrategy that will be employed to update Pods in the StatefulSet when a revision is made to Template.
              */
-            updateStrategy?: pulumi.Input<inputs.apps.v1beta1.StatefulSetUpdateStrategy>;
+            updateStrategy?: pulumi.Input<inputs.apps.v1beta1.StatefulSetUpdateStrategy | undefined>;
             /**
              * volumeClaimTemplates is a list of claims that pods are allowed to reference. The StatefulSet controller is responsible for mapping network identities to claims in a way that maintains the identity of a pod. Every claim in this list must have at least one matching (by name) volumeMount in one container in the template. A claim in this list takes precedence over any volumes in the template, with the same name.
              */
-            volumeClaimTemplates?: pulumi.Input<pulumi.Input<inputs.core.v1.PersistentVolumeClaim>[]>;
+            volumeClaimTemplates?: pulumi.Input<pulumi.Input<inputs.core.v1.PersistentVolumeClaim>[] | undefined>;
         }
 
         /**
@@ -2697,27 +2697,27 @@ export namespace apps {
             /**
              * collisionCount is the count of hash collisions for the StatefulSet. The StatefulSet controller uses this field as a collision avoidance mechanism when it needs to create the name for the newest ControllerRevision.
              */
-            collisionCount?: pulumi.Input<number>;
+            collisionCount?: pulumi.Input<number | undefined>;
             /**
              * Represents the latest available observations of a statefulset's current state.
              */
-            conditions?: pulumi.Input<pulumi.Input<inputs.apps.v1beta1.StatefulSetCondition>[]>;
+            conditions?: pulumi.Input<pulumi.Input<inputs.apps.v1beta1.StatefulSetCondition>[] | undefined>;
             /**
              * currentReplicas is the number of Pods created by the StatefulSet controller from the StatefulSet version indicated by currentRevision.
              */
-            currentReplicas?: pulumi.Input<number>;
+            currentReplicas?: pulumi.Input<number | undefined>;
             /**
              * currentRevision, if not empty, indicates the version of the StatefulSet used to generate Pods in the sequence [0,currentReplicas).
              */
-            currentRevision?: pulumi.Input<string>;
+            currentRevision?: pulumi.Input<string | undefined>;
             /**
              * observedGeneration is the most recent generation observed for this StatefulSet. It corresponds to the StatefulSet's generation, which is updated on mutation by the API Server.
              */
-            observedGeneration?: pulumi.Input<number>;
+            observedGeneration?: pulumi.Input<number | undefined>;
             /**
              * readyReplicas is the number of Pods created by the StatefulSet controller that have a Ready Condition.
              */
-            readyReplicas?: pulumi.Input<number>;
+            readyReplicas?: pulumi.Input<number | undefined>;
             /**
              * replicas is the number of Pods created by the StatefulSet controller.
              */
@@ -2725,11 +2725,11 @@ export namespace apps {
             /**
              * updateRevision, if not empty, indicates the version of the StatefulSet used to generate Pods in the sequence [replicas-updatedReplicas,replicas)
              */
-            updateRevision?: pulumi.Input<string>;
+            updateRevision?: pulumi.Input<string | undefined>;
             /**
              * updatedReplicas is the number of Pods created by the StatefulSet controller from the StatefulSet version indicated by updateRevision.
              */
-            updatedReplicas?: pulumi.Input<number>;
+            updatedReplicas?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -2739,11 +2739,11 @@ export namespace apps {
             /**
              * RollingUpdate is used to communicate parameters when Type is RollingUpdateStatefulSetStrategyType.
              */
-            rollingUpdate?: pulumi.Input<inputs.apps.v1beta1.RollingUpdateStatefulSetStrategy>;
+            rollingUpdate?: pulumi.Input<inputs.apps.v1beta1.RollingUpdateStatefulSetStrategy | undefined>;
             /**
              * Type indicates the type of the StatefulSetUpdateStrategy.
              */
-            type?: pulumi.Input<string>;
+            type?: pulumi.Input<string | undefined>;
         }
     }
 
@@ -2755,19 +2755,19 @@ export namespace apps {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"apps/v1beta2">;
+            apiVersion?: pulumi.Input<"apps/v1beta2" | undefined>;
             /**
              * Data is the serialized representation of the state.
              */
-            data?: any;
+            data?: pulumi.Input<any | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"ControllerRevision">;
+            kind?: pulumi.Input<"ControllerRevision" | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Revision indicates the revision of the state represented by Data.
              */
@@ -2781,23 +2781,23 @@ export namespace apps {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"apps/v1beta2">;
+            apiVersion?: pulumi.Input<"apps/v1beta2" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"DaemonSet">;
+            kind?: pulumi.Input<"DaemonSet" | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * The desired behavior of this daemon set. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            spec?: pulumi.Input<inputs.apps.v1beta2.DaemonSetSpec>;
+            spec?: pulumi.Input<inputs.apps.v1beta2.DaemonSetSpec | undefined>;
             /**
              * The current status of this daemon set. This data may be out of date by some window of time. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            status?: pulumi.Input<inputs.apps.v1beta2.DaemonSetStatus>;
+            status?: pulumi.Input<inputs.apps.v1beta2.DaemonSetStatus | undefined>;
         }
 
         /**
@@ -2807,15 +2807,15 @@ export namespace apps {
             /**
              * Last time the condition transitioned from one status to another.
              */
-            lastTransitionTime?: pulumi.Input<string>;
+            lastTransitionTime?: pulumi.Input<string | undefined>;
             /**
              * A human readable message indicating details about the transition.
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * The reason for the condition's last transition.
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
             /**
              * Status of the condition, one of True, False, Unknown.
              */
@@ -2833,11 +2833,11 @@ export namespace apps {
             /**
              * The minimum number of seconds for which a newly created DaemonSet pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready).
              */
-            minReadySeconds?: pulumi.Input<number>;
+            minReadySeconds?: pulumi.Input<number | undefined>;
             /**
              * The number of old history to retain to allow rollback. This is a pointer to distinguish between explicit zero and not specified. Defaults to 10.
              */
-            revisionHistoryLimit?: pulumi.Input<number>;
+            revisionHistoryLimit?: pulumi.Input<number | undefined>;
             /**
              * A label query over pods that are managed by the daemon set. Must match in order to be controlled. It must match the pod template's labels. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
              */
@@ -2849,7 +2849,7 @@ export namespace apps {
             /**
              * An update strategy to replace existing DaemonSet pods with new pods.
              */
-            updateStrategy?: pulumi.Input<inputs.apps.v1beta2.DaemonSetUpdateStrategy>;
+            updateStrategy?: pulumi.Input<inputs.apps.v1beta2.DaemonSetUpdateStrategy | undefined>;
         }
 
         /**
@@ -2859,11 +2859,11 @@ export namespace apps {
             /**
              * Count of hash collisions for the DaemonSet. The DaemonSet controller uses this field as a collision avoidance mechanism when it needs to create the name for the newest ControllerRevision.
              */
-            collisionCount?: pulumi.Input<number>;
+            collisionCount?: pulumi.Input<number | undefined>;
             /**
              * Represents the latest available observations of a DaemonSet's current state.
              */
-            conditions?: pulumi.Input<pulumi.Input<inputs.apps.v1beta2.DaemonSetCondition>[]>;
+            conditions?: pulumi.Input<pulumi.Input<inputs.apps.v1beta2.DaemonSetCondition>[] | undefined>;
             /**
              * The number of nodes that are running at least 1 daemon pod and are supposed to run the daemon pod. More info: https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
              */
@@ -2875,7 +2875,7 @@ export namespace apps {
             /**
              * The number of nodes that should be running the daemon pod and have one or more of the daemon pod running and available (ready for at least spec.minReadySeconds)
              */
-            numberAvailable?: pulumi.Input<number>;
+            numberAvailable?: pulumi.Input<number | undefined>;
             /**
              * The number of nodes that are running the daemon pod, but are not supposed to run the daemon pod. More info: https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
              */
@@ -2887,15 +2887,15 @@ export namespace apps {
             /**
              * The number of nodes that should be running the daemon pod and have none of the daemon pod running and available (ready for at least spec.minReadySeconds)
              */
-            numberUnavailable?: pulumi.Input<number>;
+            numberUnavailable?: pulumi.Input<number | undefined>;
             /**
              * The most recent generation observed by the daemon set controller.
              */
-            observedGeneration?: pulumi.Input<number>;
+            observedGeneration?: pulumi.Input<number | undefined>;
             /**
              * The total number of nodes that are running updated daemon pod
              */
-            updatedNumberScheduled?: pulumi.Input<number>;
+            updatedNumberScheduled?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -2905,11 +2905,11 @@ export namespace apps {
             /**
              * Rolling update config params. Present only if type = "RollingUpdate".
              */
-            rollingUpdate?: pulumi.Input<inputs.apps.v1beta2.RollingUpdateDaemonSet>;
+            rollingUpdate?: pulumi.Input<inputs.apps.v1beta2.RollingUpdateDaemonSet | undefined>;
             /**
              * Type of daemon set update. Can be "RollingUpdate" or "OnDelete". Default is RollingUpdate.
              */
-            type?: pulumi.Input<string>;
+            type?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -2941,23 +2941,23 @@ export namespace apps {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"apps/v1beta2">;
+            apiVersion?: pulumi.Input<"apps/v1beta2" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"Deployment">;
+            kind?: pulumi.Input<"Deployment" | undefined>;
             /**
              * Standard object metadata.
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Specification of the desired behavior of the Deployment.
              */
-            spec?: pulumi.Input<inputs.apps.v1beta2.DeploymentSpec>;
+            spec?: pulumi.Input<inputs.apps.v1beta2.DeploymentSpec | undefined>;
             /**
              * Most recently observed status of the Deployment.
              */
-            status?: pulumi.Input<inputs.apps.v1beta2.DeploymentStatus>;
+            status?: pulumi.Input<inputs.apps.v1beta2.DeploymentStatus | undefined>;
         }
 
         /**
@@ -2967,19 +2967,19 @@ export namespace apps {
             /**
              * Last time the condition transitioned from one status to another.
              */
-            lastTransitionTime?: pulumi.Input<string>;
+            lastTransitionTime?: pulumi.Input<string | undefined>;
             /**
              * The last time this condition was updated.
              */
-            lastUpdateTime?: pulumi.Input<string>;
+            lastUpdateTime?: pulumi.Input<string | undefined>;
             /**
              * A human readable message indicating details about the transition.
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * The reason for the condition's last transition.
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
             /**
              * Status of the condition, one of True, False, Unknown.
              */
@@ -2997,23 +2997,23 @@ export namespace apps {
             /**
              * Minimum number of seconds for which a newly created pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready)
              */
-            minReadySeconds?: pulumi.Input<number>;
+            minReadySeconds?: pulumi.Input<number | undefined>;
             /**
              * Indicates that the deployment is paused.
              */
-            paused?: pulumi.Input<boolean>;
+            paused?: pulumi.Input<boolean | undefined>;
             /**
              * The maximum time in seconds for a deployment to make progress before it is considered to be failed. The deployment controller will continue to process failed deployments and a condition with a ProgressDeadlineExceeded reason will be surfaced in the deployment status. Note that progress will not be estimated during the time a deployment is paused. Defaults to 600s.
              */
-            progressDeadlineSeconds?: pulumi.Input<number>;
+            progressDeadlineSeconds?: pulumi.Input<number | undefined>;
             /**
              * Number of desired pods. This is a pointer to distinguish between explicit zero and not specified. Defaults to 1.
              */
-            replicas?: pulumi.Input<number>;
+            replicas?: pulumi.Input<number | undefined>;
             /**
              * The number of old ReplicaSets to retain to allow rollback. This is a pointer to distinguish between explicit zero and not specified. Defaults to 10.
              */
-            revisionHistoryLimit?: pulumi.Input<number>;
+            revisionHistoryLimit?: pulumi.Input<number | undefined>;
             /**
              * Label selector for pods. Existing ReplicaSets whose pods are selected by this will be the ones affected by this deployment. It must match the pod template's labels.
              */
@@ -3021,7 +3021,7 @@ export namespace apps {
             /**
              * The deployment strategy to use to replace existing pods with new ones.
              */
-            strategy?: pulumi.Input<inputs.apps.v1beta2.DeploymentStrategy>;
+            strategy?: pulumi.Input<inputs.apps.v1beta2.DeploymentStrategy | undefined>;
             /**
              * Template describes the pods that will be created.
              */
@@ -3035,35 +3035,35 @@ export namespace apps {
             /**
              * Total number of available pods (ready for at least minReadySeconds) targeted by this deployment.
              */
-            availableReplicas?: pulumi.Input<number>;
+            availableReplicas?: pulumi.Input<number | undefined>;
             /**
              * Count of hash collisions for the Deployment. The Deployment controller uses this field as a collision avoidance mechanism when it needs to create the name for the newest ReplicaSet.
              */
-            collisionCount?: pulumi.Input<number>;
+            collisionCount?: pulumi.Input<number | undefined>;
             /**
              * Represents the latest available observations of a deployment's current state.
              */
-            conditions?: pulumi.Input<pulumi.Input<inputs.apps.v1beta2.DeploymentCondition>[]>;
+            conditions?: pulumi.Input<pulumi.Input<inputs.apps.v1beta2.DeploymentCondition>[] | undefined>;
             /**
              * The generation observed by the deployment controller.
              */
-            observedGeneration?: pulumi.Input<number>;
+            observedGeneration?: pulumi.Input<number | undefined>;
             /**
              * Total number of ready pods targeted by this deployment.
              */
-            readyReplicas?: pulumi.Input<number>;
+            readyReplicas?: pulumi.Input<number | undefined>;
             /**
              * Total number of non-terminated pods targeted by this deployment (their labels match the selector).
              */
-            replicas?: pulumi.Input<number>;
+            replicas?: pulumi.Input<number | undefined>;
             /**
              * Total number of unavailable pods targeted by this deployment. This is the total number of pods that are still required for the deployment to have 100% available capacity. They may either be pods that are running but not yet available or pods that still have not been created.
              */
-            unavailableReplicas?: pulumi.Input<number>;
+            unavailableReplicas?: pulumi.Input<number | undefined>;
             /**
              * Total number of non-terminated pods targeted by this deployment that have the desired template spec.
              */
-            updatedReplicas?: pulumi.Input<number>;
+            updatedReplicas?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -3073,11 +3073,11 @@ export namespace apps {
             /**
              * Rolling update config params. Present only if DeploymentStrategyType = RollingUpdate.
              */
-            rollingUpdate?: pulumi.Input<inputs.apps.v1beta2.RollingUpdateDeployment>;
+            rollingUpdate?: pulumi.Input<inputs.apps.v1beta2.RollingUpdateDeployment | undefined>;
             /**
              * Type of deployment. Can be "Recreate" or "RollingUpdate". Default is RollingUpdate.
              */
-            type?: pulumi.Input<string>;
+            type?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -3087,23 +3087,23 @@ export namespace apps {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"apps/v1beta2">;
+            apiVersion?: pulumi.Input<"apps/v1beta2" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"ReplicaSet">;
+            kind?: pulumi.Input<"ReplicaSet" | undefined>;
             /**
              * If the Labels of a ReplicaSet are empty, they are defaulted to be the same as the Pod(s) that the ReplicaSet manages. Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Spec defines the specification of the desired behavior of the ReplicaSet. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            spec?: pulumi.Input<inputs.apps.v1beta2.ReplicaSetSpec>;
+            spec?: pulumi.Input<inputs.apps.v1beta2.ReplicaSetSpec | undefined>;
             /**
              * Status is the most recently observed status of the ReplicaSet. This data may be out of date by some window of time. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            status?: pulumi.Input<inputs.apps.v1beta2.ReplicaSetStatus>;
+            status?: pulumi.Input<inputs.apps.v1beta2.ReplicaSetStatus | undefined>;
         }
 
         /**
@@ -3113,15 +3113,15 @@ export namespace apps {
             /**
              * The last time the condition transitioned from one status to another.
              */
-            lastTransitionTime?: pulumi.Input<string>;
+            lastTransitionTime?: pulumi.Input<string | undefined>;
             /**
              * A human readable message indicating details about the transition.
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * The reason for the condition's last transition.
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
             /**
              * Status of the condition, one of True, False, Unknown.
              */
@@ -3139,11 +3139,11 @@ export namespace apps {
             /**
              * Minimum number of seconds for which a newly created pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready)
              */
-            minReadySeconds?: pulumi.Input<number>;
+            minReadySeconds?: pulumi.Input<number | undefined>;
             /**
              * Replicas is the number of desired replicas. This is a pointer to distinguish between explicit zero and unspecified. Defaults to 1. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/#what-is-a-replicationcontroller
              */
-            replicas?: pulumi.Input<number>;
+            replicas?: pulumi.Input<number | undefined>;
             /**
              * Selector is a label query over pods that should match the replica count. Label keys and values that must match in order to be controlled by this replica set. It must match the pod template's labels. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
              */
@@ -3151,7 +3151,7 @@ export namespace apps {
             /**
              * Template is the object that describes the pod that will be created if insufficient replicas are detected. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller#pod-template
              */
-            template?: pulumi.Input<inputs.core.v1.PodTemplateSpec>;
+            template?: pulumi.Input<inputs.core.v1.PodTemplateSpec | undefined>;
         }
 
         /**
@@ -3161,23 +3161,23 @@ export namespace apps {
             /**
              * The number of available replicas (ready for at least minReadySeconds) for this replica set.
              */
-            availableReplicas?: pulumi.Input<number>;
+            availableReplicas?: pulumi.Input<number | undefined>;
             /**
              * Represents the latest available observations of a replica set's current state.
              */
-            conditions?: pulumi.Input<pulumi.Input<inputs.apps.v1beta2.ReplicaSetCondition>[]>;
+            conditions?: pulumi.Input<pulumi.Input<inputs.apps.v1beta2.ReplicaSetCondition>[] | undefined>;
             /**
              * The number of pods that have labels matching the labels of the pod template of the replicaset.
              */
-            fullyLabeledReplicas?: pulumi.Input<number>;
+            fullyLabeledReplicas?: pulumi.Input<number | undefined>;
             /**
              * ObservedGeneration reflects the generation of the most recently observed ReplicaSet.
              */
-            observedGeneration?: pulumi.Input<number>;
+            observedGeneration?: pulumi.Input<number | undefined>;
             /**
              * The number of ready replicas for this replica set.
              */
-            readyReplicas?: pulumi.Input<number>;
+            readyReplicas?: pulumi.Input<number | undefined>;
             /**
              * Replicas is the most recently oberved number of replicas. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/#what-is-a-replicationcontroller
              */
@@ -3191,7 +3191,7 @@ export namespace apps {
             /**
              * The maximum number of DaemonSet pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of total number of DaemonSet pods at the start of the update (ex: 10%). Absolute number is calculated from percentage by rounding up. This cannot be 0. Default value is 1. Example: when this is set to 30%, at most 30% of the total number of nodes that should be running the daemon pod (i.e. status.desiredNumberScheduled) can have their pods stopped for an update at any given time. The update starts by stopping at most 30% of those DaemonSet pods and then brings up new DaemonSet pods in their place. Once the new pods are available, it then proceeds onto other DaemonSet pods, thus ensuring that at least 70% of original number of DaemonSet pods are available at all times during the update.
              */
-            maxUnavailable?: pulumi.Input<number | string>;
+            maxUnavailable?: pulumi.Input<number | string | undefined>;
         }
 
         /**
@@ -3201,11 +3201,11 @@ export namespace apps {
             /**
              * The maximum number of pods that can be scheduled above the desired number of pods. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to 25%. Example: when this is set to 30%, the new ReplicaSet can be scaled up immediately when the rolling update starts, such that the total number of old and new pods do not exceed 130% of desired pods. Once old pods have been killed, new ReplicaSet can be scaled up further, ensuring that total number of pods running at any time during the update is at most 130% of desired pods.
              */
-            maxSurge?: pulumi.Input<number | string>;
+            maxSurge?: pulumi.Input<number | string | undefined>;
             /**
              * The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to 25%. Example: when this is set to 30%, the old ReplicaSet can be scaled down to 70% of desired pods immediately when the rolling update starts. Once new pods are ready, old ReplicaSet can be scaled down further, followed by scaling up the new ReplicaSet, ensuring that the total number of pods available at all times during the update is at least 70% of desired pods.
              */
-            maxUnavailable?: pulumi.Input<number | string>;
+            maxUnavailable?: pulumi.Input<number | string | undefined>;
         }
 
         /**
@@ -3215,7 +3215,7 @@ export namespace apps {
             /**
              * Partition indicates the ordinal at which the StatefulSet should be partitioned. Default value is 0.
              */
-            partition?: pulumi.Input<number>;
+            partition?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -3241,20 +3241,20 @@ export namespace apps {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"apps/v1beta2">;
+            apiVersion?: pulumi.Input<"apps/v1beta2" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"StatefulSet">;
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            kind?: pulumi.Input<"StatefulSet" | undefined>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Spec defines the desired identities of pods in this set.
              */
-            spec?: pulumi.Input<inputs.apps.v1beta2.StatefulSetSpec>;
+            spec?: pulumi.Input<inputs.apps.v1beta2.StatefulSetSpec | undefined>;
             /**
              * Status is the current status of Pods in this StatefulSet. This data may be out of date by some window of time.
              */
-            status?: pulumi.Input<inputs.apps.v1beta2.StatefulSetStatus>;
+            status?: pulumi.Input<inputs.apps.v1beta2.StatefulSetStatus | undefined>;
         }
 
         /**
@@ -3264,15 +3264,15 @@ export namespace apps {
             /**
              * Last time the condition transitioned from one status to another.
              */
-            lastTransitionTime?: pulumi.Input<string>;
+            lastTransitionTime?: pulumi.Input<string | undefined>;
             /**
              * A human readable message indicating details about the transition.
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * The reason for the condition's last transition.
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
             /**
              * Status of the condition, one of True, False, Unknown.
              */
@@ -3290,15 +3290,15 @@ export namespace apps {
             /**
              * podManagementPolicy controls how pods are created during initial scale up, when replacing pods on nodes, or when scaling down. The default policy is `OrderedReady`, where pods are created in increasing order (pod-0, then pod-1, etc) and the controller will wait until each pod is ready before continuing. When scaling down, the pods are removed in the opposite order. The alternative policy is `Parallel` which will create pods in parallel to match the desired scale without waiting, and on scale down will delete all pods at once.
              */
-            podManagementPolicy?: pulumi.Input<string>;
+            podManagementPolicy?: pulumi.Input<string | undefined>;
             /**
              * replicas is the desired number of replicas of the given Template. These are replicas in the sense that they are instantiations of the same Template, but individual replicas also have a consistent identity. If unspecified, defaults to 1.
              */
-            replicas?: pulumi.Input<number>;
+            replicas?: pulumi.Input<number | undefined>;
             /**
              * revisionHistoryLimit is the maximum number of revisions that will be maintained in the StatefulSet's revision history. The revision history consists of all revisions not represented by a currently applied StatefulSetSpec version. The default value is 10.
              */
-            revisionHistoryLimit?: pulumi.Input<number>;
+            revisionHistoryLimit?: pulumi.Input<number | undefined>;
             /**
              * selector is a label query over pods that should match the replica count. It must match the pod template's labels. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
              */
@@ -3314,11 +3314,11 @@ export namespace apps {
             /**
              * updateStrategy indicates the StatefulSetUpdateStrategy that will be employed to update Pods in the StatefulSet when a revision is made to Template.
              */
-            updateStrategy?: pulumi.Input<inputs.apps.v1beta2.StatefulSetUpdateStrategy>;
+            updateStrategy?: pulumi.Input<inputs.apps.v1beta2.StatefulSetUpdateStrategy | undefined>;
             /**
              * volumeClaimTemplates is a list of claims that pods are allowed to reference. The StatefulSet controller is responsible for mapping network identities to claims in a way that maintains the identity of a pod. Every claim in this list must have at least one matching (by name) volumeMount in one container in the template. A claim in this list takes precedence over any volumes in the template, with the same name.
              */
-            volumeClaimTemplates?: pulumi.Input<pulumi.Input<inputs.core.v1.PersistentVolumeClaim>[]>;
+            volumeClaimTemplates?: pulumi.Input<pulumi.Input<inputs.core.v1.PersistentVolumeClaim>[] | undefined>;
         }
 
         /**
@@ -3328,27 +3328,27 @@ export namespace apps {
             /**
              * collisionCount is the count of hash collisions for the StatefulSet. The StatefulSet controller uses this field as a collision avoidance mechanism when it needs to create the name for the newest ControllerRevision.
              */
-            collisionCount?: pulumi.Input<number>;
+            collisionCount?: pulumi.Input<number | undefined>;
             /**
              * Represents the latest available observations of a statefulset's current state.
              */
-            conditions?: pulumi.Input<pulumi.Input<inputs.apps.v1beta2.StatefulSetCondition>[]>;
+            conditions?: pulumi.Input<pulumi.Input<inputs.apps.v1beta2.StatefulSetCondition>[] | undefined>;
             /**
              * currentReplicas is the number of Pods created by the StatefulSet controller from the StatefulSet version indicated by currentRevision.
              */
-            currentReplicas?: pulumi.Input<number>;
+            currentReplicas?: pulumi.Input<number | undefined>;
             /**
              * currentRevision, if not empty, indicates the version of the StatefulSet used to generate Pods in the sequence [0,currentReplicas).
              */
-            currentRevision?: pulumi.Input<string>;
+            currentRevision?: pulumi.Input<string | undefined>;
             /**
              * observedGeneration is the most recent generation observed for this StatefulSet. It corresponds to the StatefulSet's generation, which is updated on mutation by the API Server.
              */
-            observedGeneration?: pulumi.Input<number>;
+            observedGeneration?: pulumi.Input<number | undefined>;
             /**
              * readyReplicas is the number of Pods created by the StatefulSet controller that have a Ready Condition.
              */
-            readyReplicas?: pulumi.Input<number>;
+            readyReplicas?: pulumi.Input<number | undefined>;
             /**
              * replicas is the number of Pods created by the StatefulSet controller.
              */
@@ -3356,11 +3356,11 @@ export namespace apps {
             /**
              * updateRevision, if not empty, indicates the version of the StatefulSet used to generate Pods in the sequence [replicas-updatedReplicas,replicas)
              */
-            updateRevision?: pulumi.Input<string>;
+            updateRevision?: pulumi.Input<string | undefined>;
             /**
              * updatedReplicas is the number of Pods created by the StatefulSet controller from the StatefulSet version indicated by updateRevision.
              */
-            updatedReplicas?: pulumi.Input<number>;
+            updatedReplicas?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -3370,11 +3370,11 @@ export namespace apps {
             /**
              * RollingUpdate is used to communicate parameters when Type is RollingUpdateStatefulSetStrategyType.
              */
-            rollingUpdate?: pulumi.Input<inputs.apps.v1beta2.RollingUpdateStatefulSetStrategy>;
+            rollingUpdate?: pulumi.Input<inputs.apps.v1beta2.RollingUpdateStatefulSetStrategy | undefined>;
             /**
              * Type indicates the type of the StatefulSetUpdateStrategy. Default is RollingUpdate.
              */
-            type?: pulumi.Input<string>;
+            type?: pulumi.Input<string | undefined>;
         }
     }
 }
@@ -3388,16 +3388,16 @@ export namespace auditregistration {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"auditregistration.k8s.io/v1alpha1">;
+            apiVersion?: pulumi.Input<"auditregistration.k8s.io/v1alpha1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"AuditSink">;
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            kind?: pulumi.Input<"AuditSink" | undefined>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Spec defines the audit configuration spec
              */
-            spec?: pulumi.Input<inputs.auditregistration.v1alpha1.AuditSinkSpec>;
+            spec?: pulumi.Input<inputs.auditregistration.v1alpha1.AuditSinkSpec | undefined>;
         }
 
         /**
@@ -3425,7 +3425,7 @@ export namespace auditregistration {
             /**
              * Stages is a list of stages for which events are created.
              */
-            stages?: pulumi.Input<pulumi.Input<string>[]>;
+            stages?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         }
 
         /**
@@ -3443,11 +3443,11 @@ export namespace auditregistration {
             /**
              * `path` is an optional URL path which will be sent in any request to this service.
              */
-            path?: pulumi.Input<string>;
+            path?: pulumi.Input<string | undefined>;
             /**
              * If specified, the port on the service that hosting webhook. Default to 443 for backward compatibility. `port` should be a valid port number (1-65535, inclusive).
              */
-            port?: pulumi.Input<number>;
+            port?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -3461,7 +3461,7 @@ export namespace auditregistration {
             /**
              * Throttle holds the options for throttling the webhook
              */
-            throttle?: pulumi.Input<inputs.auditregistration.v1alpha1.WebhookThrottleConfig>;
+            throttle?: pulumi.Input<inputs.auditregistration.v1alpha1.WebhookThrottleConfig | undefined>;
         }
 
         /**
@@ -3471,13 +3471,13 @@ export namespace auditregistration {
             /**
              * `caBundle` is a PEM encoded CA bundle which will be used to validate the webhook's server certificate. If unspecified, system trust roots on the apiserver are used.
              */
-            caBundle?: pulumi.Input<string>;
+            caBundle?: pulumi.Input<string | undefined>;
             /**
              * `service` is a reference to the service for this webhook. Either `service` or `url` must be specified.
              *
              * If the webhook is running within the cluster, then you should use `service`.
              */
-            service?: pulumi.Input<inputs.auditregistration.v1alpha1.ServiceReference>;
+            service?: pulumi.Input<inputs.auditregistration.v1alpha1.ServiceReference | undefined>;
             /**
              * `url` gives the location of the webhook, in standard URL form (`scheme://host:port/path`). Exactly one of `url` or `service` must be specified.
              *
@@ -3491,7 +3491,7 @@ export namespace auditregistration {
              *
              * Attempting to use a user or basic auth e.g. "user:password@" is not allowed. Fragments ("#...") and query parameters ("?...") are not allowed, either.
              */
-            url?: pulumi.Input<string>;
+            url?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -3501,11 +3501,11 @@ export namespace auditregistration {
             /**
              * ThrottleBurst is the maximum number of events sent at the same moment default 15 QPS
              */
-            burst?: pulumi.Input<number>;
+            burst?: pulumi.Input<number | undefined>;
             /**
              * ThrottleQPS maximum number of batches per second default 10 QPS
              */
-            qps?: pulumi.Input<number>;
+            qps?: pulumi.Input<number | undefined>;
         }
     }
 }
@@ -3519,19 +3519,19 @@ export namespace authentication {
             /**
              * API version of the referent.
              */
-            apiVersion?: pulumi.Input<string>;
+            apiVersion?: pulumi.Input<string | undefined>;
             /**
              * Kind of the referent. Valid kinds are 'Pod' and 'Secret'.
              */
-            kind?: pulumi.Input<string>;
+            kind?: pulumi.Input<string | undefined>;
             /**
              * Name of the referent.
              */
-            name?: pulumi.Input<string>;
+            name?: pulumi.Input<string | undefined>;
             /**
              * UID of the referent.
              */
-            uid?: pulumi.Input<string>;
+            uid?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -3545,11 +3545,11 @@ export namespace authentication {
             /**
              * BoundObjectRef is a reference to an object that the token will be bound to. The token will only be valid for as long as the bound object exists. NOTE: The API server's TokenReview endpoint will validate the BoundObjectRef, but other audiences may not. Keep ExpirationSeconds small if you want prompt revocation.
              */
-            boundObjectRef?: pulumi.Input<inputs.authentication.v1.BoundObjectReference>;
+            boundObjectRef?: pulumi.Input<inputs.authentication.v1.BoundObjectReference | undefined>;
             /**
              * ExpirationSeconds is the requested duration of validity of the request. The token issuer may return a token with a different validity duration so a client needs to check the 'expiration' field in a response.
              */
-            expirationSeconds?: pulumi.Input<number>;
+            expirationSeconds?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -3559,11 +3559,11 @@ export namespace authentication {
             /**
              * Audiences is a list of the identifiers that the resource server presented with the token identifies as. Audience-aware token authenticators will verify that the token was intended for at least one of the audiences in this list. If no audiences are provided, the audience will default to the audience of the Kubernetes apiserver.
              */
-            audiences?: pulumi.Input<pulumi.Input<string>[]>;
+            audiences?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * Token is the opaque bearer token.
              */
-            token?: pulumi.Input<string>;
+            token?: pulumi.Input<string | undefined>;
         }
 
     }
@@ -3576,11 +3576,11 @@ export namespace authentication {
             /**
              * Audiences is a list of the identifiers that the resource server presented with the token identifies as. Audience-aware token authenticators will verify that the token was intended for at least one of the audiences in this list. If no audiences are provided, the audience will default to the audience of the Kubernetes apiserver.
              */
-            audiences?: pulumi.Input<pulumi.Input<string>[]>;
+            audiences?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * Token is the opaque bearer token.
              */
-            token?: pulumi.Input<string>;
+            token?: pulumi.Input<string | undefined>;
         }
 
     }
@@ -3595,11 +3595,11 @@ export namespace authorization {
             /**
              * Path is the URL path of the request
              */
-            path?: pulumi.Input<string>;
+            path?: pulumi.Input<string | undefined>;
             /**
              * Verb is the standard HTTP verb
              */
-            verb?: pulumi.Input<string>;
+            verb?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -3609,31 +3609,31 @@ export namespace authorization {
             /**
              * Group is the API Group of the Resource.  "*" means all.
              */
-            group?: pulumi.Input<string>;
+            group?: pulumi.Input<string | undefined>;
             /**
              * Name is the name of the resource being requested for a "get" or deleted for a "delete". "" (empty) means all.
              */
-            name?: pulumi.Input<string>;
+            name?: pulumi.Input<string | undefined>;
             /**
              * Namespace is the namespace of the action being requested.  Currently, there is no distinction between no namespace and all namespaces "" (empty) is defaulted for LocalSubjectAccessReviews "" (empty) is empty for cluster-scoped resources "" (empty) means "all" for namespace scoped resources from a SubjectAccessReview or SelfSubjectAccessReview
              */
-            namespace?: pulumi.Input<string>;
+            namespace?: pulumi.Input<string | undefined>;
             /**
              * Resource is one of the existing resource types.  "*" means all.
              */
-            resource?: pulumi.Input<string>;
+            resource?: pulumi.Input<string | undefined>;
             /**
              * Subresource is one of the existing resource types.  "" means none.
              */
-            subresource?: pulumi.Input<string>;
+            subresource?: pulumi.Input<string | undefined>;
             /**
              * Verb is a kubernetes resource API verb, like: get, list, watch, create, update, delete, proxy.  "*" means all.
              */
-            verb?: pulumi.Input<string>;
+            verb?: pulumi.Input<string | undefined>;
             /**
              * Version is the API Version of the Resource.  "*" means all.
              */
-            version?: pulumi.Input<string>;
+            version?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -3643,18 +3643,18 @@ export namespace authorization {
             /**
              * NonResourceAttributes describes information for a non-resource access request
              */
-            nonResourceAttributes?: pulumi.Input<inputs.authorization.v1.NonResourceAttributes>;
+            nonResourceAttributes?: pulumi.Input<inputs.authorization.v1.NonResourceAttributes | undefined>;
             /**
              * ResourceAuthorizationAttributes describes information for a resource access request
              */
-            resourceAttributes?: pulumi.Input<inputs.authorization.v1.ResourceAttributes>;
+            resourceAttributes?: pulumi.Input<inputs.authorization.v1.ResourceAttributes | undefined>;
         }
 
         export interface SelfSubjectRulesReviewSpec {
             /**
              * Namespace to evaluate rules for. Required.
              */
-            namespace?: pulumi.Input<string>;
+            namespace?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -3664,27 +3664,27 @@ export namespace authorization {
             /**
              * Extra corresponds to the user.Info.GetExtra() method from the authenticator.  Since that is input to the authorizer it needs a reflection here.
              */
-            extra?: pulumi.Input<{[key: string]: pulumi.Input<pulumi.Input<string>[]>}>;
+            extra?: pulumi.Input<{[key: string]: pulumi.Input<pulumi.Input<string>[]>} | undefined>;
             /**
              * Groups is the groups you're testing for.
              */
-            groups?: pulumi.Input<pulumi.Input<string>[]>;
+            groups?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * NonResourceAttributes describes information for a non-resource access request
              */
-            nonResourceAttributes?: pulumi.Input<inputs.authorization.v1.NonResourceAttributes>;
+            nonResourceAttributes?: pulumi.Input<inputs.authorization.v1.NonResourceAttributes | undefined>;
             /**
              * ResourceAuthorizationAttributes describes information for a resource access request
              */
-            resourceAttributes?: pulumi.Input<inputs.authorization.v1.ResourceAttributes>;
+            resourceAttributes?: pulumi.Input<inputs.authorization.v1.ResourceAttributes | undefined>;
             /**
              * UID information about the requesting user.
              */
-            uid?: pulumi.Input<string>;
+            uid?: pulumi.Input<string | undefined>;
             /**
              * User is the user you're testing for. If you specify "User" but not "Groups", then is it interpreted as "What if User were not a member of any groups
              */
-            user?: pulumi.Input<string>;
+            user?: pulumi.Input<string | undefined>;
         }
 
     }
@@ -3697,11 +3697,11 @@ export namespace authorization {
             /**
              * Path is the URL path of the request
              */
-            path?: pulumi.Input<string>;
+            path?: pulumi.Input<string | undefined>;
             /**
              * Verb is the standard HTTP verb
              */
-            verb?: pulumi.Input<string>;
+            verb?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -3711,31 +3711,31 @@ export namespace authorization {
             /**
              * Group is the API Group of the Resource.  "*" means all.
              */
-            group?: pulumi.Input<string>;
+            group?: pulumi.Input<string | undefined>;
             /**
              * Name is the name of the resource being requested for a "get" or deleted for a "delete". "" (empty) means all.
              */
-            name?: pulumi.Input<string>;
+            name?: pulumi.Input<string | undefined>;
             /**
              * Namespace is the namespace of the action being requested.  Currently, there is no distinction between no namespace and all namespaces "" (empty) is defaulted for LocalSubjectAccessReviews "" (empty) is empty for cluster-scoped resources "" (empty) means "all" for namespace scoped resources from a SubjectAccessReview or SelfSubjectAccessReview
              */
-            namespace?: pulumi.Input<string>;
+            namespace?: pulumi.Input<string | undefined>;
             /**
              * Resource is one of the existing resource types.  "*" means all.
              */
-            resource?: pulumi.Input<string>;
+            resource?: pulumi.Input<string | undefined>;
             /**
              * Subresource is one of the existing resource types.  "" means none.
              */
-            subresource?: pulumi.Input<string>;
+            subresource?: pulumi.Input<string | undefined>;
             /**
              * Verb is a kubernetes resource API verb, like: get, list, watch, create, update, delete, proxy.  "*" means all.
              */
-            verb?: pulumi.Input<string>;
+            verb?: pulumi.Input<string | undefined>;
             /**
              * Version is the API Version of the Resource.  "*" means all.
              */
-            version?: pulumi.Input<string>;
+            version?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -3745,18 +3745,18 @@ export namespace authorization {
             /**
              * NonResourceAttributes describes information for a non-resource access request
              */
-            nonResourceAttributes?: pulumi.Input<inputs.authorization.v1beta1.NonResourceAttributes>;
+            nonResourceAttributes?: pulumi.Input<inputs.authorization.v1beta1.NonResourceAttributes | undefined>;
             /**
              * ResourceAuthorizationAttributes describes information for a resource access request
              */
-            resourceAttributes?: pulumi.Input<inputs.authorization.v1beta1.ResourceAttributes>;
+            resourceAttributes?: pulumi.Input<inputs.authorization.v1beta1.ResourceAttributes | undefined>;
         }
 
         export interface SelfSubjectRulesReviewSpec {
             /**
              * Namespace to evaluate rules for. Required.
              */
-            namespace?: pulumi.Input<string>;
+            namespace?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -3766,27 +3766,27 @@ export namespace authorization {
             /**
              * Extra corresponds to the user.Info.GetExtra() method from the authenticator.  Since that is input to the authorizer it needs a reflection here.
              */
-            extra?: pulumi.Input<{[key: string]: pulumi.Input<pulumi.Input<string>[]>}>;
+            extra?: pulumi.Input<{[key: string]: pulumi.Input<pulumi.Input<string>[]>} | undefined>;
             /**
              * Groups is the groups you're testing for.
              */
-            group?: pulumi.Input<pulumi.Input<string>[]>;
+            group?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * NonResourceAttributes describes information for a non-resource access request
              */
-            nonResourceAttributes?: pulumi.Input<inputs.authorization.v1beta1.NonResourceAttributes>;
+            nonResourceAttributes?: pulumi.Input<inputs.authorization.v1beta1.NonResourceAttributes | undefined>;
             /**
              * ResourceAuthorizationAttributes describes information for a resource access request
              */
-            resourceAttributes?: pulumi.Input<inputs.authorization.v1beta1.ResourceAttributes>;
+            resourceAttributes?: pulumi.Input<inputs.authorization.v1beta1.ResourceAttributes | undefined>;
             /**
              * UID information about the requesting user.
              */
-            uid?: pulumi.Input<string>;
+            uid?: pulumi.Input<string | undefined>;
             /**
              * User is the user you're testing for. If you specify "User" but not "Group", then is it interpreted as "What if User were not a member of any groups
              */
-            user?: pulumi.Input<string>;
+            user?: pulumi.Input<string | undefined>;
         }
 
     }
@@ -3801,7 +3801,7 @@ export namespace autoscaling {
             /**
              * API version of the referent
              */
-            apiVersion?: pulumi.Input<string>;
+            apiVersion?: pulumi.Input<string | undefined>;
             /**
              * Kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
              */
@@ -3819,23 +3819,23 @@ export namespace autoscaling {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"autoscaling/v1">;
+            apiVersion?: pulumi.Input<"autoscaling/v1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"HorizontalPodAutoscaler">;
+            kind?: pulumi.Input<"HorizontalPodAutoscaler" | undefined>;
             /**
              * Standard object metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * behaviour of autoscaler. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status.
              */
-            spec?: pulumi.Input<inputs.autoscaling.v1.HorizontalPodAutoscalerSpec>;
+            spec?: pulumi.Input<inputs.autoscaling.v1.HorizontalPodAutoscalerSpec | undefined>;
             /**
              * current information about the autoscaler.
              */
-            status?: pulumi.Input<inputs.autoscaling.v1.HorizontalPodAutoscalerStatus>;
+            status?: pulumi.Input<inputs.autoscaling.v1.HorizontalPodAutoscalerStatus | undefined>;
         }
 
         /**
@@ -3849,7 +3849,7 @@ export namespace autoscaling {
             /**
              * minReplicas is the lower limit for the number of replicas to which the autoscaler can scale down.  It defaults to 1 pod.  minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured.  Scaling is active as long as at least one metric value is available.
              */
-            minReplicas?: pulumi.Input<number>;
+            minReplicas?: pulumi.Input<number | undefined>;
             /**
              * reference to scaled resource; horizontal pod autoscaler will learn the current resource consumption and will set the desired number of pods by using its Scale subresource.
              */
@@ -3857,7 +3857,7 @@ export namespace autoscaling {
             /**
              * target average CPU utilization (represented as a percentage of requested CPU) over all the pods; if not specified the default autoscaling policy will be used.
              */
-            targetCPUUtilizationPercentage?: pulumi.Input<number>;
+            targetCPUUtilizationPercentage?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -3867,7 +3867,7 @@ export namespace autoscaling {
             /**
              * current average CPU utilization over all pods, represented as a percentage of requested CPU, e.g. 70 means that an average pod is using now 70% of its requested CPU.
              */
-            currentCPUUtilizationPercentage?: pulumi.Input<number>;
+            currentCPUUtilizationPercentage?: pulumi.Input<number | undefined>;
             /**
              * current number of replicas of pods managed by this autoscaler.
              */
@@ -3879,11 +3879,11 @@ export namespace autoscaling {
             /**
              * last time the HorizontalPodAutoscaler scaled the number of pods; used by the autoscaler to control how often the number of pods is changed.
              */
-            lastScaleTime?: pulumi.Input<string>;
+            lastScaleTime?: pulumi.Input<string | undefined>;
             /**
              * most recent generation observed by this autoscaler.
              */
-            observedGeneration?: pulumi.Input<number>;
+            observedGeneration?: pulumi.Input<number | undefined>;
         }
 
     }
@@ -3904,11 +3904,11 @@ export namespace autoscaling {
             /**
              * targetAverageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods.
              */
-            targetAverageUtilization?: pulumi.Input<number>;
+            targetAverageUtilization?: pulumi.Input<number | undefined>;
             /**
              * targetAverageValue is the target value of the average of the resource metric across all relevant pods, as a raw value (instead of as a percentage of the request), similar to the "pods" metric source type.
              */
-            targetAverageValue?: pulumi.Input<string>;
+            targetAverageValue?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -3922,7 +3922,7 @@ export namespace autoscaling {
             /**
              * currentAverageUtilization is the current value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods.  It will only be present if `targetAverageValue` was set in the corresponding metric specification.
              */
-            currentAverageUtilization?: pulumi.Input<number>;
+            currentAverageUtilization?: pulumi.Input<number | undefined>;
             /**
              * currentAverageValue is the current value of the average of the resource metric across all relevant pods, as a raw value (instead of as a percentage of the request), similar to the "pods" metric source type. It will always be set, regardless of the corresponding metric specification.
              */
@@ -3940,7 +3940,7 @@ export namespace autoscaling {
             /**
              * API version of the referent
              */
-            apiVersion?: pulumi.Input<string>;
+            apiVersion?: pulumi.Input<string | undefined>;
             /**
              * Kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
              */
@@ -3962,15 +3962,15 @@ export namespace autoscaling {
             /**
              * metricSelector is used to identify a specific time series within a given metric.
              */
-            metricSelector?: pulumi.Input<inputs.meta.v1.LabelSelector>;
+            metricSelector?: pulumi.Input<inputs.meta.v1.LabelSelector | undefined>;
             /**
              * targetAverageValue is the target per-pod value of global metric (as a quantity). Mutually exclusive with TargetValue.
              */
-            targetAverageValue?: pulumi.Input<string>;
+            targetAverageValue?: pulumi.Input<string | undefined>;
             /**
              * targetValue is the target value of the metric (as a quantity). Mutually exclusive with TargetAverageValue.
              */
-            targetValue?: pulumi.Input<string>;
+            targetValue?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -3980,7 +3980,7 @@ export namespace autoscaling {
             /**
              * currentAverageValue is the current value of metric averaged over autoscaled pods.
              */
-            currentAverageValue?: pulumi.Input<string>;
+            currentAverageValue?: pulumi.Input<string | undefined>;
             /**
              * currentValue is the current value of the metric (as a quantity)
              */
@@ -3992,7 +3992,7 @@ export namespace autoscaling {
             /**
              * metricSelector is used to identify a specific time series within a given metric.
              */
-            metricSelector?: pulumi.Input<inputs.meta.v1.LabelSelector>;
+            metricSelector?: pulumi.Input<inputs.meta.v1.LabelSelector | undefined>;
         }
 
         /**
@@ -4002,23 +4002,23 @@ export namespace autoscaling {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"autoscaling/v2beta1">;
+            apiVersion?: pulumi.Input<"autoscaling/v2beta1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"HorizontalPodAutoscaler">;
+            kind?: pulumi.Input<"HorizontalPodAutoscaler" | undefined>;
             /**
              * metadata is the standard object metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * spec is the specification for the behaviour of the autoscaler. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status.
              */
-            spec?: pulumi.Input<inputs.autoscaling.v2beta1.HorizontalPodAutoscalerSpec>;
+            spec?: pulumi.Input<inputs.autoscaling.v2beta1.HorizontalPodAutoscalerSpec | undefined>;
             /**
              * status is the current information about the autoscaler.
              */
-            status?: pulumi.Input<inputs.autoscaling.v2beta1.HorizontalPodAutoscalerStatus>;
+            status?: pulumi.Input<inputs.autoscaling.v2beta1.HorizontalPodAutoscalerStatus | undefined>;
         }
 
         /**
@@ -4028,15 +4028,15 @@ export namespace autoscaling {
             /**
              * lastTransitionTime is the last time the condition transitioned from one status to another
              */
-            lastTransitionTime?: pulumi.Input<string>;
+            lastTransitionTime?: pulumi.Input<string | undefined>;
             /**
              * message is a human-readable explanation containing details about the transition
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * reason is the reason for the condition's last transition.
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
             /**
              * status is the status of the condition (True, False, Unknown)
              */
@@ -4058,11 +4058,11 @@ export namespace autoscaling {
             /**
              * metrics contains the specifications for which to use to calculate the desired replica count (the maximum replica count across all metrics will be used).  The desired replica count is calculated multiplying the ratio between the target value and the current value by the current number of pods.  Ergo, metrics used must decrease as the pod count is increased, and vice-versa.  See the individual metric source types for more information about how each type of metric must respond.
              */
-            metrics?: pulumi.Input<pulumi.Input<inputs.autoscaling.v2beta1.MetricSpec>[]>;
+            metrics?: pulumi.Input<pulumi.Input<inputs.autoscaling.v2beta1.MetricSpec>[] | undefined>;
             /**
              * minReplicas is the lower limit for the number of replicas to which the autoscaler can scale down.  It defaults to 1 pod.  minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured.  Scaling is active as long as at least one metric value is available.
              */
-            minReplicas?: pulumi.Input<number>;
+            minReplicas?: pulumi.Input<number | undefined>;
             /**
              * scaleTargetRef points to the target resource to scale, and is used to the pods for which metrics should be collected, as well as to actually change the replica count.
              */
@@ -4080,7 +4080,7 @@ export namespace autoscaling {
             /**
              * currentMetrics is the last read state of the metrics used by this autoscaler.
              */
-            currentMetrics?: pulumi.Input<pulumi.Input<inputs.autoscaling.v2beta1.MetricStatus>[]>;
+            currentMetrics?: pulumi.Input<pulumi.Input<inputs.autoscaling.v2beta1.MetricStatus>[] | undefined>;
             /**
              * currentReplicas is current number of replicas of pods managed by this autoscaler, as last seen by the autoscaler.
              */
@@ -4092,11 +4092,11 @@ export namespace autoscaling {
             /**
              * lastScaleTime is the last time the HorizontalPodAutoscaler scaled the number of pods, used by the autoscaler to control how often the number of pods is changed.
              */
-            lastScaleTime?: pulumi.Input<string>;
+            lastScaleTime?: pulumi.Input<string | undefined>;
             /**
              * observedGeneration is the most recent generation observed by this autoscaler.
              */
-            observedGeneration?: pulumi.Input<number>;
+            observedGeneration?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -4106,23 +4106,23 @@ export namespace autoscaling {
             /**
              * container resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing a single container in each pod of the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source. This is an alpha feature and can be enabled by the HPAContainerMetrics feature flag.
              */
-            containerResource?: pulumi.Input<inputs.autoscaling.v2beta1.ContainerResourceMetricSource>;
+            containerResource?: pulumi.Input<inputs.autoscaling.v2beta1.ContainerResourceMetricSource | undefined>;
             /**
              * external refers to a global metric that is not associated with any Kubernetes object. It allows autoscaling based on information coming from components running outside of cluster (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster).
              */
-            external?: pulumi.Input<inputs.autoscaling.v2beta1.ExternalMetricSource>;
+            external?: pulumi.Input<inputs.autoscaling.v2beta1.ExternalMetricSource | undefined>;
             /**
              * object refers to a metric describing a single kubernetes object (for example, hits-per-second on an Ingress object).
              */
-            object?: pulumi.Input<inputs.autoscaling.v2beta1.ObjectMetricSource>;
+            object?: pulumi.Input<inputs.autoscaling.v2beta1.ObjectMetricSource | undefined>;
             /**
              * pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second).  The values will be averaged together before being compared to the target value.
              */
-            pods?: pulumi.Input<inputs.autoscaling.v2beta1.PodsMetricSource>;
+            pods?: pulumi.Input<inputs.autoscaling.v2beta1.PodsMetricSource | undefined>;
             /**
              * resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source.
              */
-            resource?: pulumi.Input<inputs.autoscaling.v2beta1.ResourceMetricSource>;
+            resource?: pulumi.Input<inputs.autoscaling.v2beta1.ResourceMetricSource | undefined>;
             /**
              * type is the type of metric source.  It should be one of "ContainerResource", "External", "Object", "Pods" or "Resource", each mapping to a matching field in the object. Note: "ContainerResource" type is available on when the feature-gate HPAContainerMetrics is enabled
              */
@@ -4136,23 +4136,23 @@ export namespace autoscaling {
             /**
              * container resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing a single container in each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source.
              */
-            containerResource?: pulumi.Input<inputs.autoscaling.v2beta1.ContainerResourceMetricStatus>;
+            containerResource?: pulumi.Input<inputs.autoscaling.v2beta1.ContainerResourceMetricStatus | undefined>;
             /**
              * external refers to a global metric that is not associated with any Kubernetes object. It allows autoscaling based on information coming from components running outside of cluster (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster).
              */
-            external?: pulumi.Input<inputs.autoscaling.v2beta1.ExternalMetricStatus>;
+            external?: pulumi.Input<inputs.autoscaling.v2beta1.ExternalMetricStatus | undefined>;
             /**
              * object refers to a metric describing a single kubernetes object (for example, hits-per-second on an Ingress object).
              */
-            object?: pulumi.Input<inputs.autoscaling.v2beta1.ObjectMetricStatus>;
+            object?: pulumi.Input<inputs.autoscaling.v2beta1.ObjectMetricStatus | undefined>;
             /**
              * pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second).  The values will be averaged together before being compared to the target value.
              */
-            pods?: pulumi.Input<inputs.autoscaling.v2beta1.PodsMetricStatus>;
+            pods?: pulumi.Input<inputs.autoscaling.v2beta1.PodsMetricStatus | undefined>;
             /**
              * resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source.
              */
-            resource?: pulumi.Input<inputs.autoscaling.v2beta1.ResourceMetricStatus>;
+            resource?: pulumi.Input<inputs.autoscaling.v2beta1.ResourceMetricStatus | undefined>;
             /**
              * type is the type of metric source.  It will be one of "ContainerResource", "External", "Object", "Pods" or "Resource", each corresponds to a matching field in the object. Note: "ContainerResource" type is available on when the feature-gate HPAContainerMetrics is enabled
              */
@@ -4166,7 +4166,7 @@ export namespace autoscaling {
             /**
              * averageValue is the target value of the average of the metric across all relevant pods (as a quantity)
              */
-            averageValue?: pulumi.Input<string>;
+            averageValue?: pulumi.Input<string | undefined>;
             /**
              * metricName is the name of the metric in question.
              */
@@ -4174,7 +4174,7 @@ export namespace autoscaling {
             /**
              * selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping When unset, just the metricName will be used to gather metrics.
              */
-            selector?: pulumi.Input<inputs.meta.v1.LabelSelector>;
+            selector?: pulumi.Input<inputs.meta.v1.LabelSelector | undefined>;
             /**
              * target is the described Kubernetes object.
              */
@@ -4192,7 +4192,7 @@ export namespace autoscaling {
             /**
              * averageValue is the current value of the average of the metric across all relevant pods (as a quantity)
              */
-            averageValue?: pulumi.Input<string>;
+            averageValue?: pulumi.Input<string | undefined>;
             /**
              * currentValue is the current value of the metric (as a quantity).
              */
@@ -4204,7 +4204,7 @@ export namespace autoscaling {
             /**
              * selector is the string-encoded form of a standard kubernetes label selector for the given metric When set in the ObjectMetricSource, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics.
              */
-            selector?: pulumi.Input<inputs.meta.v1.LabelSelector>;
+            selector?: pulumi.Input<inputs.meta.v1.LabelSelector | undefined>;
             /**
              * target is the described Kubernetes object.
              */
@@ -4222,7 +4222,7 @@ export namespace autoscaling {
             /**
              * selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping When unset, just the metricName will be used to gather metrics.
              */
-            selector?: pulumi.Input<inputs.meta.v1.LabelSelector>;
+            selector?: pulumi.Input<inputs.meta.v1.LabelSelector | undefined>;
             /**
              * targetAverageValue is the target value of the average of the metric across all relevant pods (as a quantity)
              */
@@ -4244,7 +4244,7 @@ export namespace autoscaling {
             /**
              * selector is the string-encoded form of a standard kubernetes label selector for the given metric When set in the PodsMetricSource, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics.
              */
-            selector?: pulumi.Input<inputs.meta.v1.LabelSelector>;
+            selector?: pulumi.Input<inputs.meta.v1.LabelSelector | undefined>;
         }
 
         /**
@@ -4258,11 +4258,11 @@ export namespace autoscaling {
             /**
              * targetAverageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods.
              */
-            targetAverageUtilization?: pulumi.Input<number>;
+            targetAverageUtilization?: pulumi.Input<number | undefined>;
             /**
              * targetAverageValue is the target value of the average of the resource metric across all relevant pods, as a raw value (instead of as a percentage of the request), similar to the "pods" metric source type.
              */
-            targetAverageValue?: pulumi.Input<string>;
+            targetAverageValue?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -4272,7 +4272,7 @@ export namespace autoscaling {
             /**
              * currentAverageUtilization is the current value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods.  It will only be present if `targetAverageValue` was set in the corresponding metric specification.
              */
-            currentAverageUtilization?: pulumi.Input<number>;
+            currentAverageUtilization?: pulumi.Input<number | undefined>;
             /**
              * currentAverageValue is the current value of the average of the resource metric across all relevant pods, as a raw value (instead of as a percentage of the request), similar to the "pods" metric source type. It will always be set, regardless of the corresponding metric specification.
              */
@@ -4328,7 +4328,7 @@ export namespace autoscaling {
             /**
              * API version of the referent
              */
-            apiVersion?: pulumi.Input<string>;
+            apiVersion?: pulumi.Input<string | undefined>;
             /**
              * Kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
              */
@@ -4392,15 +4392,15 @@ export namespace autoscaling {
             /**
              * policies is a list of potential scaling polices which can be used during scaling. At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid
              */
-            policies?: pulumi.Input<pulumi.Input<inputs.autoscaling.v2beta2.HPAScalingPolicy>[]>;
+            policies?: pulumi.Input<pulumi.Input<inputs.autoscaling.v2beta2.HPAScalingPolicy>[] | undefined>;
             /**
              * selectPolicy is used to specify which policy should be used. If not set, the default value MaxPolicySelect is used.
              */
-            selectPolicy?: pulumi.Input<string>;
+            selectPolicy?: pulumi.Input<string | undefined>;
             /**
              * StabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).
              */
-            stabilizationWindowSeconds?: pulumi.Input<number>;
+            stabilizationWindowSeconds?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -4410,23 +4410,23 @@ export namespace autoscaling {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"autoscaling/v2beta2">;
+            apiVersion?: pulumi.Input<"autoscaling/v2beta2" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"HorizontalPodAutoscaler">;
+            kind?: pulumi.Input<"HorizontalPodAutoscaler" | undefined>;
             /**
              * metadata is the standard object metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * spec is the specification for the behaviour of the autoscaler. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status.
              */
-            spec?: pulumi.Input<inputs.autoscaling.v2beta2.HorizontalPodAutoscalerSpec>;
+            spec?: pulumi.Input<inputs.autoscaling.v2beta2.HorizontalPodAutoscalerSpec | undefined>;
             /**
              * status is the current information about the autoscaler.
              */
-            status?: pulumi.Input<inputs.autoscaling.v2beta2.HorizontalPodAutoscalerStatus>;
+            status?: pulumi.Input<inputs.autoscaling.v2beta2.HorizontalPodAutoscalerStatus | undefined>;
         }
 
         /**
@@ -4436,14 +4436,14 @@ export namespace autoscaling {
             /**
              * scaleDown is scaling policy for scaling Down. If not set, the default value is to allow to scale down to minReplicas pods, with a 300 second stabilization window (i.e., the highest recommendation for the last 300sec is used).
              */
-            scaleDown?: pulumi.Input<inputs.autoscaling.v2beta2.HPAScalingRules>;
+            scaleDown?: pulumi.Input<inputs.autoscaling.v2beta2.HPAScalingRules | undefined>;
             /**
              * scaleUp is scaling policy for scaling Up. If not set, the default value is the higher of:
              *   * increase no more than 4 pods per 60 seconds
              *   * double the number of pods per 60 seconds
              * No stabilization is used.
              */
-            scaleUp?: pulumi.Input<inputs.autoscaling.v2beta2.HPAScalingRules>;
+            scaleUp?: pulumi.Input<inputs.autoscaling.v2beta2.HPAScalingRules | undefined>;
         }
 
         /**
@@ -4453,15 +4453,15 @@ export namespace autoscaling {
             /**
              * lastTransitionTime is the last time the condition transitioned from one status to another
              */
-            lastTransitionTime?: pulumi.Input<string>;
+            lastTransitionTime?: pulumi.Input<string | undefined>;
             /**
              * message is a human-readable explanation containing details about the transition
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * reason is the reason for the condition's last transition.
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
             /**
              * status is the status of the condition (True, False, Unknown)
              */
@@ -4479,7 +4479,7 @@ export namespace autoscaling {
             /**
              * behavior configures the scaling behavior of the target in both Up and Down directions (scaleUp and scaleDown fields respectively). If not set, the default HPAScalingRules for scale up and scale down are used.
              */
-            behavior?: pulumi.Input<inputs.autoscaling.v2beta2.HorizontalPodAutoscalerBehavior>;
+            behavior?: pulumi.Input<inputs.autoscaling.v2beta2.HorizontalPodAutoscalerBehavior | undefined>;
             /**
              * maxReplicas is the upper limit for the number of replicas to which the autoscaler can scale up. It cannot be less that minReplicas.
              */
@@ -4487,11 +4487,11 @@ export namespace autoscaling {
             /**
              * metrics contains the specifications for which to use to calculate the desired replica count (the maximum replica count across all metrics will be used).  The desired replica count is calculated multiplying the ratio between the target value and the current value by the current number of pods.  Ergo, metrics used must decrease as the pod count is increased, and vice-versa.  See the individual metric source types for more information about how each type of metric must respond. If not set, the default metric will be set to 80% average CPU utilization.
              */
-            metrics?: pulumi.Input<pulumi.Input<inputs.autoscaling.v2beta2.MetricSpec>[]>;
+            metrics?: pulumi.Input<pulumi.Input<inputs.autoscaling.v2beta2.MetricSpec>[] | undefined>;
             /**
              * minReplicas is the lower limit for the number of replicas to which the autoscaler can scale down.  It defaults to 1 pod.  minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured.  Scaling is active as long as at least one metric value is available.
              */
-            minReplicas?: pulumi.Input<number>;
+            minReplicas?: pulumi.Input<number | undefined>;
             /**
              * scaleTargetRef points to the target resource to scale, and is used to the pods for which metrics should be collected, as well as to actually change the replica count.
              */
@@ -4509,7 +4509,7 @@ export namespace autoscaling {
             /**
              * currentMetrics is the last read state of the metrics used by this autoscaler.
              */
-            currentMetrics?: pulumi.Input<pulumi.Input<inputs.autoscaling.v2beta2.MetricStatus>[]>;
+            currentMetrics?: pulumi.Input<pulumi.Input<inputs.autoscaling.v2beta2.MetricStatus>[] | undefined>;
             /**
              * currentReplicas is current number of replicas of pods managed by this autoscaler, as last seen by the autoscaler.
              */
@@ -4521,11 +4521,11 @@ export namespace autoscaling {
             /**
              * lastScaleTime is the last time the HorizontalPodAutoscaler scaled the number of pods, used by the autoscaler to control how often the number of pods is changed.
              */
-            lastScaleTime?: pulumi.Input<string>;
+            lastScaleTime?: pulumi.Input<string | undefined>;
             /**
              * observedGeneration is the most recent generation observed by this autoscaler.
              */
-            observedGeneration?: pulumi.Input<number>;
+            observedGeneration?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -4539,7 +4539,7 @@ export namespace autoscaling {
             /**
              * selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics.
              */
-            selector?: pulumi.Input<inputs.meta.v1.LabelSelector>;
+            selector?: pulumi.Input<inputs.meta.v1.LabelSelector | undefined>;
         }
 
         /**
@@ -4549,23 +4549,23 @@ export namespace autoscaling {
             /**
              * container resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing a single container in each pod of the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source. This is an alpha feature and can be enabled by the HPAContainerMetrics feature flag.
              */
-            containerResource?: pulumi.Input<inputs.autoscaling.v2beta2.ContainerResourceMetricSource>;
+            containerResource?: pulumi.Input<inputs.autoscaling.v2beta2.ContainerResourceMetricSource | undefined>;
             /**
              * external refers to a global metric that is not associated with any Kubernetes object. It allows autoscaling based on information coming from components running outside of cluster (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster).
              */
-            external?: pulumi.Input<inputs.autoscaling.v2beta2.ExternalMetricSource>;
+            external?: pulumi.Input<inputs.autoscaling.v2beta2.ExternalMetricSource | undefined>;
             /**
              * object refers to a metric describing a single kubernetes object (for example, hits-per-second on an Ingress object).
              */
-            object?: pulumi.Input<inputs.autoscaling.v2beta2.ObjectMetricSource>;
+            object?: pulumi.Input<inputs.autoscaling.v2beta2.ObjectMetricSource | undefined>;
             /**
              * pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second).  The values will be averaged together before being compared to the target value.
              */
-            pods?: pulumi.Input<inputs.autoscaling.v2beta2.PodsMetricSource>;
+            pods?: pulumi.Input<inputs.autoscaling.v2beta2.PodsMetricSource | undefined>;
             /**
              * resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source.
              */
-            resource?: pulumi.Input<inputs.autoscaling.v2beta2.ResourceMetricSource>;
+            resource?: pulumi.Input<inputs.autoscaling.v2beta2.ResourceMetricSource | undefined>;
             /**
              * type is the type of metric source.  It should be one of "ContainerResource", "External", "Object", "Pods" or "Resource", each mapping to a matching field in the object. Note: "ContainerResource" type is available on when the feature-gate HPAContainerMetrics is enabled
              */
@@ -4579,23 +4579,23 @@ export namespace autoscaling {
             /**
              * container resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing a single container in each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source.
              */
-            containerResource?: pulumi.Input<inputs.autoscaling.v2beta2.ContainerResourceMetricStatus>;
+            containerResource?: pulumi.Input<inputs.autoscaling.v2beta2.ContainerResourceMetricStatus | undefined>;
             /**
              * external refers to a global metric that is not associated with any Kubernetes object. It allows autoscaling based on information coming from components running outside of cluster (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster).
              */
-            external?: pulumi.Input<inputs.autoscaling.v2beta2.ExternalMetricStatus>;
+            external?: pulumi.Input<inputs.autoscaling.v2beta2.ExternalMetricStatus | undefined>;
             /**
              * object refers to a metric describing a single kubernetes object (for example, hits-per-second on an Ingress object).
              */
-            object?: pulumi.Input<inputs.autoscaling.v2beta2.ObjectMetricStatus>;
+            object?: pulumi.Input<inputs.autoscaling.v2beta2.ObjectMetricStatus | undefined>;
             /**
              * pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second).  The values will be averaged together before being compared to the target value.
              */
-            pods?: pulumi.Input<inputs.autoscaling.v2beta2.PodsMetricStatus>;
+            pods?: pulumi.Input<inputs.autoscaling.v2beta2.PodsMetricStatus | undefined>;
             /**
              * resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source.
              */
-            resource?: pulumi.Input<inputs.autoscaling.v2beta2.ResourceMetricStatus>;
+            resource?: pulumi.Input<inputs.autoscaling.v2beta2.ResourceMetricStatus | undefined>;
             /**
              * type is the type of metric source.  It will be one of "ContainerResource", "External", "Object", "Pods" or "Resource", each corresponds to a matching field in the object. Note: "ContainerResource" type is available on when the feature-gate HPAContainerMetrics is enabled
              */
@@ -4609,11 +4609,11 @@ export namespace autoscaling {
             /**
              * averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type
              */
-            averageUtilization?: pulumi.Input<number>;
+            averageUtilization?: pulumi.Input<number | undefined>;
             /**
              * averageValue is the target value of the average of the metric across all relevant pods (as a quantity)
              */
-            averageValue?: pulumi.Input<string>;
+            averageValue?: pulumi.Input<string | undefined>;
             /**
              * type represents whether the metric type is Utilization, Value, or AverageValue
              */
@@ -4621,7 +4621,7 @@ export namespace autoscaling {
             /**
              * value is the target value of the metric (as a quantity).
              */
-            value?: pulumi.Input<string>;
+            value?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -4631,15 +4631,15 @@ export namespace autoscaling {
             /**
              * currentAverageUtilization is the current value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods.
              */
-            averageUtilization?: pulumi.Input<number>;
+            averageUtilization?: pulumi.Input<number | undefined>;
             /**
              * averageValue is the current value of the average of the metric across all relevant pods (as a quantity)
              */
-            averageValue?: pulumi.Input<string>;
+            averageValue?: pulumi.Input<string | undefined>;
             /**
              * value is the current value of the metric (as a quantity).
              */
-            value?: pulumi.Input<string>;
+            value?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -4754,23 +4754,23 @@ export namespace batch {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"batch/v1">;
+            apiVersion?: pulumi.Input<"batch/v1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"Job">;
+            kind?: pulumi.Input<"Job" | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Specification of the desired behavior of a job. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            spec?: pulumi.Input<inputs.batch.v1.JobSpec>;
+            spec?: pulumi.Input<inputs.batch.v1.JobSpec | undefined>;
             /**
              * Current status of a job. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            status?: pulumi.Input<inputs.batch.v1.JobStatus>;
+            status?: pulumi.Input<inputs.batch.v1.JobStatus | undefined>;
         }
 
         /**
@@ -4780,19 +4780,19 @@ export namespace batch {
             /**
              * Last time the condition was checked.
              */
-            lastProbeTime?: pulumi.Input<string>;
+            lastProbeTime?: pulumi.Input<string | undefined>;
             /**
              * Last time the condition transit from one status to another.
              */
-            lastTransitionTime?: pulumi.Input<string>;
+            lastTransitionTime?: pulumi.Input<string | undefined>;
             /**
              * Human readable message indicating details about last transition.
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * (brief) reason for the condition's last transition.
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
             /**
              * Status of the condition, one of True, False, Unknown.
              */
@@ -4810,27 +4810,27 @@ export namespace batch {
             /**
              * Specifies the duration in seconds relative to the startTime that the job may be active before the system tries to terminate it; value must be positive integer
              */
-            activeDeadlineSeconds?: pulumi.Input<number>;
+            activeDeadlineSeconds?: pulumi.Input<number | undefined>;
             /**
              * Specifies the number of retries before marking this job failed. Defaults to 6
              */
-            backoffLimit?: pulumi.Input<number>;
+            backoffLimit?: pulumi.Input<number | undefined>;
             /**
              * Specifies the desired number of successfully finished pods the job should be run with.  Setting to nil means that the success of any pod signals the success of all pods, and allows parallelism to have any positive value.  Setting to 1 means that parallelism is limited to 1 and the success of that pod signals the success of the job. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
              */
-            completions?: pulumi.Input<number>;
+            completions?: pulumi.Input<number | undefined>;
             /**
              * manualSelector controls generation of pod labels and pod selectors. Leave `manualSelector` unset unless you are certain what you are doing. When false or unset, the system pick labels unique to this job and appends those labels to the pod template.  When true, the user is responsible for picking unique labels and specifying the selector.  Failure to pick a unique label may cause this and other jobs to not function correctly.  However, You may see `manualSelector=true` in jobs that were created with the old `extensions/v1beta1` API. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/#specifying-your-own-pod-selector
              */
-            manualSelector?: pulumi.Input<boolean>;
+            manualSelector?: pulumi.Input<boolean | undefined>;
             /**
              * Specifies the maximum desired number of pods the job should run at any given time. The actual number of pods running in steady state will be less than this number when ((.spec.completions - .status.successful) < .spec.parallelism), i.e. when the work left to do is less than max parallelism. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
              */
-            parallelism?: pulumi.Input<number>;
+            parallelism?: pulumi.Input<number | undefined>;
             /**
              * A label query over pods that should match the pod count. Normally, the system sets this field for you. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
              */
-            selector?: pulumi.Input<inputs.meta.v1.LabelSelector>;
+            selector?: pulumi.Input<inputs.meta.v1.LabelSelector | undefined>;
             /**
              * Describes the pod that will be created when executing a job. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
              */
@@ -4838,7 +4838,7 @@ export namespace batch {
             /**
              * ttlSecondsAfterFinished limits the lifetime of a Job that has finished execution (either Complete or Failed). If this field is set, ttlSecondsAfterFinished after the Job finishes, it is eligible to be automatically deleted. When the Job is being deleted, its lifecycle guarantees (e.g. finalizers) will be honored. If this field is unset, the Job won't be automatically deleted. If this field is set to zero, the Job becomes eligible to be deleted immediately after it finishes. This field is alpha-level and is only honored by servers that enable the TTLAfterFinished feature.
              */
-            ttlSecondsAfterFinished?: pulumi.Input<number>;
+            ttlSecondsAfterFinished?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -4848,27 +4848,27 @@ export namespace batch {
             /**
              * The number of actively running pods.
              */
-            active?: pulumi.Input<number>;
+            active?: pulumi.Input<number | undefined>;
             /**
              * Represents time when the job was completed. It is not guaranteed to be set in happens-before order across separate operations. It is represented in RFC3339 form and is in UTC. The completion time is only set when the job finishes successfully.
              */
-            completionTime?: pulumi.Input<string>;
+            completionTime?: pulumi.Input<string | undefined>;
             /**
              * The latest available observations of an object's current state. When a job fails, one of the conditions will have type == "Failed". More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
              */
-            conditions?: pulumi.Input<pulumi.Input<inputs.batch.v1.JobCondition>[]>;
+            conditions?: pulumi.Input<pulumi.Input<inputs.batch.v1.JobCondition>[] | undefined>;
             /**
              * The number of pods which reached phase Failed.
              */
-            failed?: pulumi.Input<number>;
+            failed?: pulumi.Input<number | undefined>;
             /**
              * Represents time when the job was acknowledged by the job controller. It is not guaranteed to be set in happens-before order across separate operations. It is represented in RFC3339 form and is in UTC.
              */
-            startTime?: pulumi.Input<string>;
+            startTime?: pulumi.Input<string | undefined>;
             /**
              * The number of pods which reached phase Succeeded.
              */
-            succeeded?: pulumi.Input<number>;
+            succeeded?: pulumi.Input<number | undefined>;
         }
     }
 
@@ -4880,23 +4880,23 @@ export namespace batch {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"batch/v1beta1">;
+            apiVersion?: pulumi.Input<"batch/v1beta1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"CronJob">;
+            kind?: pulumi.Input<"CronJob" | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Specification of the desired behavior of a cron job, including the schedule. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            spec?: pulumi.Input<inputs.batch.v1beta1.CronJobSpec>;
+            spec?: pulumi.Input<inputs.batch.v1beta1.CronJobSpec | undefined>;
             /**
              * Current status of a cron job. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            status?: pulumi.Input<inputs.batch.v1beta1.CronJobStatus>;
+            status?: pulumi.Input<inputs.batch.v1beta1.CronJobStatus | undefined>;
         }
 
         /**
@@ -4906,11 +4906,11 @@ export namespace batch {
             /**
              * Specifies how to treat concurrent executions of a Job. Valid values are: - "Allow" (default): allows CronJobs to run concurrently; - "Forbid": forbids concurrent runs, skipping next run if previous run hasn't finished yet; - "Replace": cancels currently running job and replaces it with a new one
              */
-            concurrencyPolicy?: pulumi.Input<string>;
+            concurrencyPolicy?: pulumi.Input<string | undefined>;
             /**
              * The number of failed finished jobs to retain. This is a pointer to distinguish between explicit zero and not specified. Defaults to 1.
              */
-            failedJobsHistoryLimit?: pulumi.Input<number>;
+            failedJobsHistoryLimit?: pulumi.Input<number | undefined>;
             /**
              * Specifies the job that will be created when executing a CronJob.
              */
@@ -4922,15 +4922,15 @@ export namespace batch {
             /**
              * Optional deadline in seconds for starting the job if it misses scheduled time for any reason.  Missed jobs executions will be counted as failed ones.
              */
-            startingDeadlineSeconds?: pulumi.Input<number>;
+            startingDeadlineSeconds?: pulumi.Input<number | undefined>;
             /**
              * The number of successful finished jobs to retain. This is a pointer to distinguish between explicit zero and not specified. Defaults to 3.
              */
-            successfulJobsHistoryLimit?: pulumi.Input<number>;
+            successfulJobsHistoryLimit?: pulumi.Input<number | undefined>;
             /**
              * This flag tells the controller to suspend subsequent executions, it does not apply to already started executions.  Defaults to false.
              */
-            suspend?: pulumi.Input<boolean>;
+            suspend?: pulumi.Input<boolean | undefined>;
         }
 
         /**
@@ -4940,11 +4940,11 @@ export namespace batch {
             /**
              * A list of pointers to currently running jobs.
              */
-            active?: pulumi.Input<pulumi.Input<inputs.core.v1.ObjectReference>[]>;
+            active?: pulumi.Input<pulumi.Input<inputs.core.v1.ObjectReference>[] | undefined>;
             /**
              * Information when was the last time the job was successfully scheduled.
              */
-            lastScheduleTime?: pulumi.Input<string>;
+            lastScheduleTime?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -4954,11 +4954,11 @@ export namespace batch {
             /**
              * Standard object's metadata of the jobs created from this template. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Specification of the desired behavior of the job. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            spec?: pulumi.Input<inputs.batch.v1.JobSpec>;
+            spec?: pulumi.Input<inputs.batch.v1.JobSpec | undefined>;
         }
     }
 
@@ -4970,23 +4970,23 @@ export namespace batch {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"batch/v2alpha1">;
+            apiVersion?: pulumi.Input<"batch/v2alpha1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"CronJob">;
+            kind?: pulumi.Input<"CronJob" | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Specification of the desired behavior of a cron job, including the schedule. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            spec?: pulumi.Input<inputs.batch.v2alpha1.CronJobSpec>;
+            spec?: pulumi.Input<inputs.batch.v2alpha1.CronJobSpec | undefined>;
             /**
              * Current status of a cron job. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            status?: pulumi.Input<inputs.batch.v2alpha1.CronJobStatus>;
+            status?: pulumi.Input<inputs.batch.v2alpha1.CronJobStatus | undefined>;
         }
 
         /**
@@ -4996,11 +4996,11 @@ export namespace batch {
             /**
              * Specifies how to treat concurrent executions of a Job. Valid values are: - "Allow" (default): allows CronJobs to run concurrently; - "Forbid": forbids concurrent runs, skipping next run if previous run hasn't finished yet; - "Replace": cancels currently running job and replaces it with a new one
              */
-            concurrencyPolicy?: pulumi.Input<string>;
+            concurrencyPolicy?: pulumi.Input<string | undefined>;
             /**
              * The number of failed finished jobs to retain. This is a pointer to distinguish between explicit zero and not specified.
              */
-            failedJobsHistoryLimit?: pulumi.Input<number>;
+            failedJobsHistoryLimit?: pulumi.Input<number | undefined>;
             /**
              * Specifies the job that will be created when executing a CronJob.
              */
@@ -5012,15 +5012,15 @@ export namespace batch {
             /**
              * Optional deadline in seconds for starting the job if it misses scheduled time for any reason.  Missed jobs executions will be counted as failed ones.
              */
-            startingDeadlineSeconds?: pulumi.Input<number>;
+            startingDeadlineSeconds?: pulumi.Input<number | undefined>;
             /**
              * The number of successful finished jobs to retain. This is a pointer to distinguish between explicit zero and not specified.
              */
-            successfulJobsHistoryLimit?: pulumi.Input<number>;
+            successfulJobsHistoryLimit?: pulumi.Input<number | undefined>;
             /**
              * This flag tells the controller to suspend subsequent executions, it does not apply to already started executions.  Defaults to false.
              */
-            suspend?: pulumi.Input<boolean>;
+            suspend?: pulumi.Input<boolean | undefined>;
         }
 
         /**
@@ -5030,11 +5030,11 @@ export namespace batch {
             /**
              * A list of pointers to currently running jobs.
              */
-            active?: pulumi.Input<pulumi.Input<inputs.core.v1.ObjectReference>[]>;
+            active?: pulumi.Input<pulumi.Input<inputs.core.v1.ObjectReference>[] | undefined>;
             /**
              * Information when was the last time the job was successfully scheduled.
              */
-            lastScheduleTime?: pulumi.Input<string>;
+            lastScheduleTime?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -5044,11 +5044,11 @@ export namespace batch {
             /**
              * Standard object's metadata of the jobs created from this template. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Specification of the desired behavior of the job. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            spec?: pulumi.Input<inputs.batch.v1.JobSpec>;
+            spec?: pulumi.Input<inputs.batch.v1.JobSpec | undefined>;
         }
     }
 }
@@ -5068,12 +5068,12 @@ export namespace certificates {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"certificates.k8s.io/v1">;
+            apiVersion?: pulumi.Input<"certificates.k8s.io/v1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"CertificateSigningRequest">;
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            kind?: pulumi.Input<"CertificateSigningRequest" | undefined>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * spec contains the certificate request, and is immutable after creation. Only the request, signerName, and usages fields can be set on creation. Other fields are derived by Kubernetes and cannot be modified by users.
              */
@@ -5081,7 +5081,7 @@ export namespace certificates {
             /**
              * status contains information about whether the request is approved or denied, and the certificate issued by the signer, or the failure condition indicating signer failure.
              */
-            status?: pulumi.Input<inputs.certificates.v1.CertificateSigningRequestStatus>;
+            status?: pulumi.Input<inputs.certificates.v1.CertificateSigningRequestStatus | undefined>;
         }
 
         /**
@@ -5091,19 +5091,19 @@ export namespace certificates {
             /**
              * lastTransitionTime is the time the condition last transitioned from one status to another. If unset, when a new condition type is added or an existing condition's status is changed, the server defaults this to the current time.
              */
-            lastTransitionTime?: pulumi.Input<string>;
+            lastTransitionTime?: pulumi.Input<string | undefined>;
             /**
              * lastUpdateTime is the time of the last update to this condition
              */
-            lastUpdateTime?: pulumi.Input<string>;
+            lastUpdateTime?: pulumi.Input<string | undefined>;
             /**
              * message contains a human readable message with details about the request state
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * reason indicates a brief reason for the request state
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
             /**
              * status of the condition, one of True, False, Unknown. Approved, Denied, and Failed conditions may not be "False" or "Unknown".
              */
@@ -5131,11 +5131,11 @@ export namespace certificates {
             /**
              * extra contains extra attributes of the user that created the CertificateSigningRequest. Populated by the API server on creation and immutable.
              */
-            extra?: pulumi.Input<{[key: string]: pulumi.Input<pulumi.Input<string>[]>}>;
+            extra?: pulumi.Input<{[key: string]: pulumi.Input<pulumi.Input<string>[]>} | undefined>;
             /**
              * groups contains group membership of the user that created the CertificateSigningRequest. Populated by the API server on creation and immutable.
              */
-            groups?: pulumi.Input<pulumi.Input<string>[]>;
+            groups?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * request contains an x509 certificate signing request encoded in a "CERTIFICATE REQUEST" PEM block. When serialized as JSON or YAML, the data is additionally base64-encoded.
              */
@@ -5167,7 +5167,7 @@ export namespace certificates {
             /**
              * uid contains the uid of the user that created the CertificateSigningRequest. Populated by the API server on creation and immutable.
              */
-            uid?: pulumi.Input<string>;
+            uid?: pulumi.Input<string | undefined>;
             /**
              * usages specifies a set of key usages requested in the issued certificate.
              *
@@ -5184,11 +5184,11 @@ export namespace certificates {
              *  "ipsec end system", "ipsec tunnel", "ipsec user",
              *  "timestamping", "ocsp signing", "microsoft sgc", "netscape sgc"
              */
-            usages?: pulumi.Input<pulumi.Input<string>[]>;
+            usages?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * username contains the name of the user that created the CertificateSigningRequest. Populated by the API server on creation and immutable.
              */
-            username?: pulumi.Input<string>;
+            username?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -5219,11 +5219,11 @@ export namespace certificates {
              *     -----END CERTIFICATE-----
              *     )
              */
-            certificate?: pulumi.Input<string>;
+            certificate?: pulumi.Input<string | undefined>;
             /**
              * conditions applied to the request. Known conditions are "Approved", "Denied", and "Failed".
              */
-            conditions?: pulumi.Input<pulumi.Input<inputs.certificates.v1.CertificateSigningRequestCondition>[]>;
+            conditions?: pulumi.Input<pulumi.Input<inputs.certificates.v1.CertificateSigningRequestCondition>[] | undefined>;
         }
     }
 
@@ -5235,43 +5235,43 @@ export namespace certificates {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"certificates.k8s.io/v1beta1">;
+            apiVersion?: pulumi.Input<"certificates.k8s.io/v1beta1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"CertificateSigningRequest">;
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            kind?: pulumi.Input<"CertificateSigningRequest" | undefined>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * The certificate request itself and any additional information.
              */
-            spec?: pulumi.Input<inputs.certificates.v1beta1.CertificateSigningRequestSpec>;
+            spec?: pulumi.Input<inputs.certificates.v1beta1.CertificateSigningRequestSpec | undefined>;
             /**
              * Derived information about the request.
              */
-            status?: pulumi.Input<inputs.certificates.v1beta1.CertificateSigningRequestStatus>;
+            status?: pulumi.Input<inputs.certificates.v1beta1.CertificateSigningRequestStatus | undefined>;
         }
 
         export interface CertificateSigningRequestCondition {
             /**
              * lastTransitionTime is the time the condition last transitioned from one status to another. If unset, when a new condition type is added or an existing condition's status is changed, the server defaults this to the current time.
              */
-            lastTransitionTime?: pulumi.Input<string>;
+            lastTransitionTime?: pulumi.Input<string | undefined>;
             /**
              * timestamp for the last update to this condition
              */
-            lastUpdateTime?: pulumi.Input<string>;
+            lastUpdateTime?: pulumi.Input<string | undefined>;
             /**
              * human readable message with details about the request state
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * brief reason for the request state
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
             /**
              * Status of the condition, one of True, False, Unknown. Approved, Denied, and Failed conditions may not be "False" or "Unknown". Defaults to "True". If unset, should be treated as "True".
              */
-            status?: pulumi.Input<string>;
+            status?: pulumi.Input<string | undefined>;
             /**
              * type of the condition. Known conditions include "Approved", "Denied", and "Failed".
              */
@@ -5285,11 +5285,11 @@ export namespace certificates {
             /**
              * Extra information about the requesting user. See user.Info interface for details.
              */
-            extra?: pulumi.Input<{[key: string]: pulumi.Input<pulumi.Input<string>[]>}>;
+            extra?: pulumi.Input<{[key: string]: pulumi.Input<pulumi.Input<string>[]>} | undefined>;
             /**
              * Group information about the requesting user. See user.Info interface for details.
              */
-            groups?: pulumi.Input<pulumi.Input<string>[]>;
+            groups?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * Base64-encoded PKCS#10 CSR data
              */
@@ -5303,11 +5303,11 @@ export namespace certificates {
              *  3. Otherwise, it is assigned "kubernetes.io/legacy-unknown".
              * Distribution of trust for signers happens out of band. You can select on this field using `spec.signerName`.
              */
-            signerName?: pulumi.Input<string>;
+            signerName?: pulumi.Input<string | undefined>;
             /**
              * UID information about the requesting user. See user.Info interface for details.
              */
-            uid?: pulumi.Input<string>;
+            uid?: pulumi.Input<string | undefined>;
             /**
              * allowedUsages specifies a set of usage contexts the key will be valid for. See: https://tools.ietf.org/html/rfc5280#section-4.2.1.3
              *      https://tools.ietf.org/html/rfc5280#section-4.2.1.12
@@ -5336,22 +5336,22 @@ export namespace certificates {
              *  "microsoft sgc",
              *  "netscape sgc"
              */
-            usages?: pulumi.Input<pulumi.Input<string>[]>;
+            usages?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * Information about the requesting user. See user.Info interface for details.
              */
-            username?: pulumi.Input<string>;
+            username?: pulumi.Input<string | undefined>;
         }
 
         export interface CertificateSigningRequestStatus {
             /**
              * If request was approved, the controller will place the issued certificate here.
              */
-            certificate?: pulumi.Input<string>;
+            certificate?: pulumi.Input<string | undefined>;
             /**
              * Conditions applied to the request, such as approval or denial.
              */
-            conditions?: pulumi.Input<pulumi.Input<inputs.certificates.v1beta1.CertificateSigningRequestCondition>[]>;
+            conditions?: pulumi.Input<pulumi.Input<inputs.certificates.v1beta1.CertificateSigningRequestCondition>[] | undefined>;
         }
     }
 }
@@ -5365,19 +5365,19 @@ export namespace coordination {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"coordination.k8s.io/v1">;
+            apiVersion?: pulumi.Input<"coordination.k8s.io/v1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"Lease">;
+            kind?: pulumi.Input<"Lease" | undefined>;
             /**
              * More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Specification of the Lease. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            spec?: pulumi.Input<inputs.coordination.v1.LeaseSpec>;
+            spec?: pulumi.Input<inputs.coordination.v1.LeaseSpec | undefined>;
         }
 
         /**
@@ -5387,23 +5387,23 @@ export namespace coordination {
             /**
              * acquireTime is a time when the current lease was acquired.
              */
-            acquireTime?: pulumi.Input<string>;
+            acquireTime?: pulumi.Input<string | undefined>;
             /**
              * holderIdentity contains the identity of the holder of a current lease.
              */
-            holderIdentity?: pulumi.Input<string>;
+            holderIdentity?: pulumi.Input<string | undefined>;
             /**
              * leaseDurationSeconds is a duration that candidates for a lease need to wait to force acquire it. This is measure against time of last observed RenewTime.
              */
-            leaseDurationSeconds?: pulumi.Input<number>;
+            leaseDurationSeconds?: pulumi.Input<number | undefined>;
             /**
              * leaseTransitions is the number of transitions of a lease between holders.
              */
-            leaseTransitions?: pulumi.Input<number>;
+            leaseTransitions?: pulumi.Input<number | undefined>;
             /**
              * renewTime is a time when the current holder of a lease has last updated the lease.
              */
-            renewTime?: pulumi.Input<string>;
+            renewTime?: pulumi.Input<string | undefined>;
         }
     }
 
@@ -5415,19 +5415,19 @@ export namespace coordination {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"coordination.k8s.io/v1beta1">;
+            apiVersion?: pulumi.Input<"coordination.k8s.io/v1beta1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"Lease">;
+            kind?: pulumi.Input<"Lease" | undefined>;
             /**
              * More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Specification of the Lease. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            spec?: pulumi.Input<inputs.coordination.v1beta1.LeaseSpec>;
+            spec?: pulumi.Input<inputs.coordination.v1beta1.LeaseSpec | undefined>;
         }
 
         /**
@@ -5437,23 +5437,23 @@ export namespace coordination {
             /**
              * acquireTime is a time when the current lease was acquired.
              */
-            acquireTime?: pulumi.Input<string>;
+            acquireTime?: pulumi.Input<string | undefined>;
             /**
              * holderIdentity contains the identity of the holder of a current lease.
              */
-            holderIdentity?: pulumi.Input<string>;
+            holderIdentity?: pulumi.Input<string | undefined>;
             /**
              * leaseDurationSeconds is a duration that candidates for a lease need to wait to force acquire it. This is measure against time of last observed RenewTime.
              */
-            leaseDurationSeconds?: pulumi.Input<number>;
+            leaseDurationSeconds?: pulumi.Input<number | undefined>;
             /**
              * leaseTransitions is the number of transitions of a lease between holders.
              */
-            leaseTransitions?: pulumi.Input<number>;
+            leaseTransitions?: pulumi.Input<number | undefined>;
             /**
              * renewTime is a time when the current holder of a lease has last updated the lease.
              */
-            renewTime?: pulumi.Input<string>;
+            renewTime?: pulumi.Input<string | undefined>;
         }
     }
 }
@@ -5469,15 +5469,15 @@ export namespace core {
             /**
              * Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
              */
-            fsType?: pulumi.Input<string>;
+            fsType?: pulumi.Input<string | undefined>;
             /**
              * The partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as "1". Similarly, the volume partition for /dev/sda is "0" (or you can leave the property empty).
              */
-            partition?: pulumi.Input<number>;
+            partition?: pulumi.Input<number | undefined>;
             /**
              * Specify "true" to force and set the ReadOnly property in VolumeMounts to "true". If omitted, the default is "false". More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
              */
-            readOnly?: pulumi.Input<boolean>;
+            readOnly?: pulumi.Input<boolean | undefined>;
             /**
              * Unique ID of the persistent disk resource in AWS (Amazon EBS volume). More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
              */
@@ -5491,15 +5491,15 @@ export namespace core {
             /**
              * Describes node affinity scheduling rules for the pod.
              */
-            nodeAffinity?: pulumi.Input<inputs.core.v1.NodeAffinity>;
+            nodeAffinity?: pulumi.Input<inputs.core.v1.NodeAffinity | undefined>;
             /**
              * Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)).
              */
-            podAffinity?: pulumi.Input<inputs.core.v1.PodAffinity>;
+            podAffinity?: pulumi.Input<inputs.core.v1.PodAffinity | undefined>;
             /**
              * Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).
              */
-            podAntiAffinity?: pulumi.Input<inputs.core.v1.PodAntiAffinity>;
+            podAntiAffinity?: pulumi.Input<inputs.core.v1.PodAntiAffinity | undefined>;
         }
 
         /**
@@ -5523,7 +5523,7 @@ export namespace core {
             /**
              * Host Caching mode: None, Read Only, Read Write.
              */
-            cachingMode?: pulumi.Input<string>;
+            cachingMode?: pulumi.Input<string | undefined>;
             /**
              * The Name of the data disk in the blob storage
              */
@@ -5535,15 +5535,15 @@ export namespace core {
             /**
              * Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified.
              */
-            fsType?: pulumi.Input<string>;
+            fsType?: pulumi.Input<string | undefined>;
             /**
              * Expected values Shared: multiple blob disks per storage account  Dedicated: single blob disk per storage account  Managed: azure managed data disk (only in managed availability set). defaults to shared
              */
-            kind?: pulumi.Input<string>;
+            kind?: pulumi.Input<string | undefined>;
             /**
              * Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
              */
-            readOnly?: pulumi.Input<boolean>;
+            readOnly?: pulumi.Input<boolean | undefined>;
         }
 
         /**
@@ -5553,7 +5553,7 @@ export namespace core {
             /**
              * Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
              */
-            readOnly?: pulumi.Input<boolean>;
+            readOnly?: pulumi.Input<boolean | undefined>;
             /**
              * the name of secret that contains Azure Storage Account Name and Key
              */
@@ -5561,7 +5561,7 @@ export namespace core {
             /**
              * the namespace of the secret that contains Azure Storage Account Name and Key default is the same as the Pod
              */
-            secretNamespace?: pulumi.Input<string>;
+            secretNamespace?: pulumi.Input<string | undefined>;
             /**
              * Share Name
              */
@@ -5575,7 +5575,7 @@ export namespace core {
             /**
              * Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
              */
-            readOnly?: pulumi.Input<boolean>;
+            readOnly?: pulumi.Input<boolean | undefined>;
             /**
              * the name of secret that contains Azure Storage Account Name and Key
              */
@@ -5593,11 +5593,11 @@ export namespace core {
             /**
              * ControllerExpandSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI ControllerExpandVolume call. This is an alpha field and requires enabling ExpandCSIVolumes feature gate. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secrets are passed.
              */
-            controllerExpandSecretRef?: pulumi.Input<inputs.core.v1.SecretReference>;
+            controllerExpandSecretRef?: pulumi.Input<inputs.core.v1.SecretReference | undefined>;
             /**
              * ControllerPublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI ControllerPublishVolume and ControllerUnpublishVolume calls. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secrets are passed.
              */
-            controllerPublishSecretRef?: pulumi.Input<inputs.core.v1.SecretReference>;
+            controllerPublishSecretRef?: pulumi.Input<inputs.core.v1.SecretReference | undefined>;
             /**
              * Driver is the name of the driver to use for this volume. Required.
              */
@@ -5605,23 +5605,23 @@ export namespace core {
             /**
              * Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs".
              */
-            fsType?: pulumi.Input<string>;
+            fsType?: pulumi.Input<string | undefined>;
             /**
              * NodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secrets are passed.
              */
-            nodePublishSecretRef?: pulumi.Input<inputs.core.v1.SecretReference>;
+            nodePublishSecretRef?: pulumi.Input<inputs.core.v1.SecretReference | undefined>;
             /**
              * NodeStageSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodeStageVolume and NodeStageVolume and NodeUnstageVolume calls. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secrets are passed.
              */
-            nodeStageSecretRef?: pulumi.Input<inputs.core.v1.SecretReference>;
+            nodeStageSecretRef?: pulumi.Input<inputs.core.v1.SecretReference | undefined>;
             /**
              * Optional: The value to pass to ControllerPublishVolumeRequest. Defaults to false (read/write).
              */
-            readOnly?: pulumi.Input<boolean>;
+            readOnly?: pulumi.Input<boolean | undefined>;
             /**
              * Attributes of the volume to publish.
              */
-            volumeAttributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            volumeAttributes?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
             /**
              * VolumeHandle is the unique volume name returned by the CSI volume plugin’s CreateVolume to refer to the volume on all subsequent calls. Required.
              */
@@ -5639,19 +5639,19 @@ export namespace core {
             /**
              * Filesystem type to mount. Ex. "ext4", "xfs", "ntfs". If not provided, the empty value is passed to the associated CSI driver which will determine the default filesystem to apply.
              */
-            fsType?: pulumi.Input<string>;
+            fsType?: pulumi.Input<string | undefined>;
             /**
              * NodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and  may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed.
              */
-            nodePublishSecretRef?: pulumi.Input<inputs.core.v1.LocalObjectReference>;
+            nodePublishSecretRef?: pulumi.Input<inputs.core.v1.LocalObjectReference | undefined>;
             /**
              * Specifies a read-only configuration for the volume. Defaults to false (read/write).
              */
-            readOnly?: pulumi.Input<boolean>;
+            readOnly?: pulumi.Input<boolean | undefined>;
             /**
              * VolumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver's documentation for supported values.
              */
-            volumeAttributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            volumeAttributes?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         }
 
         /**
@@ -5661,11 +5661,11 @@ export namespace core {
             /**
              * Added capabilities
              */
-            add?: pulumi.Input<pulumi.Input<string>[]>;
+            add?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * Removed capabilities
              */
-            drop?: pulumi.Input<pulumi.Input<string>[]>;
+            drop?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         }
 
         /**
@@ -5679,23 +5679,23 @@ export namespace core {
             /**
              * Optional: Used as the mounted root, rather than the full Ceph tree, default is /
              */
-            path?: pulumi.Input<string>;
+            path?: pulumi.Input<string | undefined>;
             /**
              * Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
              */
-            readOnly?: pulumi.Input<boolean>;
+            readOnly?: pulumi.Input<boolean | undefined>;
             /**
              * Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secret More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
              */
-            secretFile?: pulumi.Input<string>;
+            secretFile?: pulumi.Input<string | undefined>;
             /**
              * Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
              */
-            secretRef?: pulumi.Input<inputs.core.v1.SecretReference>;
+            secretRef?: pulumi.Input<inputs.core.v1.SecretReference | undefined>;
             /**
              * Optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
              */
-            user?: pulumi.Input<string>;
+            user?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -5709,23 +5709,23 @@ export namespace core {
             /**
              * Optional: Used as the mounted root, rather than the full Ceph tree, default is /
              */
-            path?: pulumi.Input<string>;
+            path?: pulumi.Input<string | undefined>;
             /**
              * Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
              */
-            readOnly?: pulumi.Input<boolean>;
+            readOnly?: pulumi.Input<boolean | undefined>;
             /**
              * Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secret More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
              */
-            secretFile?: pulumi.Input<string>;
+            secretFile?: pulumi.Input<string | undefined>;
             /**
              * Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
              */
-            secretRef?: pulumi.Input<inputs.core.v1.LocalObjectReference>;
+            secretRef?: pulumi.Input<inputs.core.v1.LocalObjectReference | undefined>;
             /**
              * Optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
              */
-            user?: pulumi.Input<string>;
+            user?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -5735,15 +5735,15 @@ export namespace core {
             /**
              * Filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
              */
-            fsType?: pulumi.Input<string>;
+            fsType?: pulumi.Input<string | undefined>;
             /**
              * Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
              */
-            readOnly?: pulumi.Input<boolean>;
+            readOnly?: pulumi.Input<boolean | undefined>;
             /**
              * Optional: points to a secret object containing parameters used to connect to OpenStack.
              */
-            secretRef?: pulumi.Input<inputs.core.v1.SecretReference>;
+            secretRef?: pulumi.Input<inputs.core.v1.SecretReference | undefined>;
             /**
              * volume id used to identify the volume in cinder. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
              */
@@ -5757,15 +5757,15 @@ export namespace core {
             /**
              * Filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
              */
-            fsType?: pulumi.Input<string>;
+            fsType?: pulumi.Input<string | undefined>;
             /**
              * Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
              */
-            readOnly?: pulumi.Input<boolean>;
+            readOnly?: pulumi.Input<boolean | undefined>;
             /**
              * Optional: points to a secret object containing parameters used to connect to OpenStack.
              */
-            secretRef?: pulumi.Input<inputs.core.v1.LocalObjectReference>;
+            secretRef?: pulumi.Input<inputs.core.v1.LocalObjectReference | undefined>;
             /**
              * volume id used to identify the volume in cinder. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
              */
@@ -5779,7 +5779,7 @@ export namespace core {
             /**
              * timeoutSeconds specifies the seconds of ClientIP type session sticky time. The value must be >0 && <=86400(for 1 day) if ServiceAffinity == "ClientIP". Default value is 10800(for 3 hours).
              */
-            timeoutSeconds?: pulumi.Input<number>;
+            timeoutSeconds?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -5789,27 +5789,27 @@ export namespace core {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"v1">;
+            apiVersion?: pulumi.Input<"v1" | undefined>;
             /**
              * BinaryData contains the binary data. Each key must consist of alphanumeric characters, '-', '_' or '.'. BinaryData can contain byte sequences that are not in the UTF-8 range. The keys stored in BinaryData must not overlap with the ones in the Data field, this is enforced during validation process. Using this field will require 1.10+ apiserver and kubelet.
              */
-            binaryData?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            binaryData?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
             /**
              * Data contains the configuration data. Each key must consist of alphanumeric characters, '-', '_' or '.'. Values with non-UTF-8 byte sequences must use the BinaryData field. The keys stored in Data must not overlap with the keys in the BinaryData field, this is enforced during validation process.
              */
-            data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            data?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
             /**
              * Immutable, if set to true, ensures that data stored in the ConfigMap cannot be updated (only object metadata can be modified). If not set to true, the field can be modified at any time. Defaulted to nil. This is a beta field enabled by ImmutableEphemeralVolumes feature gate.
              */
-            immutable?: pulumi.Input<boolean>;
+            immutable?: pulumi.Input<boolean | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"ConfigMap">;
+            kind?: pulumi.Input<"ConfigMap" | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
         }
 
         /**
@@ -5821,11 +5821,11 @@ export namespace core {
             /**
              * Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
              */
-            name?: pulumi.Input<string>;
+            name?: pulumi.Input<string | undefined>;
             /**
              * Specify whether the ConfigMap must be defined
              */
-            optional?: pulumi.Input<boolean>;
+            optional?: pulumi.Input<boolean | undefined>;
         }
 
         /**
@@ -5839,11 +5839,11 @@ export namespace core {
             /**
              * Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
              */
-            name?: pulumi.Input<string>;
+            name?: pulumi.Input<string | undefined>;
             /**
              * Specify whether the ConfigMap or its key must be defined
              */
-            optional?: pulumi.Input<boolean>;
+            optional?: pulumi.Input<boolean | undefined>;
         }
 
         /**
@@ -5865,11 +5865,11 @@ export namespace core {
             /**
              * ResourceVersion is the metadata.ResourceVersion of the referenced ConfigMap. This field is forbidden in Node.Spec, and required in Node.Status.
              */
-            resourceVersion?: pulumi.Input<string>;
+            resourceVersion?: pulumi.Input<string | undefined>;
             /**
              * UID is the metadata.UID of the referenced ConfigMap. This field is forbidden in Node.Spec, and required in Node.Status.
              */
-            uid?: pulumi.Input<string>;
+            uid?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -5881,15 +5881,15 @@ export namespace core {
             /**
              * If unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.
              */
-            items?: pulumi.Input<pulumi.Input<inputs.core.v1.KeyToPath>[]>;
+            items?: pulumi.Input<pulumi.Input<inputs.core.v1.KeyToPath>[] | undefined>;
             /**
              * Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
              */
-            name?: pulumi.Input<string>;
+            name?: pulumi.Input<string | undefined>;
             /**
              * Specify whether the ConfigMap or its keys must be defined
              */
-            optional?: pulumi.Input<boolean>;
+            optional?: pulumi.Input<boolean | undefined>;
         }
 
         /**
@@ -5901,19 +5901,19 @@ export namespace core {
             /**
              * Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
              */
-            defaultMode?: pulumi.Input<number>;
+            defaultMode?: pulumi.Input<number | undefined>;
             /**
              * If unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.
              */
-            items?: pulumi.Input<pulumi.Input<inputs.core.v1.KeyToPath>[]>;
+            items?: pulumi.Input<pulumi.Input<inputs.core.v1.KeyToPath>[] | undefined>;
             /**
              * Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
              */
-            name?: pulumi.Input<string>;
+            name?: pulumi.Input<string | undefined>;
             /**
              * Specify whether the ConfigMap or its keys must be defined
              */
-            optional?: pulumi.Input<boolean>;
+            optional?: pulumi.Input<boolean | undefined>;
         }
 
         /**
@@ -5923,35 +5923,35 @@ export namespace core {
             /**
              * Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
              */
-            args?: pulumi.Input<pulumi.Input<string>[]>;
+            args?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
              */
-            command?: pulumi.Input<pulumi.Input<string>[]>;
+            command?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * List of environment variables to set in the container. Cannot be updated.
              */
-            env?: pulumi.Input<pulumi.Input<inputs.core.v1.EnvVar>[]>;
+            env?: pulumi.Input<pulumi.Input<inputs.core.v1.EnvVar>[] | undefined>;
             /**
              * List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.
              */
-            envFrom?: pulumi.Input<pulumi.Input<inputs.core.v1.EnvFromSource>[]>;
+            envFrom?: pulumi.Input<pulumi.Input<inputs.core.v1.EnvFromSource>[] | undefined>;
             /**
              * Docker image name. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.
              */
-            image?: pulumi.Input<string>;
+            image?: pulumi.Input<string | undefined>;
             /**
              * Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images
              */
-            imagePullPolicy?: pulumi.Input<string>;
+            imagePullPolicy?: pulumi.Input<string | undefined>;
             /**
              * Actions that the management system should take in response to container lifecycle events. Cannot be updated.
              */
-            lifecycle?: pulumi.Input<inputs.core.v1.Lifecycle>;
+            lifecycle?: pulumi.Input<inputs.core.v1.Lifecycle | undefined>;
             /**
              * Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
              */
-            livenessProbe?: pulumi.Input<inputs.core.v1.Probe>;
+            livenessProbe?: pulumi.Input<inputs.core.v1.Probe | undefined>;
             /**
              * Name of the container specified as a DNS_LABEL. Each container in a pod must have a unique name (DNS_LABEL). Cannot be updated.
              */
@@ -5959,55 +5959,55 @@ export namespace core {
             /**
              * List of ports to expose from the container. Exposing a port here gives the system additional information about the network connections a container uses, but is primarily informational. Not specifying a port here DOES NOT prevent that port from being exposed. Any port which is listening on the default "0.0.0.0" address inside a container will be accessible from the network. Cannot be updated.
              */
-            ports?: pulumi.Input<pulumi.Input<inputs.core.v1.ContainerPort>[]>;
+            ports?: pulumi.Input<pulumi.Input<inputs.core.v1.ContainerPort>[] | undefined>;
             /**
              * Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
              */
-            readinessProbe?: pulumi.Input<inputs.core.v1.Probe>;
+            readinessProbe?: pulumi.Input<inputs.core.v1.Probe | undefined>;
             /**
              * Compute Resources required by this container. Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
              */
-            resources?: pulumi.Input<inputs.core.v1.ResourceRequirements>;
+            resources?: pulumi.Input<inputs.core.v1.ResourceRequirements | undefined>;
             /**
              * Security options the pod should run with. More info: https://kubernetes.io/docs/concepts/policy/security-context/ More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
              */
-            securityContext?: pulumi.Input<inputs.core.v1.SecurityContext>;
+            securityContext?: pulumi.Input<inputs.core.v1.SecurityContext | undefined>;
             /**
              * StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
              */
-            startupProbe?: pulumi.Input<inputs.core.v1.Probe>;
+            startupProbe?: pulumi.Input<inputs.core.v1.Probe | undefined>;
             /**
              * Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false.
              */
-            stdin?: pulumi.Input<boolean>;
+            stdin?: pulumi.Input<boolean | undefined>;
             /**
              * Whether the container runtime should close the stdin channel after it has been opened by a single attach. When stdin is true the stdin stream will remain open across multiple attach sessions. If stdinOnce is set to true, stdin is opened on container start, is empty until the first client attaches to stdin, and then remains open and accepts data until the client disconnects, at which time stdin is closed and remains closed until the container is restarted. If this flag is false, a container processes that reads from stdin will never receive an EOF. Default is false
              */
-            stdinOnce?: pulumi.Input<boolean>;
+            stdinOnce?: pulumi.Input<boolean | undefined>;
             /**
              * Optional: Path at which the file to which the container's termination message will be written is mounted into the container's filesystem. Message written is intended to be brief final status, such as an assertion failure message. Will be truncated by the node if greater than 4096 bytes. The total message length across all containers will be limited to 12kb. Defaults to /dev/termination-log. Cannot be updated.
              */
-            terminationMessagePath?: pulumi.Input<string>;
+            terminationMessagePath?: pulumi.Input<string | undefined>;
             /**
              * Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure. FallbackToLogsOnError will use the last chunk of container log output if the termination message file is empty and the container exited with an error. The log output is limited to 2048 bytes or 80 lines, whichever is smaller. Defaults to File. Cannot be updated.
              */
-            terminationMessagePolicy?: pulumi.Input<string>;
+            terminationMessagePolicy?: pulumi.Input<string | undefined>;
             /**
              * Whether this container should allocate a TTY for itself, also requires 'stdin' to be true. Default is false.
              */
-            tty?: pulumi.Input<boolean>;
+            tty?: pulumi.Input<boolean | undefined>;
             /**
              * volumeDevices is the list of block devices to be used by the container.
              */
-            volumeDevices?: pulumi.Input<pulumi.Input<inputs.core.v1.VolumeDevice>[]>;
+            volumeDevices?: pulumi.Input<pulumi.Input<inputs.core.v1.VolumeDevice>[] | undefined>;
             /**
              * Pod volumes to mount into the container's filesystem. Cannot be updated.
              */
-            volumeMounts?: pulumi.Input<pulumi.Input<inputs.core.v1.VolumeMount>[]>;
+            volumeMounts?: pulumi.Input<pulumi.Input<inputs.core.v1.VolumeMount>[] | undefined>;
             /**
              * Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.
              */
-            workingDir?: pulumi.Input<string>;
+            workingDir?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -6021,7 +6021,7 @@ export namespace core {
             /**
              * The size of the image in bytes.
              */
-            sizeBytes?: pulumi.Input<number>;
+            sizeBytes?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -6035,19 +6035,19 @@ export namespace core {
             /**
              * What host IP to bind the external port to.
              */
-            hostIP?: pulumi.Input<string>;
+            hostIP?: pulumi.Input<string | undefined>;
             /**
              * Number of port to expose on the host. If specified, this must be a valid port number, 0 < x < 65536. If HostNetwork is specified, this must match ContainerPort. Most containers do not need this.
              */
-            hostPort?: pulumi.Input<number>;
+            hostPort?: pulumi.Input<number | undefined>;
             /**
              * If specified, this must be an IANA_SVC_NAME and unique within the pod. Each named port in a pod must have a unique name. Name for the port that can be referred to by services.
              */
-            name?: pulumi.Input<string>;
+            name?: pulumi.Input<string | undefined>;
             /**
              * Protocol for port. Must be UDP, TCP, or SCTP. Defaults to "TCP".
              */
-            protocol?: pulumi.Input<string>;
+            protocol?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -6057,15 +6057,15 @@ export namespace core {
             /**
              * Details about a running container
              */
-            running?: pulumi.Input<inputs.core.v1.ContainerStateRunning>;
+            running?: pulumi.Input<inputs.core.v1.ContainerStateRunning | undefined>;
             /**
              * Details about a terminated container
              */
-            terminated?: pulumi.Input<inputs.core.v1.ContainerStateTerminated>;
+            terminated?: pulumi.Input<inputs.core.v1.ContainerStateTerminated | undefined>;
             /**
              * Details about a waiting container
              */
-            waiting?: pulumi.Input<inputs.core.v1.ContainerStateWaiting>;
+            waiting?: pulumi.Input<inputs.core.v1.ContainerStateWaiting | undefined>;
         }
 
         /**
@@ -6075,7 +6075,7 @@ export namespace core {
             /**
              * Time at which the container was last (re-)started
              */
-            startedAt?: pulumi.Input<string>;
+            startedAt?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -6085,7 +6085,7 @@ export namespace core {
             /**
              * Container's ID in the format 'docker://<container_id>'
              */
-            containerID?: pulumi.Input<string>;
+            containerID?: pulumi.Input<string | undefined>;
             /**
              * Exit status from the last termination of the container
              */
@@ -6093,23 +6093,23 @@ export namespace core {
             /**
              * Time at which the container last terminated
              */
-            finishedAt?: pulumi.Input<string>;
+            finishedAt?: pulumi.Input<string | undefined>;
             /**
              * Message regarding the last termination of the container
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * (brief) reason from the last termination of the container
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
             /**
              * Signal from the last termination of the container
              */
-            signal?: pulumi.Input<number>;
+            signal?: pulumi.Input<number | undefined>;
             /**
              * Time at which previous execution of the container started
              */
-            startedAt?: pulumi.Input<string>;
+            startedAt?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -6119,11 +6119,11 @@ export namespace core {
             /**
              * Message regarding why the container is not yet running.
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * (brief) reason the container is not yet running.
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -6133,7 +6133,7 @@ export namespace core {
             /**
              * Container's ID in the format 'docker://<container_id>'.
              */
-            containerID?: pulumi.Input<string>;
+            containerID?: pulumi.Input<string | undefined>;
             /**
              * The image the container is running. More info: https://kubernetes.io/docs/concepts/containers/images
              */
@@ -6145,7 +6145,7 @@ export namespace core {
             /**
              * Details about the container's last termination condition.
              */
-            lastState?: pulumi.Input<inputs.core.v1.ContainerState>;
+            lastState?: pulumi.Input<inputs.core.v1.ContainerState | undefined>;
             /**
              * This must be a DNS_LABEL. Each container in a pod must have a unique name. Cannot be updated.
              */
@@ -6161,11 +6161,11 @@ export namespace core {
             /**
              * Specifies whether the container has passed its startup probe. Initialized as false, becomes true after startupProbe is considered successful. Resets to false when the container is restarted, or if kubelet loses state temporarily. Is always true when no startupProbe is defined.
              */
-            started?: pulumi.Input<boolean>;
+            started?: pulumi.Input<boolean | undefined>;
             /**
              * Details about the container's current condition.
              */
-            state?: pulumi.Input<inputs.core.v1.ContainerState>;
+            state?: pulumi.Input<inputs.core.v1.ContainerState | undefined>;
         }
 
         /**
@@ -6185,7 +6185,7 @@ export namespace core {
             /**
              * Items is a list of DownwardAPIVolume file
              */
-            items?: pulumi.Input<pulumi.Input<inputs.core.v1.DownwardAPIVolumeFile>[]>;
+            items?: pulumi.Input<pulumi.Input<inputs.core.v1.DownwardAPIVolumeFile>[] | undefined>;
         }
 
         /**
@@ -6195,11 +6195,11 @@ export namespace core {
             /**
              * Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.
              */
-            fieldRef?: pulumi.Input<inputs.core.v1.ObjectFieldSelector>;
+            fieldRef?: pulumi.Input<inputs.core.v1.ObjectFieldSelector | undefined>;
             /**
              * Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
              */
-            mode?: pulumi.Input<number>;
+            mode?: pulumi.Input<number | undefined>;
             /**
              * Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'
              */
@@ -6207,7 +6207,7 @@ export namespace core {
             /**
              * Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported.
              */
-            resourceFieldRef?: pulumi.Input<inputs.core.v1.ResourceFieldSelector>;
+            resourceFieldRef?: pulumi.Input<inputs.core.v1.ResourceFieldSelector | undefined>;
         }
 
         /**
@@ -6217,11 +6217,11 @@ export namespace core {
             /**
              * Optional: mode bits to use on created files by default. Must be a Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
              */
-            defaultMode?: pulumi.Input<number>;
+            defaultMode?: pulumi.Input<number | undefined>;
             /**
              * Items is a list of downward API volume file
              */
-            items?: pulumi.Input<pulumi.Input<inputs.core.v1.DownwardAPIVolumeFile>[]>;
+            items?: pulumi.Input<pulumi.Input<inputs.core.v1.DownwardAPIVolumeFile>[] | undefined>;
         }
 
         /**
@@ -6231,11 +6231,11 @@ export namespace core {
             /**
              * What type of storage medium should back this directory. The default is "" which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
              */
-            medium?: pulumi.Input<string>;
+            medium?: pulumi.Input<string | undefined>;
             /**
              * Total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir
              */
-            sizeLimit?: pulumi.Input<string>;
+            sizeLimit?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -6245,7 +6245,7 @@ export namespace core {
             /**
              * The Hostname of this endpoint
              */
-            hostname?: pulumi.Input<string>;
+            hostname?: pulumi.Input<string | undefined>;
             /**
              * The IP of this endpoint. May not be loopback (127.0.0.0/8), link-local (169.254.0.0/16), or link-local multicast ((224.0.0.0/24). IPv6 is also accepted but not fully supported on all platforms. Also, certain kubernetes components, like kube-proxy, are not IPv6 ready.
              */
@@ -6253,11 +6253,11 @@ export namespace core {
             /**
              * Optional: Node hosting this endpoint. This can be used to determine endpoints local to a node.
              */
-            nodeName?: pulumi.Input<string>;
+            nodeName?: pulumi.Input<string | undefined>;
             /**
              * Reference to object providing the endpoint.
              */
-            targetRef?: pulumi.Input<inputs.core.v1.ObjectReference>;
+            targetRef?: pulumi.Input<inputs.core.v1.ObjectReference | undefined>;
         }
 
         /**
@@ -6267,11 +6267,11 @@ export namespace core {
             /**
              * The application protocol for this port. This field follows standard Kubernetes label syntax. Un-prefixed names are reserved for IANA standard service names (as per RFC-6335 and http://www.iana.org/assignments/service-names). Non-standard protocols should use prefixed names such as mycompany.com/my-custom-protocol. This is a beta field that is guarded by the ServiceAppProtocol feature gate and enabled by default.
              */
-            appProtocol?: pulumi.Input<string>;
+            appProtocol?: pulumi.Input<string | undefined>;
             /**
              * The name of this port.  This must match the 'name' field in the corresponding ServicePort. Must be a DNS_LABEL. Optional only if one port is defined.
              */
-            name?: pulumi.Input<string>;
+            name?: pulumi.Input<string | undefined>;
             /**
              * The port number of the endpoint.
              */
@@ -6279,7 +6279,7 @@ export namespace core {
             /**
              * The IP protocol for this port. Must be UDP, TCP, or SCTP. Default is TCP.
              */
-            protocol?: pulumi.Input<string>;
+            protocol?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -6296,15 +6296,15 @@ export namespace core {
             /**
              * IP addresses which offer the related ports that are marked as ready. These endpoints should be considered safe for load balancers and clients to utilize.
              */
-            addresses?: pulumi.Input<pulumi.Input<inputs.core.v1.EndpointAddress>[]>;
+            addresses?: pulumi.Input<pulumi.Input<inputs.core.v1.EndpointAddress>[] | undefined>;
             /**
              * IP addresses which offer the related ports but are not currently marked as ready because they have not yet finished starting, have recently failed a readiness check, or have recently failed a liveness check.
              */
-            notReadyAddresses?: pulumi.Input<pulumi.Input<inputs.core.v1.EndpointAddress>[]>;
+            notReadyAddresses?: pulumi.Input<pulumi.Input<inputs.core.v1.EndpointAddress>[] | undefined>;
             /**
              * Port numbers available on the related IP addresses.
              */
-            ports?: pulumi.Input<pulumi.Input<inputs.core.v1.EndpointPort>[]>;
+            ports?: pulumi.Input<pulumi.Input<inputs.core.v1.EndpointPort>[] | undefined>;
         }
 
         /**
@@ -6325,19 +6325,19 @@ export namespace core {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"v1">;
+            apiVersion?: pulumi.Input<"v1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"Endpoints">;
+            kind?: pulumi.Input<"Endpoints" | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * The set of all endpoints is the union of all subsets. Addresses are placed into subsets according to the IPs they share. A single address with multiple ports, some of which are ready and some of which are not (because they come from different containers) will result in the address being displayed in different subsets for the different ports. No address will appear in both Addresses and NotReadyAddresses in the same subset. Sets of addresses and ports that comprise a service.
              */
-            subsets?: pulumi.Input<pulumi.Input<inputs.core.v1.EndpointSubset>[]>;
+            subsets?: pulumi.Input<pulumi.Input<inputs.core.v1.EndpointSubset>[] | undefined>;
         }
 
         /**
@@ -6347,15 +6347,15 @@ export namespace core {
             /**
              * The ConfigMap to select from
              */
-            configMapRef?: pulumi.Input<inputs.core.v1.ConfigMapEnvSource>;
+            configMapRef?: pulumi.Input<inputs.core.v1.ConfigMapEnvSource | undefined>;
             /**
              * An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.
              */
-            prefix?: pulumi.Input<string>;
+            prefix?: pulumi.Input<string | undefined>;
             /**
              * The Secret to select from
              */
-            secretRef?: pulumi.Input<inputs.core.v1.SecretEnvSource>;
+            secretRef?: pulumi.Input<inputs.core.v1.SecretEnvSource | undefined>;
         }
 
         /**
@@ -6369,11 +6369,11 @@ export namespace core {
             /**
              * Variable references $(VAR_NAME) are expanded using the previous defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to "".
              */
-            value?: pulumi.Input<string>;
+            value?: pulumi.Input<string | undefined>;
             /**
              * Source for the environment variable's value. Cannot be used if value is not empty.
              */
-            valueFrom?: pulumi.Input<inputs.core.v1.EnvVarSource>;
+            valueFrom?: pulumi.Input<inputs.core.v1.EnvVarSource | undefined>;
         }
 
         /**
@@ -6383,19 +6383,19 @@ export namespace core {
             /**
              * Selects a key of a ConfigMap.
              */
-            configMapKeyRef?: pulumi.Input<inputs.core.v1.ConfigMapKeySelector>;
+            configMapKeyRef?: pulumi.Input<inputs.core.v1.ConfigMapKeySelector | undefined>;
             /**
              * Selects a field of the pod: supports metadata.name, metadata.namespace, `metadata.labels['<KEY>']`, `metadata.annotations['<KEY>']`, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.
              */
-            fieldRef?: pulumi.Input<inputs.core.v1.ObjectFieldSelector>;
+            fieldRef?: pulumi.Input<inputs.core.v1.ObjectFieldSelector | undefined>;
             /**
              * Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.
              */
-            resourceFieldRef?: pulumi.Input<inputs.core.v1.ResourceFieldSelector>;
+            resourceFieldRef?: pulumi.Input<inputs.core.v1.ResourceFieldSelector | undefined>;
             /**
              * Selects a key of a secret in the pod's namespace
              */
-            secretKeyRef?: pulumi.Input<inputs.core.v1.SecretKeySelector>;
+            secretKeyRef?: pulumi.Input<inputs.core.v1.SecretKeySelector | undefined>;
         }
 
         /**
@@ -6405,35 +6405,35 @@ export namespace core {
             /**
              * Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
              */
-            args?: pulumi.Input<pulumi.Input<string>[]>;
+            args?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
              */
-            command?: pulumi.Input<pulumi.Input<string>[]>;
+            command?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * List of environment variables to set in the container. Cannot be updated.
              */
-            env?: pulumi.Input<pulumi.Input<inputs.core.v1.EnvVar>[]>;
+            env?: pulumi.Input<pulumi.Input<inputs.core.v1.EnvVar>[] | undefined>;
             /**
              * List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.
              */
-            envFrom?: pulumi.Input<pulumi.Input<inputs.core.v1.EnvFromSource>[]>;
+            envFrom?: pulumi.Input<pulumi.Input<inputs.core.v1.EnvFromSource>[] | undefined>;
             /**
              * Docker image name. More info: https://kubernetes.io/docs/concepts/containers/images
              */
-            image?: pulumi.Input<string>;
+            image?: pulumi.Input<string | undefined>;
             /**
              * Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images
              */
-            imagePullPolicy?: pulumi.Input<string>;
+            imagePullPolicy?: pulumi.Input<string | undefined>;
             /**
              * Lifecycle is not allowed for ephemeral containers.
              */
-            lifecycle?: pulumi.Input<inputs.core.v1.Lifecycle>;
+            lifecycle?: pulumi.Input<inputs.core.v1.Lifecycle | undefined>;
             /**
              * Probes are not allowed for ephemeral containers.
              */
-            livenessProbe?: pulumi.Input<inputs.core.v1.Probe>;
+            livenessProbe?: pulumi.Input<inputs.core.v1.Probe | undefined>;
             /**
              * Name of the ephemeral container specified as a DNS_LABEL. This name must be unique among all containers, init containers and ephemeral containers.
              */
@@ -6441,59 +6441,59 @@ export namespace core {
             /**
              * Ports are not allowed for ephemeral containers.
              */
-            ports?: pulumi.Input<pulumi.Input<inputs.core.v1.ContainerPort>[]>;
+            ports?: pulumi.Input<pulumi.Input<inputs.core.v1.ContainerPort>[] | undefined>;
             /**
              * Probes are not allowed for ephemeral containers.
              */
-            readinessProbe?: pulumi.Input<inputs.core.v1.Probe>;
+            readinessProbe?: pulumi.Input<inputs.core.v1.Probe | undefined>;
             /**
              * Resources are not allowed for ephemeral containers. Ephemeral containers use spare resources already allocated to the pod.
              */
-            resources?: pulumi.Input<inputs.core.v1.ResourceRequirements>;
+            resources?: pulumi.Input<inputs.core.v1.ResourceRequirements | undefined>;
             /**
              * SecurityContext is not allowed for ephemeral containers.
              */
-            securityContext?: pulumi.Input<inputs.core.v1.SecurityContext>;
+            securityContext?: pulumi.Input<inputs.core.v1.SecurityContext | undefined>;
             /**
              * Probes are not allowed for ephemeral containers.
              */
-            startupProbe?: pulumi.Input<inputs.core.v1.Probe>;
+            startupProbe?: pulumi.Input<inputs.core.v1.Probe | undefined>;
             /**
              * Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false.
              */
-            stdin?: pulumi.Input<boolean>;
+            stdin?: pulumi.Input<boolean | undefined>;
             /**
              * Whether the container runtime should close the stdin channel after it has been opened by a single attach. When stdin is true the stdin stream will remain open across multiple attach sessions. If stdinOnce is set to true, stdin is opened on container start, is empty until the first client attaches to stdin, and then remains open and accepts data until the client disconnects, at which time stdin is closed and remains closed until the container is restarted. If this flag is false, a container processes that reads from stdin will never receive an EOF. Default is false
              */
-            stdinOnce?: pulumi.Input<boolean>;
+            stdinOnce?: pulumi.Input<boolean | undefined>;
             /**
              * If set, the name of the container from PodSpec that this ephemeral container targets. The ephemeral container will be run in the namespaces (IPC, PID, etc) of this container. If not set then the ephemeral container is run in whatever namespaces are shared for the pod. Note that the container runtime must support this feature.
              */
-            targetContainerName?: pulumi.Input<string>;
+            targetContainerName?: pulumi.Input<string | undefined>;
             /**
              * Optional: Path at which the file to which the container's termination message will be written is mounted into the container's filesystem. Message written is intended to be brief final status, such as an assertion failure message. Will be truncated by the node if greater than 4096 bytes. The total message length across all containers will be limited to 12kb. Defaults to /dev/termination-log. Cannot be updated.
              */
-            terminationMessagePath?: pulumi.Input<string>;
+            terminationMessagePath?: pulumi.Input<string | undefined>;
             /**
              * Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure. FallbackToLogsOnError will use the last chunk of container log output if the termination message file is empty and the container exited with an error. The log output is limited to 2048 bytes or 80 lines, whichever is smaller. Defaults to File. Cannot be updated.
              */
-            terminationMessagePolicy?: pulumi.Input<string>;
+            terminationMessagePolicy?: pulumi.Input<string | undefined>;
             /**
              * Whether this container should allocate a TTY for itself, also requires 'stdin' to be true. Default is false.
              */
-            tty?: pulumi.Input<boolean>;
+            tty?: pulumi.Input<boolean | undefined>;
             /**
              * volumeDevices is the list of block devices to be used by the container.
              */
-            volumeDevices?: pulumi.Input<pulumi.Input<inputs.core.v1.VolumeDevice>[]>;
+            volumeDevices?: pulumi.Input<pulumi.Input<inputs.core.v1.VolumeDevice>[] | undefined>;
             /**
              * Pod volumes to mount into the container's filesystem. Cannot be updated.
              */
-            volumeMounts?: pulumi.Input<pulumi.Input<inputs.core.v1.VolumeMount>[]>;
+            volumeMounts?: pulumi.Input<pulumi.Input<inputs.core.v1.VolumeMount>[] | undefined>;
             /**
              * Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.
              */
-            workingDir?: pulumi.Input<string>;
+            workingDir?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -6503,7 +6503,7 @@ export namespace core {
             /**
              * Specifies a read-only configuration for the volume. Defaults to false (read/write).
              */
-            readOnly?: pulumi.Input<boolean>;
+            readOnly?: pulumi.Input<boolean | undefined>;
             /**
              * Will be used to create a stand-alone PVC to provision the volume. The pod in which this EphemeralVolumeSource is embedded will be the owner of the PVC, i.e. the PVC will be deleted together with the pod.  The name of the PVC will be `<pod name>-<volume name>` where `<volume name>` is the name from the `PodSpec.Volumes` array entry. Pod validation will reject the pod if the concatenated name is not valid for a PVC (for example, too long).
              *
@@ -6513,7 +6513,7 @@ export namespace core {
              *
              * Required, must not be nil.
              */
-            volumeClaimTemplate?: pulumi.Input<inputs.core.v1.PersistentVolumeClaimTemplate>;
+            volumeClaimTemplate?: pulumi.Input<inputs.core.v1.PersistentVolumeClaimTemplate | undefined>;
         }
 
         /**
@@ -6523,23 +6523,23 @@ export namespace core {
             /**
              * What action was taken/failed regarding to the Regarding object.
              */
-            action?: pulumi.Input<string>;
+            action?: pulumi.Input<string | undefined>;
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"v1">;
+            apiVersion?: pulumi.Input<"v1" | undefined>;
             /**
              * The number of times this event has occurred.
              */
-            count?: pulumi.Input<number>;
+            count?: pulumi.Input<number | undefined>;
             /**
              * Time when this Event was first observed.
              */
-            eventTime?: pulumi.Input<string>;
+            eventTime?: pulumi.Input<string | undefined>;
             /**
              * The time at which the event was first recorded. (Time of server receipt is in TypeMeta.)
              */
-            firstTimestamp?: pulumi.Input<string>;
+            firstTimestamp?: pulumi.Input<string | undefined>;
             /**
              * The object that this event is about.
              */
@@ -6547,15 +6547,15 @@ export namespace core {
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"Event">;
+            kind?: pulumi.Input<"Event" | undefined>;
             /**
              * The time at which the most recent occurrence of this event was recorded.
              */
-            lastTimestamp?: pulumi.Input<string>;
+            lastTimestamp?: pulumi.Input<string | undefined>;
             /**
              * A human-readable description of the status of this operation.
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
@@ -6563,31 +6563,31 @@ export namespace core {
             /**
              * This should be a short, machine understandable string that gives the reason for the transition into the object's current status.
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
             /**
              * Optional secondary object for more complex actions.
              */
-            related?: pulumi.Input<inputs.core.v1.ObjectReference>;
+            related?: pulumi.Input<inputs.core.v1.ObjectReference | undefined>;
             /**
              * Name of the controller that emitted this Event, e.g. `kubernetes.io/kubelet`.
              */
-            reportingComponent?: pulumi.Input<string>;
+            reportingComponent?: pulumi.Input<string | undefined>;
             /**
              * ID of the controller instance, e.g. `kubelet-xyzf`.
              */
-            reportingInstance?: pulumi.Input<string>;
+            reportingInstance?: pulumi.Input<string | undefined>;
             /**
              * Data about the Event series this event represents or nil if it's a singleton Event.
              */
-            series?: pulumi.Input<inputs.core.v1.EventSeries>;
+            series?: pulumi.Input<inputs.core.v1.EventSeries | undefined>;
             /**
              * The component reporting this event. Should be a short machine understandable string.
              */
-            source?: pulumi.Input<inputs.core.v1.EventSource>;
+            source?: pulumi.Input<inputs.core.v1.EventSource | undefined>;
             /**
              * Type of this event (Normal, Warning), new types could be added in the future
              */
-            type?: pulumi.Input<string>;
+            type?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -6597,15 +6597,15 @@ export namespace core {
             /**
              * Number of occurrences in this series up to the last heartbeat time
              */
-            count?: pulumi.Input<number>;
+            count?: pulumi.Input<number | undefined>;
             /**
              * Time of the last occurrence observed
              */
-            lastObservedTime?: pulumi.Input<string>;
+            lastObservedTime?: pulumi.Input<string | undefined>;
             /**
              * State of this Series: Ongoing or Finished Deprecated. Planned removal for 1.18
              */
-            state?: pulumi.Input<string>;
+            state?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -6615,11 +6615,11 @@ export namespace core {
             /**
              * Component from which the event is generated.
              */
-            component?: pulumi.Input<string>;
+            component?: pulumi.Input<string | undefined>;
             /**
              * Node name on which the event is generated.
              */
-            host?: pulumi.Input<string>;
+            host?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -6629,7 +6629,7 @@ export namespace core {
             /**
              * Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
              */
-            command?: pulumi.Input<pulumi.Input<string>[]>;
+            command?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         }
 
         /**
@@ -6639,23 +6639,23 @@ export namespace core {
             /**
              * Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified.
              */
-            fsType?: pulumi.Input<string>;
+            fsType?: pulumi.Input<string | undefined>;
             /**
              * Optional: FC target lun number
              */
-            lun?: pulumi.Input<number>;
+            lun?: pulumi.Input<number | undefined>;
             /**
              * Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
              */
-            readOnly?: pulumi.Input<boolean>;
+            readOnly?: pulumi.Input<boolean | undefined>;
             /**
              * Optional: FC target worldwide names (WWNs)
              */
-            targetWWNs?: pulumi.Input<pulumi.Input<string>[]>;
+            targetWWNs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * Optional: FC volume world wide identifiers (wwids) Either wwids or combination of targetWWNs and lun must be set, but not both simultaneously.
              */
-            wwids?: pulumi.Input<pulumi.Input<string>[]>;
+            wwids?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         }
 
         /**
@@ -6669,19 +6669,19 @@ export namespace core {
             /**
              * Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". The default filesystem depends on FlexVolume script.
              */
-            fsType?: pulumi.Input<string>;
+            fsType?: pulumi.Input<string | undefined>;
             /**
              * Optional: Extra command options if any.
              */
-            options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            options?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
             /**
              * Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
              */
-            readOnly?: pulumi.Input<boolean>;
+            readOnly?: pulumi.Input<boolean | undefined>;
             /**
              * Optional: SecretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts.
              */
-            secretRef?: pulumi.Input<inputs.core.v1.SecretReference>;
+            secretRef?: pulumi.Input<inputs.core.v1.SecretReference | undefined>;
         }
 
         /**
@@ -6695,19 +6695,19 @@ export namespace core {
             /**
              * Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". The default filesystem depends on FlexVolume script.
              */
-            fsType?: pulumi.Input<string>;
+            fsType?: pulumi.Input<string | undefined>;
             /**
              * Optional: Extra command options if any.
              */
-            options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            options?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
             /**
              * Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
              */
-            readOnly?: pulumi.Input<boolean>;
+            readOnly?: pulumi.Input<boolean | undefined>;
             /**
              * Optional: SecretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts.
              */
-            secretRef?: pulumi.Input<inputs.core.v1.LocalObjectReference>;
+            secretRef?: pulumi.Input<inputs.core.v1.LocalObjectReference | undefined>;
         }
 
         /**
@@ -6717,11 +6717,11 @@ export namespace core {
             /**
              * Name of the dataset stored as metadata -> name on the dataset for Flocker should be considered as deprecated
              */
-            datasetName?: pulumi.Input<string>;
+            datasetName?: pulumi.Input<string | undefined>;
             /**
              * UUID of the dataset. This is unique identifier of a Flocker dataset
              */
-            datasetUUID?: pulumi.Input<string>;
+            datasetUUID?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -6733,11 +6733,11 @@ export namespace core {
             /**
              * Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
              */
-            fsType?: pulumi.Input<string>;
+            fsType?: pulumi.Input<string | undefined>;
             /**
              * The partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as "1". Similarly, the volume partition for /dev/sda is "0" (or you can leave the property empty). More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
              */
-            partition?: pulumi.Input<number>;
+            partition?: pulumi.Input<number | undefined>;
             /**
              * Unique name of the PD resource in GCE. Used to identify the disk in GCE. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
              */
@@ -6745,7 +6745,7 @@ export namespace core {
             /**
              * ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
              */
-            readOnly?: pulumi.Input<boolean>;
+            readOnly?: pulumi.Input<boolean | undefined>;
         }
 
         /**
@@ -6757,7 +6757,7 @@ export namespace core {
             /**
              * Target directory name. Must not contain or start with '..'.  If '.' is supplied, the volume directory will be the git repository.  Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name.
              */
-            directory?: pulumi.Input<string>;
+            directory?: pulumi.Input<string | undefined>;
             /**
              * Repository URL
              */
@@ -6765,7 +6765,7 @@ export namespace core {
             /**
              * Commit hash for the specified revision.
              */
-            revision?: pulumi.Input<string>;
+            revision?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -6779,7 +6779,7 @@ export namespace core {
             /**
              * EndpointsNamespace is the namespace that contains Glusterfs endpoint. If this field is empty, the EndpointNamespace defaults to the same namespace as the bound PVC. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
              */
-            endpointsNamespace?: pulumi.Input<string>;
+            endpointsNamespace?: pulumi.Input<string | undefined>;
             /**
              * Path is the Glusterfs volume path. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
              */
@@ -6787,7 +6787,7 @@ export namespace core {
             /**
              * ReadOnly here will force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
              */
-            readOnly?: pulumi.Input<boolean>;
+            readOnly?: pulumi.Input<boolean | undefined>;
         }
 
         /**
@@ -6805,7 +6805,7 @@ export namespace core {
             /**
              * ReadOnly here will force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
              */
-            readOnly?: pulumi.Input<boolean>;
+            readOnly?: pulumi.Input<boolean | undefined>;
         }
 
         /**
@@ -6815,15 +6815,15 @@ export namespace core {
             /**
              * Host name to connect to, defaults to the pod IP. You probably want to set "Host" in httpHeaders instead.
              */
-            host?: pulumi.Input<string>;
+            host?: pulumi.Input<string | undefined>;
             /**
              * Custom headers to set in the request. HTTP allows repeated headers.
              */
-            httpHeaders?: pulumi.Input<pulumi.Input<inputs.core.v1.HTTPHeader>[]>;
+            httpHeaders?: pulumi.Input<pulumi.Input<inputs.core.v1.HTTPHeader>[] | undefined>;
             /**
              * Path to access on the HTTP server.
              */
-            path?: pulumi.Input<string>;
+            path?: pulumi.Input<string | undefined>;
             /**
              * Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
              */
@@ -6831,7 +6831,7 @@ export namespace core {
             /**
              * Scheme to use for connecting to the host. Defaults to HTTP.
              */
-            scheme?: pulumi.Input<string>;
+            scheme?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -6855,15 +6855,15 @@ export namespace core {
             /**
              * One and only one of the following should be specified. Exec specifies the action to take.
              */
-            exec?: pulumi.Input<inputs.core.v1.ExecAction>;
+            exec?: pulumi.Input<inputs.core.v1.ExecAction | undefined>;
             /**
              * HTTPGet specifies the http request to perform.
              */
-            httpGet?: pulumi.Input<inputs.core.v1.HTTPGetAction>;
+            httpGet?: pulumi.Input<inputs.core.v1.HTTPGetAction | undefined>;
             /**
              * TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported
              */
-            tcpSocket?: pulumi.Input<inputs.core.v1.TCPSocketAction>;
+            tcpSocket?: pulumi.Input<inputs.core.v1.TCPSocketAction | undefined>;
         }
 
         /**
@@ -6873,11 +6873,11 @@ export namespace core {
             /**
              * Hostnames for the above IP address.
              */
-            hostnames?: pulumi.Input<pulumi.Input<string>[]>;
+            hostnames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * IP address of the host file entry.
              */
-            ip?: pulumi.Input<string>;
+            ip?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -6891,7 +6891,7 @@ export namespace core {
             /**
              * Type for HostPath Volume Defaults to "" More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
              */
-            type?: pulumi.Input<string>;
+            type?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -6901,19 +6901,19 @@ export namespace core {
             /**
              * whether support iSCSI Discovery CHAP authentication
              */
-            chapAuthDiscovery?: pulumi.Input<boolean>;
+            chapAuthDiscovery?: pulumi.Input<boolean | undefined>;
             /**
              * whether support iSCSI Session CHAP authentication
              */
-            chapAuthSession?: pulumi.Input<boolean>;
+            chapAuthSession?: pulumi.Input<boolean | undefined>;
             /**
              * Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi
              */
-            fsType?: pulumi.Input<string>;
+            fsType?: pulumi.Input<string | undefined>;
             /**
              * Custom iSCSI Initiator Name. If initiatorName is specified with iscsiInterface simultaneously, new iSCSI interface <target portal>:<volume name> will be created for the connection.
              */
-            initiatorName?: pulumi.Input<string>;
+            initiatorName?: pulumi.Input<string | undefined>;
             /**
              * Target iSCSI Qualified Name.
              */
@@ -6921,7 +6921,7 @@ export namespace core {
             /**
              * iSCSI Interface Name that uses an iSCSI transport. Defaults to 'default' (tcp).
              */
-            iscsiInterface?: pulumi.Input<string>;
+            iscsiInterface?: pulumi.Input<string | undefined>;
             /**
              * iSCSI Target Lun number.
              */
@@ -6929,15 +6929,15 @@ export namespace core {
             /**
              * iSCSI Target Portal List. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).
              */
-            portals?: pulumi.Input<pulumi.Input<string>[]>;
+            portals?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false.
              */
-            readOnly?: pulumi.Input<boolean>;
+            readOnly?: pulumi.Input<boolean | undefined>;
             /**
              * CHAP Secret for iSCSI target and initiator authentication
              */
-            secretRef?: pulumi.Input<inputs.core.v1.SecretReference>;
+            secretRef?: pulumi.Input<inputs.core.v1.SecretReference | undefined>;
             /**
              * iSCSI Target Portal. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).
              */
@@ -6951,19 +6951,19 @@ export namespace core {
             /**
              * whether support iSCSI Discovery CHAP authentication
              */
-            chapAuthDiscovery?: pulumi.Input<boolean>;
+            chapAuthDiscovery?: pulumi.Input<boolean | undefined>;
             /**
              * whether support iSCSI Session CHAP authentication
              */
-            chapAuthSession?: pulumi.Input<boolean>;
+            chapAuthSession?: pulumi.Input<boolean | undefined>;
             /**
              * Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi
              */
-            fsType?: pulumi.Input<string>;
+            fsType?: pulumi.Input<string | undefined>;
             /**
              * Custom iSCSI Initiator Name. If initiatorName is specified with iscsiInterface simultaneously, new iSCSI interface <target portal>:<volume name> will be created for the connection.
              */
-            initiatorName?: pulumi.Input<string>;
+            initiatorName?: pulumi.Input<string | undefined>;
             /**
              * Target iSCSI Qualified Name.
              */
@@ -6971,7 +6971,7 @@ export namespace core {
             /**
              * iSCSI Interface Name that uses an iSCSI transport. Defaults to 'default' (tcp).
              */
-            iscsiInterface?: pulumi.Input<string>;
+            iscsiInterface?: pulumi.Input<string | undefined>;
             /**
              * iSCSI Target Lun number.
              */
@@ -6979,15 +6979,15 @@ export namespace core {
             /**
              * iSCSI Target Portal List. The portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).
              */
-            portals?: pulumi.Input<pulumi.Input<string>[]>;
+            portals?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false.
              */
-            readOnly?: pulumi.Input<boolean>;
+            readOnly?: pulumi.Input<boolean | undefined>;
             /**
              * CHAP Secret for iSCSI target and initiator authentication
              */
-            secretRef?: pulumi.Input<inputs.core.v1.LocalObjectReference>;
+            secretRef?: pulumi.Input<inputs.core.v1.LocalObjectReference | undefined>;
             /**
              * iSCSI Target Portal. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).
              */
@@ -7005,7 +7005,7 @@ export namespace core {
             /**
              * Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
              */
-            mode?: pulumi.Input<number>;
+            mode?: pulumi.Input<number | undefined>;
             /**
              * The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
              */
@@ -7019,11 +7019,11 @@ export namespace core {
             /**
              * PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks
              */
-            postStart?: pulumi.Input<inputs.core.v1.Handler>;
+            postStart?: pulumi.Input<inputs.core.v1.Handler | undefined>;
             /**
              * PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The reason for termination is passed to the handler. The Pod's termination grace period countdown begins before the PreStop hooked is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period. Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks
              */
-            preStop?: pulumi.Input<inputs.core.v1.Handler>;
+            preStop?: pulumi.Input<inputs.core.v1.Handler | undefined>;
         }
 
         /**
@@ -7033,19 +7033,19 @@ export namespace core {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"v1">;
+            apiVersion?: pulumi.Input<"v1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"LimitRange">;
+            kind?: pulumi.Input<"LimitRange" | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Spec defines the limits enforced. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            spec?: pulumi.Input<inputs.core.v1.LimitRangeSpec>;
+            spec?: pulumi.Input<inputs.core.v1.LimitRangeSpec | undefined>;
         }
 
         /**
@@ -7055,23 +7055,23 @@ export namespace core {
             /**
              * Default resource requirement limit value by resource name if resource limit is omitted.
              */
-            default?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            default?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
             /**
              * DefaultRequest is the default resource requirement request value by resource name if resource request is omitted.
              */
-            defaultRequest?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            defaultRequest?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
             /**
              * Max usage constraints on this kind by resource name.
              */
-            max?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            max?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
             /**
              * MaxLimitRequestRatio if specified, the named resource must have a request and limit that are both non-zero where limit divided by request is less than or equal to the enumerated value; this represents the max burst for the named resource.
              */
-            maxLimitRequestRatio?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            maxLimitRequestRatio?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
             /**
              * Min usage constraints on this kind by resource name.
              */
-            min?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            min?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
             /**
              * Type of resource that this limit applies to.
              */
@@ -7095,15 +7095,15 @@ export namespace core {
             /**
              * Hostname is set for load-balancer ingress points that are DNS based (typically AWS load-balancers)
              */
-            hostname?: pulumi.Input<string>;
+            hostname?: pulumi.Input<string | undefined>;
             /**
              * IP is set for load-balancer ingress points that are IP based (typically GCE or OpenStack load-balancers)
              */
-            ip?: pulumi.Input<string>;
+            ip?: pulumi.Input<string | undefined>;
             /**
              * Ports is a list of records of service ports If used, every port defined in the service should have an entry in it
              */
-            ports?: pulumi.Input<pulumi.Input<inputs.core.v1.PortStatus>[]>;
+            ports?: pulumi.Input<pulumi.Input<inputs.core.v1.PortStatus>[] | undefined>;
         }
 
         /**
@@ -7113,7 +7113,7 @@ export namespace core {
             /**
              * Ingress is a list containing ingress points for the load-balancer. Traffic intended for the service should be sent to these ingress points.
              */
-            ingress?: pulumi.Input<pulumi.Input<inputs.core.v1.LoadBalancerIngress>[]>;
+            ingress?: pulumi.Input<pulumi.Input<inputs.core.v1.LoadBalancerIngress>[] | undefined>;
         }
 
         /**
@@ -7123,7 +7123,7 @@ export namespace core {
             /**
              * Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
              */
-            name?: pulumi.Input<string>;
+            name?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -7133,7 +7133,7 @@ export namespace core {
             /**
              * Filesystem type to mount. It applies only when the Path is a block device. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". The default value is to auto-select a fileystem if unspecified.
              */
-            fsType?: pulumi.Input<string>;
+            fsType?: pulumi.Input<string | undefined>;
             /**
              * The full path to the volume on the node. It can be either a directory or block device (disk, partition, ...).
              */
@@ -7151,7 +7151,7 @@ export namespace core {
             /**
              * ReadOnly here will force the NFS export to be mounted with read-only permissions. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
              */
-            readOnly?: pulumi.Input<boolean>;
+            readOnly?: pulumi.Input<boolean | undefined>;
             /**
              * Server is the hostname or IP address of the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
              */
@@ -7165,32 +7165,32 @@ export namespace core {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"v1">;
+            apiVersion?: pulumi.Input<"v1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"Namespace">;
+            kind?: pulumi.Input<"Namespace" | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Spec defines the behavior of the Namespace. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            spec?: pulumi.Input<inputs.core.v1.NamespaceSpec>;
+            spec?: pulumi.Input<inputs.core.v1.NamespaceSpec | undefined>;
             /**
              * Status describes the current status of a Namespace. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            status?: pulumi.Input<inputs.core.v1.NamespaceStatus>;
+            status?: pulumi.Input<inputs.core.v1.NamespaceStatus | undefined>;
         }
 
         /**
          * NamespaceCondition contains details about state of namespace.
          */
         export interface NamespaceCondition {
-            lastTransitionTime?: pulumi.Input<string>;
-            message?: pulumi.Input<string>;
-            reason?: pulumi.Input<string>;
+            lastTransitionTime?: pulumi.Input<string | undefined>;
+            message?: pulumi.Input<string | undefined>;
+            reason?: pulumi.Input<string | undefined>;
             /**
              * Status of the condition, one of True, False, Unknown.
              */
@@ -7208,7 +7208,7 @@ export namespace core {
             /**
              * Finalizers is an opaque list of values that must be empty to permanently remove object from storage. More info: https://kubernetes.io/docs/tasks/administer-cluster/namespaces/
              */
-            finalizers?: pulumi.Input<pulumi.Input<string>[]>;
+            finalizers?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         }
 
         /**
@@ -7218,11 +7218,11 @@ export namespace core {
             /**
              * Represents the latest available observations of a namespace's current state.
              */
-            conditions?: pulumi.Input<pulumi.Input<inputs.core.v1.NamespaceCondition>[]>;
+            conditions?: pulumi.Input<pulumi.Input<inputs.core.v1.NamespaceCondition>[] | undefined>;
             /**
              * Phase is the current lifecycle phase of the namespace. More info: https://kubernetes.io/docs/tasks/administer-cluster/namespaces/
              */
-            phase?: pulumi.Input<string>;
+            phase?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -7232,23 +7232,23 @@ export namespace core {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"v1">;
+            apiVersion?: pulumi.Input<"v1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"Node">;
+            kind?: pulumi.Input<"Node" | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Spec defines the behavior of a node. https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            spec?: pulumi.Input<inputs.core.v1.NodeSpec>;
+            spec?: pulumi.Input<inputs.core.v1.NodeSpec | undefined>;
             /**
              * Most recently observed status of the node. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            status?: pulumi.Input<inputs.core.v1.NodeStatus>;
+            status?: pulumi.Input<inputs.core.v1.NodeStatus | undefined>;
         }
 
         /**
@@ -7272,11 +7272,11 @@ export namespace core {
             /**
              * The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding "weight" to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.
              */
-            preferredDuringSchedulingIgnoredDuringExecution?: pulumi.Input<pulumi.Input<inputs.core.v1.PreferredSchedulingTerm>[]>;
+            preferredDuringSchedulingIgnoredDuringExecution?: pulumi.Input<pulumi.Input<inputs.core.v1.PreferredSchedulingTerm>[] | undefined>;
             /**
              * If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.
              */
-            requiredDuringSchedulingIgnoredDuringExecution?: pulumi.Input<inputs.core.v1.NodeSelector>;
+            requiredDuringSchedulingIgnoredDuringExecution?: pulumi.Input<inputs.core.v1.NodeSelector | undefined>;
         }
 
         /**
@@ -7286,19 +7286,19 @@ export namespace core {
             /**
              * Last time we got an update on a given condition.
              */
-            lastHeartbeatTime?: pulumi.Input<string>;
+            lastHeartbeatTime?: pulumi.Input<string | undefined>;
             /**
              * Last time the condition transit from one status to another.
              */
-            lastTransitionTime?: pulumi.Input<string>;
+            lastTransitionTime?: pulumi.Input<string | undefined>;
             /**
              * Human readable message indicating details about last transition.
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * (brief) reason for the condition's last transition.
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
             /**
              * Status of the condition, one of True, False, Unknown.
              */
@@ -7316,7 +7316,7 @@ export namespace core {
             /**
              * ConfigMap is a reference to a Node's ConfigMap
              */
-            configMap?: pulumi.Input<inputs.core.v1.ConfigMapNodeConfigSource>;
+            configMap?: pulumi.Input<inputs.core.v1.ConfigMapNodeConfigSource | undefined>;
         }
 
         /**
@@ -7326,19 +7326,19 @@ export namespace core {
             /**
              * Active reports the checkpointed config the node is actively using. Active will represent either the current version of the Assigned config, or the current LastKnownGood config, depending on whether attempting to use the Assigned config results in an error.
              */
-            active?: pulumi.Input<inputs.core.v1.NodeConfigSource>;
+            active?: pulumi.Input<inputs.core.v1.NodeConfigSource | undefined>;
             /**
              * Assigned reports the checkpointed config the node will try to use. When Node.Spec.ConfigSource is updated, the node checkpoints the associated config payload to local disk, along with a record indicating intended config. The node refers to this record to choose its config checkpoint, and reports this record in Assigned. Assigned only updates in the status after the record has been checkpointed to disk. When the Kubelet is restarted, it tries to make the Assigned config the Active config by loading and validating the checkpointed payload identified by Assigned.
              */
-            assigned?: pulumi.Input<inputs.core.v1.NodeConfigSource>;
+            assigned?: pulumi.Input<inputs.core.v1.NodeConfigSource | undefined>;
             /**
              * Error describes any problems reconciling the Spec.ConfigSource to the Active config. Errors may occur, for example, attempting to checkpoint Spec.ConfigSource to the local Assigned record, attempting to checkpoint the payload associated with Spec.ConfigSource, attempting to load or validate the Assigned config, etc. Errors may occur at different points while syncing config. Earlier errors (e.g. download or checkpointing errors) will not result in a rollback to LastKnownGood, and may resolve across Kubelet retries. Later errors (e.g. loading or validating a checkpointed config) will result in a rollback to LastKnownGood. In the latter case, it is usually possible to resolve the error by fixing the config assigned in Spec.ConfigSource. You can find additional information for debugging by searching the error message in the Kubelet log. Error is a human-readable description of the error state; machines can check whether or not Error is empty, but should not rely on the stability of the Error text across Kubelet versions.
              */
-            error?: pulumi.Input<string>;
+            error?: pulumi.Input<string | undefined>;
             /**
              * LastKnownGood reports the checkpointed config the node will fall back to when it encounters an error attempting to use the Assigned config. The Assigned config becomes the LastKnownGood config when the node determines that the Assigned config is stable and correct. This is currently implemented as a 10-minute soak period starting when the local record of Assigned config is updated. If the Assigned config is Active at the end of this period, it becomes the LastKnownGood. Note that if Spec.ConfigSource is reset to nil (use local defaults), the LastKnownGood is also immediately reset to nil, because the local default config is always assumed good. You should not make assumptions about the node's method of determining config stability and correctness, as this may change or become configurable in the future.
              */
-            lastKnownGood?: pulumi.Input<inputs.core.v1.NodeConfigSource>;
+            lastKnownGood?: pulumi.Input<inputs.core.v1.NodeConfigSource | undefined>;
         }
 
         /**
@@ -7348,7 +7348,7 @@ export namespace core {
             /**
              * Endpoint on which Kubelet is listening.
              */
-            kubeletEndpoint?: pulumi.Input<inputs.core.v1.DaemonEndpoint>;
+            kubeletEndpoint?: pulumi.Input<inputs.core.v1.DaemonEndpoint | undefined>;
         }
 
         /**
@@ -7376,7 +7376,7 @@ export namespace core {
             /**
              * An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
              */
-            values?: pulumi.Input<pulumi.Input<string>[]>;
+            values?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         }
 
         /**
@@ -7386,11 +7386,11 @@ export namespace core {
             /**
              * A list of node selector requirements by node's labels.
              */
-            matchExpressions?: pulumi.Input<pulumi.Input<inputs.core.v1.NodeSelectorRequirement>[]>;
+            matchExpressions?: pulumi.Input<pulumi.Input<inputs.core.v1.NodeSelectorRequirement>[] | undefined>;
             /**
              * A list of node selector requirements by node's fields.
              */
-            matchFields?: pulumi.Input<pulumi.Input<inputs.core.v1.NodeSelectorRequirement>[]>;
+            matchFields?: pulumi.Input<pulumi.Input<inputs.core.v1.NodeSelectorRequirement>[] | undefined>;
         }
 
         /**
@@ -7400,31 +7400,31 @@ export namespace core {
             /**
              * If specified, the source to get node configuration from The DynamicKubeletConfig feature gate must be enabled for the Kubelet to use this field
              */
-            configSource?: pulumi.Input<inputs.core.v1.NodeConfigSource>;
+            configSource?: pulumi.Input<inputs.core.v1.NodeConfigSource | undefined>;
             /**
              * Deprecated. Not all kubelets will set this field. Remove field after 1.13. see: https://issues.k8s.io/61966
              */
-            externalID?: pulumi.Input<string>;
+            externalID?: pulumi.Input<string | undefined>;
             /**
              * PodCIDR represents the pod IP range assigned to the node.
              */
-            podCIDR?: pulumi.Input<string>;
+            podCIDR?: pulumi.Input<string | undefined>;
             /**
              * podCIDRs represents the IP ranges assigned to the node for usage by Pods on that node. If this field is specified, the 0th entry must match the podCIDR field. It may contain at most 1 value for each of IPv4 and IPv6.
              */
-            podCIDRs?: pulumi.Input<pulumi.Input<string>[]>;
+            podCIDRs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * ID of the node assigned by the cloud provider in the format: <ProviderName>://<ProviderSpecificNodeID>
              */
-            providerID?: pulumi.Input<string>;
+            providerID?: pulumi.Input<string | undefined>;
             /**
              * If specified, the node's taints.
              */
-            taints?: pulumi.Input<pulumi.Input<inputs.core.v1.Taint>[]>;
+            taints?: pulumi.Input<pulumi.Input<inputs.core.v1.Taint>[] | undefined>;
             /**
              * Unschedulable controls node schedulability of new pods. By default, node is schedulable. More info: https://kubernetes.io/docs/concepts/nodes/node/#manual-node-administration
              */
-            unschedulable?: pulumi.Input<boolean>;
+            unschedulable?: pulumi.Input<boolean | undefined>;
         }
 
         /**
@@ -7434,47 +7434,47 @@ export namespace core {
             /**
              * List of addresses reachable to the node. Queried from cloud provider, if available. More info: https://kubernetes.io/docs/concepts/nodes/node/#addresses Note: This field is declared as mergeable, but the merge key is not sufficiently unique, which can cause data corruption when it is merged. Callers should instead use a full-replacement patch. See http://pr.k8s.io/79391 for an example.
              */
-            addresses?: pulumi.Input<pulumi.Input<inputs.core.v1.NodeAddress>[]>;
+            addresses?: pulumi.Input<pulumi.Input<inputs.core.v1.NodeAddress>[] | undefined>;
             /**
              * Allocatable represents the resources of a node that are available for scheduling. Defaults to Capacity.
              */
-            allocatable?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            allocatable?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
             /**
              * Capacity represents the total resources of a node. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#capacity
              */
-            capacity?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            capacity?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
             /**
              * Conditions is an array of current observed node conditions. More info: https://kubernetes.io/docs/concepts/nodes/node/#condition
              */
-            conditions?: pulumi.Input<pulumi.Input<inputs.core.v1.NodeCondition>[]>;
+            conditions?: pulumi.Input<pulumi.Input<inputs.core.v1.NodeCondition>[] | undefined>;
             /**
              * Status of the config assigned to the node via the dynamic Kubelet config feature.
              */
-            config?: pulumi.Input<inputs.core.v1.NodeConfigStatus>;
+            config?: pulumi.Input<inputs.core.v1.NodeConfigStatus | undefined>;
             /**
              * Endpoints of daemons running on the Node.
              */
-            daemonEndpoints?: pulumi.Input<inputs.core.v1.NodeDaemonEndpoints>;
+            daemonEndpoints?: pulumi.Input<inputs.core.v1.NodeDaemonEndpoints | undefined>;
             /**
              * List of container images on this node
              */
-            images?: pulumi.Input<pulumi.Input<inputs.core.v1.ContainerImage>[]>;
+            images?: pulumi.Input<pulumi.Input<inputs.core.v1.ContainerImage>[] | undefined>;
             /**
              * Set of ids/uuids to uniquely identify the node. More info: https://kubernetes.io/docs/concepts/nodes/node/#info
              */
-            nodeInfo?: pulumi.Input<inputs.core.v1.NodeSystemInfo>;
+            nodeInfo?: pulumi.Input<inputs.core.v1.NodeSystemInfo | undefined>;
             /**
              * NodePhase is the recently observed lifecycle phase of the node. More info: https://kubernetes.io/docs/concepts/nodes/node/#phase The field is never populated, and now is deprecated.
              */
-            phase?: pulumi.Input<string>;
+            phase?: pulumi.Input<string | undefined>;
             /**
              * List of volumes that are attached to the node.
              */
-            volumesAttached?: pulumi.Input<pulumi.Input<inputs.core.v1.AttachedVolume>[]>;
+            volumesAttached?: pulumi.Input<pulumi.Input<inputs.core.v1.AttachedVolume>[] | undefined>;
             /**
              * List of attachable volumes in use (mounted) by the node.
              */
-            volumesInUse?: pulumi.Input<pulumi.Input<string>[]>;
+            volumesInUse?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         }
 
         /**
@@ -7530,7 +7530,7 @@ export namespace core {
             /**
              * Version of the schema the FieldPath is written in terms of, defaults to "v1".
              */
-            apiVersion?: pulumi.Input<string>;
+            apiVersion?: pulumi.Input<string | undefined>;
             /**
              * Path of the field to select in the specified API version.
              */
@@ -7544,31 +7544,31 @@ export namespace core {
             /**
              * API version of the referent.
              */
-            apiVersion?: pulumi.Input<string>;
+            apiVersion?: pulumi.Input<string | undefined>;
             /**
              * If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers[2]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.
              */
-            fieldPath?: pulumi.Input<string>;
+            fieldPath?: pulumi.Input<string | undefined>;
             /**
              * Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<string>;
+            kind?: pulumi.Input<string | undefined>;
             /**
              * Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
              */
-            name?: pulumi.Input<string>;
+            name?: pulumi.Input<string | undefined>;
             /**
              * Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
              */
-            namespace?: pulumi.Input<string>;
+            namespace?: pulumi.Input<string | undefined>;
             /**
              * Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
              */
-            resourceVersion?: pulumi.Input<string>;
+            resourceVersion?: pulumi.Input<string | undefined>;
             /**
              * UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
              */
-            uid?: pulumi.Input<string>;
+            uid?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -7578,23 +7578,23 @@ export namespace core {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"v1">;
+            apiVersion?: pulumi.Input<"v1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"PersistentVolume">;
+            kind?: pulumi.Input<"PersistentVolume" | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Spec defines a specification of a persistent volume owned by the cluster. Provisioned by an administrator. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistent-volumes
              */
-            spec?: pulumi.Input<inputs.core.v1.PersistentVolumeSpec>;
+            spec?: pulumi.Input<inputs.core.v1.PersistentVolumeSpec | undefined>;
             /**
              * Status represents the current information/status for the persistent volume. Populated by the system. Read-only. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistent-volumes
              */
-            status?: pulumi.Input<inputs.core.v1.PersistentVolumeStatus>;
+            status?: pulumi.Input<inputs.core.v1.PersistentVolumeStatus | undefined>;
         }
 
         /**
@@ -7604,23 +7604,23 @@ export namespace core {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"v1">;
+            apiVersion?: pulumi.Input<"v1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"PersistentVolumeClaim">;
+            kind?: pulumi.Input<"PersistentVolumeClaim" | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Spec defines the desired characteristics of a volume requested by a pod author. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
              */
-            spec?: pulumi.Input<inputs.core.v1.PersistentVolumeClaimSpec>;
+            spec?: pulumi.Input<inputs.core.v1.PersistentVolumeClaimSpec | undefined>;
             /**
              * Status represents the current information/status of a persistent volume claim. Read-only. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
              */
-            status?: pulumi.Input<inputs.core.v1.PersistentVolumeClaimStatus>;
+            status?: pulumi.Input<inputs.core.v1.PersistentVolumeClaimStatus | undefined>;
         }
 
         /**
@@ -7630,19 +7630,19 @@ export namespace core {
             /**
              * Last time we probed the condition.
              */
-            lastProbeTime?: pulumi.Input<string>;
+            lastProbeTime?: pulumi.Input<string | undefined>;
             /**
              * Last time the condition transitioned from one status to another.
              */
-            lastTransitionTime?: pulumi.Input<string>;
+            lastTransitionTime?: pulumi.Input<string | undefined>;
             /**
              * Human-readable message indicating details about last transition.
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * Unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports "ResizeStarted" that means the underlying persistent volume is being resized.
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
             status: pulumi.Input<string>;
             type: pulumi.Input<string>;
         }
@@ -7654,31 +7654,31 @@ export namespace core {
             /**
              * AccessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
              */
-            accessModes?: pulumi.Input<pulumi.Input<string>[]>;
+            accessModes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * This field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) * An existing custom resource that implements data population (Alpha) In order to use custom resource types that implement data population, the AnyVolumeDataSource feature gate must be enabled. If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source.
              */
-            dataSource?: pulumi.Input<inputs.core.v1.TypedLocalObjectReference>;
+            dataSource?: pulumi.Input<inputs.core.v1.TypedLocalObjectReference | undefined>;
             /**
              * Resources represents the minimum resources the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources
              */
-            resources?: pulumi.Input<inputs.core.v1.ResourceRequirements>;
+            resources?: pulumi.Input<inputs.core.v1.ResourceRequirements | undefined>;
             /**
              * A label query over volumes to consider for binding.
              */
-            selector?: pulumi.Input<inputs.meta.v1.LabelSelector>;
+            selector?: pulumi.Input<inputs.meta.v1.LabelSelector | undefined>;
             /**
              * Name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
              */
-            storageClassName?: pulumi.Input<string>;
+            storageClassName?: pulumi.Input<string | undefined>;
             /**
              * volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
              */
-            volumeMode?: pulumi.Input<string>;
+            volumeMode?: pulumi.Input<string | undefined>;
             /**
              * VolumeName is the binding reference to the PersistentVolume backing this claim.
              */
-            volumeName?: pulumi.Input<string>;
+            volumeName?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -7688,19 +7688,19 @@ export namespace core {
             /**
              * AccessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
              */
-            accessModes?: pulumi.Input<pulumi.Input<string>[]>;
+            accessModes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * Represents the actual resources of the underlying volume.
              */
-            capacity?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            capacity?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
             /**
              * Current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'.
              */
-            conditions?: pulumi.Input<pulumi.Input<inputs.core.v1.PersistentVolumeClaimCondition>[]>;
+            conditions?: pulumi.Input<pulumi.Input<inputs.core.v1.PersistentVolumeClaimCondition>[] | undefined>;
             /**
              * Phase represents the current phase of PersistentVolumeClaim.
              */
-            phase?: pulumi.Input<string>;
+            phase?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -7710,7 +7710,7 @@ export namespace core {
             /**
              * May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation.
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * The specification for the PersistentVolumeClaim. The entire content is copied unchanged into the PVC that gets created from this template. The same fields as in a PersistentVolumeClaim are also valid here.
              */
@@ -7728,7 +7728,7 @@ export namespace core {
             /**
              * Will force the ReadOnly setting in VolumeMounts. Default false.
              */
-            readOnly?: pulumi.Input<boolean>;
+            readOnly?: pulumi.Input<boolean | undefined>;
         }
 
         /**
@@ -7738,123 +7738,123 @@ export namespace core {
             /**
              * AccessModes contains all ways the volume can be mounted. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes
              */
-            accessModes?: pulumi.Input<pulumi.Input<string>[]>;
+            accessModes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * AWSElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
              */
-            awsElasticBlockStore?: pulumi.Input<inputs.core.v1.AWSElasticBlockStoreVolumeSource>;
+            awsElasticBlockStore?: pulumi.Input<inputs.core.v1.AWSElasticBlockStoreVolumeSource | undefined>;
             /**
              * AzureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.
              */
-            azureDisk?: pulumi.Input<inputs.core.v1.AzureDiskVolumeSource>;
+            azureDisk?: pulumi.Input<inputs.core.v1.AzureDiskVolumeSource | undefined>;
             /**
              * AzureFile represents an Azure File Service mount on the host and bind mount to the pod.
              */
-            azureFile?: pulumi.Input<inputs.core.v1.AzureFilePersistentVolumeSource>;
+            azureFile?: pulumi.Input<inputs.core.v1.AzureFilePersistentVolumeSource | undefined>;
             /**
              * A description of the persistent volume's resources and capacity. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#capacity
              */
-            capacity?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            capacity?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
             /**
              * CephFS represents a Ceph FS mount on the host that shares a pod's lifetime
              */
-            cephfs?: pulumi.Input<inputs.core.v1.CephFSPersistentVolumeSource>;
+            cephfs?: pulumi.Input<inputs.core.v1.CephFSPersistentVolumeSource | undefined>;
             /**
              * Cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
              */
-            cinder?: pulumi.Input<inputs.core.v1.CinderPersistentVolumeSource>;
+            cinder?: pulumi.Input<inputs.core.v1.CinderPersistentVolumeSource | undefined>;
             /**
              * ClaimRef is part of a bi-directional binding between PersistentVolume and PersistentVolumeClaim. Expected to be non-nil when bound. claim.VolumeName is the authoritative bind between PV and PVC. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#binding
              */
-            claimRef?: pulumi.Input<inputs.core.v1.ObjectReference>;
+            claimRef?: pulumi.Input<inputs.core.v1.ObjectReference | undefined>;
             /**
              * CSI represents storage that is handled by an external CSI driver (Beta feature).
              */
-            csi?: pulumi.Input<inputs.core.v1.CSIPersistentVolumeSource>;
+            csi?: pulumi.Input<inputs.core.v1.CSIPersistentVolumeSource | undefined>;
             /**
              * FC represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod.
              */
-            fc?: pulumi.Input<inputs.core.v1.FCVolumeSource>;
+            fc?: pulumi.Input<inputs.core.v1.FCVolumeSource | undefined>;
             /**
              * FlexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.
              */
-            flexVolume?: pulumi.Input<inputs.core.v1.FlexPersistentVolumeSource>;
+            flexVolume?: pulumi.Input<inputs.core.v1.FlexPersistentVolumeSource | undefined>;
             /**
              * Flocker represents a Flocker volume attached to a kubelet's host machine and exposed to the pod for its usage. This depends on the Flocker control service being running
              */
-            flocker?: pulumi.Input<inputs.core.v1.FlockerVolumeSource>;
+            flocker?: pulumi.Input<inputs.core.v1.FlockerVolumeSource | undefined>;
             /**
              * GCEPersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Provisioned by an admin. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
              */
-            gcePersistentDisk?: pulumi.Input<inputs.core.v1.GCEPersistentDiskVolumeSource>;
+            gcePersistentDisk?: pulumi.Input<inputs.core.v1.GCEPersistentDiskVolumeSource | undefined>;
             /**
              * Glusterfs represents a Glusterfs volume that is attached to a host and exposed to the pod. Provisioned by an admin. More info: https://examples.k8s.io/volumes/glusterfs/README.md
              */
-            glusterfs?: pulumi.Input<inputs.core.v1.GlusterfsPersistentVolumeSource>;
+            glusterfs?: pulumi.Input<inputs.core.v1.GlusterfsPersistentVolumeSource | undefined>;
             /**
              * HostPath represents a directory on the host. Provisioned by a developer or tester. This is useful for single-node development and testing only! On-host storage is not supported in any way and WILL NOT WORK in a multi-node cluster. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
              */
-            hostPath?: pulumi.Input<inputs.core.v1.HostPathVolumeSource>;
+            hostPath?: pulumi.Input<inputs.core.v1.HostPathVolumeSource | undefined>;
             /**
              * ISCSI represents an ISCSI Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Provisioned by an admin.
              */
-            iscsi?: pulumi.Input<inputs.core.v1.ISCSIPersistentVolumeSource>;
+            iscsi?: pulumi.Input<inputs.core.v1.ISCSIPersistentVolumeSource | undefined>;
             /**
              * Local represents directly-attached storage with node affinity
              */
-            local?: pulumi.Input<inputs.core.v1.LocalVolumeSource>;
+            local?: pulumi.Input<inputs.core.v1.LocalVolumeSource | undefined>;
             /**
              * A list of mount options, e.g. ["ro", "soft"]. Not validated - mount will simply fail if one is invalid. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#mount-options
              */
-            mountOptions?: pulumi.Input<pulumi.Input<string>[]>;
+            mountOptions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * NFS represents an NFS mount on the host. Provisioned by an admin. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
              */
-            nfs?: pulumi.Input<inputs.core.v1.NFSVolumeSource>;
+            nfs?: pulumi.Input<inputs.core.v1.NFSVolumeSource | undefined>;
             /**
              * NodeAffinity defines constraints that limit what nodes this volume can be accessed from. This field influences the scheduling of pods that use this volume.
              */
-            nodeAffinity?: pulumi.Input<inputs.core.v1.VolumeNodeAffinity>;
+            nodeAffinity?: pulumi.Input<inputs.core.v1.VolumeNodeAffinity | undefined>;
             /**
              * What happens to a persistent volume when released from its claim. Valid options are Retain (default for manually created PersistentVolumes), Delete (default for dynamically provisioned PersistentVolumes), and Recycle (deprecated). Recycle must be supported by the volume plugin underlying this PersistentVolume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#reclaiming
              */
-            persistentVolumeReclaimPolicy?: pulumi.Input<string>;
+            persistentVolumeReclaimPolicy?: pulumi.Input<string | undefined>;
             /**
              * PhotonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine
              */
-            photonPersistentDisk?: pulumi.Input<inputs.core.v1.PhotonPersistentDiskVolumeSource>;
+            photonPersistentDisk?: pulumi.Input<inputs.core.v1.PhotonPersistentDiskVolumeSource | undefined>;
             /**
              * PortworxVolume represents a portworx volume attached and mounted on kubelets host machine
              */
-            portworxVolume?: pulumi.Input<inputs.core.v1.PortworxVolumeSource>;
+            portworxVolume?: pulumi.Input<inputs.core.v1.PortworxVolumeSource | undefined>;
             /**
              * Quobyte represents a Quobyte mount on the host that shares a pod's lifetime
              */
-            quobyte?: pulumi.Input<inputs.core.v1.QuobyteVolumeSource>;
+            quobyte?: pulumi.Input<inputs.core.v1.QuobyteVolumeSource | undefined>;
             /**
              * RBD represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md
              */
-            rbd?: pulumi.Input<inputs.core.v1.RBDPersistentVolumeSource>;
+            rbd?: pulumi.Input<inputs.core.v1.RBDPersistentVolumeSource | undefined>;
             /**
              * ScaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.
              */
-            scaleIO?: pulumi.Input<inputs.core.v1.ScaleIOPersistentVolumeSource>;
+            scaleIO?: pulumi.Input<inputs.core.v1.ScaleIOPersistentVolumeSource | undefined>;
             /**
              * Name of StorageClass to which this persistent volume belongs. Empty value means that this volume does not belong to any StorageClass.
              */
-            storageClassName?: pulumi.Input<string>;
+            storageClassName?: pulumi.Input<string | undefined>;
             /**
              * StorageOS represents a StorageOS volume that is attached to the kubelet's host machine and mounted into the pod More info: https://examples.k8s.io/volumes/storageos/README.md
              */
-            storageos?: pulumi.Input<inputs.core.v1.StorageOSPersistentVolumeSource>;
+            storageos?: pulumi.Input<inputs.core.v1.StorageOSPersistentVolumeSource | undefined>;
             /**
              * volumeMode defines if a volume is intended to be used with a formatted filesystem or to remain in raw block state. Value of Filesystem is implied when not included in spec.
              */
-            volumeMode?: pulumi.Input<string>;
+            volumeMode?: pulumi.Input<string | undefined>;
             /**
              * VsphereVolume represents a vSphere volume attached and mounted on kubelets host machine
              */
-            vsphereVolume?: pulumi.Input<inputs.core.v1.VsphereVirtualDiskVolumeSource>;
+            vsphereVolume?: pulumi.Input<inputs.core.v1.VsphereVirtualDiskVolumeSource | undefined>;
         }
 
         /**
@@ -7864,15 +7864,15 @@ export namespace core {
             /**
              * A human-readable message indicating details about why the volume is in this state.
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * Phase indicates if a volume is available, bound to a claim, or released by a claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#phase
              */
-            phase?: pulumi.Input<string>;
+            phase?: pulumi.Input<string | undefined>;
             /**
              * Reason is a brief CamelCase string that describes any failure and is meant for machine parsing and tidy display in the CLI.
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -7882,7 +7882,7 @@ export namespace core {
             /**
              * Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified.
              */
-            fsType?: pulumi.Input<string>;
+            fsType?: pulumi.Input<string | undefined>;
             /**
              * ID that identifies Photon Controller persistent disk
              */
@@ -7911,23 +7911,23 @@ export namespace core {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"v1">;
+            apiVersion?: pulumi.Input<"v1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"Pod">;
+            kind?: pulumi.Input<"Pod" | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Specification of the desired behavior of the pod. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            spec?: pulumi.Input<inputs.core.v1.PodSpec>;
+            spec?: pulumi.Input<inputs.core.v1.PodSpec | undefined>;
             /**
              * Most recently observed status of the pod. This data may not be up to date. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            status?: pulumi.Input<inputs.core.v1.PodStatus>;
+            status?: pulumi.Input<inputs.core.v1.PodStatus | undefined>;
         }
 
         /**
@@ -7937,11 +7937,11 @@ export namespace core {
             /**
              * The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding "weight" to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.
              */
-            preferredDuringSchedulingIgnoredDuringExecution?: pulumi.Input<pulumi.Input<inputs.core.v1.WeightedPodAffinityTerm>[]>;
+            preferredDuringSchedulingIgnoredDuringExecution?: pulumi.Input<pulumi.Input<inputs.core.v1.WeightedPodAffinityTerm>[] | undefined>;
             /**
              * If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.
              */
-            requiredDuringSchedulingIgnoredDuringExecution?: pulumi.Input<pulumi.Input<inputs.core.v1.PodAffinityTerm>[]>;
+            requiredDuringSchedulingIgnoredDuringExecution?: pulumi.Input<pulumi.Input<inputs.core.v1.PodAffinityTerm>[] | undefined>;
         }
 
         /**
@@ -7951,11 +7951,11 @@ export namespace core {
             /**
              * A label query over a set of resources, in this case pods.
              */
-            labelSelector?: pulumi.Input<inputs.meta.v1.LabelSelector>;
+            labelSelector?: pulumi.Input<inputs.meta.v1.LabelSelector | undefined>;
             /**
              * namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means "this pod's namespace"
              */
-            namespaces?: pulumi.Input<pulumi.Input<string>[]>;
+            namespaces?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
              */
@@ -7969,11 +7969,11 @@ export namespace core {
             /**
              * The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding "weight" to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.
              */
-            preferredDuringSchedulingIgnoredDuringExecution?: pulumi.Input<pulumi.Input<inputs.core.v1.WeightedPodAffinityTerm>[]>;
+            preferredDuringSchedulingIgnoredDuringExecution?: pulumi.Input<pulumi.Input<inputs.core.v1.WeightedPodAffinityTerm>[] | undefined>;
             /**
              * If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.
              */
-            requiredDuringSchedulingIgnoredDuringExecution?: pulumi.Input<pulumi.Input<inputs.core.v1.PodAffinityTerm>[]>;
+            requiredDuringSchedulingIgnoredDuringExecution?: pulumi.Input<pulumi.Input<inputs.core.v1.PodAffinityTerm>[] | undefined>;
         }
 
         /**
@@ -7983,19 +7983,19 @@ export namespace core {
             /**
              * Last time we probed the condition.
              */
-            lastProbeTime?: pulumi.Input<string>;
+            lastProbeTime?: pulumi.Input<string | undefined>;
             /**
              * Last time the condition transitioned from one status to another.
              */
-            lastTransitionTime?: pulumi.Input<string>;
+            lastTransitionTime?: pulumi.Input<string | undefined>;
             /**
              * Human-readable message indicating details about last transition.
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * Unique, one-word, CamelCase reason for the condition's last transition.
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
             /**
              * Status is the status of the condition. Can be True, False, Unknown. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-conditions
              */
@@ -8013,15 +8013,15 @@ export namespace core {
             /**
              * A list of DNS name server IP addresses. This will be appended to the base nameservers generated from DNSPolicy. Duplicated nameservers will be removed.
              */
-            nameservers?: pulumi.Input<pulumi.Input<string>[]>;
+            nameservers?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * A list of DNS resolver options. This will be merged with the base options generated from DNSPolicy. Duplicated entries will be removed. Resolution options given in Options will override those that appear in the base DNSPolicy.
              */
-            options?: pulumi.Input<pulumi.Input<inputs.core.v1.PodDNSConfigOption>[]>;
+            options?: pulumi.Input<pulumi.Input<inputs.core.v1.PodDNSConfigOption>[] | undefined>;
             /**
              * A list of DNS search domains for host-name lookup. This will be appended to the base search paths generated from DNSPolicy. Duplicated search paths will be removed.
              */
-            searches?: pulumi.Input<pulumi.Input<string>[]>;
+            searches?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         }
 
         /**
@@ -8031,8 +8031,8 @@ export namespace core {
             /**
              * Required.
              */
-            name?: pulumi.Input<string>;
-            value?: pulumi.Input<string>;
+            name?: pulumi.Input<string | undefined>;
+            value?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -8043,7 +8043,7 @@ export namespace core {
             /**
              * ip is an IP address (IPv4 or IPv6) assigned to the pod
              */
-            ip?: pulumi.Input<string>;
+            ip?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -8067,43 +8067,43 @@ export namespace core {
              *
              * If unset, the Kubelet will not modify the ownership and permissions of any volume.
              */
-            fsGroup?: pulumi.Input<number>;
+            fsGroup?: pulumi.Input<number | undefined>;
             /**
              * fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are "OnRootMismatch" and "Always". If not specified, "Always" is used.
              */
-            fsGroupChangePolicy?: pulumi.Input<string>;
+            fsGroupChangePolicy?: pulumi.Input<string | undefined>;
             /**
              * The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container.
              */
-            runAsGroup?: pulumi.Input<number>;
+            runAsGroup?: pulumi.Input<number | undefined>;
             /**
              * Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
              */
-            runAsNonRoot?: pulumi.Input<boolean>;
+            runAsNonRoot?: pulumi.Input<boolean | undefined>;
             /**
              * The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container.
              */
-            runAsUser?: pulumi.Input<number>;
+            runAsUser?: pulumi.Input<number | undefined>;
             /**
              * The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container.
              */
-            seLinuxOptions?: pulumi.Input<inputs.core.v1.SELinuxOptions>;
+            seLinuxOptions?: pulumi.Input<inputs.core.v1.SELinuxOptions | undefined>;
             /**
              * The seccomp options to use by the containers in this pod.
              */
-            seccompProfile?: pulumi.Input<inputs.core.v1.SeccompProfile>;
+            seccompProfile?: pulumi.Input<inputs.core.v1.SeccompProfile | undefined>;
             /**
              * A list of groups applied to the first process run in each container, in addition to the container's primary GID.  If unspecified, no groups will be added to any container.
              */
-            supplementalGroups?: pulumi.Input<pulumi.Input<number>[]>;
+            supplementalGroups?: pulumi.Input<pulumi.Input<number>[] | undefined>;
             /**
              * Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch.
              */
-            sysctls?: pulumi.Input<pulumi.Input<inputs.core.v1.Sysctl>[]>;
+            sysctls?: pulumi.Input<pulumi.Input<inputs.core.v1.Sysctl>[] | undefined>;
             /**
              * The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
              */
-            windowsOptions?: pulumi.Input<inputs.core.v1.WindowsSecurityContextOptions>;
+            windowsOptions?: pulumi.Input<inputs.core.v1.WindowsSecurityContextOptions | undefined>;
         }
 
         /**
@@ -8113,15 +8113,15 @@ export namespace core {
             /**
              * Optional duration in seconds the pod may be active on the node relative to StartTime before the system will actively try to mark it failed and kill associated containers. Value must be a positive integer.
              */
-            activeDeadlineSeconds?: pulumi.Input<number>;
+            activeDeadlineSeconds?: pulumi.Input<number | undefined>;
             /**
              * If specified, the pod's scheduling constraints
              */
-            affinity?: pulumi.Input<inputs.core.v1.Affinity>;
+            affinity?: pulumi.Input<inputs.core.v1.Affinity | undefined>;
             /**
              * AutomountServiceAccountToken indicates whether a service account token should be automatically mounted.
              */
-            automountServiceAccountToken?: pulumi.Input<boolean>;
+            automountServiceAccountToken?: pulumi.Input<boolean | undefined>;
             /**
              * List of containers belonging to the pod. Containers cannot currently be added or removed. There must be at least one container in a Pod. Cannot be updated.
              */
@@ -8129,127 +8129,127 @@ export namespace core {
             /**
              * Specifies the DNS parameters of a pod. Parameters specified here will be merged to the generated DNS configuration based on DNSPolicy.
              */
-            dnsConfig?: pulumi.Input<inputs.core.v1.PodDNSConfig>;
+            dnsConfig?: pulumi.Input<inputs.core.v1.PodDNSConfig | undefined>;
             /**
              * Set DNS policy for the pod. Defaults to "ClusterFirst". Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'. DNS parameters given in DNSConfig will be merged with the policy selected with DNSPolicy. To have DNS options set along with hostNetwork, you have to specify DNS policy explicitly to 'ClusterFirstWithHostNet'.
              */
-            dnsPolicy?: pulumi.Input<string>;
+            dnsPolicy?: pulumi.Input<string | undefined>;
             /**
              * EnableServiceLinks indicates whether information about services should be injected into pod's environment variables, matching the syntax of Docker links. Optional: Defaults to true.
              */
-            enableServiceLinks?: pulumi.Input<boolean>;
+            enableServiceLinks?: pulumi.Input<boolean | undefined>;
             /**
              * List of ephemeral containers run in this pod. Ephemeral containers may be run in an existing pod to perform user-initiated actions such as debugging. This list cannot be specified when creating a pod, and it cannot be modified by updating the pod spec. In order to add an ephemeral container to an existing pod, use the pod's ephemeralcontainers subresource. This field is alpha-level and is only honored by servers that enable the EphemeralContainers feature.
              */
-            ephemeralContainers?: pulumi.Input<pulumi.Input<inputs.core.v1.EphemeralContainer>[]>;
+            ephemeralContainers?: pulumi.Input<pulumi.Input<inputs.core.v1.EphemeralContainer>[] | undefined>;
             /**
              * HostAliases is an optional list of hosts and IPs that will be injected into the pod's hosts file if specified. This is only valid for non-hostNetwork pods.
              */
-            hostAliases?: pulumi.Input<pulumi.Input<inputs.core.v1.HostAlias>[]>;
+            hostAliases?: pulumi.Input<pulumi.Input<inputs.core.v1.HostAlias>[] | undefined>;
             /**
              * Use the host's ipc namespace. Optional: Default to false.
              */
-            hostIPC?: pulumi.Input<boolean>;
+            hostIPC?: pulumi.Input<boolean | undefined>;
             /**
              * Host networking requested for this pod. Use the host's network namespace. If this option is set, the ports that will be used must be specified. Default to false.
              */
-            hostNetwork?: pulumi.Input<boolean>;
+            hostNetwork?: pulumi.Input<boolean | undefined>;
             /**
              * Use the host's pid namespace. Optional: Default to false.
              */
-            hostPID?: pulumi.Input<boolean>;
+            hostPID?: pulumi.Input<boolean | undefined>;
             /**
              * Specifies the hostname of the Pod If not specified, the pod's hostname will be set to a system-defined value.
              */
-            hostname?: pulumi.Input<string>;
+            hostname?: pulumi.Input<string | undefined>;
             /**
              * ImagePullSecrets is an optional list of references to secrets in the same namespace to use for pulling any of the images used by this PodSpec. If specified, these secrets will be passed to individual puller implementations for them to use. For example, in the case of docker, only DockerConfig type secrets are honored. More info: https://kubernetes.io/docs/concepts/containers/images#specifying-imagepullsecrets-on-a-pod
              */
-            imagePullSecrets?: pulumi.Input<pulumi.Input<inputs.core.v1.LocalObjectReference>[]>;
+            imagePullSecrets?: pulumi.Input<pulumi.Input<inputs.core.v1.LocalObjectReference>[] | undefined>;
             /**
              * List of initialization containers belonging to the pod. Init containers are executed in order prior to containers being started. If any init container fails, the pod is considered to have failed and is handled according to its restartPolicy. The name for an init container or normal container must be unique among all containers. Init containers may not have Lifecycle actions, Readiness probes, Liveness probes, or Startup probes. The resourceRequirements of an init container are taken into account during scheduling by finding the highest request/limit for each resource type, and then using the max of of that value or the sum of the normal containers. Limits are applied to init containers in a similar fashion. Init containers cannot currently be added or removed. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
              */
-            initContainers?: pulumi.Input<pulumi.Input<inputs.core.v1.Container>[]>;
+            initContainers?: pulumi.Input<pulumi.Input<inputs.core.v1.Container>[] | undefined>;
             /**
              * NodeName is a request to schedule this pod onto a specific node. If it is non-empty, the scheduler simply schedules this pod onto that node, assuming that it fits resource requirements.
              */
-            nodeName?: pulumi.Input<string>;
+            nodeName?: pulumi.Input<string | undefined>;
             /**
              * NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
              */
-            nodeSelector?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            nodeSelector?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
             /**
              * Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. This field will be autopopulated at admission time by the RuntimeClass admission controller. If the RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests. The RuntimeClass admission controller will reject Pod create requests which have the overhead already set. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the value defined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero. More info: https://git.k8s.io/enhancements/keps/sig-node/20190226-pod-overhead.md This field is alpha-level as of Kubernetes v1.16, and is only honored by servers that enable the PodOverhead feature.
              */
-            overhead?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            overhead?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
             /**
              * PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset. This field is beta-level, gated by the NonPreemptingPriority feature-gate.
              */
-            preemptionPolicy?: pulumi.Input<string>;
+            preemptionPolicy?: pulumi.Input<string | undefined>;
             /**
              * The priority value. Various system components use this field to find the priority of the pod. When Priority Admission Controller is enabled, it prevents users from setting this field. The admission controller populates this field from PriorityClassName. The higher the value, the higher the priority.
              */
-            priority?: pulumi.Input<number>;
+            priority?: pulumi.Input<number | undefined>;
             /**
              * If specified, indicates the pod's priority. "system-node-critical" and "system-cluster-critical" are two special keywords which indicate the highest priorities with the former being the highest priority. Any other name must be defined by creating a PriorityClass object with that name. If not specified, the pod priority will be default or zero if there is no default.
              */
-            priorityClassName?: pulumi.Input<string>;
+            priorityClassName?: pulumi.Input<string | undefined>;
             /**
              * If specified, all readiness gates will be evaluated for pod readiness. A pod is ready when all its containers are ready AND all conditions specified in the readiness gates have status equal to "True" More info: https://git.k8s.io/enhancements/keps/sig-network/0007-pod-ready%2B%2B.md
              */
-            readinessGates?: pulumi.Input<pulumi.Input<inputs.core.v1.PodReadinessGate>[]>;
+            readinessGates?: pulumi.Input<pulumi.Input<inputs.core.v1.PodReadinessGate>[] | undefined>;
             /**
              * Restart policy for all containers within the pod. One of Always, OnFailure, Never. Default to Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
              */
-            restartPolicy?: pulumi.Input<string>;
+            restartPolicy?: pulumi.Input<string | undefined>;
             /**
              * RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be used to run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run. If unset or empty, the "legacy" RuntimeClass will be used, which is an implicit class with an empty definition that uses the default runtime handler. More info: https://git.k8s.io/enhancements/keps/sig-node/runtime-class.md This is a beta feature as of Kubernetes v1.14.
              */
-            runtimeClassName?: pulumi.Input<string>;
+            runtimeClassName?: pulumi.Input<string | undefined>;
             /**
              * If specified, the pod will be dispatched by specified scheduler. If not specified, the pod will be dispatched by default scheduler.
              */
-            schedulerName?: pulumi.Input<string>;
+            schedulerName?: pulumi.Input<string | undefined>;
             /**
              * SecurityContext holds pod-level security attributes and common container settings. Optional: Defaults to empty.  See type description for default values of each field.
              */
-            securityContext?: pulumi.Input<inputs.core.v1.PodSecurityContext>;
+            securityContext?: pulumi.Input<inputs.core.v1.PodSecurityContext | undefined>;
             /**
              * DeprecatedServiceAccount is a depreciated alias for ServiceAccountName. Deprecated: Use serviceAccountName instead.
              */
-            serviceAccount?: pulumi.Input<string>;
+            serviceAccount?: pulumi.Input<string | undefined>;
             /**
              * ServiceAccountName is the name of the ServiceAccount to use to run this pod. More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
              */
-            serviceAccountName?: pulumi.Input<string>;
+            serviceAccountName?: pulumi.Input<string | undefined>;
             /**
              * If true the pod's hostname will be configured as the pod's FQDN, rather than the leaf name (the default). In Linux containers, this means setting the FQDN in the hostname field of the kernel (the nodename field of struct utsname). In Windows containers, this means setting the registry value of hostname for the registry key HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters to FQDN. If a pod does not have FQDN, this has no effect. Default to false.
              */
-            setHostnameAsFQDN?: pulumi.Input<boolean>;
+            setHostnameAsFQDN?: pulumi.Input<boolean | undefined>;
             /**
              * Share a single process namespace between all of the containers in a pod. When this is set containers will be able to view and signal processes from other containers in the same pod, and the first process in each container will not be assigned PID 1. HostPID and ShareProcessNamespace cannot both be set. Optional: Default to false.
              */
-            shareProcessNamespace?: pulumi.Input<boolean>;
+            shareProcessNamespace?: pulumi.Input<boolean | undefined>;
             /**
              * If specified, the fully qualified Pod hostname will be "<hostname>.<subdomain>.<pod namespace>.svc.<cluster domain>". If not specified, the pod will not have a domainname at all.
              */
-            subdomain?: pulumi.Input<string>;
+            subdomain?: pulumi.Input<string | undefined>;
             /**
              * Optional duration in seconds the pod needs to terminate gracefully. May be decreased in delete request. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period will be used instead. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. Defaults to 30 seconds.
              */
-            terminationGracePeriodSeconds?: pulumi.Input<number>;
+            terminationGracePeriodSeconds?: pulumi.Input<number | undefined>;
             /**
              * If specified, the pod's tolerations.
              */
-            tolerations?: pulumi.Input<pulumi.Input<inputs.core.v1.Toleration>[]>;
+            tolerations?: pulumi.Input<pulumi.Input<inputs.core.v1.Toleration>[] | undefined>;
             /**
              * TopologySpreadConstraints describes how a group of pods ought to spread across topology domains. Scheduler will schedule pods in a way which abides by the constraints. All topologySpreadConstraints are ANDed.
              */
-            topologySpreadConstraints?: pulumi.Input<pulumi.Input<inputs.core.v1.TopologySpreadConstraint>[]>;
+            topologySpreadConstraints?: pulumi.Input<pulumi.Input<inputs.core.v1.TopologySpreadConstraint>[] | undefined>;
             /**
              * List of volumes that can be mounted by containers belonging to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes
              */
-            volumes?: pulumi.Input<pulumi.Input<inputs.core.v1.Volume>[]>;
+            volumes?: pulumi.Input<pulumi.Input<inputs.core.v1.Volume>[] | undefined>;
         }
 
         /**
@@ -8259,31 +8259,31 @@ export namespace core {
             /**
              * Current service state of pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-conditions
              */
-            conditions?: pulumi.Input<pulumi.Input<inputs.core.v1.PodCondition>[]>;
+            conditions?: pulumi.Input<pulumi.Input<inputs.core.v1.PodCondition>[] | undefined>;
             /**
              * The list has one entry per container in the manifest. Each entry is currently the output of `docker inspect`. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-and-container-status
              */
-            containerStatuses?: pulumi.Input<pulumi.Input<inputs.core.v1.ContainerStatus>[]>;
+            containerStatuses?: pulumi.Input<pulumi.Input<inputs.core.v1.ContainerStatus>[] | undefined>;
             /**
              * Status for any ephemeral containers that have run in this pod. This field is alpha-level and is only populated by servers that enable the EphemeralContainers feature.
              */
-            ephemeralContainerStatuses?: pulumi.Input<pulumi.Input<inputs.core.v1.ContainerStatus>[]>;
+            ephemeralContainerStatuses?: pulumi.Input<pulumi.Input<inputs.core.v1.ContainerStatus>[] | undefined>;
             /**
              * IP address of the host to which the pod is assigned. Empty if not yet scheduled.
              */
-            hostIP?: pulumi.Input<string>;
+            hostIP?: pulumi.Input<string | undefined>;
             /**
              * The list has one entry per init container in the manifest. The most recent successful init container will have ready = true, the most recently started container will have startTime set. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-and-container-status
              */
-            initContainerStatuses?: pulumi.Input<pulumi.Input<inputs.core.v1.ContainerStatus>[]>;
+            initContainerStatuses?: pulumi.Input<pulumi.Input<inputs.core.v1.ContainerStatus>[] | undefined>;
             /**
              * A human readable message indicating details about why the pod is in this condition.
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * nominatedNodeName is set only when this pod preempts other pods on the node, but it cannot be scheduled right away as preemption victims receive their graceful termination periods. This field does not guarantee that the pod will be scheduled on this node. Scheduler may decide to place the pod elsewhere if other nodes become available sooner. Scheduler may also decide to give the resources on this node to a higher priority pod that is created after preemption. As a result, this field may be different than PodSpec.nodeName when the pod is scheduled.
              */
-            nominatedNodeName?: pulumi.Input<string>;
+            nominatedNodeName?: pulumi.Input<string | undefined>;
             /**
              * The phase of a Pod is a simple, high-level summary of where the Pod is in its lifecycle. The conditions array, the reason and message fields, and the individual container status arrays contain more detail about the pod's status. There are five possible phase values:
              *
@@ -8291,27 +8291,27 @@ export namespace core {
              *
              * More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-phase
              */
-            phase?: pulumi.Input<string>;
+            phase?: pulumi.Input<string | undefined>;
             /**
              * IP address allocated to the pod. Routable at least within the cluster. Empty if not yet allocated.
              */
-            podIP?: pulumi.Input<string>;
+            podIP?: pulumi.Input<string | undefined>;
             /**
              * podIPs holds the IP addresses allocated to the pod. If this field is specified, the 0th entry must match the podIP field. Pods may be allocated at most 1 value for each of IPv4 and IPv6. This list is empty if no IPs have been allocated yet.
              */
-            podIPs?: pulumi.Input<pulumi.Input<inputs.core.v1.PodIP>[]>;
+            podIPs?: pulumi.Input<pulumi.Input<inputs.core.v1.PodIP>[] | undefined>;
             /**
              * The Quality of Service (QOS) classification assigned to the pod based on resource requirements See PodQOSClass type for available QOS classes More info: https://git.k8s.io/community/contributors/design-proposals/node/resource-qos.md
              */
-            qosClass?: pulumi.Input<string>;
+            qosClass?: pulumi.Input<string | undefined>;
             /**
              * A brief CamelCase message indicating details about why the pod is in this state. e.g. 'Evicted'
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
             /**
              * RFC 3339 date and time at which the object was acknowledged by the Kubelet. This is before the Kubelet pulled the container image(s) for the pod.
              */
-            startTime?: pulumi.Input<string>;
+            startTime?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -8321,19 +8321,19 @@ export namespace core {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"v1">;
+            apiVersion?: pulumi.Input<"v1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"PodTemplate">;
+            kind?: pulumi.Input<"PodTemplate" | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Template defines the pods that will be created from this pod template. https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            template?: pulumi.Input<inputs.core.v1.PodTemplateSpec>;
+            template?: pulumi.Input<inputs.core.v1.PodTemplateSpec | undefined>;
         }
 
         /**
@@ -8343,11 +8343,11 @@ export namespace core {
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Specification of the desired behavior of the pod. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            spec?: pulumi.Input<inputs.core.v1.PodSpec>;
+            spec?: pulumi.Input<inputs.core.v1.PodSpec | undefined>;
         }
 
         export interface PortStatus {
@@ -8357,7 +8357,7 @@ export namespace core {
              * - cloud provider specific error values must have names that comply with the
              *   format foo.example.com/CamelCase.
              */
-            error?: pulumi.Input<string>;
+            error?: pulumi.Input<string | undefined>;
             /**
              * Port is the port number of the service port of which status is recorded here
              */
@@ -8375,11 +8375,11 @@ export namespace core {
             /**
              * FSType represents the filesystem type to mount Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs". Implicitly inferred to be "ext4" if unspecified.
              */
-            fsType?: pulumi.Input<string>;
+            fsType?: pulumi.Input<string | undefined>;
             /**
              * Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
              */
-            readOnly?: pulumi.Input<boolean>;
+            readOnly?: pulumi.Input<boolean | undefined>;
             /**
              * VolumeID uniquely identifies a Portworx volume
              */
@@ -8407,35 +8407,35 @@ export namespace core {
             /**
              * One and only one of the following should be specified. Exec specifies the action to take.
              */
-            exec?: pulumi.Input<inputs.core.v1.ExecAction>;
+            exec?: pulumi.Input<inputs.core.v1.ExecAction | undefined>;
             /**
              * Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
              */
-            failureThreshold?: pulumi.Input<number>;
+            failureThreshold?: pulumi.Input<number | undefined>;
             /**
              * HTTPGet specifies the http request to perform.
              */
-            httpGet?: pulumi.Input<inputs.core.v1.HTTPGetAction>;
+            httpGet?: pulumi.Input<inputs.core.v1.HTTPGetAction | undefined>;
             /**
              * Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
              */
-            initialDelaySeconds?: pulumi.Input<number>;
+            initialDelaySeconds?: pulumi.Input<number | undefined>;
             /**
              * How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
              */
-            periodSeconds?: pulumi.Input<number>;
+            periodSeconds?: pulumi.Input<number | undefined>;
             /**
              * Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
              */
-            successThreshold?: pulumi.Input<number>;
+            successThreshold?: pulumi.Input<number | undefined>;
             /**
              * TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported
              */
-            tcpSocket?: pulumi.Input<inputs.core.v1.TCPSocketAction>;
+            tcpSocket?: pulumi.Input<inputs.core.v1.TCPSocketAction | undefined>;
             /**
              * Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
              */
-            timeoutSeconds?: pulumi.Input<number>;
+            timeoutSeconds?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -8445,7 +8445,7 @@ export namespace core {
             /**
              * Mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
              */
-            defaultMode?: pulumi.Input<number>;
+            defaultMode?: pulumi.Input<number | undefined>;
             /**
              * list of volume projections
              */
@@ -8459,11 +8459,11 @@ export namespace core {
             /**
              * Group to map volume access to Default is no group
              */
-            group?: pulumi.Input<string>;
+            group?: pulumi.Input<string | undefined>;
             /**
              * ReadOnly here will force the Quobyte volume to be mounted with read-only permissions. Defaults to false.
              */
-            readOnly?: pulumi.Input<boolean>;
+            readOnly?: pulumi.Input<boolean | undefined>;
             /**
              * Registry represents a single or multiple Quobyte Registry services specified as a string as host:port pair (multiple entries are separated with commas) which acts as the central registry for volumes
              */
@@ -8471,11 +8471,11 @@ export namespace core {
             /**
              * Tenant owning the given Quobyte volume in the Backend Used with dynamically provisioned Quobyte volumes, value is set by the plugin
              */
-            tenant?: pulumi.Input<string>;
+            tenant?: pulumi.Input<string | undefined>;
             /**
              * User to map volume access to Defaults to serivceaccount user
              */
-            user?: pulumi.Input<string>;
+            user?: pulumi.Input<string | undefined>;
             /**
              * Volume is a string that references an already created Quobyte volume by name.
              */
@@ -8489,7 +8489,7 @@ export namespace core {
             /**
              * Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd
              */
-            fsType?: pulumi.Input<string>;
+            fsType?: pulumi.Input<string | undefined>;
             /**
              * The rados image name. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
              */
@@ -8497,7 +8497,7 @@ export namespace core {
             /**
              * Keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
              */
-            keyring?: pulumi.Input<string>;
+            keyring?: pulumi.Input<string | undefined>;
             /**
              * A collection of Ceph monitors. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
              */
@@ -8505,19 +8505,19 @@ export namespace core {
             /**
              * The rados pool name. Default is rbd. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
              */
-            pool?: pulumi.Input<string>;
+            pool?: pulumi.Input<string | undefined>;
             /**
              * ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
              */
-            readOnly?: pulumi.Input<boolean>;
+            readOnly?: pulumi.Input<boolean | undefined>;
             /**
              * SecretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
              */
-            secretRef?: pulumi.Input<inputs.core.v1.SecretReference>;
+            secretRef?: pulumi.Input<inputs.core.v1.SecretReference | undefined>;
             /**
              * The rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
              */
-            user?: pulumi.Input<string>;
+            user?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -8527,7 +8527,7 @@ export namespace core {
             /**
              * Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd
              */
-            fsType?: pulumi.Input<string>;
+            fsType?: pulumi.Input<string | undefined>;
             /**
              * The rados image name. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
              */
@@ -8535,7 +8535,7 @@ export namespace core {
             /**
              * Keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
              */
-            keyring?: pulumi.Input<string>;
+            keyring?: pulumi.Input<string | undefined>;
             /**
              * A collection of Ceph monitors. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
              */
@@ -8543,19 +8543,19 @@ export namespace core {
             /**
              * The rados pool name. Default is rbd. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
              */
-            pool?: pulumi.Input<string>;
+            pool?: pulumi.Input<string | undefined>;
             /**
              * ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
              */
-            readOnly?: pulumi.Input<boolean>;
+            readOnly?: pulumi.Input<boolean | undefined>;
             /**
              * SecretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
              */
-            secretRef?: pulumi.Input<inputs.core.v1.LocalObjectReference>;
+            secretRef?: pulumi.Input<inputs.core.v1.LocalObjectReference | undefined>;
             /**
              * The rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
              */
-            user?: pulumi.Input<string>;
+            user?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -8565,23 +8565,23 @@ export namespace core {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"v1">;
+            apiVersion?: pulumi.Input<"v1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"ReplicationController">;
+            kind?: pulumi.Input<"ReplicationController" | undefined>;
             /**
              * If the Labels of a ReplicationController are empty, they are defaulted to be the same as the Pod(s) that the replication controller manages. Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Spec defines the specification of the desired behavior of the replication controller. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            spec?: pulumi.Input<inputs.core.v1.ReplicationControllerSpec>;
+            spec?: pulumi.Input<inputs.core.v1.ReplicationControllerSpec | undefined>;
             /**
              * Status is the most recently observed status of the replication controller. This data may be out of date by some window of time. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            status?: pulumi.Input<inputs.core.v1.ReplicationControllerStatus>;
+            status?: pulumi.Input<inputs.core.v1.ReplicationControllerStatus | undefined>;
         }
 
         /**
@@ -8591,15 +8591,15 @@ export namespace core {
             /**
              * The last time the condition transitioned from one status to another.
              */
-            lastTransitionTime?: pulumi.Input<string>;
+            lastTransitionTime?: pulumi.Input<string | undefined>;
             /**
              * A human readable message indicating details about the transition.
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * The reason for the condition's last transition.
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
             /**
              * Status of the condition, one of True, False, Unknown.
              */
@@ -8617,19 +8617,19 @@ export namespace core {
             /**
              * Minimum number of seconds for which a newly created pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready)
              */
-            minReadySeconds?: pulumi.Input<number>;
+            minReadySeconds?: pulumi.Input<number | undefined>;
             /**
              * Replicas is the number of desired replicas. This is a pointer to distinguish between explicit zero and unspecified. Defaults to 1. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller#what-is-a-replicationcontroller
              */
-            replicas?: pulumi.Input<number>;
+            replicas?: pulumi.Input<number | undefined>;
             /**
              * Selector is a label query over pods that should match the Replicas count. If Selector is empty, it is defaulted to the labels present on the Pod template. Label keys and values that must match in order to be controlled by this replication controller, if empty defaulted to labels on Pod template. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
              */
-            selector?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            selector?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
             /**
              * Template is the object that describes the pod that will be created if insufficient replicas are detected. This takes precedence over a TemplateRef. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller#pod-template
              */
-            template?: pulumi.Input<inputs.core.v1.PodTemplateSpec>;
+            template?: pulumi.Input<inputs.core.v1.PodTemplateSpec | undefined>;
         }
 
         /**
@@ -8639,23 +8639,23 @@ export namespace core {
             /**
              * The number of available replicas (ready for at least minReadySeconds) for this replication controller.
              */
-            availableReplicas?: pulumi.Input<number>;
+            availableReplicas?: pulumi.Input<number | undefined>;
             /**
              * Represents the latest available observations of a replication controller's current state.
              */
-            conditions?: pulumi.Input<pulumi.Input<inputs.core.v1.ReplicationControllerCondition>[]>;
+            conditions?: pulumi.Input<pulumi.Input<inputs.core.v1.ReplicationControllerCondition>[] | undefined>;
             /**
              * The number of pods that have labels matching the labels of the pod template of the replication controller.
              */
-            fullyLabeledReplicas?: pulumi.Input<number>;
+            fullyLabeledReplicas?: pulumi.Input<number | undefined>;
             /**
              * ObservedGeneration reflects the generation of the most recently observed replication controller.
              */
-            observedGeneration?: pulumi.Input<number>;
+            observedGeneration?: pulumi.Input<number | undefined>;
             /**
              * The number of ready replicas for this replication controller.
              */
-            readyReplicas?: pulumi.Input<number>;
+            readyReplicas?: pulumi.Input<number | undefined>;
             /**
              * Replicas is the most recently oberved number of replicas. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller#what-is-a-replicationcontroller
              */
@@ -8669,11 +8669,11 @@ export namespace core {
             /**
              * Container name: required for volumes, optional for env vars
              */
-            containerName?: pulumi.Input<string>;
+            containerName?: pulumi.Input<string | undefined>;
             /**
              * Specifies the output format of the exposed resources, defaults to "1"
              */
-            divisor?: pulumi.Input<string>;
+            divisor?: pulumi.Input<string | undefined>;
             /**
              * Required: resource to select
              */
@@ -8687,23 +8687,23 @@ export namespace core {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"v1">;
+            apiVersion?: pulumi.Input<"v1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"ResourceQuota">;
+            kind?: pulumi.Input<"ResourceQuota" | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Spec defines the desired quota. https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            spec?: pulumi.Input<inputs.core.v1.ResourceQuotaSpec>;
+            spec?: pulumi.Input<inputs.core.v1.ResourceQuotaSpec | undefined>;
             /**
              * Status defines the actual enforced quota and its current usage. https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            status?: pulumi.Input<inputs.core.v1.ResourceQuotaStatus>;
+            status?: pulumi.Input<inputs.core.v1.ResourceQuotaStatus | undefined>;
         }
 
         /**
@@ -8713,15 +8713,15 @@ export namespace core {
             /**
              * hard is the set of desired hard limits for each named resource. More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/
              */
-            hard?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            hard?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
             /**
              * scopeSelector is also a collection of filters like scopes that must match each object tracked by a quota but expressed using ScopeSelectorOperator in combination with possible values. For a resource to match, both scopes AND scopeSelector (if specified in spec), must be matched.
              */
-            scopeSelector?: pulumi.Input<inputs.core.v1.ScopeSelector>;
+            scopeSelector?: pulumi.Input<inputs.core.v1.ScopeSelector | undefined>;
             /**
              * A collection of filters that must match each object tracked by a quota. If not specified, the quota matches all objects.
              */
-            scopes?: pulumi.Input<pulumi.Input<string>[]>;
+            scopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         }
 
         /**
@@ -8731,11 +8731,11 @@ export namespace core {
             /**
              * Hard is the set of enforced hard limits for each named resource. More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/
              */
-            hard?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            hard?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
             /**
              * Used is the current observed total usage of the resource in the namespace.
              */
-            used?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            used?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         }
 
         /**
@@ -8745,11 +8745,11 @@ export namespace core {
             /**
              * Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
              */
-            limits?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            limits?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
             /**
              * Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
              */
-            requests?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            requests?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         }
 
         /**
@@ -8759,19 +8759,19 @@ export namespace core {
             /**
              * Level is SELinux level label that applies to the container.
              */
-            level?: pulumi.Input<string>;
+            level?: pulumi.Input<string | undefined>;
             /**
              * Role is a SELinux role label that applies to the container.
              */
-            role?: pulumi.Input<string>;
+            role?: pulumi.Input<string | undefined>;
             /**
              * Type is a SELinux type label that applies to the container.
              */
-            type?: pulumi.Input<string>;
+            type?: pulumi.Input<string | undefined>;
             /**
              * User is a SELinux user label that applies to the container.
              */
-            user?: pulumi.Input<string>;
+            user?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -8781,7 +8781,7 @@ export namespace core {
             /**
              * Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Default is "xfs"
              */
-            fsType?: pulumi.Input<string>;
+            fsType?: pulumi.Input<string | undefined>;
             /**
              * The host address of the ScaleIO API Gateway.
              */
@@ -8789,11 +8789,11 @@ export namespace core {
             /**
              * The name of the ScaleIO Protection Domain for the configured storage.
              */
-            protectionDomain?: pulumi.Input<string>;
+            protectionDomain?: pulumi.Input<string | undefined>;
             /**
              * Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
              */
-            readOnly?: pulumi.Input<boolean>;
+            readOnly?: pulumi.Input<boolean | undefined>;
             /**
              * SecretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail.
              */
@@ -8801,15 +8801,15 @@ export namespace core {
             /**
              * Flag to enable/disable SSL communication with Gateway, default false
              */
-            sslEnabled?: pulumi.Input<boolean>;
+            sslEnabled?: pulumi.Input<boolean | undefined>;
             /**
              * Indicates whether the storage for a volume should be ThickProvisioned or ThinProvisioned. Default is ThinProvisioned.
              */
-            storageMode?: pulumi.Input<string>;
+            storageMode?: pulumi.Input<string | undefined>;
             /**
              * The ScaleIO Storage Pool associated with the protection domain.
              */
-            storagePool?: pulumi.Input<string>;
+            storagePool?: pulumi.Input<string | undefined>;
             /**
              * The name of the storage system as configured in ScaleIO.
              */
@@ -8817,7 +8817,7 @@ export namespace core {
             /**
              * The name of a volume already created in the ScaleIO system that is associated with this volume source.
              */
-            volumeName?: pulumi.Input<string>;
+            volumeName?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -8827,7 +8827,7 @@ export namespace core {
             /**
              * Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Default is "xfs".
              */
-            fsType?: pulumi.Input<string>;
+            fsType?: pulumi.Input<string | undefined>;
             /**
              * The host address of the ScaleIO API Gateway.
              */
@@ -8835,11 +8835,11 @@ export namespace core {
             /**
              * The name of the ScaleIO Protection Domain for the configured storage.
              */
-            protectionDomain?: pulumi.Input<string>;
+            protectionDomain?: pulumi.Input<string | undefined>;
             /**
              * Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
              */
-            readOnly?: pulumi.Input<boolean>;
+            readOnly?: pulumi.Input<boolean | undefined>;
             /**
              * SecretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail.
              */
@@ -8847,15 +8847,15 @@ export namespace core {
             /**
              * Flag to enable/disable SSL communication with Gateway, default false
              */
-            sslEnabled?: pulumi.Input<boolean>;
+            sslEnabled?: pulumi.Input<boolean | undefined>;
             /**
              * Indicates whether the storage for a volume should be ThickProvisioned or ThinProvisioned. Default is ThinProvisioned.
              */
-            storageMode?: pulumi.Input<string>;
+            storageMode?: pulumi.Input<string | undefined>;
             /**
              * The ScaleIO Storage Pool associated with the protection domain.
              */
-            storagePool?: pulumi.Input<string>;
+            storagePool?: pulumi.Input<string | undefined>;
             /**
              * The name of the storage system as configured in ScaleIO.
              */
@@ -8863,7 +8863,7 @@ export namespace core {
             /**
              * The name of a volume already created in the ScaleIO system that is associated with this volume source.
              */
-            volumeName?: pulumi.Input<string>;
+            volumeName?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -8873,7 +8873,7 @@ export namespace core {
             /**
              * A list of scope selector requirements by scope of the resources.
              */
-            matchExpressions?: pulumi.Input<pulumi.Input<inputs.core.v1.ScopedResourceSelectorRequirement>[]>;
+            matchExpressions?: pulumi.Input<pulumi.Input<inputs.core.v1.ScopedResourceSelectorRequirement>[] | undefined>;
         }
 
         /**
@@ -8891,7 +8891,7 @@ export namespace core {
             /**
              * An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
              */
-            values?: pulumi.Input<pulumi.Input<string>[]>;
+            values?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         }
 
         /**
@@ -8901,7 +8901,7 @@ export namespace core {
             /**
              * localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is "Localhost".
              */
-            localhostProfile?: pulumi.Input<string>;
+            localhostProfile?: pulumi.Input<string | undefined>;
             /**
              * type indicates which kind of seccomp profile will be applied. Valid options are:
              *
@@ -8927,31 +8927,31 @@ export namespace core {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"v1">;
+            apiVersion?: pulumi.Input<"v1" | undefined>;
             /**
              * Data contains the secret data. Each key must consist of alphanumeric characters, '-', '_' or '.'. The serialized form of the secret data is a base64 encoded string, representing the arbitrary (possibly non-string) data value here. Described in https://tools.ietf.org/html/rfc4648#section-4
              */
-            data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            data?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
             /**
              * Immutable, if set to true, ensures that data stored in the Secret cannot be updated (only object metadata can be modified). If not set to true, the field can be modified at any time. Defaulted to nil. This is a beta field enabled by ImmutableEphemeralVolumes feature gate.
              */
-            immutable?: pulumi.Input<boolean>;
+            immutable?: pulumi.Input<boolean | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"Secret">;
+            kind?: pulumi.Input<"Secret" | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * stringData allows specifying non-binary secret data in string form. It is provided as a write-only convenience method. All keys and values are merged into the data field on write, overwriting any existing values. It is never output when reading from the API.
              */
-            stringData?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            stringData?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
             /**
              * Used to facilitate programmatic handling of secret data.
              */
-            type?: pulumi.Input<string>;
+            type?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -8963,11 +8963,11 @@ export namespace core {
             /**
              * Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
              */
-            name?: pulumi.Input<string>;
+            name?: pulumi.Input<string | undefined>;
             /**
              * Specify whether the Secret must be defined
              */
-            optional?: pulumi.Input<boolean>;
+            optional?: pulumi.Input<boolean | undefined>;
         }
 
         /**
@@ -8981,11 +8981,11 @@ export namespace core {
             /**
              * Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
              */
-            name?: pulumi.Input<string>;
+            name?: pulumi.Input<string | undefined>;
             /**
              * Specify whether the Secret or its key must be defined
              */
-            optional?: pulumi.Input<boolean>;
+            optional?: pulumi.Input<boolean | undefined>;
         }
 
         /**
@@ -8997,15 +8997,15 @@ export namespace core {
             /**
              * If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.
              */
-            items?: pulumi.Input<pulumi.Input<inputs.core.v1.KeyToPath>[]>;
+            items?: pulumi.Input<pulumi.Input<inputs.core.v1.KeyToPath>[] | undefined>;
             /**
              * Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
              */
-            name?: pulumi.Input<string>;
+            name?: pulumi.Input<string | undefined>;
             /**
              * Specify whether the Secret or its key must be defined
              */
-            optional?: pulumi.Input<boolean>;
+            optional?: pulumi.Input<boolean | undefined>;
         }
 
         /**
@@ -9015,11 +9015,11 @@ export namespace core {
             /**
              * Name is unique within a namespace to reference a secret resource.
              */
-            name?: pulumi.Input<string>;
+            name?: pulumi.Input<string | undefined>;
             /**
              * Namespace defines the space within which the secret name must be unique.
              */
-            namespace?: pulumi.Input<string>;
+            namespace?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -9031,19 +9031,19 @@ export namespace core {
             /**
              * Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
              */
-            defaultMode?: pulumi.Input<number>;
+            defaultMode?: pulumi.Input<number | undefined>;
             /**
              * If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.
              */
-            items?: pulumi.Input<pulumi.Input<inputs.core.v1.KeyToPath>[]>;
+            items?: pulumi.Input<pulumi.Input<inputs.core.v1.KeyToPath>[] | undefined>;
             /**
              * Specify whether the Secret or its keys must be defined
              */
-            optional?: pulumi.Input<boolean>;
+            optional?: pulumi.Input<boolean | undefined>;
             /**
              * Name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
              */
-            secretName?: pulumi.Input<string>;
+            secretName?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -9053,47 +9053,47 @@ export namespace core {
             /**
              * AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN
              */
-            allowPrivilegeEscalation?: pulumi.Input<boolean>;
+            allowPrivilegeEscalation?: pulumi.Input<boolean | undefined>;
             /**
              * The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime.
              */
-            capabilities?: pulumi.Input<inputs.core.v1.Capabilities>;
+            capabilities?: pulumi.Input<inputs.core.v1.Capabilities | undefined>;
             /**
              * Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false.
              */
-            privileged?: pulumi.Input<boolean>;
+            privileged?: pulumi.Input<boolean | undefined>;
             /**
              * procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled.
              */
-            procMount?: pulumi.Input<string>;
+            procMount?: pulumi.Input<string | undefined>;
             /**
              * Whether this container has a read-only root filesystem. Default is false.
              */
-            readOnlyRootFilesystem?: pulumi.Input<boolean>;
+            readOnlyRootFilesystem?: pulumi.Input<boolean | undefined>;
             /**
              * The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
              */
-            runAsGroup?: pulumi.Input<number>;
+            runAsGroup?: pulumi.Input<number | undefined>;
             /**
              * Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
              */
-            runAsNonRoot?: pulumi.Input<boolean>;
+            runAsNonRoot?: pulumi.Input<boolean | undefined>;
             /**
              * The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
              */
-            runAsUser?: pulumi.Input<number>;
+            runAsUser?: pulumi.Input<number | undefined>;
             /**
              * The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
              */
-            seLinuxOptions?: pulumi.Input<inputs.core.v1.SELinuxOptions>;
+            seLinuxOptions?: pulumi.Input<inputs.core.v1.SELinuxOptions | undefined>;
             /**
              * The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options.
              */
-            seccompProfile?: pulumi.Input<inputs.core.v1.SeccompProfile>;
+            seccompProfile?: pulumi.Input<inputs.core.v1.SeccompProfile | undefined>;
             /**
              * The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
              */
-            windowsOptions?: pulumi.Input<inputs.core.v1.WindowsSecurityContextOptions>;
+            windowsOptions?: pulumi.Input<inputs.core.v1.WindowsSecurityContextOptions | undefined>;
         }
 
         /**
@@ -9128,23 +9128,23 @@ export namespace core {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"v1">;
+            apiVersion?: pulumi.Input<"v1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"Service">;
+            kind?: pulumi.Input<"Service" | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Spec defines the behavior of a service. https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            spec?: pulumi.Input<inputs.core.v1.ServiceSpec>;
+            spec?: pulumi.Input<inputs.core.v1.ServiceSpec | undefined>;
             /**
              * Most recently observed status of the service. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            status?: pulumi.Input<inputs.core.v1.ServiceStatus>;
+            status?: pulumi.Input<inputs.core.v1.ServiceStatus | undefined>;
         }
 
         /**
@@ -9154,27 +9154,27 @@ export namespace core {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"v1">;
+            apiVersion?: pulumi.Input<"v1" | undefined>;
             /**
              * AutomountServiceAccountToken indicates whether pods running as this service account should have an API token automatically mounted. Can be overridden at the pod level.
              */
-            automountServiceAccountToken?: pulumi.Input<boolean>;
+            automountServiceAccountToken?: pulumi.Input<boolean | undefined>;
             /**
              * ImagePullSecrets is a list of references to secrets in the same namespace to use for pulling any images in pods that reference this ServiceAccount. ImagePullSecrets are distinct from Secrets because Secrets can be mounted in the pod, but ImagePullSecrets are only accessed by the kubelet. More info: https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
              */
-            imagePullSecrets?: pulumi.Input<pulumi.Input<inputs.core.v1.LocalObjectReference>[]>;
+            imagePullSecrets?: pulumi.Input<pulumi.Input<inputs.core.v1.LocalObjectReference>[] | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"ServiceAccount">;
+            kind?: pulumi.Input<"ServiceAccount" | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Secrets is the list of secrets allowed to be used by pods running using this ServiceAccount. More info: https://kubernetes.io/docs/concepts/configuration/secret
              */
-            secrets?: pulumi.Input<pulumi.Input<inputs.core.v1.ObjectReference>[]>;
+            secrets?: pulumi.Input<pulumi.Input<inputs.core.v1.ObjectReference>[] | undefined>;
         }
 
         /**
@@ -9184,11 +9184,11 @@ export namespace core {
             /**
              * Audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token. The audience defaults to the identifier of the apiserver.
              */
-            audience?: pulumi.Input<string>;
+            audience?: pulumi.Input<string | undefined>;
             /**
              * ExpirationSeconds is the requested duration of validity of the service account token. As the token approaches expiration, the kubelet volume plugin will proactively rotate the service account token. The kubelet will start trying to rotate the token if the token is older than 80 percent of its time to live or if the token is older than 24 hours.Defaults to 1 hour and must be at least 10 minutes.
              */
-            expirationSeconds?: pulumi.Input<number>;
+            expirationSeconds?: pulumi.Input<number | undefined>;
             /**
              * Path is the path relative to the mount point of the file to project the token into.
              */
@@ -9202,15 +9202,15 @@ export namespace core {
             /**
              * The application protocol for this port. This field follows standard Kubernetes label syntax. Un-prefixed names are reserved for IANA standard service names (as per RFC-6335 and http://www.iana.org/assignments/service-names). Non-standard protocols should use prefixed names such as mycompany.com/my-custom-protocol. This is a beta field that is guarded by the ServiceAppProtocol feature gate and enabled by default.
              */
-            appProtocol?: pulumi.Input<string>;
+            appProtocol?: pulumi.Input<string | undefined>;
             /**
              * The name of this port within the service. This must be a DNS_LABEL. All ports within a ServiceSpec must have unique names. When considering the endpoints for a Service, this must match the 'name' field in the EndpointPort. Optional if only one ServicePort is defined on this service.
              */
-            name?: pulumi.Input<string>;
+            name?: pulumi.Input<string | undefined>;
             /**
              * The port on each node on which this service is exposed when type is NodePort or LoadBalancer.  Usually assigned by the system. If a value is specified, in-range, and not in use it will be used, otherwise the operation will fail.  If not specified, a port will be allocated if this Service requires one.  If this field is specified when creating a Service which does not need it, creation will fail. This field will be wiped when updating a Service to no longer need it (e.g. changing type from NodePort to ClusterIP). More info: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
              */
-            nodePort?: pulumi.Input<number>;
+            nodePort?: pulumi.Input<number | undefined>;
             /**
              * The port that will be exposed by this service.
              */
@@ -9218,11 +9218,11 @@ export namespace core {
             /**
              * The IP protocol for this port. Supports "TCP", "UDP", and "SCTP". Default is TCP.
              */
-            protocol?: pulumi.Input<string>;
+            protocol?: pulumi.Input<string | undefined>;
             /**
              * Number or name of the port to access on the pods targeted by the service. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. If this is a string, it will be looked up as a named port in the target Pod's container ports. If this is not specified, the value of the 'port' field is used (an identity map). This field is ignored for services with clusterIP=None, and should be omitted or set equal to the 'port' field. More info: https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service
              */
-            targetPort?: pulumi.Input<number | string>;
+            targetPort?: pulumi.Input<number | string | undefined>;
         }
 
         /**
@@ -9232,83 +9232,83 @@ export namespace core {
             /**
              * allocateLoadBalancerNodePorts defines if NodePorts will be automatically allocated for services with type LoadBalancer.  Default is "true". It may be set to "false" if the cluster load-balancer does not rely on NodePorts. allocateLoadBalancerNodePorts may only be set for services with type LoadBalancer and will be cleared if the type is changed to any other type. This field is alpha-level and is only honored by servers that enable the ServiceLBNodePortControl feature.
              */
-            allocateLoadBalancerNodePorts?: pulumi.Input<boolean>;
+            allocateLoadBalancerNodePorts?: pulumi.Input<boolean | undefined>;
             /**
              * clusterIP is the IP address of the service and is usually assigned randomly. If an address is specified manually, is in-range (as per system configuration), and is not in use, it will be allocated to the service; otherwise creation of the service will fail. This field may not be changed through updates unless the type field is also being changed to ExternalName (which requires this field to be blank) or the type field is being changed from ExternalName (in which case this field may optionally be specified, as describe above).  Valid values are "None", empty string (""), or a valid IP address. Setting this to "None" makes a "headless service" (no virtual IP), which is useful when direct endpoint connections are preferred and proxying is not required.  Only applies to types ClusterIP, NodePort, and LoadBalancer. If this field is specified when creating a Service of type ExternalName, creation will fail. This field will be wiped when updating a Service to type ExternalName. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
              */
-            clusterIP?: pulumi.Input<string>;
+            clusterIP?: pulumi.Input<string | undefined>;
             /**
              * ClusterIPs is a list of IP addresses assigned to this service, and are usually assigned randomly.  If an address is specified manually, is in-range (as per system configuration), and is not in use, it will be allocated to the service; otherwise creation of the service will fail. This field may not be changed through updates unless the type field is also being changed to ExternalName (which requires this field to be empty) or the type field is being changed from ExternalName (in which case this field may optionally be specified, as describe above).  Valid values are "None", empty string (""), or a valid IP address.  Setting this to "None" makes a "headless service" (no virtual IP), which is useful when direct endpoint connections are preferred and proxying is not required.  Only applies to types ClusterIP, NodePort, and LoadBalancer. If this field is specified when creating a Service of type ExternalName, creation will fail. This field will be wiped when updating a Service to type ExternalName.  If this field is not specified, it will be initialized from the clusterIP field.  If this field is specified, clients must ensure that clusterIPs[0] and clusterIP have the same value.
              *
              * Unless the "IPv6DualStack" feature gate is enabled, this field is limited to one value, which must be the same as the clusterIP field.  If the feature gate is enabled, this field may hold a maximum of two entries (dual-stack IPs, in either order).  These IPs must correspond to the values of the ipFamilies field. Both clusterIPs and ipFamilies are governed by the ipFamilyPolicy field. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
              */
-            clusterIPs?: pulumi.Input<pulumi.Input<string>[]>;
+            clusterIPs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * externalIPs is a list of IP addresses for which nodes in the cluster will also accept traffic for this service.  These IPs are not managed by Kubernetes.  The user is responsible for ensuring that traffic arrives at a node with this IP.  A common example is external load-balancers that are not part of the Kubernetes system.
              */
-            externalIPs?: pulumi.Input<pulumi.Input<string>[]>;
+            externalIPs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * externalName is the external reference that discovery mechanisms will return as an alias for this service (e.g. a DNS CNAME record). No proxying will be involved.  Must be a lowercase RFC-1123 hostname (https://tools.ietf.org/html/rfc1123) and requires Type to be
              */
-            externalName?: pulumi.Input<string>;
+            externalName?: pulumi.Input<string | undefined>;
             /**
              * externalTrafficPolicy denotes if this Service desires to route external traffic to node-local or cluster-wide endpoints. "Local" preserves the client source IP and avoids a second hop for LoadBalancer and Nodeport type services, but risks potentially imbalanced traffic spreading. "Cluster" obscures the client source IP and may cause a second hop to another node, but should have good overall load-spreading.
              */
-            externalTrafficPolicy?: pulumi.Input<string>;
+            externalTrafficPolicy?: pulumi.Input<string | undefined>;
             /**
              * healthCheckNodePort specifies the healthcheck nodePort for the service. This only applies when type is set to LoadBalancer and externalTrafficPolicy is set to Local. If a value is specified, is in-range, and is not in use, it will be used.  If not specified, a value will be automatically allocated.  External systems (e.g. load-balancers) can use this port to determine if a given node holds endpoints for this service or not.  If this field is specified when creating a Service which does not need it, creation will fail. This field will be wiped when updating a Service to no longer need it (e.g. changing type).
              */
-            healthCheckNodePort?: pulumi.Input<number>;
+            healthCheckNodePort?: pulumi.Input<number | undefined>;
             /**
              * IPFamilies is a list of IP families (e.g. IPv4, IPv6) assigned to this service, and is gated by the "IPv6DualStack" feature gate.  This field is usually assigned automatically based on cluster configuration and the ipFamilyPolicy field. If this field is specified manually, the requested family is available in the cluster, and ipFamilyPolicy allows it, it will be used; otherwise creation of the service will fail.  This field is conditionally mutable: it allows for adding or removing a secondary IP family, but it does not allow changing the primary IP family of the Service.  Valid values are "IPv4" and "IPv6".  This field only applies to Services of types ClusterIP, NodePort, and LoadBalancer, and does apply to "headless" services.  This field will be wiped when updating a Service to type ExternalName.
              *
              * This field may hold a maximum of two entries (dual-stack families, in either order).  These families must correspond to the values of the clusterIPs field, if specified. Both clusterIPs and ipFamilies are governed by the ipFamilyPolicy field.
              */
-            ipFamilies?: pulumi.Input<pulumi.Input<string>[]>;
+            ipFamilies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * ipFamily specifies whether this Service has a preference for a particular IP family (e.g. IPv4 vs. IPv6).  If a specific IP family is requested, the clusterIP field will be allocated from that family, if it is available in the cluster.  If no IP family is requested, the cluster's primary IP family will be used. Other IP fields (loadBalancerIP, loadBalancerSourceRanges, externalIPs) and controllers which allocate external load-balancers should use the same IP family.  Endpoints for this Service will be of this family.  This field is immutable after creation. Assigning a ServiceIPFamily not available in the cluster (e.g. IPv6 in IPv4 only cluster) is an error condition and will fail during clusterIP assignment.
              */
-            ipFamily?: pulumi.Input<string>;
+            ipFamily?: pulumi.Input<string | undefined>;
             /**
              * IPFamilyPolicy represents the dual-stack-ness requested or required by this Service, and is gated by the "IPv6DualStack" feature gate.  If there is no value provided, then this field will be set to SingleStack. Services can be "SingleStack" (a single IP family), "PreferDualStack" (two IP families on dual-stack configured clusters or a single IP family on single-stack clusters), or "RequireDualStack" (two IP families on dual-stack configured clusters, otherwise fail). The ipFamilies and clusterIPs fields depend on the value of this field.  This field will be wiped when updating a service to type ExternalName.
              */
-            ipFamilyPolicy?: pulumi.Input<string>;
+            ipFamilyPolicy?: pulumi.Input<string | undefined>;
             /**
              * Only applies to Service Type: LoadBalancer LoadBalancer will get created with the IP specified in this field. This feature depends on whether the underlying cloud-provider supports specifying the loadBalancerIP when a load balancer is created. This field will be ignored if the cloud-provider does not support the feature.
              */
-            loadBalancerIP?: pulumi.Input<string>;
+            loadBalancerIP?: pulumi.Input<string | undefined>;
             /**
              * If specified and supported by the platform, this will restrict traffic through the cloud-provider load-balancer will be restricted to the specified client IPs. This field will be ignored if the cloud-provider does not support the feature." More info: https://kubernetes.io/docs/tasks/access-application-cluster/configure-cloud-provider-firewall/
              */
-            loadBalancerSourceRanges?: pulumi.Input<pulumi.Input<string>[]>;
+            loadBalancerSourceRanges?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * The list of ports that are exposed by this service. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
              */
-            ports?: pulumi.Input<pulumi.Input<inputs.core.v1.ServicePort>[]>;
+            ports?: pulumi.Input<pulumi.Input<inputs.core.v1.ServicePort>[] | undefined>;
             /**
              * publishNotReadyAddresses indicates that any agent which deals with endpoints for this Service should disregard any indications of ready/not-ready. The primary use case for setting this field is for a StatefulSet's Headless Service to propagate SRV DNS records for its Pods for the purpose of peer discovery. The Kubernetes controllers that generate Endpoints and EndpointSlice resources for Services interpret this to mean that all endpoints are considered "ready" even if the Pods themselves are not. Agents which consume only Kubernetes generated endpoints through the Endpoints or EndpointSlice resources can safely assume this behavior.
              */
-            publishNotReadyAddresses?: pulumi.Input<boolean>;
+            publishNotReadyAddresses?: pulumi.Input<boolean | undefined>;
             /**
              * Route service traffic to pods with label keys and values matching this selector. If empty or not present, the service is assumed to have an external process managing its endpoints, which Kubernetes will not modify. Only applies to types ClusterIP, NodePort, and LoadBalancer. Ignored if type is ExternalName. More info: https://kubernetes.io/docs/concepts/services-networking/service/
              */
-            selector?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            selector?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
             /**
              * Supports "ClientIP" and "None". Used to maintain session affinity. Enable client IP based session affinity. Must be ClientIP or None. Defaults to None. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
              */
-            sessionAffinity?: pulumi.Input<string>;
+            sessionAffinity?: pulumi.Input<string | undefined>;
             /**
              * sessionAffinityConfig contains the configurations of session affinity.
              */
-            sessionAffinityConfig?: pulumi.Input<inputs.core.v1.SessionAffinityConfig>;
+            sessionAffinityConfig?: pulumi.Input<inputs.core.v1.SessionAffinityConfig | undefined>;
             /**
              * topologyKeys is a preference-order list of topology keys which implementations of services should use to preferentially sort endpoints when accessing this Service, it can not be used at the same time as externalTrafficPolicy=Local. Topology keys must be valid label keys and at most 16 keys may be specified. Endpoints are chosen based on the first topology key with available backends. If this field is specified and all entries have no backends that match the topology of the client, the service has no backends for that client and connections should fail. The special value "*" may be used to mean "any topology". This catch-all value, if used, only makes sense as the last value in the list. If this is not specified or empty, no topology constraints will be applied. This field is alpha-level and is only honored by servers that enable the ServiceTopology feature.
              */
-            topologyKeys?: pulumi.Input<pulumi.Input<string>[]>;
+            topologyKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * type determines how the Service is exposed. Defaults to ClusterIP. Valid options are ExternalName, ClusterIP, NodePort, and LoadBalancer. "ClusterIP" allocates a cluster-internal IP address for load-balancing to endpoints. Endpoints are determined by the selector or if that is not specified, by manual construction of an Endpoints object or EndpointSlice objects. If clusterIP is "None", no virtual IP is allocated and the endpoints are published as a set of endpoints rather than a virtual IP. "NodePort" builds on ClusterIP and allocates a port on every node which routes to the same endpoints as the clusterIP. "LoadBalancer" builds on NodePort and creates an external load-balancer (if supported in the current cloud) which routes to the same endpoints as the clusterIP. "ExternalName" aliases this service to the specified externalName. Several other fields do not apply to ExternalName services. More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
              */
-            type?: pulumi.Input<string | enums.core.v1.ServiceSpecType>;
+            type?: pulumi.Input<string | enums.core.v1.ServiceSpecType | undefined>;
         }
 
         /**
@@ -9318,11 +9318,11 @@ export namespace core {
             /**
              * Current service state
              */
-            conditions?: pulumi.Input<pulumi.Input<inputs.meta.v1.Condition>[]>;
+            conditions?: pulumi.Input<pulumi.Input<inputs.meta.v1.Condition>[] | undefined>;
             /**
              * LoadBalancer contains the current status of the load-balancer, if one is present.
              */
-            loadBalancer?: pulumi.Input<inputs.core.v1.LoadBalancerStatus>;
+            loadBalancer?: pulumi.Input<inputs.core.v1.LoadBalancerStatus | undefined>;
         }
 
         /**
@@ -9332,7 +9332,7 @@ export namespace core {
             /**
              * clientIP contains the configurations of Client IP based session affinity.
              */
-            clientIP?: pulumi.Input<inputs.core.v1.ClientIPConfig>;
+            clientIP?: pulumi.Input<inputs.core.v1.ClientIPConfig | undefined>;
         }
 
         /**
@@ -9342,23 +9342,23 @@ export namespace core {
             /**
              * Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified.
              */
-            fsType?: pulumi.Input<string>;
+            fsType?: pulumi.Input<string | undefined>;
             /**
              * Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
              */
-            readOnly?: pulumi.Input<boolean>;
+            readOnly?: pulumi.Input<boolean | undefined>;
             /**
              * SecretRef specifies the secret to use for obtaining the StorageOS API credentials.  If not specified, default values will be attempted.
              */
-            secretRef?: pulumi.Input<inputs.core.v1.ObjectReference>;
+            secretRef?: pulumi.Input<inputs.core.v1.ObjectReference | undefined>;
             /**
              * VolumeName is the human-readable name of the StorageOS volume.  Volume names are only unique within a namespace.
              */
-            volumeName?: pulumi.Input<string>;
+            volumeName?: pulumi.Input<string | undefined>;
             /**
              * VolumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to "default" if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.
              */
-            volumeNamespace?: pulumi.Input<string>;
+            volumeNamespace?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -9368,23 +9368,23 @@ export namespace core {
             /**
              * Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified.
              */
-            fsType?: pulumi.Input<string>;
+            fsType?: pulumi.Input<string | undefined>;
             /**
              * Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
              */
-            readOnly?: pulumi.Input<boolean>;
+            readOnly?: pulumi.Input<boolean | undefined>;
             /**
              * SecretRef specifies the secret to use for obtaining the StorageOS API credentials.  If not specified, default values will be attempted.
              */
-            secretRef?: pulumi.Input<inputs.core.v1.LocalObjectReference>;
+            secretRef?: pulumi.Input<inputs.core.v1.LocalObjectReference | undefined>;
             /**
              * VolumeName is the human-readable name of the StorageOS volume.  Volume names are only unique within a namespace.
              */
-            volumeName?: pulumi.Input<string>;
+            volumeName?: pulumi.Input<string | undefined>;
             /**
              * VolumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to "default" if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.
              */
-            volumeNamespace?: pulumi.Input<string>;
+            volumeNamespace?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -9408,7 +9408,7 @@ export namespace core {
             /**
              * Optional: Host name to connect to, defaults to the pod IP.
              */
-            host?: pulumi.Input<string>;
+            host?: pulumi.Input<string | undefined>;
             /**
              * Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
              */
@@ -9430,11 +9430,11 @@ export namespace core {
             /**
              * TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.
              */
-            timeAdded?: pulumi.Input<string>;
+            timeAdded?: pulumi.Input<string | undefined>;
             /**
              * The taint value corresponding to the taint key.
              */
-            value?: pulumi.Input<string>;
+            value?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -9444,23 +9444,23 @@ export namespace core {
             /**
              * Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
              */
-            effect?: pulumi.Input<string>;
+            effect?: pulumi.Input<string | undefined>;
             /**
              * Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
              */
-            key?: pulumi.Input<string>;
+            key?: pulumi.Input<string | undefined>;
             /**
              * Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
              */
-            operator?: pulumi.Input<string>;
+            operator?: pulumi.Input<string | undefined>;
             /**
              * TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
              */
-            tolerationSeconds?: pulumi.Input<number>;
+            tolerationSeconds?: pulumi.Input<number | undefined>;
             /**
              * Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
              */
-            value?: pulumi.Input<string>;
+            value?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -9484,7 +9484,7 @@ export namespace core {
             /**
              * A list of topology selector requirements by labels.
              */
-            matchLabelExpressions?: pulumi.Input<pulumi.Input<inputs.core.v1.TopologySelectorLabelRequirement>[]>;
+            matchLabelExpressions?: pulumi.Input<pulumi.Input<inputs.core.v1.TopologySelectorLabelRequirement>[] | undefined>;
         }
 
         /**
@@ -9494,7 +9494,7 @@ export namespace core {
             /**
              * LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain.
              */
-            labelSelector?: pulumi.Input<inputs.meta.v1.LabelSelector>;
+            labelSelector?: pulumi.Input<inputs.meta.v1.LabelSelector | undefined>;
             /**
              * MaxSkew describes the degree to which pods may be unevenly distributed. When `whenUnsatisfiable=DoNotSchedule`, it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 1/1/0: | zone1 | zone2 | zone3 | |   P   |   P   |       | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 1/1/1; scheduling it onto zone1(zone2) would make the ActualSkew(2-0) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When `whenUnsatisfiable=ScheduleAnyway`, it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.
              */
@@ -9519,7 +9519,7 @@ export namespace core {
             /**
              * APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
              */
-            apiGroup?: pulumi.Input<string>;
+            apiGroup?: pulumi.Input<string | undefined>;
             /**
              * Kind is the type of resource being referenced
              */
@@ -9537,39 +9537,39 @@ export namespace core {
             /**
              * AWSElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
              */
-            awsElasticBlockStore?: pulumi.Input<inputs.core.v1.AWSElasticBlockStoreVolumeSource>;
+            awsElasticBlockStore?: pulumi.Input<inputs.core.v1.AWSElasticBlockStoreVolumeSource | undefined>;
             /**
              * AzureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.
              */
-            azureDisk?: pulumi.Input<inputs.core.v1.AzureDiskVolumeSource>;
+            azureDisk?: pulumi.Input<inputs.core.v1.AzureDiskVolumeSource | undefined>;
             /**
              * AzureFile represents an Azure File Service mount on the host and bind mount to the pod.
              */
-            azureFile?: pulumi.Input<inputs.core.v1.AzureFileVolumeSource>;
+            azureFile?: pulumi.Input<inputs.core.v1.AzureFileVolumeSource | undefined>;
             /**
              * CephFS represents a Ceph FS mount on the host that shares a pod's lifetime
              */
-            cephfs?: pulumi.Input<inputs.core.v1.CephFSVolumeSource>;
+            cephfs?: pulumi.Input<inputs.core.v1.CephFSVolumeSource | undefined>;
             /**
              * Cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
              */
-            cinder?: pulumi.Input<inputs.core.v1.CinderVolumeSource>;
+            cinder?: pulumi.Input<inputs.core.v1.CinderVolumeSource | undefined>;
             /**
              * ConfigMap represents a configMap that should populate this volume
              */
-            configMap?: pulumi.Input<inputs.core.v1.ConfigMapVolumeSource>;
+            configMap?: pulumi.Input<inputs.core.v1.ConfigMapVolumeSource | undefined>;
             /**
              * CSI (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature).
              */
-            csi?: pulumi.Input<inputs.core.v1.CSIVolumeSource>;
+            csi?: pulumi.Input<inputs.core.v1.CSIVolumeSource | undefined>;
             /**
              * DownwardAPI represents downward API about the pod that should populate this volume
              */
-            downwardAPI?: pulumi.Input<inputs.core.v1.DownwardAPIVolumeSource>;
+            downwardAPI?: pulumi.Input<inputs.core.v1.DownwardAPIVolumeSource | undefined>;
             /**
              * EmptyDir represents a temporary directory that shares a pod's lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
              */
-            emptyDir?: pulumi.Input<inputs.core.v1.EmptyDirVolumeSource>;
+            emptyDir?: pulumi.Input<inputs.core.v1.EmptyDirVolumeSource | undefined>;
             /**
              * Ephemeral represents a volume that is handled by a cluster storage driver (Alpha feature). The volume's lifecycle is tied to the pod that defines it - it will be created before the pod starts, and deleted when the pod is removed.
              *
@@ -9586,39 +9586,39 @@ export namespace core {
              *
              * A pod can use both types of ephemeral volumes and persistent volumes at the same time.
              */
-            ephemeral?: pulumi.Input<inputs.core.v1.EphemeralVolumeSource>;
+            ephemeral?: pulumi.Input<inputs.core.v1.EphemeralVolumeSource | undefined>;
             /**
              * FC represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod.
              */
-            fc?: pulumi.Input<inputs.core.v1.FCVolumeSource>;
+            fc?: pulumi.Input<inputs.core.v1.FCVolumeSource | undefined>;
             /**
              * FlexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.
              */
-            flexVolume?: pulumi.Input<inputs.core.v1.FlexVolumeSource>;
+            flexVolume?: pulumi.Input<inputs.core.v1.FlexVolumeSource | undefined>;
             /**
              * Flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running
              */
-            flocker?: pulumi.Input<inputs.core.v1.FlockerVolumeSource>;
+            flocker?: pulumi.Input<inputs.core.v1.FlockerVolumeSource | undefined>;
             /**
              * GCEPersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
              */
-            gcePersistentDisk?: pulumi.Input<inputs.core.v1.GCEPersistentDiskVolumeSource>;
+            gcePersistentDisk?: pulumi.Input<inputs.core.v1.GCEPersistentDiskVolumeSource | undefined>;
             /**
              * GitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.
              */
-            gitRepo?: pulumi.Input<inputs.core.v1.GitRepoVolumeSource>;
+            gitRepo?: pulumi.Input<inputs.core.v1.GitRepoVolumeSource | undefined>;
             /**
              * Glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md
              */
-            glusterfs?: pulumi.Input<inputs.core.v1.GlusterfsVolumeSource>;
+            glusterfs?: pulumi.Input<inputs.core.v1.GlusterfsVolumeSource | undefined>;
             /**
              * HostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
              */
-            hostPath?: pulumi.Input<inputs.core.v1.HostPathVolumeSource>;
+            hostPath?: pulumi.Input<inputs.core.v1.HostPathVolumeSource | undefined>;
             /**
              * ISCSI represents an ISCSI Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://examples.k8s.io/volumes/iscsi/README.md
              */
-            iscsi?: pulumi.Input<inputs.core.v1.ISCSIVolumeSource>;
+            iscsi?: pulumi.Input<inputs.core.v1.ISCSIVolumeSource | undefined>;
             /**
              * Volume's name. Must be a DNS_LABEL and unique within the pod. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
              */
@@ -9626,47 +9626,47 @@ export namespace core {
             /**
              * NFS represents an NFS mount on the host that shares a pod's lifetime More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
              */
-            nfs?: pulumi.Input<inputs.core.v1.NFSVolumeSource>;
+            nfs?: pulumi.Input<inputs.core.v1.NFSVolumeSource | undefined>;
             /**
              * PersistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
              */
-            persistentVolumeClaim?: pulumi.Input<inputs.core.v1.PersistentVolumeClaimVolumeSource>;
+            persistentVolumeClaim?: pulumi.Input<inputs.core.v1.PersistentVolumeClaimVolumeSource | undefined>;
             /**
              * PhotonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine
              */
-            photonPersistentDisk?: pulumi.Input<inputs.core.v1.PhotonPersistentDiskVolumeSource>;
+            photonPersistentDisk?: pulumi.Input<inputs.core.v1.PhotonPersistentDiskVolumeSource | undefined>;
             /**
              * PortworxVolume represents a portworx volume attached and mounted on kubelets host machine
              */
-            portworxVolume?: pulumi.Input<inputs.core.v1.PortworxVolumeSource>;
+            portworxVolume?: pulumi.Input<inputs.core.v1.PortworxVolumeSource | undefined>;
             /**
              * Items for all in one resources secrets, configmaps, and downward API
              */
-            projected?: pulumi.Input<inputs.core.v1.ProjectedVolumeSource>;
+            projected?: pulumi.Input<inputs.core.v1.ProjectedVolumeSource | undefined>;
             /**
              * Quobyte represents a Quobyte mount on the host that shares a pod's lifetime
              */
-            quobyte?: pulumi.Input<inputs.core.v1.QuobyteVolumeSource>;
+            quobyte?: pulumi.Input<inputs.core.v1.QuobyteVolumeSource | undefined>;
             /**
              * RBD represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md
              */
-            rbd?: pulumi.Input<inputs.core.v1.RBDVolumeSource>;
+            rbd?: pulumi.Input<inputs.core.v1.RBDVolumeSource | undefined>;
             /**
              * ScaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.
              */
-            scaleIO?: pulumi.Input<inputs.core.v1.ScaleIOVolumeSource>;
+            scaleIO?: pulumi.Input<inputs.core.v1.ScaleIOVolumeSource | undefined>;
             /**
              * Secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
              */
-            secret?: pulumi.Input<inputs.core.v1.SecretVolumeSource>;
+            secret?: pulumi.Input<inputs.core.v1.SecretVolumeSource | undefined>;
             /**
              * StorageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.
              */
-            storageos?: pulumi.Input<inputs.core.v1.StorageOSVolumeSource>;
+            storageos?: pulumi.Input<inputs.core.v1.StorageOSVolumeSource | undefined>;
             /**
              * VsphereVolume represents a vSphere volume attached and mounted on kubelets host machine
              */
-            vsphereVolume?: pulumi.Input<inputs.core.v1.VsphereVirtualDiskVolumeSource>;
+            vsphereVolume?: pulumi.Input<inputs.core.v1.VsphereVirtualDiskVolumeSource | undefined>;
         }
 
         /**
@@ -9694,7 +9694,7 @@ export namespace core {
             /**
              * mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.
              */
-            mountPropagation?: pulumi.Input<string>;
+            mountPropagation?: pulumi.Input<string | undefined>;
             /**
              * This must match the Name of a Volume.
              */
@@ -9702,15 +9702,15 @@ export namespace core {
             /**
              * Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.
              */
-            readOnly?: pulumi.Input<boolean>;
+            readOnly?: pulumi.Input<boolean | undefined>;
             /**
              * Path within the volume from which the container's volume should be mounted. Defaults to "" (volume's root).
              */
-            subPath?: pulumi.Input<string>;
+            subPath?: pulumi.Input<string | undefined>;
             /**
              * Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to "" (volume's root). SubPathExpr and SubPath are mutually exclusive.
              */
-            subPathExpr?: pulumi.Input<string>;
+            subPathExpr?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -9720,7 +9720,7 @@ export namespace core {
             /**
              * Required specifies hard node constraints that must be met.
              */
-            required?: pulumi.Input<inputs.core.v1.NodeSelector>;
+            required?: pulumi.Input<inputs.core.v1.NodeSelector | undefined>;
         }
 
         /**
@@ -9730,19 +9730,19 @@ export namespace core {
             /**
              * information about the configMap data to project
              */
-            configMap?: pulumi.Input<inputs.core.v1.ConfigMapProjection>;
+            configMap?: pulumi.Input<inputs.core.v1.ConfigMapProjection | undefined>;
             /**
              * information about the downwardAPI data to project
              */
-            downwardAPI?: pulumi.Input<inputs.core.v1.DownwardAPIProjection>;
+            downwardAPI?: pulumi.Input<inputs.core.v1.DownwardAPIProjection | undefined>;
             /**
              * information about the secret data to project
              */
-            secret?: pulumi.Input<inputs.core.v1.SecretProjection>;
+            secret?: pulumi.Input<inputs.core.v1.SecretProjection | undefined>;
             /**
              * information about the serviceAccountToken data to project
              */
-            serviceAccountToken?: pulumi.Input<inputs.core.v1.ServiceAccountTokenProjection>;
+            serviceAccountToken?: pulumi.Input<inputs.core.v1.ServiceAccountTokenProjection | undefined>;
         }
 
         /**
@@ -9752,15 +9752,15 @@ export namespace core {
             /**
              * Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified.
              */
-            fsType?: pulumi.Input<string>;
+            fsType?: pulumi.Input<string | undefined>;
             /**
              * Storage Policy Based Management (SPBM) profile ID associated with the StoragePolicyName.
              */
-            storagePolicyID?: pulumi.Input<string>;
+            storagePolicyID?: pulumi.Input<string | undefined>;
             /**
              * Storage Policy Based Management (SPBM) profile name.
              */
-            storagePolicyName?: pulumi.Input<string>;
+            storagePolicyName?: pulumi.Input<string | undefined>;
             /**
              * Path that identifies vSphere volume vmdk
              */
@@ -9788,15 +9788,15 @@ export namespace core {
             /**
              * GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.
              */
-            gmsaCredentialSpec?: pulumi.Input<string>;
+            gmsaCredentialSpec?: pulumi.Input<string | undefined>;
             /**
              * GMSACredentialSpecName is the name of the GMSA credential spec to use.
              */
-            gmsaCredentialSpecName?: pulumi.Input<string>;
+            gmsaCredentialSpecName?: pulumi.Input<string | undefined>;
             /**
              * The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
              */
-            runAsUserName?: pulumi.Input<string>;
+            runAsUserName?: pulumi.Input<string | undefined>;
         }
     }
 }
@@ -9814,19 +9814,19 @@ export namespace discovery {
             /**
              * conditions contains information about the current status of the endpoint.
              */
-            conditions?: pulumi.Input<inputs.discovery.v1beta1.EndpointConditions>;
+            conditions?: pulumi.Input<inputs.discovery.v1beta1.EndpointConditions | undefined>;
             /**
              * hostname of this endpoint. This field may be used by consumers of endpoints to distinguish endpoints from each other (e.g. in DNS names). Multiple endpoints which use the same hostname should be considered fungible (e.g. multiple A values in DNS). Must be lowercase and pass DNS Label (RFC 1123) validation.
              */
-            hostname?: pulumi.Input<string>;
+            hostname?: pulumi.Input<string | undefined>;
             /**
              * nodeName represents the name of the Node hosting this endpoint. This can be used to determine endpoints local to a Node. This field can be enabled with the EndpointSliceNodeName feature gate.
              */
-            nodeName?: pulumi.Input<string>;
+            nodeName?: pulumi.Input<string | undefined>;
             /**
              * targetRef is a reference to a Kubernetes object that represents this endpoint.
              */
-            targetRef?: pulumi.Input<inputs.core.v1.ObjectReference>;
+            targetRef?: pulumi.Input<inputs.core.v1.ObjectReference | undefined>;
             /**
              * topology contains arbitrary topology information associated with the endpoint. These key/value pairs must conform with the label format. https://kubernetes.io/docs/concepts/overview/working-with-objects/labels Topology may include a maximum of 16 key/value pairs. This includes, but is not limited to the following well known keys: * kubernetes.io/hostname: the value indicates the hostname of the node
              *   where the endpoint is located. This should match the corresponding
@@ -9837,7 +9837,7 @@ export namespace discovery {
              *   endpoint is located. This should match the corresponding node label.
              * This field is deprecated and will be removed in future api versions.
              */
-            topology?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            topology?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         }
 
         /**
@@ -9847,15 +9847,15 @@ export namespace discovery {
             /**
              * ready indicates that this endpoint is prepared to receive traffic, according to whatever system is managing the endpoint. A nil value indicates an unknown state. In most cases consumers should interpret this unknown state as ready. For compatibility reasons, ready should never be "true" for terminating endpoints.
              */
-            ready?: pulumi.Input<boolean>;
+            ready?: pulumi.Input<boolean | undefined>;
             /**
              * serving is identical to ready except that it is set regardless of the terminating state of endpoints. This condition should be set to true for a ready endpoint that is terminating. If nil, consumers should defer to the ready condition. This field can be enabled with the EndpointSliceTerminatingCondition feature gate.
              */
-            serving?: pulumi.Input<boolean>;
+            serving?: pulumi.Input<boolean | undefined>;
             /**
              * terminating indicates that this endpoint is terminating. A nil value indicates an unknown state. Consumers should interpret this unknown state to mean that the endpoint is not terminating. This field can be enabled with the EndpointSliceTerminatingCondition feature gate.
              */
-            terminating?: pulumi.Input<boolean>;
+            terminating?: pulumi.Input<boolean | undefined>;
         }
 
         /**
@@ -9865,19 +9865,19 @@ export namespace discovery {
             /**
              * The application protocol for this port. This field follows standard Kubernetes label syntax. Un-prefixed names are reserved for IANA standard service names (as per RFC-6335 and http://www.iana.org/assignments/service-names). Non-standard protocols should use prefixed names such as mycompany.com/my-custom-protocol.
              */
-            appProtocol?: pulumi.Input<string>;
+            appProtocol?: pulumi.Input<string | undefined>;
             /**
              * The name of this port. All ports in an EndpointSlice must have a unique name. If the EndpointSlice is dervied from a Kubernetes service, this corresponds to the Service.ports[].name. Name must either be an empty string or pass DNS_LABEL validation: * must be no more than 63 characters long. * must consist of lower case alphanumeric characters or '-'. * must start and end with an alphanumeric character. Default is empty string.
              */
-            name?: pulumi.Input<string>;
+            name?: pulumi.Input<string | undefined>;
             /**
              * The port number of the endpoint. If this is not specified, ports are not restricted and must be interpreted in the context of the specific consumer.
              */
-            port?: pulumi.Input<number>;
+            port?: pulumi.Input<number | undefined>;
             /**
              * The IP protocol for this port. Must be UDP, TCP, or SCTP. Default is TCP.
              */
-            protocol?: pulumi.Input<string>;
+            protocol?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -9891,7 +9891,7 @@ export namespace discovery {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"discovery.k8s.io/v1beta1">;
+            apiVersion?: pulumi.Input<"discovery.k8s.io/v1beta1" | undefined>;
             /**
              * endpoints is a list of unique endpoints in this slice. Each slice may include a maximum of 1000 endpoints.
              */
@@ -9899,15 +9899,15 @@ export namespace discovery {
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"EndpointSlice">;
+            kind?: pulumi.Input<"EndpointSlice" | undefined>;
             /**
              * Standard object's metadata.
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * ports specifies the list of network ports exposed by each endpoint in this slice. Each port must have a unique name. When ports is empty, it indicates that there are no defined ports. When a port is defined with a nil port value, it indicates "all ports". Each slice may include a maximum of 100 ports.
              */
-            ports?: pulumi.Input<pulumi.Input<inputs.discovery.v1beta1.EndpointPort>[]>;
+            ports?: pulumi.Input<pulumi.Input<inputs.discovery.v1beta1.EndpointPort>[] | undefined>;
         }
 
     }
@@ -9922,27 +9922,27 @@ export namespace events {
             /**
              * action is what action was taken/failed regarding to the regarding object. It is machine-readable. This field cannot be empty for new Events and it can have at most 128 characters.
              */
-            action?: pulumi.Input<string>;
+            action?: pulumi.Input<string | undefined>;
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"events.k8s.io/v1">;
+            apiVersion?: pulumi.Input<"events.k8s.io/v1" | undefined>;
             /**
              * deprecatedCount is the deprecated field assuring backward compatibility with core.v1 Event type.
              */
-            deprecatedCount?: pulumi.Input<number>;
+            deprecatedCount?: pulumi.Input<number | undefined>;
             /**
              * deprecatedFirstTimestamp is the deprecated field assuring backward compatibility with core.v1 Event type.
              */
-            deprecatedFirstTimestamp?: pulumi.Input<string>;
+            deprecatedFirstTimestamp?: pulumi.Input<string | undefined>;
             /**
              * deprecatedLastTimestamp is the deprecated field assuring backward compatibility with core.v1 Event type.
              */
-            deprecatedLastTimestamp?: pulumi.Input<string>;
+            deprecatedLastTimestamp?: pulumi.Input<string | undefined>;
             /**
              * deprecatedSource is the deprecated field assuring backward compatibility with core.v1 Event type.
              */
-            deprecatedSource?: pulumi.Input<inputs.core.v1.EventSource>;
+            deprecatedSource?: pulumi.Input<inputs.core.v1.EventSource | undefined>;
             /**
              * eventTime is the time when this Event was first observed. It is required.
              */
@@ -9950,40 +9950,40 @@ export namespace events {
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"Event">;
+            kind?: pulumi.Input<"Event" | undefined>;
             metadata: pulumi.Input<inputs.meta.v1.ObjectMeta>;
             /**
              * note is a human-readable description of the status of this operation. Maximal length of the note is 1kB, but libraries should be prepared to handle values up to 64kB.
              */
-            note?: pulumi.Input<string>;
+            note?: pulumi.Input<string | undefined>;
             /**
              * reason is why the action was taken. It is human-readable. This field cannot be empty for new Events and it can have at most 128 characters.
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
             /**
              * regarding contains the object this Event is about. In most cases it's an Object reporting controller implements, e.g. ReplicaSetController implements ReplicaSets and this event is emitted because it acts on some changes in a ReplicaSet object.
              */
-            regarding?: pulumi.Input<inputs.core.v1.ObjectReference>;
+            regarding?: pulumi.Input<inputs.core.v1.ObjectReference | undefined>;
             /**
              * related is the optional secondary object for more complex actions. E.g. when regarding object triggers a creation or deletion of related object.
              */
-            related?: pulumi.Input<inputs.core.v1.ObjectReference>;
+            related?: pulumi.Input<inputs.core.v1.ObjectReference | undefined>;
             /**
              * reportingController is the name of the controller that emitted this Event, e.g. `kubernetes.io/kubelet`. This field cannot be empty for new Events.
              */
-            reportingController?: pulumi.Input<string>;
+            reportingController?: pulumi.Input<string | undefined>;
             /**
              * reportingInstance is the ID of the controller instance, e.g. `kubelet-xyzf`. This field cannot be empty for new Events and it can have at most 128 characters.
              */
-            reportingInstance?: pulumi.Input<string>;
+            reportingInstance?: pulumi.Input<string | undefined>;
             /**
              * series is data about the Event series this event represents or nil if it's a singleton Event.
              */
-            series?: pulumi.Input<inputs.events.v1.EventSeries>;
+            series?: pulumi.Input<inputs.events.v1.EventSeries | undefined>;
             /**
              * type is the type of this event (Normal, Warning), new types could be added in the future. It is machine-readable. This field cannot be empty for new Events.
              */
-            type?: pulumi.Input<string>;
+            type?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -10009,27 +10009,27 @@ export namespace events {
             /**
              * action is what action was taken/failed regarding to the regarding object. It is machine-readable. This field can have at most 128 characters.
              */
-            action?: pulumi.Input<string>;
+            action?: pulumi.Input<string | undefined>;
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"events.k8s.io/v1beta1">;
+            apiVersion?: pulumi.Input<"events.k8s.io/v1beta1" | undefined>;
             /**
              * deprecatedCount is the deprecated field assuring backward compatibility with core.v1 Event type.
              */
-            deprecatedCount?: pulumi.Input<number>;
+            deprecatedCount?: pulumi.Input<number | undefined>;
             /**
              * deprecatedFirstTimestamp is the deprecated field assuring backward compatibility with core.v1 Event type.
              */
-            deprecatedFirstTimestamp?: pulumi.Input<string>;
+            deprecatedFirstTimestamp?: pulumi.Input<string | undefined>;
             /**
              * deprecatedLastTimestamp is the deprecated field assuring backward compatibility with core.v1 Event type.
              */
-            deprecatedLastTimestamp?: pulumi.Input<string>;
+            deprecatedLastTimestamp?: pulumi.Input<string | undefined>;
             /**
              * deprecatedSource is the deprecated field assuring backward compatibility with core.v1 Event type.
              */
-            deprecatedSource?: pulumi.Input<inputs.core.v1.EventSource>;
+            deprecatedSource?: pulumi.Input<inputs.core.v1.EventSource | undefined>;
             /**
              * eventTime is the time when this Event was first observed. It is required.
              */
@@ -10037,40 +10037,40 @@ export namespace events {
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"Event">;
+            kind?: pulumi.Input<"Event" | undefined>;
             metadata: pulumi.Input<inputs.meta.v1.ObjectMeta>;
             /**
              * note is a human-readable description of the status of this operation. Maximal length of the note is 1kB, but libraries should be prepared to handle values up to 64kB.
              */
-            note?: pulumi.Input<string>;
+            note?: pulumi.Input<string | undefined>;
             /**
              * reason is why the action was taken. It is human-readable. This field can have at most 128 characters.
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
             /**
              * regarding contains the object this Event is about. In most cases it's an Object reporting controller implements, e.g. ReplicaSetController implements ReplicaSets and this event is emitted because it acts on some changes in a ReplicaSet object.
              */
-            regarding?: pulumi.Input<inputs.core.v1.ObjectReference>;
+            regarding?: pulumi.Input<inputs.core.v1.ObjectReference | undefined>;
             /**
              * related is the optional secondary object for more complex actions. E.g. when regarding object triggers a creation or deletion of related object.
              */
-            related?: pulumi.Input<inputs.core.v1.ObjectReference>;
+            related?: pulumi.Input<inputs.core.v1.ObjectReference | undefined>;
             /**
              * reportingController is the name of the controller that emitted this Event, e.g. `kubernetes.io/kubelet`. This field cannot be empty for new Events.
              */
-            reportingController?: pulumi.Input<string>;
+            reportingController?: pulumi.Input<string | undefined>;
             /**
              * reportingInstance is the ID of the controller instance, e.g. `kubelet-xyzf`. This field cannot be empty for new Events and it can have at most 128 characters.
              */
-            reportingInstance?: pulumi.Input<string>;
+            reportingInstance?: pulumi.Input<string | undefined>;
             /**
              * series is data about the Event series this event represents or nil if it's a singleton Event.
              */
-            series?: pulumi.Input<inputs.events.v1beta1.EventSeries>;
+            series?: pulumi.Input<inputs.events.v1beta1.EventSeries | undefined>;
             /**
              * type is the type of this event (Normal, Warning), new types could be added in the future. It is machine-readable.
              */
-            type?: pulumi.Input<string>;
+            type?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -10088,7 +10088,7 @@ export namespace events {
             /**
              * Information whether this series is ongoing or finished. Deprecated. Planned removal for 1.18
              */
-            state?: pulumi.Input<string>;
+            state?: pulumi.Input<string | undefined>;
         }
     }
 }
@@ -10124,11 +10124,11 @@ export namespace extensions {
              *
              * Examples: `/foo` would allow `/foo`, `/foo/` and `/foo/bar` `/foo` would not allow `/food` or `/etc/foo`
              */
-            pathPrefix?: pulumi.Input<string>;
+            pathPrefix?: pulumi.Input<string | undefined>;
             /**
              * when set to true, will allow host volumes matching the pathPrefix only if all volume mounts are readOnly.
              */
-            readOnly?: pulumi.Input<boolean>;
+            readOnly?: pulumi.Input<boolean | undefined>;
         }
 
         /**
@@ -10138,23 +10138,23 @@ export namespace extensions {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"extensions/v1beta1">;
+            apiVersion?: pulumi.Input<"extensions/v1beta1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"DaemonSet">;
+            kind?: pulumi.Input<"DaemonSet" | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * The desired behavior of this daemon set. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            spec?: pulumi.Input<inputs.extensions.v1beta1.DaemonSetSpec>;
+            spec?: pulumi.Input<inputs.extensions.v1beta1.DaemonSetSpec | undefined>;
             /**
              * The current status of this daemon set. This data may be out of date by some window of time. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            status?: pulumi.Input<inputs.extensions.v1beta1.DaemonSetStatus>;
+            status?: pulumi.Input<inputs.extensions.v1beta1.DaemonSetStatus | undefined>;
         }
 
         /**
@@ -10164,15 +10164,15 @@ export namespace extensions {
             /**
              * Last time the condition transitioned from one status to another.
              */
-            lastTransitionTime?: pulumi.Input<string>;
+            lastTransitionTime?: pulumi.Input<string | undefined>;
             /**
              * A human readable message indicating details about the transition.
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * The reason for the condition's last transition.
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
             /**
              * Status of the condition, one of True, False, Unknown.
              */
@@ -10190,15 +10190,15 @@ export namespace extensions {
             /**
              * The minimum number of seconds for which a newly created DaemonSet pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready).
              */
-            minReadySeconds?: pulumi.Input<number>;
+            minReadySeconds?: pulumi.Input<number | undefined>;
             /**
              * The number of old history to retain to allow rollback. This is a pointer to distinguish between explicit zero and not specified. Defaults to 10.
              */
-            revisionHistoryLimit?: pulumi.Input<number>;
+            revisionHistoryLimit?: pulumi.Input<number | undefined>;
             /**
              * A label query over pods that are managed by the daemon set. Must match in order to be controlled. If empty, defaulted to labels on Pod template. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
              */
-            selector?: pulumi.Input<inputs.meta.v1.LabelSelector>;
+            selector?: pulumi.Input<inputs.meta.v1.LabelSelector | undefined>;
             /**
              * An object that describes the pod that will be created. The DaemonSet will create exactly one copy of this pod on every node that matches the template's node selector (or on every node if no node selector is specified). More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller#pod-template
              */
@@ -10206,11 +10206,11 @@ export namespace extensions {
             /**
              * DEPRECATED. A sequence number representing a specific generation of the template. Populated by the system. It can be set only during the creation.
              */
-            templateGeneration?: pulumi.Input<number>;
+            templateGeneration?: pulumi.Input<number | undefined>;
             /**
              * An update strategy to replace existing DaemonSet pods with new pods.
              */
-            updateStrategy?: pulumi.Input<inputs.extensions.v1beta1.DaemonSetUpdateStrategy>;
+            updateStrategy?: pulumi.Input<inputs.extensions.v1beta1.DaemonSetUpdateStrategy | undefined>;
         }
 
         /**
@@ -10220,11 +10220,11 @@ export namespace extensions {
             /**
              * Count of hash collisions for the DaemonSet. The DaemonSet controller uses this field as a collision avoidance mechanism when it needs to create the name for the newest ControllerRevision.
              */
-            collisionCount?: pulumi.Input<number>;
+            collisionCount?: pulumi.Input<number | undefined>;
             /**
              * Represents the latest available observations of a DaemonSet's current state.
              */
-            conditions?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.DaemonSetCondition>[]>;
+            conditions?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.DaemonSetCondition>[] | undefined>;
             /**
              * The number of nodes that are running at least 1 daemon pod and are supposed to run the daemon pod. More info: https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
              */
@@ -10236,7 +10236,7 @@ export namespace extensions {
             /**
              * The number of nodes that should be running the daemon pod and have one or more of the daemon pod running and available (ready for at least spec.minReadySeconds)
              */
-            numberAvailable?: pulumi.Input<number>;
+            numberAvailable?: pulumi.Input<number | undefined>;
             /**
              * The number of nodes that are running the daemon pod, but are not supposed to run the daemon pod. More info: https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
              */
@@ -10248,26 +10248,26 @@ export namespace extensions {
             /**
              * The number of nodes that should be running the daemon pod and have none of the daemon pod running and available (ready for at least spec.minReadySeconds)
              */
-            numberUnavailable?: pulumi.Input<number>;
+            numberUnavailable?: pulumi.Input<number | undefined>;
             /**
              * The most recent generation observed by the daemon set controller.
              */
-            observedGeneration?: pulumi.Input<number>;
+            observedGeneration?: pulumi.Input<number | undefined>;
             /**
              * The total number of nodes that are running updated daemon pod
              */
-            updatedNumberScheduled?: pulumi.Input<number>;
+            updatedNumberScheduled?: pulumi.Input<number | undefined>;
         }
 
         export interface DaemonSetUpdateStrategy {
             /**
              * Rolling update config params. Present only if type = "RollingUpdate".
              */
-            rollingUpdate?: pulumi.Input<inputs.extensions.v1beta1.RollingUpdateDaemonSet>;
+            rollingUpdate?: pulumi.Input<inputs.extensions.v1beta1.RollingUpdateDaemonSet | undefined>;
             /**
              * Type of daemon set update. Can be "RollingUpdate" or "OnDelete". Default is OnDelete.
              */
-            type?: pulumi.Input<string>;
+            type?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -10299,23 +10299,23 @@ export namespace extensions {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"extensions/v1beta1">;
+            apiVersion?: pulumi.Input<"extensions/v1beta1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"Deployment">;
+            kind?: pulumi.Input<"Deployment" | undefined>;
             /**
              * Standard object metadata.
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Specification of the desired behavior of the Deployment.
              */
-            spec?: pulumi.Input<inputs.extensions.v1beta1.DeploymentSpec>;
+            spec?: pulumi.Input<inputs.extensions.v1beta1.DeploymentSpec | undefined>;
             /**
              * Most recently observed status of the Deployment.
              */
-            status?: pulumi.Input<inputs.extensions.v1beta1.DeploymentStatus>;
+            status?: pulumi.Input<inputs.extensions.v1beta1.DeploymentStatus | undefined>;
         }
 
         /**
@@ -10325,19 +10325,19 @@ export namespace extensions {
             /**
              * Last time the condition transitioned from one status to another.
              */
-            lastTransitionTime?: pulumi.Input<string>;
+            lastTransitionTime?: pulumi.Input<string | undefined>;
             /**
              * The last time this condition was updated.
              */
-            lastUpdateTime?: pulumi.Input<string>;
+            lastUpdateTime?: pulumi.Input<string | undefined>;
             /**
              * A human readable message indicating details about the transition.
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * The reason for the condition's last transition.
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
             /**
              * Status of the condition, one of True, False, Unknown.
              */
@@ -10355,35 +10355,35 @@ export namespace extensions {
             /**
              * Minimum number of seconds for which a newly created pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready)
              */
-            minReadySeconds?: pulumi.Input<number>;
+            minReadySeconds?: pulumi.Input<number | undefined>;
             /**
              * Indicates that the deployment is paused and will not be processed by the deployment controller.
              */
-            paused?: pulumi.Input<boolean>;
+            paused?: pulumi.Input<boolean | undefined>;
             /**
              * The maximum time in seconds for a deployment to make progress before it is considered to be failed. The deployment controller will continue to process failed deployments and a condition with a ProgressDeadlineExceeded reason will be surfaced in the deployment status. Note that progress will not be estimated during the time a deployment is paused. This is set to the max value of int32 (i.e. 2147483647) by default, which means "no deadline".
              */
-            progressDeadlineSeconds?: pulumi.Input<number>;
+            progressDeadlineSeconds?: pulumi.Input<number | undefined>;
             /**
              * Number of desired pods. This is a pointer to distinguish between explicit zero and not specified. Defaults to 1.
              */
-            replicas?: pulumi.Input<number>;
+            replicas?: pulumi.Input<number | undefined>;
             /**
              * The number of old ReplicaSets to retain to allow rollback. This is a pointer to distinguish between explicit zero and not specified. This is set to the max value of int32 (i.e. 2147483647) by default, which means "retaining all old RelicaSets".
              */
-            revisionHistoryLimit?: pulumi.Input<number>;
+            revisionHistoryLimit?: pulumi.Input<number | undefined>;
             /**
              * DEPRECATED. The config this deployment is rolling back to. Will be cleared after rollback is done.
              */
-            rollbackTo?: pulumi.Input<inputs.extensions.v1beta1.RollbackConfig>;
+            rollbackTo?: pulumi.Input<inputs.extensions.v1beta1.RollbackConfig | undefined>;
             /**
              * Label selector for pods. Existing ReplicaSets whose pods are selected by this will be the ones affected by this deployment.
              */
-            selector?: pulumi.Input<inputs.meta.v1.LabelSelector>;
+            selector?: pulumi.Input<inputs.meta.v1.LabelSelector | undefined>;
             /**
              * The deployment strategy to use to replace existing pods with new ones.
              */
-            strategy?: pulumi.Input<inputs.extensions.v1beta1.DeploymentStrategy>;
+            strategy?: pulumi.Input<inputs.extensions.v1beta1.DeploymentStrategy | undefined>;
             /**
              * Template describes the pods that will be created.
              */
@@ -10397,35 +10397,35 @@ export namespace extensions {
             /**
              * Total number of available pods (ready for at least minReadySeconds) targeted by this deployment.
              */
-            availableReplicas?: pulumi.Input<number>;
+            availableReplicas?: pulumi.Input<number | undefined>;
             /**
              * Count of hash collisions for the Deployment. The Deployment controller uses this field as a collision avoidance mechanism when it needs to create the name for the newest ReplicaSet.
              */
-            collisionCount?: pulumi.Input<number>;
+            collisionCount?: pulumi.Input<number | undefined>;
             /**
              * Represents the latest available observations of a deployment's current state.
              */
-            conditions?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.DeploymentCondition>[]>;
+            conditions?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.DeploymentCondition>[] | undefined>;
             /**
              * The generation observed by the deployment controller.
              */
-            observedGeneration?: pulumi.Input<number>;
+            observedGeneration?: pulumi.Input<number | undefined>;
             /**
              * Total number of ready pods targeted by this deployment.
              */
-            readyReplicas?: pulumi.Input<number>;
+            readyReplicas?: pulumi.Input<number | undefined>;
             /**
              * Total number of non-terminated pods targeted by this deployment (their labels match the selector).
              */
-            replicas?: pulumi.Input<number>;
+            replicas?: pulumi.Input<number | undefined>;
             /**
              * Total number of unavailable pods targeted by this deployment. This is the total number of pods that are still required for the deployment to have 100% available capacity. They may either be pods that are running but not yet available or pods that still have not been created.
              */
-            unavailableReplicas?: pulumi.Input<number>;
+            unavailableReplicas?: pulumi.Input<number | undefined>;
             /**
              * Total number of non-terminated pods targeted by this deployment that have the desired template spec.
              */
-            updatedReplicas?: pulumi.Input<number>;
+            updatedReplicas?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -10435,11 +10435,11 @@ export namespace extensions {
             /**
              * Rolling update config params. Present only if DeploymentStrategyType = RollingUpdate.
              */
-            rollingUpdate?: pulumi.Input<inputs.extensions.v1beta1.RollingUpdateDeployment>;
+            rollingUpdate?: pulumi.Input<inputs.extensions.v1beta1.RollingUpdateDeployment | undefined>;
             /**
              * Type of deployment. Can be "Recreate" or "RollingUpdate". Default is RollingUpdate.
              */
-            type?: pulumi.Input<string>;
+            type?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -10449,11 +10449,11 @@ export namespace extensions {
             /**
              * ranges are the allowed ranges of fs groups.  If you would like to force a single fs group then supply a single range with the same start and end. Required for MustRunAs.
              */
-            ranges?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.IDRange>[]>;
+            ranges?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.IDRange>[] | undefined>;
             /**
              * rule is the strategy that will dictate what FSGroup is used in the SecurityContext.
              */
-            rule?: pulumi.Input<string>;
+            rule?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -10467,7 +10467,7 @@ export namespace extensions {
             /**
              * Path is matched against the path of an incoming request. Currently it can contain characters disallowed from the conventional "path" part of a URL as defined by RFC 3986. Paths must begin with a '/'. When unspecified, all paths from incoming requests are matched.
              */
-            path?: pulumi.Input<string>;
+            path?: pulumi.Input<string | undefined>;
             /**
              * PathType determines the interpretation of the Path matching. PathType can be one of the following values: * Exact: Matches the URL path exactly. * Prefix: Matches based on a URL path prefix split by '/'. Matching is
              *   done on a path element by element basis. A path element refers is the
@@ -10481,7 +10481,7 @@ export namespace extensions {
              *   or treat it identically to Prefix or Exact path types.
              * Implementations are required to support all path types. Defaults to ImplementationSpecific.
              */
-            pathType?: pulumi.Input<string>;
+            pathType?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -10533,7 +10533,7 @@ export namespace extensions {
             /**
              * Except is a slice of CIDRs that should not be included within an IP Block Valid examples are "192.168.1.1/24" Except values will be rejected if they are outside the CIDR range
              */
-            except?: pulumi.Input<pulumi.Input<string>[]>;
+            except?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         }
 
         /**
@@ -10557,23 +10557,23 @@ export namespace extensions {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"extensions/v1beta1">;
+            apiVersion?: pulumi.Input<"extensions/v1beta1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"Ingress">;
+            kind?: pulumi.Input<"Ingress" | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Spec is the desired state of the Ingress. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            spec?: pulumi.Input<inputs.extensions.v1beta1.IngressSpec>;
+            spec?: pulumi.Input<inputs.extensions.v1beta1.IngressSpec | undefined>;
             /**
              * Status is the current state of the Ingress. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            status?: pulumi.Input<inputs.extensions.v1beta1.IngressStatus>;
+            status?: pulumi.Input<inputs.extensions.v1beta1.IngressStatus | undefined>;
         }
 
         /**
@@ -10583,7 +10583,7 @@ export namespace extensions {
             /**
              * Resource is an ObjectRef to another Kubernetes resource in the namespace of the Ingress object. If resource is specified, serviceName and servicePort must not be specified.
              */
-            resource?: pulumi.Input<inputs.core.v1.TypedLocalObjectReference>;
+            resource?: pulumi.Input<inputs.core.v1.TypedLocalObjectReference | undefined>;
             /**
              * Specifies the name of the referenced service.
              */
@@ -10608,8 +10608,8 @@ export namespace extensions {
              *
              * Host can be "precise" which is a domain name without the terminating dot of a network host (e.g. "foo.bar.com") or "wildcard", which is a domain name prefixed with a single wildcard label (e.g. "*.foo.com"). The wildcard character '*' must appear by itself as the first DNS label and matches only a single label. You cannot have a wildcard label by itself (e.g. Host == "*"). Requests will be matched against the Host field in the following way: 1. If Host is precise, the request matches this rule if the http host header is equal to Host. 2. If Host is a wildcard, then the request matches this rule if the http host header is to equal to the suffix (removing the first label) of the wildcard rule.
              */
-            host?: pulumi.Input<string>;
-            http?: pulumi.Input<inputs.extensions.v1beta1.HTTPIngressRuleValue>;
+            host?: pulumi.Input<string | undefined>;
+            http?: pulumi.Input<inputs.extensions.v1beta1.HTTPIngressRuleValue | undefined>;
         }
 
         /**
@@ -10619,19 +10619,19 @@ export namespace extensions {
             /**
              * A default backend capable of servicing requests that don't match any rule. At least one of 'backend' or 'rules' must be specified. This field is optional to allow the loadbalancer controller or defaulting logic to specify a global default.
              */
-            backend?: pulumi.Input<inputs.extensions.v1beta1.IngressBackend>;
+            backend?: pulumi.Input<inputs.extensions.v1beta1.IngressBackend | undefined>;
             /**
              * IngressClassName is the name of the IngressClass cluster resource. The associated IngressClass defines which controller will implement the resource. This replaces the deprecated `kubernetes.io/ingress.class` annotation. For backwards compatibility, when that annotation is set, it must be given precedence over this field. The controller may emit a warning if the field and annotation have different values. Implementations of this API should ignore Ingresses without a class specified. An IngressClass resource may be marked as default, which can be used to set a default value for this field. For more information, refer to the IngressClass documentation.
              */
-            ingressClassName?: pulumi.Input<string>;
+            ingressClassName?: pulumi.Input<string | undefined>;
             /**
              * A list of host rules used to configure the Ingress. If unspecified, or no rule matches, all traffic is sent to the default backend.
              */
-            rules?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.IngressRule>[]>;
+            rules?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.IngressRule>[] | undefined>;
             /**
              * TLS configuration. Currently the Ingress only supports a single TLS port, 443. If multiple members of this list specify different hosts, they will be multiplexed on the same port according to the hostname specified through the SNI TLS extension, if the ingress controller fulfilling the ingress supports SNI.
              */
-            tls?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.IngressTLS>[]>;
+            tls?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.IngressTLS>[] | undefined>;
         }
 
         /**
@@ -10641,7 +10641,7 @@ export namespace extensions {
             /**
              * LoadBalancer contains the current status of the load-balancer.
              */
-            loadBalancer?: pulumi.Input<inputs.core.v1.LoadBalancerStatus>;
+            loadBalancer?: pulumi.Input<inputs.core.v1.LoadBalancerStatus | undefined>;
         }
 
         /**
@@ -10651,11 +10651,11 @@ export namespace extensions {
             /**
              * Hosts are a list of hosts included in the TLS certificate. The values in this list must match the name/s used in the tlsSecret. Defaults to the wildcard host setting for the loadbalancer controller fulfilling this Ingress, if left unspecified.
              */
-            hosts?: pulumi.Input<pulumi.Input<string>[]>;
+            hosts?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * SecretName is the name of the secret used to terminate SSL traffic on 443. Field is left optional to allow SSL routing based on SNI hostname alone. If the SNI host in a listener conflicts with the "Host" header field used by an IngressRule, the SNI host is used for termination and value of the Host header is used for routing.
              */
-            secretName?: pulumi.Input<string>;
+            secretName?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -10665,19 +10665,19 @@ export namespace extensions {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"extensions/v1beta1">;
+            apiVersion?: pulumi.Input<"extensions/v1beta1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"NetworkPolicy">;
+            kind?: pulumi.Input<"NetworkPolicy" | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Specification of the desired behavior for this NetworkPolicy.
              */
-            spec?: pulumi.Input<inputs.extensions.v1beta1.NetworkPolicySpec>;
+            spec?: pulumi.Input<inputs.extensions.v1beta1.NetworkPolicySpec | undefined>;
         }
 
         /**
@@ -10687,11 +10687,11 @@ export namespace extensions {
             /**
              * List of destination ports for outgoing traffic. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list.
              */
-            ports?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.NetworkPolicyPort>[]>;
+            ports?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.NetworkPolicyPort>[] | undefined>;
             /**
              * List of destinations for outgoing traffic of pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all destinations (traffic not restricted by destination). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the to list.
              */
-            to?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.NetworkPolicyPeer>[]>;
+            to?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.NetworkPolicyPeer>[] | undefined>;
         }
 
         /**
@@ -10701,11 +10701,11 @@ export namespace extensions {
             /**
              * List of sources which should be able to access the pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all sources (traffic not restricted by source). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the from list.
              */
-            from?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.NetworkPolicyPeer>[]>;
+            from?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.NetworkPolicyPeer>[] | undefined>;
             /**
              * List of ports which should be made accessible on the pods selected for this rule. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list.
              */
-            ports?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.NetworkPolicyPort>[]>;
+            ports?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.NetworkPolicyPort>[] | undefined>;
         }
 
         /**
@@ -10715,19 +10715,19 @@ export namespace extensions {
             /**
              * IPBlock defines policy on a particular IPBlock. If this field is set then neither of the other fields can be.
              */
-            ipBlock?: pulumi.Input<inputs.extensions.v1beta1.IPBlock>;
+            ipBlock?: pulumi.Input<inputs.extensions.v1beta1.IPBlock | undefined>;
             /**
              * Selects Namespaces using cluster-scoped labels. This field follows standard label selector semantics; if present but empty, it selects all namespaces.
              *
              * If PodSelector is also set, then the NetworkPolicyPeer as a whole selects the Pods matching PodSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects all Pods in the Namespaces selected by NamespaceSelector.
              */
-            namespaceSelector?: pulumi.Input<inputs.meta.v1.LabelSelector>;
+            namespaceSelector?: pulumi.Input<inputs.meta.v1.LabelSelector | undefined>;
             /**
              * This is a label selector which selects Pods. This field follows standard label selector semantics; if present but empty, it selects all pods.
              *
              * If NamespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the Pods matching PodSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the Pods matching PodSelector in the policy's own Namespace.
              */
-            podSelector?: pulumi.Input<inputs.meta.v1.LabelSelector>;
+            podSelector?: pulumi.Input<inputs.meta.v1.LabelSelector | undefined>;
         }
 
         /**
@@ -10737,11 +10737,11 @@ export namespace extensions {
             /**
              * If specified, the port on the given protocol.  This can either be a numerical or named port on a pod.  If this field is not provided, this matches all port names and numbers. If present, only traffic on the specified protocol AND port will be matched.
              */
-            port?: pulumi.Input<number | string>;
+            port?: pulumi.Input<number | string | undefined>;
             /**
              * Optional.  The protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.
              */
-            protocol?: pulumi.Input<string>;
+            protocol?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -10751,11 +10751,11 @@ export namespace extensions {
             /**
              * List of egress rules to be applied to the selected pods. Outgoing traffic is allowed if there are no NetworkPolicies selecting the pod (and cluster policy otherwise allows the traffic), OR if the traffic matches at least one egress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy limits all outgoing traffic (and serves solely to ensure that the pods it selects are isolated by default). This field is beta-level in 1.8
              */
-            egress?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.NetworkPolicyEgressRule>[]>;
+            egress?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.NetworkPolicyEgressRule>[] | undefined>;
             /**
              * List of ingress rules to be applied to the selected pods. Traffic is allowed to a pod if there are no NetworkPolicies selecting the pod OR if the traffic source is the pod's local node, OR if the traffic matches at least one ingress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy does not allow any traffic (and serves solely to ensure that the pods it selects are isolated by default).
              */
-            ingress?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.NetworkPolicyIngressRule>[]>;
+            ingress?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.NetworkPolicyIngressRule>[] | undefined>;
             /**
              * Selects the pods to which this NetworkPolicy object applies.  The array of ingress rules is applied to any pods selected by this field. Multiple network policies can select the same set of pods.  In this case, the ingress rules for each are combined additively. This field is NOT optional and follows standard label selector semantics. An empty podSelector matches all pods in this namespace.
              */
@@ -10763,7 +10763,7 @@ export namespace extensions {
             /**
              * List of rule types that the NetworkPolicy relates to. Valid options are "Ingress", "Egress", or "Ingress,Egress". If this field is not specified, it will default based on the existence of Ingress or Egress rules; policies that contain an Egress section are assumed to affect Egress, and all policies (whether or not they contain an Ingress section) are assumed to affect Ingress. If you want to write an egress-only policy, you must explicitly specify policyTypes [ "Egress" ]. Likewise, if you want to write a policy that specifies that no egress is allowed, you must specify a policyTypes value that include "Egress" (since such a policy would not include an Egress section and would otherwise default to just [ "Ingress" ]). This field is beta-level in 1.8
              */
-            policyTypes?: pulumi.Input<pulumi.Input<string>[]>;
+            policyTypes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         }
 
         /**
@@ -10773,19 +10773,19 @@ export namespace extensions {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"extensions/v1beta1">;
+            apiVersion?: pulumi.Input<"extensions/v1beta1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"PodSecurityPolicy">;
+            kind?: pulumi.Input<"PodSecurityPolicy" | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * spec defines the policy enforced.
              */
-            spec?: pulumi.Input<inputs.extensions.v1beta1.PodSecurityPolicySpec>;
+            spec?: pulumi.Input<inputs.extensions.v1beta1.PodSecurityPolicySpec | undefined>;
         }
 
         /**
@@ -10795,47 +10795,47 @@ export namespace extensions {
             /**
              * allowPrivilegeEscalation determines if a pod can request to allow privilege escalation. If unspecified, defaults to true.
              */
-            allowPrivilegeEscalation?: pulumi.Input<boolean>;
+            allowPrivilegeEscalation?: pulumi.Input<boolean | undefined>;
             /**
              * AllowedCSIDrivers is a whitelist of inline CSI drivers that must be explicitly set to be embedded within a pod spec. An empty value indicates that any CSI driver can be used for inline ephemeral volumes.
              */
-            allowedCSIDrivers?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.AllowedCSIDriver>[]>;
+            allowedCSIDrivers?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.AllowedCSIDriver>[] | undefined>;
             /**
              * allowedCapabilities is a list of capabilities that can be requested to add to the container. Capabilities in this field may be added at the pod author's discretion. You must not list a capability in both allowedCapabilities and requiredDropCapabilities.
              */
-            allowedCapabilities?: pulumi.Input<pulumi.Input<string>[]>;
+            allowedCapabilities?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * allowedFlexVolumes is a whitelist of allowed Flexvolumes.  Empty or nil indicates that all Flexvolumes may be used.  This parameter is effective only when the usage of the Flexvolumes is allowed in the "volumes" field.
              */
-            allowedFlexVolumes?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.AllowedFlexVolume>[]>;
+            allowedFlexVolumes?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.AllowedFlexVolume>[] | undefined>;
             /**
              * allowedHostPaths is a white list of allowed host paths. Empty indicates that all host paths may be used.
              */
-            allowedHostPaths?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.AllowedHostPath>[]>;
+            allowedHostPaths?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.AllowedHostPath>[] | undefined>;
             /**
              * AllowedProcMountTypes is a whitelist of allowed ProcMountTypes. Empty or nil indicates that only the DefaultProcMountType may be used. This requires the ProcMountType feature flag to be enabled.
              */
-            allowedProcMountTypes?: pulumi.Input<pulumi.Input<string>[]>;
+            allowedProcMountTypes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * allowedUnsafeSysctls is a list of explicitly allowed unsafe sysctls, defaults to none. Each entry is either a plain sysctl name or ends in "*" in which case it is considered as a prefix of allowed sysctls. Single * means all unsafe sysctls are allowed. Kubelet has to whitelist all allowed unsafe sysctls explicitly to avoid rejection.
              *
              * Examples: e.g. "foo/*" allows "foo/bar", "foo/baz", etc. e.g. "foo.*" allows "foo.bar", "foo.baz", etc.
              */
-            allowedUnsafeSysctls?: pulumi.Input<pulumi.Input<string>[]>;
+            allowedUnsafeSysctls?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * defaultAddCapabilities is the default set of capabilities that will be added to the container unless the pod spec specifically drops the capability.  You may not list a capability in both defaultAddCapabilities and requiredDropCapabilities. Capabilities added here are implicitly allowed, and need not be included in the allowedCapabilities list.
              */
-            defaultAddCapabilities?: pulumi.Input<pulumi.Input<string>[]>;
+            defaultAddCapabilities?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * defaultAllowPrivilegeEscalation controls the default setting for whether a process can gain more privileges than its parent process.
              */
-            defaultAllowPrivilegeEscalation?: pulumi.Input<boolean>;
+            defaultAllowPrivilegeEscalation?: pulumi.Input<boolean | undefined>;
             /**
              * forbiddenSysctls is a list of explicitly forbidden sysctls, defaults to none. Each entry is either a plain sysctl name or ends in "*" in which case it is considered as a prefix of forbidden sysctls. Single * means all sysctls are forbidden.
              *
              * Examples: e.g. "foo/*" forbids "foo/bar", "foo/baz", etc. e.g. "foo.*" forbids "foo.bar", "foo.baz", etc.
              */
-            forbiddenSysctls?: pulumi.Input<pulumi.Input<string>[]>;
+            forbiddenSysctls?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * fsGroup is the strategy that will dictate what fs group is used by the SecurityContext.
              */
@@ -10843,35 +10843,35 @@ export namespace extensions {
             /**
              * hostIPC determines if the policy allows the use of HostIPC in the pod spec.
              */
-            hostIPC?: pulumi.Input<boolean>;
+            hostIPC?: pulumi.Input<boolean | undefined>;
             /**
              * hostNetwork determines if the policy allows the use of HostNetwork in the pod spec.
              */
-            hostNetwork?: pulumi.Input<boolean>;
+            hostNetwork?: pulumi.Input<boolean | undefined>;
             /**
              * hostPID determines if the policy allows the use of HostPID in the pod spec.
              */
-            hostPID?: pulumi.Input<boolean>;
+            hostPID?: pulumi.Input<boolean | undefined>;
             /**
              * hostPorts determines which host port ranges are allowed to be exposed.
              */
-            hostPorts?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.HostPortRange>[]>;
+            hostPorts?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.HostPortRange>[] | undefined>;
             /**
              * privileged determines if a pod can request to be run as privileged.
              */
-            privileged?: pulumi.Input<boolean>;
+            privileged?: pulumi.Input<boolean | undefined>;
             /**
              * readOnlyRootFilesystem when set to true will force containers to run with a read only root file system.  If the container specifically requests to run with a non-read only root file system the PSP should deny the pod. If set to false the container may run with a read only root file system if it wishes but it will not be forced to.
              */
-            readOnlyRootFilesystem?: pulumi.Input<boolean>;
+            readOnlyRootFilesystem?: pulumi.Input<boolean | undefined>;
             /**
              * requiredDropCapabilities are the capabilities that will be dropped from the container.  These are required to be dropped and cannot be added.
              */
-            requiredDropCapabilities?: pulumi.Input<pulumi.Input<string>[]>;
+            requiredDropCapabilities?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * RunAsGroup is the strategy that will dictate the allowable RunAsGroup values that may be set. If this field is omitted, the pod's RunAsGroup can take any value. This field requires the RunAsGroup feature gate to be enabled.
              */
-            runAsGroup?: pulumi.Input<inputs.extensions.v1beta1.RunAsGroupStrategyOptions>;
+            runAsGroup?: pulumi.Input<inputs.extensions.v1beta1.RunAsGroupStrategyOptions | undefined>;
             /**
              * runAsUser is the strategy that will dictate the allowable RunAsUser values that may be set.
              */
@@ -10879,7 +10879,7 @@ export namespace extensions {
             /**
              * runtimeClass is the strategy that will dictate the allowable RuntimeClasses for a pod. If this field is omitted, the pod's runtimeClassName field is unrestricted. Enforcement of this field depends on the RuntimeClass feature gate being enabled.
              */
-            runtimeClass?: pulumi.Input<inputs.extensions.v1beta1.RuntimeClassStrategyOptions>;
+            runtimeClass?: pulumi.Input<inputs.extensions.v1beta1.RuntimeClassStrategyOptions | undefined>;
             /**
              * seLinux is the strategy that will dictate the allowable labels that may be set.
              */
@@ -10891,7 +10891,7 @@ export namespace extensions {
             /**
              * volumes is a white list of allowed volume plugins. Empty indicates that no volumes may be used. To allow all volumes you may use '*'.
              */
-            volumes?: pulumi.Input<pulumi.Input<string>[]>;
+            volumes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         }
 
         /**
@@ -10901,23 +10901,23 @@ export namespace extensions {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"extensions/v1beta1">;
+            apiVersion?: pulumi.Input<"extensions/v1beta1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"ReplicaSet">;
+            kind?: pulumi.Input<"ReplicaSet" | undefined>;
             /**
              * If the Labels of a ReplicaSet are empty, they are defaulted to be the same as the Pod(s) that the ReplicaSet manages. Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Spec defines the specification of the desired behavior of the ReplicaSet. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            spec?: pulumi.Input<inputs.extensions.v1beta1.ReplicaSetSpec>;
+            spec?: pulumi.Input<inputs.extensions.v1beta1.ReplicaSetSpec | undefined>;
             /**
              * Status is the most recently observed status of the ReplicaSet. This data may be out of date by some window of time. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            status?: pulumi.Input<inputs.extensions.v1beta1.ReplicaSetStatus>;
+            status?: pulumi.Input<inputs.extensions.v1beta1.ReplicaSetStatus | undefined>;
         }
 
         /**
@@ -10927,15 +10927,15 @@ export namespace extensions {
             /**
              * The last time the condition transitioned from one status to another.
              */
-            lastTransitionTime?: pulumi.Input<string>;
+            lastTransitionTime?: pulumi.Input<string | undefined>;
             /**
              * A human readable message indicating details about the transition.
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * The reason for the condition's last transition.
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
             /**
              * Status of the condition, one of True, False, Unknown.
              */
@@ -10953,19 +10953,19 @@ export namespace extensions {
             /**
              * Minimum number of seconds for which a newly created pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready)
              */
-            minReadySeconds?: pulumi.Input<number>;
+            minReadySeconds?: pulumi.Input<number | undefined>;
             /**
              * Replicas is the number of desired replicas. This is a pointer to distinguish between explicit zero and unspecified. Defaults to 1. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/#what-is-a-replicationcontroller
              */
-            replicas?: pulumi.Input<number>;
+            replicas?: pulumi.Input<number | undefined>;
             /**
              * Selector is a label query over pods that should match the replica count. If the selector is empty, it is defaulted to the labels present on the pod template. Label keys and values that must match in order to be controlled by this replica set. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
              */
-            selector?: pulumi.Input<inputs.meta.v1.LabelSelector>;
+            selector?: pulumi.Input<inputs.meta.v1.LabelSelector | undefined>;
             /**
              * Template is the object that describes the pod that will be created if insufficient replicas are detected. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller#pod-template
              */
-            template?: pulumi.Input<inputs.core.v1.PodTemplateSpec>;
+            template?: pulumi.Input<inputs.core.v1.PodTemplateSpec | undefined>;
         }
 
         /**
@@ -10975,23 +10975,23 @@ export namespace extensions {
             /**
              * The number of available replicas (ready for at least minReadySeconds) for this replica set.
              */
-            availableReplicas?: pulumi.Input<number>;
+            availableReplicas?: pulumi.Input<number | undefined>;
             /**
              * Represents the latest available observations of a replica set's current state.
              */
-            conditions?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.ReplicaSetCondition>[]>;
+            conditions?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.ReplicaSetCondition>[] | undefined>;
             /**
              * The number of pods that have labels matching the labels of the pod template of the replicaset.
              */
-            fullyLabeledReplicas?: pulumi.Input<number>;
+            fullyLabeledReplicas?: pulumi.Input<number | undefined>;
             /**
              * ObservedGeneration reflects the generation of the most recently observed ReplicaSet.
              */
-            observedGeneration?: pulumi.Input<number>;
+            observedGeneration?: pulumi.Input<number | undefined>;
             /**
              * The number of ready replicas for this replica set.
              */
-            readyReplicas?: pulumi.Input<number>;
+            readyReplicas?: pulumi.Input<number | undefined>;
             /**
              * Replicas is the most recently oberved number of replicas. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/#what-is-a-replicationcontroller
              */
@@ -11005,7 +11005,7 @@ export namespace extensions {
             /**
              * The revision to rollback to. If set to 0, rollback to the last revision.
              */
-            revision?: pulumi.Input<number>;
+            revision?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -11015,7 +11015,7 @@ export namespace extensions {
             /**
              * The maximum number of DaemonSet pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of total number of DaemonSet pods at the start of the update (ex: 10%). Absolute number is calculated from percentage by rounding up. This cannot be 0. Default value is 1. Example: when this is set to 30%, at most 30% of the total number of nodes that should be running the daemon pod (i.e. status.desiredNumberScheduled) can have their pods stopped for an update at any given time. The update starts by stopping at most 30% of those DaemonSet pods and then brings up new DaemonSet pods in their place. Once the new pods are available, it then proceeds onto other DaemonSet pods, thus ensuring that at least 70% of original number of DaemonSet pods are available at all times during the update.
              */
-            maxUnavailable?: pulumi.Input<number | string>;
+            maxUnavailable?: pulumi.Input<number | string | undefined>;
         }
 
         /**
@@ -11025,11 +11025,11 @@ export namespace extensions {
             /**
              * The maximum number of pods that can be scheduled above the desired number of pods. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. By default, a value of 1 is used. Example: when this is set to 30%, the new RC can be scaled up immediately when the rolling update starts, such that the total number of old and new pods do not exceed 130% of desired pods. Once old pods have been killed, new RC can be scaled up further, ensuring that total number of pods running at any time during the update is at most 130% of desired pods.
              */
-            maxSurge?: pulumi.Input<number | string>;
+            maxSurge?: pulumi.Input<number | string | undefined>;
             /**
              * The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. By default, a fixed value of 1 is used. Example: when this is set to 30%, the old RC can be scaled down to 70% of desired pods immediately when the rolling update starts. Once new pods are ready, old RC can be scaled down further, followed by scaling up the new RC, ensuring that the total number of pods available at all times during the update is at least 70% of desired pods.
              */
-            maxUnavailable?: pulumi.Input<number | string>;
+            maxUnavailable?: pulumi.Input<number | string | undefined>;
         }
 
         /**
@@ -11039,7 +11039,7 @@ export namespace extensions {
             /**
              * ranges are the allowed ranges of gids that may be used. If you would like to force a single gid then supply a single range with the same start and end. Required for MustRunAs.
              */
-            ranges?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.IDRange>[]>;
+            ranges?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.IDRange>[] | undefined>;
             /**
              * rule is the strategy that will dictate the allowable RunAsGroup values that may be set.
              */
@@ -11053,7 +11053,7 @@ export namespace extensions {
             /**
              * ranges are the allowed ranges of uids that may be used. If you would like to force a single uid then supply a single range with the same start and end. Required for MustRunAs.
              */
-            ranges?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.IDRange>[]>;
+            ranges?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.IDRange>[] | undefined>;
             /**
              * rule is the strategy that will dictate the allowable RunAsUser values that may be set.
              */
@@ -11071,7 +11071,7 @@ export namespace extensions {
             /**
              * defaultRuntimeClassName is the default RuntimeClassName to set on the pod. The default MUST be allowed by the allowedRuntimeClassNames list. A value of nil does not mutate the Pod.
              */
-            defaultRuntimeClassName?: pulumi.Input<string>;
+            defaultRuntimeClassName?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -11085,7 +11085,7 @@ export namespace extensions {
             /**
              * seLinuxOptions required to run as; required for MustRunAs More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
              */
-            seLinuxOptions?: pulumi.Input<inputs.core.v1.SELinuxOptions>;
+            seLinuxOptions?: pulumi.Input<inputs.core.v1.SELinuxOptions | undefined>;
         }
 
         /**
@@ -11095,11 +11095,11 @@ export namespace extensions {
             /**
              * ranges are the allowed ranges of supplemental groups.  If you would like to force a single supplemental group then supply a single range with the same start and end. Required for MustRunAs.
              */
-            ranges?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.IDRange>[]>;
+            ranges?: pulumi.Input<pulumi.Input<inputs.extensions.v1beta1.IDRange>[] | undefined>;
             /**
              * rule is the strategy that will dictate what supplemental groups is used in the SecurityContext.
              */
-            rule?: pulumi.Input<string>;
+            rule?: pulumi.Input<string | undefined>;
         }
     }
 }
@@ -11123,23 +11123,23 @@ export namespace flowcontrol {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"flowcontrol.apiserver.k8s.io/v1alpha1">;
+            apiVersion?: pulumi.Input<"flowcontrol.apiserver.k8s.io/v1alpha1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"FlowSchema">;
+            kind?: pulumi.Input<"FlowSchema" | undefined>;
             /**
              * `metadata` is the standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * `spec` is the specification of the desired behavior of a FlowSchema. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            spec?: pulumi.Input<inputs.flowcontrol.v1alpha1.FlowSchemaSpec>;
+            spec?: pulumi.Input<inputs.flowcontrol.v1alpha1.FlowSchemaSpec | undefined>;
             /**
              * `status` is the current status of a FlowSchema. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            status?: pulumi.Input<inputs.flowcontrol.v1alpha1.FlowSchemaStatus>;
+            status?: pulumi.Input<inputs.flowcontrol.v1alpha1.FlowSchemaStatus | undefined>;
         }
 
         /**
@@ -11149,23 +11149,23 @@ export namespace flowcontrol {
             /**
              * `lastTransitionTime` is the last time the condition transitioned from one status to another.
              */
-            lastTransitionTime?: pulumi.Input<string>;
+            lastTransitionTime?: pulumi.Input<string | undefined>;
             /**
              * `message` is a human-readable message indicating details about last transition.
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * `reason` is a unique, one-word, CamelCase reason for the condition's last transition.
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
             /**
              * `status` is the status of the condition. Can be True, False, Unknown. Required.
              */
-            status?: pulumi.Input<string>;
+            status?: pulumi.Input<string | undefined>;
             /**
              * `type` is the type of the condition. Required.
              */
-            type?: pulumi.Input<string>;
+            type?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -11175,11 +11175,11 @@ export namespace flowcontrol {
             /**
              * `distinguisherMethod` defines how to compute the flow distinguisher for requests that match this schema. `nil` specifies that the distinguisher is disabled and thus will always be the empty string.
              */
-            distinguisherMethod?: pulumi.Input<inputs.flowcontrol.v1alpha1.FlowDistinguisherMethod>;
+            distinguisherMethod?: pulumi.Input<inputs.flowcontrol.v1alpha1.FlowDistinguisherMethod | undefined>;
             /**
              * `matchingPrecedence` is used to choose among the FlowSchemas that match a given request. The chosen FlowSchema is among those with the numerically lowest (which we take to be logically highest) MatchingPrecedence.  Each MatchingPrecedence value must be ranged in [1,10000]. Note that if the precedence is not specified, it will be set to 1000 as default.
              */
-            matchingPrecedence?: pulumi.Input<number>;
+            matchingPrecedence?: pulumi.Input<number | undefined>;
             /**
              * `priorityLevelConfiguration` should reference a PriorityLevelConfiguration in the cluster. If the reference cannot be resolved, the FlowSchema will be ignored and marked as invalid in its status. Required.
              */
@@ -11187,7 +11187,7 @@ export namespace flowcontrol {
             /**
              * `rules` describes which requests will match this flow schema. This FlowSchema matches a request if and only if at least one member of rules matches the request. if it is an empty slice, there will be no requests matching the FlowSchema.
              */
-            rules?: pulumi.Input<pulumi.Input<inputs.flowcontrol.v1alpha1.PolicyRulesWithSubjects>[]>;
+            rules?: pulumi.Input<pulumi.Input<inputs.flowcontrol.v1alpha1.PolicyRulesWithSubjects>[] | undefined>;
         }
 
         /**
@@ -11197,7 +11197,7 @@ export namespace flowcontrol {
             /**
              * `conditions` is a list of the current states of FlowSchema.
              */
-            conditions?: pulumi.Input<pulumi.Input<inputs.flowcontrol.v1alpha1.FlowSchemaCondition>[]>;
+            conditions?: pulumi.Input<pulumi.Input<inputs.flowcontrol.v1alpha1.FlowSchemaCondition>[] | undefined>;
         }
 
         /**
@@ -11217,7 +11217,7 @@ export namespace flowcontrol {
             /**
              * `queuing` holds the configuration parameters for queuing. This field may be non-empty only if `type` is `"Queue"`.
              */
-            queuing?: pulumi.Input<inputs.flowcontrol.v1alpha1.QueuingConfiguration>;
+            queuing?: pulumi.Input<inputs.flowcontrol.v1alpha1.QueuingConfiguration | undefined>;
             /**
              * `type` is "Queue" or "Reject". "Queue" means that requests that can not be executed upon arrival are held in a queue until they can be executed or a queuing limit is reached. "Reject" means that requests that can not be executed upon arrival are rejected. Required.
              */
@@ -11237,11 +11237,11 @@ export namespace flowcontrol {
              *
              * bigger numbers of ACS mean more reserved concurrent requests (at the expense of every other PL). This field has a default value of 30.
              */
-            assuredConcurrencyShares?: pulumi.Input<number>;
+            assuredConcurrencyShares?: pulumi.Input<number | undefined>;
             /**
              * `limitResponse` indicates what to do with requests that can not be executed right now
              */
-            limitResponse?: pulumi.Input<inputs.flowcontrol.v1alpha1.LimitResponse>;
+            limitResponse?: pulumi.Input<inputs.flowcontrol.v1alpha1.LimitResponse | undefined>;
         }
 
         /**
@@ -11271,11 +11271,11 @@ export namespace flowcontrol {
             /**
              * `nonResourceRules` is a list of NonResourcePolicyRules that identify matching requests according to their verb and the target non-resource URL.
              */
-            nonResourceRules?: pulumi.Input<pulumi.Input<inputs.flowcontrol.v1alpha1.NonResourcePolicyRule>[]>;
+            nonResourceRules?: pulumi.Input<pulumi.Input<inputs.flowcontrol.v1alpha1.NonResourcePolicyRule>[] | undefined>;
             /**
              * `resourceRules` is a slice of ResourcePolicyRules that identify matching requests according to their verb and the target resource. At least one of `resourceRules` and `nonResourceRules` has to be non-empty.
              */
-            resourceRules?: pulumi.Input<pulumi.Input<inputs.flowcontrol.v1alpha1.ResourcePolicyRule>[]>;
+            resourceRules?: pulumi.Input<pulumi.Input<inputs.flowcontrol.v1alpha1.ResourcePolicyRule>[] | undefined>;
             /**
              * subjects is the list of normal user, serviceaccount, or group that this rule cares about. There must be at least one member in this slice. A slice that includes both the system:authenticated and system:unauthenticated user groups matches every request. Required.
              */
@@ -11289,23 +11289,23 @@ export namespace flowcontrol {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"flowcontrol.apiserver.k8s.io/v1alpha1">;
+            apiVersion?: pulumi.Input<"flowcontrol.apiserver.k8s.io/v1alpha1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"PriorityLevelConfiguration">;
+            kind?: pulumi.Input<"PriorityLevelConfiguration" | undefined>;
             /**
              * `metadata` is the standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * `spec` is the specification of the desired behavior of a "request-priority". More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            spec?: pulumi.Input<inputs.flowcontrol.v1alpha1.PriorityLevelConfigurationSpec>;
+            spec?: pulumi.Input<inputs.flowcontrol.v1alpha1.PriorityLevelConfigurationSpec | undefined>;
             /**
              * `status` is the current status of a "request-priority". More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            status?: pulumi.Input<inputs.flowcontrol.v1alpha1.PriorityLevelConfigurationStatus>;
+            status?: pulumi.Input<inputs.flowcontrol.v1alpha1.PriorityLevelConfigurationStatus | undefined>;
         }
 
         /**
@@ -11315,23 +11315,23 @@ export namespace flowcontrol {
             /**
              * `lastTransitionTime` is the last time the condition transitioned from one status to another.
              */
-            lastTransitionTime?: pulumi.Input<string>;
+            lastTransitionTime?: pulumi.Input<string | undefined>;
             /**
              * `message` is a human-readable message indicating details about last transition.
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * `reason` is a unique, one-word, CamelCase reason for the condition's last transition.
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
             /**
              * `status` is the status of the condition. Can be True, False, Unknown. Required.
              */
-            status?: pulumi.Input<string>;
+            status?: pulumi.Input<string | undefined>;
             /**
              * `type` is the type of the condition. Required.
              */
-            type?: pulumi.Input<string>;
+            type?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -11351,7 +11351,7 @@ export namespace flowcontrol {
             /**
              * `limited` specifies how requests are handled for a Limited priority level. This field must be non-empty if and only if `type` is `"Limited"`.
              */
-            limited?: pulumi.Input<inputs.flowcontrol.v1alpha1.LimitedPriorityLevelConfiguration>;
+            limited?: pulumi.Input<inputs.flowcontrol.v1alpha1.LimitedPriorityLevelConfiguration | undefined>;
             /**
              * `type` indicates whether this priority level is subject to limitation on request execution.  A value of `"Exempt"` means that requests of this priority level are not subject to a limit (and thus are never queued) and do not detract from the capacity made available to other priority levels.  A value of `"Limited"` means that (a) requests of this priority level _are_ subject to limits and (b) some of the server's limited capacity is made available exclusively to this priority level. Required.
              */
@@ -11365,7 +11365,7 @@ export namespace flowcontrol {
             /**
              * `conditions` is the current state of "request-priority".
              */
-            conditions?: pulumi.Input<pulumi.Input<inputs.flowcontrol.v1alpha1.PriorityLevelConfigurationCondition>[]>;
+            conditions?: pulumi.Input<pulumi.Input<inputs.flowcontrol.v1alpha1.PriorityLevelConfigurationCondition>[] | undefined>;
         }
 
         /**
@@ -11375,15 +11375,15 @@ export namespace flowcontrol {
             /**
              * `handSize` is a small positive number that configures the shuffle sharding of requests into queues.  When enqueuing a request at this priority level the request's flow identifier (a string pair) is hashed and the hash value is used to shuffle the list of queues and deal a hand of the size specified here.  The request is put into one of the shortest queues in that hand. `handSize` must be no larger than `queues`, and should be significantly smaller (so that a few heavy flows do not saturate most of the queues).  See the user-facing documentation for more extensive guidance on setting this field.  This field has a default value of 8.
              */
-            handSize?: pulumi.Input<number>;
+            handSize?: pulumi.Input<number | undefined>;
             /**
              * `queueLengthLimit` is the maximum number of requests allowed to be waiting in a given queue of this priority level at a time; excess requests are rejected.  This value must be positive.  If not specified, it will be defaulted to 50.
              */
-            queueLengthLimit?: pulumi.Input<number>;
+            queueLengthLimit?: pulumi.Input<number | undefined>;
             /**
              * `queues` is the number of queues for this priority level. The queues exist independently at each apiserver. The value must be positive.  Setting it to 1 effectively precludes shufflesharding and thus makes the distinguisher method of associated flow schemas irrelevant.  This field has a default value of 64.
              */
-            queues?: pulumi.Input<number>;
+            queues?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -11397,11 +11397,11 @@ export namespace flowcontrol {
             /**
              * `clusterScope` indicates whether to match requests that do not specify a namespace (which happens either because the resource is not namespaced or the request targets all namespaces). If this field is omitted or false then the `namespaces` field must contain a non-empty list.
              */
-            clusterScope?: pulumi.Input<boolean>;
+            clusterScope?: pulumi.Input<boolean | undefined>;
             /**
              * `namespaces` is a list of target namespaces that restricts matches.  A request that specifies a target namespace matches only if either (a) this list contains that target namespace or (b) this list contains "*".  Note that "*" matches any specified namespace but does not match a request that _does not specify_ a namespace (see the `clusterScope` field for that). This list may be empty, but only if `clusterScope` is true.
              */
-            namespaces?: pulumi.Input<pulumi.Input<string>[]>;
+            namespaces?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * `resources` is a list of matching resources (i.e., lowercase and plural) with, if desired, subresource.  For example, [ "services", "nodes/status" ].  This list may not be empty. "*" matches all resources and, if present, must be the only entry. Required.
              */
@@ -11430,13 +11430,13 @@ export namespace flowcontrol {
          * Subject matches the originator of a request, as identified by the request authentication system. There are three ways of matching an originator; by user, group, or service account.
          */
         export interface Subject {
-            group?: pulumi.Input<inputs.flowcontrol.v1alpha1.GroupSubject>;
+            group?: pulumi.Input<inputs.flowcontrol.v1alpha1.GroupSubject | undefined>;
             /**
              * Required
              */
             kind: pulumi.Input<string>;
-            serviceAccount?: pulumi.Input<inputs.flowcontrol.v1alpha1.ServiceAccountSubject>;
-            user?: pulumi.Input<inputs.flowcontrol.v1alpha1.UserSubject>;
+            serviceAccount?: pulumi.Input<inputs.flowcontrol.v1alpha1.ServiceAccountSubject | undefined>;
+            user?: pulumi.Input<inputs.flowcontrol.v1alpha1.UserSubject | undefined>;
         }
 
         /**
@@ -11468,23 +11468,23 @@ export namespace flowcontrol {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"flowcontrol.apiserver.k8s.io/v1beta1">;
+            apiVersion?: pulumi.Input<"flowcontrol.apiserver.k8s.io/v1beta1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"FlowSchema">;
+            kind?: pulumi.Input<"FlowSchema" | undefined>;
             /**
              * `metadata` is the standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * `spec` is the specification of the desired behavior of a FlowSchema. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            spec?: pulumi.Input<inputs.flowcontrol.v1beta1.FlowSchemaSpec>;
+            spec?: pulumi.Input<inputs.flowcontrol.v1beta1.FlowSchemaSpec | undefined>;
             /**
              * `status` is the current status of a FlowSchema. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            status?: pulumi.Input<inputs.flowcontrol.v1beta1.FlowSchemaStatus>;
+            status?: pulumi.Input<inputs.flowcontrol.v1beta1.FlowSchemaStatus | undefined>;
         }
 
         /**
@@ -11494,23 +11494,23 @@ export namespace flowcontrol {
             /**
              * `lastTransitionTime` is the last time the condition transitioned from one status to another.
              */
-            lastTransitionTime?: pulumi.Input<string>;
+            lastTransitionTime?: pulumi.Input<string | undefined>;
             /**
              * `message` is a human-readable message indicating details about last transition.
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * `reason` is a unique, one-word, CamelCase reason for the condition's last transition.
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
             /**
              * `status` is the status of the condition. Can be True, False, Unknown. Required.
              */
-            status?: pulumi.Input<string>;
+            status?: pulumi.Input<string | undefined>;
             /**
              * `type` is the type of the condition. Required.
              */
-            type?: pulumi.Input<string>;
+            type?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -11520,11 +11520,11 @@ export namespace flowcontrol {
             /**
              * `distinguisherMethod` defines how to compute the flow distinguisher for requests that match this schema. `nil` specifies that the distinguisher is disabled and thus will always be the empty string.
              */
-            distinguisherMethod?: pulumi.Input<inputs.flowcontrol.v1beta1.FlowDistinguisherMethod>;
+            distinguisherMethod?: pulumi.Input<inputs.flowcontrol.v1beta1.FlowDistinguisherMethod | undefined>;
             /**
              * `matchingPrecedence` is used to choose among the FlowSchemas that match a given request. The chosen FlowSchema is among those with the numerically lowest (which we take to be logically highest) MatchingPrecedence.  Each MatchingPrecedence value must be ranged in [1,10000]. Note that if the precedence is not specified, it will be set to 1000 as default.
              */
-            matchingPrecedence?: pulumi.Input<number>;
+            matchingPrecedence?: pulumi.Input<number | undefined>;
             /**
              * `priorityLevelConfiguration` should reference a PriorityLevelConfiguration in the cluster. If the reference cannot be resolved, the FlowSchema will be ignored and marked as invalid in its status. Required.
              */
@@ -11532,7 +11532,7 @@ export namespace flowcontrol {
             /**
              * `rules` describes which requests will match this flow schema. This FlowSchema matches a request if and only if at least one member of rules matches the request. if it is an empty slice, there will be no requests matching the FlowSchema.
              */
-            rules?: pulumi.Input<pulumi.Input<inputs.flowcontrol.v1beta1.PolicyRulesWithSubjects>[]>;
+            rules?: pulumi.Input<pulumi.Input<inputs.flowcontrol.v1beta1.PolicyRulesWithSubjects>[] | undefined>;
         }
 
         /**
@@ -11542,7 +11542,7 @@ export namespace flowcontrol {
             /**
              * `conditions` is a list of the current states of FlowSchema.
              */
-            conditions?: pulumi.Input<pulumi.Input<inputs.flowcontrol.v1beta1.FlowSchemaCondition>[]>;
+            conditions?: pulumi.Input<pulumi.Input<inputs.flowcontrol.v1beta1.FlowSchemaCondition>[] | undefined>;
         }
 
         /**
@@ -11562,7 +11562,7 @@ export namespace flowcontrol {
             /**
              * `queuing` holds the configuration parameters for queuing. This field may be non-empty only if `type` is `"Queue"`.
              */
-            queuing?: pulumi.Input<inputs.flowcontrol.v1beta1.QueuingConfiguration>;
+            queuing?: pulumi.Input<inputs.flowcontrol.v1beta1.QueuingConfiguration | undefined>;
             /**
              * `type` is "Queue" or "Reject". "Queue" means that requests that can not be executed upon arrival are held in a queue until they can be executed or a queuing limit is reached. "Reject" means that requests that can not be executed upon arrival are rejected. Required.
              */
@@ -11582,11 +11582,11 @@ export namespace flowcontrol {
              *
              * bigger numbers of ACS mean more reserved concurrent requests (at the expense of every other PL). This field has a default value of 30.
              */
-            assuredConcurrencyShares?: pulumi.Input<number>;
+            assuredConcurrencyShares?: pulumi.Input<number | undefined>;
             /**
              * `limitResponse` indicates what to do with requests that can not be executed right now
              */
-            limitResponse?: pulumi.Input<inputs.flowcontrol.v1beta1.LimitResponse>;
+            limitResponse?: pulumi.Input<inputs.flowcontrol.v1beta1.LimitResponse | undefined>;
         }
 
         /**
@@ -11616,11 +11616,11 @@ export namespace flowcontrol {
             /**
              * `nonResourceRules` is a list of NonResourcePolicyRules that identify matching requests according to their verb and the target non-resource URL.
              */
-            nonResourceRules?: pulumi.Input<pulumi.Input<inputs.flowcontrol.v1beta1.NonResourcePolicyRule>[]>;
+            nonResourceRules?: pulumi.Input<pulumi.Input<inputs.flowcontrol.v1beta1.NonResourcePolicyRule>[] | undefined>;
             /**
              * `resourceRules` is a slice of ResourcePolicyRules that identify matching requests according to their verb and the target resource. At least one of `resourceRules` and `nonResourceRules` has to be non-empty.
              */
-            resourceRules?: pulumi.Input<pulumi.Input<inputs.flowcontrol.v1beta1.ResourcePolicyRule>[]>;
+            resourceRules?: pulumi.Input<pulumi.Input<inputs.flowcontrol.v1beta1.ResourcePolicyRule>[] | undefined>;
             /**
              * subjects is the list of normal user, serviceaccount, or group that this rule cares about. There must be at least one member in this slice. A slice that includes both the system:authenticated and system:unauthenticated user groups matches every request. Required.
              */
@@ -11634,23 +11634,23 @@ export namespace flowcontrol {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"flowcontrol.apiserver.k8s.io/v1beta1">;
+            apiVersion?: pulumi.Input<"flowcontrol.apiserver.k8s.io/v1beta1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"PriorityLevelConfiguration">;
+            kind?: pulumi.Input<"PriorityLevelConfiguration" | undefined>;
             /**
              * `metadata` is the standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * `spec` is the specification of the desired behavior of a "request-priority". More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            spec?: pulumi.Input<inputs.flowcontrol.v1beta1.PriorityLevelConfigurationSpec>;
+            spec?: pulumi.Input<inputs.flowcontrol.v1beta1.PriorityLevelConfigurationSpec | undefined>;
             /**
              * `status` is the current status of a "request-priority". More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            status?: pulumi.Input<inputs.flowcontrol.v1beta1.PriorityLevelConfigurationStatus>;
+            status?: pulumi.Input<inputs.flowcontrol.v1beta1.PriorityLevelConfigurationStatus | undefined>;
         }
 
         /**
@@ -11660,23 +11660,23 @@ export namespace flowcontrol {
             /**
              * `lastTransitionTime` is the last time the condition transitioned from one status to another.
              */
-            lastTransitionTime?: pulumi.Input<string>;
+            lastTransitionTime?: pulumi.Input<string | undefined>;
             /**
              * `message` is a human-readable message indicating details about last transition.
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * `reason` is a unique, one-word, CamelCase reason for the condition's last transition.
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
             /**
              * `status` is the status of the condition. Can be True, False, Unknown. Required.
              */
-            status?: pulumi.Input<string>;
+            status?: pulumi.Input<string | undefined>;
             /**
              * `type` is the type of the condition. Required.
              */
-            type?: pulumi.Input<string>;
+            type?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -11696,7 +11696,7 @@ export namespace flowcontrol {
             /**
              * `limited` specifies how requests are handled for a Limited priority level. This field must be non-empty if and only if `type` is `"Limited"`.
              */
-            limited?: pulumi.Input<inputs.flowcontrol.v1beta1.LimitedPriorityLevelConfiguration>;
+            limited?: pulumi.Input<inputs.flowcontrol.v1beta1.LimitedPriorityLevelConfiguration | undefined>;
             /**
              * `type` indicates whether this priority level is subject to limitation on request execution.  A value of `"Exempt"` means that requests of this priority level are not subject to a limit (and thus are never queued) and do not detract from the capacity made available to other priority levels.  A value of `"Limited"` means that (a) requests of this priority level _are_ subject to limits and (b) some of the server's limited capacity is made available exclusively to this priority level. Required.
              */
@@ -11710,7 +11710,7 @@ export namespace flowcontrol {
             /**
              * `conditions` is the current state of "request-priority".
              */
-            conditions?: pulumi.Input<pulumi.Input<inputs.flowcontrol.v1beta1.PriorityLevelConfigurationCondition>[]>;
+            conditions?: pulumi.Input<pulumi.Input<inputs.flowcontrol.v1beta1.PriorityLevelConfigurationCondition>[] | undefined>;
         }
 
         /**
@@ -11720,15 +11720,15 @@ export namespace flowcontrol {
             /**
              * `handSize` is a small positive number that configures the shuffle sharding of requests into queues.  When enqueuing a request at this priority level the request's flow identifier (a string pair) is hashed and the hash value is used to shuffle the list of queues and deal a hand of the size specified here.  The request is put into one of the shortest queues in that hand. `handSize` must be no larger than `queues`, and should be significantly smaller (so that a few heavy flows do not saturate most of the queues).  See the user-facing documentation for more extensive guidance on setting this field.  This field has a default value of 8.
              */
-            handSize?: pulumi.Input<number>;
+            handSize?: pulumi.Input<number | undefined>;
             /**
              * `queueLengthLimit` is the maximum number of requests allowed to be waiting in a given queue of this priority level at a time; excess requests are rejected.  This value must be positive.  If not specified, it will be defaulted to 50.
              */
-            queueLengthLimit?: pulumi.Input<number>;
+            queueLengthLimit?: pulumi.Input<number | undefined>;
             /**
              * `queues` is the number of queues for this priority level. The queues exist independently at each apiserver. The value must be positive.  Setting it to 1 effectively precludes shufflesharding and thus makes the distinguisher method of associated flow schemas irrelevant.  This field has a default value of 64.
              */
-            queues?: pulumi.Input<number>;
+            queues?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -11742,11 +11742,11 @@ export namespace flowcontrol {
             /**
              * `clusterScope` indicates whether to match requests that do not specify a namespace (which happens either because the resource is not namespaced or the request targets all namespaces). If this field is omitted or false then the `namespaces` field must contain a non-empty list.
              */
-            clusterScope?: pulumi.Input<boolean>;
+            clusterScope?: pulumi.Input<boolean | undefined>;
             /**
              * `namespaces` is a list of target namespaces that restricts matches.  A request that specifies a target namespace matches only if either (a) this list contains that target namespace or (b) this list contains "*".  Note that "*" matches any specified namespace but does not match a request that _does not specify_ a namespace (see the `clusterScope` field for that). This list may be empty, but only if `clusterScope` is true.
              */
-            namespaces?: pulumi.Input<pulumi.Input<string>[]>;
+            namespaces?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * `resources` is a list of matching resources (i.e., lowercase and plural) with, if desired, subresource.  For example, [ "services", "nodes/status" ].  This list may not be empty. "*" matches all resources and, if present, must be the only entry. Required.
              */
@@ -11775,13 +11775,13 @@ export namespace flowcontrol {
          * Subject matches the originator of a request, as identified by the request authentication system. There are three ways of matching an originator; by user, group, or service account.
          */
         export interface Subject {
-            group?: pulumi.Input<inputs.flowcontrol.v1beta1.GroupSubject>;
+            group?: pulumi.Input<inputs.flowcontrol.v1beta1.GroupSubject | undefined>;
             /**
              * Required
              */
             kind: pulumi.Input<string>;
-            serviceAccount?: pulumi.Input<inputs.flowcontrol.v1beta1.ServiceAccountSubject>;
-            user?: pulumi.Input<inputs.flowcontrol.v1beta1.UserSubject>;
+            serviceAccount?: pulumi.Input<inputs.flowcontrol.v1beta1.ServiceAccountSubject | undefined>;
+            user?: pulumi.Input<inputs.flowcontrol.v1beta1.UserSubject | undefined>;
         }
 
         /**
@@ -11813,7 +11813,7 @@ export namespace meta {
             /**
              * observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance.
              */
-            observedGeneration?: pulumi.Input<number>;
+            observedGeneration?: pulumi.Input<number | undefined>;
             /**
              * reason contains a programmatic identifier indicating the reason for the condition's last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty.
              */
@@ -11835,11 +11835,11 @@ export namespace meta {
             /**
              * matchExpressions is a list of label selector requirements. The requirements are ANDed.
              */
-            matchExpressions?: pulumi.Input<pulumi.Input<inputs.meta.v1.LabelSelectorRequirement>[]>;
+            matchExpressions?: pulumi.Input<pulumi.Input<inputs.meta.v1.LabelSelectorRequirement>[] | undefined>;
             /**
              * matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.
              */
-            matchLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            matchLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         }
 
         /**
@@ -11857,7 +11857,7 @@ export namespace meta {
             /**
              * values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
              */
-            values?: pulumi.Input<pulumi.Input<string>[]>;
+            values?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         }
 
         /**
@@ -11867,21 +11867,21 @@ export namespace meta {
             /**
              * continue may be set if the user set a limit on the number of items returned, and indicates that the server has more data available. The value is opaque and may be used to issue another request to the endpoint that served this list to retrieve the next set of available objects. Continuing a consistent list may not be possible if the server configuration has changed or more than a few minutes have passed. The resourceVersion field returned when using this continue value will be identical to the value in the first response, unless you have received this token from an error message.
              */
-            continue?: pulumi.Input<string>;
+            continue?: pulumi.Input<string | undefined>;
             /**
              * remainingItemCount is the number of subsequent items in the list which are not included in this list response. If the list request contained label or field selectors, then the number of remaining items is unknown and the field will be left unset and omitted during serialization. If the list is complete (either because it is not chunking or because this is the last chunk), then there are no more remaining items and this field will be left unset and omitted during serialization. Servers older than v1.15 do not set this field. The intended use of the remainingItemCount is *estimating* the size of a collection. Clients should not rely on the remainingItemCount to be set or to be exact.
              */
-            remainingItemCount?: pulumi.Input<number>;
+            remainingItemCount?: pulumi.Input<number | undefined>;
             /**
              * String that identifies the server's internal version of this object that can be used by clients to determine when objects have changed. Value must be treated as opaque by clients and passed unmodified back to the server. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
              */
-            resourceVersion?: pulumi.Input<string>;
+            resourceVersion?: pulumi.Input<string | undefined>;
             /**
              * selfLink is a URL representing this object. Populated by the system. Read-only.
              *
              * DEPRECATED Kubernetes will stop propagating this field in 1.20 release and the field is planned to be removed in 1.21 release.
              */
-            selfLink?: pulumi.Input<string>;
+            selfLink?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -11891,27 +11891,27 @@ export namespace meta {
             /**
              * APIVersion defines the version of this resource that this field set applies to. The format is "group/version" just like the top-level APIVersion field. It is necessary to track the version of a field set because it cannot be automatically converted.
              */
-            apiVersion?: pulumi.Input<string>;
+            apiVersion?: pulumi.Input<string | undefined>;
             /**
              * FieldsType is the discriminator for the different fields format and version. There is currently only one possible value: "FieldsV1"
              */
-            fieldsType?: pulumi.Input<string>;
+            fieldsType?: pulumi.Input<string | undefined>;
             /**
              * FieldsV1 holds the first JSON version format as described in the "FieldsV1" type.
              */
-            fieldsV1?: any;
+            fieldsV1?: pulumi.Input<any | undefined>;
             /**
              * Manager is an identifier of the workflow managing these fields.
              */
-            manager?: pulumi.Input<string>;
+            manager?: pulumi.Input<string | undefined>;
             /**
              * Operation is the type of operation which lead to this ManagedFieldsEntry being created. The only valid values for this field are 'Apply' and 'Update'.
              */
-            operation?: pulumi.Input<string>;
+            operation?: pulumi.Input<string | undefined>;
             /**
              * Time is timestamp of when these fields were set. It should always be empty if Operation is 'Apply'
              */
-            time?: pulumi.Input<string>;
+            time?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -11921,31 +11921,31 @@ export namespace meta {
             /**
              * Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations
              */
-            annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
             /**
              * The name of the cluster which the object belongs to. This is used to distinguish resources with same name and namespace in different clusters. This field is not set anywhere right now and apiserver is going to ignore it if set in create or update request.
              */
-            clusterName?: pulumi.Input<string>;
+            clusterName?: pulumi.Input<string | undefined>;
             /**
              * CreationTimestamp is a timestamp representing the server time when this object was created. It is not guaranteed to be set in happens-before order across separate operations. Clients may not set this value. It is represented in RFC3339 form and is in UTC.
              *
              * Populated by the system. Read-only. Null for lists. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            creationTimestamp?: pulumi.Input<string>;
+            creationTimestamp?: pulumi.Input<string | undefined>;
             /**
              * Number of seconds allowed for this object to gracefully terminate before it will be removed from the system. Only set when deletionTimestamp is also set. May only be shortened. Read-only.
              */
-            deletionGracePeriodSeconds?: pulumi.Input<number>;
+            deletionGracePeriodSeconds?: pulumi.Input<number | undefined>;
             /**
              * DeletionTimestamp is RFC 3339 date and time at which this resource will be deleted. This field is set by the server when a graceful deletion is requested by the user, and is not directly settable by a client. The resource is expected to be deleted (no longer visible from resource lists, and not reachable by name) after the time in this field, once the finalizers list is empty. As long as the finalizers list contains items, deletion is blocked. Once the deletionTimestamp is set, this value may not be unset or be set further into the future, although it may be shortened or the resource may be deleted prior to this time. For example, a user may request that a pod is deleted in 30 seconds. The Kubelet will react by sending a graceful termination signal to the containers in the pod. After that 30 seconds, the Kubelet will send a hard termination signal (SIGKILL) to the container and after cleanup, remove the pod from the API. In the presence of network partitions, this object may still exist after this timestamp, until an administrator or automated process can determine the resource is fully terminated. If not set, graceful deletion of the object has not been requested.
              *
              * Populated by the system when a graceful deletion is requested. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            deletionTimestamp?: pulumi.Input<string>;
+            deletionTimestamp?: pulumi.Input<string | undefined>;
             /**
              * Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. Finalizers may be processed and removed in any order.  Order is NOT enforced because it introduces significant risk of stuck finalizers. finalizers is a shared field, any actor with permission can reorder it. If the finalizer list is processed in order, then this can lead to a situation in which the component responsible for the first finalizer in the list is waiting for a signal (field value, external system, or other) produced by a component responsible for a finalizer later in the list, resulting in a deadlock. Without enforced ordering finalizers are free to order amongst themselves and are not vulnerable to ordering changes in the list.
              */
-            finalizers?: pulumi.Input<pulumi.Input<string>[]>;
+            finalizers?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * GenerateName is an optional prefix, used by the server, to generate a unique name ONLY IF the Name field has not been provided. If this field is used, the name returned to the client will be different than the name passed. This value will also be combined with a unique suffix. The provided value has the same validation rules as the Name field, and may be truncated by the length of the suffix required to make the value unique on the server.
              *
@@ -11953,51 +11953,51 @@ export namespace meta {
              *
              * Applied only if Name is not specified. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#idempotency
              */
-            generateName?: pulumi.Input<string>;
+            generateName?: pulumi.Input<string | undefined>;
             /**
              * A sequence number representing a specific generation of the desired state. Populated by the system. Read-only.
              */
-            generation?: pulumi.Input<number>;
+            generation?: pulumi.Input<number | undefined>;
             /**
              * Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels
              */
-            labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
             /**
              * ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like "ci-cd". The set of fields is always in the version that the workflow used when modifying the object.
              */
-            managedFields?: pulumi.Input<pulumi.Input<inputs.meta.v1.ManagedFieldsEntry>[]>;
+            managedFields?: pulumi.Input<pulumi.Input<inputs.meta.v1.ManagedFieldsEntry>[] | undefined>;
             /**
              * Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names
              */
-            name?: pulumi.Input<string>;
+            name?: pulumi.Input<string | undefined>;
             /**
              * Namespace defines the space within which each name must be unique. An empty namespace is equivalent to the "default" namespace, but "default" is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty.
              *
              * Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces
              */
-            namespace?: pulumi.Input<string>;
+            namespace?: pulumi.Input<string | undefined>;
             /**
              * List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller.
              */
-            ownerReferences?: pulumi.Input<pulumi.Input<inputs.meta.v1.OwnerReference>[]>;
+            ownerReferences?: pulumi.Input<pulumi.Input<inputs.meta.v1.OwnerReference>[] | undefined>;
             /**
              * An opaque value that represents the internal version of this object that can be used by clients to determine when objects have changed. May be used for optimistic concurrency, change detection, and the watch operation on a resource or set of resources. Clients must treat these values as opaque and passed unmodified back to the server. They may only be valid for a particular resource or set of resources.
              *
              * Populated by the system. Read-only. Value must be treated as opaque by clients and . More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
              */
-            resourceVersion?: pulumi.Input<string>;
+            resourceVersion?: pulumi.Input<string | undefined>;
             /**
              * SelfLink is a URL representing this object. Populated by the system. Read-only.
              *
              * DEPRECATED Kubernetes will stop propagating this field in 1.20 release and the field is planned to be removed in 1.21 release.
              */
-            selfLink?: pulumi.Input<string>;
+            selfLink?: pulumi.Input<string | undefined>;
             /**
              * UID is the unique in time and space value for this object. It is typically generated by the server on successful creation of a resource and is not allowed to change on PUT operations.
              *
              * Populated by the system. Read-only. More info: http://kubernetes.io/docs/user-guide/identifiers#uids
              */
-            uid?: pulumi.Input<string>;
+            uid?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -12011,11 +12011,11 @@ export namespace meta {
             /**
              * If true, AND if the owner has the "foregroundDeletion" finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. Defaults to false. To set this field, a user needs "delete" permission of the owner, otherwise 422 (Unprocessable Entity) will be returned.
              */
-            blockOwnerDeletion?: pulumi.Input<boolean>;
+            blockOwnerDeletion?: pulumi.Input<boolean | undefined>;
             /**
              * If true, this reference points to the managing controller.
              */
-            controller?: pulumi.Input<boolean>;
+            controller?: pulumi.Input<boolean | undefined>;
             /**
              * Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
@@ -12041,15 +12041,15 @@ export namespace meta {
              *   "name" - the field "name" on the current resource
              *   "items[0].name" - the field "name" on the first array entry in "items"
              */
-            field?: pulumi.Input<string>;
+            field?: pulumi.Input<string | undefined>;
             /**
              * A human-readable description of the cause of the error.  This field may be presented as-is to a reader.
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * A machine-readable description of the cause of the error. If this value is empty there is no information available.
              */
-            reason?: pulumi.Input<string>;
+            reason?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -12059,27 +12059,27 @@ export namespace meta {
             /**
              * The Causes array includes more details associated with the StatusReason failure. Not all StatusReasons may provide detailed causes.
              */
-            causes?: pulumi.Input<pulumi.Input<inputs.meta.v1.StatusCause>[]>;
+            causes?: pulumi.Input<pulumi.Input<inputs.meta.v1.StatusCause>[] | undefined>;
             /**
              * The group attribute of the resource associated with the status StatusReason.
              */
-            group?: pulumi.Input<string>;
+            group?: pulumi.Input<string | undefined>;
             /**
              * The kind attribute of the resource associated with the status StatusReason. On some operations may differ from the requested resource Kind. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<string>;
+            kind?: pulumi.Input<string | undefined>;
             /**
              * The name attribute of the resource associated with the status StatusReason (when there is a single name which can be described).
              */
-            name?: pulumi.Input<string>;
+            name?: pulumi.Input<string | undefined>;
             /**
              * If specified, the time in seconds before the operation should be retried. Some errors may indicate the client must take an alternate action - for those errors this field may indicate how long to wait before taking the alternate action.
              */
-            retryAfterSeconds?: pulumi.Input<number>;
+            retryAfterSeconds?: pulumi.Input<number | undefined>;
             /**
              * UID of the resource. (when there is a single resource which can be described). More info: http://kubernetes.io/docs/user-guide/identifiers#uids
              */
-            uid?: pulumi.Input<string>;
+            uid?: pulumi.Input<string | undefined>;
         }
 
     }
@@ -12098,7 +12098,7 @@ export namespace networking {
             /**
              * Path is matched against the path of an incoming request. Currently it can contain characters disallowed from the conventional "path" part of a URL as defined by RFC 3986. Paths must begin with a '/'. When unspecified, all paths from incoming requests are matched.
              */
-            path?: pulumi.Input<string>;
+            path?: pulumi.Input<string | undefined>;
             /**
              * PathType determines the interpretation of the Path matching. PathType can be one of the following values: * Exact: Matches the URL path exactly. * Prefix: Matches based on a URL path prefix split by '/'. Matching is
              *   done on a path element by element basis. A path element refers is the
@@ -12112,7 +12112,7 @@ export namespace networking {
              *   or treat it identically to Prefix or Exact path types.
              * Implementations are required to support all path types.
              */
-            pathType?: pulumi.Input<string>;
+            pathType?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -12136,7 +12136,7 @@ export namespace networking {
             /**
              * Except is a slice of CIDRs that should not be included within an IP Block Valid examples are "192.168.1.1/24" or "2001:db9::/64" Except values will be rejected if they are outside the CIDR range
              */
-            except?: pulumi.Input<pulumi.Input<string>[]>;
+            except?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         }
 
         /**
@@ -12160,23 +12160,23 @@ export namespace networking {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"networking.k8s.io/v1">;
+            apiVersion?: pulumi.Input<"networking.k8s.io/v1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"Ingress">;
+            kind?: pulumi.Input<"Ingress" | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Spec is the desired state of the Ingress. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            spec?: pulumi.Input<inputs.networking.v1.IngressSpec>;
+            spec?: pulumi.Input<inputs.networking.v1.IngressSpec | undefined>;
             /**
              * Status is the current state of the Ingress. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            status?: pulumi.Input<inputs.networking.v1.IngressStatus>;
+            status?: pulumi.Input<inputs.networking.v1.IngressStatus | undefined>;
         }
 
         /**
@@ -12186,11 +12186,11 @@ export namespace networking {
             /**
              * Resource is an ObjectRef to another Kubernetes resource in the namespace of the Ingress object. If resource is specified, a service.Name and service.Port must not be specified. This is a mutually exclusive setting with "Service".
              */
-            resource?: pulumi.Input<inputs.core.v1.TypedLocalObjectReference>;
+            resource?: pulumi.Input<inputs.core.v1.TypedLocalObjectReference | undefined>;
             /**
              * Service references a Service as a Backend. This is a mutually exclusive setting with "Resource".
              */
-            service?: pulumi.Input<inputs.networking.v1.IngressServiceBackend>;
+            service?: pulumi.Input<inputs.networking.v1.IngressServiceBackend | undefined>;
         }
 
         /**
@@ -12200,19 +12200,19 @@ export namespace networking {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"networking.k8s.io/v1">;
+            apiVersion?: pulumi.Input<"networking.k8s.io/v1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"IngressClass">;
+            kind?: pulumi.Input<"IngressClass" | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Spec is the desired state of the IngressClass. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            spec?: pulumi.Input<inputs.networking.v1.IngressClassSpec>;
+            spec?: pulumi.Input<inputs.networking.v1.IngressClassSpec | undefined>;
         }
 
         /**
@@ -12222,11 +12222,11 @@ export namespace networking {
             /**
              * Controller refers to the name of the controller that should handle this class. This allows for different "flavors" that are controlled by the same controller. For example, you may have different Parameters for the same implementing controller. This should be specified as a domain-prefixed path no more than 250 characters in length, e.g. "acme.io/ingress-controller". This field is immutable.
              */
-            controller?: pulumi.Input<string>;
+            controller?: pulumi.Input<string | undefined>;
             /**
              * Parameters is a link to a custom resource containing additional configuration for the controller. This is optional if the controller does not require extra parameters.
              */
-            parameters?: pulumi.Input<inputs.core.v1.TypedLocalObjectReference>;
+            parameters?: pulumi.Input<inputs.core.v1.TypedLocalObjectReference | undefined>;
         }
 
         /**
@@ -12243,8 +12243,8 @@ export namespace networking {
              *
              * Host can be "precise" which is a domain name without the terminating dot of a network host (e.g. "foo.bar.com") or "wildcard", which is a domain name prefixed with a single wildcard label (e.g. "*.foo.com"). The wildcard character '*' must appear by itself as the first DNS label and matches only a single label. You cannot have a wildcard label by itself (e.g. Host == "*"). Requests will be matched against the Host field in the following way: 1. If Host is precise, the request matches this rule if the http host header is equal to Host. 2. If Host is a wildcard, then the request matches this rule if the http host header is to equal to the suffix (removing the first label) of the wildcard rule.
              */
-            host?: pulumi.Input<string>;
-            http?: pulumi.Input<inputs.networking.v1.HTTPIngressRuleValue>;
+            host?: pulumi.Input<string | undefined>;
+            http?: pulumi.Input<inputs.networking.v1.HTTPIngressRuleValue | undefined>;
         }
 
         /**
@@ -12258,7 +12258,7 @@ export namespace networking {
             /**
              * Port of the referenced service. A port name or port number is required for a IngressServiceBackend.
              */
-            port?: pulumi.Input<inputs.networking.v1.ServiceBackendPort>;
+            port?: pulumi.Input<inputs.networking.v1.ServiceBackendPort | undefined>;
         }
 
         /**
@@ -12268,19 +12268,19 @@ export namespace networking {
             /**
              * DefaultBackend is the backend that should handle requests that don't match any rule. If Rules are not specified, DefaultBackend must be specified. If DefaultBackend is not set, the handling of requests that do not match any of the rules will be up to the Ingress controller.
              */
-            defaultBackend?: pulumi.Input<inputs.networking.v1.IngressBackend>;
+            defaultBackend?: pulumi.Input<inputs.networking.v1.IngressBackend | undefined>;
             /**
              * IngressClassName is the name of the IngressClass cluster resource. The associated IngressClass defines which controller will implement the resource. This replaces the deprecated `kubernetes.io/ingress.class` annotation. For backwards compatibility, when that annotation is set, it must be given precedence over this field. The controller may emit a warning if the field and annotation have different values. Implementations of this API should ignore Ingresses without a class specified. An IngressClass resource may be marked as default, which can be used to set a default value for this field. For more information, refer to the IngressClass documentation.
              */
-            ingressClassName?: pulumi.Input<string>;
+            ingressClassName?: pulumi.Input<string | undefined>;
             /**
              * A list of host rules used to configure the Ingress. If unspecified, or no rule matches, all traffic is sent to the default backend.
              */
-            rules?: pulumi.Input<pulumi.Input<inputs.networking.v1.IngressRule>[]>;
+            rules?: pulumi.Input<pulumi.Input<inputs.networking.v1.IngressRule>[] | undefined>;
             /**
              * TLS configuration. Currently the Ingress only supports a single TLS port, 443. If multiple members of this list specify different hosts, they will be multiplexed on the same port according to the hostname specified through the SNI TLS extension, if the ingress controller fulfilling the ingress supports SNI.
              */
-            tls?: pulumi.Input<pulumi.Input<inputs.networking.v1.IngressTLS>[]>;
+            tls?: pulumi.Input<pulumi.Input<inputs.networking.v1.IngressTLS>[] | undefined>;
         }
 
         /**
@@ -12290,7 +12290,7 @@ export namespace networking {
             /**
              * LoadBalancer contains the current status of the load-balancer.
              */
-            loadBalancer?: pulumi.Input<inputs.core.v1.LoadBalancerStatus>;
+            loadBalancer?: pulumi.Input<inputs.core.v1.LoadBalancerStatus | undefined>;
         }
 
         /**
@@ -12300,11 +12300,11 @@ export namespace networking {
             /**
              * Hosts are a list of hosts included in the TLS certificate. The values in this list must match the name/s used in the tlsSecret. Defaults to the wildcard host setting for the loadbalancer controller fulfilling this Ingress, if left unspecified.
              */
-            hosts?: pulumi.Input<pulumi.Input<string>[]>;
+            hosts?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * SecretName is the name of the secret used to terminate TLS traffic on port 443. Field is left optional to allow TLS routing based on SNI hostname alone. If the SNI host in a listener conflicts with the "Host" header field used by an IngressRule, the SNI host is used for termination and value of the Host header is used for routing.
              */
-            secretName?: pulumi.Input<string>;
+            secretName?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -12314,19 +12314,19 @@ export namespace networking {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"networking.k8s.io/v1">;
+            apiVersion?: pulumi.Input<"networking.k8s.io/v1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"NetworkPolicy">;
+            kind?: pulumi.Input<"NetworkPolicy" | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Specification of the desired behavior for this NetworkPolicy.
              */
-            spec?: pulumi.Input<inputs.networking.v1.NetworkPolicySpec>;
+            spec?: pulumi.Input<inputs.networking.v1.NetworkPolicySpec | undefined>;
         }
 
         /**
@@ -12336,11 +12336,11 @@ export namespace networking {
             /**
              * List of destination ports for outgoing traffic. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list.
              */
-            ports?: pulumi.Input<pulumi.Input<inputs.networking.v1.NetworkPolicyPort>[]>;
+            ports?: pulumi.Input<pulumi.Input<inputs.networking.v1.NetworkPolicyPort>[] | undefined>;
             /**
              * List of destinations for outgoing traffic of pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all destinations (traffic not restricted by destination). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the to list.
              */
-            to?: pulumi.Input<pulumi.Input<inputs.networking.v1.NetworkPolicyPeer>[]>;
+            to?: pulumi.Input<pulumi.Input<inputs.networking.v1.NetworkPolicyPeer>[] | undefined>;
         }
 
         /**
@@ -12350,11 +12350,11 @@ export namespace networking {
             /**
              * List of sources which should be able to access the pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all sources (traffic not restricted by source). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the from list.
              */
-            from?: pulumi.Input<pulumi.Input<inputs.networking.v1.NetworkPolicyPeer>[]>;
+            from?: pulumi.Input<pulumi.Input<inputs.networking.v1.NetworkPolicyPeer>[] | undefined>;
             /**
              * List of ports which should be made accessible on the pods selected for this rule. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list.
              */
-            ports?: pulumi.Input<pulumi.Input<inputs.networking.v1.NetworkPolicyPort>[]>;
+            ports?: pulumi.Input<pulumi.Input<inputs.networking.v1.NetworkPolicyPort>[] | undefined>;
         }
 
         /**
@@ -12364,19 +12364,19 @@ export namespace networking {
             /**
              * IPBlock defines policy on a particular IPBlock. If this field is set then neither of the other fields can be.
              */
-            ipBlock?: pulumi.Input<inputs.networking.v1.IPBlock>;
+            ipBlock?: pulumi.Input<inputs.networking.v1.IPBlock | undefined>;
             /**
              * Selects Namespaces using cluster-scoped labels. This field follows standard label selector semantics; if present but empty, it selects all namespaces.
              *
              * If PodSelector is also set, then the NetworkPolicyPeer as a whole selects the Pods matching PodSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects all Pods in the Namespaces selected by NamespaceSelector.
              */
-            namespaceSelector?: pulumi.Input<inputs.meta.v1.LabelSelector>;
+            namespaceSelector?: pulumi.Input<inputs.meta.v1.LabelSelector | undefined>;
             /**
              * This is a label selector which selects Pods. This field follows standard label selector semantics; if present but empty, it selects all pods.
              *
              * If NamespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the Pods matching PodSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the Pods matching PodSelector in the policy's own Namespace.
              */
-            podSelector?: pulumi.Input<inputs.meta.v1.LabelSelector>;
+            podSelector?: pulumi.Input<inputs.meta.v1.LabelSelector | undefined>;
         }
 
         /**
@@ -12386,11 +12386,11 @@ export namespace networking {
             /**
              * The port on the given protocol. This can either be a numerical or named port on a pod. If this field is not provided, this matches all port names and numbers.
              */
-            port?: pulumi.Input<number | string>;
+            port?: pulumi.Input<number | string | undefined>;
             /**
              * The protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.
              */
-            protocol?: pulumi.Input<string>;
+            protocol?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -12400,11 +12400,11 @@ export namespace networking {
             /**
              * List of egress rules to be applied to the selected pods. Outgoing traffic is allowed if there are no NetworkPolicies selecting the pod (and cluster policy otherwise allows the traffic), OR if the traffic matches at least one egress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy limits all outgoing traffic (and serves solely to ensure that the pods it selects are isolated by default). This field is beta-level in 1.8
              */
-            egress?: pulumi.Input<pulumi.Input<inputs.networking.v1.NetworkPolicyEgressRule>[]>;
+            egress?: pulumi.Input<pulumi.Input<inputs.networking.v1.NetworkPolicyEgressRule>[] | undefined>;
             /**
              * List of ingress rules to be applied to the selected pods. Traffic is allowed to a pod if there are no NetworkPolicies selecting the pod (and cluster policy otherwise allows the traffic), OR if the traffic source is the pod's local node, OR if the traffic matches at least one ingress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy does not allow any traffic (and serves solely to ensure that the pods it selects are isolated by default)
              */
-            ingress?: pulumi.Input<pulumi.Input<inputs.networking.v1.NetworkPolicyIngressRule>[]>;
+            ingress?: pulumi.Input<pulumi.Input<inputs.networking.v1.NetworkPolicyIngressRule>[] | undefined>;
             /**
              * Selects the pods to which this NetworkPolicy object applies. The array of ingress rules is applied to any pods selected by this field. Multiple network policies can select the same set of pods. In this case, the ingress rules for each are combined additively. This field is NOT optional and follows standard label selector semantics. An empty podSelector matches all pods in this namespace.
              */
@@ -12412,7 +12412,7 @@ export namespace networking {
             /**
              * List of rule types that the NetworkPolicy relates to. Valid options are "Ingress", "Egress", or "Ingress,Egress". If this field is not specified, it will default based on the existence of Ingress or Egress rules; policies that contain an Egress section are assumed to affect Egress, and all policies (whether or not they contain an Ingress section) are assumed to affect Ingress. If you want to write an egress-only policy, you must explicitly specify policyTypes [ "Egress" ]. Likewise, if you want to write a policy that specifies that no egress is allowed, you must specify a policyTypes value that include "Egress" (since such a policy would not include an Egress section and would otherwise default to just [ "Ingress" ]). This field is beta-level in 1.8
              */
-            policyTypes?: pulumi.Input<pulumi.Input<string>[]>;
+            policyTypes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         }
 
         /**
@@ -12422,11 +12422,11 @@ export namespace networking {
             /**
              * Name is the name of the port on the Service. This is a mutually exclusive setting with "Number".
              */
-            name?: pulumi.Input<string>;
+            name?: pulumi.Input<string | undefined>;
             /**
              * Number is the numerical port number (e.g. 80) on the Service. This is a mutually exclusive setting with "Name".
              */
-            number?: pulumi.Input<number>;
+            number?: pulumi.Input<number | undefined>;
         }
     }
 
@@ -12442,7 +12442,7 @@ export namespace networking {
             /**
              * Path is matched against the path of an incoming request. Currently it can contain characters disallowed from the conventional "path" part of a URL as defined by RFC 3986. Paths must begin with a '/'. When unspecified, all paths from incoming requests are matched.
              */
-            path?: pulumi.Input<string>;
+            path?: pulumi.Input<string | undefined>;
             /**
              * PathType determines the interpretation of the Path matching. PathType can be one of the following values: * Exact: Matches the URL path exactly. * Prefix: Matches based on a URL path prefix split by '/'. Matching is
              *   done on a path element by element basis. A path element refers is the
@@ -12456,7 +12456,7 @@ export namespace networking {
              *   or treat it identically to Prefix or Exact path types.
              * Implementations are required to support all path types. Defaults to ImplementationSpecific.
              */
-            pathType?: pulumi.Input<string>;
+            pathType?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -12490,23 +12490,23 @@ export namespace networking {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"networking.k8s.io/v1beta1">;
+            apiVersion?: pulumi.Input<"networking.k8s.io/v1beta1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"Ingress">;
+            kind?: pulumi.Input<"Ingress" | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Spec is the desired state of the Ingress. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            spec?: pulumi.Input<inputs.networking.v1beta1.IngressSpec>;
+            spec?: pulumi.Input<inputs.networking.v1beta1.IngressSpec | undefined>;
             /**
              * Status is the current state of the Ingress. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            status?: pulumi.Input<inputs.networking.v1beta1.IngressStatus>;
+            status?: pulumi.Input<inputs.networking.v1beta1.IngressStatus | undefined>;
         }
 
         /**
@@ -12516,7 +12516,7 @@ export namespace networking {
             /**
              * Resource is an ObjectRef to another Kubernetes resource in the namespace of the Ingress object. If resource is specified, serviceName and servicePort must not be specified.
              */
-            resource?: pulumi.Input<inputs.core.v1.TypedLocalObjectReference>;
+            resource?: pulumi.Input<inputs.core.v1.TypedLocalObjectReference | undefined>;
             /**
              * Specifies the name of the referenced service.
              */
@@ -12534,19 +12534,19 @@ export namespace networking {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"networking.k8s.io/v1beta1">;
+            apiVersion?: pulumi.Input<"networking.k8s.io/v1beta1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"IngressClass">;
+            kind?: pulumi.Input<"IngressClass" | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Spec is the desired state of the IngressClass. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
-            spec?: pulumi.Input<inputs.networking.v1beta1.IngressClassSpec>;
+            spec?: pulumi.Input<inputs.networking.v1beta1.IngressClassSpec | undefined>;
         }
 
         /**
@@ -12556,11 +12556,11 @@ export namespace networking {
             /**
              * Controller refers to the name of the controller that should handle this class. This allows for different "flavors" that are controlled by the same controller. For example, you may have different Parameters for the same implementing controller. This should be specified as a domain-prefixed path no more than 250 characters in length, e.g. "acme.io/ingress-controller". This field is immutable.
              */
-            controller?: pulumi.Input<string>;
+            controller?: pulumi.Input<string | undefined>;
             /**
              * Parameters is a link to a custom resource containing additional configuration for the controller. This is optional if the controller does not require extra parameters.
              */
-            parameters?: pulumi.Input<inputs.core.v1.TypedLocalObjectReference>;
+            parameters?: pulumi.Input<inputs.core.v1.TypedLocalObjectReference | undefined>;
         }
 
         /**
@@ -12577,8 +12577,8 @@ export namespace networking {
              *
              * Host can be "precise" which is a domain name without the terminating dot of a network host (e.g. "foo.bar.com") or "wildcard", which is a domain name prefixed with a single wildcard label (e.g. "*.foo.com"). The wildcard character '*' must appear by itself as the first DNS label and matches only a single label. You cannot have a wildcard label by itself (e.g. Host == "*"). Requests will be matched against the Host field in the following way: 1. If Host is precise, the request matches this rule if the http host header is equal to Host. 2. If Host is a wildcard, then the request matches this rule if the http host header is to equal to the suffix (removing the first label) of the wildcard rule.
              */
-            host?: pulumi.Input<string>;
-            http?: pulumi.Input<inputs.networking.v1beta1.HTTPIngressRuleValue>;
+            host?: pulumi.Input<string | undefined>;
+            http?: pulumi.Input<inputs.networking.v1beta1.HTTPIngressRuleValue | undefined>;
         }
 
         /**
@@ -12588,19 +12588,19 @@ export namespace networking {
             /**
              * A default backend capable of servicing requests that don't match any rule. At least one of 'backend' or 'rules' must be specified. This field is optional to allow the loadbalancer controller or defaulting logic to specify a global default.
              */
-            backend?: pulumi.Input<inputs.networking.v1beta1.IngressBackend>;
+            backend?: pulumi.Input<inputs.networking.v1beta1.IngressBackend | undefined>;
             /**
              * IngressClassName is the name of the IngressClass cluster resource. The associated IngressClass defines which controller will implement the resource. This replaces the deprecated `kubernetes.io/ingress.class` annotation. For backwards compatibility, when that annotation is set, it must be given precedence over this field. The controller may emit a warning if the field and annotation have different values. Implementations of this API should ignore Ingresses without a class specified. An IngressClass resource may be marked as default, which can be used to set a default value for this field. For more information, refer to the IngressClass documentation.
              */
-            ingressClassName?: pulumi.Input<string>;
+            ingressClassName?: pulumi.Input<string | undefined>;
             /**
              * A list of host rules used to configure the Ingress. If unspecified, or no rule matches, all traffic is sent to the default backend.
              */
-            rules?: pulumi.Input<pulumi.Input<inputs.networking.v1beta1.IngressRule>[]>;
+            rules?: pulumi.Input<pulumi.Input<inputs.networking.v1beta1.IngressRule>[] | undefined>;
             /**
              * TLS configuration. Currently the Ingress only supports a single TLS port, 443. If multiple members of this list specify different hosts, they will be multiplexed on the same port according to the hostname specified through the SNI TLS extension, if the ingress controller fulfilling the ingress supports SNI.
              */
-            tls?: pulumi.Input<pulumi.Input<inputs.networking.v1beta1.IngressTLS>[]>;
+            tls?: pulumi.Input<pulumi.Input<inputs.networking.v1beta1.IngressTLS>[] | undefined>;
         }
 
         /**
@@ -12610,7 +12610,7 @@ export namespace networking {
             /**
              * LoadBalancer contains the current status of the load-balancer.
              */
-            loadBalancer?: pulumi.Input<inputs.core.v1.LoadBalancerStatus>;
+            loadBalancer?: pulumi.Input<inputs.core.v1.LoadBalancerStatus | undefined>;
         }
 
         /**
@@ -12620,11 +12620,11 @@ export namespace networking {
             /**
              * Hosts are a list of hosts included in the TLS certificate. The values in this list must match the name/s used in the tlsSecret. Defaults to the wildcard host setting for the loadbalancer controller fulfilling this Ingress, if left unspecified.
              */
-            hosts?: pulumi.Input<pulumi.Input<string>[]>;
+            hosts?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * SecretName is the name of the secret used to terminate TLS traffic on port 443. Field is left optional to allow TLS routing based on SNI hostname alone. If the SNI host in a listener conflicts with the "Host" header field used by an IngressRule, the SNI host is used for termination and value of the Host header is used for routing.
              */
-            secretName?: pulumi.Input<string>;
+            secretName?: pulumi.Input<string | undefined>;
         }
     }
 }
@@ -12638,7 +12638,7 @@ export namespace node {
             /**
              * PodFixed represents the fixed resource overhead associated with running a pod.
              */
-            podFixed?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            podFixed?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         }
 
         /**
@@ -12648,7 +12648,7 @@ export namespace node {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"node.k8s.io/v1">;
+            apiVersion?: pulumi.Input<"node.k8s.io/v1" | undefined>;
             /**
              * Handler specifies the underlying runtime and configuration that the CRI implementation will use to handle pods of this class. The possible values are specific to the node & CRI configuration.  It is assumed that all handlers are available on every node, and handlers of the same name are equivalent on every node. For example, a handler called "runc" might specify that the runc OCI runtime (using native Linux containers) will be used to run the containers in a pod. The Handler must be lowercase, conform to the DNS Label (RFC 1123) requirements, and is immutable.
              */
@@ -12656,21 +12656,21 @@ export namespace node {
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"RuntimeClass">;
+            kind?: pulumi.Input<"RuntimeClass" | undefined>;
             /**
              * More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. For more details, see
              *  https://kubernetes.io/docs/concepts/scheduling-eviction/pod-overhead/
              * This field is in beta starting v1.18 and is only honored by servers that enable the PodOverhead feature.
              */
-            overhead?: pulumi.Input<inputs.node.v1.Overhead>;
+            overhead?: pulumi.Input<inputs.node.v1.Overhead | undefined>;
             /**
              * Scheduling holds the scheduling constraints to ensure that pods running with this RuntimeClass are scheduled to nodes that support it. If scheduling is nil, this RuntimeClass is assumed to be supported by all nodes.
              */
-            scheduling?: pulumi.Input<inputs.node.v1.Scheduling>;
+            scheduling?: pulumi.Input<inputs.node.v1.Scheduling | undefined>;
         }
 
         /**
@@ -12680,11 +12680,11 @@ export namespace node {
             /**
              * nodeSelector lists labels that must be present on nodes that support this RuntimeClass. Pods using this RuntimeClass can only be scheduled to a node matched by this selector. The RuntimeClass nodeSelector is merged with a pod's existing nodeSelector. Any conflicts will cause the pod to be rejected in admission.
              */
-            nodeSelector?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            nodeSelector?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
             /**
              * tolerations are appended (excluding duplicates) to pods running with this RuntimeClass during admission, effectively unioning the set of nodes tolerated by the pod and the RuntimeClass.
              */
-            tolerations?: pulumi.Input<pulumi.Input<inputs.core.v1.Toleration>[]>;
+            tolerations?: pulumi.Input<pulumi.Input<inputs.core.v1.Toleration>[] | undefined>;
         }
     }
 
@@ -12696,7 +12696,7 @@ export namespace node {
             /**
              * PodFixed represents the fixed resource overhead associated with running a pod.
              */
-            podFixed?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            podFixed?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         }
 
         /**
@@ -12706,15 +12706,15 @@ export namespace node {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"node.k8s.io/v1alpha1">;
+            apiVersion?: pulumi.Input<"node.k8s.io/v1alpha1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"RuntimeClass">;
+            kind?: pulumi.Input<"RuntimeClass" | undefined>;
             /**
              * More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Specification of the RuntimeClass More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
              */
@@ -12728,7 +12728,7 @@ export namespace node {
             /**
              * Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. For more details, see https://git.k8s.io/enhancements/keps/sig-node/20190226-pod-overhead.md This field is alpha-level as of Kubernetes v1.15, and is only honored by servers that enable the PodOverhead feature.
              */
-            overhead?: pulumi.Input<inputs.node.v1alpha1.Overhead>;
+            overhead?: pulumi.Input<inputs.node.v1alpha1.Overhead | undefined>;
             /**
              * RuntimeHandler specifies the underlying runtime and configuration that the CRI implementation will use to handle pods of this class. The possible values are specific to the node & CRI configuration.  It is assumed that all handlers are available on every node, and handlers of the same name are equivalent on every node. For example, a handler called "runc" might specify that the runc OCI runtime (using native Linux containers) will be used to run the containers in a pod. The RuntimeHandler must be lowercase, conform to the DNS Label (RFC 1123) requirements, and is immutable.
              */
@@ -12736,7 +12736,7 @@ export namespace node {
             /**
              * Scheduling holds the scheduling constraints to ensure that pods running with this RuntimeClass are scheduled to nodes that support it. If scheduling is nil, this RuntimeClass is assumed to be supported by all nodes.
              */
-            scheduling?: pulumi.Input<inputs.node.v1alpha1.Scheduling>;
+            scheduling?: pulumi.Input<inputs.node.v1alpha1.Scheduling | undefined>;
         }
 
         /**
@@ -12746,11 +12746,11 @@ export namespace node {
             /**
              * nodeSelector lists labels that must be present on nodes that support this RuntimeClass. Pods using this RuntimeClass can only be scheduled to a node matched by this selector. The RuntimeClass nodeSelector is merged with a pod's existing nodeSelector. Any conflicts will cause the pod to be rejected in admission.
              */
-            nodeSelector?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            nodeSelector?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
             /**
              * tolerations are appended (excluding duplicates) to pods running with this RuntimeClass during admission, effectively unioning the set of nodes tolerated by the pod and the RuntimeClass.
              */
-            tolerations?: pulumi.Input<pulumi.Input<inputs.core.v1.Toleration>[]>;
+            tolerations?: pulumi.Input<pulumi.Input<inputs.core.v1.Toleration>[] | undefined>;
         }
     }
 
@@ -12762,7 +12762,7 @@ export namespace node {
             /**
              * PodFixed represents the fixed resource overhead associated with running a pod.
              */
-            podFixed?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            podFixed?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         }
 
         /**
@@ -12772,7 +12772,7 @@ export namespace node {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"node.k8s.io/v1beta1">;
+            apiVersion?: pulumi.Input<"node.k8s.io/v1beta1" | undefined>;
             /**
              * Handler specifies the underlying runtime and configuration that the CRI implementation will use to handle pods of this class. The possible values are specific to the node & CRI configuration.  It is assumed that all handlers are available on every node, and handlers of the same name are equivalent on every node. For example, a handler called "runc" might specify that the runc OCI runtime (using native Linux containers) will be used to run the containers in a pod. The Handler must be lowercase, conform to the DNS Label (RFC 1123) requirements, and is immutable.
              */
@@ -12780,19 +12780,19 @@ export namespace node {
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"RuntimeClass">;
+            kind?: pulumi.Input<"RuntimeClass" | undefined>;
             /**
              * More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. For more details, see https://git.k8s.io/enhancements/keps/sig-node/20190226-pod-overhead.md This field is alpha-level as of Kubernetes v1.15, and is only honored by servers that enable the PodOverhead feature.
              */
-            overhead?: pulumi.Input<inputs.node.v1beta1.Overhead>;
+            overhead?: pulumi.Input<inputs.node.v1beta1.Overhead | undefined>;
             /**
              * Scheduling holds the scheduling constraints to ensure that pods running with this RuntimeClass are scheduled to nodes that support it. If scheduling is nil, this RuntimeClass is assumed to be supported by all nodes.
              */
-            scheduling?: pulumi.Input<inputs.node.v1beta1.Scheduling>;
+            scheduling?: pulumi.Input<inputs.node.v1beta1.Scheduling | undefined>;
         }
 
         /**
@@ -12802,11 +12802,11 @@ export namespace node {
             /**
              * nodeSelector lists labels that must be present on nodes that support this RuntimeClass. Pods using this RuntimeClass can only be scheduled to a node matched by this selector. The RuntimeClass nodeSelector is merged with a pod's existing nodeSelector. Any conflicts will cause the pod to be rejected in admission.
              */
-            nodeSelector?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            nodeSelector?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
             /**
              * tolerations are appended (excluding duplicates) to pods running with this RuntimeClass during admission, effectively unioning the set of nodes tolerated by the pod and the RuntimeClass.
              */
-            tolerations?: pulumi.Input<pulumi.Input<inputs.core.v1.Toleration>[]>;
+            tolerations?: pulumi.Input<pulumi.Input<inputs.core.v1.Toleration>[] | undefined>;
         }
     }
 }
@@ -12847,11 +12847,11 @@ export namespace policy {
              *
              * Examples: `/foo` would allow `/foo`, `/foo/` and `/foo/bar` `/foo` would not allow `/food` or `/etc/foo`
              */
-            pathPrefix?: pulumi.Input<string>;
+            pathPrefix?: pulumi.Input<string | undefined>;
             /**
              * when set to true, will allow host volumes matching the pathPrefix only if all volume mounts are readOnly.
              */
-            readOnly?: pulumi.Input<boolean>;
+            readOnly?: pulumi.Input<boolean | undefined>;
         }
 
         /**
@@ -12861,11 +12861,11 @@ export namespace policy {
             /**
              * ranges are the allowed ranges of fs groups.  If you would like to force a single fs group then supply a single range with the same start and end. Required for MustRunAs.
              */
-            ranges?: pulumi.Input<pulumi.Input<inputs.policy.v1beta1.IDRange>[]>;
+            ranges?: pulumi.Input<pulumi.Input<inputs.policy.v1beta1.IDRange>[] | undefined>;
             /**
              * rule is the strategy that will dictate what FSGroup is used in the SecurityContext.
              */
-            rule?: pulumi.Input<string>;
+            rule?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -12903,20 +12903,20 @@ export namespace policy {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"policy/v1beta1">;
+            apiVersion?: pulumi.Input<"policy/v1beta1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"PodDisruptionBudget">;
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            kind?: pulumi.Input<"PodDisruptionBudget" | undefined>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Specification of the desired behavior of the PodDisruptionBudget.
              */
-            spec?: pulumi.Input<inputs.policy.v1beta1.PodDisruptionBudgetSpec>;
+            spec?: pulumi.Input<inputs.policy.v1beta1.PodDisruptionBudgetSpec | undefined>;
             /**
              * Most recently observed status of the PodDisruptionBudget.
              */
-            status?: pulumi.Input<inputs.policy.v1beta1.PodDisruptionBudgetStatus>;
+            status?: pulumi.Input<inputs.policy.v1beta1.PodDisruptionBudgetStatus | undefined>;
         }
 
         /**
@@ -12926,15 +12926,15 @@ export namespace policy {
             /**
              * An eviction is allowed if at most "maxUnavailable" pods selected by "selector" are unavailable after the eviction, i.e. even in absence of the evicted pod. For example, one can prevent all voluntary evictions by specifying 0. This is a mutually exclusive setting with "minAvailable".
              */
-            maxUnavailable?: pulumi.Input<number | string>;
+            maxUnavailable?: pulumi.Input<number | string | undefined>;
             /**
              * An eviction is allowed if at least "minAvailable" pods selected by "selector" will still be available after the eviction, i.e. even in the absence of the evicted pod.  So for example you can prevent all voluntary evictions by specifying "100%".
              */
-            minAvailable?: pulumi.Input<number | string>;
+            minAvailable?: pulumi.Input<number | string | undefined>;
             /**
              * Label query over pods whose evictions are managed by the disruption budget.
              */
-            selector?: pulumi.Input<inputs.meta.v1.LabelSelector>;
+            selector?: pulumi.Input<inputs.meta.v1.LabelSelector | undefined>;
         }
 
         /**
@@ -12952,7 +12952,7 @@ export namespace policy {
             /**
              * DisruptedPods contains information about pods whose eviction was processed by the API server eviction subresource handler but has not yet been observed by the PodDisruptionBudget controller. A pod will be in this map from the time when the API server processed the eviction request to the time when the pod is seen by PDB controller as having been marked for deletion (or after a timeout). The key in the map is the name of the pod and the value is the time when the API server processed the eviction request. If the deletion didn't occur and a pod is still there it will be removed from the list automatically by PodDisruptionBudget controller after some time. If everything goes smooth this map should be empty for the most of the time. Large number of entries in the map may indicate problems with pod deletions.
              */
-            disruptedPods?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            disruptedPods?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
             /**
              * Number of pod disruptions that are currently allowed.
              */
@@ -12964,7 +12964,7 @@ export namespace policy {
             /**
              * Most recent generation observed when updating this PDB status. DisruptionsAllowed and other status information is valid only if observedGeneration equals to PDB's object generation.
              */
-            observedGeneration?: pulumi.Input<number>;
+            observedGeneration?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -12974,19 +12974,19 @@ export namespace policy {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"policy/v1beta1">;
+            apiVersion?: pulumi.Input<"policy/v1beta1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"PodSecurityPolicy">;
+            kind?: pulumi.Input<"PodSecurityPolicy" | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * spec defines the policy enforced.
              */
-            spec?: pulumi.Input<inputs.policy.v1beta1.PodSecurityPolicySpec>;
+            spec?: pulumi.Input<inputs.policy.v1beta1.PodSecurityPolicySpec | undefined>;
         }
 
         /**
@@ -12996,47 +12996,47 @@ export namespace policy {
             /**
              * allowPrivilegeEscalation determines if a pod can request to allow privilege escalation. If unspecified, defaults to true.
              */
-            allowPrivilegeEscalation?: pulumi.Input<boolean>;
+            allowPrivilegeEscalation?: pulumi.Input<boolean | undefined>;
             /**
              * AllowedCSIDrivers is an allowlist of inline CSI drivers that must be explicitly set to be embedded within a pod spec. An empty value indicates that any CSI driver can be used for inline ephemeral volumes. This is a beta field, and is only honored if the API server enables the CSIInlineVolume feature gate.
              */
-            allowedCSIDrivers?: pulumi.Input<pulumi.Input<inputs.policy.v1beta1.AllowedCSIDriver>[]>;
+            allowedCSIDrivers?: pulumi.Input<pulumi.Input<inputs.policy.v1beta1.AllowedCSIDriver>[] | undefined>;
             /**
              * allowedCapabilities is a list of capabilities that can be requested to add to the container. Capabilities in this field may be added at the pod author's discretion. You must not list a capability in both allowedCapabilities and requiredDropCapabilities.
              */
-            allowedCapabilities?: pulumi.Input<pulumi.Input<string>[]>;
+            allowedCapabilities?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * allowedFlexVolumes is an allowlist of Flexvolumes.  Empty or nil indicates that all Flexvolumes may be used.  This parameter is effective only when the usage of the Flexvolumes is allowed in the "volumes" field.
              */
-            allowedFlexVolumes?: pulumi.Input<pulumi.Input<inputs.policy.v1beta1.AllowedFlexVolume>[]>;
+            allowedFlexVolumes?: pulumi.Input<pulumi.Input<inputs.policy.v1beta1.AllowedFlexVolume>[] | undefined>;
             /**
              * allowedHostPaths is an allowlist of host paths. Empty indicates that all host paths may be used.
              */
-            allowedHostPaths?: pulumi.Input<pulumi.Input<inputs.policy.v1beta1.AllowedHostPath>[]>;
+            allowedHostPaths?: pulumi.Input<pulumi.Input<inputs.policy.v1beta1.AllowedHostPath>[] | undefined>;
             /**
              * AllowedProcMountTypes is an allowlist of allowed ProcMountTypes. Empty or nil indicates that only the DefaultProcMountType may be used. This requires the ProcMountType feature flag to be enabled.
              */
-            allowedProcMountTypes?: pulumi.Input<pulumi.Input<string>[]>;
+            allowedProcMountTypes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * allowedUnsafeSysctls is a list of explicitly allowed unsafe sysctls, defaults to none. Each entry is either a plain sysctl name or ends in "*" in which case it is considered as a prefix of allowed sysctls. Single * means all unsafe sysctls are allowed. Kubelet has to allowlist all allowed unsafe sysctls explicitly to avoid rejection.
              *
              * Examples: e.g. "foo/*" allows "foo/bar", "foo/baz", etc. e.g. "foo.*" allows "foo.bar", "foo.baz", etc.
              */
-            allowedUnsafeSysctls?: pulumi.Input<pulumi.Input<string>[]>;
+            allowedUnsafeSysctls?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * defaultAddCapabilities is the default set of capabilities that will be added to the container unless the pod spec specifically drops the capability.  You may not list a capability in both defaultAddCapabilities and requiredDropCapabilities. Capabilities added here are implicitly allowed, and need not be included in the allowedCapabilities list.
              */
-            defaultAddCapabilities?: pulumi.Input<pulumi.Input<string>[]>;
+            defaultAddCapabilities?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * defaultAllowPrivilegeEscalation controls the default setting for whether a process can gain more privileges than its parent process.
              */
-            defaultAllowPrivilegeEscalation?: pulumi.Input<boolean>;
+            defaultAllowPrivilegeEscalation?: pulumi.Input<boolean | undefined>;
             /**
              * forbiddenSysctls is a list of explicitly forbidden sysctls, defaults to none. Each entry is either a plain sysctl name or ends in "*" in which case it is considered as a prefix of forbidden sysctls. Single * means all sysctls are forbidden.
              *
              * Examples: e.g. "foo/*" forbids "foo/bar", "foo/baz", etc. e.g. "foo.*" forbids "foo.bar", "foo.baz", etc.
              */
-            forbiddenSysctls?: pulumi.Input<pulumi.Input<string>[]>;
+            forbiddenSysctls?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * fsGroup is the strategy that will dictate what fs group is used by the SecurityContext.
              */
@@ -13044,35 +13044,35 @@ export namespace policy {
             /**
              * hostIPC determines if the policy allows the use of HostIPC in the pod spec.
              */
-            hostIPC?: pulumi.Input<boolean>;
+            hostIPC?: pulumi.Input<boolean | undefined>;
             /**
              * hostNetwork determines if the policy allows the use of HostNetwork in the pod spec.
              */
-            hostNetwork?: pulumi.Input<boolean>;
+            hostNetwork?: pulumi.Input<boolean | undefined>;
             /**
              * hostPID determines if the policy allows the use of HostPID in the pod spec.
              */
-            hostPID?: pulumi.Input<boolean>;
+            hostPID?: pulumi.Input<boolean | undefined>;
             /**
              * hostPorts determines which host port ranges are allowed to be exposed.
              */
-            hostPorts?: pulumi.Input<pulumi.Input<inputs.policy.v1beta1.HostPortRange>[]>;
+            hostPorts?: pulumi.Input<pulumi.Input<inputs.policy.v1beta1.HostPortRange>[] | undefined>;
             /**
              * privileged determines if a pod can request to be run as privileged.
              */
-            privileged?: pulumi.Input<boolean>;
+            privileged?: pulumi.Input<boolean | undefined>;
             /**
              * readOnlyRootFilesystem when set to true will force containers to run with a read only root file system.  If the container specifically requests to run with a non-read only root file system the PSP should deny the pod. If set to false the container may run with a read only root file system if it wishes but it will not be forced to.
              */
-            readOnlyRootFilesystem?: pulumi.Input<boolean>;
+            readOnlyRootFilesystem?: pulumi.Input<boolean | undefined>;
             /**
              * requiredDropCapabilities are the capabilities that will be dropped from the container.  These are required to be dropped and cannot be added.
              */
-            requiredDropCapabilities?: pulumi.Input<pulumi.Input<string>[]>;
+            requiredDropCapabilities?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * RunAsGroup is the strategy that will dictate the allowable RunAsGroup values that may be set. If this field is omitted, the pod's RunAsGroup can take any value. This field requires the RunAsGroup feature gate to be enabled.
              */
-            runAsGroup?: pulumi.Input<inputs.policy.v1beta1.RunAsGroupStrategyOptions>;
+            runAsGroup?: pulumi.Input<inputs.policy.v1beta1.RunAsGroupStrategyOptions | undefined>;
             /**
              * runAsUser is the strategy that will dictate the allowable RunAsUser values that may be set.
              */
@@ -13080,7 +13080,7 @@ export namespace policy {
             /**
              * runtimeClass is the strategy that will dictate the allowable RuntimeClasses for a pod. If this field is omitted, the pod's runtimeClassName field is unrestricted. Enforcement of this field depends on the RuntimeClass feature gate being enabled.
              */
-            runtimeClass?: pulumi.Input<inputs.policy.v1beta1.RuntimeClassStrategyOptions>;
+            runtimeClass?: pulumi.Input<inputs.policy.v1beta1.RuntimeClassStrategyOptions | undefined>;
             /**
              * seLinux is the strategy that will dictate the allowable labels that may be set.
              */
@@ -13092,7 +13092,7 @@ export namespace policy {
             /**
              * volumes is an allowlist of volume plugins. Empty indicates that no volumes may be used. To allow all volumes you may use '*'.
              */
-            volumes?: pulumi.Input<pulumi.Input<string>[]>;
+            volumes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         }
 
         /**
@@ -13102,7 +13102,7 @@ export namespace policy {
             /**
              * ranges are the allowed ranges of gids that may be used. If you would like to force a single gid then supply a single range with the same start and end. Required for MustRunAs.
              */
-            ranges?: pulumi.Input<pulumi.Input<inputs.policy.v1beta1.IDRange>[]>;
+            ranges?: pulumi.Input<pulumi.Input<inputs.policy.v1beta1.IDRange>[] | undefined>;
             /**
              * rule is the strategy that will dictate the allowable RunAsGroup values that may be set.
              */
@@ -13116,7 +13116,7 @@ export namespace policy {
             /**
              * ranges are the allowed ranges of uids that may be used. If you would like to force a single uid then supply a single range with the same start and end. Required for MustRunAs.
              */
-            ranges?: pulumi.Input<pulumi.Input<inputs.policy.v1beta1.IDRange>[]>;
+            ranges?: pulumi.Input<pulumi.Input<inputs.policy.v1beta1.IDRange>[] | undefined>;
             /**
              * rule is the strategy that will dictate the allowable RunAsUser values that may be set.
              */
@@ -13134,7 +13134,7 @@ export namespace policy {
             /**
              * defaultRuntimeClassName is the default RuntimeClassName to set on the pod. The default MUST be allowed by the allowedRuntimeClassNames list. A value of nil does not mutate the Pod.
              */
-            defaultRuntimeClassName?: pulumi.Input<string>;
+            defaultRuntimeClassName?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -13148,7 +13148,7 @@ export namespace policy {
             /**
              * seLinuxOptions required to run as; required for MustRunAs More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
              */
-            seLinuxOptions?: pulumi.Input<inputs.core.v1.SELinuxOptions>;
+            seLinuxOptions?: pulumi.Input<inputs.core.v1.SELinuxOptions | undefined>;
         }
 
         /**
@@ -13158,11 +13158,11 @@ export namespace policy {
             /**
              * ranges are the allowed ranges of supplemental groups.  If you would like to force a single supplemental group then supply a single range with the same start and end. Required for MustRunAs.
              */
-            ranges?: pulumi.Input<pulumi.Input<inputs.policy.v1beta1.IDRange>[]>;
+            ranges?: pulumi.Input<pulumi.Input<inputs.policy.v1beta1.IDRange>[] | undefined>;
             /**
              * rule is the strategy that will dictate what supplemental groups is used in the SecurityContext.
              */
-            rule?: pulumi.Input<string>;
+            rule?: pulumi.Input<string | undefined>;
         }
     }
 }
@@ -13176,7 +13176,7 @@ export namespace rbac {
             /**
              * ClusterRoleSelectors holds a list of selectors which will be used to find ClusterRoles and create the rules. If any of the selectors match, then the ClusterRole's permissions will be added
              */
-            clusterRoleSelectors?: pulumi.Input<pulumi.Input<inputs.meta.v1.LabelSelector>[]>;
+            clusterRoleSelectors?: pulumi.Input<pulumi.Input<inputs.meta.v1.LabelSelector>[] | undefined>;
         }
 
         /**
@@ -13186,23 +13186,23 @@ export namespace rbac {
             /**
              * AggregationRule is an optional field that describes how to build the Rules for this ClusterRole. If AggregationRule is set, then the Rules are controller managed and direct changes to Rules will be stomped by the controller.
              */
-            aggregationRule?: pulumi.Input<inputs.rbac.v1.AggregationRule>;
+            aggregationRule?: pulumi.Input<inputs.rbac.v1.AggregationRule | undefined>;
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"rbac.authorization.k8s.io/v1">;
+            apiVersion?: pulumi.Input<"rbac.authorization.k8s.io/v1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"ClusterRole">;
+            kind?: pulumi.Input<"ClusterRole" | undefined>;
             /**
              * Standard object's metadata.
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Rules holds all the PolicyRules for this ClusterRole
              */
-            rules?: pulumi.Input<pulumi.Input<inputs.rbac.v1.PolicyRule>[]>;
+            rules?: pulumi.Input<pulumi.Input<inputs.rbac.v1.PolicyRule>[] | undefined>;
         }
 
         /**
@@ -13212,15 +13212,15 @@ export namespace rbac {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"rbac.authorization.k8s.io/v1">;
+            apiVersion?: pulumi.Input<"rbac.authorization.k8s.io/v1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"ClusterRoleBinding">;
+            kind?: pulumi.Input<"ClusterRoleBinding" | undefined>;
             /**
              * Standard object's metadata.
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * RoleRef can only reference a ClusterRole in the global namespace. If the RoleRef cannot be resolved, the Authorizer must return an error.
              */
@@ -13228,7 +13228,7 @@ export namespace rbac {
             /**
              * Subjects holds references to the objects the role applies to.
              */
-            subjects?: pulumi.Input<pulumi.Input<inputs.rbac.v1.Subject>[]>;
+            subjects?: pulumi.Input<pulumi.Input<inputs.rbac.v1.Subject>[] | undefined>;
         }
 
         /**
@@ -13238,19 +13238,19 @@ export namespace rbac {
             /**
              * APIGroups is the name of the APIGroup that contains the resources.  If multiple API groups are specified, any action requested against one of the enumerated resources in any API group will be allowed.
              */
-            apiGroups?: pulumi.Input<pulumi.Input<string>[]>;
+            apiGroups?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * NonResourceURLs is a set of partial urls that a user should have access to.  *s are allowed, but only as the full, final step in the path Since non-resource URLs are not namespaced, this field is only applicable for ClusterRoles referenced from a ClusterRoleBinding. Rules can either apply to API resources (such as "pods" or "secrets") or non-resource URL paths (such as "/api"),  but not both.
              */
-            nonResourceURLs?: pulumi.Input<pulumi.Input<string>[]>;
+            nonResourceURLs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * ResourceNames is an optional white list of names that the rule applies to.  An empty set means that everything is allowed.
              */
-            resourceNames?: pulumi.Input<pulumi.Input<string>[]>;
+            resourceNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * Resources is a list of resources this rule applies to.  ResourceAll represents all resources.
              */
-            resources?: pulumi.Input<pulumi.Input<string>[]>;
+            resources?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * Verbs is a list of Verbs that apply to ALL the ResourceKinds and AttributeRestrictions contained in this rule.  VerbAll represents all kinds.
              */
@@ -13264,19 +13264,19 @@ export namespace rbac {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"rbac.authorization.k8s.io/v1">;
+            apiVersion?: pulumi.Input<"rbac.authorization.k8s.io/v1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"Role">;
+            kind?: pulumi.Input<"Role" | undefined>;
             /**
              * Standard object's metadata.
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Rules holds all the PolicyRules for this Role
              */
-            rules?: pulumi.Input<pulumi.Input<inputs.rbac.v1.PolicyRule>[]>;
+            rules?: pulumi.Input<pulumi.Input<inputs.rbac.v1.PolicyRule>[] | undefined>;
         }
 
         /**
@@ -13286,15 +13286,15 @@ export namespace rbac {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"rbac.authorization.k8s.io/v1">;
+            apiVersion?: pulumi.Input<"rbac.authorization.k8s.io/v1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"RoleBinding">;
+            kind?: pulumi.Input<"RoleBinding" | undefined>;
             /**
              * Standard object's metadata.
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * RoleRef can reference a Role in the current namespace or a ClusterRole in the global namespace. If the RoleRef cannot be resolved, the Authorizer must return an error.
              */
@@ -13302,7 +13302,7 @@ export namespace rbac {
             /**
              * Subjects holds references to the objects the role applies to.
              */
-            subjects?: pulumi.Input<pulumi.Input<inputs.rbac.v1.Subject>[]>;
+            subjects?: pulumi.Input<pulumi.Input<inputs.rbac.v1.Subject>[] | undefined>;
         }
 
         /**
@@ -13330,7 +13330,7 @@ export namespace rbac {
             /**
              * APIGroup holds the API group of the referenced subject. Defaults to "" for ServiceAccount subjects. Defaults to "rbac.authorization.k8s.io" for User and Group subjects.
              */
-            apiGroup?: pulumi.Input<string>;
+            apiGroup?: pulumi.Input<string | undefined>;
             /**
              * Kind of object being referenced. Values defined by this API group are "User", "Group", and "ServiceAccount". If the Authorizer does not recognized the kind value, the Authorizer should report an error.
              */
@@ -13342,7 +13342,7 @@ export namespace rbac {
             /**
              * Namespace of the referenced object.  If the object kind is non-namespace, such as "User" or "Group", and this value is not empty the Authorizer should report an error.
              */
-            namespace?: pulumi.Input<string>;
+            namespace?: pulumi.Input<string | undefined>;
         }
     }
 
@@ -13354,7 +13354,7 @@ export namespace rbac {
             /**
              * ClusterRoleSelectors holds a list of selectors which will be used to find ClusterRoles and create the rules. If any of the selectors match, then the ClusterRole's permissions will be added
              */
-            clusterRoleSelectors?: pulumi.Input<pulumi.Input<inputs.meta.v1.LabelSelector>[]>;
+            clusterRoleSelectors?: pulumi.Input<pulumi.Input<inputs.meta.v1.LabelSelector>[] | undefined>;
         }
 
         /**
@@ -13364,23 +13364,23 @@ export namespace rbac {
             /**
              * AggregationRule is an optional field that describes how to build the Rules for this ClusterRole. If AggregationRule is set, then the Rules are controller managed and direct changes to Rules will be stomped by the controller.
              */
-            aggregationRule?: pulumi.Input<inputs.rbac.v1alpha1.AggregationRule>;
+            aggregationRule?: pulumi.Input<inputs.rbac.v1alpha1.AggregationRule | undefined>;
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"rbac.authorization.k8s.io/v1alpha1">;
+            apiVersion?: pulumi.Input<"rbac.authorization.k8s.io/v1alpha1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"ClusterRole">;
+            kind?: pulumi.Input<"ClusterRole" | undefined>;
             /**
              * Standard object's metadata.
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Rules holds all the PolicyRules for this ClusterRole
              */
-            rules?: pulumi.Input<pulumi.Input<inputs.rbac.v1alpha1.PolicyRule>[]>;
+            rules?: pulumi.Input<pulumi.Input<inputs.rbac.v1alpha1.PolicyRule>[] | undefined>;
         }
 
         /**
@@ -13390,15 +13390,15 @@ export namespace rbac {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"rbac.authorization.k8s.io/v1alpha1">;
+            apiVersion?: pulumi.Input<"rbac.authorization.k8s.io/v1alpha1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"ClusterRoleBinding">;
+            kind?: pulumi.Input<"ClusterRoleBinding" | undefined>;
             /**
              * Standard object's metadata.
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * RoleRef can only reference a ClusterRole in the global namespace. If the RoleRef cannot be resolved, the Authorizer must return an error.
              */
@@ -13406,7 +13406,7 @@ export namespace rbac {
             /**
              * Subjects holds references to the objects the role applies to.
              */
-            subjects?: pulumi.Input<pulumi.Input<inputs.rbac.v1alpha1.Subject>[]>;
+            subjects?: pulumi.Input<pulumi.Input<inputs.rbac.v1alpha1.Subject>[] | undefined>;
         }
 
         /**
@@ -13416,19 +13416,19 @@ export namespace rbac {
             /**
              * APIGroups is the name of the APIGroup that contains the resources.  If multiple API groups are specified, any action requested against one of the enumerated resources in any API group will be allowed.
              */
-            apiGroups?: pulumi.Input<pulumi.Input<string>[]>;
+            apiGroups?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * NonResourceURLs is a set of partial urls that a user should have access to.  *s are allowed, but only as the full, final step in the path Since non-resource URLs are not namespaced, this field is only applicable for ClusterRoles referenced from a ClusterRoleBinding. Rules can either apply to API resources (such as "pods" or "secrets") or non-resource URL paths (such as "/api"),  but not both.
              */
-            nonResourceURLs?: pulumi.Input<pulumi.Input<string>[]>;
+            nonResourceURLs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * ResourceNames is an optional white list of names that the rule applies to.  An empty set means that everything is allowed.
              */
-            resourceNames?: pulumi.Input<pulumi.Input<string>[]>;
+            resourceNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * Resources is a list of resources this rule applies to.  ResourceAll represents all resources.
              */
-            resources?: pulumi.Input<pulumi.Input<string>[]>;
+            resources?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * Verbs is a list of Verbs that apply to ALL the ResourceKinds and AttributeRestrictions contained in this rule.  VerbAll represents all kinds.
              */
@@ -13442,19 +13442,19 @@ export namespace rbac {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"rbac.authorization.k8s.io/v1alpha1">;
+            apiVersion?: pulumi.Input<"rbac.authorization.k8s.io/v1alpha1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"Role">;
+            kind?: pulumi.Input<"Role" | undefined>;
             /**
              * Standard object's metadata.
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Rules holds all the PolicyRules for this Role
              */
-            rules?: pulumi.Input<pulumi.Input<inputs.rbac.v1alpha1.PolicyRule>[]>;
+            rules?: pulumi.Input<pulumi.Input<inputs.rbac.v1alpha1.PolicyRule>[] | undefined>;
         }
 
         /**
@@ -13464,15 +13464,15 @@ export namespace rbac {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"rbac.authorization.k8s.io/v1alpha1">;
+            apiVersion?: pulumi.Input<"rbac.authorization.k8s.io/v1alpha1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"RoleBinding">;
+            kind?: pulumi.Input<"RoleBinding" | undefined>;
             /**
              * Standard object's metadata.
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * RoleRef can reference a Role in the current namespace or a ClusterRole in the global namespace. If the RoleRef cannot be resolved, the Authorizer must return an error.
              */
@@ -13480,7 +13480,7 @@ export namespace rbac {
             /**
              * Subjects holds references to the objects the role applies to.
              */
-            subjects?: pulumi.Input<pulumi.Input<inputs.rbac.v1alpha1.Subject>[]>;
+            subjects?: pulumi.Input<pulumi.Input<inputs.rbac.v1alpha1.Subject>[] | undefined>;
         }
 
         /**
@@ -13508,7 +13508,7 @@ export namespace rbac {
             /**
              * APIVersion holds the API group and version of the referenced subject. Defaults to "v1" for ServiceAccount subjects. Defaults to "rbac.authorization.k8s.io/v1alpha1" for User and Group subjects.
              */
-            apiVersion?: pulumi.Input<string>;
+            apiVersion?: pulumi.Input<string | undefined>;
             /**
              * Kind of object being referenced. Values defined by this API group are "User", "Group", and "ServiceAccount". If the Authorizer does not recognized the kind value, the Authorizer should report an error.
              */
@@ -13520,7 +13520,7 @@ export namespace rbac {
             /**
              * Namespace of the referenced object.  If the object kind is non-namespace, such as "User" or "Group", and this value is not empty the Authorizer should report an error.
              */
-            namespace?: pulumi.Input<string>;
+            namespace?: pulumi.Input<string | undefined>;
         }
     }
 
@@ -13532,7 +13532,7 @@ export namespace rbac {
             /**
              * ClusterRoleSelectors holds a list of selectors which will be used to find ClusterRoles and create the rules. If any of the selectors match, then the ClusterRole's permissions will be added
              */
-            clusterRoleSelectors?: pulumi.Input<pulumi.Input<inputs.meta.v1.LabelSelector>[]>;
+            clusterRoleSelectors?: pulumi.Input<pulumi.Input<inputs.meta.v1.LabelSelector>[] | undefined>;
         }
 
         /**
@@ -13542,23 +13542,23 @@ export namespace rbac {
             /**
              * AggregationRule is an optional field that describes how to build the Rules for this ClusterRole. If AggregationRule is set, then the Rules are controller managed and direct changes to Rules will be stomped by the controller.
              */
-            aggregationRule?: pulumi.Input<inputs.rbac.v1beta1.AggregationRule>;
+            aggregationRule?: pulumi.Input<inputs.rbac.v1beta1.AggregationRule | undefined>;
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"rbac.authorization.k8s.io/v1beta1">;
+            apiVersion?: pulumi.Input<"rbac.authorization.k8s.io/v1beta1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"ClusterRole">;
+            kind?: pulumi.Input<"ClusterRole" | undefined>;
             /**
              * Standard object's metadata.
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Rules holds all the PolicyRules for this ClusterRole
              */
-            rules?: pulumi.Input<pulumi.Input<inputs.rbac.v1beta1.PolicyRule>[]>;
+            rules?: pulumi.Input<pulumi.Input<inputs.rbac.v1beta1.PolicyRule>[] | undefined>;
         }
 
         /**
@@ -13568,15 +13568,15 @@ export namespace rbac {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"rbac.authorization.k8s.io/v1beta1">;
+            apiVersion?: pulumi.Input<"rbac.authorization.k8s.io/v1beta1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"ClusterRoleBinding">;
+            kind?: pulumi.Input<"ClusterRoleBinding" | undefined>;
             /**
              * Standard object's metadata.
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * RoleRef can only reference a ClusterRole in the global namespace. If the RoleRef cannot be resolved, the Authorizer must return an error.
              */
@@ -13584,7 +13584,7 @@ export namespace rbac {
             /**
              * Subjects holds references to the objects the role applies to.
              */
-            subjects?: pulumi.Input<pulumi.Input<inputs.rbac.v1beta1.Subject>[]>;
+            subjects?: pulumi.Input<pulumi.Input<inputs.rbac.v1beta1.Subject>[] | undefined>;
         }
 
         /**
@@ -13594,19 +13594,19 @@ export namespace rbac {
             /**
              * APIGroups is the name of the APIGroup that contains the resources.  If multiple API groups are specified, any action requested against one of the enumerated resources in any API group will be allowed.
              */
-            apiGroups?: pulumi.Input<pulumi.Input<string>[]>;
+            apiGroups?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * NonResourceURLs is a set of partial urls that a user should have access to.  *s are allowed, but only as the full, final step in the path Since non-resource URLs are not namespaced, this field is only applicable for ClusterRoles referenced from a ClusterRoleBinding. Rules can either apply to API resources (such as "pods" or "secrets") or non-resource URL paths (such as "/api"),  but not both.
              */
-            nonResourceURLs?: pulumi.Input<pulumi.Input<string>[]>;
+            nonResourceURLs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * ResourceNames is an optional white list of names that the rule applies to.  An empty set means that everything is allowed.
              */
-            resourceNames?: pulumi.Input<pulumi.Input<string>[]>;
+            resourceNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * Resources is a list of resources this rule applies to.  '*' represents all resources in the specified apiGroups. '*&#47;foo' represents the subresource 'foo' for all resources in the specified apiGroups.
              */
-            resources?: pulumi.Input<pulumi.Input<string>[]>;
+            resources?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * Verbs is a list of Verbs that apply to ALL the ResourceKinds and AttributeRestrictions contained in this rule.  VerbAll represents all kinds.
              */
@@ -13620,19 +13620,19 @@ export namespace rbac {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"rbac.authorization.k8s.io/v1beta1">;
+            apiVersion?: pulumi.Input<"rbac.authorization.k8s.io/v1beta1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"Role">;
+            kind?: pulumi.Input<"Role" | undefined>;
             /**
              * Standard object's metadata.
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Rules holds all the PolicyRules for this Role
              */
-            rules?: pulumi.Input<pulumi.Input<inputs.rbac.v1beta1.PolicyRule>[]>;
+            rules?: pulumi.Input<pulumi.Input<inputs.rbac.v1beta1.PolicyRule>[] | undefined>;
         }
 
         /**
@@ -13642,15 +13642,15 @@ export namespace rbac {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"rbac.authorization.k8s.io/v1beta1">;
+            apiVersion?: pulumi.Input<"rbac.authorization.k8s.io/v1beta1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"RoleBinding">;
+            kind?: pulumi.Input<"RoleBinding" | undefined>;
             /**
              * Standard object's metadata.
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * RoleRef can reference a Role in the current namespace or a ClusterRole in the global namespace. If the RoleRef cannot be resolved, the Authorizer must return an error.
              */
@@ -13658,7 +13658,7 @@ export namespace rbac {
             /**
              * Subjects holds references to the objects the role applies to.
              */
-            subjects?: pulumi.Input<pulumi.Input<inputs.rbac.v1beta1.Subject>[]>;
+            subjects?: pulumi.Input<pulumi.Input<inputs.rbac.v1beta1.Subject>[] | undefined>;
         }
 
         /**
@@ -13686,7 +13686,7 @@ export namespace rbac {
             /**
              * APIGroup holds the API group of the referenced subject. Defaults to "" for ServiceAccount subjects. Defaults to "rbac.authorization.k8s.io" for User and Group subjects.
              */
-            apiGroup?: pulumi.Input<string>;
+            apiGroup?: pulumi.Input<string | undefined>;
             /**
              * Kind of object being referenced. Values defined by this API group are "User", "Group", and "ServiceAccount". If the Authorizer does not recognized the kind value, the Authorizer should report an error.
              */
@@ -13698,7 +13698,7 @@ export namespace rbac {
             /**
              * Namespace of the referenced object.  If the object kind is non-namespace, such as "User" or "Group", and this value is not empty the Authorizer should report an error.
              */
-            namespace?: pulumi.Input<string>;
+            namespace?: pulumi.Input<string | undefined>;
         }
     }
 }
@@ -13712,27 +13712,27 @@ export namespace scheduling {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"scheduling.k8s.io/v1">;
+            apiVersion?: pulumi.Input<"scheduling.k8s.io/v1" | undefined>;
             /**
              * description is an arbitrary string that usually provides guidelines on when this priority class should be used.
              */
-            description?: pulumi.Input<string>;
+            description?: pulumi.Input<string | undefined>;
             /**
              * globalDefault specifies whether this PriorityClass should be considered as the default priority for pods that do not have any priority class. Only one PriorityClass can be marked as `globalDefault`. However, if more than one PriorityClasses exists with their `globalDefault` field set to true, the smallest value of such global default PriorityClasses will be used as the default priority.
              */
-            globalDefault?: pulumi.Input<boolean>;
+            globalDefault?: pulumi.Input<boolean | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"PriorityClass">;
+            kind?: pulumi.Input<"PriorityClass" | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset. This field is beta-level, gated by the NonPreemptingPriority feature-gate.
              */
-            preemptionPolicy?: pulumi.Input<string>;
+            preemptionPolicy?: pulumi.Input<string | undefined>;
             /**
              * The value of this priority class. This is the actual priority that pods receive when they have the name of this class in their pod spec.
              */
@@ -13749,27 +13749,27 @@ export namespace scheduling {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"scheduling.k8s.io/v1alpha1">;
+            apiVersion?: pulumi.Input<"scheduling.k8s.io/v1alpha1" | undefined>;
             /**
              * description is an arbitrary string that usually provides guidelines on when this priority class should be used.
              */
-            description?: pulumi.Input<string>;
+            description?: pulumi.Input<string | undefined>;
             /**
              * globalDefault specifies whether this PriorityClass should be considered as the default priority for pods that do not have any priority class. Only one PriorityClass can be marked as `globalDefault`. However, if more than one PriorityClasses exists with their `globalDefault` field set to true, the smallest value of such global default PriorityClasses will be used as the default priority.
              */
-            globalDefault?: pulumi.Input<boolean>;
+            globalDefault?: pulumi.Input<boolean | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"PriorityClass">;
+            kind?: pulumi.Input<"PriorityClass" | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset. This field is beta-level, gated by the NonPreemptingPriority feature-gate.
              */
-            preemptionPolicy?: pulumi.Input<string>;
+            preemptionPolicy?: pulumi.Input<string | undefined>;
             /**
              * The value of this priority class. This is the actual priority that pods receive when they have the name of this class in their pod spec.
              */
@@ -13786,27 +13786,27 @@ export namespace scheduling {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"scheduling.k8s.io/v1beta1">;
+            apiVersion?: pulumi.Input<"scheduling.k8s.io/v1beta1" | undefined>;
             /**
              * description is an arbitrary string that usually provides guidelines on when this priority class should be used.
              */
-            description?: pulumi.Input<string>;
+            description?: pulumi.Input<string | undefined>;
             /**
              * globalDefault specifies whether this PriorityClass should be considered as the default priority for pods that do not have any priority class. Only one PriorityClass can be marked as `globalDefault`. However, if more than one PriorityClasses exists with their `globalDefault` field set to true, the smallest value of such global default PriorityClasses will be used as the default priority.
              */
-            globalDefault?: pulumi.Input<boolean>;
+            globalDefault?: pulumi.Input<boolean | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"PriorityClass">;
+            kind?: pulumi.Input<"PriorityClass" | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset. This field is beta-level, gated by the NonPreemptingPriority feature-gate.
              */
-            preemptionPolicy?: pulumi.Input<string>;
+            preemptionPolicy?: pulumi.Input<string | undefined>;
             /**
              * The value of this priority class. This is the actual priority that pods receive when they have the name of this class in their pod spec.
              */
@@ -13825,13 +13825,13 @@ export namespace settings {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"settings.k8s.io/v1alpha1">;
+            apiVersion?: pulumi.Input<"settings.k8s.io/v1alpha1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"PodPreset">;
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
-            spec?: pulumi.Input<inputs.settings.v1alpha1.PodPresetSpec>;
+            kind?: pulumi.Input<"PodPreset" | undefined>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
+            spec?: pulumi.Input<inputs.settings.v1alpha1.PodPresetSpec | undefined>;
         }
 
         /**
@@ -13841,23 +13841,23 @@ export namespace settings {
             /**
              * Env defines the collection of EnvVar to inject into containers.
              */
-            env?: pulumi.Input<pulumi.Input<inputs.core.v1.EnvVar>[]>;
+            env?: pulumi.Input<pulumi.Input<inputs.core.v1.EnvVar>[] | undefined>;
             /**
              * EnvFrom defines the collection of EnvFromSource to inject into containers.
              */
-            envFrom?: pulumi.Input<pulumi.Input<inputs.core.v1.EnvFromSource>[]>;
+            envFrom?: pulumi.Input<pulumi.Input<inputs.core.v1.EnvFromSource>[] | undefined>;
             /**
              * Selector is a label query over a set of resources, in this case pods. Required.
              */
-            selector?: pulumi.Input<inputs.meta.v1.LabelSelector>;
+            selector?: pulumi.Input<inputs.meta.v1.LabelSelector | undefined>;
             /**
              * VolumeMounts defines the collection of VolumeMount to inject into containers.
              */
-            volumeMounts?: pulumi.Input<pulumi.Input<inputs.core.v1.VolumeMount>[]>;
+            volumeMounts?: pulumi.Input<pulumi.Input<inputs.core.v1.VolumeMount>[] | undefined>;
             /**
              * Volumes defines the collection of Volume to inject into the pod.
              */
-            volumes?: pulumi.Input<pulumi.Input<inputs.core.v1.Volume>[]>;
+            volumes?: pulumi.Input<pulumi.Input<inputs.core.v1.Volume>[] | undefined>;
         }
     }
 }
@@ -13871,15 +13871,15 @@ export namespace storage {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"storage.k8s.io/v1">;
+            apiVersion?: pulumi.Input<"storage.k8s.io/v1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"CSIDriver">;
+            kind?: pulumi.Input<"CSIDriver" | undefined>;
             /**
              * Standard object metadata. metadata.Name indicates the name of the CSI driver that this object refers to; it MUST be the same name returned by the CSI GetPluginName() call for that driver. The driver name must be 63 characters or less, beginning and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-), dots (.), and alphanumerics between. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Specification of the CSI Driver.
              */
@@ -13893,18 +13893,18 @@ export namespace storage {
             /**
              * attachRequired indicates this CSI volume driver requires an attach operation (because it implements the CSI ControllerPublishVolume() method), and that the Kubernetes attach detach controller should call the attach volume interface which checks the volumeattachment status and waits until the volume is attached before proceeding to mounting. The CSI external-attacher coordinates with CSI volume driver and updates the volumeattachment status when the attach operation is complete. If the CSIDriverRegistry feature gate is enabled and the value is specified to false, the attach operation will be skipped. Otherwise the attach operation will be called.
              */
-            attachRequired?: pulumi.Input<boolean>;
+            attachRequired?: pulumi.Input<boolean | undefined>;
             /**
              * Defines if the underlying volume supports changing ownership and permission of the volume before being mounted. Refer to the specific FSGroupPolicy values for additional details. This field is alpha-level, and is only honored by servers that enable the CSIVolumeFSGroupPolicy feature gate.
              */
-            fsGroupPolicy?: pulumi.Input<string>;
+            fsGroupPolicy?: pulumi.Input<string | undefined>;
             /**
              * If set to true, podInfoOnMount indicates this CSI volume driver requires additional pod information (like podName, podUID, etc.) during mount operations. If set to false, pod information will not be passed on mount. Default is false. The CSI driver specifies podInfoOnMount as part of driver deployment. If true, Kubelet will pass pod information as VolumeContext in the CSI NodePublishVolume() calls. The CSI driver is responsible for parsing and validating the information passed in as VolumeContext. The following VolumeConext will be passed if podInfoOnMount is set to true. This list might grow, but the prefix will be used. "csi.storage.k8s.io/pod.name": pod.Name "csi.storage.k8s.io/pod.namespace": pod.Namespace "csi.storage.k8s.io/pod.uid": string(pod.UID) "csi.storage.k8s.io/ephemeral": "true" iff the volume is an ephemeral inline volume
              *                                 defined by a CSIVolumeSource, otherwise "false"
              *
              * "csi.storage.k8s.io/ephemeral" is a new feature in Kubernetes 1.16. It is only required for drivers which support both the "Persistent" and "Ephemeral" VolumeLifecycleMode. Other drivers can leave pod info disabled and/or ignore this field. As Kubernetes 1.15 doesn't support this field, drivers can only support one mode when deployed on such a cluster and the deployment determines which mode that is, for example via a command line parameter of the driver.
              */
-            podInfoOnMount?: pulumi.Input<boolean>;
+            podInfoOnMount?: pulumi.Input<boolean | undefined>;
             /**
              * RequiresRepublish indicates the CSI driver wants `NodePublishVolume` being periodically called to reflect any possible change in the mounted volume. This field defaults to false.
              *
@@ -13912,7 +13912,7 @@ export namespace storage {
              *
              * This is an alpha feature and only available when the CSIServiceAccountToken feature is enabled.
              */
-            requiresRepublish?: pulumi.Input<boolean>;
+            requiresRepublish?: pulumi.Input<boolean | undefined>;
             /**
              * If set to true, storageCapacity indicates that the CSI volume driver wants pod scheduling to consider the storage capacity that the driver deployment will report by creating CSIStorageCapacity objects with capacity information.
              *
@@ -13922,7 +13922,7 @@ export namespace storage {
              *
              * This is an alpha field and only available when the CSIStorageCapacity feature is enabled. The default is false.
              */
-            storageCapacity?: pulumi.Input<boolean>;
+            storageCapacity?: pulumi.Input<boolean | undefined>;
             /**
              * TokenRequests indicates the CSI driver needs pods' service account tokens it is mounting volume for to do necessary authentication. Kubelet will pass the tokens in VolumeContext in the CSI NodePublishVolume calls. The CSI driver should parse and validate the following VolumeContext: "csi.storage.k8s.io/serviceAccount.tokens": {
              *   "<audience>": {
@@ -13936,11 +13936,11 @@ export namespace storage {
              *
              * This is an alpha feature and only available when the CSIServiceAccountToken feature is enabled.
              */
-            tokenRequests?: pulumi.Input<pulumi.Input<inputs.storage.v1.TokenRequest>[]>;
+            tokenRequests?: pulumi.Input<pulumi.Input<inputs.storage.v1.TokenRequest>[] | undefined>;
             /**
              * volumeLifecycleModes defines what kind of volumes this CSI volume driver supports. The default if the list is empty is "Persistent", which is the usage defined by the CSI specification and implemented in Kubernetes via the usual PV/PVC mechanism. The other mode is "Ephemeral". In this mode, volumes are defined inline inside the pod spec with CSIVolumeSource and their lifecycle is tied to the lifecycle of that pod. A driver has to be aware of this because it is only going to get a NodePublishVolume call for such a volume. For more information about implementing this mode, see https://kubernetes-csi.github.io/docs/ephemeral-local-volumes.html A driver can support one or more of these modes and more modes may be added in the future. This field is beta.
              */
-            volumeLifecycleModes?: pulumi.Input<pulumi.Input<string>[]>;
+            volumeLifecycleModes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         }
 
         /**
@@ -13950,15 +13950,15 @@ export namespace storage {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"storage.k8s.io/v1">;
+            apiVersion?: pulumi.Input<"storage.k8s.io/v1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"CSINode">;
+            kind?: pulumi.Input<"CSINode" | undefined>;
             /**
              * metadata.name must be the Kubernetes node name.
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * spec is the specification of CSINode
              */
@@ -13972,7 +13972,7 @@ export namespace storage {
             /**
              * allocatable represents the volume resources of a node that are available for scheduling. This field is beta.
              */
-            allocatable?: pulumi.Input<inputs.storage.v1.VolumeNodeResources>;
+            allocatable?: pulumi.Input<inputs.storage.v1.VolumeNodeResources | undefined>;
             /**
              * This is the name of the CSI driver that this object refers to. This MUST be the same name returned by the CSI GetPluginName() call for that driver.
              */
@@ -13984,7 +13984,7 @@ export namespace storage {
             /**
              * topologyKeys is the list of keys supported by the driver. When a driver is initialized on a cluster, it provides a set of topology keys that it understands (e.g. "company.com/zone", "company.com/region"). When a driver is initialized on a node, it provides the same topology keys along with values. Kubelet will expose these topology keys as labels on its own node object. When Kubernetes does topology aware provisioning, it can use this list to determine which labels it should retrieve from the node object and pass back to the driver. It is possible for different nodes to use different topology keys. This can be empty if driver does not support topology.
              */
-            topologyKeys?: pulumi.Input<pulumi.Input<string>[]>;
+            topologyKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         }
 
         /**
@@ -14006,31 +14006,31 @@ export namespace storage {
             /**
              * AllowVolumeExpansion shows whether the storage class allow volume expand
              */
-            allowVolumeExpansion?: pulumi.Input<boolean>;
+            allowVolumeExpansion?: pulumi.Input<boolean | undefined>;
             /**
              * Restrict the node topologies where volumes can be dynamically provisioned. Each volume plugin defines its own supported topology specifications. An empty TopologySelectorTerm list means there is no topology restriction. This field is only honored by servers that enable the VolumeScheduling feature.
              */
-            allowedTopologies?: pulumi.Input<pulumi.Input<inputs.core.v1.TopologySelectorTerm>[]>;
+            allowedTopologies?: pulumi.Input<pulumi.Input<inputs.core.v1.TopologySelectorTerm>[] | undefined>;
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"storage.k8s.io/v1">;
+            apiVersion?: pulumi.Input<"storage.k8s.io/v1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"StorageClass">;
+            kind?: pulumi.Input<"StorageClass" | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Dynamically provisioned PersistentVolumes of this storage class are created with these mountOptions, e.g. ["ro", "soft"]. Not validated - mount of the PVs will simply fail if one is invalid.
              */
-            mountOptions?: pulumi.Input<pulumi.Input<string>[]>;
+            mountOptions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * Parameters holds the parameters for the provisioner that should create volumes of this storage class.
              */
-            parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
             /**
              * Provisioner indicates the type of the provisioner.
              */
@@ -14038,11 +14038,11 @@ export namespace storage {
             /**
              * Dynamically provisioned PersistentVolumes of this storage class are created with this reclaimPolicy. Defaults to Delete.
              */
-            reclaimPolicy?: pulumi.Input<string>;
+            reclaimPolicy?: pulumi.Input<string | undefined>;
             /**
              * VolumeBindingMode indicates how PersistentVolumeClaims should be provisioned and bound.  When unset, VolumeBindingImmediate is used. This field is only honored by servers that enable the VolumeScheduling feature.
              */
-            volumeBindingMode?: pulumi.Input<string>;
+            volumeBindingMode?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -14056,7 +14056,7 @@ export namespace storage {
             /**
              * ExpirationSeconds is the duration of validity of the token in "TokenRequestSpec". It has the same default value of "ExpirationSeconds" in "TokenRequestSpec".
              */
-            expirationSeconds?: pulumi.Input<number>;
+            expirationSeconds?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -14068,15 +14068,15 @@ export namespace storage {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"storage.k8s.io/v1">;
+            apiVersion?: pulumi.Input<"storage.k8s.io/v1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"VolumeAttachment">;
+            kind?: pulumi.Input<"VolumeAttachment" | undefined>;
             /**
              * Standard object metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Specification of the desired attach/detach volume behavior. Populated by the Kubernetes system.
              */
@@ -14084,7 +14084,7 @@ export namespace storage {
             /**
              * Status of the VolumeAttachment request. Populated by the entity completing the attach or detach operation, i.e. the external-attacher.
              */
-            status?: pulumi.Input<inputs.storage.v1.VolumeAttachmentStatus>;
+            status?: pulumi.Input<inputs.storage.v1.VolumeAttachmentStatus | undefined>;
         }
 
         /**
@@ -14094,11 +14094,11 @@ export namespace storage {
             /**
              * inlineVolumeSpec contains all the information necessary to attach a persistent volume defined by a pod's inline VolumeSource. This field is populated only for the CSIMigration feature. It contains translated fields from a pod's inline VolumeSource to a PersistentVolumeSpec. This field is alpha-level and is only honored by servers that enabled the CSIMigration feature.
              */
-            inlineVolumeSpec?: pulumi.Input<inputs.core.v1.PersistentVolumeSpec>;
+            inlineVolumeSpec?: pulumi.Input<inputs.core.v1.PersistentVolumeSpec | undefined>;
             /**
              * Name of the persistent volume to attach.
              */
-            persistentVolumeName?: pulumi.Input<string>;
+            persistentVolumeName?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -14126,7 +14126,7 @@ export namespace storage {
             /**
              * The last error encountered during attach operation, if any. This field must only be set by the entity completing the attach operation, i.e. the external-attacher.
              */
-            attachError?: pulumi.Input<inputs.storage.v1.VolumeError>;
+            attachError?: pulumi.Input<inputs.storage.v1.VolumeError | undefined>;
             /**
              * Indicates the volume is successfully attached. This field must only be set by the entity completing the attach operation, i.e. the external-attacher.
              */
@@ -14134,11 +14134,11 @@ export namespace storage {
             /**
              * Upon successful attach, this field is populated with any information returned by the attach operation that must be passed into subsequent WaitForAttach or Mount calls. This field must only be set by the entity completing the attach operation, i.e. the external-attacher.
              */
-            attachmentMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            attachmentMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
             /**
              * The last error encountered during detach operation, if any. This field must only be set by the entity completing the detach operation, i.e. the external-attacher.
              */
-            detachError?: pulumi.Input<inputs.storage.v1.VolumeError>;
+            detachError?: pulumi.Input<inputs.storage.v1.VolumeError | undefined>;
         }
 
         /**
@@ -14148,11 +14148,11 @@ export namespace storage {
             /**
              * String detailing the error encountered during Attach or Detach operation. This string may be logged, so it should not contain sensitive information.
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * Time the error was encountered.
              */
-            time?: pulumi.Input<string>;
+            time?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -14162,7 +14162,7 @@ export namespace storage {
             /**
              * Maximum number of unique volumes managed by the CSI driver that can be used on a node. A volume that is both attached and mounted on a node is considered to be used once, not twice. The same rule applies for a unique volume that is shared among multiple pods on the same node. If this field is not specified, then the supported number of volumes on this node is unbounded.
              */
-            count?: pulumi.Input<number>;
+            count?: pulumi.Input<number | undefined>;
         }
     }
 
@@ -14176,15 +14176,15 @@ export namespace storage {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"storage.k8s.io/v1alpha1">;
+            apiVersion?: pulumi.Input<"storage.k8s.io/v1alpha1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"VolumeAttachment">;
+            kind?: pulumi.Input<"VolumeAttachment" | undefined>;
             /**
              * Standard object metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Specification of the desired attach/detach volume behavior. Populated by the Kubernetes system.
              */
@@ -14192,7 +14192,7 @@ export namespace storage {
             /**
              * Status of the VolumeAttachment request. Populated by the entity completing the attach or detach operation, i.e. the external-attacher.
              */
-            status?: pulumi.Input<inputs.storage.v1alpha1.VolumeAttachmentStatus>;
+            status?: pulumi.Input<inputs.storage.v1alpha1.VolumeAttachmentStatus | undefined>;
         }
 
         /**
@@ -14202,11 +14202,11 @@ export namespace storage {
             /**
              * inlineVolumeSpec contains all the information necessary to attach a persistent volume defined by a pod's inline VolumeSource. This field is populated only for the CSIMigration feature. It contains translated fields from a pod's inline VolumeSource to a PersistentVolumeSpec. This field is alpha-level and is only honored by servers that enabled the CSIMigration feature.
              */
-            inlineVolumeSpec?: pulumi.Input<inputs.core.v1.PersistentVolumeSpec>;
+            inlineVolumeSpec?: pulumi.Input<inputs.core.v1.PersistentVolumeSpec | undefined>;
             /**
              * Name of the persistent volume to attach.
              */
-            persistentVolumeName?: pulumi.Input<string>;
+            persistentVolumeName?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -14234,7 +14234,7 @@ export namespace storage {
             /**
              * The last error encountered during attach operation, if any. This field must only be set by the entity completing the attach operation, i.e. the external-attacher.
              */
-            attachError?: pulumi.Input<inputs.storage.v1alpha1.VolumeError>;
+            attachError?: pulumi.Input<inputs.storage.v1alpha1.VolumeError | undefined>;
             /**
              * Indicates the volume is successfully attached. This field must only be set by the entity completing the attach operation, i.e. the external-attacher.
              */
@@ -14242,11 +14242,11 @@ export namespace storage {
             /**
              * Upon successful attach, this field is populated with any information returned by the attach operation that must be passed into subsequent WaitForAttach or Mount calls. This field must only be set by the entity completing the attach operation, i.e. the external-attacher.
              */
-            attachmentMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            attachmentMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
             /**
              * The last error encountered during detach operation, if any. This field must only be set by the entity completing the detach operation, i.e. the external-attacher.
              */
-            detachError?: pulumi.Input<inputs.storage.v1alpha1.VolumeError>;
+            detachError?: pulumi.Input<inputs.storage.v1alpha1.VolumeError | undefined>;
         }
 
         /**
@@ -14256,11 +14256,11 @@ export namespace storage {
             /**
              * String detailing the error encountered during Attach or Detach operation. This string maybe logged, so it should not contain sensitive information.
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * Time the error was encountered.
              */
-            time?: pulumi.Input<string>;
+            time?: pulumi.Input<string | undefined>;
         }
     }
 
@@ -14272,15 +14272,15 @@ export namespace storage {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"storage.k8s.io/v1beta1">;
+            apiVersion?: pulumi.Input<"storage.k8s.io/v1beta1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"CSIDriver">;
+            kind?: pulumi.Input<"CSIDriver" | undefined>;
             /**
              * Standard object metadata. metadata.Name indicates the name of the CSI driver that this object refers to; it MUST be the same name returned by the CSI GetPluginName() call for that driver. The driver name must be 63 characters or less, beginning and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-), dots (.), and alphanumerics between. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Specification of the CSI Driver.
              */
@@ -14294,18 +14294,18 @@ export namespace storage {
             /**
              * attachRequired indicates this CSI volume driver requires an attach operation (because it implements the CSI ControllerPublishVolume() method), and that the Kubernetes attach detach controller should call the attach volume interface which checks the volumeattachment status and waits until the volume is attached before proceeding to mounting. The CSI external-attacher coordinates with CSI volume driver and updates the volumeattachment status when the attach operation is complete. If the CSIDriverRegistry feature gate is enabled and the value is specified to false, the attach operation will be skipped. Otherwise the attach operation will be called.
              */
-            attachRequired?: pulumi.Input<boolean>;
+            attachRequired?: pulumi.Input<boolean | undefined>;
             /**
              * Defines if the underlying volume supports changing ownership and permission of the volume before being mounted. Refer to the specific FSGroupPolicy values for additional details. This field is alpha-level, and is only honored by servers that enable the CSIVolumeFSGroupPolicy feature gate.
              */
-            fsGroupPolicy?: pulumi.Input<string>;
+            fsGroupPolicy?: pulumi.Input<string | undefined>;
             /**
              * If set to true, podInfoOnMount indicates this CSI volume driver requires additional pod information (like podName, podUID, etc.) during mount operations. If set to false, pod information will not be passed on mount. Default is false. The CSI driver specifies podInfoOnMount as part of driver deployment. If true, Kubelet will pass pod information as VolumeContext in the CSI NodePublishVolume() calls. The CSI driver is responsible for parsing and validating the information passed in as VolumeContext. The following VolumeConext will be passed if podInfoOnMount is set to true. This list might grow, but the prefix will be used. "csi.storage.k8s.io/pod.name": pod.Name "csi.storage.k8s.io/pod.namespace": pod.Namespace "csi.storage.k8s.io/pod.uid": string(pod.UID) "csi.storage.k8s.io/ephemeral": "true" iff the volume is an ephemeral inline volume
              *                                 defined by a CSIVolumeSource, otherwise "false"
              *
              * "csi.storage.k8s.io/ephemeral" is a new feature in Kubernetes 1.16. It is only required for drivers which support both the "Persistent" and "Ephemeral" VolumeLifecycleMode. Other drivers can leave pod info disabled and/or ignore this field. As Kubernetes 1.15 doesn't support this field, drivers can only support one mode when deployed on such a cluster and the deployment determines which mode that is, for example via a command line parameter of the driver.
              */
-            podInfoOnMount?: pulumi.Input<boolean>;
+            podInfoOnMount?: pulumi.Input<boolean | undefined>;
             /**
              * RequiresRepublish indicates the CSI driver wants `NodePublishVolume` being periodically called to reflect any possible change in the mounted volume. This field defaults to false.
              *
@@ -14313,7 +14313,7 @@ export namespace storage {
              *
              * This is an alpha feature and only available when the CSIServiceAccountToken feature is enabled.
              */
-            requiresRepublish?: pulumi.Input<boolean>;
+            requiresRepublish?: pulumi.Input<boolean | undefined>;
             /**
              * If set to true, storageCapacity indicates that the CSI volume driver wants pod scheduling to consider the storage capacity that the driver deployment will report by creating CSIStorageCapacity objects with capacity information.
              *
@@ -14323,7 +14323,7 @@ export namespace storage {
              *
              * This is an alpha field and only available when the CSIStorageCapacity feature is enabled. The default is false.
              */
-            storageCapacity?: pulumi.Input<boolean>;
+            storageCapacity?: pulumi.Input<boolean | undefined>;
             /**
              * TokenRequests indicates the CSI driver needs pods' service account tokens it is mounting volume for to do necessary authentication. Kubelet will pass the tokens in VolumeContext in the CSI NodePublishVolume calls. The CSI driver should parse and validate the following VolumeContext: "csi.storage.k8s.io/serviceAccount.tokens": {
              *   "<audience>": {
@@ -14337,11 +14337,11 @@ export namespace storage {
              *
              * This is an alpha feature and only available when the CSIServiceAccountToken feature is enabled.
              */
-            tokenRequests?: pulumi.Input<pulumi.Input<inputs.storage.v1beta1.TokenRequest>[]>;
+            tokenRequests?: pulumi.Input<pulumi.Input<inputs.storage.v1beta1.TokenRequest>[] | undefined>;
             /**
              * VolumeLifecycleModes defines what kind of volumes this CSI volume driver supports. The default if the list is empty is "Persistent", which is the usage defined by the CSI specification and implemented in Kubernetes via the usual PV/PVC mechanism. The other mode is "Ephemeral". In this mode, volumes are defined inline inside the pod spec with CSIVolumeSource and their lifecycle is tied to the lifecycle of that pod. A driver has to be aware of this because it is only going to get a NodePublishVolume call for such a volume. For more information about implementing this mode, see https://kubernetes-csi.github.io/docs/ephemeral-local-volumes.html A driver can support one or more of these modes and more modes may be added in the future.
              */
-            volumeLifecycleModes?: pulumi.Input<pulumi.Input<string>[]>;
+            volumeLifecycleModes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         }
 
         /**
@@ -14351,15 +14351,15 @@ export namespace storage {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"storage.k8s.io/v1beta1">;
+            apiVersion?: pulumi.Input<"storage.k8s.io/v1beta1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"CSINode">;
+            kind?: pulumi.Input<"CSINode" | undefined>;
             /**
              * metadata.name must be the Kubernetes node name.
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * spec is the specification of CSINode
              */
@@ -14373,7 +14373,7 @@ export namespace storage {
             /**
              * allocatable represents the volume resources of a node that are available for scheduling.
              */
-            allocatable?: pulumi.Input<inputs.storage.v1beta1.VolumeNodeResources>;
+            allocatable?: pulumi.Input<inputs.storage.v1beta1.VolumeNodeResources | undefined>;
             /**
              * This is the name of the CSI driver that this object refers to. This MUST be the same name returned by the CSI GetPluginName() call for that driver.
              */
@@ -14385,7 +14385,7 @@ export namespace storage {
             /**
              * topologyKeys is the list of keys supported by the driver. When a driver is initialized on a cluster, it provides a set of topology keys that it understands (e.g. "company.com/zone", "company.com/region"). When a driver is initialized on a node, it provides the same topology keys along with values. Kubelet will expose these topology keys as labels on its own node object. When Kubernetes does topology aware provisioning, it can use this list to determine which labels it should retrieve from the node object and pass back to the driver. It is possible for different nodes to use different topology keys. This can be empty if driver does not support topology.
              */
-            topologyKeys?: pulumi.Input<pulumi.Input<string>[]>;
+            topologyKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         }
 
         /**
@@ -14407,31 +14407,31 @@ export namespace storage {
             /**
              * AllowVolumeExpansion shows whether the storage class allow volume expand
              */
-            allowVolumeExpansion?: pulumi.Input<boolean>;
+            allowVolumeExpansion?: pulumi.Input<boolean | undefined>;
             /**
              * Restrict the node topologies where volumes can be dynamically provisioned. Each volume plugin defines its own supported topology specifications. An empty TopologySelectorTerm list means there is no topology restriction. This field is only honored by servers that enable the VolumeScheduling feature.
              */
-            allowedTopologies?: pulumi.Input<pulumi.Input<inputs.core.v1.TopologySelectorTerm>[]>;
+            allowedTopologies?: pulumi.Input<pulumi.Input<inputs.core.v1.TopologySelectorTerm>[] | undefined>;
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"storage.k8s.io/v1beta1">;
+            apiVersion?: pulumi.Input<"storage.k8s.io/v1beta1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"StorageClass">;
+            kind?: pulumi.Input<"StorageClass" | undefined>;
             /**
              * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Dynamically provisioned PersistentVolumes of this storage class are created with these mountOptions, e.g. ["ro", "soft"]. Not validated - mount of the PVs will simply fail if one is invalid.
              */
-            mountOptions?: pulumi.Input<pulumi.Input<string>[]>;
+            mountOptions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
             /**
              * Parameters holds the parameters for the provisioner that should create volumes of this storage class.
              */
-            parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
             /**
              * Provisioner indicates the type of the provisioner.
              */
@@ -14439,11 +14439,11 @@ export namespace storage {
             /**
              * Dynamically provisioned PersistentVolumes of this storage class are created with this reclaimPolicy. Defaults to Delete.
              */
-            reclaimPolicy?: pulumi.Input<string>;
+            reclaimPolicy?: pulumi.Input<string | undefined>;
             /**
              * VolumeBindingMode indicates how PersistentVolumeClaims should be provisioned and bound.  When unset, VolumeBindingImmediate is used. This field is only honored by servers that enable the VolumeScheduling feature.
              */
-            volumeBindingMode?: pulumi.Input<string>;
+            volumeBindingMode?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -14457,7 +14457,7 @@ export namespace storage {
             /**
              * ExpirationSeconds is the duration of validity of the token in "TokenRequestSpec". It has the same default value of "ExpirationSeconds" in "TokenRequestSpec"
              */
-            expirationSeconds?: pulumi.Input<number>;
+            expirationSeconds?: pulumi.Input<number | undefined>;
         }
 
         /**
@@ -14469,15 +14469,15 @@ export namespace storage {
             /**
              * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
              */
-            apiVersion?: pulumi.Input<"storage.k8s.io/v1beta1">;
+            apiVersion?: pulumi.Input<"storage.k8s.io/v1beta1" | undefined>;
             /**
              * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
              */
-            kind?: pulumi.Input<"VolumeAttachment">;
+            kind?: pulumi.Input<"VolumeAttachment" | undefined>;
             /**
              * Standard object metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
              */
-            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+            metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
             /**
              * Specification of the desired attach/detach volume behavior. Populated by the Kubernetes system.
              */
@@ -14485,7 +14485,7 @@ export namespace storage {
             /**
              * Status of the VolumeAttachment request. Populated by the entity completing the attach or detach operation, i.e. the external-attacher.
              */
-            status?: pulumi.Input<inputs.storage.v1beta1.VolumeAttachmentStatus>;
+            status?: pulumi.Input<inputs.storage.v1beta1.VolumeAttachmentStatus | undefined>;
         }
 
         /**
@@ -14495,11 +14495,11 @@ export namespace storage {
             /**
              * inlineVolumeSpec contains all the information necessary to attach a persistent volume defined by a pod's inline VolumeSource. This field is populated only for the CSIMigration feature. It contains translated fields from a pod's inline VolumeSource to a PersistentVolumeSpec. This field is alpha-level and is only honored by servers that enabled the CSIMigration feature.
              */
-            inlineVolumeSpec?: pulumi.Input<inputs.core.v1.PersistentVolumeSpec>;
+            inlineVolumeSpec?: pulumi.Input<inputs.core.v1.PersistentVolumeSpec | undefined>;
             /**
              * Name of the persistent volume to attach.
              */
-            persistentVolumeName?: pulumi.Input<string>;
+            persistentVolumeName?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -14527,7 +14527,7 @@ export namespace storage {
             /**
              * The last error encountered during attach operation, if any. This field must only be set by the entity completing the attach operation, i.e. the external-attacher.
              */
-            attachError?: pulumi.Input<inputs.storage.v1beta1.VolumeError>;
+            attachError?: pulumi.Input<inputs.storage.v1beta1.VolumeError | undefined>;
             /**
              * Indicates the volume is successfully attached. This field must only be set by the entity completing the attach operation, i.e. the external-attacher.
              */
@@ -14535,11 +14535,11 @@ export namespace storage {
             /**
              * Upon successful attach, this field is populated with any information returned by the attach operation that must be passed into subsequent WaitForAttach or Mount calls. This field must only be set by the entity completing the attach operation, i.e. the external-attacher.
              */
-            attachmentMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            attachmentMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
             /**
              * The last error encountered during detach operation, if any. This field must only be set by the entity completing the detach operation, i.e. the external-attacher.
              */
-            detachError?: pulumi.Input<inputs.storage.v1beta1.VolumeError>;
+            detachError?: pulumi.Input<inputs.storage.v1beta1.VolumeError | undefined>;
         }
 
         /**
@@ -14549,11 +14549,11 @@ export namespace storage {
             /**
              * String detailing the error encountered during Attach or Detach operation. This string may be logged, so it should not contain sensitive information.
              */
-            message?: pulumi.Input<string>;
+            message?: pulumi.Input<string | undefined>;
             /**
              * Time the error was encountered.
              */
-            time?: pulumi.Input<string>;
+            time?: pulumi.Input<string | undefined>;
         }
 
         /**
@@ -14563,7 +14563,7 @@ export namespace storage {
             /**
              * Maximum number of unique volumes managed by the CSI driver that can be used on a node. A volume that is both attached and mounted on a node is considered to be used once, not twice. The same rule applies for a unique volume that is shared among multiple pods on the same node. If this field is nil, then the supported number of volumes on this node is unbounded.
              */
-            count?: pulumi.Input<number>;
+            count?: pulumi.Input<number | undefined>;
         }
     }
 }

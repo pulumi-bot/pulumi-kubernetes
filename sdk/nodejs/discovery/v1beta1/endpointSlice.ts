@@ -112,7 +112,7 @@ export interface EndpointSliceArgs {
     /**
      * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
      */
-    readonly apiVersion?: pulumi.Input<"discovery.k8s.io/v1beta1">;
+    readonly apiVersion?: pulumi.Input<"discovery.k8s.io/v1beta1" | undefined>;
     /**
      * endpoints is a list of unique endpoints in this slice. Each slice may include a maximum of 1000 endpoints.
      */
@@ -120,13 +120,13 @@ export interface EndpointSliceArgs {
     /**
      * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
      */
-    readonly kind?: pulumi.Input<"EndpointSlice">;
+    readonly kind?: pulumi.Input<"EndpointSlice" | undefined>;
     /**
      * Standard object's metadata.
      */
-    readonly metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+    readonly metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
     /**
      * ports specifies the list of network ports exposed by each endpoint in this slice. Each port must have a unique name. When ports is empty, it indicates that there are no defined ports. When a port is defined with a nil port value, it indicates "all ports". Each slice may include a maximum of 100 ports.
      */
-    readonly ports?: pulumi.Input<pulumi.Input<inputs.discovery.v1beta1.EndpointPort>[]>;
+    readonly ports?: pulumi.Input<pulumi.Input<inputs.discovery.v1beta1.EndpointPort>[] | undefined>;
 }

@@ -92,17 +92,17 @@ export interface NetworkPolicyArgs {
     /**
      * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
      */
-    readonly apiVersion?: pulumi.Input<"extensions/v1beta1">;
+    readonly apiVersion?: pulumi.Input<"extensions/v1beta1" | undefined>;
     /**
      * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
      */
-    readonly kind?: pulumi.Input<"NetworkPolicy">;
+    readonly kind?: pulumi.Input<"NetworkPolicy" | undefined>;
     /**
      * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
      */
-    readonly metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+    readonly metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
     /**
      * Specification of the desired behavior for this NetworkPolicy.
      */
-    readonly spec?: pulumi.Input<inputs.extensions.v1beta1.NetworkPolicySpec>;
+    readonly spec?: pulumi.Input<inputs.extensions.v1beta1.NetworkPolicySpec | undefined>;
 }

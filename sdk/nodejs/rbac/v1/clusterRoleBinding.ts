@@ -101,15 +101,15 @@ export interface ClusterRoleBindingArgs {
     /**
      * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
      */
-    readonly apiVersion?: pulumi.Input<"rbac.authorization.k8s.io/v1">;
+    readonly apiVersion?: pulumi.Input<"rbac.authorization.k8s.io/v1" | undefined>;
     /**
      * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
      */
-    readonly kind?: pulumi.Input<"ClusterRoleBinding">;
+    readonly kind?: pulumi.Input<"ClusterRoleBinding" | undefined>;
     /**
      * Standard object's metadata.
      */
-    readonly metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+    readonly metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
     /**
      * RoleRef can only reference a ClusterRole in the global namespace. If the RoleRef cannot be resolved, the Authorizer must return an error.
      */
@@ -117,5 +117,5 @@ export interface ClusterRoleBindingArgs {
     /**
      * Subjects holds references to the objects the role applies to.
      */
-    readonly subjects?: pulumi.Input<pulumi.Input<inputs.rbac.v1.Subject>[]>;
+    readonly subjects?: pulumi.Input<pulumi.Input<inputs.rbac.v1.Subject>[] | undefined>;
 }

@@ -102,25 +102,25 @@ export interface ServiceAccountArgs {
     /**
      * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
      */
-    readonly apiVersion?: pulumi.Input<"v1">;
+    readonly apiVersion?: pulumi.Input<"v1" | undefined>;
     /**
      * AutomountServiceAccountToken indicates whether pods running as this service account should have an API token automatically mounted. Can be overridden at the pod level.
      */
-    readonly automountServiceAccountToken?: pulumi.Input<boolean>;
+    readonly automountServiceAccountToken?: pulumi.Input<boolean | undefined>;
     /**
      * ImagePullSecrets is a list of references to secrets in the same namespace to use for pulling any images in pods that reference this ServiceAccount. ImagePullSecrets are distinct from Secrets because Secrets can be mounted in the pod, but ImagePullSecrets are only accessed by the kubelet. More info: https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
      */
-    readonly imagePullSecrets?: pulumi.Input<pulumi.Input<inputs.core.v1.LocalObjectReference>[]>;
+    readonly imagePullSecrets?: pulumi.Input<pulumi.Input<inputs.core.v1.LocalObjectReference>[] | undefined>;
     /**
      * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
      */
-    readonly kind?: pulumi.Input<"ServiceAccount">;
+    readonly kind?: pulumi.Input<"ServiceAccount" | undefined>;
     /**
      * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
      */
-    readonly metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+    readonly metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
     /**
      * Secrets is the list of secrets allowed to be used by pods running using this ServiceAccount. More info: https://kubernetes.io/docs/concepts/configuration/secret
      */
-    readonly secrets?: pulumi.Input<pulumi.Input<inputs.core.v1.ObjectReference>[]>;
+    readonly secrets?: pulumi.Input<pulumi.Input<inputs.core.v1.ObjectReference>[] | undefined>;
 }

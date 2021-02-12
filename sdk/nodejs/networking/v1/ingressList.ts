@@ -93,7 +93,7 @@ export interface IngressListArgs {
     /**
      * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
      */
-    readonly apiVersion?: pulumi.Input<"networking.k8s.io/v1">;
+    readonly apiVersion?: pulumi.Input<"networking.k8s.io/v1" | undefined>;
     /**
      * Items is the list of Ingress.
      */
@@ -101,9 +101,9 @@ export interface IngressListArgs {
     /**
      * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
      */
-    readonly kind?: pulumi.Input<"IngressList">;
+    readonly kind?: pulumi.Input<"IngressList" | undefined>;
     /**
      * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
      */
-    readonly metadata?: pulumi.Input<inputs.meta.v1.ListMeta>;
+    readonly metadata?: pulumi.Input<inputs.meta.v1.ListMeta | undefined>;
 }

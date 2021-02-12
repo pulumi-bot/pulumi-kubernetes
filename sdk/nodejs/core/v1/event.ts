@@ -176,23 +176,23 @@ export interface EventArgs {
     /**
      * What action was taken/failed regarding to the Regarding object.
      */
-    readonly action?: pulumi.Input<string>;
+    readonly action?: pulumi.Input<string | undefined>;
     /**
      * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
      */
-    readonly apiVersion?: pulumi.Input<"v1">;
+    readonly apiVersion?: pulumi.Input<"v1" | undefined>;
     /**
      * The number of times this event has occurred.
      */
-    readonly count?: pulumi.Input<number>;
+    readonly count?: pulumi.Input<number | undefined>;
     /**
      * Time when this Event was first observed.
      */
-    readonly eventTime?: pulumi.Input<string>;
+    readonly eventTime?: pulumi.Input<string | undefined>;
     /**
      * The time at which the event was first recorded. (Time of server receipt is in TypeMeta.)
      */
-    readonly firstTimestamp?: pulumi.Input<string>;
+    readonly firstTimestamp?: pulumi.Input<string | undefined>;
     /**
      * The object that this event is about.
      */
@@ -200,15 +200,15 @@ export interface EventArgs {
     /**
      * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
      */
-    readonly kind?: pulumi.Input<"Event">;
+    readonly kind?: pulumi.Input<"Event" | undefined>;
     /**
      * The time at which the most recent occurrence of this event was recorded.
      */
-    readonly lastTimestamp?: pulumi.Input<string>;
+    readonly lastTimestamp?: pulumi.Input<string | undefined>;
     /**
      * A human-readable description of the status of this operation.
      */
-    readonly message?: pulumi.Input<string>;
+    readonly message?: pulumi.Input<string | undefined>;
     /**
      * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
      */
@@ -216,29 +216,29 @@ export interface EventArgs {
     /**
      * This should be a short, machine understandable string that gives the reason for the transition into the object's current status.
      */
-    readonly reason?: pulumi.Input<string>;
+    readonly reason?: pulumi.Input<string | undefined>;
     /**
      * Optional secondary object for more complex actions.
      */
-    readonly related?: pulumi.Input<inputs.core.v1.ObjectReference>;
+    readonly related?: pulumi.Input<inputs.core.v1.ObjectReference | undefined>;
     /**
      * Name of the controller that emitted this Event, e.g. `kubernetes.io/kubelet`.
      */
-    readonly reportingComponent?: pulumi.Input<string>;
+    readonly reportingComponent?: pulumi.Input<string | undefined>;
     /**
      * ID of the controller instance, e.g. `kubelet-xyzf`.
      */
-    readonly reportingInstance?: pulumi.Input<string>;
+    readonly reportingInstance?: pulumi.Input<string | undefined>;
     /**
      * Data about the Event series this event represents or nil if it's a singleton Event.
      */
-    readonly series?: pulumi.Input<inputs.core.v1.EventSeries>;
+    readonly series?: pulumi.Input<inputs.core.v1.EventSeries | undefined>;
     /**
      * The component reporting this event. Should be a short machine understandable string.
      */
-    readonly source?: pulumi.Input<inputs.core.v1.EventSource>;
+    readonly source?: pulumi.Input<inputs.core.v1.EventSource | undefined>;
     /**
      * Type of this event (Normal, Warning), new types could be added in the future
      */
-    readonly type?: pulumi.Input<string>;
+    readonly type?: pulumi.Input<string | undefined>;
 }

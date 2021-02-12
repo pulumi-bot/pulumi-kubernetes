@@ -113,27 +113,27 @@ export interface PriorityClassArgs {
     /**
      * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
      */
-    readonly apiVersion?: pulumi.Input<"scheduling.k8s.io/v1alpha1">;
+    readonly apiVersion?: pulumi.Input<"scheduling.k8s.io/v1alpha1" | undefined>;
     /**
      * description is an arbitrary string that usually provides guidelines on when this priority class should be used.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * globalDefault specifies whether this PriorityClass should be considered as the default priority for pods that do not have any priority class. Only one PriorityClass can be marked as `globalDefault`. However, if more than one PriorityClasses exists with their `globalDefault` field set to true, the smallest value of such global default PriorityClasses will be used as the default priority.
      */
-    readonly globalDefault?: pulumi.Input<boolean>;
+    readonly globalDefault?: pulumi.Input<boolean | undefined>;
     /**
      * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
      */
-    readonly kind?: pulumi.Input<"PriorityClass">;
+    readonly kind?: pulumi.Input<"PriorityClass" | undefined>;
     /**
      * Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
      */
-    readonly metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
+    readonly metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta | undefined>;
     /**
      * PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset. This field is beta-level, gated by the NonPreemptingPriority feature-gate.
      */
-    readonly preemptionPolicy?: pulumi.Input<string>;
+    readonly preemptionPolicy?: pulumi.Input<string | undefined>;
     /**
      * The value of this priority class. This is the actual priority that pods receive when they have the name of this class in their pod spec.
      */

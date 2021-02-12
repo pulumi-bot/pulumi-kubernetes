@@ -59,11 +59,11 @@ export interface ProviderArgs {
     /**
      * If present, the name of the kubeconfig cluster to use.
      */
-    readonly cluster?: pulumi.Input<string>;
+    readonly cluster?: pulumi.Input<string | undefined>;
     /**
      * If present, the name of the kubeconfig context to use.
      */
-    readonly context?: pulumi.Input<string>;
+    readonly context?: pulumi.Input<string | undefined>;
     /**
      * BETA FEATURE - If present and set to true, enable server-side diff calculations.
      * This feature is in developer preview, and is disabled by default.
@@ -72,11 +72,11 @@ export interface ProviderArgs {
      * 1. This `enableDryRun` parameter.
      * 2. The `PULUMI_K8S_ENABLE_DRY_RUN` environment variable.
      */
-    readonly enableDryRun?: pulumi.Input<boolean>;
+    readonly enableDryRun?: pulumi.Input<boolean | undefined>;
     /**
      * The contents of a kubeconfig file or the path to a kubeconfig file. If this is set, this config will be used instead of $KUBECONFIG.
      */
-    readonly kubeconfig?: pulumi.Input<string>;
+    readonly kubeconfig?: pulumi.Input<string | undefined>;
     /**
      * If present, the default namespace to use. This flag is ignored for cluster-scoped resources.
      *
@@ -85,7 +85,7 @@ export interface ProviderArgs {
      * 2. This `namespace` parameter.
      * 3. `namespace` set for the active context in the kubeconfig.
      */
-    readonly namespace?: pulumi.Input<string>;
+    readonly namespace?: pulumi.Input<string | undefined>;
     /**
      * BETA FEATURE - If present, render resource manifests to this directory. In this mode, resources will not
      * be created on a Kubernetes cluster, but the rendered manifests will be kept in sync with changes
@@ -96,7 +96,7 @@ export interface ProviderArgs {
      * and may result in an error if they are referenced by other resources. Also note that any secret values
      * used in these resources will be rendered in plaintext to the resulting YAML.
      */
-    readonly renderYamlToDirectory?: pulumi.Input<string>;
+    readonly renderYamlToDirectory?: pulumi.Input<string | undefined>;
     /**
      * If present and set to true, suppress apiVersion deprecation warnings from the CLI.
      *
@@ -104,5 +104,5 @@ export interface ProviderArgs {
      * 1. This `suppressDeprecationWarnings` parameter.
      * 2. The `PULUMI_K8S_SUPPRESS_DEPRECATION_WARNINGS` environment variable.
      */
-    readonly suppressDeprecationWarnings?: pulumi.Input<boolean>;
+    readonly suppressDeprecationWarnings?: pulumi.Input<boolean | undefined>;
 }
