@@ -14,7 +14,7 @@ require (
 	github.com/pulumi/pulumi/pkg/v2 v2.21.3-0.20210301175425-8616390418f8
 	github.com/pulumi/pulumi/sdk/v2 v2.21.3-0.20210301175425-8616390418f8
 	github.com/stretchr/testify v1.7.0
-	google.golang.org/grpc v1.29.1
+	google.golang.org/grpc v1.34.0
 	helm.sh/helm/v3 v3.5.2
 	k8s.io/api v0.20.2
 	k8s.io/apimachinery v0.20.2
@@ -31,3 +31,7 @@ replace (
 	github.com/docker/docker => github.com/moby/moby v17.12.0-ce-rc1.0.20200618181300-9dc6525e6118+incompatible
 	github.com/evanphx/json-patch => github.com/evanphx/json-patch v4.9.0+incompatible
 )
+
+replace github.com/pulumi/pulumi/pkg/v2 => ../../pulumi/pkg
+
+replace github.com/pulumi/pulumi/sdk/v2 => ../../pulumi/sdk
