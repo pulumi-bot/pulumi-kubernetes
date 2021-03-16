@@ -179,7 +179,7 @@ func (i *configMapPtrType) ToConfigMapPtrOutputWithContext(ctx context.Context) 
 // ConfigMapArrayInput is an input type that accepts ConfigMapArray and ConfigMapArrayOutput values.
 // You can construct a concrete instance of `ConfigMapArrayInput` via:
 //
-//          ConfigMapArray{ ConfigMapArgs{...} }
+//          ConfigMapArray{ ConfigMap{ "key": ConfigArgs{...} } }
 type ConfigMapArrayInput interface {
 	pulumi.Input
 
@@ -204,7 +204,7 @@ func (i ConfigMapArray) ToConfigMapArrayOutputWithContext(ctx context.Context) C
 // ConfigMapMapInput is an input type that accepts ConfigMapMap and ConfigMapMapOutput values.
 // You can construct a concrete instance of `ConfigMapMapInput` via:
 //
-//          ConfigMapMap{ "key": ConfigMapArgs{...} }
+//          ConfigMapMap{ "key": ConfigMap{ "key": ConfigArgs{...} } }
 type ConfigMapMapInput interface {
 	pulumi.Input
 
